@@ -36,7 +36,7 @@ export async function runCascadeFixture(name: string): Promise<CascadeResult> {
       created.push(j.key);
     }
     for (const iss of fx.issues) {
-      await setDates(keyMap[iss.key], { start: iss.startDate, due: iss.dueDate, duration: iss.duration, buffer: undefined }, fc);
+      await setDates(keyMap[iss.key], { start: iss.startDate, due: iss.dueDate, duration: iss.duration, buffer: iss.buffer }, fc);
     }
     for (const iss of fx.issues) for (const s of iss.successors || []) await linkBlocks(keyMap[iss.key], keyMap[s]);
     for (const iss of fx.issues) {

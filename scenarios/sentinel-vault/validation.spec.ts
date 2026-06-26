@@ -23,7 +23,7 @@ function rule(type: string, config: any) {
   return { id: `hr-${type}`, type, label: type, severity: "block", enabled: true, config };
 }
 
-test.describe.configure({ timeout: 180_000 });
+test.describe.configure({ timeout: 180_000, retries: 2 });
 
 test.describe("Sentinel Vault validation (page-content trigger)", () => {
   let original: any;

@@ -123,6 +123,17 @@ export async function doTransition(key, transitionId, fields) {
   return { status: res.status, text: res.text };
 }
 
+export async function uploadAttachment(key, filename, content) {
+  const fd = new FormData();
+  fd.append("file", new Blob([content], { type: "text/plain" }), filename);
+  const res = await fetch(`${BASE}/rest/api/3/issue/${key}/attachments`, {
+    method: "POST",
+    headers: { Authorization: AUTH, "X-Atlassian-Token": "no-check" },
+    body: fd,
+  });
+  return { status: res.status, ok: res.ok, text: await res.text() };
+}
+
 export async function searchJql(jql, fields = ["summary", "status"], maxResults = 100) {
   const out = [];
   let nextPageToken;

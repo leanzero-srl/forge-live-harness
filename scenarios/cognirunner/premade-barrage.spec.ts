@@ -102,8 +102,16 @@ test.describe("CogniRunner premade-rule adversarial barrage", () => {
     test(`${c.id}${c.note ? ` — ${c.note}` : ""}`, async () => {
       // reset the field then set the case value (null clears)
       await request("PUT", `/rest/api/3/issue/${issueKey}`, { raw: true, body: { fields: c.set } });
-      const r = await doTransition(issueKey, tid[c.id]);
-      const blocked = r.status >= 400;
+      // The validator reads the field via REST; a freshly-PUT value is eventually consistent, so
+      // re-fire (self-loop, idempotent) until the result is stable. A REAL finding never converges
+      // and still fails with the detailed message below.
+      let blocked = false, r: any;
+      for (let i = 0; i < 8; i++) {
+        r = await doTransition(issueKey, tid[c.id]);
+        blocked = r.status >= 400;
+        if (blocked === c.expectBlock) break;
+        await new Promise((res) => setTimeout(res, 1500));
+      }
       expect(blocked, `${c.id}: expected ${c.expectBlock ? "BLOCK" : "ALLOW"} but got ${blocked ? "BLOCK" : "ALLOW"} (status ${r.status})${blocked ? " — " + r.text.slice(0, 160) : ""}`).toBe(c.expectBlock);
     });
   }

@@ -1,0 +1,78 @@
+// Sentinel Vault DEEP — validation rule-EVAL edge cases (adversarial). Each sets one
+// global rule (advisory, block severity), creates a page in a probe ADF state, and
+// polls the trigger's terminal outcome: lastgood set (compliant) vs a comment posted
+// (violation). A consistent wrong outcome is a real finding.
+import { test, expect } from "@playwright/test";
+import { getTestState } from "../../testhook/client";
+import { waitForTerminal } from "../_support/wait";
+// @ts-ignore
+import { spaceIdByKey, createPage, getComments, deletePage } from "../../data/confluence.mjs";
+// @ts-ignore
+import { paragraph, heading, simpleTable, buildBodiedExtensionNode, buildExtensionNode } from "../../data/adf.mjs";
+
+const SENTINEL_APP = "ari:cloud:ecosystem::app/c30bf71e-4287-4872-954d-db49cc68f0ff";
+const SENTINEL_ENV = process.env.SENTINEL_ENV_ID || "17516615-12ef-4790-8ce2-29151b7ee9ac";
+// The app's OWN sealed-section macro (extensionKey ends in "…sentinel-vault-sealed-section").
+const sealedSection = () => buildBodiedExtensionNode(SENTINEL_APP, SENTINEL_ENV, "sentinel-vault-sealed-section", { params: { sectionId: "harness-noseal" }, content: [paragraph("body")] as any });
+const extNode = () => buildExtensionNode(SENTINEL_APP, SENTINEL_ENV, "sentinel-vault-panel", {});
+
+const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
+const CFG_KEY = "validation-config-global";
+const setConfig = (cfg: any) => getTestState("sentinel-vault", { what: "set", key: CFG_KEY, value: JSON.stringify(cfg) });
+const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
+const doc = (...nodes: any[]) => ({ version: 1, type: "doc", content: nodes });
+const expand = (...kids: any[]) => ({ type: "expand", attrs: { title: "details" }, content: kids });
+const ruleCfg = (type: string, config: any) => ({ enabled: true, modes: { advisory: true, gate: false, revert: false }, rules: [{ id: `e-${type}`, type, label: type, severity: "block", enabled: true, config }], ai: { enabled: false } });
+
+interface Case { id: string; cfg: any; adf: any; expect: "compliant" | "violation"; note?: string }
+const CASES: Case[] = [
+  { id: "table-toplevel", cfg: ruleCfg("required-table", { minCount: 1 }), adf: doc(paragraph("r"), simpleTable()), expect: "compliant", note: "control: top-level table" },
+  { id: "table-in-expand", cfg: ruleCfg("required-table", { minCount: 1 }), adf: doc(paragraph("r"), expand(simpleTable())), expect: "compliant", note: "PROBE: table nested in an expand (countNodes should recurse)" },
+  { id: "no-table", cfg: ruleCfg("required-table", { minCount: 1 }), adf: doc(paragraph("just text, no table")), expect: "violation" },
+  { id: "heading-ok", cfg: ruleCfg("heading-hierarchy", {}), adf: doc(heading("A", 1), heading("B", 2)), expect: "compliant", note: "control: H1→H2" },
+  { id: "heading-skip", cfg: ruleCfg("heading-hierarchy", {}), adf: doc(heading("A", 1), heading("C", 3)), expect: "violation", note: "PROBE: H1→H3 skip should be flagged" },
+  // 🔎 CONFIRMS SV-m5 (code audit): collectHeadings recurses into table cells with no type gate,
+  // so an in-cell H4 is folded into the page outline → a VALID top-level outline (H1→H2) is falsely
+  // flagged "skip from H2 to H4". Asserting the BUGGY outcome (violation) to lock the live repro.
+  { id: "heading-in-cell-SV-m5", cfg: ruleCfg("heading-hierarchy", {}),
+    adf: doc(heading("Top", 1), heading("Sub", 2),
+      { type: "table", attrs: { isNumberColumnEnabled: false, layout: "default" },
+        content: [{ type: "tableRow", content: [{ type: "tableCell", attrs: {}, content: [heading("In-cell label", 4)] }] }] }),
+    expect: "violation", note: "🔎 CONFIRMS SV-m5: in-cell H4 folded into outline → false H2→H4 skip on a valid page" },
+  // 🔎 CONFIRMS SV-m4 (code audit): required-macro uses unanchored endsWith(), so the app's OWN
+  // sealed-section macro (key ends in "…sealed-section") satisfies a required-macro:"section" rule.
+  // The page has NO intended macro yet is reported COMPLIANT.
+  { id: "reqmacro-endswith-SV-m4", cfg: ruleCfg("required-macro", { extensionKey: "section", minCount: 1 }),
+    adf: doc(paragraph("no intended macro on this page"), sealedSection()),
+    expect: "compliant", note: "🔎 CONFIRMS SV-m4: sealed-section macro falsely satisfies required-macro 'section'" },
+  // 🔎 CONFIRMS SV-M4 (code audit): min-length counts ~19-char "[embedded object]" placeholders for
+  // extension/media nodes, so a prose-free macro-only page passes a 100-char minimum.
+  { id: "minlength-placeholder-SV-M4", cfg: ruleCfg("min-length", { minChars: 100 }),
+    adf: doc(extNode(), extNode(), extNode(), extNode(), extNode(), extNode(), extNode(), extNode()),
+    expect: "compliant", note: "🔎 CONFIRMS SV-M4: 8 macro placeholders pass min-length 100 with zero prose" },
+];
+
+test.describe.configure({ timeout: 240_000, retries: 2 });
+
+test.describe("Sentinel Vault validation rule-eval edges", () => {
+  let original: any, spaceId: string;
+  test.beforeAll(async () => { original = await getKvs(CFG_KEY); spaceId = await spaceIdByKey(SPACE); });
+  test.afterAll(async () => { if (original) await setConfig(original); else await getTestState("sentinel-vault", { what: "delete", key: CFG_KEY }); });
+
+  for (const c of CASES) {
+    test(`${c.id}${c.note ? ` — ${c.note}` : ""}`, async () => {
+      await setConfig(c.cfg);
+      const page = await createPage({ spaceId, title: `HARNESS sv-eval-${c.id} ${Date.now()}`, adf: c.adf });
+      try {
+        const outcome = await waitForTerminal(async () => {
+          if ((await getKvs(`validation-lastgood-${page.id}`)) != null) return "compliant";
+          if ((await getComments(page.id)).length > 0) return "violation";
+          return false;
+        }, { timeout: 50_000, interval: 2_500, label: `${c.id} trigger outcome` });
+        expect(outcome, `${c.id}: expected ${c.expect}`).toBe(c.expect);
+      } finally {
+        await deletePage(page.id).catch(() => {});
+      }
+    });
+  }
+});

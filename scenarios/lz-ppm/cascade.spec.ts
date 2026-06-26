@@ -17,6 +17,9 @@ const FIXTURES = [
   "multi-predecessor: successor follows the later predecessor",
   "fan-out: one predecessor blocks two successors",
   "milestone successor stays a point after a cascade",
+  // buffer logic (enabled iter1: PPM Buffer cf_10181 now has Yes/No options)
+  "buffer successor absorbs slip",
+  "buffer exhausts when pushed past fixed due",
 ];
 
 test.describe.configure({ timeout: 150_000 });
