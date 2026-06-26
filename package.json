@@ -1,0 +1,31 @@
+{
+  "name": "forge-live-harness",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "General-purpose harness that drives the LIVE UI of Atlassian Forge apps (Jira + Confluence) in a real browser, captures video/screenshots/trace, and turns the footage into specific, evidence-cited fix prompts.",
+  "scripts": {
+    "auth": "playwright test --project=setup --headed",
+    "discover": "node scripts/discover-env.mjs",
+    "test": "playwright test --project=chromium",
+    "test:headless": "cross-env HEADLESS=1 playwright test --project=chromium",
+    "target": "playwright test --project=chromium -g",
+    "assess": "tsx assess/run.ts",
+    "report": "node scripts/report.mjs",
+    "show-report": "playwright show-report",
+    "trace": "playwright show-trace",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.10.0",
+    "cross-env": "^7.0.3",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.0",
+    "ajv": "^8.17.0",
+    "otpauth": "^9.3.0"
+  }
+}

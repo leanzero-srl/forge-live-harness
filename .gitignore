@@ -1,0 +1,18 @@
+# secrets & session state — NEVER commit (holds live cloud.session.token)
+.env
+.auth/
+
+# run artifacts / footage
+evidence/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# deps & build
+node_modules/
+fixture-app/node_modules/
+fixture-app/static/fixture-ui/build/
+*.log
+.DS_Store
+state/

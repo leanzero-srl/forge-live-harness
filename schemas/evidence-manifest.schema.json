@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence-manifest.schema.json",
+  "title": "EvidenceManifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "runId", "scenarioId", "captureStatus", "target", "steps", "env"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "runId": { "type": "string" },
+    "scenarioId": { "type": "string" },
+    "scenarioName": { "type": "string" },
+    "captureStatus": { "enum": ["pass", "fail", "error"] },
+    "target": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["product", "module", "url"],
+      "properties": {
+        "product": { "enum": ["jira", "confluence"] },
+        "app": { "type": "string" },
+        "appId": { "type": "string" },
+        "module": { "type": "string", "description": "manifest module key, e.g. ppm-dashboard" },
+        "moduleType": { "type": "string", "description": "e.g. jira:globalPage" },
+        "surface": { "enum": ["custom", "uikit"] },
+        "url": { "type": "string" },
+        "iframe": { "type": "string", "description": "discovered Forge iframe selector/src note" },
+        "repo": { "type": "string", "description": "app-under-test repo path (for fix grounding)" },
+        "gitShaAppUnderTest": { "type": "string" }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["index", "name", "status", "screenshot"],
+        "properties": {
+          "index": { "type": "integer", "minimum": 1 },
+          "name": { "type": "string" },
+          "action": { "type": "string" },
+          "status": { "enum": ["pass", "fail"] },
+          "screenshot": { "type": "string", "description": "relative path, e.g. steps/03-load.png" },
+          "ariaInline": { "type": "boolean" },
+          "error": { "type": "string" },
+          "expectation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["assertion", "narrative"],
+            "properties": {
+              "assertion": { "type": "string", "description": "machine-checkable description" },
+              "narrative": { "type": "string", "description": "what good looks like, plain language" }
+            }
+          },
+          "timing": {
+            "type": "object",
+            "properties": { "tStart": { "type": "number" }, "tEnd": { "type": "number" } }
+          }
+        }
+      }
+    },
+    "video": { "type": "string", "description": "video.webm (filled by report.mjs)" },
+    "videoSourceDir": { "type": "string", "description": "where Playwright wrote the raw webm (for report.mjs)" },
+    "trace": { "type": "string", "default": "trace.zip" },
+    "console": { "type": "string", "default": "console.json" },
+    "network": { "type": "string", "default": "network.json" },
+    "aria": { "type": "string", "default": "aria.yaml" },
+    "frames": { "type": "string", "default": "frames.json" },
+    "pageErrors": { "type": "array", "items": { "type": "string" } },
+    "env": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["site"],
+      "properties": {
+        "site": { "type": "string" },
+        "browser": { "type": "string" },
+        "viewport": { "type": "string" },
+        "capturedAt": { "type": "string" },
+        "harnessVersion": { "type": "string" }
+      }
+    }
+  }
+}
