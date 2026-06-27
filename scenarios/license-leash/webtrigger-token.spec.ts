@@ -1,8 +1,12 @@
 // License Leash reactivation webtrigger — HMAC-gated. A missing token is rejected 400; a forged
 // token is rejected (403 when the HMAC secret is configured, otherwise 500) — never 200. This
 // proves no unsigned link can reactivate a license. NO valid token is ever minted.
-// NOTE: requires the app's Forge SQL to be migrated first (the reactivation page render smoke
-// triggers ensureMigrations); before that the platform returns 424.
+//
+// 🔎 FOUND + FIXED via this harness: the handler returned STRING-valued response headers
+// ({'Content-Type':'text/html'}) which Forge rejects as malformed → the webtrigger returned 424
+// for EVERY request, so no reactivation email link worked at all. Fixed to array-valued headers
+// (axpo-license-manager src/handlers/web-reactivation.ts + types/events.ts). The skip-on-424
+// guard below is kept as a defensive net.
 import { test, expect } from "@playwright/test";
 import { callReactivationWebtrigger, hasReactivationWebtrigger } from "../../testhook/licenseleash";
 
