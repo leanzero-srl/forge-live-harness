@@ -69,6 +69,12 @@ const CASES: Case[] = [
   // PROBE: required-label is case-insensitive in the rule — a page with NO labels must fail.
   { id: "reqlabel-missing", cfg: ruleCfg("required-label", { labels: ["confidential"] }),
     adf: doc(paragraph("body with no labels")), expect: "violation", note: "PROBE: missing required label is flagged" },
+  // PROBE: a heading skip INSIDE an expand should still be flagged — an expand is collapsible
+  // document content (its headings ARE part of the outline), unlike a table cell. If this reads
+  // "compliant", the SV-m5 fix over-excluded expands.
+  { id: "heading-skip-in-expand", cfg: ruleCfg("heading-hierarchy", {}),
+    adf: doc(heading("Top", 1), expand(heading("Deep", 3))),
+    expect: "violation", note: "✅ SV-NEW-2 (FOUND+FIXED): the SV-m5 fix over-excluded expands; an H1→H3 skip inside an expand is now flagged" },
   // SV-NEW-1 (min-length side): 40 emoji = 40 code points < a 50-char minimum → must FAIL.
   // The old String.length (80) wrongly passed this; verifies the code-point fix covers min-length too.
   { id: "minlen-emoji-codepoints", cfg: ruleCfg("min-length", { minChars: 50 }),
