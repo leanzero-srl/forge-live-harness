@@ -42,6 +42,10 @@ const SENTINEL_ROUTE = "realm-console";
 const ALTOMATA_APP = process.env.ALTOMATA_APP_ID || "ari:cloud:ecosystem::app/8513392b-129b-4ad1-9b09-811804ca5705";
 const ALTOMATA_ENV = process.env.ALTOMATA_ENV_ID || "244ac2e9-6cbb-4012-99ae-1f958fc9309c"; // development
 
+// --- License Leash — Confluence self-service reactivation page (globalPage) on wolfaenpak ---
+const LICENSELEASH_APP = process.env.LICENSELEASH_APP_ID || "ari:cloud:ecosystem::app/6b49e96c-37c4-4711-a604-08d8a47c8f1a";
+const LICENSELEASH_ENV = process.env.LICENSELEASH_ENV_ID || "8910540b-8f3e-43e5-8e5b-7ee7bd9cdce4"; // development
+
 export const TARGETS: Record<string, Target> = {
   "lz-ppm-dashboard": {
     id: "lz-ppm-dashboard",
@@ -94,6 +98,19 @@ export const TARGETS: Record<string, Target> = {
     deepLink: (env) => deeplink.jiraGlobalPage(ALTOMATA_APP, env),
     readySelector: ".hub-wrap",
     repo: path.join(PROJECTS, "Altomata"),
+  },
+
+  "license-leash-reactivation": {
+    id: "license-leash-reactivation",
+    product: "confluence",
+    app: "License Leash",
+    appId: LICENSELEASH_APP,
+    envId: LICENSELEASH_ENV,
+    module: "reactivation-page-confluence",
+    moduleType: "confluence:globalPage",
+    surface: "custom",
+    deepLink: (env) => deeplink.confluenceGlobalPage(LICENSELEASH_APP, env, "reactivate-confluence-access"),
+    repo: path.join(PROJECTS, "axpo-license-manager"),
   },
 };
 
