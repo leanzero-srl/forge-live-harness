@@ -6,6 +6,37 @@ import { appendNode } from "./adf.mjs";
 
 export { BASE };
 
+const AUTH = "Basic " + Buffer.from(`${process.env.JIRA_ADMIN_EMAIL}:${process.env.JIRA_API_TOKEN}`).toString("base64");
+
+/** Upload a small text attachment to a page (v1 multipart) → { attachmentId, fileId, collection }. */
+export async function uploadAttachment(pageId, filename, content) {
+  const fd = new FormData();
+  fd.append("file", new Blob([content], { type: "text/plain" }), filename);
+  fd.append("minorEdit", "true");
+  const up = await fetch(`${BASE}/wiki/rest/api/content/${pageId}/child/attachment`, {
+    method: "POST",
+    headers: { Authorization: AUTH, "X-Atlassian-Token": "no-check" },
+    body: fd,
+  });
+  if (!up.ok) throw new Error(`uploadAttachment ${pageId} -> ${up.status}: ${(await up.text()).slice(0, 300)}`);
+  const data = await up.json();
+  const att = data.results?.[0] || data;
+  const v2 = await get(`/wiki/api/v2/attachments/${att.id}`);
+  return { attachmentId: att.id, fileId: v2.fileId, collection: `contentId-${pageId}` };
+}
+
+/** An ADF media block referencing a (real) attachment fileId, as Sentinel's sealer expects. */
+export function mediaNode(fileId, pageId) {
+  return { type: "mediaSingle", attrs: { layout: "center" }, content: [{ type: "media", attrs: { type: "file", id: fileId, collection: `contentId-${pageId}` } }] };
+}
+
+/** Set a Confluence content property (the seal gate collectMediaSealsForPage probes by key prefix). */
+export async function setContentProperty(pageId, key, value) {
+  const res = await request("POST", `/wiki/api/v2/pages/${pageId}/properties`, { raw: true, body: { key, value } });
+  if (res.status >= 400 && res.status !== 409) throw new Error(`setContentProperty ${key} -> ${res.status}: ${res.text.slice(0, 200)}`);
+  return res;
+}
+
 export async function spaceIdByKey(key) {
   const r = await get(`/wiki/api/v2/spaces?keys=${encodeURIComponent(key)}`);
   return r.results?.[0]?.id ?? null;
