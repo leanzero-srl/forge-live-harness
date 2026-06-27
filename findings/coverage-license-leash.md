@@ -9,22 +9,24 @@ Module × live behaviour × asserting spec (in `scenarios/license-leash/`) × ra
 | reactivation-webtrigger → handleWebReactivation | webtrigger | HMAC-gated reactivation link | `webtrigger-token.spec.ts` (missing→400, forged→rejected) — **found+fixed the 424 header bug** | DEEP (rejection paths) |
 | license-manager-admin | confluence:globalSettings | Admin dashboard (gauge, users, audit, config) | — | NONE-GAP |
 | reactivation-banner | confluence:pageBanner | Suspended-access banner on every page | — | NONE-GAP |
-| on-page-created / -updated / -viewed / -liked, on-comment-created/-liked, on-blogpost-activity/-viewed, on-attachment-activity, on-whiteboard-created, on-database-created (×11) | trigger | Record `user_activity` (debounced) | — | NONE-GAP |
-| run-migrations → runMigrations | scheduledTrigger (day) | Provision/evolve the 8 SQL tables | run on first resolver hit (no assertion) | SMOKE |
+| on-page-created / -updated / -viewed / -liked, on-comment-created/-liked, on-blogpost-activity/-viewed, on-attachment-activity, on-whiteboard-created, on-database-created (×11) | trigger | Record `user_activity` (debounced) | `sql-activity.spec.ts` (a real page event records the actor in `user_activity` via the dev read-hook) | DEEP |
+| run-migrations → runMigrations | scheduledTrigger (day) | Provision/evolve the 8 SQL tables | `sql-activity.spec.ts` (all 8 tables present + user_activity schema asserted) | DEEP |
+| licenseleash-test-state → testState | webtrigger (dev) | READ-ONLY SQL hook: counts/schema/activity/deactivationLog/config | the harness itself (`sql-activity.spec.ts`) | infra |
 | daily-inactivity-check → checkInactivity | scheduledTrigger (day) | Revoke licenses of inactive users | `reactivation-flow.spec.ts` (MAPPED, `test.skip`) | **DISABLED-SAFETY** |
 | daily-full-sync → dailySync | scheduledTrigger (day) | Org-API + group sync; funnel reconcile | mapped only | **DISABLED-SAFETY** |
 | sync-consumer → syncConsumer | consumer | Multi-phase discovery/reconcile pipeline | — | NONE-GAP |
-| app-database | sql | 8 TiDB tables (user_activity, deactivation_log, app_config, sync_*, groups_cache, funnel_reconcile) | bootstrap only (no schema/row assertion) | NONE-GAP |
+| app-database | sql | 8 TiDB tables (user_activity, deactivation_log, app_config, sync_*, groups_cache, funnel_reconcile) | `sql-activity.spec.ts` (counts present, user_activity schema asserted) | DEEP |
 
 > **Safety:** `daily-inactivity-check` + `daily-full-sync` (and their functions) are **commented out
 > in the deployed manifest** (uncommitted working-tree edit) so the wolfaenpak install performs **zero
 > live revocation**. Re-enable + redeploy to test the revoke flow for real.
 
-## The blocker: no dev SQL read-hook
-License Leash has **no secret-gated `_testState` hook**, so the internal SQL state (the core data
-engine) can't be asserted. Adding one — e.g. `getActivityRow(accountId)`, `getDeactivationLogEntry`,
-`getSyncCounts`, `getSchemaInfo` — would unblock ~20 NONE-GAP modules at once. This is the single
-highest-leverage addition.
+## RESOLVED: the dev SQL read-hook now exists
+A secret-gated, READ-ONLY `licenseleash-test-state` webtrigger (`src/handlers/test-state.ts`,
+gated by `LICENSELEASH_TESTHOOK_SECRET`; 404 in prod) exposes `counts / schema / activity /
+deactivationLog / config`. It unblocked the activity engine + SQL state above. Observed live on
+wolfaenpak: 16 tracked users, 172 `deactivation_log` rows, 60 cached groups. Remaining SQL gaps
+(sync pipeline phases, admin-resolver queries) can now be closed the same way.
 
 ## Gaps → covering test
 1. **Activity tracking (11 triggers)** (NONE, HIGH): create a real page on wolfaenpak, then assert a

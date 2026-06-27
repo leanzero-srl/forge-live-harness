@@ -19,12 +19,13 @@ Coverage ratings:
 | [Sentinel Vault](coverage-sentinel-vault.md) | Confluence | page-content-trigger (section restore + validation), rule-eval | realm-console render | artifact/media trigger, scheduled tasks, scan/AI consumers, admin UIs, ribbon, lifecycle | body-protection + validation deep; async/admin untested |
 | [CogniRunner](coverage-cognirunner.md) | Jira | workflowValidator (premade rules: 24 cases) | global-page render | AI validator/condition, post-functions, adminPage, llm, async consumer, attachment bridges | premade engine deep; AI paths untested |
 | [Altomata](coverage-altomata.md) | Jira | clone (oracle + adversarial), backend-trigger gate | hub render | condition, route-dialog/glance, scheduledTrigger, 8 other registry actions | thin live layer here; app's own Node harness covers the rest deeply |
-| [License Leash](coverage-license-leash.md) | Confluence | reactivation webtrigger (rejection paths) | reactivation page render | admin dashboard, banner, 11 activity triggers, sync consumer, all SQL state | revoke path DISABLED-SAFETY; no dev SQL read-hook = biggest blocker |
+| [License Leash](coverage-license-leash.md) | Confluence | reactivation webtrigger (rejection), **activity-tracking + SQL state (via new dev read-hook)** | reactivation page render | admin dashboard, banner, sync pipeline phases, admin-resolver queries | revoke path DISABLED-SAFETY; SQL read-hook now CLOSED the activity gap |
 
 ## Highest-value gaps to close next (cross-app)
-1. **License Leash dev SQL read-hook** — without it, activity-tracking, sync, and reactivation
-   side-effects can't be asserted. A secret-gated `_testState` returning `user_activity` /
-   `deactivation_log` rows would unblock ~20 NONE-GAP modules at once.
+1. ✅ **DONE — License Leash dev SQL read-hook.** A secret-gated read-only `licenseleash-test-state`
+   webtrigger now exposes counts/schema/activity/deactivationLog/config; `sql-activity.spec.ts`
+   asserts the 8 tables + the activity-tracking pipeline live. (Next on that app: sync-pipeline
+   phases + admin-resolver queries via the same hook.)
 2. **Sentinel sealed-MEDIA + artifact-trigger** — the SV-M6 backward-version-walk fix has NO
    live test; seal an attachment, remove it, assert re-insertion + the content-removal notice.
 3. **lz-ppm UI panels** (issue-panel, admin-page) — render smokes are cheap and currently absent.
