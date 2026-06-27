@@ -50,6 +50,25 @@ const CASES: Case[] = [
   { id: "minlength-placeholder-SV-M4", cfg: ruleCfg("min-length", { minChars: 100 }),
     adf: doc(extNode(), extNode(), extNode(), extNode(), extNode(), extNode(), extNode(), extNode()),
     expect: "violation", note: "✅ SV-M4 (fixed): macro placeholders no longer count toward min-length, so a prose-free page now fails" },
+  // --- adversarial edge probes (round 2) ---
+  // PROBE: 40 emoji = 40 code POINTS but 80 UTF-16 code UNITS. A user-facing char limit should
+  // count what users see (40 ≤ 60 → compliant). If the engine uses String.length (80 > 60) it
+  // over-counts and falsely flags — the same class as CogniRunner's code-point bug.
+  { id: "maxlen-emoji-codepoints", cfg: ruleCfg("max-length", { maxChars: 60 }),
+    adf: doc(paragraph("😀".repeat(40))), expect: "compliant",
+    note: "✅ SV-NEW-1 (FOUND+FIXED): 40 emoji = 40 code points (not 80 UTF-16 units) under a 60-char max now passes" },
+  // PROBE: exactly AT the limit must be allowed (off-by-one): 100 chars, max 100 → compliant.
+  { id: "maxlen-boundary-exact", cfg: ruleCfg("max-length", { maxChars: 100 }),
+    adf: doc(paragraph("a".repeat(100))), expect: "compliant", note: "PROBE: length == maxChars is allowed" },
+  // PROBE: one over the limit must be flagged: 101 chars, max 100 → violation.
+  { id: "maxlen-over-by-one", cfg: ruleCfg("max-length", { maxChars: 100 }),
+    adf: doc(paragraph("a".repeat(101))), expect: "violation", note: "PROBE: maxChars+1 is flagged" },
+  // PROBE: an empty doc must FAIL required-heading (no heading present).
+  { id: "reqheading-empty-doc", cfg: ruleCfg("required-heading", { minCount: 1 }),
+    adf: doc(paragraph("")), expect: "violation", note: "PROBE: a page with no heading fails required-heading" },
+  // PROBE: required-label is case-insensitive in the rule — a page with NO labels must fail.
+  { id: "reqlabel-missing", cfg: ruleCfg("required-label", { labels: ["confidential"] }),
+    adf: doc(paragraph("body with no labels")), expect: "violation", note: "PROBE: missing required label is flagged" },
 ];
 
 test.describe.configure({ timeout: 240_000, retries: 2 });
