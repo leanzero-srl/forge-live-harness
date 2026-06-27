@@ -29,9 +29,13 @@ export async function altomataTrigger(body: Record<string, any>): Promise<any> {
     body: JSON.stringify(body),
   });
   const text = await res.text();
+  // The backend uses HTTP status to reflect the action outcome (200 ok, 422 graceful
+  // {ok:false} failure, etc.). Return the parsed body for ANY JSON response so the caller can
+  // inspect .ok; only throw when the body isn't JSON at all (a routing/platform failure).
   let json: any;
-  try { json = JSON.parse(text); } catch { json = { raw: text }; }
-  if (!res.ok) throw new Error(`altomata trigger -> ${res.status}: ${text.slice(0, 300)}`);
+  try { json = JSON.parse(text); } catch {
+    throw new Error(`altomata trigger -> ${res.status} (non-JSON): ${text.slice(0, 200)}`);
+  }
   return json;
 }
 
