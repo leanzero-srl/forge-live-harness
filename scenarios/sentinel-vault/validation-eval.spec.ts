@@ -69,6 +69,11 @@ const CASES: Case[] = [
   // PROBE: required-label is case-insensitive in the rule — a page with NO labels must fail.
   { id: "reqlabel-missing", cfg: ruleCfg("required-label", { labels: ["confidential"] }),
     adf: doc(paragraph("body with no labels")), expect: "violation", note: "PROBE: missing required label is flagged" },
+  // SV-NEW-1 (min-length side): 40 emoji = 40 code points < a 50-char minimum → must FAIL.
+  // The old String.length (80) wrongly passed this; verifies the code-point fix covers min-length too.
+  { id: "minlen-emoji-codepoints", cfg: ruleCfg("min-length", { minChars: 50 }),
+    adf: doc(paragraph("😀".repeat(40))), expect: "violation",
+    note: "✅ SV-NEW-1 (min-length): 40 emoji = 40 code points is correctly under a 50-char minimum" },
 ];
 
 test.describe.configure({ timeout: 240_000, retries: 2 });
