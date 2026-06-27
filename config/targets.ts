@@ -38,6 +38,10 @@ const SENTINEL_ENV = process.env.SENTINEL_ENV_ID || "17516615-12ef-4790-8ce2-291
 const SENTINEL_SPACE = process.env.SENTINEL_SPACE_KEY || "WFH"; // any wolfaenpak space (DEMO/JT/WFH)
 const SENTINEL_ROUTE = "realm-console";
 
+// --- Altomata — Jira global page ("hub") on wolfaenpak (also installed on alterdomus-sandbox) ---
+const ALTOMATA_APP = process.env.ALTOMATA_APP_ID || "ari:cloud:ecosystem::app/8513392b-129b-4ad1-9b09-811804ca5705";
+const ALTOMATA_ENV = process.env.ALTOMATA_ENV_ID || "244ac2e9-6cbb-4012-99ae-1f958fc9309c"; // development
+
 export const TARGETS: Record<string, Target> = {
   "lz-ppm-dashboard": {
     id: "lz-ppm-dashboard",
@@ -76,6 +80,20 @@ export const TARGETS: Record<string, Target> = {
     surface: "custom",
     deepLink: (env) => deeplink.confluenceSpacePage(SENTINEL_SPACE, SENTINEL_APP, env, SENTINEL_ROUTE),
     repo: path.join(PROJECTS, "Sentinel Vault"),
+  },
+
+  "altomata-hub": {
+    id: "altomata-hub",
+    product: "jira",
+    app: "Altomata",
+    appId: ALTOMATA_APP,
+    envId: ALTOMATA_ENV,
+    module: "altomata-hub",
+    moduleType: "jira:globalPage",
+    surface: "custom",
+    deepLink: (env) => deeplink.jiraGlobalPage(ALTOMATA_APP, env),
+    readySelector: ".hub-wrap",
+    repo: path.join(PROJECTS, "Altomata"),
   },
 };
 
