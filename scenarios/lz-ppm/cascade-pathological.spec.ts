@@ -38,8 +38,8 @@ test("M5/M6: predecessor pushes a no-duration successor past its due → inverte
     expect(b, "B present in settled plan").toBeTruthy();
     console.log(`B settled → start=${b.startDate} due=${b.dueDate} duration=${b.duration}`);
     const inverted = String(b.dueDate) < String(b.startDate);
-    expect(Number(b.duration) === 0 && inverted,
-      `M5: expected duration 0 AND due<start; got start=${b.startDate} due=${b.dueDate} duration=${b.duration}`).toBe(true);
+    expect(Number(b.duration) >= 1 && !inverted,
+      `M5 (fixed): expected duration>=1 AND due>=start; got start=${b.startDate} due=${b.dueDate} duration=${b.duration}`).toBe(true);
   } finally {
     if (planId) await getTestState("lz-ppm", { what: "deleteFixture", planId }).catch(() => {});
     await deleteIssue(A.key).catch(() => {});
@@ -76,8 +76,8 @@ test("M6: parent rollup inverted when a predecessor pushes the parent start past
     expect(p, "parent P present in settled plan").toBeTruthy();
     console.log(`M6 → P settled start=${p.startDate} due=${p.dueDate} duration=${p.duration}`);
     const inverted = String(p.dueDate) < String(p.startDate);
-    expect(Number(p.duration) === 0 && inverted,
-      `M6: expected parent duration 0 AND due<start; got start=${p.startDate} due=${p.dueDate} duration=${p.duration}`).toBe(true);
+    expect(Number(p.duration) >= 1 && !inverted,
+      `M6 (fixed): expected parent duration>=1 AND due>=start; got start=${p.startDate} due=${p.dueDate} duration=${p.duration}`).toBe(true);
   } finally {
     if (planId) await getTestState("lz-ppm", { what: "deleteFixture", planId }).catch(() => {});
     await deleteIssue(SUB.key).catch(() => {});

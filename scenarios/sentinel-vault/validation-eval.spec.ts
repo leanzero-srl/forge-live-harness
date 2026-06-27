@@ -38,18 +38,18 @@ const CASES: Case[] = [
     adf: doc(heading("Top", 1), heading("Sub", 2),
       { type: "table", attrs: { isNumberColumnEnabled: false, layout: "default" },
         content: [{ type: "tableRow", content: [{ type: "tableCell", attrs: {}, content: [heading("In-cell label", 4)] }] }] }),
-    expect: "violation", note: "🔎 CONFIRMS SV-m5: in-cell H4 folded into outline → false H2→H4 skip on a valid page" },
+    expect: "compliant", note: "✅ SV-m5 (fixed): the in-cell H4 is not folded into the page outline, so the valid H1→H2 page passes" },
   // 🔎 CONFIRMS SV-m4 (code audit): required-macro uses unanchored endsWith(), so the app's OWN
   // sealed-section macro (key ends in "…sealed-section") satisfies a required-macro:"section" rule.
   // The page has NO intended macro yet is reported COMPLIANT.
   { id: "reqmacro-endswith-SV-m4", cfg: ruleCfg("required-macro", { extensionKey: "section", minCount: 1 }),
     adf: doc(paragraph("no intended macro on this page"), sealedSection()),
-    expect: "compliant", note: "🔎 CONFIRMS SV-m4: sealed-section macro falsely satisfies required-macro 'section'" },
+    expect: "violation", note: "✅ SV-m4 (fixed): anchored match — the sealed-section macro no longer satisfies required-macro 'section'" },
   // 🔎 CONFIRMS SV-M4 (code audit): min-length counts ~19-char "[embedded object]" placeholders for
   // extension/media nodes, so a prose-free macro-only page passes a 100-char minimum.
   { id: "minlength-placeholder-SV-M4", cfg: ruleCfg("min-length", { minChars: 100 }),
     adf: doc(extNode(), extNode(), extNode(), extNode(), extNode(), extNode(), extNode(), extNode()),
-    expect: "compliant", note: "🔎 CONFIRMS SV-M4: 8 macro placeholders pass min-length 100 with zero prose" },
+    expect: "violation", note: "✅ SV-M4 (fixed): macro placeholders no longer count toward min-length, so a prose-free page now fails" },
 ];
 
 test.describe.configure({ timeout: 240_000, retries: 2 });

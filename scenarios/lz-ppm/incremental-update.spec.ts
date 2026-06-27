@@ -44,7 +44,7 @@ test("🔎 M11: incremental update corrupts another plan's dependency (cross-pla
 
     const after = predsOf((await getTestState("lz-ppm", { what: "plan", planId: planB })).issues, X.key);
     console.log(`M11 → after incremental: Plan B's X.predecessors=${JSON.stringify(after)}`);
-    expect(after.includes(Q.key), `M11: the incremental update wiped Plan B's X→Q dependency (cross-plan corruption); after=${JSON.stringify(after)}`).toBe(false);
+    expect(after.includes(Q.key), `M11 (fixed): the incremental update must KEEP Plan B's X→Q dependency; after=${JSON.stringify(after)}`).toBe(true);
   } finally {
     if (planA) await getTestState("lz-ppm", { what: "deleteFixture", planId: planA }).catch(() => {});
     if (planB) await getTestState("lz-ppm", { what: "deleteFixture", planId: planB }).catch(() => {});

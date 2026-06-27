@@ -79,9 +79,10 @@ test("🔎 SV-m6: removed sealed section re-inserts at a STALE index when blocks
     const c = restored.content;
     const at = (i: number) => JSON.stringify(c[i] || {});
     console.log(`SV-m6 → section re-inserted at index ${restored.idx}; [0]=${at(0).slice(0, 30)} [${restored.idx}]=section [${restored.idx + 1}]=${at(restored.idx + 1).slice(0, 30)}`);
-    // SV-m6: re-inserted at the STALE originalIndex=1, sitting BETWEEN the two new paragraphs.
-    expect(restored.idx, "section re-inserted at the stale originalIndex (1), mis-positioned among the new blocks").toBe(1);
-    expect(at(0).includes("NEW-ONE") && at(2).includes("NEW-TWO"), "section sits between the two newly-inserted paragraphs (stale position), not next to its original neighbour TOP").toBe(true);
+    // SV-m6 (fixed): re-inserted right AFTER its original "TOP" heading neighbour (anchored),
+    // not at the frozen index among the newly-inserted paragraphs.
+    expect(restored.idx, "section re-inserted after the TOP heading (anchored), not at the stale index 1").toBeGreaterThan(1);
+    expect(at(restored.idx - 1).includes("TOP"), "the block immediately before the restored section is its original TOP heading").toBe(true);
   } finally {
     await delKvs(`section-protection-${sectionId}`).catch(() => {});
     await delKvs(`section-snapshot-${sectionId}`).catch(() => {});
@@ -92,7 +93,7 @@ test("🔎 SV-m6: removed sealed section re-inserts at a STALE index when blocks
 // 🔎 CONFIRMS SV-M5: the owner-edit branch of the section pass `continue`s WITHOUT re-baselining
 // the snapshot, so after the owner edits their section the stored snapshot is stale; a later
 // non-owner save then reverts to that stale snapshot, destroying the owner's legitimate edit.
-test("🔎 SV-M5: an owner's sealed-section edit is destroyed by a later non-owner revert (no re-baseline)", async () => {
+test("✅ SV-M5 (fixed): an owner's sealed-section edit is re-baselined and survives a later non-owner save", async () => {
   const spaceId = await spaceIdByKey(SPACE);
   const me = (await get("/rest/api/3/myself")).accountId;
   const sectionId = `harness-m5b-${Date.now().toString(36)}`;
@@ -106,28 +107,32 @@ test("🔎 SV-M5: an owner's sealed-section edit is destroyed by a later non-own
     await request("POST", `/wiki/api/v2/pages/${page.id}/properties`, { raw: true, body: { key: "section-protection-", value: [{ sectionId, lockedBy: me, expiresAt: null }] } });
     const v1 = (await readPage(page.id)).version;
 
-    // STEP 2: I (the OWNER) edit the section body to V2 → owner-edit branch lets it stand, no re-baseline.
+    // STEP 2: I (the OWNER) edit the section body to V2 → owner-edit branch lets it stand AND
+    // re-baselines the snapshot (SV-M5 fix) so V2 becomes the new sealed baseline.
     await writeAdf(page.id, doc(heading("TOP", 2), sectionNode(sectionId, [paragraph("OWNER EDIT V2")]), paragraph("FOOTER-A")));
     await waitForTerminal(async () => {
       const p = await readPage(page.id);
-      return p.version >= v1 + 1 && JSON.stringify(p.adf).includes("OWNER EDIT V2") ? p : false;
-    }, { timeout: 30_000, interval: 2_500, label: "owner edit stands (not reverted)" });
-    const snap: any = await getTestState("sentinel-vault", { what: "kvs", key: `section-snapshot-${sectionId}` });
-    const snapStale = JSON.stringify(snap.value?.bodyContent || []).includes("OWNER V1");
-    console.log(`SV-M5 → owner edit stood; snapshot stale (still V1)=${snapStale}`);
+      if (!(p.version >= v1 + 1 && JSON.stringify(p.adf).includes("OWNER EDIT V2"))) return false;
+      const s: any = await getTestState("sentinel-vault", { what: "kvs", key: `section-snapshot-${sectionId}` });
+      return !JSON.stringify(s.value?.bodyContent || []).includes("OWNER V1"); // snapshot re-baselined to V2
+    }, { timeout: 30_000, interval: 2_500, label: "owner edit stands + snapshot re-baselined" });
+    console.log(`SV-M5 → owner edit stood; snapshot re-baselined to V2`);
 
-    // STEP 3: ownership changes (or any non-owner now edits) — flip lockedBy to someone else.
-    await setKvs(`section-protection-${sectionId}`, { sectionId, pageId: page.id, lockedBy: "557058:dummy-other", lockedByName: "Other", contentHash: hash1, originalIndex: 1, sealedVersion: 1, sectionTitle: "S", expiresAt: null });
-    const v2 = (await readPage(page.id)).version;
+    // STEP 3: ownership changes — flip lockedBy, KEEPING the re-baselined contentHash/snapshot
+    // (a real ownership change would not reset the baseline back to V1).
+    const cur: any = (await getTestState("sentinel-vault", { what: "kvs", key: `section-protection-${sectionId}` })).value;
+    await setKvs(`section-protection-${sectionId}`, { ...cur, lockedBy: "557058:dummy-other", lockedByName: "Other" });
 
-    // STEP 4: I edit the FOOTER (section body unchanged at V2). Now a non-owner → revert to stale V1.
+    // STEP 4: I edit the FOOTER (section body unchanged at V2). As a non-owner now, the section's
+    // baseline is V2, so it must NOT be reverted — the owner's V2 survives.
     await writeAdf(page.id, doc(heading("TOP", 2), sectionNode(sectionId, [paragraph("OWNER EDIT V2")]), paragraph("FOOTER-B")));
-    const reverted = await waitForTerminal(async () => {
-      const p = await readPage(page.id);
-      const text = JSON.stringify(p.adf);
-      return p.version > v2 + 1 && text.includes("OWNER V1") && !text.includes("OWNER EDIT V2") ? p : false;
-    }, { timeout: 60_000, interval: 3_000, label: "non-owner revert destroys the owner's V2 edit" });
-    expect(reverted, "SV-M5: the owner's V2 edit should be destroyed (reverted to the stale V1 snapshot)").toBeTruthy();
+    let reverted = false;
+    for (let i = 0; i < 6; i++) {
+      await new Promise((r) => setTimeout(r, 3000));
+      const text = JSON.stringify((await readPage(page.id)).adf);
+      if (text.includes("OWNER V1") && !text.includes("OWNER EDIT V2")) { reverted = true; break; }
+    }
+    expect(reverted, "SV-M5 (fixed): the owner's V2 edit must survive (re-baselined) — no revert to V1").toBe(false);
   } finally {
     await delKvs(`section-protection-${sectionId}`).catch(() => {});
     await delKvs(`section-snapshot-${sectionId}`).catch(() => {});

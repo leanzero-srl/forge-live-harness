@@ -14,7 +14,7 @@ import { createFixtureRetry } from "../_support/lzfixture";
 const PROJECT = process.env.LZ_PPM_TEST_PROJECT || "WFH";
 test.describe.configure({ timeout: 150_000 });
 
-test("🔎 B1: the scheduled refresh wipes a configured-field Duration to null", async () => {
+test("✅ B1 (fixed): the scheduled refresh PRESERVES the configured Duration", async () => {
   const fc = (await getTestState("lz-ppm", { what: "fieldConfig" })).fields;
   const j = await createIssue({ projectKey: PROJECT, issueType: "Work package", summary: `HARNESS B1 ${Date.now()} [harness-test]` });
   let planId: string | undefined;
@@ -33,7 +33,7 @@ test("🔎 B1: the scheduled refresh wipes a configured-field Duration to null",
     await getTestState("lz-ppm", { what: "refreshPlan", planId: planId! });
     const after = (await getTestState("lz-ppm", { what: "plan", planId: planId! })).issues.find((i: any) => i.key === j.key);
     console.log(`B1 → after scheduled refresh duration=${JSON.stringify(after?.duration)}`);
-    expect(after?.duration == null, `B1: the scheduled refresh should WIPE Duration to null; got ${JSON.stringify(after?.duration)}`).toBe(true);
+    expect(Number(after?.duration), `B1 (fixed): the scheduled refresh must PRESERVE the configured Duration; got ${JSON.stringify(after?.duration)}`).toBe(8);
   } finally {
     if (planId) await getTestState("lz-ppm", { what: "deleteFixture", planId }).catch(() => {});
     await deleteIssue(j.key).catch(() => {});
@@ -42,7 +42,7 @@ test("🔎 B1: the scheduled refresh wipes a configured-field Duration to null",
 
 // 🔎 CONFIRMS B2: the scheduled refresh re-fetches only the source issues (no discoverDescendants),
 // so descendants discovered at full index vanish from the plan after a refresh.
-test("🔎 B2: the scheduled refresh drops a descendant discovered only at full index", async () => {
+test("✅ B2 (fixed): the scheduled refresh KEEPS a descendant discovered at full index", async () => {
   const tag = Date.now().toString(36);
   const P = await createIssue({ projectKey: PROJECT, issueType: "Work package", summary: `HARNESS B2-P ${tag} [harness-test]` });
   const SUB = await createIssue({ projectKey: PROJECT, issueType: "Payment", summary: `HARNESS B2-SUB ${tag} [harness-test]`, fields: { parent: { key: P.key } } });
@@ -65,7 +65,7 @@ test("🔎 B2: the scheduled refresh drops a descendant discovered only at full 
     await getTestState("lz-ppm", { what: "refreshPlan", planId: planId! });
     const afterKeys = (await getTestState("lz-ppm", { what: "plan", planId: planId! })).issues.map((i: any) => i.key);
     console.log(`B2 → after refresh keys: ${afterKeys.join(", ")}`);
-    expect(afterKeys.includes(SUB.key), `B2: the refresh should DROP the descendant; got [${afterKeys.join(",")}]`).toBe(false);
+    expect(afterKeys.includes(SUB.key), `B2 (fixed): the refresh must KEEP the descendant; got [${afterKeys.join(",")}]`).toBe(true);
   } finally {
     if (planId) await getTestState("lz-ppm", { what: "deleteFixture", planId }).catch(() => {});
     await deleteIssue(SUB.key).catch(() => {});

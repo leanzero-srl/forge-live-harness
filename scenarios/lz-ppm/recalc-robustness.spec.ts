@@ -31,7 +31,7 @@ test.describe("lz-ppm recalc robustness (adversarial)", () => {
         let crashed = false, detail = "";
         try { await getTestState("lz-ppm", { what: "settle", planId: planId! }); }
         catch (e: any) { crashed = true; detail = String(e?.message || e); }
-        expect(crashed, `settle with "${badDate}" should crash (M8). detail=${detail}`).toBe(true);
+        expect(crashed, `settle with "${badDate}" must NOT crash (M8 fixed) — the engine skips the bad issue instead of aborting. detail=${detail}`).toBe(false);
       } finally {
         if (planId) await getTestState("lz-ppm", { what: "deleteFixture", planId }).catch(() => {});
         await deleteIssue(j.key).catch(() => {});

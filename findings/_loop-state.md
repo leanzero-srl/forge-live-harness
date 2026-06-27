@@ -61,7 +61,12 @@ Per-app findings in `findings/<app>.md`. Only the user stops the loop; on stop, 
 | 21 | lz-ppm | ✓ **LIVE-CONFIRMED M11** (cross-plan corruption: incremental update wiped Plan B's X→Q dep). Hook gained incrementalUpdate (committed). |
 | 22 | lz-ppm | ✓ RIGOR — M2 needs the completeWrite resolver (bounded); M1/M3/M4/M9/M12/B4/m2/m3 bounded with explicit constraints |
 | 23 | (all 3 apps) | ✓ FINAL CONSOLIDATION — scoreboard written (top of file); fixed barrage field-race + render-smoke retries; deep suites 3× zero-flake per app |
-| 24 | harness | (next) commit + push the campaign's accumulated harness work (specs/findings/helpers) to github.com/leanzero-srl/forge-live-harness; refresh project memory |
+| 24 | harness | ✓ committed + PUSHED to github.com/leanzero-srl/forge-live-harness (31099bb, origin in sync); project memory refreshed |
+| 25 | cognirunner | ✓ barrage 32/32/32 after the field-race fix — still deterministic (fix added resilience, no slowdown) |
+| 26+ | (heartbeat) | periodic health-check until the user calls stop; no new high-value findings expected |
+| — | heartbeat | **rolling (2026-06-27): all green — lz-ppm 20/20, sentinel 17/17, cognirunner 32/32.** 5+ full rotations clean; latest = lz-ppm 20/20. next → sentinel-vault. (~1h cadence — suite very stable.) |
+
+**NOTE (honest):** the campaign has reached diminishing returns on NEW findings — 15 live-confirmed, 3 debunked, 16 bounded, all published. Further iterations are maintenance/health-checks. The user can say "stop" anytime for the final per-app report.
 
 **Live-confirmed so far (14):** SV-m5, M8, SV-m4, SV-M4, M5, SV-m2, M10, SV-M1, M6, SV-m6, **B1**, SV-M5, **B2**, M11.
 

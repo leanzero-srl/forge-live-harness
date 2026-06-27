@@ -33,7 +33,7 @@ test.describe("Sentinel Vault gate+revert (SV-m2)", () => {
   test.beforeAll(async () => { original = await getKvs(CFG_KEY); spaceId = await spaceIdByKey(SPACE); });
   test.afterAll(async () => { if (original) await setConfig(original); else await getTestState("sentinel-vault", { what: "delete", key: CFG_KEY }); });
 
-  test("🔎 SV-m2: gate stays 'failed' after the body is auto-reverted to compliant", async () => {
+  test("✅ SV-m2 (fixed): gate reconciles to 'passed' after the body is auto-reverted to compliant", async () => {
     await setConfig({ enabled: true, modes: { advisory: false, gate: true, revert: true }, rules: [{ id: "g1", type: "max-length", label: "max", severity: "block", enabled: true, config: { maxChars: 200 } }], ai: { enabled: false } });
     const page = await createPage({ spaceId, title: `HARNESS sv-gate ${Date.now()}`, adf: doc(paragraph(SHORT)) });
     try {
@@ -45,10 +45,11 @@ test.describe("Sentinel Vault gate+revert (SV-m2)", () => {
         const reverted = p.version > v1 + 1 && JSON.stringify(p.adf).includes(SHORT) && !JSON.stringify(p.adf).includes(LONG);
         if (!reverted) return false;
         const gs = await gateState(page.id);
-        return { state: gs?.state, gsVersion: gs?.version, pageVersion: p.version };
-      }, { timeout: 60_000, interval: 3_000, label: "revert + gate state" });
+        if (gs?.state !== "passed") return false; // SV-m2 (fixed): wait for the gate state to reconcile
+        return { state: gs.state, gsVersion: gs.version, pageVersion: p.version };
+      }, { timeout: 60_000, interval: 3_000, label: "revert + gate reconcile" });
       console.log(`SV-m2 → content reverted to compliant; gate state='${result.state}' (for v${result.gsVersion}) while page is v${result.pageVersion}`);
-      expect(result.state, "gate state should be stuck on 'failed' although content is compliant (SV-m2)").toBe("failed");
+      expect(result.state, "SV-m2 (fixed): the gate state must reconcile to 'passed' after the auto-revert").toBe("passed");
     } finally {
       await deletePage(page.id).catch(() => {});
     }

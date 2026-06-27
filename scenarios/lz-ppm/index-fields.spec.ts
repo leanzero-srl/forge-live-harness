@@ -38,8 +38,8 @@ test("🔎 M10: fresh index omits priority+labels that are set on the Jira issue
 
     const blankPriority = issue.priority == null || issue.priority === "";
     const blankLabels = !issue.labels || issue.labels.length === 0;
-    expect(blankPriority && blankLabels,
-      `M10: index should drop priority+labels; got index priority=${JSON.stringify(issue.priority)} labels=${JSON.stringify(issue.labels)}`).toBe(true);
+    expect(!blankPriority && !blankLabels,
+      `M10 (fixed): the fresh index must KEEP priority+labels; got index priority=${JSON.stringify(issue.priority)} labels=${JSON.stringify(issue.labels)}`).toBe(true);
   } finally {
     if (planId) await getTestState("lz-ppm", { what: "deleteFixture", planId }).catch(() => {});
     await deleteIssue(j.key).catch(() => {});
