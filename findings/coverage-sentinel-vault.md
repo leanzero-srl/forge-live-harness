@@ -10,7 +10,7 @@ Module × live behaviour × asserting spec (in `scenarios/sentinel-vault/`) × r
 | realm-console | confluence:spacePage | Space-level seal admin console | `realm.spec.ts` (render smoke) | SMOKE |
 | steward-console | confluence:globalSettings | Global policy/settings admin UI | — | NONE-GAP |
 | sentinel-vault-ribbon | confluence:pageBanner | Seal/validation notification banner | — | NONE-GAP |
-| artifact-trigger | function on `avi:confluence:(updated\|trashed\|deleted):attachment` | Attachment-event path: trash-restore, deleted-seal cleanup | — *(the sealed-media RESTORE path — page-content-trigger pass B incl. SV-M6 — is now covered by `sealed-media.spec.ts`; the attachment trash/delete EVENT path is still untested)* | NONE-GAP |
+| artifact-trigger | function on `avi:confluence:(updated\|trashed\|deleted):attachment` | Attachment-event path: trash-restore, deleted-seal cleanup | `sealed-artifact-trash.spec.ts` (trashed sealed attachment un-trashed to current). Media-RESTORE path covered by `sealed-media.spec.ts`. The `deleted` (permanent purge → seal cleanup) + `updated` (edit) paths still untested. | DEEP (trash) |
 | expiry-sweep-task | scheduledTrigger (hour) | Seal-expiry notices + halfway reminders | — | NONE-GAP |
 | recurring-nudge-task | scheduledTrigger (day) | Periodic reminders for long-held seals | — | NONE-GAP |
 | seal-index-cron-fn | scheduledTrigger (hour) | Enqueue realm scans on changed seals | — | NONE-GAP |
