@@ -12,7 +12,7 @@ Module × live behaviour × asserting spec (in `scenarios/license-leash/`) × ra
 | on-page-created / -updated / -viewed / -liked, on-comment-created/-liked, on-blogpost-activity/-viewed, on-attachment-activity, on-whiteboard-created, on-database-created (×11) | trigger | Record `user_activity` (debounced) | `sql-activity.spec.ts` (a real page event records the actor in `user_activity` via the dev read-hook) | DEEP |
 | run-migrations → runMigrations | scheduledTrigger (day) | Provision/evolve the 8 SQL tables | `sql-activity.spec.ts` (all 8 tables present + user_activity schema asserted) | DEEP |
 | licenseleash-test-state → testState | webtrigger (dev) | READ-ONLY SQL hook: counts/schema/activity/deactivationLog/config | the harness itself (`sql-activity.spec.ts`) | infra |
-| daily-inactivity-check → checkInactivity | scheduledTrigger (day) | Revoke licenses of inactive users | `reactivation-flow.spec.ts` (MAPPED, `test.skip`) | **DISABLED-SAFETY** |
+| daily-inactivity-check → checkInactivity | scheduledTrigger (day) | Revoke licenses of inactive users | `reactivation-flow.spec.ts` (MAPPED, `test.skip`); the underlying **deactivateUser** service is exercised by `deactivation-dryrun.spec.ts` in DRY-RUN (records the DRY_RUN_DEACTIVATE audit intent, no real revoke) | DISABLED-SAFETY (trigger); DEEP (service dry-run) |
 | daily-full-sync → dailySync | scheduledTrigger (day) | Org-API + group sync; funnel reconcile | mapped only | **DISABLED-SAFETY** |
 | sync-consumer → syncConsumer | consumer | Multi-phase discovery/reconcile pipeline | — | NONE-GAP |
 | app-database | sql | 8 TiDB tables (user_activity, deactivation_log, app_config, sync_*, groups_cache, funnel_reconcile) | `sql-activity.spec.ts` (counts present, user_activity schema asserted) | DEEP |
