@@ -11,14 +11,14 @@ Module × live behaviour × asserting spec (in `scenarios/sentinel-vault/`) × r
 | steward-console | confluence:globalSettings | Global policy/settings admin UI | — | NONE-GAP |
 | sentinel-vault-ribbon | confluence:pageBanner | Seal/validation notification banner | — | NONE-GAP |
 | artifact-trigger | function on `avi:confluence:(updated\|trashed\|deleted):attachment` | Attachment-event path: trash-restore, deleted-seal cleanup | `sealed-artifact-trash.spec.ts` (trashed sealed attachment un-trashed to current). Media-RESTORE path covered by `sealed-media.spec.ts`. The `deleted` (permanent purge → seal cleanup) + `updated` (edit) paths still untested. | DEEP (trash) |
-| expiry-sweep-task | scheduledTrigger (hour) | Seal-expiry notices + halfway reminders | — | NONE-GAP |
+| expiry-sweep-task | scheduledTrigger (hour) | Seal-expiry notices + halfway reminders | `expiry-sweep.spec.ts` (invoked via the dev `invoke` hook: an expired seal gets its `expiry-notified` dedup flag + dispatch event; notification-only, no auto-delete) | DEEP |
 | recurring-nudge-task | scheduledTrigger (day) | Periodic reminders for long-held seals | — | NONE-GAP |
 | seal-index-cron-fn | scheduledTrigger (hour) | Enqueue realm scans on changed seals | — | NONE-GAP |
 | realm-scan-consumer-fn | consumer (realm-audit-queue) | Build the space-protection index | — | NONE-GAP |
 | ai-validation-fn | consumer (ai-validation-queue) | Forge-LLM content validation → findings comment | — | NONE-GAP |
 | lifecycle-trigger | function on `avi:forge:(installed\|uninstalled):app` | Uninstall KVS cleanup | — | NONE-GAP |
 | sentinel-vault-llm | llm | Atlassian-hosted Claude for AI rules | — | NONE-GAP |
-| harness-test-state | webtrigger (dev) | KVS get + dev set/delete | all specs | infra |
+| harness-test-state | webtrigger (dev) | KVS get + dev set/delete + **invoke(expirySweep)** | all specs | infra |
 
 ## Gaps → covering test (priority order)
 1. ✅ **DONE — sealed-media restore (page-content-trigger pass B + SV-M6)** via `sealed-media.spec.ts`:
