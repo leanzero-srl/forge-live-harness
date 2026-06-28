@@ -4,7 +4,7 @@ Module × live behaviour × asserting spec (in `scenarios/cognirunner/`) × rati
 
 | Module (key) | Type | Live platform behaviour | Asserting spec | Coverage |
 |---|---|---|---|---|
-| ai-text-field-validator | jira:workflowValidator | Blocks a transition when a rule fails | `premade-barrage.spec.ts` (21 cases) + `premade-extra.spec.ts` (3 cases: sub-tasks/attachment/comment) — **premade rules only** (`ruleKind:"premade"`) | DEEP (premade) |
+| ai-text-field-validator | jira:workflowValidator | Blocks a transition when a rule fails | `premade-barrage.spec.ts` (21) + `premade-extra.spec.ts` (3) for premade rules; **`ai-validator.spec.ts`** for the AI path (Forge LLM: always-fail blocks with an AI message, always-approve allows) | DEEP (premade + AI) |
 | ai-text-field-condition | jira:workflowCondition | Hides a transition when a rule fails | — *(NOT REST-testable: Forge conditions are UI-visibility-only — verified that the REST `doTransition` executes regardless, status 204, even with a `field-has-value` condition false. Needs real Jira-UI driving.)* | NONE-GAP (platform-limited) |
 | ai-semantic-post-function | jira:workflowPostFunction | AI reads source field → writes target field post-transition | — (AI-evaluated → non-deterministic) | NONE-GAP |
 | ai-static-post-function | jira:workflowPostFunction | Runs sandboxed saved JS steps post-transition | `static-postfunction.spec.ts` — a saved `api.updateIssue` step runs on a real transition and writes a field, verified via REST | DEEP |
@@ -20,9 +20,11 @@ Module × live behaviour × asserting spec (in `scenarios/cognirunner/`) × rati
 1. ✅ **DONE — static post-function** (`static-postfunction.spec.ts`): a saved sandbox step runs on
    a real transition + writes a field. **Platform-limited — condition**: Forge conditions are
    UI-visibility-only (REST `doTransition` bypasses them), so they need real Jira-UI driving, not REST.
-   **Still open — AI validator + AI semantic post-fn**: these invoke the LLM at runtime, so block/allow
-   and the written value are non-deterministic. A test could assert the path *runs* (a result returns)
-   but not assert correctness; acceptance belongs in unit tests with a mocked LLM. Lower priority.
+   ✅ **DONE — AI validator** (`ai-validator.spec.ts`): with unambiguous prompts the LLM verdict is
+   reliable, so always-fail blocks (with an AI message) + always-approve allows — a live wiring/contract
+   test of the headline feature. **Still open — AI semantic post-fn**: writes an AI-decided VALUE to a
+   target field, which is non-deterministic to assert; a wiring smoke (the path runs + writes *something*)
+   is possible but lower value. Acceptance of AI *judgement* belongs in unit tests with a mocked LLM.
 2. **cognirunner-admin-settings** (NONE): render the admin page, flip the provider, assert the KVS
    `COGNIRUNNER_AI_PROVIDER` via the dev hook.
 3. **async-ai-consumer** (NONE): enqueue a long task, poll the result through queued→complete.
