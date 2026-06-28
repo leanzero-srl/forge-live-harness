@@ -17,7 +17,7 @@ Coverage ratings:
 |---|---|---|---|---|---|
 | [lz-ppm](coverage-lz-ppm.md) | Jira | calc engine, scheduled-refresh, incremental-update, cascade | dashboard render | issue-panel, admin-page, llm, index-consumer(async) | engine covered exhaustively; UI panels untested |
 | [Sentinel Vault](coverage-sentinel-vault.md) | Confluence | page-content-trigger (section + **media** restore + validation), rule-eval | realm-console render | artifact-trigger (attachment events), scheduled tasks, scan/AI consumers, admin UIs, ribbon, lifecycle | body-protection (section+media) + validation deep; async/admin untested |
-| [CogniRunner](coverage-cognirunner.md) | Jira | workflowValidator (premade rules: 24 cases) | global-page render | AI validator/condition, post-functions, adminPage, llm, async consumer, attachment bridges | premade engine deep; AI paths untested |
+| [CogniRunner](coverage-cognirunner.md) | Jira | workflowValidator (premade: 24 cases), **static post-function** | global-page render | AI validator/semantic (non-deterministic), condition (UI-only, REST bypasses), adminPage, llm, async, attachment bridges | premade + static-PF deep; AI eval + condition are platform/determinism-limited |
 | [Altomata](coverage-altomata.md) | Jira | clone (oracle + adversarial), backend-trigger gate | hub render | condition, route-dialog/glance, scheduledTrigger, 8 other registry actions | thin live layer here; app's own Node harness covers the rest deeply |
 | [License Leash](coverage-license-leash.md) | Confluence | reactivation webtrigger (rejection), **activity-tracking + SQL state (via new dev read-hook)** | reactivation page render | admin dashboard, banner, sync pipeline phases, admin-resolver queries | revoke path DISABLED-SAFETY; SQL read-hook now CLOSED the activity gap |
 
@@ -30,9 +30,15 @@ Coverage ratings:
    attachment, removes the media, and asserts re-insertion — incl. from several versions back
    (the backward walk). Still open: the attachment-EVENT path (`artifact-trigger` trash/delete).
 3. **lz-ppm UI panels** (issue-panel, admin-page) — render smokes are cheap and currently absent.
-4. **CogniRunner AI paths** — only premade rules are tested; the AI validator/condition/post-fn
-   (the app's headline feature) has zero live coverage.
-5. **Altomata workflowCondition** on a real transition (validator is deep, condition is smoke).
+4. ~~CogniRunner~~ — **static post-function now DEEP**; the AI validator/semantic paths are
+   non-deterministic (LLM at runtime) and the **condition is UI-only (REST `doTransition` bypasses
+   Forge conditions)** — both platform/determinism-limited, not simple gaps.
+5. **Altomata workflowCondition** — likely the SAME platform limitation as CogniRunner's (REST
+   bypasses Forge conditions); the validator is the deep path and is covered in Altomata's own harness.
+6. **Sentinel scheduled tasks** (expiry-sweep) / **License Leash sync** — need a dev *trigger* hook
+   (the existing hooks only read). This is the next infra unlock for the async/scheduled tier.
 
-Found by deepening so far: **SV-NEW-1** (length rules over-counted emoji) and the **License Leash
-webtrigger 424** (string-valued headers) — both fixed. See per-app files for the full tables.
+Found by deepening so far (all fixed): **SV-NEW-1** (length rules over-counted emoji), **SV-NEW-2**
+(SV-m5 over-excluded expands), and the **License Leash webtrigger 424** (string-valued headers).
+Platform facts learned: Forge workflow **conditions** are UI-visibility-only (not REST-enforced).
+See per-app files for the full tables.
