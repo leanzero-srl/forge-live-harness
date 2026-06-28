@@ -6,7 +6,7 @@ Module × live behaviour × asserting spec (in `scenarios/cognirunner/`) × rati
 |---|---|---|---|---|
 | ai-text-field-validator | jira:workflowValidator | Blocks a transition when a rule fails | `premade-barrage.spec.ts` (21) + `premade-extra.spec.ts` (3) for premade rules; **`ai-validator.spec.ts`** for the AI path (Forge LLM: always-fail blocks with an AI message, always-approve allows) | DEEP (premade + AI) |
 | ai-text-field-condition | jira:workflowCondition | Hides a transition when a rule fails | — *(NOT REST-testable: Forge conditions are UI-visibility-only — verified that the REST `doTransition` executes regardless, status 204, even with a `field-has-value` condition false. Needs real Jira-UI driving.)* | NONE-GAP (platform-limited) |
-| ai-semantic-post-function | jira:workflowPostFunction | AI reads source field → writes target field post-transition | — (AI-evaluated → non-deterministic) | NONE-GAP |
+| ai-semantic-post-function | jira:workflowPostFunction | AI reads source field → writes target field post-transition | `semantic-postfunction.spec.ts` (a constant-write instruction → the AI runs on a real transition and writes the instructed token to the target field) | DEEP |
 | ai-static-post-function | jira:workflowPostFunction | Runs sandboxed saved JS steps post-transition | `static-postfunction.spec.ts` — a saved `api.updateIssue` step runs on a real transition and writes a field, verified via REST | DEEP |
 | cognirunner-global-page | jira:globalPage | Admin panel render | `global.spec.ts` (render smoke) | SMOKE |
 | cognirunner-admin-settings | jira:adminPage | Provider/key/model settings | — | NONE-GAP |
@@ -22,9 +22,10 @@ Module × live behaviour × asserting spec (in `scenarios/cognirunner/`) × rati
    UI-visibility-only (REST `doTransition` bypasses them), so they need real Jira-UI driving, not REST.
    ✅ **DONE — AI validator** (`ai-validator.spec.ts`): with unambiguous prompts the LLM verdict is
    reliable, so always-fail blocks (with an AI message) + always-approve allows — a live wiring/contract
-   test of the headline feature. **Still open — AI semantic post-fn**: writes an AI-decided VALUE to a
-   target field, which is non-deterministic to assert; a wiring smoke (the path runs + writes *something*)
-   is possible but lower value. Acceptance of AI *judgement* belongs in unit tests with a mocked LLM.
+   test of the headline feature. ✅ **DONE — AI semantic post-fn**
+   (`semantic-postfunction.spec.ts`, constant-write instruction). The remaining holes are the
+   **condition** (UI-only, REST bypasses), **adminPage** (deep-link/UI), **llm/async/attachment
+   bridges** — none are core workflow-rule logic, which is now all covered.
 2. **cognirunner-admin-settings** (NONE): render the admin page, flip the provider, assert the KVS
    `COGNIRUNNER_AI_PROVIDER` via the dev hook.
 3. **async-ai-consumer** (NONE): enqueue a long task, poll the result through queued→complete.
