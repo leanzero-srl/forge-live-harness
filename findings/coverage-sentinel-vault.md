@@ -8,7 +8,7 @@ Module × live behaviour × asserting spec (in `scenarios/sentinel-vault/`) × r
 | sentinel-vault-sealed-section | macro (bodiedExtension) | Wraps a sealed section; tamper → restore | `sealed-section.spec.ts`, `validation-eval.spec.ts` | DEEP |
 | sentinel-vault-panel | macro | Inline seal-status panel | built into rule-eval ADF; not driven as a macro | SMOKE |
 | realm-console | confluence:spacePage | Space-level seal admin console | `realm.spec.ts` (render smoke) | SMOKE |
-| steward-console | confluence:globalSettings | Global policy/settings admin UI | — | NONE-GAP |
+| steward-console | confluence:globalSettings | Global policy/settings admin UI | `admin-render.spec.ts` (renders in its Forge iframe via /wiki/admin/forge/apps/{uuid}/{env}/steward-console) | SMOKE |
 | sentinel-vault-ribbon | confluence:pageBanner | Seal/validation notification banner | — | NONE-GAP |
 | artifact-trigger | function on `avi:confluence:(updated\|trashed\|deleted):attachment` | Attachment-event path: trash-restore, deleted-seal cleanup | `sealed-artifact-trash.spec.ts` (trashed sealed attachment un-trashed to current). Media-RESTORE path covered by `sealed-media.spec.ts`. The `deleted` (permanent purge → seal cleanup) + `updated` (edit) paths still untested. | DEEP (trash) |
 | expiry-sweep-task | scheduledTrigger (hour) | Seal-expiry notices + halfway reminders | `expiry-sweep.spec.ts` (invoked via the dev `invoke` hook: an expired seal gets its `expiry-notified` dedup flag + dispatch event; notification-only, no auto-delete) | DEEP |

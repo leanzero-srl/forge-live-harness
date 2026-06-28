@@ -112,6 +112,32 @@ export const TARGETS: Record<string, Target> = {
     deepLink: (env) => deeplink.confluenceGlobalPage(LICENSELEASH_APP, env, "reactivate-confluence-access"),
     repo: path.join(PROJECTS, "axpo-license-manager"),
   },
+
+  "sentinel-steward-console": {
+    id: "sentinel-steward-console",
+    product: "confluence",
+    app: "Sentinel Vault (admin)",
+    appId: SENTINEL_APP,
+    envId: SENTINEL_ENV,
+    module: "steward-console",
+    moduleType: "confluence:globalSettings",
+    surface: "custom",
+    deepLink: (env) => deeplink.confluenceGlobalSettings(SENTINEL_APP, env, "steward-console"),
+    repo: path.join(PROJECTS, "Sentinel Vault"),
+  },
+
+  "license-leash-admin": {
+    id: "license-leash-admin",
+    product: "confluence",
+    app: "License Leash (admin)",
+    appId: LICENSELEASH_APP,
+    envId: LICENSELEASH_ENV,
+    module: "license-manager-admin",
+    moduleType: "confluence:globalSettings",
+    surface: "custom",
+    deepLink: (env) => deeplink.confluenceGlobalSettings(LICENSELEASH_APP, env, "license-manager-admin"),
+    repo: path.join(PROJECTS, "axpo-license-manager"),
+  },
 };
 
 export function getTarget(id: string): Target {

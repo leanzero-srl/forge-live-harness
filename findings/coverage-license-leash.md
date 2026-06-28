@@ -7,7 +7,7 @@ Module × live behaviour × asserting spec (in `scenarios/license-leash/`) × ra
 |---|---|---|---|---|
 | reactivation-page-confluence | confluence:globalPage | Self-service status / reactivation page | `render-smoke.spec.ts` (renders + bootstraps SQL via `ensureMigrations`) | SMOKE |
 | reactivation-webtrigger → handleWebReactivation | webtrigger | HMAC-gated reactivation link | `webtrigger-token.spec.ts` (missing→400, forged→rejected) — **found+fixed the 424 header bug** | DEEP (rejection paths) |
-| license-manager-admin | confluence:globalSettings | Admin dashboard (gauge, users, audit, config) | — | NONE-GAP |
+| license-manager-admin | confluence:globalSettings | Admin dashboard (gauge, users, audit, config) | `admin-render.spec.ts` (renders in its Forge iframe via /wiki/admin/forge/apps/{uuid}/{env}/license-manager-admin) | SMOKE |
 | reactivation-banner | confluence:pageBanner | Suspended-access banner on every page | — | NONE-GAP |
 | on-page-created / -updated / -viewed / -liked, on-comment-created/-liked, on-blogpost-activity/-viewed, on-attachment-activity, on-whiteboard-created, on-database-created (×11) | trigger | Record `user_activity` (debounced) | `sql-activity.spec.ts` (a real page event records the actor in `user_activity` via the dev read-hook) | DEEP |
 | run-migrations → runMigrations | scheduledTrigger (day) | Provision/evolve the 8 SQL tables | `sql-activity.spec.ts` (all 8 tables present + user_activity schema asserted) | DEEP |

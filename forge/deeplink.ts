@@ -28,6 +28,10 @@ export const deeplink = {
   confluenceSpacePage: (spaceKey: string, app: string, env: string, route = ""): string =>
     trimEnd(`/wiki/spaces/${spaceKey}/apps/${ariToUuid(app)}/${env}/${route}`),
 
+  /** confluence:globalSettings — the app's admin page under Confluence administration → Settings → Apps. */
+  confluenceGlobalSettings: (app: string, env: string, moduleKey: string): string =>
+    `/wiki/admin/forge/apps/${ariToUuid(app)}/${env}/${moduleKey}`,
+
   /** Not deep-linkable. */
   jiraIssuePanel: (): null => null,
   confluenceMacro: (): null => null,
