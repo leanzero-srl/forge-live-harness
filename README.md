@@ -12,8 +12,13 @@ iframe, the real bridge, the real deploy — catching the "iframe mounts but con
 
 ## Quick start
 
-Targets are your real apps already installed on wolfaenpak — **lz-ppm ("LeanZero Management")**
-and **CogniRunner** (Jira), and **Sentinel Vault** (Confluence). Env IDs are baked in; no deploy needed.
+Targets are your real apps already installed on wolfaenpak — **lz-ppm ("LeanZero Management")**,
+**CogniRunner** and **Altomata** (Jira), and **Sentinel Vault** and **License Leash** (Confluence).
+Env IDs are baked in; no deploy needed.
+
+> 🤖 **Writing/running tests with an AI agent? Start at [`docs/AI-GUIDE.md`](docs/AI-GUIDE.md)** — the
+> rules, repo map, safety rules, Forge gotchas, and a per-app cheat-sheet for all five apps. The live
+> per-app coverage matrix is in [`findings/coverage-INDEX.md`](findings/coverage-INDEX.md).
 
 ```bash
 npm install

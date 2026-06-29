@@ -6,11 +6,19 @@ Targets are your real apps on **wolfaenpak** (already installed — no deploy ne
 |---|---|---|---|---|
 | `lz-ppm-dashboard` | LeanZero Management (lz-ppm-forge) | Jira | global page | dev `d6096af9…` |
 | `cognirunner-global` | CogniRunner | Jira | global page | dev `989ecaa0…` |
+| `altomata-hub` | Altomata | Jira | global page | dev `244ac2e9…` |
 | `sentinel-vault-realm` | Sentinel Vault | Confluence | space page (space `WFH`) | dev `17516615…` |
+| `sentinel-steward-console` | Sentinel Vault (admin) | Confluence | global settings | dev `17516615…` |
+| `license-leash-reactivation` | License Leash | Confluence | global page | dev `8910540b…` |
+| `license-leash-admin` | License Leash (admin) | Confluence | global settings | dev `8910540b…` |
 
 Env IDs are baked into `config/targets.ts` (the up-to-date development installs). Override per app in
-`.env` (`LZ_PPM_ENV_ID` / `COGNI_ENV_ID` / `SENTINEL_ENV_ID` / `SENTINEL_SPACE_KEY`) to point at prod/staging
-or another space. `npm run discover` re-derives them.
+`.env` (`LZ_PPM_ENV_ID` / `COGNI_ENV_ID` / `SENTINEL_ENV_ID` / `SENTINEL_SPACE_KEY` / `ALTOMATA_ENV_ID` /
+`LICENSELEASH_ENV_ID`) to point at prod/staging or another space. `npm run discover` re-derives them.
+
+The **deep REST/hook scenarios** (the bulk of the suite — see `scenarios/<app>/`) drive each app's
+logic via Jira/Confluence REST + the app's dev `_testState` webtrigger, gated by secrets in the
+gitignored `.env`. See **[`docs/AI-GUIDE.md`](docs/AI-GUIDE.md)** for the per-app hooks + recipes.
 
 ## Run it (from the repo root)
 

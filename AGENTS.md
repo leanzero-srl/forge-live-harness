@@ -4,6 +4,11 @@ This repo drives the live UI of Forge apps, captures footage, and asks a coding 
 failed run into a **specific, evidence-cited fix**. If you are an agent pointed at a failing run,
 this is your contract.
 
+> **Writing or running tests (not fixing a failed run)?** Read **[`docs/AI-GUIDE.md`](docs/AI-GUIDE.md)**
+> first — it has the testing rules, the repo map, the safety rules, and a per-app cheat-sheet for all
+> five apps (lz-ppm, CogniRunner, Sentinel Vault, Altomata, License Leash). This file (AGENTS.md) is
+> only the *failure → fix-report* contract below.
+
 ## What the harness produces
 
 Per scenario run, an **evidence bundle** at `evidence/{runId}/{scenario}/`:
