@@ -2,7 +2,7 @@
 // are the UP-TO-DATE development installs on wolfaenpak (verified via
 // `forge install list`); override per-app in .env if you want prod/staging.
 import path from "node:path";
-import { deeplink } from "../forge/deeplink";
+import { deeplink, ariToUuid } from "../forge/deeplink";
 import { REPO_ROOT } from "./env";
 
 export interface Target {
@@ -57,6 +57,36 @@ export const TARGETS: Record<string, Target> = {
     moduleType: "jira:globalPage",
     surface: "custom",
     deepLink: (env) => deeplink.jiraGlobalPage(LZ_PPM_APP, env),
+    repo: path.join(PROJECTS, "lz-ppm-forge"),
+  },
+
+  // jira:issuePanel — NOT deep-linkable; reached via forge/host.ts openIssuePanel
+  // (navigate to the issue, expand the "LeanZero Management Position" glance).
+  "lz-ppm-issue-panel": {
+    id: "lz-ppm-issue-panel",
+    product: "jira",
+    app: "LeanZero Management (lz-ppm-forge)",
+    appId: LZ_PPM_APP,
+    envId: LZ_PPM_ENV,
+    module: "ppm-issue-panel",
+    moduleType: "jira:issuePanel",
+    surface: "custom",
+    deepLink: () => null,
+    repo: path.join(PROJECTS, "lz-ppm-forge"),
+  },
+
+  // jira:adminPage — under Jira Settings → Apps. Forge admin pages render at
+  // /jira/settings/apps/<app-uuid>/<env>/<moduleKey>; treated as best-effort.
+  "lz-ppm-admin": {
+    id: "lz-ppm-admin",
+    product: "jira",
+    app: "LeanZero Management (lz-ppm-forge)",
+    appId: LZ_PPM_APP,
+    envId: LZ_PPM_ENV,
+    module: "ppm-admin-settings",
+    moduleType: "jira:adminPage",
+    surface: "custom",
+    deepLink: (env) => `/jira/settings/apps/${ariToUuid(LZ_PPM_APP)}/${env}/ppm-admin-settings`,
     repo: path.join(PROJECTS, "lz-ppm-forge"),
   },
 
