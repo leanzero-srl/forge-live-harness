@@ -150,3 +150,73 @@ test("🕵️ agentic AI validator: enableTools JQL duplicate-detection — safe
     await detachByNamePrefix(WF, "ZINT-agentic").catch(() => {});
   }
 });
+
+test("🌵 static PF simulationMode: writes are RECORDED but NOT applied (DRY-RUN flag)", async () => {
+  const key = await fixtureKey();
+  test.skip(!key, "HARNESS-BARRAGE-FIXTURE missing on COGTEST");
+  const before = "SIM-BEFORE-" + crypto.randomUUID().slice(0, 6);
+  const simLabel = "sim-should-not-persist";
+  const [pf] = await attachSelfLoopRules(WF, HUB, [{
+    name: `ZINT-sim-${Date.now()}`, type: "static",
+    config: {
+      type: "postfunction-static", simulationMode: true, id: crypto.randomUUID(), workflow: { workflowName: WF },
+      functions: [{ id: crypto.randomUUID(), name: "attempt writes (should be simulated)",
+        code: `await api.updateIssue(api.context.issueKey, { ${TEXT}: 'SIM-AFTER-SHOULD-NOT-PERSIST' }); await api.addLabels('${simLabel}');` }],
+    },
+  }]);
+  try {
+    await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: before }, update: { labels: [{ remove: simLabel }] } } });
+    await new Promise((s) => setTimeout(s, 2000));
+    const since = Date.now();
+    const r = await doTransition(key!, pf.transitionId);
+    expect(r.status, "transition fired").toBeLessThan(400);
+    const log: any = await waitForLog((l: any) => l.issueKey === key && l.type === "postfunction-static", since, { tries: 12, gapMs: 2500 }).catch(() => null);
+    const now = (await get(`/rest/api/3/issue/${key}?fields=${TEXT},labels`)).fields;
+    console.log(`sim: field=${JSON.stringify(now[TEXT])} labels=${JSON.stringify(now.labels)} log=${log ? JSON.stringify({ isValid: log.isValid, changes: log.changes, flags: log.flags }) : "NONE"}`);
+    // The PF RAN (log exists, changes recorded) but NO write was applied.
+    expect(log, "a postfunction-static log was written (the PF ran)").toBeTruthy();
+    expect(log.isValid, "sim run reports success").toBe(true);
+    expect(log.changes, "writes were RECORDED as changes").toBeGreaterThanOrEqual(2);
+    expect(log.flags, "log carries the DRY-RUN (simulated) flag").toContain("simulated");
+    expect(String(now[TEXT]), "field was NOT actually written (still the before-value)").toBe(before);
+    expect(now.labels || [], "label was NOT actually added").not.toContain(simLabel);
+  } finally {
+    await detachByNamePrefix(WF, "ZINT-sim").catch(() => {});
+    await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null }, update: { labels: [{ remove: simLabel }] } } }).catch(() => {});
+  }
+});
+
+test("⏳ static PF runAsync: routes to the 110s consumer, eventual write + source:async log", async () => {
+  const key = await fixtureKey();
+  test.skip(!key, "HARNESS-BARRAGE-FIXTURE missing on COGTEST");
+  const token = "ASYNC-" + crypto.randomUUID().slice(0, 8).toUpperCase();
+  const [pf] = await attachSelfLoopRules(WF, HUB, [{
+    name: `ZINT-async-${Date.now()}`, type: "static",
+    config: {
+      type: "postfunction-static", runAsync: true, id: crypto.randomUUID(), workflow: { workflowName: WF },
+      functions: [{ id: crypto.randomUUID(), name: "write async", code: `await api.updateIssue(api.context.issueKey, { ${TEXT}: '${token}' });` }],
+    },
+  }]);
+  try {
+    await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: "BEFORE-ASYNC" } } });
+    await new Promise((s) => setTimeout(s, 1500));
+    const since = Date.now();
+    const r = await doTransition(key!, pf.transitionId);
+    expect(r.status, "transition returns immediately (queued)").toBeLessThan(400);
+    // Eventual: the consumer runs the write a few seconds later.
+    let val: any = null;
+    for (let i = 0; i < 20; i++) {
+      await new Promise((s) => setTimeout(s, 3000));
+      const v = (await get(`/rest/api/3/issue/${key}?fields=${TEXT}`)).fields[TEXT];
+      if (v === token) { val = v; break; }
+    }
+    const log: any = await waitForLog((l: any) => l.issueKey === key && l.type === "postfunction-static", since, { tries: 6, gapMs: 2500 }).catch(() => null);
+    console.log(`async: field=${JSON.stringify(val)} log=${log ? JSON.stringify({ isValid: log.isValid, source: log.source, queueDelayMs: log.queueDelayMs }) : "NONE"}`);
+    expect(val, "the async consumer eventually applied the write").toBe(token);
+    expect(log, "a postfunction-static log was written").toBeTruthy();
+    expect(log.source, "log attributes the run to the async consumer (not inline runtime)").toBe("async");
+  } finally {
+    await detachByNamePrefix(WF, "ZINT-async").catch(() => {});
+    await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null } } }).catch(() => {});
+  }
+});
