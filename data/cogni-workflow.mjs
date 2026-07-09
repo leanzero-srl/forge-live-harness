@@ -118,6 +118,30 @@ export async function attachSelfLoopRules(workflowName, hubStatusRef, specs, sta
   throw new Error("attachSelfLoopRules: exhausted retries");
 }
 
+/** Attach MULTIPLE rules to ONE self-loop transition (e.g. a validator + a static PF, or two
+ *  validators). `rules` = [{ type, config }]. Returns { name, transitionId, rules:[{type,ruleId}] }.
+ *  Lets the rule-exercise loop test cross-kind interaction (does the PF run when the validator blocks?)
+ *  and same-kind AND-gating (both validators must pass) on a single transition. */
+export async function attachSelfLoopMulti(workflowName, hubStatusRef, name, rules, startId = 9101) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const { top, wf } = await readWorkflow(workflowName);
+    const existingIds = new Set((wf.transitions || []).map((t) => String(t.id)));
+    let idNum = startId;
+    while (existingIds.has(String(idNum))) idNum++;
+    const t = makeSelfLoop(hubStatusRef, name, idNum);
+    const attached = [];
+    for (const r of rules) {
+      const rule = buildRule(r.type, r.config);
+      attachRuleToTransition(t, r.type, rule);
+      attached.push({ type: r.type, ruleId: rule.parameters.id });
+    }
+    wf.transitions.push(t);
+    try { await updateWorkflow(top, wf); return { name, transitionId: String(idNum), rules: attached }; }
+    catch (e) { if (attempt < 2 && /409|version/i.test(e.message)) continue; throw e; }
+  }
+  throw new Error("attachSelfLoopMulti: exhausted retries");
+}
+
 /** Remove transitions by name PREFIX (cleanup). One version-conflict retry. */
 export async function detachByNamePrefix(workflowName, prefix) {
   for (let attempt = 0; attempt < 3; attempt++) {
