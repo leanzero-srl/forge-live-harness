@@ -21,8 +21,13 @@ test("dev doc-ribbon reports the sealed attachment (env-scoped, ignores the prod
   for (let i = 0; i < n; i++) {
     const src = (await ifr.nth(i).getAttribute("src").catch(() => "")) || "";
     if (!src.includes(DEV_ENV)) continue;
-    const txt = (await ifr.nth(i).contentFrame().locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").trim();
-    if (/on this page/i.test(txt) && /sealed/i.test(txt)) devBanner = txt.slice(0, 100);
+    const cf = ifr.nth(i).contentFrame();
+    // The DEV inline-PANEL macro is also a dev iframe and its copy contains both "sealed" ("1 sealed")
+    // and "on this page" ("What Sentinel Vault does on this page") — it would clobber the banner match.
+    // Skip the panel; the doc-ribbon BANNER is the one with the "Manage Attachments" action.
+    if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) continue;
+    const txt = (await cf.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").trim();
+    if (/Manage Attachments/i.test(txt) && /on this page/i.test(txt) && /attachment/i.test(txt)) devBanner = txt.slice(0, 100);
   }
   console.log("### dev banner:", JSON.stringify(devBanner));
   expect(devBanner, "the dev doc-ribbon banner is present on the page").toBeTruthy();
