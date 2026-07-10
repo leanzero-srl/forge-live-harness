@@ -53,13 +53,34 @@ export function attachRuleToTransition(transition, type, rule) {
 }
 
 export function makeSelfLoop(hubStatusRef, name, idNum) {
+  return makeTransition(hubStatusRef, hubStatusRef, name, idNum);
+}
+
+/** A DIRECTED transition fromRef → toRef (self-loop when equal). Both statuses must already be in the workflow. */
+export function makeTransition(fromRef, toRef, name, idNum) {
   return {
     id: String(idNum),
     type: "DIRECTED",
-    toStatusReference: String(hubStatusRef),
-    links: [{ fromStatusReference: String(hubStatusRef), fromPort: 0, toPort: 1 }],
+    toStatusReference: String(toRef),
+    links: [{ fromStatusReference: String(fromRef), fromPort: 0, toPort: 1 }],
     name, description: "", actions: [], validators: [], triggers: [], properties: {},
   };
+}
+
+/** Attach ONE from→to transition carrying `rules` ([{type,config}]); returns {name,transitionId,rules}. */
+export async function attachTransition(workflowName, fromRef, toRef, name, rules, startId = 9301) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const { top, wf } = await readWorkflow(workflowName);
+    const existingIds = new Set((wf.transitions || []).map((t) => String(t.id)));
+    let idNum = startId; while (existingIds.has(String(idNum))) idNum++;
+    const t = makeTransition(fromRef, toRef, name, idNum);
+    const attached = [];
+    for (const r of rules) { const rule = buildRule(r.type, r.config); attachRuleToTransition(t, r.type, rule); attached.push({ type: r.type, ruleId: rule.parameters.id }); }
+    wf.transitions.push(t);
+    try { await updateWorkflow(top, wf); return { name, transitionId: String(idNum), rules: attached }; }
+    catch (e) { if (attempt < 2 && /409|version/i.test(e.message)) continue; throw e; }
+  }
+  throw new Error("attachTransition: exhausted retries");
 }
 
 export async function readWorkflow(name) {
