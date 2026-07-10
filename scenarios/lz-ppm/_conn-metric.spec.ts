@@ -39,7 +39,7 @@ test("connector quality metric (LZPT)", async ({ page }) => {
 
   const rootHandle = await frame.locator(":root").elementHandle();
   const realFrame = await rootHandle!.ownerFrame();
-  const metric = await realFrame!.evaluate(() => {
+  const measureFn = () => realFrame!.evaluate(() => {
     const num = (s: string) => (s.match(/-?\d+(\.\d+)?/g) || []).map(Number);
     const groups = Array.from(document.querySelectorAll(".dep-arrow-group"));
     const conns: any[] = [];
@@ -80,6 +80,17 @@ test("connector quality metric (LZPT)", async ({ page }) => {
       worstBulge: conns.slice().sort((a, b) => b.bulge - a.bulge).slice(0, 5).map((c) => `${c.link}:${c.bulge}`),
     };
   });
-  console.log("CONN_METRIC:", JSON.stringify(metric, null, 0));
-  await page.screenshot({ path: `${SHOT}/conn-metric.png` });
+  const off = await measureFn();
+  console.log("CONN_METRIC_OFF:", JSON.stringify(off, null, 0));
+  await page.screenshot({ path: `${SHOT}/conn-off.png` });
+
+  // Toggle Auto-arrange ON (rank-suggestion tidy order) and re-measure.
+  await frame.locator('[data-testid="gantt-auto-arrange"]').first().click().catch(() => {});
+  await page.waitForTimeout(2500);
+  const on = await measureFn();
+  console.log("CONN_METRIC_ON:", JSON.stringify(on, null, 0));
+  await page.screenshot({ path: `${SHOT}/conn-on.png` });
+  // Toggle back off (display pref).
+  await frame.locator('[data-testid="gantt-auto-arrange"]').first().click().catch(() => {});
+  await page.waitForTimeout(800);
 });
