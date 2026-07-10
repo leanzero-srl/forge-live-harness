@@ -118,6 +118,15 @@ export async function attachSelfLoopRules(workflowName, hubStatusRef, specs, sta
   throw new Error("attachSelfLoopRules: exhausted retries");
 }
 
+/** Resolve a status NAME to its statusReference in a workflow (for self-looping a throwaway issue on
+ *  whatever status it currently sits in — e.g. the PF-brake stress test, which needs a self-loop on a
+ *  DEDICATED issue's status without moving it into the shared hub). */
+export async function statusRefByName(workflowName, statusName) {
+  const { top } = await readWorkflow(workflowName);
+  const s = (top.statuses || []).find((x) => (x.name || "").toLowerCase() === String(statusName).toLowerCase());
+  return s ? String(s.statusReference) : null;
+}
+
 /** Attach MULTIPLE rules to ONE self-loop transition (e.g. a validator + a static PF, or two
  *  validators). `rules` = [{ type, config }]. Returns { name, transitionId, rules:[{type,ruleId}] }.
  *  Lets the rule-exercise loop test cross-kind interaction (does the PF run when the validator blocks?)
