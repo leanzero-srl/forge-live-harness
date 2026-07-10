@@ -21,6 +21,14 @@ const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what:
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
 const cleanup = async () => { for (const k of [K_SEAL, K_INDEX, K_GRANT, K_WATCH]) await delKvs(k).catch(()=>{}); };
+const GLOBAL = "admin-settings-global";
+const seedSeal = async () => {
+  const future = new Date(Date.now() + 72 * 3600 * 1000).toISOString();
+  const common = { attachmentId: ATT, attachmentName: "AQL-FORCE-UNSEAL.bin", lockedBy: OWNER_A, lockedByName: "AQL Synth A", timestamp: new Date().toISOString(), expiresAt: future, contentId: PAGE_ID, spaceKey: SPACE_KEY, spaceId: REALM_ID };
+  await setKvs(K_SEAL, { ...common, lockDuration: 259200, sealedVersion: 1 });
+  await setKvs(K_INDEX, { ...common, pageTitle: "SV AQL Seal Fixture (do not delete)", fileSize: 1024, creatorAccountId: OWNER_A, creatorName: "AQL Synth A" });
+  return future;
+};
 test.describe.configure({ retries: 2 });
 
 test("steward force-unseals another user's seal via the realm-console → full cleanup", async ({ page }) => {
@@ -55,6 +63,35 @@ test("steward force-unseals another user's seal via the realm-console → full c
     await expect.poll(async () => await getKvs(K_WATCH), { timeout: 15000, message: "watcher notification deleted" }).toBeFalsy();
     console.log("### index/grant/watcher cleanup ✓");
   } finally {
+    await cleanup();
+  }
+});
+
+test("steward force-unseal DENIED when allowAdminOverride is OFF → Force Unseal button hidden", async ({ page }) => {
+  // authorizeSteward + the UI's steward-override-enabled both gate on the SAME global flag
+  // (admin-settings-global.allowAdminOverride). With it OFF, a steward cannot force-unseal a
+  // NON-expired seal — the resolver returns "Admin override denied" and the UI hides the button.
+  await cleanup();
+  const originalGlobal = await getKvs(GLOBAL); // preserve (restore EXACTLY in finally)
+  await seedSeal();
+  await setKvs(GLOBAL, { ...(originalGlobal || {}), allowAdminOverride: false }); // override OFF globally
+  try {
+    await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
+    const s = await enterForgeSurface(page, { surface: "custom", readySelector: ".space-admin-title", timeout: 45000 });
+    const app = (s as any).frame;
+    await expect(app.locator(".space-admin-title")).toBeVisible({ timeout: 15000 });
+    await app.locator(".tab-navigation .tab-button", { hasText: "Sealed Files" }).click().catch(()=>{});
+    await page.waitForTimeout(2500);
+    const card = app.locator(".artifact-card", { hasText: "AQL-FORCE-UNSEAL" });
+    await expect(card, "seeded seal still listed for the steward").toBeVisible({ timeout: 15000 });
+    // override OFF ⇒ the steward CANNOT force-unseal ⇒ no Force Unseal button on the card
+    await expect(card.locator(".action-btn.unlock", { hasText: "Force Unseal" }),
+      "Force Unseal is hidden when allowAdminOverride is off").toHaveCount(0);
+    // and the seal is NOT deleted (still present)
+    expect(await getKvs(K_SEAL), "seal untouched (denied)").toBeTruthy();
+    console.log("### override OFF → Force Unseal button hidden + seal untouched (denied) ✓");
+  } finally {
+    if (originalGlobal) await setKvs(GLOBAL, originalGlobal); else await delKvs(GLOBAL);
     await cleanup();
   }
 });
