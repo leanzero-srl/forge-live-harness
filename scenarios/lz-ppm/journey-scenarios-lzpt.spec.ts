@@ -140,6 +140,15 @@ test("LZPT scenarios: critical path, fan-out, rollup, cycle, date edges", async 
   }, chainKeys);
   console.log("CHAIN_CRITICAL:", JSON.stringify(crit.chainCritical), " ALL_CRITICAL:", JSON.stringify(crit.critAll));
   expect(crit.chainCritical.every(Boolean), "the whole linear CHAIN is on the critical path").toBeTruthy();
+
+  // ---- H. Critical-path COUNT: the Critical button badge == the number of
+  //         critical bars rendered (the two derive independently). ----
+  const critBtnText = (await frame.getByRole("button", { name: /Critical/i }).first().textContent().catch(() => "")) || "";
+  const badge = (critBtnText.match(/\((\d+)\)/) || [])[1];
+  console.log("CRITICAL_BADGE:", critBtnText.trim(), " CRIT_BARS:", crit.critAll.length);
+  expect(badge, "Critical button shows a count badge").toBeTruthy();
+  expect(Number(badge), "critical-path count == number of critical bars").toBe(crit.critAll.length);
+
   // Toggle Critical back off.
   await frame.getByRole("button", { name: /^Critical/i }).first().click().catch(() => {});
 });
