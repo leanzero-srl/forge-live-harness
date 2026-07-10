@@ -13,9 +13,16 @@ import { paragraph, simpleTable } from "../../data/adf.mjs";
 
 const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
 const CFG_KEY = "validation-config-global";
+// A leftover space config's `modes` override the global modes in resolveEffectiveConfig
+// (space?.modes||global.modes), so an advisory-only WFH space config silently shadows the global
+// revert we set here → the revert never fires. Neutralise it for the test (see gate-revert.spec.ts;
+// the shadowing itself is a flagged APP bug in the COVERAGE-MATRIX bad-behavior list).
+const SPACE_CFG_KEY = `validation-config-space-${SPACE}`;
 const LONG = "x".repeat(320); // > 200 chars
 
 const setConfig = (cfg: any) => getTestState("sentinel-vault", { what: "set", key: CFG_KEY, value: JSON.stringify(cfg) });
+const setSpaceConfig = (cfg: any) => getTestState("sentinel-vault", { what: "set", key: SPACE_CFG_KEY, value: JSON.stringify(cfg) });
+const delKey = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const doc = (...nodes: any[]) => ({ version: 1, type: "doc", content: nodes });
 
@@ -27,17 +34,21 @@ test.describe.configure({ timeout: 180_000, retries: 2 });
 
 test.describe("Sentinel Vault validation (page-content trigger)", () => {
   let original: any;
+  let originalSpace: any;
   let spaceId: string;
 
   test.beforeAll(async () => {
     original = await getKvs(CFG_KEY); // save whatever global config exists
+    originalSpace = await getKvs(SPACE_CFG_KEY); // capture + neutralise so global modes apply
+    await delKey(SPACE_CFG_KEY);
     spaceId = await spaceIdByKey(SPACE);
   });
 
   test.afterAll(async () => {
     // restore the testbed's original config (or disable if there was none)
     if (original) await setConfig(original);
-    else await getTestState("sentinel-vault", { what: "delete", key: CFG_KEY });
+    else await delKey(CFG_KEY);
+    if (originalSpace) await setSpaceConfig(originalSpace); else await delKey(SPACE_CFG_KEY);
   });
 
   test("advisory: removing required content posts a violation comment", async () => {

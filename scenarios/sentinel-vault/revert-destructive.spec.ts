@@ -12,7 +12,13 @@ import { paragraph, heading } from "../../data/adf.mjs";
 
 const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
 const CFG_KEY = "validation-config-global";
+// A leftover advisory-only WFH space config's `modes` shadow the global revert we set here
+// (resolveEffectiveConfig space?.modes||global.modes) → no revert. Neutralise it for the test
+// (see gate-revert.spec.ts; the shadowing is a flagged APP bug in the COVERAGE-MATRIX).
+const SPACE_CFG_KEY = `validation-config-space-${SPACE}`;
 const setConfig = (cfg: any) => getTestState("sentinel-vault", { what: "set", key: CFG_KEY, value: JSON.stringify(cfg) });
+const setSpaceConfig = (cfg: any) => getTestState("sentinel-vault", { what: "set", key: SPACE_CFG_KEY, value: JSON.stringify(cfg) });
+const delKey = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const doc = (...nodes: any[]) => ({ version: 1, type: "doc", content: nodes });
 const LONG = "x".repeat(320);
@@ -20,9 +26,17 @@ const LONG = "x".repeat(320);
 test.describe.configure({ timeout: 180_000, retries: 2 });
 
 test.describe("Sentinel Vault destructive revert (SV-M1)", () => {
-  let original: any, spaceId: string;
-  test.beforeAll(async () => { original = await getKvs(CFG_KEY); spaceId = await spaceIdByKey(SPACE); });
-  test.afterAll(async () => { if (original) await setConfig(original); else await getTestState("sentinel-vault", { what: "delete", key: CFG_KEY }); });
+  let original: any, originalSpace: any, spaceId: string;
+  test.beforeAll(async () => {
+    original = await getKvs(CFG_KEY);
+    originalSpace = await getKvs(SPACE_CFG_KEY); // capture + neutralise so global modes apply
+    await delKey(SPACE_CFG_KEY);
+    spaceId = await spaceIdByKey(SPACE);
+  });
+  test.afterAll(async () => {
+    if (original) await setConfig(original); else await delKey(CFG_KEY);
+    if (originalSpace) await setSpaceConfig(originalSpace); else await delKey(SPACE_CFG_KEY);
+  });
 
   test("🔎 SV-M1: a legitimate heading added in the violating save is destroyed by the wholesale revert", async () => {
     await setConfig({ enabled: true, modes: { advisory: false, gate: false, revert: true }, rules: [{ id: "r1", type: "max-length", label: "max", severity: "block", enabled: true, config: { maxChars: 200 } }], ai: { enabled: false } });
