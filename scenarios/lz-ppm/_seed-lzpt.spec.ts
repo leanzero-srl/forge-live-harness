@@ -12,7 +12,6 @@ import { BASE_URL } from "../../config/env";
 test.describe.configure({ retries: 0, timeout: 600_000 });
 
 const KEY = "LZPT";
-const LEAD = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
 const T = { Epic: "10133", Subtask: "10134", Task: "10135", Story: "10136" };
 
 async function api(page: any, method: string, path: string, body?: any) {
@@ -135,7 +134,10 @@ test("SEED LZPT scenarios", async ({ page }) => {
     for (const b of def.blocks || []) {
       const from = key.get(def.ref), to = key.get(b);
       if (!from || !to) continue;
-      const r = await api(page, "POST", "/rest/api/3/issueLink", { type: { name: "Blocks" }, outwardIssue: { key: from }, inwardIssue: { key: to } });
+      // Jira POST semantics (verified live): {outwardIssue:X, inwardIssue:Y} creates
+      // "Y blocks X". To make `from` block `to` (from = predecessor), put `to`
+      // outward and `from` inward.
+      const r = await api(page, "POST", "/rest/api/3/issueLink", { type: { name: "Blocks" }, outwardIssue: { key: to }, inwardIssue: { key: from } });
       if (r.ok) links++; else console.log("LINK_FAIL", def.ref, "->", b, r.status, JSON.stringify(r.data).slice(0, 150));
     }
   }
