@@ -116,6 +116,18 @@ test("LZPT scenarios: critical path, fan-out, rollup, cycle, date edges", async 
   expect(diamond.b2LongerThanB1, "B2 is the longer path").toBeTruthy();
   expect(diamond.afterB1 && diamond.afterB2, "C starts only after BOTH predecessors finish (gated by the longer B2)").toBeTruthy();
 
+  // ---- G. Cross-epic gate: CHAIN-1 (E1) starts only after CROSS-A (E3), its
+  //         predecessor in another epic, finishes — pinned to due + 1 wd. ----
+  const gate = await realFrame!.evaluate((m) => {
+    const rect = (k: string) => { const e = document.querySelector(`[data-testid="gantt-bar"][data-key="${k}"]`) as HTMLElement | null; return e ? e.getBoundingClientRect() : null; };
+    const g = rect(m.gate), c1 = rect(m.chain1);
+    if (!g || !c1) return { ok: false };
+    return { ok: true, gateRight: Math.round(g.right), chain1Left: Math.round(c1.left), startsAfter: c1.left >= g.right - 4 };
+  }, { gate: K("CROSS-A gate"), chain1: K("CHAIN-1 kickoff") });
+  console.log("CROSS_EPIC_GATE:", JSON.stringify(gate));
+  expect(gate.ok, "gate + chain-1 bars render").toBeTruthy();
+  expect(gate.startsAfter, "CHAIN-1 starts only after its cross-epic predecessor CROSS-A finishes").toBeTruthy();
+
   // ---- A. Critical path == the linear CHAIN ----
   await frame.getByRole("button", { name: /^Critical/i }).first().click().catch(() => {});
   await page.waitForTimeout(2000);
