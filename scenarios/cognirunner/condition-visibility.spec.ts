@@ -1,17 +1,20 @@
-// LIVE BROWSER — workflow CONDITION visibility in the NEW Jira issue view. DOCUMENTS + GUARDS a platform
-// FINDING (it40): the new Jira issue-view status dropdown does NOT evaluate Forge app workflow conditions —
-// a CogniRunner condition (field-has-value) does NOT hide its transition when the field is empty, and the
-// app's condition function is NEVER invoked (zero "condition" execution logs on issue render). So the
-// CONDITION feature's "hide transition" behaviour is a NO-OP in the default modern issue view.
+// LIVE BROWSER — workflow CONDITION visibility. DOCUMENTS + GUARDS a ROOT-CAUSED FINDING (it40/it41):
+// CogniRunner's Condition feature is a NO-OP — the transition is ALWAYS shown and the app's condition
+// function is NEVER invoked (0 "condition" logs) across the new issue view, the classic view
+// (?oldIssueView=true, it41), AND REST (it33).
 //
-// This is a JIRA PLATFORM limitation, not a CogniRunner code bug (the condition executor is correct — it33
-// unit-verified it; Jira just never calls it here). Conditions were already proven REST-unreachable (it33);
-// this proves they're also not honoured by the new-issue-view dropdown.
+// ROOT CAUSE (manifest, NOT a Jira mystery): the jira:workflowCondition module (ai-text-field-condition)
+// declares `expression: "true"` alongside `function: validate`. Forge workflow CONDITIONS are Jira-EXPRESSION
+// based, not function-based — so Jira evaluates the always-true expression (⇒ always show) and never calls
+// the async validate() that does the field/AI check. Matches project memory "condition module never calls
+// functions". The ruleKey ("forge:expression-condition") is CORRECT (discovered from real registered rules —
+// test-harness classify.mjs), so this is NOT a harness mis-attach. MANIFEST / Core-Contract matter →
+// FLAGGED to the owner, deliberately NOT changed by the loop.
 //
-// The test ASSERTS the CURRENT reality (so it passes) AND acts as a TRIPWIRE: if Jira ever starts honouring
-// Forge conditions in this view, `shownWhenEmpty`/`condLogs` will flip and this fails → revisit + celebrate.
-// Design notes: self-loop transitions never appear in this dropdown (it40) — a NAMED Backlog→In Progress
-// transition is used (shows by name); the test only OPENS the menu (never clicks), so the fixture stays put.
+// The test ASSERTS the CURRENT reality (passes) AND is a TRIPWIRE: if the module ever stops using
+// expression:"true" and honours the function, shownWhenEmpty/condLogs flip and this fails.
+// Design note: self-loops never appear in this dropdown (it40) — a NAMED Backlog→In Progress transition is
+// used (shows by name); the test only OPENS the menu (never clicks), so the fixture stays put.
 import { test, expect } from "../../fixtures/forge";
 import { assertLoggedIn } from "../../forge/browser";
 import { BASE_URL } from "../../config/env";
