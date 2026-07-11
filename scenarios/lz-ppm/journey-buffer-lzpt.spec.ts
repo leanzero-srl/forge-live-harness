@@ -110,13 +110,14 @@ test("LZPT buffer: due FIXED, start absorbs, cascade STOPS at the buffer, then r
   // asserted below against `orig`.
   const afterBuf = await geo([c3, c4, c5]);
   console.log("AFTER_BUFFER_SET:", JSON.stringify(afterBuf));
-  // KNOWN ANOMALY (flagged 2026-07-11, root cause not yet pinned): marking a leaf
-  // as a buffer COLLAPSES its own bar to width~0 (its due jumps to its start) until
-  // a later cascade recomputes it back to the fixed due. Logged, not asserted, so
-  // this journey stays green and doubles as the regression detector once fixed.
-  const c3DueJump = afterBuf[c3]!.right - orig[c3]!.right;
-  const c3Collapsed = afterBuf[c3]!.width <= 4 && orig[c3]!.width > 20;
-  console.log("BUFFER_SET_ANOMALY: c3 due-edge shift =", c3DueJump, " collapsed =", c3Collapsed);
+  // REGRESSION GUARD (bug fixed 2026-07-11): marking a leaf as a buffer must NOT
+  // collapse its own bar. The cause was `finishDrag` clearing `el.style.width=''`
+  // on the zero-delta CLICK that opens the editor; React then didn't restore the
+  // width because the buffer toggle leaves pos.w unchanged — so the bar rendered at
+  // 0px. Fixed by only clearing imperative preview styles on a REAL drag. Now
+  // buffer-set alone leaves the geometry untouched (only the colour changes).
+  expect(Math.abs(afterBuf[c3]!.right - orig[c3]!.right), "buffer-set alone must NOT move CHAIN-3's due edge (no collapse)").toBeLessThanOrEqual(4);
+  expect(Math.abs(afterBuf[c3]!.width - orig[c3]!.width), "buffer-set alone must NOT shrink CHAIN-3's bar (no collapse)").toBeLessThanOrEqual(6);
   const before = orig;
   await page.screenshot({ path: `${SHOT}/buffer-before.png` });
 
