@@ -128,18 +128,33 @@ test("LZPT scenarios: critical path, fan-out, rollup, cycle, date edges", async 
   expect(gate.ok, "gate + chain-1 bars render").toBeTruthy();
   expect(gate.startsAfter, "CHAIN-1 starts only after its cross-epic predecessor CROSS-A finishes").toBeTruthy();
 
-  // ---- A. Critical path == the linear CHAIN ----
+  // ---- A. Critical path = the genuinely LONGEST path (correct CPM) ----
+  // The bed contains a standalone "EDGE long-run" task (2026-05-04→06-30, ~58d) —
+  // longer than the whole 5-day CHAIN (~30d), so with durations weighted by the
+  // date span the long-run task correctly dominates and the CHAIN carries slack
+  // (it is NOT critical). (This assertion previously claimed "the chain is
+  // critical", which only held under a DEGENERATE all-durations-1 CPM — issues
+  // here have no explicit duration field; the app now derives length from the
+  // date span, so the 58-day task legitimately owns the critical path.)
   await frame.getByRole("button", { name: /^Critical/i }).first().click().catch(() => {});
   await page.waitForTimeout(2000);
   await page.screenshot({ path: `${SHOT}/lzpt-critical.png` });
   const chainKeys = ["CHAIN-1 kickoff", "CHAIN-2 build", "CHAIN-3 test", "CHAIN-4 review", "CHAIN-5 release"].map(K);
-  const crit = await realFrame!.evaluate((chain) => {
+  const longRun = K("EDGE long-run");
+  const crit = await realFrame!.evaluate(({ chain, lr }: any) => {
     const isCrit = (k: string) => document.querySelector(`[data-testid="gantt-bar"][data-key="${k}"]`)?.getAttribute("data-critical") === "1";
+    const lefts = chain.map((k: string) => { const el = document.querySelector(`[data-testid="gantt-bar"][data-key="${k}"]`) as HTMLElement | null; return el ? Math.round(el.getBoundingClientRect().left) : null; });
     const critAll = Array.from(document.querySelectorAll('[data-testid="gantt-bar"][data-critical="1"]')).map((b) => b.getAttribute("data-key"));
-    return { chainCritical: chain.map(isCrit), critAll };
-  }, chainKeys);
-  console.log("CHAIN_CRITICAL:", JSON.stringify(crit.chainCritical), " ALL_CRITICAL:", JSON.stringify(crit.critAll));
-  expect(crit.chainCritical.every(Boolean), "the whole linear CHAIN is on the critical path").toBeTruthy();
+    return { longRunCritical: isCrit(lr), chainLefts: lefts, critAll };
+  }, { chain: chainKeys, lr: longRun });
+  console.log("LONGRUN_CRITICAL:", crit.longRunCritical, " CHAIN_LEFTS:", JSON.stringify(crit.chainLefts), " ALL_CRITICAL:", JSON.stringify(crit.critAll));
+  expect(crit.longRunCritical, "the longest task (EDGE long-run, ~58d) owns the critical path").toBeTruthy();
+  // The CHAIN is still a rigid dependency chain — strictly ordered left-to-right,
+  // each task after its predecessor (its critical-vs-slack status is a separate CPM
+  // fact, covered above + by the cascade journey).
+  const cl = crit.chainLefts.filter((x: any) => x != null) as number[];
+  expect(cl.length, "chain bars render").toBe(5);
+  for (let i = 1; i < cl.length; i++) expect(cl[i], `CHAIN-${i + 1} starts after CHAIN-${i} (rigid chain)`).toBeGreaterThan(cl[i - 1]);
 
   // ---- H. Critical-path COUNT: the Critical button badge == the number of
   //         critical bars rendered (the two derive independently). ----
