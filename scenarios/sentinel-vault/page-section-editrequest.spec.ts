@@ -74,6 +74,10 @@ test.describe("#6 section edit-access request/approve/deny loop", () => {
     const notOwnerApprove = await inv("approveSectionEdit", { section: SECTION, actor: REQ, requester: REQ });
     expect(notOwnerApprove.result?.reason, "a non-owner cannot approve").toMatch(/not the section owner/i);
 
+    // it51: approving a user who never requested is rejected (REQ2 has no request yet)
+    const noRequestApprove = await inv("approveSectionEdit", { section: SECTION, actor: OWNER, requester: REQ2 });
+    expect(noRequestApprove.result?.reason, "approving with no existing request is rejected").toMatch(/request not found/i);
+
     const approve = await inv("approveSectionEdit", { section: SECTION, actor: OWNER, requester: REQ });
     expect(approve.result?.success, "the owner approves").toBe(true);
     const grant = await getKvs(grantKey(REQ));
