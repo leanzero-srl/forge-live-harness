@@ -169,3 +169,51 @@ test("✅ expired section seal is INERT — a tampered body is NOT restored", as
     await deletePage(page.id).catch(() => {});
   }
 });
+
+// it52 REGRESSION GUARD — a granted section editor's edit is re-baselined (not reverted), AND when the
+// same sectionId appears MORE THAN ONCE (copy-paste / a REST PUT with two same-sectionId copies) every
+// copy is converged to the accepted body. Before the fix the grant branch re-baselined from only
+// changedWrappers[0] and left the other copies live → a copy tampered in the same save survived
+// undetected and could later be promoted to the seal baseline. (Found by the it51 adversarial hunt.)
+test("🔎 it52: grant re-baseline converges DUPLICATE same-sectionId copies (no tamper blind spot)", async () => {
+  const spaceId = await spaceIdByKey(SPACE);
+  const me = (await get("/rest/api/3/myself")).accountId;
+  const owner = "557058:it52-dummy-owner"; // NOT me → my edit is a non-owner edit gated by the grant
+  const sectionId = `harness-dup-${Date.now().toString(36)}`;
+  const BODY = [paragraph("SEALED BODY V1")];
+  const contentHash = hashAdf(BODY);
+  // page carries TWO copies of the same sealed section
+  const page = await createPage({
+    spaceId, title: `HARNESS it52-dup ${Date.now()}`,
+    adf: doc(heading("TOP", 2), sectionNode(sectionId, BODY), paragraph("MID"), sectionNode(sectionId, BODY), paragraph("FOOTER")),
+  });
+  try {
+    await setKvs(`section-protection-${sectionId}`, { sectionId, pageId: page.id, lockedBy: owner, lockedByName: "Owner", contentHash, originalIndex: 1, sealedVersion: 1, sectionTitle: "S", expiresAt: null });
+    await setKvs(`section-snapshot-${sectionId}`, { wrapperNode: sectionNode(sectionId, BODY), bodyContent: BODY, hash: contentHash, version: 1, originalIndex: 1 });
+    // I hold an active edit grant → my edit is ALLOWED + re-baselined (not reverted).
+    await setKvs(`section-edit-grant-${sectionId}-${me}`, { sectionId, editorAccountId: me, editorName: "Me", grantedBy: owner, grantedAt: new Date().toISOString(), expiresAt: null });
+    await request("POST", `/wiki/api/v2/pages/${page.id}/properties`, { raw: true, body: { key: "section-protection-", value: [{ sectionId, lockedBy: owner, expiresAt: null }] } });
+    const v1 = (await readPage(page.id)).version;
+    // Save: copy0 = the intended edit (ACCEPTED-EDIT); copy1 = a tampered duplicate (both differ from the seal).
+    await writeAdf(page.id, doc(
+      heading("TOP", 2), sectionNode(sectionId, [paragraph("ACCEPTED-EDIT")]), paragraph("MID"),
+      sectionNode(sectionId, [paragraph("TAMPER-DUP")]), paragraph("FOOTER"),
+    ));
+    // WITH the fix: both copies converge to ACCEPTED-EDIT, TAMPER-DUP is gone, seal re-baselined.
+    // WITHOUT the fix: TAMPER-DUP survives live → this times out.
+    const conv = await waitForTerminal(async () => {
+      const p = await readPage(page.id);
+      const text = JSON.stringify(p.adf);
+      const converged = (text.match(/ACCEPTED-EDIT/g) || []).length >= 2 && !text.includes("TAMPER-DUP");
+      return p.version > v1 && converged ? p : false;
+    }, { timeout: 60_000, interval: 3_000, label: "duplicate copies converge on grant re-baseline" });
+    expect(conv, "the tampered duplicate copy must be converged away, not left live").toBeTruthy();
+    const snap: any = (await getTestState("sentinel-vault", { what: "kvs", key: `section-snapshot-${sectionId}` })).value;
+    expect(JSON.stringify(snap?.bodyContent || []), "the seal is re-baselined to the accepted edit").toContain("ACCEPTED-EDIT");
+  } finally {
+    await delKvs(`section-protection-${sectionId}`).catch(() => {});
+    await delKvs(`section-snapshot-${sectionId}`).catch(() => {});
+    await delKvs(`section-edit-grant-${sectionId}-${me}`).catch(() => {});
+    await deletePage(page.id).catch(() => {});
+  }
+});
