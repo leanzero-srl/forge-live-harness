@@ -106,4 +106,23 @@ test.describe("#6 section edit-access request/approve/deny loop", () => {
     expect(cooldown.result?.reason, "the 48h cooldown blocks an immediate re-request").toMatch(/declined|try again later/i);
     console.log("### deny ✓ (denied status, deniedAt, cooldown blocks re-request)");
   });
+
+  test("it54: approving an EXPIRED section seal is rejected (no zombie grant)", async () => {
+    const expSection = `${SECTION}-exp`;
+    const expSeal = `section-protection-${expSection}`;
+    const expReqKey = `section-edit-request-${expSection}-${REQ}`;
+    const expGrantKey = `section-edit-grant-${expSection}-${REQ}`;
+    try {
+      // seal record present but EXPIRED (expiresAt in the past → the section is inert)
+      await setKvs(expSeal, { sectionId: expSection, lockedBy: OWNER, sectionTitle: "Expired", pageId: PAGE, spaceKey: SPACE, expiresAt: new Date(Date.now() - 3600_000).toISOString() });
+      const r = await inv("requestSectionEdit", { section: expSection, actor: REQ, reason: "late" });
+      expect(r.result?.success, "a request is still accepted while the seal record exists").toBe(true);
+      const ap = await inv("approveSectionEdit", { section: expSection, actor: OWNER, requester: REQ });
+      expect(ap.result?.reason, "approving an expired seal is rejected").toMatch(/expired/i);
+      expect(await getKvs(expGrantKey), "no zombie grant is written for an expired seal").toBeFalsy();
+      console.log("### it54: expired-seal approve rejected, no zombie grant ✓");
+    } finally {
+      await delKvs(expSeal); await delKvs(expReqKey); await delKvs(expGrantKey);
+    }
+  });
 });
