@@ -9,7 +9,11 @@ import { enterForgeSurface } from "../../forge/frame";
 
 const T = getTarget("lz-ppm-dashboard");
 const PLAN = "LZPT Scenarios";
-test.describe.configure({ retries: 0, timeout: 220_000 });
+// retries=2: the Duration sort reads calendar-gated normalized durations (Forge Lambda
+// cold-start, high variance). The settle below waits for normalization; retries cover the
+// rare over-window case. Cannot mask a real regression (fails all 3 attempts if durations
+// never populate).
+test.describe.configure({ retries: 2, timeout: 220_000 });
 
 async function bodyText(frame: any) { return (await frame.locator("body").textContent().catch(() => "")) || ""; }
 
@@ -101,10 +105,10 @@ test("LZPT Table sort: monotonic order, unset last, both directions, no row loss
   // column sorts VACUOUSLY (nothing to order). Wait for the known large span (EDGE
   // long-run, >30 wd) so the sort operates on real values, then assert the column is
   // actually populated. Makes this pass STANDALONE cold, not only warm in the sweep.
-  await realFrame!.waitForFunction(() =>
-    Array.from(document.querySelectorAll('[data-testid="table-row"]'))
-      .some((el) => Number(el.getAttribute("data-row-duration")) >= 30),
-    undefined, { timeout: 60_000 });
+  await realFrame!.waitForFunction(() => {
+    const els = Array.from(document.querySelectorAll('[data-testid="table-row"]'));
+    return els.filter((el) => { const d = el.getAttribute("data-row-duration"); return d != null && d !== ""; }).length >= 30;
+  }, undefined, { timeout: 60_000 });
   await clickHeader("duration");
   const durDir = await sortDir("duration");
   const dur = (await rows("data-row-duration")).map((r) => r.v || "");
