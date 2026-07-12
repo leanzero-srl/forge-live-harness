@@ -39,6 +39,18 @@ test("LZPT Table duration == working-day span of the issue's dates (normalized o
   await frame.getByRole("button", { name: /^Table/i }).first().click().catch(() => {});
   await page.waitForTimeout(3000);
 
+  // Durations normalize only AFTER the calendar resolver returns (calendarLoaded gate,
+  // PlanView.jsx) — on a COLD plan open the Table first paints raw (empty) durations.
+  // Wait until the known large span (EDGE long-run, >30 wd) lands so we read NORMALIZED
+  // values, not the pre-normalization empty state. Makes this journey pass STANDALONE
+  // cold, not only warm inside the sweep.
+  const startedAt = Date.now();
+  await realFrame!.waitForFunction((k) => {
+    const el = document.querySelector(`[data-testid="table-row"][data-row-key="${k}"]`);
+    return !!el && Number(el.getAttribute("data-row-duration")) >= 30;
+  }, K("EDGE long-run"), { timeout: 60_000 });
+  console.log(`durations normalized after ~${Math.round((Date.now() - startedAt) / 1000)}s post-Table-open`);
+
   const dur = (key: string) => realFrame!.evaluate((k) => {
     const el = document.querySelector(`[data-testid="table-row"][data-row-key="${k}"]`);
     return el ? el.getAttribute("data-row-duration") : null;

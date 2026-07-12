@@ -96,10 +96,20 @@ test("LZPT Table sort: monotonic order, unset last, both directions, no row loss
   assertMonotonic(start2, dir2 as "asc" | "desc", "startDate");
 
   // --- Sort by Duration (numeric column) ---
+  // Durations are CALENDAR-GATED (normalizeImportedDurations runs only after the calendar
+  // resolver returns) — on a COLD open the column is empty for a bit, and an all-empty
+  // column sorts VACUOUSLY (nothing to order). Wait for the known large span (EDGE
+  // long-run, >30 wd) so the sort operates on real values, then assert the column is
+  // actually populated. Makes this pass STANDALONE cold, not only warm in the sweep.
+  await realFrame!.waitForFunction(() =>
+    Array.from(document.querySelectorAll('[data-testid="table-row"]'))
+      .some((el) => Number(el.getAttribute("data-row-duration")) >= 30),
+    undefined, { timeout: 60_000 });
   await clickHeader("duration");
   const durDir = await sortDir("duration");
   const dur = (await rows("data-row-duration")).map((r) => r.v || "");
   console.log(`DURATION ${durDir} (first 8):`, JSON.stringify(dur.slice(0, 8)));
   expect((await rows("data-row-key")).length, "numeric sort keeps every row").toBe(baseCount);
-  assertMonotonic(dur, durDir as "asc" | "desc", "duration", true);
+  const nDur = assertMonotonic(dur, durDir as "asc" | "desc", "duration", true);
+  expect(nDur, "the Duration column has real normalized values (not the empty cold state)").toBeGreaterThan(20);
 });
