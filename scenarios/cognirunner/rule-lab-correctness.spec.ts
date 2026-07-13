@@ -5,7 +5,7 @@
 // truth-table inputs so a wrong verdict is a real defect. Cleans up RULES (detach), never issues.
 import { test, expect } from "@playwright/test";
 import crypto from "node:crypto";
-import { attachSelfLoopRules, detachByNamePrefix } from "../../data/cogni-workflow.mjs";
+import { attachSelfLoopRules, detachByNamePrefix, statusRefByName } from "../../data/cogni-workflow.mjs";
 import { get, doTransition, request, searchJql } from "../../data/jira.mjs";
 import { setField, waitForLog } from "../../data/cogni-rule-lab.mjs";
 
@@ -258,4 +258,59 @@ test("🧰 T4 multi-effect static PF: chains a computed comment + two derived fi
     await detachByNamePrefix(WF, "ZCORR-multi").catch(() => {});
     await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null, [NUM]: null } } }).catch(() => {});
   }
+});
+
+test("🌊 T5 multi-issue volume soak: pool of issues × many transitions, every output exactly correct at scale", async () => {
+  // Attach the self-loop on BACKLOG (where most COGTEST issues sit) so we can use a POOL without
+  // repositioning — spreading PF load across issues dodges the per-issue brake and lets us transition
+  // at real volume while still verifying EXACT correctness on every executed transition.
+  const backlog = await statusRefByName(WF, "Backlog");
+  test.skip(!backlog, "Backlog status not found in workflow");
+  const pool = (await searchJql(`project = COGTEST AND status = "Backlog" ORDER BY created DESC`, ["key"], 8)).map((i: any) => i.key).slice(0, 5);
+  test.skip(pool.length < 3, "not enough Backlog issues to pool");
+  const code = `
+    const iss = await api.getIssue(api.context.issueKey);
+    const n = Number(iss.fields.${NUM}) || 0;
+    const tag = (n % 2 === 0) ? ('E' + (n * 2)) : ('O' + (n + 1));
+    await api.updateIssue(api.context.issueKey, { ${TEXT}: tag });
+  `;
+  const [pf] = await attachSelfLoopRules(WF, backlog, [{
+    name: `ZCORR-soak-${Date.now()}`, type: "static",
+    config: { type: "postfunction-static", id: crypto.randomUUID(), workflow: { workflowName: WF }, functions: [{ id: crypto.randomUUID(), name: "soak", code }] },
+  }]);
+  const ROUNDS = 6;
+  let ok = 0, total = 0, braked = 0;
+  const fails: string[] = [];
+  try {
+    for (let round = 0; round < ROUNDS; round++) {
+      for (let p = 0; p < pool.length; p++) {
+        const key = pool[p];
+        const n = round * 13 + p * 2 + 1; // distinct, varied input per (round, issue)
+        const exp = (n % 2 === 0) ? ("E" + (n * 2)) : ("O" + (n + 1));
+        total++;
+        await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null } } });
+        await setField(key, { [NUM]: n });
+        await sleep(700);
+        const since = Date.now();
+        await doTransition(key, pf.transitionId);
+        let got: any = null;
+        for (let i = 0; i < 14; i++) {
+          await sleep(1600);
+          const v = (await get(`/rest/api/3/issue/${key}?fields=${TEXT}`)).fields[TEXT];
+          if (v === exp) { got = v; break; }
+        }
+        const log: any = await waitForLog((l: any) => l.issueKey === key && l.type === "postfunction-static", since, { tries: 2, gapMs: 1500 }).catch(() => null);
+        if (got === exp) ok++;
+        else if (!log) braked++;                      // suppressed (brake), not a correctness failure
+        else fails.push(`${key} n=${n} exp=${exp} got=${JSON.stringify(got ?? (await get(`/rest/api/3/issue/${key}?fields=${TEXT}`)).fields[TEXT])}`);
+      }
+    }
+  } finally {
+    console.log(`\nT5 MULTI-ISSUE SOAK: ${pool.length} issues × ${ROUNDS} rounds = ${total} transitions → ${ok} correct, ${braked} brake-suppressed, ${fails.length} WRONG`);
+    if (fails.length) console.log("  WRONG:\n" + fails.map((f) => "    " + f).join("\n"));
+    await detachByNamePrefix(WF, "ZCORR-soak").catch(() => {});
+    for (const key of pool) await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null, [NUM]: null } } }).catch(() => {});
+  }
+  expect(fails.length, `every executed transition produced the CORRECT output at scale; wrong: ${fails.join("; ")}`).toBe(0);
+  expect(ok, "a meaningful number of transitions actually executed + were correct").toBeGreaterThan(pool.length);
 });
