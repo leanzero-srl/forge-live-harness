@@ -185,6 +185,9 @@ test("🎨 T3 semantic PF classification: reads Description → writes the CORRE
     console.log(`\nT3 SEMANTIC CLASSIFICATION (${cases.length - wrong}/${cases.length} correct):\n` +
       results.map((r) => `  "${r.desc}…" → ${r.got} ${r.correct ? "✓" : "✗ expected " + r.exp}`).join("\n"));
     await detachByNamePrefix(WF, "ZCORR-sem").catch(() => {});
-    await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null, description: null } } }).catch(() => {});
+    // Clear the output field (plain custom field). Leave description as-is — a raw null clear is
+    // rejected for rich-text (ADF) fields, and a leftover test description on the fixture is harmless
+    // (the fixture is matched by SUMMARY, not description).
+    await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null } } }).catch(() => {});
   }
 });
