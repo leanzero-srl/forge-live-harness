@@ -160,7 +160,9 @@ test("🎨 T3 semantic PF classification: reads Description → writes the CORRE
   try {
     for (const c of cases) {
       await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null } } });
-      await setField(key!, { description: c.desc });
+      // description is a rich-text (ADF) field — send a proper Atlassian Document, not a bare string.
+      const adf = { type: "doc", version: 1, content: [{ type: "paragraph", content: [{ type: "text", text: c.desc }] }] };
+      await setField(key!, { description: adf });
       await sleep(1500);
       let val: any = null, isValid: any = null;
       for (let attempt = 0; attempt < 3 && val !== c.expect; attempt++) {
