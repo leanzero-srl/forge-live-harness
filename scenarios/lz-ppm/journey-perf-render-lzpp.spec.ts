@@ -76,9 +76,33 @@ test("PERF: large LZPP plan indexes, renders, and stays interactive", async ({ p
   if (!/Gantt|Table|Dashboard/i.test(await bodyText(frame))) await frame.getByRole("button", { name: /Open plan/i }).first().click().catch(() => {});
   await page.waitForTimeout(2000);
 
-  // Header issue count (how many the plan resolved).
-  const headTxt = await bodyText(frame);
-  const showing = (headTxt.match(/Showing\s+([\d,]+)\s+of\s+([\d,]+)/i) || [])[0] || null;
+  // Optional one-time RE-INDEX (REINDEX=1) — needed once after _seed-perf-deps adds links
+  // so the KVS index picks up the new dependencies (the plan then keeps them across opens).
+  // The header "Showing N of N" is present the whole time, so we can't use it as the "done"
+  // signal — indexing 5300 issues takes ~42s, so click then wait a generous fixed window
+  // for the background consumer to finish re-reading Jira (incl. issuelinks → successors).
+  if (process.env.REINDEX === "1") {
+    await frame.getByRole("button", { name: /Re-?index/i }).first().click().catch(() => {});
+    await page.waitForTimeout(75_000);
+    // Reload the surface so the freshly-indexed issues (with successors) are loaded.
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]').first().waitFor({ state: "attached", timeout: 30_000 });
+    const rs = await enterForgeSurface(page, { surface: "custom" });
+    const rf = rs.kind === "custom" ? rs.frame : null;
+    if (rf) frame = rf;
+    await frame.getByText(PLAN, { exact: false }).first().click().catch(() => {});
+    await page.waitForTimeout(2500);
+    if (!/Gantt|Table|Dashboard/i.test(await bodyText(frame))) await frame.getByRole("button", { name: /Open plan/i }).first().click().catch(() => {});
+    await page.waitForTimeout(2000);
+  }
+
+  // Header issue count (how many the plan resolved) — poll a few times; the "Showing N of N"
+  // header can lag the first paint of a huge plan.
+  let showing: string | null = null;
+  for (let i = 0; i < 10 && !showing; i++) {
+    showing = ((await bodyText(frame)).match(/Showing\s+([\d,]+)\s+of\s+([\d,]+)/i) || [])[0] || null;
+    if (!showing) await page.waitForTimeout(1500);
+  }
   metrics.showing = showing;
 
   const tGantt = Date.now();
@@ -94,6 +118,10 @@ test("PERF: large LZPP plan indexes, renders, and stays interactive", async ({ p
   metrics.ganttFirstPaintMs = Date.now() - tGantt;
   metrics.ganttBarsRendered = bars;
 
+  // Dependency-edge count in the DOM (windowed on large plans → far fewer than total edges).
+  await page.waitForTimeout(1500);
+  metrics.edgesRendered = await frame.locator('[data-testid="dep-arrow-hit"]').count().catch(() => -1);
+
   // DOM weight + a scroll interaction (does the surface stay responsive under volume?).
   metrics.domNodes = await frame.locator("body *").count().catch(() => -1);
   // Scroll over the Gantt via the mouse wheel (FrameLocator has no .evaluate). Hover the
@@ -107,6 +135,7 @@ test("PERF: large LZPP plan indexes, renders, and stays interactive", async ({ p
   }
   metrics.scroll10Ms = Date.now() - tScroll;
   metrics.barsAfterScroll = await frame.locator('[data-testid="gantt-bar"]').count().catch(() => 0);
+  metrics.edgesAfterScroll = await frame.locator('[data-testid="dep-arrow-hit"]').count().catch(() => -1);
 
   console.log("PERF_METRICS", JSON.stringify(metrics));
 
