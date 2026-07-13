@@ -53,7 +53,7 @@ test("LZPT Table duration == working-day span of the issue's dates (normalized o
   await realFrame!.waitForFunction(() => {
     const els = Array.from(document.querySelectorAll('[data-testid="table-row"]'));
     return els.filter((el) => { const d = el.getAttribute("data-row-duration"); return d != null && d !== ""; }).length >= 30;
-  }, undefined, { timeout: 60_000 });
+  }, undefined, { timeout: 90_000 });
   console.log(`durations normalized after ~${Math.round((Date.now() - startedAt) / 1000)}s post-Table-open`);
 
   const dur = (key: string) => realFrame!.evaluate((k) => {

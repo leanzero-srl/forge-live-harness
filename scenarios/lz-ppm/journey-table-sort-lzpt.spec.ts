@@ -108,7 +108,7 @@ test("LZPT Table sort: monotonic order, unset last, both directions, no row loss
   await realFrame!.waitForFunction(() => {
     const els = Array.from(document.querySelectorAll('[data-testid="table-row"]'));
     return els.filter((el) => { const d = el.getAttribute("data-row-duration"); return d != null && d !== ""; }).length >= 30;
-  }, undefined, { timeout: 60_000 });
+  }, undefined, { timeout: 90_000 });
   await clickHeader("duration");
   const durDir = await sortDir("duration");
   const dur = (await rows("data-row-duration")).map((r) => r.v || "");

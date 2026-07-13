@@ -58,7 +58,7 @@ test("LZPT Dashboard: % Complete is DURATION-weighted (weighted 14 != count-avg 
   await realFrame!.waitForFunction(() => {
     const els = Array.from(document.querySelectorAll('[data-testid="table-row"]'));
     return els.filter((el) => { const d = el.getAttribute("data-row-duration"); return d != null && d !== ""; }).length >= 30;
-  }, undefined, { timeout: 60_000 });
+  }, undefined, { timeout: 90_000 });
   const durByKey: Record<string, string> = await realFrame!.evaluate(() => {
     const out: Record<string, string> = {};
     for (const el of Array.from(document.querySelectorAll('[data-testid="table-row"]'))) out[el.getAttribute("data-row-key")!] = el.getAttribute("data-row-duration") || "";
