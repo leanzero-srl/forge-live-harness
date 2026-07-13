@@ -362,3 +362,32 @@ test("🕵️ T6 agentic validator ACTUAL correctness: JQL dup-detection blocks 
   if (!dup.blocked) console.log("  ⚠ FINDING: the real duplicate was NOT blocked — agentic degraded to fail-open on Forge LLM (reduced function, not a wrong block).");
   else console.log("  ✓ agentic dup-detection WORKS on Forge LLM (blocked the real duplicate, allowed the unique).");
 });
+
+test("🔍 T7 condition probe: does an AI condition actually RUN + log on a REST transition? (verify it87 callout accuracy)", async () => {
+  const backlog = await statusRefByName(WF, "Backlog");
+  test.skip(!backlog, "Backlog status not found");
+  const pool = await searchJql(`project = COGTEST AND status = "Backlog" AND summary !~ "HARNESS-BARRAGE-FIXTURE" ORDER BY created DESC`, ["key"], 3);
+  test.skip(pool.length < 1, "need a Backlog issue");
+  const key = pool[0].key;
+  const [c] = await attachSelfLoopRules(WF, backlog, [{
+    name: `ZCORR-cond-${Date.now()}`, type: "condition",
+    config: { fieldId: TEXT, prompt: "Return isValid=true only if the text contains the word READY. Otherwise isValid=false." },
+  }]);
+  let condLog: any = null, txStatus = 0;
+  try {
+    await setField(key, { [TEXT]: "this is NOT ready at all" }); // would be isValid=false IF the condition ran
+    await sleep(1500);
+    const since = Date.now();
+    const r = await doTransition(key, c.transitionId);
+    txStatus = r.status;
+    condLog = await waitForLog((l: any) => l.issueKey === key && (l.type === "condition" || String(l.moduleKey || "").includes("condition")), since, { tries: 6, gapMs: 2500 }).catch(() => null);
+  } finally {
+    console.log(`\nT7 CONDITION PROBE: REST transition status=${txStatus} (blocked=${txStatus >= 400}) | condition log = ${condLog ? JSON.stringify({ isValid: condLog.isValid, reason: String(condLog.reason || "").slice(0, 80) }) : "NONE (condition function NOT invoked)"}`);
+    await detachByNamePrefix(WF, "ZCORR-cond").catch(() => {});
+    await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null } } }).catch(() => {});
+  }
+  // Documented behaviour: the condition is a NO-OP (expression:'true'), transition is ALWAYS allowed, function never runs.
+  console.log(condLog
+    ? "  → condition DID run + log — the it87 'hides on fail' callout is accurate for this surface."
+    : "  → condition did NOT run (0 logs) + transition allowed — confirms the documented NO-OP. it87 callout ('hides the transition silently') is MISLEADING and should be corrected.");
+});
