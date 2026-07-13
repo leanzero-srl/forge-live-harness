@@ -26,6 +26,11 @@ test("PERF: large LZPP plan indexes, renders, and stays interactive", async ({ p
   await page.waitForTimeout(2000);
 
   const metrics: Record<string, any> = {};
+  // Wait for the plans list to actually render before deciding create-vs-open (the "New plan"
+  // card OR an existing "LZPP Perf" card must be present) — otherwise a slow first paint reads
+  // as "not found" and we wrongly re-enter the wizard.
+  await frame.getByText(/LZPP Perf|New plan/i).first().waitFor({ state: "visible", timeout: 30_000 }).catch(() => {});
+  await page.waitForTimeout(1500);
   const alreadyExists = /LZPP Perf/.test(await bodyText(frame));
 
   if (!alreadyExists) {
