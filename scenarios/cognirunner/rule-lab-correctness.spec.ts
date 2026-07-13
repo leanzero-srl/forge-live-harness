@@ -193,3 +193,60 @@ test("🎨 T3 semantic PF classification: reads Description → writes the CORRE
     await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null } } }).catch(() => {});
   }
 });
+
+test("🧰 T4 multi-effect static PF: chains a computed comment + two derived fields, all verified", async () => {
+  const key = await fixtureKey();
+  test.skip(!key, "COGTEST barrage fixture missing");
+  // One PF that READS NUM, then performs THREE distinct effects deterministically: writes a derived
+  // string to TEXT, writes a derived number back to NUM, and posts a comment with a computed marker.
+  const marker = "corr-" + crypto.randomUUID().slice(0, 8);
+  const code = `
+    const iss = await api.getIssue(api.context.issueKey);
+    const n = Number(iss.fields.${NUM}) || 0;
+    await api.updateIssue(api.context.issueKey, { ${TEXT}: 'sum=' + (n + 10), ${NUM}: n * 3 });
+    await api.addComment('${marker} squared=' + (n * n));
+  `;
+  const [pf] = await attachSelfLoopRules(WF, HUB, [{
+    name: `ZCORR-multi-${Date.now()}`, type: "static",
+    config: { type: "postfunction-static", id: crypto.randomUUID(), workflow: { workflowName: WF }, functions: [{ id: crypto.randomUUID(), name: "multi", code }] },
+  }]);
+  const cases = [{ num: 6 }, { num: 11 }, { num: 0 }];
+  const results: any[] = [];
+  let wrong = 0;
+  try {
+    for (const c of cases) {
+      await setField(key!, { [NUM]: c.num, [TEXT]: null });
+      await sleep(1200);
+      const since = Date.now();
+      const r = await doTransition(key!, pf.transitionId);
+      expect(r.status, `transition fired (n=${c.num})`).toBeLessThan(400);
+      const expText = "sum=" + (c.num + 10);
+      const expNum = c.num * 3;
+      const expSq = c.num * c.num;
+      let text: any = null, num: any = null;
+      for (let i = 0; i < 18; i++) {
+        await sleep(2000);
+        const v = await get(`/rest/api/3/issue/${key}?fields=${TEXT},${NUM}`);
+        if (v.fields[TEXT] === expText) { text = v.fields[TEXT]; num = v.fields[NUM]; break; }
+      }
+      // comment effect
+      const comments = (await get(`/rest/api/3/issue/${key}/comment`)).comments || [];
+      const mine = comments.find((cm: any) => JSON.stringify(cm.body || "").includes(`${marker} squared=${expSq}`));
+      const okText = text === expText;
+      const okNum = Number(num) === expNum;
+      const okComment = !!mine;
+      const log: any = await waitForLog((l: any) => l.issueKey === key && l.type === "postfunction-static", since, { tries: 4, gapMs: 2000 }).catch(() => null);
+      if (!okText || !okNum || !okComment || log?.isValid !== true) wrong++;
+      results.push({ n: c.num, text, okText, num, okNum, okComment, log: log?.isValid });
+      expect(text, `n=${c.num}: TEXT derived`).toBe(expText);
+      expect(Number(num), `n=${c.num}: NUM tripled`).toBe(expNum);
+      expect(mine, `n=${c.num}: comment posted with computed squared=${expSq}`).toBeTruthy();
+      expect(log?.isValid, `n=${c.num}: PF logged success`).toBe(true);
+    }
+  } finally {
+    console.log(`\nT4 MULTI-EFFECT CHAIN (${cases.length - wrong}/${cases.length} correct):\n` +
+      results.map((r) => `  n=${r.n} → TEXT ${r.okText ? "✓" : "✗"} NUM=${r.num} ${r.okNum ? "✓" : "✗"} comment ${r.okComment ? "✓" : "✗"} log ${r.log ? "✓" : "✗"}`).join("\n"));
+    await detachByNamePrefix(WF, "ZCORR-multi").catch(() => {});
+    await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { [TEXT]: null, [NUM]: null } } }).catch(() => {});
+  }
+});
