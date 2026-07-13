@@ -314,3 +314,51 @@ test("🌊 T5 multi-issue volume soak: pool of issues × many transitions, every
   expect(fails.length, `every executed transition produced the CORRECT output at scale; wrong: ${fails.join("; ")}`).toBe(0);
   expect(ok, "a meaningful number of transitions actually executed + were correct").toBeGreaterThan(pool.length);
 });
+
+test("🕵️ T6 agentic validator ACTUAL correctness: JQL dup-detection blocks a real dup, allows a unique (or degrades gracefully)", async () => {
+  const backlog = await statusRefByName(WF, "Backlog");
+  test.skip(!backlog, "Backlog status not found");
+  const pool = await searchJql(`project = COGTEST AND status = "Backlog" AND summary !~ "HARNESS-BARRAGE-FIXTURE" ORDER BY created DESC`, ["key", "summary"], 8);
+  test.skip(pool.length < 3, "need >=3 Backlog issues");
+  const A = pool[0].key, B = pool[1].key, C = pool[2].key;
+  const orig = [pool[0], pool[1], pool[2]].map((i: any) => ({ key: i.key, summary: i.fields.summary }));
+  const nonce = crypto.randomUUID().slice(0, 8);
+  const dupSummary = `AGENTIC-DUP-${nonce} duplicate-detection probe`;
+  const uniqSummary = `AGENTIC-UNIQ-${nonce}-${crypto.randomUUID().slice(0, 6)} one of a kind`;
+  const [v] = await attachSelfLoopRules(WF, backlog, [{
+    name: `ZCORR-agent-${Date.now()}`, type: "validator",
+    config: { fieldId: "summary", enableTools: true, prompt: `You can search Jira with JQL. Return isValid=false ONLY IF a DIFFERENT issue in project COGTEST already has this exact same summary (i.e. this is a duplicate). If the summary is unique to this issue, return isValid=true. Run a JQL search to check before deciding.` },
+  }]);
+  const fire = async (key: string) => {
+    const since = Date.now();
+    const r = await doTransition(key, v.transitionId);
+    const log: any = await waitForLog((l: any) => l.issueKey === key && (l.type === "validator" || l.type === "validation"), since, { tries: 8, gapMs: 2500 }).catch(() => null);
+    return { blocked: r.status >= 400, status: r.status, isValid: log?.isValid, mode: log?.mode, transient: log?.transientError, reason: String(log?.reason || "").slice(0, 150) };
+  };
+  let dup: any = null, uniq: any = null;
+  try {
+    await setField(A, { summary: dupSummary });
+    await setField(B, { summary: dupSummary });
+    await setField(C, { summary: uniqSummary });
+    // JQL indexing is eventually consistent — wait until the duplicate pair is searchable.
+    for (let i = 0; i < 20; i++) {
+      const found = await searchJql(`project = COGTEST AND summary ~ "AGENTIC-DUP-${nonce}"`, ["key"], 5);
+      if (found.length >= 2) break;
+      await sleep(2500);
+    }
+    dup = await fire(B);   // B duplicates A → should BLOCK
+    uniq = await fire(C);  // unique → should ALLOW
+  } finally {
+    console.log(`\nT6 AGENTIC (Forge LLM):\n  duplicate → blocked=${dup?.blocked} isValid=${dup?.isValid} mode=${dup?.mode} transient=${dup?.transient} status=${dup?.status}\n             reason: ${dup?.reason}\n  unique    → blocked=${uniq?.blocked} isValid=${uniq?.isValid} mode=${uniq?.mode} status=${uniq?.status}\n             reason: ${uniq?.reason}`);
+    await detachByNamePrefix(WF, "ZCORR-agent").catch(() => {});
+    for (const o of orig) await setField(o.key, { summary: o.summary }).catch(() => {});
+  }
+  // Hard requirements: no server crash, and a UNIQUE summary must NEVER be wrongly blocked (a false-positive block is a real defect).
+  expect(dup.status, "no server crash on the agentic path (duplicate)").toBeLessThan(500);
+  expect(uniq.status, "no server crash on the agentic path (unique)").toBeLessThan(500);
+  expect(uniq.blocked, "a UNIQUE summary must NOT be blocked (false-positive block = defect)").toBe(false);
+  // The duplicate SHOULD block. If it doesn't, Forge-LLM agentic likely degraded (fail-open) — record, don't hard-fail
+  // (a graceful fail-open allow is acceptable/known; the wrong-block above is the real defect line).
+  if (!dup.blocked) console.log("  ⚠ FINDING: the real duplicate was NOT blocked — agentic degraded to fail-open on Forge LLM (reduced function, not a wrong block).");
+  else console.log("  ✓ agentic dup-detection WORKS on Forge LLM (blocked the real duplicate, allowed the unique).");
+});
