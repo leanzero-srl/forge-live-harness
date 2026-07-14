@@ -55,6 +55,8 @@ test("💬 semantic comment-draft flavor: AI drafts + posts a comment (postfunct
     expect(log, "a postfunction-comment log was written").toBeTruthy();
     expect(log.isValid, "comment flavor succeeded").toBe(true);
     expect(String(log.reason || ""), "log reason confirms a comment was posted").toMatch(/posted a comment/i);
+    // CONTENT ORACLE: the AI actually authored the body per the prompt (not a canned string).
+    expect(body.includes(nonce), `the drafted comment CONTENT contains the instructed token ${nonce}`).toBe(true);
   } finally {
     await detachByNamePrefix(WF, "ZSMC").catch(() => {});
     await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { description: null } } }).catch(() => {});
@@ -87,6 +89,13 @@ test("🌿 semantic subtask flavor: AI creates a sub-task (postfunction-subtask 
     expect(subs.length, "the managed subtask flavor CREATED a sub-task").toBeGreaterThan(before);
     expect(log, "a postfunction-subtask log was written").toBeTruthy();
     expect(log.isValid, "subtask flavor succeeded").toBe(true);
+    // CONTENT ORACLE: the created sub-task reflects the SOURCE topic (login/retry/backoff),
+    // proving the AI read the parent's field rather than emitting a generic sub-task.
+    const newest = subs[subs.length - 1];
+    const stSummary = String(newest?.fields?.summary || "");
+    const topicHits = ["login", "retry", "backoff"].filter((t) => new RegExp(`\\b${t}`, "i").test(stSummary)).length;
+    console.log(`subtask content → summary="${stSummary}" topicHits=${topicHits}/3`);
+    expect(topicHits, `the sub-task summary reflects the source topic (got "${stSummary}")`).toBeGreaterThanOrEqual(1);
   } finally {
     await detachByNamePrefix(WF, "ZSMS").catch(() => {});
     await request("PUT", `/rest/api/3/issue/${key}`, { raw: true, body: { fields: { description: null } } }).catch(() => {});
