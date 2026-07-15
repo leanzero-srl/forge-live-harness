@@ -16,7 +16,7 @@ async function openReservationTab(page: any) {
   if (s.kind !== "custom") throw new Error("expected a Custom UI iframe");
   const app = s.frame;
   await expect(app.locator(".space-admin-title")).toBeVisible({ timeout: 15000 });
-  await app.locator(".tab-navigation .tab-button", { hasText: "Reservation Duration" }).click();
+  await app.locator(".tab-navigation .tab-button", { hasText: "Seal Duration" }).click();
   await page.waitForTimeout(900);
   return app;
 }

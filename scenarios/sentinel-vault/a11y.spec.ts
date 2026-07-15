@@ -41,7 +41,7 @@ test("overlay a11y + microcopy: sort keyboard-operable, close named, owner statu
   // it35: close button accessible name
   expect(await ov.locator(".modal-close").getAttribute("aria-label")).toBe("Close Sentinel Vault overlay");
   // it37: owner-seal status label converged
-  expect((await ov.locator(".status-lozenge.locked-by-me").first().innerText()).trim().toLowerCase()).toContain("my reservation");
+  expect((await ov.locator(".status-lozenge.locked-by-me").first().innerText()).trim().toLowerCase()).toContain("my seal");
   // it35: sort-picker keyboard-operability
   const trig = ov.locator(".sort-picker .column-picker-trigger");
   expect(await trig.getAttribute("aria-haspopup")).toBe("listbox");
