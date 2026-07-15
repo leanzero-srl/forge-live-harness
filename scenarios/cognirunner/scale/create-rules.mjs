@@ -60,25 +60,27 @@ await api.addLabels('zscale-r${n}');`;
 }
 
 function premadeSpec(n) {
-  // Mostly-passing validators (so transitions succeed) + a deterministic blocking minority (truth-table).
+  // The app reads the premade catalog key from config.ruleType (NOT premadeRuleType). Mostly-passing
+  // validators (so transitions succeed) + a deterministic blocking minority (a real truth-table).
   const passing = [
-    { premadeRuleType: "field-required", fieldId: "summary" },
-    { premadeRuleType: "text-length", fieldId: "summary", min: 1, max: 2000 },
-    { premadeRuleType: "field-regex", fieldId: "summary", regex: ".+" },
-    { premadeRuleType: "field-required", fieldId: "issuetype" },
-    { premadeRuleType: "text-length", fieldId: "summary", min: 1, max: 5000 },
+    { rt: "field-required", fieldId: "summary" },
+    { rt: "text-length", fieldId: "summary", min: 1, max: 2000 },
+    { rt: "field-regex", fieldId: "summary", regex: ".+" },
+    { rt: "field-required", fieldId: "issuetype" },
+    { rt: "text-length", fieldId: "summary", min: 1, max: 5000 },
   ];
   const blocking = [
-    // requires a field that is (by design) empty on the pool → blocks. Deterministic truth-table.
-    { premadeRuleType: "field-required", fieldId: "customfield_10999_unset", expectBlock: true },
-    { premadeRuleType: "text-length", fieldId: "summary", min: 100000, max: 100001, expectBlock: true },
+    // summary is short → min:100000 always fails → BLOCK. Deterministic.
+    { rt: "text-length", fieldId: "summary", min: 100000, max: 100001, expectBlock: true },
+    // a pattern that can never match a normal summary → BLOCK.
+    { rt: "field-regex", fieldId: "summary", regex: "^ZZZ_NEVER_MATCHES_[0-9]{9}$", expectBlock: true },
   ];
   const block = n % 5 === 0;
   const base = block ? blocking[n % blocking.length] : passing[n % passing.length];
   const expectBlock = !!base.expectBlock;
-  const { expectBlock: _e, ...params } = base;
+  const { expectBlock: _e, rt, ...params } = base;
   return { name: `ZSCALE-pv${n}`, type: "validator", ruleClass: "premade-validator", expectBlock,
-    config: { ruleType: "validator", ruleKind: "premade", errorMessage: `zscale premade ${n} blocked`, ...params } };
+    config: { ruleType: rt, ruleKind: "premade", errorMessage: `zscale premade ${n} blocked`, ...params } };
 }
 
 function aivSpec(n) {
