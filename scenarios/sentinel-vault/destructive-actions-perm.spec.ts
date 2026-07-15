@@ -50,12 +50,24 @@ test("destructive-action permission matrix: delete-artifact + purge-seal-record 
     console.log("### purge foreign-seal by non-owner → denied ✓");
     await delKvs(K_SEAL);
 
-    // 5) purge: NO seal record + toggle ON → PROCEEDS for ANYONE (audit over-broad concern).
-    //    Characterization: fake att → REST probe 404 → no destruction; resolver returns success.
+    // 5) purge: NO seal record + non-steward → DENIED (audit C2 FIX). Previously the no-seal path was
+    //    gated only by allowSealPurge, so ANY caller could permanently purge ANY attachment by id. The
+    //    owner/steward gate now applies unconditionally.
+    await delKvs(K_SEAL);
     await patch({ allowSealPurge: true });
     r = await thInvoke("purgeSealRecord", { att: FAKE_ATT, actor: SYNTH_B });
-    console.log("### purge NO-seal by non-owner (over-broad?) →", JSON.stringify(r));
-    expect(r?.success, "DOCUMENTS current behavior: with no seal record, ANY caller may purge (gated only by allowSealPurge) — FLAGGED for owner decision").toBe(true);
+    expect(r?.success, "C2: no seal record + non-steward → denied (permanent-purge-by-anyone closed)").toBe(false);
+    expect(String(r?.reason)).toMatch(/owner or a steward/i);
+    console.log("### purge NO-seal by non-steward → DENIED (C2 fix) ✓");
+
+    // 6) purge: seal present in WFH + STEWARD (Gabriela, listed in admin-settings-space-WFH) → allowed
+    //    past the gate (fake att → REST 404 → no destruction). Proves the fix didn't over-tighten.
+    const GABI = "712020:69d0aa0b-56b2-4bc9-9f0a-45f78fcdf303"; // WFH steward via adminUsers (KVS arm)
+    await seedForeignSeal(); // spaceKey: "WFH"
+    r = await thInvoke("purgeSealRecord", { att: FAKE_ATT, actor: GABI });
+    expect(r?.success, "C2: a real WFH steward CAN purge a foreign seal (gate passes via spaceKey fallback)").toBe(true);
+    console.log("### purge foreign-seal by steward → allowed (no over-tighten) ✓");
+    await delKvs(K_SEAL);
   } finally {
     if (original) await setKvs(GLOBAL, original); else await delKvs(GLOBAL);
     await delKvs(K_SEAL);
