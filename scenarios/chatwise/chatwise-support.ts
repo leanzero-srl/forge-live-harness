@@ -94,6 +94,67 @@ export async function openPanel(page: Page, T: Target, issueKey: string, recorde
   return surface.frame;
 }
 
+/**
+ * HARD reload of the issue-panel surface, then re-enter ChatWise's frame.
+ *
+ * `openPanel()` again is NOT a reliable reload: it `goto`s the same
+ * `/browse/<KEY>` URL, and Jira is an SPA — the navigation is sometimes
+ * swallowed, leaving the iframe (and all its in-memory state) alive. A
+ * persistence assertion made on a surface that never reloaded is vacuous, and
+ * that is precisely the "passes while the feature is broken" trap. Verified:
+ * driving persona-switch through `openPanel()` twice went green on a run where
+ * a genuine reload showed the persona reverting.
+ *
+ * So: stamp the live JS context, force a browser reload, and PROVE the stamp is
+ * gone before the caller asserts anything.
+ */
+export async function reloadPanel(
+  page: Page, T: Target, recorder?: Recorder,
+): Promise<FrameLocator> {
+  await frameStamp(await currentPanelFrame(page, T));
+  await page.reload({ waitUntil: "domcontentloaded" });
+
+  // The glance may come back collapsed — same expansion the host helper does.
+  const toggle = page.getByRole("button", { name: new RegExp(PANEL_TITLE, "i") }).first();
+  if ((await toggle.count().catch(() => 0)) > 0) {
+    const expanded = await toggle.getAttribute("aria-expanded").catch(() => null);
+    if (expanded === "false") await toggle.click().catch(() => {});
+  }
+  await page
+    .locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]')
+    .first()
+    .waitFor({ state: "attached", timeout: 30_000 });
+
+  if (recorder) recorder.setFrames(await dumpForgeFrames(page));
+  const surface = await enterForgeSurface(page, { surface: T.surface, readySelector: T.readySelector });
+  if (surface.kind !== "custom") throw new Error("ChatWise issue panel must be a Custom-UI iframe surface");
+  recorder?.attachSurface(surface);
+
+  const stale = await surface.frame
+    .locator("body")
+    .evaluate(() => Boolean((window as unknown as Record<string, unknown>).__cwEpoch))
+    .catch(() => false);
+  if (stale) {
+    throw new Error(
+      "the surface did NOT actually reload — the pre-reload stamp survived, so the iframe's JS context is the " +
+        "same one. Any 'survives a reload' assertion made here would be vacuous.",
+    );
+  }
+  return surface.frame;
+}
+
+async function currentPanelFrame(page: Page, T: Target): Promise<FrameLocator> {
+  const surface = await enterForgeSurface(page, { surface: T.surface, readySelector: T.readySelector });
+  if (surface.kind !== "custom") throw new Error("expected a Custom-UI iframe surface");
+  return surface.frame;
+}
+
+async function frameStamp(frame: FrameLocator): Promise<void> {
+  await frame.locator("body").evaluate(() => {
+    (window as unknown as Record<string, unknown>).__cwEpoch = true;
+  });
+}
+
 export { assertLoggedIn, BASE_URL };
 
 /* ------------------------------------------------------------------ */

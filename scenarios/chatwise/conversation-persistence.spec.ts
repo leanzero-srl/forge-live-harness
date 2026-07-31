@@ -28,8 +28,8 @@ import { createIssue, deleteIssue } from "../../data/jira-build.mjs";
 import type { RenderedMessage } from "./chatwise-support";
 import {
   BASE_URL, PANEL_APP, SCRIPTED, assertLoggedIn, describeThread, errorBubbles,
-  forceTestModeOff, openPanel, readThread, sendMessage, setRecorderTarget,
-  setTestMode, waitForChatApp, waitForThread, watchNoise,
+  forceTestModeOff, openPanel, readThread, reloadPanel, sendMessage,
+  setRecorderTarget, setTestMode, waitForChatApp, waitForThread, watchNoise,
 } from "./chatwise-support";
 
 const T = getTarget("chatwise-issue-panel");
@@ -113,14 +113,18 @@ test("ChatWise issue panel — the thread survives a reload with the correct rol
     });
 
     // ---- THE RELOAD ----
-    await recorder.step("RELOAD the surface (fresh navigation to the issue)", async () => {
-      frame = await openPanel(page, T, issueKey!, recorder);
+    await recorder.step("RELOAD the surface (proven fresh JS context)", async () => {
+      // reloadPanel stamps the live context, forces a browser reload and
+      // refuses to continue unless the stamp is gone. Without that proof this
+      // whole spec could pass on a surface that never reloaded — Jira's SPA
+      // router sometimes swallows a re-navigation to the same issue URL.
+      frame = await reloadPanel(page, T, recorder);
       await waitForChatApp(page, frame, PANEL_APP);
     }, {
-      action: "reload",
+      action: "page.reload() + re-enter the panel",
       expectation: {
-        assertion: "the panel boots again from scratch on the same issue",
-        narrative: "Everything after this point comes from KVS, not from client state.",
+        assertion: "the panel boots again in a genuinely new JS context on the same issue",
+        narrative: "Everything after this point comes from KVS, not from client state — and that is verified, not assumed.",
       },
     });
 

@@ -24,7 +24,7 @@ import { getTarget } from "../../config/targets";
 import { createIssue, deleteIssue } from "../../data/jira-build.mjs";
 import {
   BASE_URL, PANEL_APP, assertLoggedIn, callResolver, openPanel, readAppState,
-  setRecorderTarget, waitForChatApp, watchNoise,
+  reloadPanel, setRecorderTarget, waitForChatApp, watchNoise,
 } from "./chatwise-support";
 
 const T = getTarget("chatwise-issue-panel");
@@ -141,7 +141,11 @@ test("ChatWise issue panel — persona dropdown offers Product Owner and the cho
     });
 
     await recorder.step("RELOAD — the chosen persona is still selected", async () => {
-      frame = await openPanel(page, T, issueKey!, recorder);
+      // reloadPanel PROVES the JS context was replaced (see its doc comment):
+      // re-navigating to the same issue URL is sometimes swallowed by Jira's
+      // SPA router, and this assertion is worthless on a surface that never
+      // reloaded.
+      frame = await reloadPanel(page, T, recorder);
       await waitForChatApp(page, frame, PANEL_APP);
       // Poll: loadPersonas() sets the DEFAULT first and loadConversation()
       // overwrites it afterwards, so reading once can catch the intermediate
