@@ -91,8 +91,26 @@ test("ChatWise beta gate ALLOWS the allow-listed wolfaenpak admin (no lock-out)"
     await expect(frame.locator("#chatInput")).toBeVisible();
     await expect(frame.locator("#sendButton")).toBeVisible();
     // Playwright's toBeVisible() ignores OCCLUSION — a full-screen cover on top
-    // would still leave these "visible". The paint-toggle diff is the real check.
-    const paints = await recorder.paintsPixels("#newChatButton");
-    expect(paints, "the chat UI must actually paint — no gate cover/overlay may occlude it").toBe(true);
+    // would still leave these "visible", which is exactly the failure mode this
+    // spec exists to catch (BetaGate paints an opaque cover before its first
+    // await). So hit-test instead: ask the document what is actually at the
+    // composer's centre point and require it to BE the composer.
+    //
+    // This replaces recorder.paintsPixels(), which diffs two screenshots either
+    // side of a visibility:hidden toggle. That is inherently timing-dependent —
+    // it flaked ~1 run in 3 here regardless of which element it probed, because
+    // the app is still settling (conversation list loading, a conversation being
+    // auto-selected) while the two frames are captured. elementFromPoint is a
+    // synchronous, deterministic answer to the same question.
+    const occluder = await frame.locator("#sendButton").evaluate((el: Element) => {
+      const r = el.getBoundingClientRect();
+      if (r.width < 1 || r.height < 1) return "zero-size";
+      const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+      if (!hit) return "nothing-at-point";
+      if (el === hit || el.contains(hit) || hit.contains(el)) return "ok";
+      // Name what is actually on top, so a real regression is diagnosable.
+      return `occluded-by:${hit.id || hit.className || hit.tagName}`;
+    });
+    expect(occluder, "the chat UI must not be occluded by the gate cover or overlay").toBe("ok");
   }, { expectation: { assertion: "the chat shell renders and paints real pixels", narrative: "An allow-listed user gets the working ChatWise interface, not a blocked or covered shell." } });
 });
