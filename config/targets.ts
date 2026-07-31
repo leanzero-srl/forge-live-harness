@@ -46,6 +46,10 @@ const ALTOMATA_ENV = process.env.ALTOMATA_ENV_ID || "244ac2e9-6cbb-4012-99ae-1f9
 const LICENSELEASH_APP = process.env.LICENSELEASH_APP_ID || "ari:cloud:ecosystem::app/6b49e96c-37c4-4711-a604-08d8a47c8f1a";
 const LICENSELEASH_ENV = process.env.LICENSELEASH_ENV_ID || "8910540b-8f3e-43e5-8e5b-7ee7bd9cdce4"; // development
 
+// --- ChatWise — Jira AI chat (globalPage + issuePanel Custom UI, adminPage UI Kit 2) on wolfaenpak ---
+const CHATWISE_APP = process.env.CHATWISE_APP_ID || "ari:cloud:ecosystem::app/97022e0a-df09-4df1-818c-c4593b956122";
+const CHATWISE_ENV = process.env.CHATWISE_ENV_ID || "8613e672-d4ba-4afb-9bbe-d4b5a368a264"; // development
+
 export const TARGETS: Record<string, Target> = {
   "lz-ppm-dashboard": {
     id: "lz-ppm-dashboard",
@@ -167,6 +171,66 @@ export const TARGETS: Record<string, Target> = {
     surface: "custom",
     deepLink: (env) => deeplink.confluenceGlobalSettings(LICENSELEASH_APP, env, "license-manager-admin"),
     repo: path.join(PROJECTS, "axpo-license-manager"),
+  },
+
+  "chatwise-global": {
+    id: "chatwise-global",
+    product: "jira",
+    app: "ChatWise",
+    appId: CHATWISE_APP,
+    envId: CHATWISE_ENV,
+    module: "chatwise-global-chat",
+    moduleType: "jira:globalPage",
+    surface: "custom",
+    deepLink: (env) => deeplink.jiraGlobalPage(CHATWISE_APP, env),
+    // Static chat shell in src/chat/globalPage/index.html — present before the
+    // bundle boots, so it identifies THIS app's iframe without waiting on init.
+    readySelector: "#appShell",
+    repo: path.join(PROJECTS, "ChatWise"),
+  },
+
+  // jira:issuePanel — NOT deep-linkable; reached via forge/host.ts openIssuePanel
+  // (navigate to the issue, expand the "AI Assistant" panel).
+  "chatwise-issue-panel": {
+    id: "chatwise-issue-panel",
+    product: "jira",
+    app: "ChatWise",
+    appId: CHATWISE_APP,
+    envId: CHATWISE_ENV,
+    module: "chatwise-issue-panel-chat",
+    moduleType: "jira:issuePanel",
+    surface: "custom",
+    deepLink: () => null,
+    // An issue page can host SEVERAL Forge panels (lz-ppm is installed too) —
+    // this picks ChatWise's iframe rather than whichever renders first.
+    readySelector: "#chatInput",
+    repo: path.join(PROJECTS, "ChatWise"),
+  },
+
+  // jira:adminPage — under Jira Settings → Apps, same URL shape as lz-ppm-admin.
+  // NOTE: this module is UI Kit 2 (`render: native`), the harness's first uikit
+  // target; the spec resolves host-DOM vs hosted-iframe rendering at runtime.
+  "chatwise-admin": {
+    id: "chatwise-admin",
+    product: "jira",
+    app: "ChatWise (admin)",
+    appId: CHATWISE_APP,
+    envId: CHATWISE_ENV,
+    module: "chatwise-admin-page",
+    moduleType: "jira:adminPage",
+    surface: "uikit",
+    // ChatWise's jira:adminPage declares `useAsConfig: true`, which changes
+    // BOTH where the page lives and how it is reached:
+    //   - it is EXCLUDED from the Jira settings sidebar (verified live: the
+    //     Forge admin nav on wolfaenpak lists CogniRunner / LeanZero /
+    //     SolarEdge, which do not set the flag, but never ChatWise), and
+    //   - it is reached from the Configure button in Manage apps, at
+    //     /jira/settings/apps/configure/<app-uuid>/<env-uuid>.
+    // The plain /jira/settings/apps/<app>/<env>/<moduleKey> form used by the
+    // lz-ppm-admin entry above 404s for this app. Do not "simplify" this back.
+    // https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-admin-page/
+    deepLink: (env) => `/jira/settings/apps/configure/${ariToUuid(CHATWISE_APP)}/${env}`,
+    repo: path.join(PROJECTS, "ChatWise"),
   },
 };
 
