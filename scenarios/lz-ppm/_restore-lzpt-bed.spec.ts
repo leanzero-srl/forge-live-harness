@@ -23,6 +23,7 @@ import { buildDefs } from "./_seed-lzpt.spec";
 
 const KEY = "LZPT";
 const START_FIELD = "customfield_10015";
+const DURATION_FIELD = "customfield_10180";
 const APPLY = process.env.RESTORE === "1";
 test.describe.configure({ retries: 0, timeout: 600_000 });
 
@@ -47,7 +48,7 @@ test("LZPT bed matches the seed contract", async ({ page }) => {
   const defs = buildDefs();
   const search = await api(page, "POST", "/rest/api/3/search/jql", {
     jql: `project = ${KEY}`, maxResults: 100,
-    fields: ["summary", "duedate", START_FIELD, "status", "issuelinks"],
+    fields: ["summary", "duedate", START_FIELD, DURATION_FIELD, "status", "issuelinks"],
   });
   const issues: any[] = search.data?.issues || [];
   const bySummary = new Map(issues.map((i) => [i.fields.summary, i]));
@@ -92,6 +93,19 @@ test("LZPT bed matches the seed contract", async ({ page }) => {
         `DATES ${iss.key} ${d.summary}: ${start}→${due} should be ${wantStart}→${wantDue}`,
         () => api(page, "PUT", `/rest/api/3/issue/${iss.key}`, { fields: { [START_FIELD]: wantStart, duedate: wantDue } }),
       );
+    }
+  }
+
+  // ---- explicit durations (only where the seed declares one) ----
+  // duration 0 is how a milestone is DECLARED, so it has to be enforced or the
+  // diamond render silently loses its only live fixture.
+  for (const d of defs.filter((x) => x.duration != null)) {
+    const iss = bySummary.get(d.summary);
+    if (!iss) continue;
+    const got = iss.fields[DURATION_FIELD];
+    if (Number(got) !== Number(d.duration)) {
+      await repair(`DURATION ${iss.key} ${d.summary}: ${got} should be ${d.duration}`,
+        () => api(page, "PUT", `/rest/api/3/issue/${iss.key}`, { fields: { [DURATION_FIELD]: d.duration } }));
     }
   }
 

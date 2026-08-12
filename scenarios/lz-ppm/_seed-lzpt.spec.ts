@@ -13,6 +13,7 @@ test.describe.configure({ retries: 0, timeout: 600_000 });
 
 const KEY = "LZPT";
 const T = { Epic: "10133", Subtask: "10134", Task: "10135", Story: "10136" };
+const DURATION_FIELD = "customfield_10180"; // PPM Duration on wolfaenpak
 
 async function api(page: any, method: string, path: string, body?: any) {
   return page.evaluate(
@@ -33,7 +34,7 @@ async function api(page: any, method: string, path: string, body?: any) {
 }
 
 // Declarative scenario. `blocks` = refs this issue blocks (outward). Dates YYYY-MM-DD.
-export interface Def { ref: string; type: keyof typeof T; summary: string; parent?: string; start?: string; due?: string; blocks?: string[]; status?: string }
+export interface Def { ref: string; type: keyof typeof T; summary: string; parent?: string; start?: string; due?: string; blocks?: string[]; status?: string; duration?: number }
 
 export function buildDefs(): Def[] {
   const d: Def[] = [];
@@ -76,6 +77,15 @@ export function buildDefs(): Def[] {
 
   // --- E5 date edge cases ---
   d.push({ ref: "ED1", type: "Task", parent: "E5", summary: "EDGE unscheduled (no dates)" });
+  // NOTE: this can no longer be a real MILESTONE on LZPT. Since milestones became
+  // declared-only, a milestone needs PPM Duration = 0 (or a Milestone issue type),
+  // and neither exists here: editmeta confirms customfield_10180 is NOT settable on
+  // this project — which is exactly why every LZPT issue indexes with duration
+  // null. Jira accepts a PUT for it and silently drops the value, so seeding a 0
+  // would put a lie in the contract. It stays a one-day TASK, and the milestone
+  // journey asserts that it renders as a labelled bar rather than a diamond — the
+  // regression guard for the reported rhombuses. The positive diamond case is
+  // covered offline in test/visual, where the fixture is ours.
   d.push({ ref: "ED2", type: "Task", parent: "E5", summary: "EDGE milestone (0-day)", start: "2026-05-15", due: "2026-05-15" });
   d.push({ ref: "ED3", type: "Task", parent: "E5", summary: "EDGE invalid start-after-due", start: "2026-05-20", due: "2026-05-12" });
   d.push({ ref: "ED4", type: "Task", parent: "E5", summary: "EDGE long-run", start: "2026-05-04", due: "2026-06-30" });
@@ -121,6 +131,10 @@ test("SEED LZPT scenarios", async ({ page }) => {
       if (def.parent) fields.parent = { key: key.get(def.parent) };
       if (def.start) fields.customfield_10015 = def.start;
       if (def.due) fields.duedate = def.due;
+      // PPM Duration. Only set where the scenario NEEDS it — the bed deliberately
+      // leaves it null everywhere else, because a Jira with no duration field is
+      // the common real case and the engine must cope with it.
+      if (def.duration != null) fields[DURATION_FIELD] = def.duration;
       const r = await api(page, "POST", "/rest/api/3/issue", { fields });
       if (!r.ok) { console.log("CREATE_FAIL", def.ref, r.status, JSON.stringify(r.data).slice(0, 200)); continue; }
       key.set(def.ref, r.data.key);
