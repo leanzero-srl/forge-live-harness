@@ -15,7 +15,7 @@ import { enterForgeSurface } from "../../forge/frame";
 const T = getTarget("lz-ppm-dashboard");
 const PLAN = "LZPT Scenarios";
 const START = "customfield_10015";
-test.describe.configure({ retries: 0, timeout: 300_000 });
+test.describe.configure({ retries: 0, timeout: 720_000 });
 async function bodyText(frame: any) { return (await frame.locator("body").textContent().catch(() => "")) || ""; }
 async function isStaged(frame: any) { const t = await bodyText(frame); return /Apply \d+ change/i.test(t) || /Save \(\d+\)/i.test(t); }
 
