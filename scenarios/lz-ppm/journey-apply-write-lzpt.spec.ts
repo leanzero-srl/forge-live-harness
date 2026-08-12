@@ -135,18 +135,33 @@ test("LZPT APPLY: staged cascade is WRITTEN to Jira, then fully restored", async
     if (ORIG[headKey].due && AFTER[headKey].due) expect(AFTER[headKey].due! > ORIG[headKey].due!, "head due moved later").toBe(true);
   } finally {
     // --- RESTORE: PUT every changed issue back to its snapshot dates, then Re-index ---
-    const AFTER = await jiraSnapshot(page).catch(() => ({} as Snap));
-    const toRestore = Object.keys(ORIG).filter((k) => AFTER[k] && (AFTER[k].due !== ORIG[k].due || AFTER[k].start !== ORIG[k].start));
-    console.log("RESTORE — reverting", toRestore.length, "issues to snapshot");
-    for (const k of toRestore) await jiraPutDates(page, k, ORIG[k].start, ORIG[k].due);
-    // Re-index so the app's KVS index re-reads the restored Jira dates.
-    try {
-      frame = await reenter();
-      await openPlan(frame, /^Gantt/i);
-      await discardDraft(frame);
-      await frame.getByRole("button", { name: /Re-?index/i }).first().click().catch(() => {});
-      await page.waitForTimeout(6000);
-    } catch { /* best-effort */ }
+    // Restoring a CHAIN has to be iterated, and re-indexed between passes.
+    //
+    // The plan-protection trigger validates every Jira date edit against the KVS
+    // INDEX, so while the index still holds the applied dates it sees a restored
+    // start as an iron-clad violation and reverts it within seconds. Putting an
+    // issue back therefore only sticks once its predecessor has been restored AND
+    // re-indexed. A single pass left the tail of the chain off-snapshot, and
+    // because this journey runs early in an alphabetical sweep that drift then
+    // failed every later exact-date journey — it was the poison pill behind a
+    // whole tail of red.
+    const reindex = async () => {
+      try {
+        frame = await reenter();
+        await openPlan(frame, /^Gantt/i);
+        await discardDraft(frame);
+        await frame.getByRole("button", { name: /Re-?index/i }).first().click().catch(() => {});
+        await page.waitForTimeout(6000);
+      } catch { /* best-effort */ }
+    };
+    for (let pass = 1; pass <= 4; pass++) {
+      const AFTER = await jiraSnapshot(page).catch(() => ({} as Snap));
+      const toRestore = Object.keys(ORIG).filter((k) => AFTER[k] && (AFTER[k].due !== ORIG[k].due || AFTER[k].start !== ORIG[k].start));
+      console.log(`RESTORE pass ${pass} — reverting`, toRestore.length, "issues to snapshot");
+      if (toRestore.length === 0) break;
+      for (const k of toRestore) await jiraPutDates(page, k, ORIG[k].start, ORIG[k].due);
+      await reindex();
+    }
     // Verify Jira is bit-for-bit restored.
     const FINAL = await jiraSnapshot(page).catch(() => ({} as Snap));
     const stillOff = Object.keys(ORIG).filter((k) => FINAL[k] && (FINAL[k].due !== ORIG[k].due || FINAL[k].start !== ORIG[k].start));
