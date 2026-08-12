@@ -33,9 +33,9 @@ async function api(page: any, method: string, path: string, body?: any) {
 }
 
 // Declarative scenario. `blocks` = refs this issue blocks (outward). Dates YYYY-MM-DD.
-interface Def { ref: string; type: keyof typeof T; summary: string; parent?: string; start?: string; due?: string; blocks?: string[]; status?: string }
+export interface Def { ref: string; type: keyof typeof T; summary: string; parent?: string; start?: string; due?: string; blocks?: string[]; status?: string }
 
-function buildDefs(): Def[] {
+export function buildDefs(): Def[] {
   const d: Def[] = [];
   // --- Epics ---
   d.push({ ref: "E1", type: "Epic", summary: "E1 · Linear Chain" });
