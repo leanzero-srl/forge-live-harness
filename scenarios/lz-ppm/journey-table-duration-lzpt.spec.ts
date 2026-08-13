@@ -62,15 +62,15 @@ test("LZPT Table duration == working-day span of the issue's dates (normalized o
   }, key);
 
   // Seeded (Mon-Fri) spans → working-day counts (inclusive): CHAIN tasks Mon→Fri = 5;
-  // "EDGE milestone (0-day)" DECLARES duration 0 (the seeder sets the PPM field) and
-  // an explicit zero is a milestone declaration the normalizer must PRESERVE — not
-  // rewrite to the 1-day span; "EDGE weekend-span" Fri→Tue = 3 (Sat/Sun skipped);
-  // "EDGE long-run" 05-04→06-30 spans many weeks (>30 wd).
+  // "EDGE milestone (0-day)" is a single Friday = 1 — LZPT cannot carry the PPM
+  // Duration field (team-managed), so no declared zero exists here and the
+  // normalizer derives the 1-day span; "EDGE weekend-span" Fri→Tue = 3
+  // (Sat/Sun skipped); "EDGE long-run" 05-04→06-30 spans many weeks (>30 wd).
   const expected: Record<string, number> = {
     "CHAIN-1 kickoff": 5,
     "CHAIN-2 build": 5,
     "CHAIN-5 release": 5,
-    "EDGE milestone (0-day)": 0,
+    "EDGE milestone (0-day)": 1,
     "EDGE weekend-span": 3,
   };
   for (const [sum, exp] of Object.entries(expected)) {

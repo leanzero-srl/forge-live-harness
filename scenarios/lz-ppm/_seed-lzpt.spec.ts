@@ -86,9 +86,12 @@ export function buildDefs(): Def[] {
   // journey asserts that it renders as a labelled bar rather than a diamond — the
   // regression guard for the reported rhombuses. The positive diamond case is
   // covered offline in test/visual, where the fixture is ours.
-  // duration: 0 DECLARES a milestone (utils/milestone.js) — the app no longer
-  // treats start===due alone as one, so the bed must declare its milestones.
-  d.push({ ref: "ED2", type: "Task", parent: "E5", summary: "EDGE milestone (0-day)", start: "2026-05-15", due: "2026-05-15", duration: 0 });
+  // NOTE: a DECLARED milestone (PPM Duration = 0) is impossible on this bed —
+  // customfield_10180 is company-managed and LZPT is team-managed, so Jira 400s
+  // any attempt to set it ("cannot be set ... not on the appropriate screen").
+  // The bed therefore has ZERO declared milestones by construction, and the
+  // dashboard-milestone journey asserts the EMPTY-tracker agreement instead.
+  d.push({ ref: "ED2", type: "Task", parent: "E5", summary: "EDGE milestone (0-day)", start: "2026-05-15", due: "2026-05-15" });
   d.push({ ref: "ED3", type: "Task", parent: "E5", summary: "EDGE invalid start-after-due", start: "2026-05-20", due: "2026-05-12" });
   d.push({ ref: "ED4", type: "Task", parent: "E5", summary: "EDGE long-run", start: "2026-05-04", due: "2026-06-30" });
   d.push({ ref: "ED5", type: "Task", parent: "E5", summary: "EDGE weekend-span", start: "2026-05-08", due: "2026-05-12" });
@@ -97,10 +100,7 @@ export function buildDefs(): Def[] {
   const wideStarts = ["2026-05-04", "2026-05-05", "2026-05-06", "2026-05-07", "2026-05-08", "2026-05-11", "2026-05-12", "2026-05-13", "2026-05-14", "2026-05-15"];
   for (let i = 1; i <= 10; i++) {
     const n = String(i).padStart(2, "0");
-    // WIDE-01/02 are DECLARED milestones (duration 0); the other eight stay
-    // undeclared single-day tasks — the discriminating pair for the milestone
-    // tracker (declared appear, same-shape undeclared do not).
-    d.push({ ref: `W${n}`, type: "Task", parent: "E6", summary: `WIDE-${n}`, start: wideStarts[i - 1], due: wideStarts[i - 1], status: i <= 3 ? "Done" : i <= 5 ? "In Progress" : undefined, duration: i <= 2 ? 0 : undefined });
+    d.push({ ref: `W${n}`, type: "Task", parent: "E6", summary: `WIDE-${n}`, start: wideStarts[i - 1], due: wideStarts[i - 1], status: i <= 3 ? "Done" : i <= 5 ? "In Progress" : undefined });
   }
   return d;
 }
