@@ -43,8 +43,16 @@ test("LIFECYCLE: create single-issue plan → renders → delete", async ({ page
     const cont = () => frame.getByRole("button", { name: /Continue/i }).first();
     await cont().click();
     await page.waitForTimeout(1000);
-    // Sources: JQL for exactly one issue. Wait for the gate to confirm ✓ Valid before Continue.
-    await frame.getByPlaceholder(/project = PROJ/i).first().fill("key = LZPT-99");
+    // Sources: JQL for exactly one issue. The key must be RESOLVED, not hardcoded —
+    // LZPT keys float on every reseed, and a dead key makes the wizard's invalid-JQL
+    // gate (correctly) disable Continue, which used to read as a 20s click timeout.
+    const oneKey: string = await page.evaluate(async () => {
+      const res = await fetch("/rest/api/3/search/jql", { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json", "X-Atlassian-Token": "no-check" }, credentials: "include", body: JSON.stringify({ jql: "project = LZPT ORDER BY created ASC", maxResults: 1, fields: ["key"] }) });
+      const d = await res.json();
+      return d.issues?.[0]?.key || "";
+    });
+    expect(oneKey, "resolved a live LZPT key for the 1-issue plan").toBeTruthy();
+    await frame.getByPlaceholder(/project = PROJ/i).first().fill(`key = ${oneKey}`);
     await frame.getByText(/✓ Valid/i).first().waitFor({ state: "visible", timeout: 15_000 }).catch(() => {});
     await cont().click(); await page.waitForTimeout(800);
     await cont().click(); await page.waitForTimeout(800); // Schedule (defaults)

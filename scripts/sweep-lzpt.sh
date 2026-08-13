@@ -25,6 +25,11 @@ PASS=(); FAIL=()
 
 reindex() {
   [ -n "$PLAN_ID" ] || return 0
+  # Drafts SURVIVE reloads and re-indexes by design (autosave), so an aborted
+  # journey's draft silently contaminates every later one — a real sweep once
+  # cascaded 4 failures off a single stale 39-change draft. Clear them first.
+  curl -s -H "Authorization: Bearer $HARNESS_SECRET" \
+       "$LZ_PPM_TESTHOOK_URL?what=clearDrafts&planId=$PLAN_ID" >/dev/null || true
   curl -s -H "Authorization: Bearer $HARNESS_SECRET" \
        "$LZ_PPM_TESTHOOK_URL?what=refreshPlan&planId=$PLAN_ID" >/dev/null || true
 }
