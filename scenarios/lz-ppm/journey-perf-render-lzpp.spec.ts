@@ -124,22 +124,78 @@ test("PERF: large LZPP plan indexes, renders, and stays interactive", async ({ p
 
   // DOM weight + a scroll interaction (does the surface stay responsive under volume?).
   metrics.domNodes = await frame.locator("body *").count().catch(() => -1);
-  // Scroll over the Gantt via the mouse wheel (FrameLocator has no .evaluate). Hover the
-  // timeline area first so the wheel targets the scrollable plan, then time 10 wheel steps.
-  const firstBar = await frame.locator('[data-testid="gantt-bar"]').first().boundingBox().catch(() => null);
-  if (firstBar) await page.mouse.move(firstBar.x + 40, firstBar.y + 120);
+  // Scroll over the Gantt via the mouse wheel (FrameLocator has no .evaluate — get the real
+  // Frame via elementHandle().ownerFrame() to run in-page JS). Hover the timeline area first
+  // so the wheel targets the scrollable plan, then time 10 wheel steps.
+  const rootHandle = await frame.locator(":root").elementHandle();
+  const realFrame = rootHandle ? await rootHandle.ownerFrame() : null;
+
+  // RESPONSIVENESS MONITOR — the original #13 report was "blocks after two scrolls", i.e.
+  // multi-second main-thread freezes. A rAF loop inside the app iframe records the gap
+  // between consecutive frames while we scroll; a blocked main thread shows up as a large
+  // gap. This turns the probe into a gate: jank is measured, not eyeballed.
+  if (realFrame) {
+    await realFrame.evaluate(() => {
+      const w = window as any;
+      w.__frameGaps = [];
+      w.__rafStop = false;
+      let last = performance.now();
+      const tick = (now: number) => {
+        w.__frameGaps.push(now - last);
+        last = now;
+        if (!w.__rafStop) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // Hover INSIDE the visible scroll container. NOT a bar: fit-to-work pans the timeline
+  // horizontally, so the first bar's page-x can be thousands of px off-viewport — a mouse
+  // parked there dispatches wheel events to nothing and the "scroll" scrolls nothing
+  // (which is exactly what happened before the windowMoved assertion below existed).
+  const scrollBox = await frame.locator("[data-gantt-scroll]").boundingBox().catch(() => null);
+  if (scrollBox) await page.mouse.move(scrollBox.x + Math.min(500, scrollBox.width - 40), scrollBox.y + Math.min(300, scrollBox.height / 2));
+  // Capture WHICH rows are visible pre-scroll, so we can prove the window moved —
+  // a smooth frame-gap reading over a scroll that scrolled nothing would be vacuous.
+  const keysBefore = await frame.locator('[data-testid="gantt-bar"]').evaluateAll((els) => els.map((e) => e.getAttribute("data-key"))).catch(() => []);
   const tScroll = Date.now();
   for (let i = 0; i < 10; i++) {
     await page.mouse.wheel(0, 600);
     await page.waitForTimeout(120);
   }
   metrics.scroll10Ms = Date.now() - tScroll;
+
+  if (realFrame) {
+    const gaps: number[] = await realFrame.evaluate(() => {
+      const w = window as any;
+      w.__rafStop = true;
+      return w.__frameGaps || [];
+    });
+    // Drop the first gap (includes monitor start-up, not scroll work).
+    const scrollGaps = gaps.slice(1);
+    metrics.frameCount = scrollGaps.length;
+    metrics.maxFrameGapMs = Math.round(Math.max(0, ...scrollGaps));
+    metrics.framesOver250 = scrollGaps.filter((g) => g > 250).length;
+    metrics.framesOver1000 = scrollGaps.filter((g) => g > 1000).length;
+  }
+
   metrics.barsAfterScroll = await frame.locator('[data-testid="gantt-bar"]').count().catch(() => 0);
   metrics.edgesAfterScroll = await frame.locator('[data-testid="dep-arrow-hit"]').count().catch(() => -1);
+  const keysAfter = await frame.locator('[data-testid="gantt-bar"]').evaluateAll((els) => els.map((e) => e.getAttribute("data-key"))).catch(() => []);
+  metrics.windowMoved = keysBefore.length > 0 && keysAfter.length > 0 && keysBefore[0] !== keysAfter[0];
 
   console.log("PERF_METRICS", JSON.stringify(metrics));
 
-  // Survival assertions only (this is a stress probe, not a strict SLA gate).
   expect(metrics.showing || metrics.issuesShown, "the large plan resolved an issue count").toBeTruthy();
   expect(metrics.ganttBarsRendered, "the Gantt rendered bars under volume (did not freeze/blank)").toBeGreaterThan(0);
+  // RESPONSIVENESS GATE (the actual #13 assertion): scrolling must not block the main
+  // thread. "Blocks after two scrolls" was a multi-second freeze; the gate allows normal
+  // render work but fails on any 2s+ freeze, and requires the row window to keep following
+  // the scroll (bars still mounted afterwards proves virtualization didn't collapse).
+  if (metrics.maxFrameGapMs !== undefined) {
+    expect(metrics.maxFrameGapMs, `no frame gap over 2s during scroll (max was ${metrics.maxFrameGapMs}ms)`).toBeLessThan(2000);
+    expect(metrics.framesOver1000, "no 1s+ freezes during a 10-step scroll").toBeLessThanOrEqual(1);
+  }
+  expect(metrics.barsAfterScroll, "the row window kept rendering after scroll").toBeGreaterThan(0);
+  expect(metrics.windowMoved, "the visible row window actually advanced (the scroll scrolled)").toBe(true);
 });
