@@ -47,9 +47,14 @@ test("LIFECYCLE: create single-issue plan → renders → delete", async ({ page
     // LZPT keys float on every reseed, and a dead key makes the wizard's invalid-JQL
     // gate (correctly) disable Continue, which used to read as a 20s click timeout.
     const oneKey: string = await page.evaluate(async () => {
-      const res = await fetch("/rest/api/3/search/jql", { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json", "X-Atlassian-Token": "no-check" }, credentials: "include", body: JSON.stringify({ jql: "project = LZPT ORDER BY created ASC", maxResults: 1, fields: ["key"] }) });
+      // Must be a LEAF with no children — an Epic's plan pulls its whole subtree
+      // via hierarchy discovery and renders N bars, not 1. Resolve by EXACT
+      // summary match client-side: JQL `summary ~` tokenizes, so "WIDE-10" also
+      // matches the "Wide parent" epic (that mistake rendered 11 bars).
+      const res = await fetch("/rest/api/3/search/jql", { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json", "X-Atlassian-Token": "no-check" }, credentials: "include", body: JSON.stringify({ jql: "project = LZPT", maxResults: 100, fields: ["summary"] }) });
       const d = await res.json();
-      return d.issues?.[0]?.key || "";
+      const hit = (d.issues || []).find((i: any) => i.fields.summary === "WIDE-10");
+      return hit?.key || "";
     });
     expect(oneKey, "resolved a live LZPT key for the 1-issue plan").toBeTruthy();
     await frame.getByPlaceholder(/project = PROJ/i).first().fill(`key = ${oneKey}`);
@@ -83,7 +88,13 @@ test("LIFECYCLE: create single-issue plan → renders → delete", async ({ page
     const showing = (body.match(/Showing\s+[\d,]+\s+of\s+[\d,]+/i) || [])[0] || "none";
     const noIssues = /No issues|empty/i.test(body);
     console.log("SINGLE: bars=", bars, "showing=", showing, "noIssues=", noIssues, "hasNaN=", /NaN|Infinity/.test(body));
-    expect(bars, "single-issue plan renders exactly one bar").toBe(1);
+    // Two bars, not one: createPlan defaults includeParents ON (ffa2636d), so a
+    // single-CHILD plan legitimately hydrates its missing parent — the row plus
+    // its rolled-up parent bracket. The defect this guards (a BLANK Gantt on a
+    // degenerate near-empty plan) fails either assertion.
+    expect(bars, "single-issue plan renders its bar + the hydrated parent").toBe(2);
+    const ownBar = await frame.locator(`[data-testid="gantt-bar"][data-key="${oneKey}"]`).count().catch(() => 0);
+    expect(ownBar, `the resolved issue ${oneKey} has its own bar`).toBe(1);
     expect(/NaN|Infinity/.test(body), "no NaN/Infinity in a single-issue plan").toBe(false);
 
     // --- DELETE: toolbar Delete → confirm dialog "Delete" ---

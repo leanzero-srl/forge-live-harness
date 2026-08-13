@@ -108,12 +108,26 @@ test("LZPT baseline ghosts: ghost frozen at baseline while bar moves, then clear
   expect(c1Ghost, "chain-1 has a baseline ghost").not.toBeNull();
   expect(Math.abs(c1Ghost! - c1Pre!), "chain-1 ghost frozen at its baseline x").toBeLessThanOrEqual(8);
 
-  // --- Restore: discard the drag (draft) ---
-  await frame.locator("button").filter({ hasText: /Apply \d+ change/i }).first().click().catch(() => {});
-  await page.waitForTimeout(1500);
-  await frame.getByRole("button", { name: /Discard All/i }).first().click().catch(() => {});
-  await page.waitForTimeout(2500);
-  expect(await isStaged(frame), "drag discarded (clean)").toBeFalsy();
+  // --- Restore: discard the drag (draft). A single round is NOT enough: the
+  // drag stages a full recalc (SAVE_NAG), and after Discard All the "Save (N)"
+  // badge legitimately remains until the clean state is persisted — the same
+  // two-axis behaviour every other mutation journey's cleanup loop handles.
+  for (let i = 0; i < 4; i++) {
+    if (!(await isStaged(frame))) break;
+    await frame.locator("button").filter({ hasText: /Apply \d+ change/i }).first().click().catch(() => {});
+    await page.waitForTimeout(1500);
+    await frame.getByRole("button", { name: /Discard All/i }).first().click().catch(() => {});
+    await page.waitForTimeout(2500);
+    // Persist the now-clean baseline if only the Save nag remains (save-reload
+    // journey's lesson: saving the ALREADY-DISCARDED clean state is safe).
+    const t = await bodyText(frame);
+    if (!/Apply \d+ change/i.test(t) && /Save \(\d+\)/i.test(t)) {
+      await frame.locator('[data-testid="plan-save-btn"]').first().click().catch(() => {});
+      await page.waitForTimeout(2500);
+    }
+  }
+  // The Jira-pending axis must be clean; assert on the Apply badge specifically.
+  expect(/Apply \d+ change/i.test(await bodyText(frame)), "drag discarded (no Jira-pending changes)").toBeFalsy();
 
   // --- Restore: CLEAR the baseline (KVS) so LZPT is left clean ---
   await frame.getByRole("button", { name: /^Dashboard/i }).first().click().catch(() => {});
