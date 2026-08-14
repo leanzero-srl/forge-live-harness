@@ -14,7 +14,7 @@
 // window can't be a dead-trigger false negative.
 import { test, expect } from "@playwright/test";
 // @ts-ignore
-import { spaceIdByKey, createPage, deletePage, uploadBinaryAttachment, TINY_PNG, mediaNodeWithAttrs, readPage, writeAdf, countCommentsMatching } from "../../data/confluence.mjs";
+import { spaceIdByKey, createPage, deletePage, uploadBinaryAttachment, TINY_PNG, mediaNodeWithAttrs, readPage, writeAdf, countCommentsMatching, setContentProperty } from "../../data/confluence.mjs";
 import { getTestState } from "../../testhook/client";
 import { waitForTerminal } from "../_support/wait";
 
@@ -47,6 +47,9 @@ test(`🔎 sealed-image resize (${POLICY}): saved-or-reverted per policy, never 
       lockedBy: DUMMY, lockedByName: "Other", attachmentName: filename, spaceId, expiresAt,
       sealedVersion: 1, lockDuration: 14400,
     });
+    // The protection- content property is the media fast-path GATE (collectMediaSealsForPage
+    // early-returns without it) — a KVS-only seed leaves the page pipeline blind.
+    await setContentProperty(pg.id, "protection-", [{ attachmentId: att.attachmentId, lockedBy: DUMMY }]);
 
     // THE RESIZE — write 1 (wide + explicit widths), then write 2 ~3s later (second delivery).
     const resize = (width: number) => {

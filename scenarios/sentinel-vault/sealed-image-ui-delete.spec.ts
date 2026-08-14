@@ -14,7 +14,7 @@
 // Self-cleaning: throwaway page owns the attachment; KVS keys deleted in finally.
 import { test, expect } from "../../fixtures/forge";
 // @ts-ignore
-import { spaceIdByKey, createPage, deletePage, uploadBinaryAttachment, TINY_PNG, mediaNodeWithAttrs, readPage, getAttachment, pollAttachmentStatus, countCommentsMatching, writeAdf } from "../../data/confluence.mjs";
+import { spaceIdByKey, createPage, deletePage, uploadBinaryAttachment, TINY_PNG, mediaNodeWithAttrs, readPage, getAttachment, pollAttachmentStatus, countCommentsMatching, writeAdf, setContentProperty } from "../../data/confluence.mjs";
 import { getTestState } from "../../testhook/client";
 import { mkdirSync } from "node:fs";
 
@@ -51,6 +51,9 @@ test("🔎 UI-deleted sealed image is restored AND renders (incident 2026-07-22 
       lockedBy: DUMMY, lockedByName: "Other", attachmentName: filename, spaceId, expiresAt,
       sealedVersion: 1, lockDuration: 14400,
     });
+    // The protection- content property is the media fast-path GATE (collectMediaSealsForPage
+    // early-returns without it) — a KVS-only seed leaves the page pipeline blind.
+    await setContentProperty(pg.id, "protection-", [{ attachmentId: att.attachmentId, lockedBy: DUMMY }]);
     await setKvs(`space-protection-${spaceId}-${att.attachmentId}`, {
       attachmentId: att.attachmentId, contentId: pg.id, lockedBy: DUMMY, attachmentName: filename,
       lockedOn: new Date().toISOString(), expiresAt,
