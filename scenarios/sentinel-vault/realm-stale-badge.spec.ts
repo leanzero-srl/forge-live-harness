@@ -81,16 +81,37 @@ test("🔎 realm console badges a trashed sealed file as Trash (Fix 5 stale pari
 
     await frame.locator(".tab-button", { hasText: "Sealed Files" }).click();
     // Poll until our seeded row appears WITH the Trash badge (the probe adds ~1-2s).
-    // The list paginates 10 rows (lexicographic att-id order) with INFINITE SCROLL — in-suite
-    // the seeded row can land past page 1, so scroll the container to the bottom until found.
-    const row = frame.locator(`.artifact-card:has-text("${filename}")`);
-    const scrollDeadline = Date.now() + 60_000;
-    while (!(await row.isVisible().catch(() => false)) && Date.now() < scrollDeadline) {
-      await frame.locator(".attachments-table").evaluate((el: any) => { el.scrollTop = el.scrollHeight; }).catch(() => {});
-      await page.waitForTimeout(3000);
+    // Two hardened realities: (1) the list paginates 10 rows with INFINITE SCROLL — in-suite
+    // the seeded row can land past page 1, so scroll the container to the bottom until found;
+    // (2) the console iframe can REMOUNT after a tab click (the it49 lesson) — re-resolve the
+    // frame EVERY iteration instead of trusting the pre-click reference.
+    const findRow = async () => {
+      const ifr2 = page.locator("iframe");
+      const n2 = await ifr2.count();
+      for (let i = 0; i < n2; i++) {
+        const src = (await ifr2.nth(i).getAttribute("src").catch(() => "")) || "";
+        if (!src.includes(DEV)) continue;
+        const cf = ifr2.nth(i).contentFrame();
+        if (!(await cf.locator(".space-admin-title").count().catch(() => 0))) continue;
+        const r = cf.locator(`.artifact-card:has-text("${filename}")`);
+        if (await r.isVisible().catch(() => false)) return { cf, r };
+        // Pagination: the console has an explicit "Show more" button (plus infinite scroll) —
+        // click it when present; the scroll alone can't fire on a non-overflowing first page.
+        const more = cf.locator('button:has-text("Show more")').first();
+        if (await more.isVisible().catch(() => false)) await more.click().catch(() => {});
+        else await cf.locator(".attachments-table").evaluate((el: any) => { el.scrollTop = el.scrollHeight; }).catch(() => {});
+      }
+      return null;
+    };
+    let hit: any = null;
+    const scrollDeadline = Date.now() + 90_000;
+    while (!hit && Date.now() < scrollDeadline) {
+      hit = await findRow();
+      if (!hit) await page.waitForTimeout(3000);
     }
-    await expect(row, "seeded stale seal row visible").toBeVisible({ timeout: 20_000 });
-    await expect(row.locator(".status-lozenge.trashed"), "Trash lozenge on the stale row").toBeVisible({ timeout: 15_000 });
+    if (!hit) await page.screenshot({ path: `${OUT}/row-not-found.png`, fullPage: true });
+    expect(hit, "seeded stale seal row visible (after pagination scroll)").toBeTruthy();
+    await expect(hit.r.locator(".status-lozenge.trashed"), "Trash lozenge on the stale row").toBeVisible({ timeout: 15_000 });
     await page.screenshot({ path: `${OUT}/stale-badge.png`, fullPage: true });
     console.log("### realm console shows the Trash badge for a trashed sealed file ✓");
   } finally {
