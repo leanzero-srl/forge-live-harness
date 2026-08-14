@@ -229,12 +229,20 @@ test("🔎 sealed-media tamper matrix: id-swap / collection-swap / expand-wrap /
       if (accepted) {
         const postWrite = await readPage(pg.id);
         const survived = JSON.stringify(postWrite.adf).includes(attA.fileId);
+        // Observed live: Confluence's storage conversion of this INVALID body is UNSTABLE — our
+        // immediate read can see the bare media "survive" while the trigger's own read sees it
+        // stripped → the app correctly treats that as a removal (restore + ONE deduped comment).
+        // So "survived" in our read does NOT preclude the removal path; accept either converged
+        // outcome: node present at the end (survival OR restore) and comments +0 or exactly +1.
         if (survived) {
-          // The deep collector matches ANY media node with attrs.id → still detected → no violation.
-          await observeQuiet("case d (bare media survived)");
+          await observeQuiet("case d (bare media survived our read)");
+          await waitForTerminal(async () => (JSON.stringify((await readPage(pg.id)).adf).includes(attA.fileId) ? "present" : false),
+            { timeout: 90_000, interval: 4_000, label: "case d: sealed fileId present at convergence" });
           const finalComments = await countCommentsMatching(pg.id, filename);
-          expect(finalComments, "case d: NO violation comment while the bare media still carries the sealed fileId").toBe(commentCount);
-          console.log("### case d: bare media accepted + fileId survived → deeply detected, no violation ✓");
+          expect(finalComments, "case d: at most ONE removal comment (deduped) even if the trigger's read saw the node stripped").toBeLessThanOrEqual(commentCount + 1);
+          expect(finalComments).toBeGreaterThanOrEqual(commentCount);
+          commentCount = finalComments;
+          console.log(`### case d: bare media accepted; converged with node present; comments now ${finalComments} ✓`);
         } else {
           // Confluence stripped the invalid node on write → the sealed fileId is GONE → the app
           // must treat it exactly like a removal: restore + one fresh comment.
