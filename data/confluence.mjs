@@ -101,3 +101,94 @@ export async function getComments(pageId) {
 }
 
 export const pageUrl = (pageId) => `${BASE}/wiki/pages/viewpage.action?pageId=${pageId}`;
+
+// ---------------------------------------------------------------------------
+// Sentinel Vault media/trash helpers (incident 2026-07-22 regression suite).
+// ---------------------------------------------------------------------------
+
+/** A real 1x1 transparent PNG (67 bytes) — a genuine image Confluence will render. */
+export const TINY_PNG = Buffer.from(
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==",
+  "base64",
+);
+
+/** Upload a BINARY attachment (real content type — the text-only helper breaks image rendering). */
+export async function uploadBinaryAttachment(pageId, filename, buffer, mime = "image/png") {
+  const fd = new FormData();
+  fd.append("file", new Blob([buffer], { type: mime }), filename);
+  fd.append("minorEdit", "true");
+  const up = await fetch(`${BASE}/wiki/rest/api/content/${pageId}/child/attachment`, {
+    method: "POST",
+    headers: { Authorization: AUTH, "X-Atlassian-Token": "no-check" },
+    body: fd,
+  });
+  if (!up.ok) throw new Error(`uploadBinaryAttachment ${pageId} -> ${up.status}: ${(await up.text()).slice(0, 300)}`);
+  const data = await up.json();
+  const att = data.results?.[0] || data;
+  const v2 = await getAttachment(att.id);
+  return { attachmentId: att.id, fileId: v2.fileId, collection: `contentId-${pageId}` };
+}
+
+/**
+ * v2 attachment GET → { status, fileId, version, title, pageId }.
+ * Decision table probed live (Sentinel Vault INCIDENT-2026-07-22.md §7):
+ * 200+"current" / 200+"trashed" (still carries fileId+version+pageId) / 404 → status "deleted".
+ */
+export async function getAttachment(attachmentId) {
+  const res = await request("GET", `/wiki/api/v2/attachments/${attachmentId}`, { raw: true });
+  if (res.status === 404) return { status: "deleted", fileId: null, version: null, title: null, pageId: null };
+  if (res.status >= 400) throw new Error(`getAttachment ${attachmentId} -> ${res.status}`);
+  const d = JSON.parse(res.text);
+  return { status: d.status, fileId: d.fileId, version: d.version?.number ?? null, title: d.title, pageId: d.pageId ?? null };
+}
+
+/** Poll until the attachment reaches `want` status (default timeout 90s). Throws with the last seen status. */
+export async function pollAttachmentStatus(attachmentId, want, { timeoutMs = 90000, intervalMs = 3000 } = {}) {
+  const deadline = Date.now() + timeoutMs;
+  let last = null;
+  while (Date.now() < deadline) {
+    last = (await getAttachment(attachmentId)).status;
+    if (last === want) return last;
+    await sleep(intervalMs);
+  }
+  throw new Error(`pollAttachmentStatus ${attachmentId}: wanted "${want}", last saw "${last}" after ${timeoutMs}ms`);
+}
+
+/** Trash an attachment (v1 DELETE — status "trashed"; recoverable). */
+export async function trashAttachment(attachmentId) {
+  const res = await request("DELETE", `/wiki/rest/api/content/${attachmentId}`, { raw: true });
+  if (res.status >= 400) throw new Error(`trashAttachment ${attachmentId} -> ${res.status}`);
+}
+
+/** Permanently purge a TRASHED attachment (v1 DELETE ?status=trashed — unrecoverable). */
+export async function purgeAttachment(attachmentId) {
+  const res = await request("DELETE", `/wiki/rest/api/content/${attachmentId}?status=trashed`, { raw: true });
+  if (res.status >= 400) throw new Error(`purgeAttachment ${attachmentId} -> ${res.status}`);
+}
+
+/** Count page footer/inline comments whose storage body contains `needle` (paginated). */
+export async function countCommentsMatching(pageId, needle) {
+  let count = 0;
+  let start = 0;
+  for (;;) {
+    const r = await get(`/wiki/rest/api/content/${pageId}/child/comment?expand=body.storage&limit=50&start=${start}`);
+    const results = r.results || [];
+    for (const c of results) {
+      if ((c.body?.storage?.value || "").includes(needle)) count++;
+    }
+    if (results.length < 50) return count;
+    start += 50;
+  }
+}
+
+/** An ADF mediaSingle with explicit presentation attrs (resize/layout tamper vectors). */
+export function mediaNodeWithAttrs(fileId, pageId, { layout = "center", width, widthType, mediaAttrs = {} } = {}) {
+  const attrs = { layout };
+  if (width !== undefined) attrs.width = width;
+  if (widthType !== undefined) attrs.widthType = widthType;
+  return {
+    type: "mediaSingle",
+    attrs,
+    content: [{ type: "media", attrs: { type: "file", id: fileId, collection: `contentId-${pageId}`, ...mediaAttrs } }],
+  };
+}
