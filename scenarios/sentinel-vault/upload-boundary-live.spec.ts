@@ -83,9 +83,27 @@ test("#10: 4MB boundary — 3.2MB raw (>4MB base64) accepted, 4.5MB rejected wit
     expect(panel, "dev inline-panel macro rendered on the throwaway page").toBeTruthy();
     await expect(panel.locator(".sv-panel-loading"), "panel finished loading").toHaveCount(0, { timeout: 20_000 });
 
-    // the upload zone (default showUploadZone=true — a fresh page has no saved panel config)
+    // The macro iframe can REMOUNT after first paint (it49): re-resolve the frame until the
+    // upload zone is actually present rather than trusting the pre-mount reference.
+    const findPanelWithInput = async () => {
+      const n2 = await ifr.count();
+      for (let i = 0; i < n2; i++) {
+        const src = (await ifr.nth(i).getAttribute("src").catch(() => "")) || "";
+        if (!src.includes(DEV)) continue;
+        const cf = ifr.nth(i).contentFrame();
+        if ((await cf.locator('.upload-zone input[type="file"]').count().catch(() => 0)) > 0) return cf;
+      }
+      return null;
+    };
+    const inputDeadline = Date.now() + 45_000;
+    let panelWithInput: any = null;
+    while (!panelWithInput && Date.now() < inputDeadline) {
+      panelWithInput = await findPanelWithInput();
+      if (!panelWithInput) await page.waitForTimeout(2000);
+    }
+    expect(panelWithInput, "upload input present in the panel's upload zone").toBeTruthy();
+    panel = panelWithInput;
     const input = panel.locator('.upload-zone input[type="file"]');
-    await expect(input, "upload input present in the panel's upload zone").toHaveCount(1, { timeout: 15_000 });
     const hint = ((await panel.locator(".upload-zone-hint").innerText().catch(() => "")) as string).trim();
     expect(hint, "the zone advertises the limit under test").toContain("Up to 4 MB");
     await page.screenshot({ path: `${OUT}/1-panel-ready.png` }).catch(() => {});
