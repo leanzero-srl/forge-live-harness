@@ -103,6 +103,10 @@ test("🔎 trashed sealed file: overlay Trash card → Restore → current; gate
   };
 
   try {
+    // The doc-ribbon renders NULL on a page with zero CURRENT attachments (totalCount===0 —
+    // verified live): keep a decoy current attachment so the banner exists while the sealed
+    // one sits in trash.
+    await uploadBinaryAttachment(pg.id, `sv-decoy-${stamp}.png`, TINY_PNG, "image/png");
     att = await uploadBinaryAttachment(pg.id, filename, TINY_PNG, "image/png");
 
     // Seal owned by MIHAI (owner-trash sticks); far-future expiry (expired seals are inert
