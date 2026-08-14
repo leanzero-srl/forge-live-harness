@@ -6,9 +6,9 @@
 //   3. the image actually RENDERS in the page view       (what the incident broke: a dead node
 //      pointing at a trashed file "passes" 1+2-style checks while the reader sees nothing)
 //   4. fileId triple-consistency: live v2 fileId == ADF fileId == seal.sealedFileId
-//   5. comment discipline: violation comments for this incident stay bounded (≤2 pre-dedup:
-//      one from the trash handler, one from the media pass; the Fix-3 marker will tighten this
-//      to exactly 1 — flip EXPECT_MAX_COMMENTS then)
+//   5. comment discipline: EXACTLY ONE violation comment — the trash handler and the media
+//      pass now share one content-loss dedup class, so a single UI delete can never produce
+//      two comments (the pre-fix delete/content-removal split let both land)
 //   6. the seal KVS triad survives intact
 // Seal owner is SYNTHETIC; the signed-in harness user (mihai) is the non-owner "attacker".
 // Self-cleaning: throwaway page owns the attachment; KVS keys deleted in finally.
@@ -21,7 +21,7 @@ import { mkdirSync } from "node:fs";
 const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
 const DUMMY = "557058:dummy-other";
 const OUT = "/tmp/sv-ui-delete";
-const EXPECT_MAX_COMMENTS = Number(process.env.SV_EXPECT_MAX_VIOLATION_COMMENTS || 2);
+const EXPECT_MAX_COMMENTS = Number(process.env.SV_EXPECT_MAX_VIOLATION_COMMENTS || 1);
 
 const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(val) });
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
@@ -49,7 +49,7 @@ test("🔎 UI-deleted sealed image is restored AND renders (incident 2026-07-22 
     await setKvs(`protection-${att.attachmentId}`, {
       contentId: pg.id, attachmentId: att.attachmentId, sealedFileId: att.fileId,
       lockedBy: DUMMY, lockedByName: "Other", attachmentName: filename, spaceId, expiresAt,
-      sealedVersion: 1, lockDuration: 14400,
+      sealedVersion: 1, lockDuration: 14400, embedded: true,
     });
     // The protection- content property is the media fast-path GATE (collectMediaSealsForPage
     // early-returns without it) — a KVS-only seed leaves the page pipeline blind.
@@ -107,6 +107,7 @@ test("🔎 UI-deleted sealed image is restored AND renders (incident 2026-07-22 
     if (att) {
       await delKvs(`protection-${att.attachmentId}`).catch(() => {});
       await delKvs(`space-protection-${spaceId}-${att.attachmentId}`).catch(() => {});
+      await delKvs(`violation-noticed-${pg.id}-${att.attachmentId}-content-loss`).catch(() => {});
     }
     await deletePage(pg.id).catch(() => {});
   }

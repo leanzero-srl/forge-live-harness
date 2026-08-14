@@ -2,6 +2,9 @@
 // The incident-2026-07-22 spam shape: a stale editor draft re-publishing every few minutes
 // re-removed the sealed node → every trigger run re-restored AND re-commented. Post-Fix-3 the
 // marker violation-noticed-{page}-{att}-{class} (claimed before the comment, TTL 24h) makes it:
+// (content loss is ONE dedup class — "content-loss" — shared by the trash handler and the media
+// pass, so a UI delete's twin events can't double-comment; the old delete/content-removal split
+// is gone)
 //   tamper #1 → restore + comment;  tamper #2 (no clean save between) → restore, NO new comment;
 //   CLEAN save (violations resolved) → markers cleared → tamper #3 → restore + FRESH comment.
 // The restores themselves must happen every time — only the comment is deduped.
@@ -43,10 +46,11 @@ test("🔎 repeat tamper comments ONCE; a clean save re-arms the comment (Fix 3)
     cur.adf.content.push(mediaNodeWithAttrs(att.fileId, pg.id));
     await writeAdf(pg.id, cur.adf, { message: "embed sealed image" });
     const expiresAt = new Date(Date.now() + 4 * 3600_000).toISOString();
+    // embedded:true — post-Finding-1 the presence gate ignores seals never embedded in the body.
     await setKvs(`protection-${att.attachmentId}`, {
       contentId: pg.id, attachmentId: att.attachmentId, sealedFileId: att.fileId,
       lockedBy: DUMMY, lockedByName: "Other", attachmentName: filename, spaceId, expiresAt,
-      sealedVersion: 1, lockDuration: 14400,
+      sealedVersion: 1, lockDuration: 14400, embedded: true,
     });
     await setContentProperty(pg.id, "protection-", [{ attachmentId: att.attachmentId, lockedBy: DUMMY }]);
 
@@ -56,7 +60,7 @@ test("🔎 repeat tamper comments ONCE; a clean save re-arms the comment (Fix 3)
     await new Promise((r) => setTimeout(r, 5000)); // let the comment land
     const after1 = await countCommentsMatching(pg.id, filename);
     expect(after1, "tamper #1 commented").toBe(1);
-    expect(await getKvs(`violation-noticed-${pg.id}-${att.attachmentId}-content-removal`), "marker claimed").toBeTruthy();
+    expect(await getKvs(`violation-noticed-${pg.id}-${att.attachmentId}-content-loss`), "marker claimed").toBeTruthy();
 
     // Tamper #2 (no clean save between) → restore happens, NO second comment.
     await removeNode();
@@ -69,7 +73,7 @@ test("🔎 repeat tamper comments ONCE; a clean save re-arms the comment (Fix 3)
     const clean = await readPage(pg.id);
     clean.adf.content.push(para(`clean touch ${stamp}`));
     await writeAdf(pg.id, clean.adf, { message: "clean save" });
-    await waitForTerminal(async () => ((await getKvs(`violation-noticed-${pg.id}-${att.attachmentId}-content-removal`)) ? false : "cleared"),
+    await waitForTerminal(async () => ((await getKvs(`violation-noticed-${pg.id}-${att.attachmentId}-content-loss`)) ? false : "cleared"),
       { timeout: 60_000, interval: 4_000, label: "clean save cleared the dedup marker" });
 
     // ...so tamper #3 is a NEW incident → fresh comment.
@@ -80,8 +84,7 @@ test("🔎 repeat tamper comments ONCE; a clean save re-arms the comment (Fix 3)
   } finally {
     if (att) {
       await delKvs(`protection-${att.attachmentId}`).catch(() => {});
-      await delKvs(`violation-noticed-${pg.id}-${att.attachmentId}-content-removal`).catch(() => {});
-      await delKvs(`violation-noticed-${pg.id}-${att.attachmentId}-delete`).catch(() => {});
+      await delKvs(`violation-noticed-${pg.id}-${att.attachmentId}-content-loss`).catch(() => {});
       await delKvs(`violation-noticed-${pg.id}-${att.attachmentId}-revert-failed`).catch(() => {});
     }
     await deletePage(pg.id).catch(() => {});
