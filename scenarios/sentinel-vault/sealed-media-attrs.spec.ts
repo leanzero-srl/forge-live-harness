@@ -20,7 +20,7 @@ import { waitForTerminal } from "../_support/wait";
 
 const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
 const DUMMY = "557058:dummy-other";
-const POLICY = (process.env.SV_MEDIA_ATTR_POLICY || "lenient") as "lenient" | "strict";
+const POLICY = (process.env.SV_MEDIA_ATTR_POLICY || "strict") as "lenient" | "strict";
 
 const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(val) });
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
@@ -42,10 +42,25 @@ test(`🔎 sealed-image resize (${POLICY}): saved-or-reverted per policy, never 
     base.adf.content.push(sealedNode);
     await writeAdf(pg.id, base.adf, { message: "embed sealed image (baseline)" });
     const expiresAt = new Date(Date.now() + 4 * 3600_000).toISOString();
+    // Fix 6: capture the presentation baseline from a POST-EMBED READ (normalization-consistent
+    // with the trigger's own reads) — exactly what sealArtifact does at seal time.
+    const embedded = await readPage(pg.id);
+    let baseline: any = null;
+    for (const node of embedded.adf.content) {
+      if (node?.type === "mediaSingle" && JSON.stringify(node).includes(att.fileId)) {
+        const m = (node.content || []).find((c: any) => c?.type === "media");
+        baseline = {
+          layout: node.attrs?.layout ?? null, width: node.attrs?.width ?? null,
+          widthType: node.attrs?.widthType ?? null,
+          mediaWidth: m?.attrs?.width ?? null, mediaHeight: m?.attrs?.height ?? null,
+        };
+      }
+    }
+    console.log(`### captured baseline: ${JSON.stringify(baseline)}`);
     await setKvs(`protection-${att.attachmentId}`, {
       contentId: pg.id, attachmentId: att.attachmentId, sealedFileId: att.fileId,
       lockedBy: DUMMY, lockedByName: "Other", attachmentName: filename, spaceId, expiresAt,
-      sealedVersion: 1, lockDuration: 14400,
+      sealedVersion: 1, lockDuration: 14400, mediaBaseline: baseline,
     });
     // The protection- content property is the media fast-path GATE (collectMediaSealsForPage
     // early-returns without it) — a KVS-only seed leaves the page pipeline blind.
@@ -93,9 +108,9 @@ test(`🔎 sealed-image resize (${POLICY}): saved-or-reverted per policy, never 
       expect(lastAttrs?.layout, "resize preserved (lenient: presentation not sealed)").toBe("wide");
       expect(comments, "ZERO violation comments for a benign attr change").toBe(0);
     } else {
-      // strict: reverted to the sealed baseline...
-      expect(lastAttrs?.layout, "attr change reverted to sealed baseline").toBe("center");
-      expect(lastAttrs?.width, "explicit width removed by revert").toBeUndefined();
+      // strict: reverted to the sealed baseline (as captured — normalization-safe)...
+      expect(lastAttrs?.layout ?? null, "layout reverted to sealed baseline").toBe(baseline?.layout ?? null);
+      expect(lastAttrs?.width ?? null, "wrapper width reverted to sealed baseline").toBe(baseline?.width ?? null);
       // ...with exactly one comment despite two deliveries.
       expect(comments, "exactly ONE violation comment despite double delivery").toBe(1);
     }
