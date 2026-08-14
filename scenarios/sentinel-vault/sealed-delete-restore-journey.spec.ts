@@ -161,13 +161,20 @@ test("🔎 trashed sealed file: overlay Trash card → Restore → current; gate
     console.log("### Restore clicked → attachment back to current ✓");
     await page.waitForTimeout(4000); // let the overlay's own refresh settle before the shot
     await page.screenshot({ path: `${OUT}/3-restored-current.png`, fullPage: true });
-    // The seal itself must SURVIVE the restore (only trashedOnly tracking records are dropped).
-    expect((await getKvs(`protection-${att.attachmentId}`))?.lockedBy, "real seal survives the restore").toBe(MIHAI);
+    // NEW OWNER-INTENT CONTRACT (stabilization hunt F2a): an owner trashing their OWN sealed
+    // file RELEASES the seal — the trash event converts the record to a trashedOnly tracking
+    // record, and restoring a tracking record CONSUMES it. So post-restore the record is GONE.
+    const postRestore = await getKvs(`protection-${att.attachmentId}`);
+    expect(postRestore, "owner-trash released the seal; restore consumed the tracking record").toBeNull();
 
-    // 3) Gate OFF → re-trash (a current attachment has no Trash card, so without this the
-    //    "hidden" assert would be vacuous) → reload overlay → Trash card WITHOUT Restore.
+    // 3) Gate OFF → re-trash + RE-SEED a trashedOnly tracking record (the native re-trash has
+    //    no seal record left to convert) → reload overlay → Trash card WITHOUT Restore.
     await setKvs(GKEY, { ...(origGlobal || {}), allowSealRestore: false });
     await trashAndAssertStuck("re-trash under gate-off");
+    await setKvs(`protection-${att.attachmentId}`, {
+      attachmentId: att.attachmentId, contentId: pg.id, lockedBy: MIHAI,
+      attachmentName: filename, timestamp: new Date().toISOString(), trashedOnly: true,
+    });
 
     const overlay2 = await openOverlay("4");
     const card2 = overlay2.locator(`.artifact-card:has-text("${filename}")`);

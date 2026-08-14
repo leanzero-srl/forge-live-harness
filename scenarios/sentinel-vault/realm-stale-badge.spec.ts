@@ -81,8 +81,15 @@ test("🔎 realm console badges a trashed sealed file as Trash (Fix 5 stale pari
 
     await frame.locator(".tab-button", { hasText: "Sealed Files" }).click();
     // Poll until our seeded row appears WITH the Trash badge (the probe adds ~1-2s).
+    // The list paginates 10 rows (lexicographic att-id order) with INFINITE SCROLL — in-suite
+    // the seeded row can land past page 1, so scroll the container to the bottom until found.
     const row = frame.locator(`.artifact-card:has-text("${filename}")`);
-    await expect(row, "seeded stale seal row visible").toBeVisible({ timeout: 45_000 });
+    const scrollDeadline = Date.now() + 60_000;
+    while (!(await row.isVisible().catch(() => false)) && Date.now() < scrollDeadline) {
+      await frame.locator(".attachments-table").evaluate((el: any) => { el.scrollTop = el.scrollHeight; }).catch(() => {});
+      await page.waitForTimeout(3000);
+    }
+    await expect(row, "seeded stale seal row visible").toBeVisible({ timeout: 20_000 });
     await expect(row.locator(".status-lozenge.trashed"), "Trash lozenge on the stale row").toBeVisible({ timeout: 15_000 });
     await page.screenshot({ path: `${OUT}/stale-badge.png`, fullPage: true });
     console.log("### realm console shows the Trash badge for a trashed sealed file ✓");
