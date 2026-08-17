@@ -344,6 +344,71 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
         expect(sent).toEqual(["Yes, ship it"]);
       });
 
+      test("REGRESSION: a spent menu stays spent across a full re-render", async ({ page }) => {
+        // Liveness used to be "the last .message-options in the DOM", with the
+        // answered flag living only on the node. A reload re-attached every row
+        // with no memory of it, so a menu that had already been answered came
+        // back clickable and the same question could be answered twice.
+        await mount(page, PAGES[surface], reduced);
+        await page.evaluate(() => {
+          const b = document.querySelector('[data-message-id="m1"] .option-btn') as HTMLButtonElement;
+          b.click();
+        });
+        // Simulate the reload: rebuild every node from the message list.
+        const after = await page.evaluate(() => {
+          const w = window as any;
+          w.chat.renderMessages();
+          w.chat._refreshOptionInteractivity();
+          const btns = Array.from(
+            document.querySelectorAll('[data-message-id="m1"] .option-btn'),
+          ) as HTMLButtonElement[];
+          return { count: btns.length, enabled: btns.filter((b) => !b.disabled).length };
+        });
+        expect(after.count, "the options row vanished on re-render").toBeGreaterThan(0);
+        expect(after.enabled, "an answered menu came back clickable after a re-render").toBe(0);
+      });
+
+      test("REGRESSION: typing your own answer retires the menu", async ({ page }) => {
+        // A user bubble contributes no .message-options row, so "last row in
+        // the DOM" never changed and the old menu stayed live forever.
+        await mount(page, PAGES[surface], reduced);
+        const enabled = await page.evaluate(() => {
+          const w = window as any;
+          w.chat.addMessage({ id: "typed", type: "user", content: "something else entirely" });
+          w.chat._refreshOptionInteractivity();
+          return Array.from(
+            document.querySelectorAll('[data-message-id="m1"] .option-btn'),
+          ).filter((b: any) => !b.disabled).length;
+        });
+        expect(enabled, "the menu stayed live after the user typed their own answer").toBe(0);
+      });
+
+      test("REGRESSION: a browse URL is not mangled into a bogus issue link", async ({ page }) => {
+        // The issue-key linkifier guarded with a lookbehind, which the regex
+        // engine simply retries past — so every browse URL the model emitted
+        // (and the system prompt tells it to) rendered as a chip reading
+        // "BC-12", linking to an issue that does not exist, with the remains of
+        // the href as visible text.
+        await mount(page, PAGES[surface], reduced);
+        const out = await page.evaluate(() => {
+          const w = window as any;
+          const html = w.chat.formatAIMessage("https://x.atlassian.net/browse/ABC-123");
+          const el = document.createElement("div");
+          el.innerHTML = html;
+          const links = Array.from(el.querySelectorAll("a"));
+          return {
+            linkCount: links.length,
+            href: links[0]?.getAttribute("href"),
+            text: el.textContent,
+          };
+        });
+        expect(out.linkCount, "the URL produced nested or extra links").toBe(1);
+        expect(out.href).toBe("https://x.atlassian.net/browse/ABC-123");
+        // Nothing of the markup may survive as visible text.
+        expect(out.text).not.toContain("data-url");
+        expect(out.text).toBe("https://x.atlassian.net/browse/ABC-123");
+      });
+
       test("deleting the newest turn hands the menu back to the one before it", async ({ page }) => {
         await mount(page, PAGES[surface], reduced);
         await page.evaluate(() => {
