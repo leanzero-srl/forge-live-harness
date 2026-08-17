@@ -38,13 +38,24 @@ export const router = { open: () => {} };
 `,
   );
 
+  // One entry per class under test. The stub exposes all three because the
+  // upload path spans them: the drop zone hands files to the controller, and
+  // both surfaces instantiate the same pair.
+  writeFileSync(
+    join(OUT, "entry.js"),
+    `export { ChatInterface } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/components/ChatInterface.js"))};
+export { AttachmentController } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/services/AttachmentController.js"))};
+export { DropZone } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/services/DropZone.js"))};
+`,
+  );
+
   writeFileSync(
     join(OUT, "webpack.config.cjs"),
     `const path = require("path");
 module.exports = {
   mode: "development",
   devtool: false,
-  entry: ${JSON.stringify(join(APP_ROOT, "src/chat/shared/components/ChatInterface.js"))},
+  entry: path.resolve(__dirname, "entry.js"),
   output: {
     path: __dirname,
     filename: "bundle.js",
@@ -74,6 +85,12 @@ module.exports = {
     if (start < 0 || end < start) throw new Error(`no <style> block in ${surface}/index.html`);
     const style = html.slice(start, end);
 
+    // The composer is taken VERBATIM from the surface, not hand-written. Its
+    // element ids are the contract AttachmentController and DropZone are
+    // parameterised by, so a paraphrase would test a composer that does not
+    // ship.
+    const composer = sliceElement(html, '<div class="chat-input-container">');
+
     const file = join(OUT, `${surface}.html`);
     writeFileSync(
       file,
@@ -82,13 +99,32 @@ module.exports = {
 <div class="chat-container">
   <div class="chat-header"></div>
   <div class="chat-messages" id="chatMessages"></div>
-  <div class="chat-input-container">
-    <textarea id="chatInput"></textarea><button id="sendButton"></button>
-  </div>
+  ${composer}
 </div>
 <script>${bundle}</script></body></html>`,
     );
     pages[surface] = `file://${file}`;
   }
   return pages;
+}
+
+/**
+ * Slice one element out of an HTML file by balancing <div> against </div>.
+ *
+ * A regex cannot do this — the composer nests six levels deep — and taking
+ * "up to the next </div>" would truncate it mid-way, which shows up as a
+ * missing element id rather than as a parse error.
+ */
+function sliceElement(html: string, openTag: string): string {
+  const start = html.indexOf(openTag);
+  if (start < 0) throw new Error(`not found: ${openTag}`);
+  let depth = 0;
+  const re = /<div\b[^>]*>|<\/div>/g;
+  re.lastIndex = start;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(html))) {
+    depth += m[0] === "</div>" ? -1 : 1;
+    if (depth === 0) return html.slice(start, m.index + m[0].length);
+  }
+  throw new Error(`unbalanced element: ${openTag}`);
 }
