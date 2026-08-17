@@ -1,0 +1,32 @@
+[
+  {
+    "name": "ZMCP-research1",
+    "mcp": "web-search",
+    "transitionId": "9860"
+  },
+  {
+    "name": "ZMCP-research2",
+    "mcp": "web-search",
+    "transitionId": "9861"
+  },
+  {
+    "name": "ZMCP-researchdoc1",
+    "mcp": "web+context7+doc-processor",
+    "transitionId": "9862"
+  },
+  {
+    "name": "ZMCP-generatedoc1",
+    "mcp": "doc-processor",
+    "transitionId": "9863"
+  },
+  {
+    "name": "ZMCP-generatedoc2",
+    "mcp": "doc-processor",
+    "transitionId": "9864"
+  },
+  {
+    "name": "ZMCP-crosscheck1",
+    "mcp": "web+doc-processor (fact-check)",
+    "transitionId": "9865"
+  }
+]

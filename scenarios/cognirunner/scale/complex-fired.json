@@ -1,0 +1,76 @@
+{
+  "attached": [
+    {
+      "name": "dup-linker",
+      "transitionId": "9806",
+      "ruleId": "cb862810-7f40-4c92-afe3-0a28eaab8210"
+    },
+    {
+      "name": "dup-triage-router",
+      "transitionId": "9807",
+      "ruleId": "cebd477d-cb26-46cb-8d75-0c462cf574c7"
+    },
+    {
+      "name": "audit-trail-escalation",
+      "transitionId": "9808",
+      "ruleId": "30e504d3-f5d1-46b5-8a1c-a967feb7645b"
+    },
+    {
+      "name": "rework-bounce-ledger-crossissue",
+      "transitionId": "9809",
+      "ruleId": "d3534afb-8f63-47c0-91cd-af21fbeff04b"
+    },
+    {
+      "name": "severity-triage-router",
+      "transitionId": "9810",
+      "ruleId": "28c7902a-06af-4648-9dac-1d33cc55418e"
+    },
+    {
+      "name": "sla-escalation-ladder-router",
+      "transitionId": "9811",
+      "ruleId": "4f07bfed-b55c-4d9b-acf0-655d260b8131"
+    },
+    {
+      "name": "sibling-completion-rollup",
+      "transitionId": "9812",
+      "ruleId": "af06c5b5-310e-4891-9fbe-11d2415414c6"
+    },
+    {
+      "name": "sibling-sla-breach-rollup",
+      "transitionId": "9813",
+      "ruleId": "d89eed0c-4f06-4870-b54f-4296cb8f4dfb"
+    },
+    {
+      "name": "idempotent-runbook-enricher",
+      "transitionId": "9814",
+      "ruleId": "e3977d63-0a6f-4672-9d1d-91d7fd5fe47e"
+    },
+    {
+      "name": "idempotent-deploy-change-record",
+      "transitionId": "9815",
+      "ruleId": "93d469a7-1fb1-48f5-849f-44c99b0ad69b"
+    }
+  ],
+  "pool": [
+    "COGTEST-2594",
+    "COGTEST-2593",
+    "COGTEST-2592",
+    "COGTEST-2591",
+    "COGTEST-2590",
+    "COGTEST-2589",
+    "COGTEST-2588",
+    "COGTEST-2587",
+    "COGTEST-2586",
+    "COGTEST-2585",
+    "COGTEST-2584",
+    "COGTEST-2583",
+    "COGTEST-2582",
+    "COGTEST-2581",
+    "COGTEST-2580",
+    "COGTEST-2579",
+    "COGTEST-2578",
+    "COGTEST-2577",
+    "COGTEST-2576",
+    "COGTEST-2575"
+  ]
+}
