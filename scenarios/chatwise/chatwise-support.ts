@@ -623,6 +623,23 @@ export async function forceTestModeOff(page: Page, T: Target): Promise<string> {
  * and neither can appear in a USER bubble, which is rendered with
  * `bubble.textContent = content` and no markdown at all.
  */
+/**
+ * Wait for the conversation-swap crossfade to settle.
+ *
+ * A switch (or New chat) paints a 320ms GHOST CLONE of the departing thread
+ * over the new one. The app now strips the clone's ids and marks it inert, so
+ * selector collisions are gone — but anything asserted mid-fade is asserted
+ * against a half-swapped screen. Journeys call this after every switch, the
+ * same way a user's eye waits for the fade.
+ */
+export async function awaitSwapSettled(frame: FrameLocator, timeoutMs = 5_000): Promise<void> {
+  await frame
+    .locator(".cw-fade-ghost")
+    .first()
+    .waitFor({ state: "detached", timeout: timeoutMs })
+    .catch(() => {}); // no ghost at all (first render) is the common case
+}
+
 export const SCRIPTED = {
   prompt: "Give me a JQL query for the current sprint",
   lead: "Here's a JQL query that matches what you asked for",

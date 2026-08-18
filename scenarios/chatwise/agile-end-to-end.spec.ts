@@ -10,8 +10,7 @@
 // thing under test is the model reaching for the right tool, not the mechanism.
 // Every assertion reads state back from Jira, by key or by board, never from
 // the reply text.
-import { test, expect } from "@playwright/test";
-import { launchHarnessContext } from "../../forge/browser";
+import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 // eslint-disable-next-line
@@ -62,15 +61,10 @@ async function ask(frame: any, page: any, conversationId: string, message: strin
   return String(data.result?.response || "");
 }
 
-test("ChatWise can find a board, make a sprint and put work in it", async () => {
+test("ChatWise can find a board, make a sprint and put work in it", async ({ page, context }) => {
   test.setTimeout(900_000);
 
   const T = getTarget("chatwise-global");
-  const context = await launchHarnessContext({});
-  const page = context.pages()[0] ?? (await context.newPage());
-  const cdp = await context.newCDPSession(page);
-  await cdp.send("Network.setCacheDisabled", { cacheDisabled: true });
-
   const conversationId = `conv_harness_agile_e2e_${Date.now()}`;
   const stamp = Date.now();
   let frame: any = null;
@@ -178,6 +172,5 @@ test("ChatWise can find a board, make a sprint and put work in it", async () => 
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }
-    await context.close();
   }
 });

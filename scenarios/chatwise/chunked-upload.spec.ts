@@ -12,8 +12,7 @@
 // So this drives the CHUNKED transport end to end against the deployed app,
 // with a file several times over the invoke ceiling, and then reads back the
 // stored text rather than trusting a success flag.
-import { test, expect } from "@playwright/test";
-import { launchHarnessContext } from "../../forge/browser";
+import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 
@@ -34,12 +33,10 @@ function makeBigText(canary: string, bytes: number): Buffer {
   return Buffer.from(body);
 }
 
-test("a file over the invoke ceiling uploads in chunks and reaches the model", async () => {
+test("a file over the invoke ceiling uploads in chunks and reaches the model", async ({ page, context }) => {
   test.setTimeout(900_000);
 
   const T = getTarget("chatwise-global");
-  const context = await launchHarnessContext({});
-  const page = context.pages()[0] ?? (await context.newPage());
   const conversationId = `conv_harness_chunk_${Date.now()}`;
   let frame: Awaited<ReturnType<typeof openGlobalPage>> | null = null;
 
@@ -182,6 +179,5 @@ test("a file over the invoke ceiling uploads in chunks and reaches the model", a
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }
-    await context.close();
   }
 });

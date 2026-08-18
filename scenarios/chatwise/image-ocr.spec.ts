@@ -1,7 +1,6 @@
-import { test, expect } from "@playwright/test";
-import { launchHarnessContext } from "/Users/mihaiperdum/Projects/forge-live-harness/forge/browser";
-import { getTarget } from "/Users/mihaiperdum/Projects/forge-live-harness/config/targets";
-import { openGlobalPage, waitForChatApp, GLOBAL_APP } from "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/chatwise/chatwise-support";
+import { test, expect } from "../../fixtures/forge";
+import { getTarget } from "../../config/targets";
+import { openGlobalPage, waitForChatApp, GLOBAL_APP } from "./chatwise-support";
 
 // LIVE: images are read in the browser, under the real Forge CSP.
 //
@@ -14,11 +13,9 @@ import { openGlobalPage, waitForChatApp, GLOBAL_APP } from "/Users/mihaiperdum/P
 // LEAVES ATLASSIAN. tesseract.js defaults its worker and language paths to
 // CDNs; if either override in ImageOcr.js is ever dropped, OCR keeps working
 // perfectly and the app quietly stops being egress-free.
-test("OCR runs under the Forge CSP and reads text, with zero external requests", async () => {
+test("OCR runs under the Forge CSP and reads text, with zero external requests", async ({ page, context }) => {
   test.setTimeout(600_000);
   const T = getTarget("chatwise-global");
-  const context = await launchHarnessContext({});
-  const page = context.pages()[0] ?? (await context.newPage());
   // Every request the page makes, with the frame that made it. The frame is
   // the important half: this tenant has other Forge apps installed
   // (herocoders, ScriptRunner) and Jira itself talks to Sentry, so "any
@@ -29,12 +26,6 @@ test("OCR runs under the Forge CSP and reads text, with zero external requests",
   });
   const errors: string[] = [];
   page.on("console", (m) => { if (m.type() === "error") errors.push(m.text().slice(0, 300)); });
-
-  // The harness reuses a persistent browser profile, so a redeploy is happily
-  // served from cache — the giveaway is an implausibly fast run against a
-  // stale bundle.
-  const cdp = await context.newCDPSession(page);
-  await cdp.send("Network.setCacheDisabled", { cacheDisabled: true });
 
   const frame = await openGlobalPage(page, T);
   await waitForChatApp(page, frame, GLOBAL_APP);
@@ -62,7 +53,6 @@ test("OCR runs under the Forge CSP and reads text, with zero external requests",
   const cdnHits = requests.map((r) => r.url).filter((u) => OCR_CDNS.test(u));
   console.log("OCR CDN REQUESTS:", JSON.stringify(cdnHits));
 
-  await context.close();
 
   expect(r.ok, `OCR failed: ${r.reason} ${r.detail || ""}`).toBeTruthy();
   // Character-for-character. A fuzzy match would pass on plausible garbage,

@@ -22,8 +22,7 @@
 // are on stored state: each child's issue type, and its `parent`. A "Relates"
 // LINK standing in for a parent was the specific wrong shape, and in a list it
 // looks almost identical to the right one.
-import { test, expect } from "@playwright/test";
-import { launchHarnessContext } from "../../forge/browser";
+import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 import { waitForTerminal } from "../_support/wait";
@@ -32,12 +31,10 @@ import { get, post, del, searchJql } from "../../data/jira.mjs";
 
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 
-test("asking to split an Epic produces typed children with real parents", async () => {
+test("asking to split an Epic produces typed children with real parents", async ({ page, context }) => {
   test.setTimeout(900_000);
 
   const T = getTarget("chatwise-global");
-  const context = await launchHarnessContext({});
-  const page = context.pages()[0] ?? (await context.newPage());
   const conversationId = `conv_harness_split_${Date.now()}`;
   const stamp = Date.now();
   let frame: Awaited<ReturnType<typeof openGlobalPage>> | null = null;
@@ -164,6 +161,5 @@ test("asking to split an Epic produces typed children with real parents", async 
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }
-    await context.close();
   }
 });

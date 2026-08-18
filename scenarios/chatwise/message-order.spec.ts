@@ -15,17 +15,14 @@
 // fake does — the fix reads an index and pages a cursor walk, and a wrong field
 // name or a different paging shape would look identical in a fake and be silently
 // broken in production. So this asserts the same properties against real storage.
-import { test, expect } from "@playwright/test";
-import { launchHarnessContext } from "../../forge/browser";
+import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 
-test("recent history is the newest messages, against real KVS", async () => {
+test("recent history is the newest messages, against real KVS", async ({ page, context }) => {
   test.setTimeout(600_000);
 
   const T = getTarget("chatwise-global");
-  const context = await launchHarnessContext({});
-  const page = context.pages()[0] ?? (await context.newPage());
   const conversationId = `conv_harness_order_${Date.now()}`;
   let frame: Awaited<ReturnType<typeof openGlobalPage>> | null = null;
 
@@ -103,6 +100,5 @@ test("recent history is the newest messages, against real KVS", async () => {
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }
-    await context.close();
   }
 });

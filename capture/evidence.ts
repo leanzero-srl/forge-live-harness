@@ -38,7 +38,11 @@ export async function writeEvidenceBundle(a: FinalizeArgs): Promise<string> {
     fs.writeFileSync(path.join(dir, "steps", s.name), s.buffer);
   }
 
-  await context.tracing.stop({ path: path.join(dir, "trace.zip") }).catch(() => {});
+  // stopChunk, not stop: the context (and its trace) is shared by the whole
+  // run now, and stopping the TRACE here would silently end tracing for every
+  // test after the first one that wrote evidence. The fixture starts a chunk
+  // per test; this closes that chunk into the bundle.
+  await context.tracing.stopChunk({ path: path.join(dir, "trace.zip") }).catch(() => {});
 
   fs.writeFileSync(path.join(dir, "console.json"), JSON.stringify(recorder.console, null, 2));
   fs.writeFileSync(path.join(dir, "network.json"), JSON.stringify(recorder.network, null, 2));

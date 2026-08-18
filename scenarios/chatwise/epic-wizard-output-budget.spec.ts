@@ -25,8 +25,7 @@
 // So: ask for something that cannot be said in 4096 tokens, and assert the reply
 // exceeded it. This is deliberately NOT an assertion about wording or
 // response_type — those are the model's business and would make the guard flaky.
-import { test, expect } from "@playwright/test";
-import { launchHarnessContext } from "../../forge/browser";
+import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
   GLOBAL_APP,
@@ -38,12 +37,10 @@ import {
 /** The default before the fix. A reply at or under this proves nothing changed. */
 const OLD_DEFAULT_CAP = 4096;
 
-test("PO wizard is not capped at the 4096 default", async () => {
+test("PO wizard is not capped at the 4096 default", async ({ page, context }) => {
   test.setTimeout(600_000);
 
   const T = getTarget("chatwise-global");
-  const context = await launchHarnessContext({});
-  const page = context.pages()[0] ?? (await context.newPage());
   const conversationId = `conv_harness_budget_${Date.now()}`;
   let frame: Awaited<ReturnType<typeof openGlobalPage>> | null = null;
 
@@ -131,6 +128,5 @@ test("PO wizard is not capped at the 4096 default", async () => {
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }
-    await context.close();
   }
 });

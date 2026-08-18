@@ -13,18 +13,13 @@
 //
 // `agile-end-to-end.spec.ts` proves the tools WORK. This one proves they are
 // offered and that the failure path is humane.
-import { test, expect } from "@playwright/test";
-import { launchHarnessContext } from "../../forge/browser";
+import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 
-test("agile is reachable, and never leaks a raw authorization failure", async () => {
+test("agile is reachable, and never leaks a raw authorization failure", async ({ page, context }) => {
   test.setTimeout(600_000);
   const T = getTarget("chatwise-global");
-  const context = await launchHarnessContext({});
-  const page = context.pages()[0] ?? (await context.newPage());
-  const cdp = await context.newCDPSession(page);
-  await cdp.send("Network.setCacheDisabled", { cacheDisabled: true });
   const conversationId = `conv_harness_agile_${Date.now()}`;
   let frame: any = null;
 
@@ -94,6 +89,5 @@ test("agile is reachable, and never leaks a raw authorization failure", async ()
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }
-    await context.close();
   }
 });
