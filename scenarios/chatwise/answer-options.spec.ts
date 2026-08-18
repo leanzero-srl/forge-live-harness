@@ -100,7 +100,28 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
             insideBubble: !!document.querySelector(".message-bubble .message-options"),
             groups: document.querySelectorAll(".option-group").length,
             buttons: document.querySelectorAll(".option-btn").length,
-            own: document.querySelectorAll(".option-btn-own").length,
+            own: document.querySelectorAll(".option-own-input").length,
+            ownIsInput: Array.from(document.querySelectorAll(".option-own-input")).every(
+              (el) => el.tagName === "INPUT" && (el as HTMLInputElement).type === "text",
+            ),
+            ownPlaceholder: (document.querySelector(".option-own-input") as HTMLInputElement)
+              ?.placeholder,
+            ownLabelled: Array.from(document.querySelectorAll(".option-own-input")).every(
+              (el) => !!el.getAttribute("aria-label"),
+            ),
+            // One strip per LINE: within a group, each button starts below the
+            // previous one and spans (nearly) the full row width.
+            stacked: (() => {
+              const g = document.querySelector(".option-buttons")!;
+              const bs = Array.from(g.querySelectorAll(".option-btn")).map((b) =>
+                b.getBoundingClientRect(),
+              );
+              const gw = g.getBoundingClientRect().width;
+              return (
+                bs.every((r, i) => i === 0 || r.top >= bs[i - 1].bottom - 1) &&
+                bs.every((r) => r.width > gw * 0.9)
+              );
+            })(),
             recommended: document.querySelectorAll(".option-btn.recommended").length,
             firstIsRecommended: first?.classList.contains("recommended"),
             badge: document.querySelector(".option-btn-badge")?.textContent,
@@ -118,8 +139,12 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
         expect(shape.parentIsBody && shape.siblingOfBubble).toBeTruthy();
         expect(shape.insideBubble, "options must never live inside the bubble").toBeFalsy();
         expect(shape.groups).toBe(2);
-        expect(shape.buttons, "3 options + 'type your own', per group").toBe(8);
-        expect(shape.own).toBe(2);
+        expect(shape.buttons, "3 option strips per group — the input is not a chip").toBe(6);
+        expect(shape.own, "one 'type your own' input per group").toBe(2);
+        expect(shape.ownIsInput, "'type your own' must be a standard text input").toBe(true);
+        expect(shape.ownPlaceholder).toMatch(/type your own answer/i);
+        expect(shape.ownLabelled, "the inputs carry the question in aria-label").toBe(true);
+        expect(shape.stacked, "answers must stack one per line, full width").toBe(true);
         expect(shape.recommended).toBe(2);
         expect(shape.firstIsRecommended, "options[0] IS the recommendation").toBe(true);
         // The badge is decorative; the word rides in aria-label so a screen
@@ -160,9 +185,12 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
           const c = (window as any).chat;
           c.updateMessage("m1", { content: "Two questions before I draft this.", streaming: false });
           c.updateMessage("m1", { content: "Two questions before I draft this.", wasStreaming: true });
-          return document.querySelectorAll(".option-btn").length;
+          return {
+            btns: document.querySelectorAll(".option-btn").length,
+            inputs: document.querySelectorAll(".option-own-input").length,
+          };
         });
-        expect(buttons).toBe(8);
+        expect(buttons).toEqual({ btns: 6, inputs: 2 });
       });
 
       test("hover and chosen fills are solid, with no left rail", async ({ page }) => {
@@ -323,6 +351,45 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
           return w.sent.length - before;
         }, sel);
         expect(extra, "a second click must send nothing").toBe(0);
+      });
+
+      test("the inline input submits on Enter, once, through the same path", async ({ page }) => {
+        await mount(page, PAGES[surface], reduced);
+        const out = await page.evaluate(() => {
+          const w = window as any;
+          const input = document.querySelector(
+            '[data-message-id="m1"] .option-own-input',
+          ) as HTMLInputElement;
+          const enter = () =>
+            input.dispatchEvent(
+              new KeyboardEvent("keydown", { key: "Enter", bubbles: true, cancelable: true }),
+            );
+          // Empty Enter is a no-op — no accidental blank answers.
+          enter();
+          const afterEmpty = w.sent.length;
+          input.value = "  Our own niche segment  ";
+          enter();
+          const row = document.querySelector(".message-options")!;
+          const spentAfter = {
+            sent: w.sent.map((e: any) => e.message ?? e.content ?? e),
+            afterEmpty,
+            chosen: input.classList.contains("is-chosen"),
+            answered: row.classList.contains("answered"),
+            inputsDisabled: Array.from(row.querySelectorAll("input")).every(
+              (i: any) => i.disabled,
+            ),
+          };
+          // A second Enter must be dead — the input is disabled with the row.
+          enter();
+          return { ...spentAfter, extra: w.sent.length - spentAfter.sent.length };
+        });
+        expect(out.afterEmpty, "an empty Enter must send nothing").toBe(0);
+        // Trimmed, and question-prefixed exactly like a click (two questions on screen).
+        expect(JSON.stringify(out.sent)).toContain("Our own niche segment");
+        expect(JSON.stringify(out.sent)).toContain("Who are the most important customers");
+        expect(out.chosen, "the input marks is-chosen like a strip").toBe(true);
+        expect(out.answered && out.inputsDisabled, "Enter must spend the menu").toBeTruthy();
+        expect(out.extra, "a second Enter must send nothing").toBe(0);
       });
 
       test("a single question sends the bare answer", async ({ page }) => {

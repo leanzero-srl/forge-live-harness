@@ -64,7 +64,7 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
       timeout: 300_000,
     });
 
-    const buttons = optionsRow.locator(".option-btn:not(.option-btn-own)");
+    const buttons = optionsRow.locator(".option-btn");
     // The ORDER is a recommended answer plus two other suggestions — three
     // strips minimum, and the prompt templates demand 3 options per question.
     expect(await buttons.count(), "fewer than 3 answer strips (recommended + 2 others)").toBeGreaterThanOrEqual(3);
@@ -81,27 +81,31 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
       "no visible Recommended badge on the first strip",
     ).toHaveText(/recommended/i);
     expect(await buttons.first().getAttribute("aria-label")).toMatch(/\(recommended\)$/);
-    // The client always appends its own escape hatch.
-    await expect(optionsRow.locator(".option-btn-own").first()).toHaveText(/type your own answer/i);
+    // ---- One answer per LINE, full width — strips, not chips --------------
+    const rowBox = await optionsRow.locator(".option-buttons").first().boundingBox();
+    const b0 = await buttons.nth(0).boundingBox();
+    const b1 = await buttons.nth(1).boundingBox();
+    expect(b0 && b1 && rowBox, "could not measure the strips").toBeTruthy();
+    expect(b1!.y, "strips must stack, not share a line").toBeGreaterThanOrEqual(b0!.y + b0!.height - 1);
+    expect(b0!.width, "a strip must span the row").toBeGreaterThan(rowBox!.width * 0.9);
 
-
-    // ---- "Type your own answer" is the escape hatch, live ------------------
-    // It must focus the composer and SEND NOTHING — it exists so a click-first
-    // flow never traps the user in the offered answers.
-    const ownBtn = optionsRow.locator(".option-btn-own").first();
+    // ---- "Type your own answer" is a STANDARD INPUT, live ------------------
+    const ownInput = optionsRow.locator(".option-own-input").first();
+    await expect(ownInput, "no inline own-answer input").toBeVisible();
+    expect(await ownInput.evaluate((el) => el.tagName), "must be a real input").toBe("INPUT");
+    expect(await ownInput.getAttribute("placeholder")).toMatch(/type your own answer/i);
+    // Typing alone sends nothing and does NOT spend the menu — the user may
+    // change their mind and click a strip after all. (Enter-submit itself is
+    // covered deterministically by the offline stub.)
     const userBubblesBeforeOwn = await frame.locator(".message.user").count();
-    await ownBtn.click();
-    expect(
-      await frame.locator("#chatInput").evaluate((el) => document.activeElement === el),
-      '"Type your own answer" did not focus the composer',
-    ).toBe(true);
+    await ownInput.click();
+    await ownInput.fill("half-typed thought");
     expect(
       await frame.locator(".message.user").count(),
-      '"Type your own answer" sent a message by itself',
+      "typing in the own-answer input sent a message by itself",
     ).toBe(userBubblesBeforeOwn);
-    // The menu is NOT spent by choosing to type — the user may change their
-    // mind and click an option after all.
     await expect(buttons.first()).toBeEnabled();
+    await ownInput.fill("");
 
     // ---- Click the recommendation ------------------------------------------
     // The options attach a beat before the streaming flag clears, and
