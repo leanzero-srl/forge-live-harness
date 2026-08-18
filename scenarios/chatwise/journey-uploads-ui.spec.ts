@@ -41,6 +41,15 @@ test("uploads journey: paperclip, chips, rejection line, image OCR, remove", asy
     const chip = frame.locator(`#attachmentRow .attachment-chip[data-filename="journey-${stamp}.md"]`);
     await expect(chip, "no done-chip appeared for the uploaded file").toBeVisible({ timeout: 60_000 });
     await expect(chip.locator(".chip-meta"), "the chip shows no char count").toContainText("chars");
+    // THE REGRESSION the user saw live: the temp "processing…" chip was never
+    // retired on success (and carried a pending: key this selector could not
+    // see), so the done chip appeared NEXT TO a stuck spinner.
+    await expect(chip, "duplicate chips for one file").toHaveCount(1);
+    await expect(chip, "still marked uploading after processing").not.toHaveClass(/uploading/);
+    expect(
+      await frame.locator("#attachmentRow .attachment-chip.uploading").count(),
+      "a processing chip outlived its upload",
+    ).toBe(0);
 
     conversationId = (await readAppState<string | null>(
       frame, GLOBAL_APP, "app.getActiveConversationId()",
@@ -109,6 +118,9 @@ test("uploads journey: paperclip, chips, rejection line, image OCR, remove", asy
     // honest placeholder — chars is the discriminator between "read" and
     // "not readable".
     expect(img.chars, "the image stored no OCR text — the browser hop did not run").toBeGreaterThan(60);
+    // The image path retires its processing chip too — same regression.
+    await expect(imgChip, "duplicate chips for the image").toHaveCount(1, { timeout: 30_000 });
+    await expect(imgChip, "image chip stuck on processing").not.toHaveClass(/uploading/, { timeout: 30_000 });
 
     // ---- DRAG AND DROP, against the DEPLOYED page --------------------------
     // The handler contract lives in the offline stub; what only THIS can prove
