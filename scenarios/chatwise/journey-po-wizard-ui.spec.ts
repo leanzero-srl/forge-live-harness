@@ -65,12 +65,25 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
     });
 
     const buttons = optionsRow.locator(".option-btn:not(.option-btn-own)");
-    expect(await buttons.count(), "a question with fewer than 2 options").toBeGreaterThanOrEqual(2);
-    // options[0] is the recommendation, and says so accessibly.
+    // The ORDER is a recommended answer plus two other suggestions — three
+    // strips minimum, and the prompt templates demand 3 options per question.
+    expect(await buttons.count(), "fewer than 3 answer strips (recommended + 2 others)").toBeGreaterThanOrEqual(3);
+    // Every strip carries real answer text — a strip with no information is a
+    // dead button, not a suggestion.
+    for (const t of await buttons.locator(".option-btn-text").allTextContents()) {
+      expect(t.trim().length, "an answer strip is empty").toBeGreaterThan(0);
+    }
+    // options[0] is the recommendation — marked VISIBLY (the badge a sighted
+    // user sees), by class, and accessibly.
     await expect(buttons.first()).toHaveClass(/recommended/);
+    await expect(
+      buttons.first().locator(".option-btn-badge"),
+      "no visible Recommended badge on the first strip",
+    ).toHaveText(/recommended/i);
     expect(await buttons.first().getAttribute("aria-label")).toMatch(/\(recommended\)$/);
     // The client always appends its own escape hatch.
     await expect(optionsRow.locator(".option-btn-own").first()).toHaveText(/type your own answer/i);
+
 
     // ---- "Type your own answer" is the escape hatch, live ------------------
     // It must focus the composer and SEND NOTHING — it exists so a click-first
@@ -97,6 +110,19 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
     await expect
       .poll(async () => readAppState<boolean>(frame, GLOBAL_APP, "app.components.chat.isStreaming"))
       .toBe(false);
+
+    // SETTLED rendering: during the typewriter the bubble is raw textContent
+    // (literal ##, partial prose) — at settle formatAIMessage must have turned
+    // the facilitator heading into a real <h2> and left no raw hashes behind.
+    const bubble = frame.locator(".message.assistant .message-bubble").first();
+    await expect(bubble.locator("h2").first()).toBeVisible();
+    expect(await bubble.innerText()).not.toMatch(/^##\s/m);
+
+    // Evidence: the settled bubble with its answer strips, from the deployed app.
+    await optionsRow.scrollIntoViewIfNeeded();
+    await frame.locator(".message.assistant").first().screenshot({
+      path: "test-results/po-answer-options.png",
+    });
     const chosen = ((await buttons.first().locator(".option-btn-text").textContent()) || "").trim();
     const userBubblesBefore = await frame.locator(".message.user").count();
     await buttons.first().click();
