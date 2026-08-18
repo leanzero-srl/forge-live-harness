@@ -456,6 +456,19 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
         if (!reduced) {
           expect(during.text, "the real answer must not be readable mid-generation").not.toBe("The fast one");
           expect(during.text!.length, "scramble keeps the real length — no layout shift").toBe("The fast one".length);
+          // CALMNESS IS THE CONTRACT. The first cut re-randomised every glyph
+          // every 55ms — a strobe. The field must be STABLE with only sparse
+          // shimmer: two samples ~250ms apart stay mostly identical.
+          const t0 = (await page.evaluate(
+            () => document.querySelector('[data-message-id="dec1"] .option-btn-text')!.textContent,
+          )) as string;
+          await page.waitForTimeout(250);
+          const t1 = (await page.evaluate(
+            () => document.querySelector('[data-message-id="dec1"] .option-btn-text')!.textContent,
+          )) as string;
+          let same = 0;
+          for (let i = 0; i < t0.length; i++) if (t0[i] === t1[i]) same++;
+          expect(same / t0.length, "the hold field churns like a strobe — it must shimmer sparsely").toBeGreaterThan(0.6);
         } else {
           // Reduced motion: no glyph churn — quiet disabled wait with real text.
           expect(during.text).toBe("The fast one");
