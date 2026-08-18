@@ -429,7 +429,7 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
         expect(out.extra, "a second Enter must send nothing").toBe(0);
       });
 
-      test("decoding: a streaming message scrambles its options, resolve reveals them", async ({ page }) => {
+      test("hold state: a streaming message shows skeleton bars, settle reveals real strips", async ({ page }) => {
         await mount(page, PAGES[surface], reduced);
         const during = await page.evaluate(() => {
           const w = window as any;
@@ -446,33 +446,21 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
             hidden: row.getAttribute("aria-hidden"),
             busy: row.getAttribute("aria-busy"),
             disabled: Array.from(row.querySelectorAll("button, input")).every((b: any) => b.disabled),
-            text: row.querySelector(".option-btn-text")!.textContent,
+            skels: row.querySelectorAll(".option-skel").length,
+            // innerText, not textContent: the badge and send button are
+            // visibility-hidden during the hold, which innerText respects.
+            readable: ((row as HTMLElement).innerText || "").trim(),
           };
         });
-        expect(during.decoding, "a streaming message's options must render decoding").toBe(true);
-        expect(during.hidden, "scramble must be aria-hidden").toBe("true");
+        expect(during.decoding, "a streaming message's options must render as the hold state").toBe(true);
+        expect(during.hidden, "the hold state must be aria-hidden").toBe("true");
         expect(during.busy).toBe("true");
-        expect(during.disabled, "decoding options must not be clickable").toBe(true);
-        if (!reduced) {
-          expect(during.text, "the real answer must not be readable mid-generation").not.toBe("The fast one");
-          expect(during.text!.length, "scramble keeps the real length — no layout shift").toBe("The fast one".length);
-          // CALMNESS IS THE CONTRACT. The first cut re-randomised every glyph
-          // every 55ms — a strobe. The field must be STABLE with only sparse
-          // shimmer: two samples ~250ms apart stay mostly identical.
-          const t0 = (await page.evaluate(
-            () => document.querySelector('[data-message-id="dec1"] .option-btn-text')!.textContent,
-          )) as string;
-          await page.waitForTimeout(250);
-          const t1 = (await page.evaluate(
-            () => document.querySelector('[data-message-id="dec1"] .option-btn-text')!.textContent,
-          )) as string;
-          let same = 0;
-          for (let i = 0; i < t0.length; i++) if (t0[i] === t1[i]) same++;
-          expect(same / t0.length, "the hold field churns like a strobe — it must shimmer sparsely").toBeGreaterThan(0.6);
-        } else {
-          // Reduced motion: no glyph churn — quiet disabled wait with real text.
-          expect(during.text).toBe("The fast one");
-        }
+        expect(during.disabled, "hold-state options must not be clickable").toBe(true);
+        // 1 question + 3 options = 4 skeleton bars, and NOTHING readable — no
+        // real text, and no scramble glyphs either (both scramble designs were
+        // rejected as eye strain; the hold must contain zero animated text).
+        expect(during.skels, "each text slot must hold a skeleton bar").toBe(4);
+        expect(during.readable, "the hold state must contain no readable text at all").toBe("");
 
         // The settle: handler re-attaches after the typewriter finishes.
         await page.evaluate(() => {
@@ -481,21 +469,23 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
           const msg = w.chat.messages.find((m: any) => m.id === "dec1");
           w.chat.attachAnswerOptions("dec1", msg.answerOptions);
         });
-        await page.waitForFunction(() => {
-          const row = document.querySelector('[data-message-id="dec1"] .message-options');
-          return row && !row.classList.contains("decoding");
-        }, undefined, { timeout: 3000 });
         const after = await page.evaluate(() => {
           const row = document.querySelector('[data-message-id="dec1"] .message-options')!;
           return {
+            decoding: row.classList.contains("decoding"),
+            reveal: row.classList.contains("options-reveal"),
+            skels: row.querySelectorAll(".option-skel").length,
             text: row.querySelector(".option-btn-text")!.textContent,
             hidden: row.getAttribute("aria-hidden"),
             enabled: !(row.querySelector(".option-btn") as HTMLButtonElement).disabled,
           };
         });
-        expect(after.text, "the resolve must land on the exact real text").toBe("The fast one");
+        expect(after.decoding, "the settled row must not stay in hold state").toBe(false);
+        expect(after.reveal, "the settled row must enter with the standard entrance").toBe(true);
+        expect(after.skels, "skeleton bars survived the reveal").toBe(0);
+        expect(after.text, "the real text must appear at settle").toBe("The fast one");
         expect(after.hidden).toBeNull();
-        expect(after.enabled, "resolved options must be clickable").toBe(true);
+        expect(after.enabled, "revealed options must be clickable").toBe(true);
         await page.evaluate(() => (window as any).chat.removeMessage("dec1"));
       });
 
