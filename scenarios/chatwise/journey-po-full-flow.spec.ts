@@ -1,19 +1,19 @@
-// JOURNEY: the FULL Product Owner flow, from a blank chat to a CREATED Jira
-// Epic — the whole point of the persona, driven end to end for the first time.
+// JOURNEY: the FULL Product Owner flow, THE DIRECT WAY — from a blank chat
+// to a CREATED Jira Epic with every wizard question answered through the
+// real UI, the way the click-first user actually drives it. No trust-command
+// shortcuts through the probing rounds: sheets are answered by clicking, a
+// field the wizard presents is approved ("lock it in"), and creation is
+// approved only when the wizard offers it. This is the persona's whole
+// purpose, exercised as its designed conversation.
 //
-// Two things are under test, deliberately at once:
-//  1. The wizard can actually carry a user from initiative → questions →
-//     agreed fields → preview → approval → a real Epic in Jira.
-//  2. The app NEVER shows a red error along the way. The per-model token
-//     quota (429) is the flow's natural predator — a multi-turn wizard run
-//     is exactly what exhausts a tier mid-conversation. The client now walks
-//     the model ladder, and a fully-blocked site must produce the friendly
-//     wait bubble, not an error. "The app should respond well to 429s and
-//     never error out."
+// Also under test on every turn: the app NEVER shows a red error. The
+// per-model token quota (429) is this flow's natural predator — a long
+// wizard run is exactly what exhausts a tier mid-conversation. The client
+// walks the model ladder; a fully-blocked site must produce the friendly
+// wait bubble, not an error.
 //
-// Model-variance tolerant by design: each turn ANSWERS whatever the wizard
-// dealt (answer sheet → click through it; prose → trust-command steer), so
-// the spec asserts the contract, not a fixed transcript.
+// Model-variance tolerant by design: each turn answers whatever the wizard
+// dealt, so the spec asserts the contract, not a fixed transcript.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { get, del } from "../../data/jira.mjs";
@@ -24,7 +24,7 @@ import {
 
 const T = getTarget("chatwise-global");
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
-const MAX_TURNS = 9;
+const MAX_TURNS = 14;
 const QUOTA_BUBBLE = /token allowance|Nothing was lost/i;
 
 test.describe.configure({ timeout: 1_500_000 });
@@ -106,6 +106,7 @@ test("PO full flow: initiative → wizard → approval → a real Epic in Jira, 
       timeout: 10_000,
     });
 
+    let sheetRounds = 0;
     let reply = await turn(
       page, frame,
       `I want an Epic in project ${PROJECT} for an internal "meeting-free deep work" program: ` +
@@ -137,19 +138,21 @@ test("PO full flow: initiative → wizard → approval → a real Epic in Jira, 
       }
       if (epicKey) break;
 
-      // Answer an open sheet if one is live; otherwise steer with prose.
+      // THE DIRECT FLOW: a live sheet is answered by CLICKING — never by
+      // typing around it, never by a trust command that skips the probing.
+      // A prose turn is either the wizard offering creation (approve it) or
+      // presenting a drafted field (approve THAT and move on) — both are the
+      // designed user actions at those steps.
       if (await answerSheet(page, frame)) {
+        sheetRounds += 1;
         reply = ((await frame.locator(".message.assistant").last().innerText()) || "").trim();
-      } else if (i < 2) {
-        reply = await turn(
-          page, frame,
-          "I trust your judgment completely — fill in ALL remaining fields yourself with best practices. Do not ask me anything else.",
-        );
-      } else {
+      } else if (/creat|preview|final|ready|approv/i.test(reply)) {
         reply = await turn(
           page, frame,
           `Approved — create the Epic in project ${PROJECT} now.`,
         );
+      } else {
+        reply = await turn(page, frame, "That looks right — lock it in and move on.");
       }
       await assertNoErrorBubble(frame);
       if (QUOTA_BUBBLE.test(reply)) {
@@ -168,6 +171,13 @@ test("PO full flow: initiative → wizard → approval → a real Epic in Jira, 
 
     // The final reply tells the user what was created, by key.
     expect(reply).toContain(epicKey!);
+    // And the road there was the GUIDED one: the wizard's questions were
+    // really answered through the UI, not steered around.
+    expect(
+      sheetRounds,
+      "the Epic was created without answering any question sheets — this was not the direct flow",
+    ).toBeGreaterThanOrEqual(2);
+    console.log(`direct flow: ${sheetRounds} question sheets answered by clicking, epic ${epicKey}`);
   } finally {
     if (epicKey) await del(`/rest/api/3/issue/${epicKey}`).catch(() => {});
     if (conversationId) {
