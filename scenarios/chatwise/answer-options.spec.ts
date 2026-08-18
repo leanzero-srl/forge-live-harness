@@ -145,6 +145,15 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
         expect(shape.ownPlaceholder).toMatch(/type your own answer/i);
         expect(shape.ownLabelled, "the inputs carry the question in aria-label").toBe(true);
         expect(shape.stacked, "answers must stack one per line, full width").toBe(true);
+        const sendShape = await page.evaluate(() => {
+          const send = document.querySelector(".option-send-btn") as HTMLButtonElement;
+          return send
+            ? { disabled: send.disabled, count: send.querySelector(".option-send-count")?.textContent }
+            : null;
+        });
+        expect(sendShape, "a multi-question row must carry a Send answers footer").toBeTruthy();
+        expect(sendShape!.disabled, "Send must be disabled before any answer").toBe(true);
+        expect(sendShape!.count).toBe("0/2");
         expect(shape.recommended).toBe(2);
         expect(shape.firstIsRecommended, "options[0] IS the recommendation").toBe(true);
         // The badge is decorative; the word rides in aria-label so a screen
@@ -306,90 +315,175 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
         }
       });
 
-      test("clicking submits that answer, once, and spends the menu", async ({ page }) => {
+      test("multi-question: clicks STAGE, and Send submits the whole sheet once", async ({ page }) => {
         await mount(page, PAGES[surface], reduced);
-        const sel = '[data-message-id="m1"] .option-btn';
-        const clicked = await page.evaluate((s) => {
-          const b = document.querySelector(s) as HTMLButtonElement;
-          b.click();
+        const afterFirst = await page.evaluate(() => {
+          const w = window as any;
+          const groups = document.querySelectorAll('[data-message-id="m1"] .option-group');
+          (groups[0].querySelector(".option-btn") as HTMLButtonElement).click();
+          const send = document.querySelector(".option-send-btn") as HTMLButtonElement;
           return {
-            sent: (window as any).sent.map((e: any) => e.message ?? e.content ?? e),
-            isChosen: b.classList.contains("is-chosen"),
+            sent: w.sent.length,
+            chosen: groups[0].querySelector(".option-btn")!.classList.contains("is-chosen"),
+            sendDisabled: send.disabled,
+            count: send.querySelector(".option-send-count")?.textContent,
           };
-        }, sel);
-        expect(JSON.stringify(clicked.sent)).toContain("Enterprise ops teams");
-        // Two questions on screen: a bare "SMB admins" is ambiguous to the
-        // model, and state fidelity is the entire point of the wizard.
-        expect(JSON.stringify(clicked.sent)).toContain("Who are the most important customers");
-        expect(clicked.isChosen).toBeTruthy();
+        });
+        // THE BROKEN FLOW: one click used to fire inference immediately,
+        // abandoning every other question on screen.
+        expect(afterFirst.sent, "a click on one of several questions must SEND NOTHING").toBe(0);
+        expect(afterFirst.chosen, "the click must stage visibly").toBe(true);
+        expect(afterFirst.sendDisabled, "Send stays disabled while questions remain").toBe(true);
+        expect(afterFirst.count).toBe("1/2");
 
-        const chosenBg = await page.evaluate(
-          () => getComputedStyle(document.querySelector(".option-btn.is-chosen")!).backgroundColor,
-        );
-        expect(alphaOf(chosenBg), "the chosen state must stay solid once disabled").toBe(1);
+        // Changing your mind restages within the group — still nothing sent.
+        const restaged = await page.evaluate(() => {
+          const w = window as any;
+          const g0 = document.querySelectorAll('[data-message-id="m1"] .option-group')[0];
+          const btns = g0.querySelectorAll(".option-btn");
+          (btns[1] as HTMLButtonElement).click();
+          return {
+            sent: w.sent.length,
+            first: btns[0].classList.contains("is-chosen"),
+            second: btns[1].classList.contains("is-chosen"),
+          };
+        });
+        expect(restaged.sent).toBe(0);
+        expect(restaged.first, "the old choice must unstage").toBe(false);
+        expect(restaged.second).toBe(true);
+
+        const submitted = await page.evaluate(() => {
+          const w = window as any;
+          const groups = document.querySelectorAll('[data-message-id="m1"] .option-group');
+          (groups[1].querySelector(".option-btn") as HTMLButtonElement).click();
+          const send = document.querySelector(".option-send-btn") as HTMLButtonElement;
+          const enabledAtFull = !send.disabled;
+          send.click();
+          return { enabledAtFull, sent: w.sent.map((e: any) => e.message ?? e.content ?? e) };
+        });
+        expect(submitted.enabledAtFull, "Send must arm once every question is answered").toBe(true);
+        expect(submitted.sent.length, "Send must submit exactly one message").toBe(1);
+        // The model-proof shape: its own questions quoted back with the answers.
+        const text = String(submitted.sent[0]);
+        expect(text).toContain("Here are my answers to your questions:");
+        expect(text).toContain("Q: Who are the most important customers");
+        expect(text).toMatch(/A: /);
 
         await settle(page);
         const spent = await page.evaluate(() => {
           const row = document.querySelector(".message-options")!;
+          const w = window as any;
+          const before = w.sent.length;
+          (document.querySelector(".option-send-btn") as HTMLButtonElement).click();
+          (row.querySelector(".option-btn") as HTMLButtonElement).click();
           return {
             answered: row.classList.contains("answered"),
             disabled: Array.from(row.querySelectorAll("button")).every((b) => b.disabled),
-            opacity: getComputedStyle(row).opacity,
+            extra: w.sent.length - before,
           };
         });
-        expect(spent.answered && spent.disabled).toBeTruthy();
-        // Spent rows stay a legible record of what was offered.
-        expect(spent.opacity).toBe("1");
-
-        // THE REGRESSION. _refreshOptionInteractivity re-runs on the very next
-        // addMessage — the user bubble this click produces — and "last row
-        // wins" used to hand the menu straight back.
-        const extra = await page.evaluate((s) => {
-          const w = window as any;
-          const before = w.sent.length;
-          (document.querySelector(s) as HTMLButtonElement).click();
-          return w.sent.length - before;
-        }, sel);
-        expect(extra, "a second click must send nothing").toBe(0);
+        expect(spent.answered && spent.disabled, "Send must spend the menu").toBeTruthy();
+        expect(spent.extra, "a spent sheet must never send again").toBe(0);
       });
 
-      test("the inline input submits on Enter, once, through the same path", async ({ page }) => {
+      test("the inline input STAGES in a multi-question sheet; Enter on a complete sheet sends", async ({ page }) => {
         await mount(page, PAGES[surface], reduced);
         const out = await page.evaluate(() => {
           const w = window as any;
-          const input = document.querySelector(
-            '[data-message-id="m1"] .option-own-input',
-          ) as HTMLInputElement;
+          const groups = document.querySelectorAll('[data-message-id="m1"] .option-group');
+          const input = groups[0].querySelector(".option-own-input") as HTMLInputElement;
           const enter = () =>
             input.dispatchEvent(
               new KeyboardEvent("keydown", { key: "Enter", bubbles: true, cancelable: true }),
             );
-          // Empty Enter is a no-op — no accidental blank answers.
+          // Empty Enter is a no-op.
           enter();
           const afterEmpty = w.sent.length;
+          // Typing stages live (input event), clears the group's strip choice.
+          (groups[0].querySelector(".option-btn") as HTMLButtonElement).click();
           input.value = "  Our own niche segment  ";
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+          const stripCleared = !groups[0].querySelector(".option-btn")!.classList.contains("is-chosen");
+          const sentAfterTyping = w.sent.length;
+          // Answer the second question by strip, then Enter in the input sends
+          // the complete sheet — the keyboard path needs no button.
+          (groups[1].querySelector(".option-btn") as HTMLButtonElement).click();
           enter();
+          const sent = w.sent.map((e: any) => e.message ?? e.content ?? e);
           const row = document.querySelector(".message-options")!;
-          const spentAfter = {
-            sent: w.sent.map((e: any) => e.message ?? e.content ?? e),
-            afterEmpty,
-            chosen: input.classList.contains("is-chosen"),
+          const spent = {
             answered: row.classList.contains("answered"),
-            inputsDisabled: Array.from(row.querySelectorAll("input")).every(
-              (i: any) => i.disabled,
-            ),
+            inputsDisabled: Array.from(row.querySelectorAll("input")).every((i: any) => i.disabled),
           };
-          // A second Enter must be dead — the input is disabled with the row.
           enter();
-          return { ...spentAfter, extra: w.sent.length - spentAfter.sent.length };
+          return { afterEmpty, stripCleared, sentAfterTyping, sent, ...spent, extra: w.sent.length - sent.length };
         });
         expect(out.afterEmpty, "an empty Enter must send nothing").toBe(0);
-        // Trimmed, and question-prefixed exactly like a click (two questions on screen).
-        expect(JSON.stringify(out.sent)).toContain("Our own niche segment");
-        expect(JSON.stringify(out.sent)).toContain("Who are the most important customers");
-        expect(out.chosen, "the input marks is-chosen like a strip").toBe(true);
-        expect(out.answered && out.inputsDisabled, "Enter must spend the menu").toBeTruthy();
+        expect(out.stripCleared, "typing must unstage the clicked strip").toBe(true);
+        expect(out.sentAfterTyping, "typing alone must send nothing").toBe(0);
+        expect(out.sent.length, "Enter on a complete sheet sends exactly once").toBe(1);
+        const text = String(out.sent[0]);
+        expect(text).toContain("A: Our own niche segment");
+        expect(text).toContain("Here are my answers to your questions:");
+        expect(out.answered && out.inputsDisabled, "the sheet must spend on send").toBeTruthy();
         expect(out.extra, "a second Enter must send nothing").toBe(0);
+      });
+
+      test("decoding: a streaming message scrambles its options, resolve reveals them", async ({ page }) => {
+        await mount(page, PAGES[surface], reduced);
+        const during = await page.evaluate(() => {
+          const w = window as any;
+          w.chat.addMessage({
+            id: "dec1",
+            type: "ai",
+            content: "thinking",
+            streaming: true,
+            answerOptions: [{ question: "Pick a lane?", options: ["The fast one", "The safe one", "The cheap one"] }],
+          });
+          const row = document.querySelector('[data-message-id="dec1"] .message-options')!;
+          return {
+            decoding: row.classList.contains("decoding"),
+            hidden: row.getAttribute("aria-hidden"),
+            busy: row.getAttribute("aria-busy"),
+            disabled: Array.from(row.querySelectorAll("button, input")).every((b: any) => b.disabled),
+            text: row.querySelector(".option-btn-text")!.textContent,
+          };
+        });
+        expect(during.decoding, "a streaming message's options must render decoding").toBe(true);
+        expect(during.hidden, "scramble must be aria-hidden").toBe("true");
+        expect(during.busy).toBe("true");
+        expect(during.disabled, "decoding options must not be clickable").toBe(true);
+        if (!reduced) {
+          expect(during.text, "the real answer must not be readable mid-generation").not.toBe("The fast one");
+          expect(during.text!.length, "scramble keeps the real length — no layout shift").toBe("The fast one".length);
+        } else {
+          // Reduced motion: no glyph churn — quiet disabled wait with real text.
+          expect(during.text).toBe("The fast one");
+        }
+
+        // The settle: handler re-attaches after the typewriter finishes.
+        await page.evaluate(() => {
+          const w = window as any;
+          w.chat.updateMessage("dec1", { content: "done", streaming: false });
+          const msg = w.chat.messages.find((m: any) => m.id === "dec1");
+          w.chat.attachAnswerOptions("dec1", msg.answerOptions);
+        });
+        await page.waitForFunction(() => {
+          const row = document.querySelector('[data-message-id="dec1"] .message-options');
+          return row && !row.classList.contains("decoding");
+        }, undefined, { timeout: 3000 });
+        const after = await page.evaluate(() => {
+          const row = document.querySelector('[data-message-id="dec1"] .message-options')!;
+          return {
+            text: row.querySelector(".option-btn-text")!.textContent,
+            hidden: row.getAttribute("aria-hidden"),
+            enabled: !(row.querySelector(".option-btn") as HTMLButtonElement).disabled,
+          };
+        });
+        expect(after.text, "the resolve must land on the exact real text").toBe("The fast one");
+        expect(after.hidden).toBeNull();
+        expect(after.enabled, "resolved options must be clickable").toBe(true);
+        await page.evaluate(() => (window as any).chat.removeMessage("dec1"));
       });
 
       test("a single question sends the bare answer", async ({ page }) => {
@@ -418,8 +512,10 @@ for (const surface of ["globalPage", "issuePanel"] as Surface[]) {
         // back clickable and the same question could be answered twice.
         await mount(page, PAGES[surface], reduced);
         await page.evaluate(() => {
-          const b = document.querySelector('[data-message-id="m1"] .option-btn') as HTMLButtonElement;
-          b.click();
+          const groups = document.querySelectorAll('[data-message-id="m1"] .option-group');
+          (groups[0].querySelector(".option-btn") as HTMLButtonElement).click();
+          (groups[1].querySelector(".option-btn") as HTMLButtonElement).click();
+          (document.querySelector(".option-send-btn") as HTMLButtonElement).click();
         });
         // Simulate the reload: rebuild every node from the message list.
         const after = await page.evaluate(() => {

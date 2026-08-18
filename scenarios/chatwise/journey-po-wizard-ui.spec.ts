@@ -64,6 +64,17 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
       timeout: 300_000,
     });
 
+    // While the typewriter fakes generation the strips DECODE (scrambled
+    // glyphs, disabled, aria-hidden) — the real text must only be readable
+    // once generation "completes". Wait for the settle + resolve before any
+    // content assertion.
+    await expect
+      .poll(async () => readAppState<boolean>(frame, GLOBAL_APP, "app.components.chat.isStreaming"))
+      .toBe(false);
+    await expect(optionsRow, "the decode never resolved").not.toHaveClass(/decoding/, {
+      timeout: 15_000,
+    });
+
     const buttons = optionsRow.locator(".option-btn");
     // The ORDER is a recommended answer plus two other suggestions — three
     // strips minimum, and the prompt templates demand 3 options per question.
@@ -94,9 +105,7 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
     await expect(ownInput, "no inline own-answer input").toBeVisible();
     expect(await ownInput.evaluate((el) => el.tagName), "must be a real input").toBe("INPUT");
     expect(await ownInput.getAttribute("placeholder")).toMatch(/type your own answer/i);
-    // Typing alone sends nothing and does NOT spend the menu — the user may
-    // change their mind and click a strip after all. (Enter-submit itself is
-    // covered deterministically by the offline stub.)
+    // Typing alone sends nothing — on a multi-question sheet it only STAGES.
     const userBubblesBeforeOwn = await frame.locator(".message.user").count();
     await ownInput.click();
     await ownInput.fill("half-typed thought");
@@ -105,15 +114,7 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
       "typing in the own-answer input sent a message by itself",
     ).toBe(userBubblesBeforeOwn);
     await expect(buttons.first()).toBeEnabled();
-    await ownInput.fill("");
-
-    // ---- Click the recommendation ------------------------------------------
-    // The options attach a beat before the streaming flag clears, and
-    // _chooseAnswer refuses clicks mid-stream. Wait for the composer to
-    // unlock, the way a person's read of the question naturally does.
-    await expect
-      .poll(async () => readAppState<boolean>(frame, GLOBAL_APP, "app.components.chat.isStreaming"))
-      .toBe(false);
+    await ownInput.fill(""); // unstages via the input event
 
     // SETTLED rendering: during the typewriter the bubble is raw textContent
     // (literal ##, partial prose) — at settle formatAIMessage must have turned
@@ -127,16 +128,48 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
     await frame.locator(".message.assistant").first().screenshot({
       path: "test-results/po-answer-options.png",
     });
-    const chosen = ((await buttons.first().locator(".option-btn-text").textContent()) || "").trim();
-    const userBubblesBefore = await frame.locator(".message.user").count();
-    await buttons.first().click();
 
-    // The click IS a send: a user bubble appears carrying the answer…
-    await expect
-      .poll(async () => frame.locator(".message.user").count(), { timeout: 15_000 })
-      .toBe(userBubblesBefore + 1);
-    const sentText = (await frame.locator(".message.user").last().textContent()) || "";
-    expect(sentText, "the clicked answer is not what was sent").toContain(chosen);
+    // ---- Answer the sheet --------------------------------------------------
+    // ONE question → a click sends. SEVERAL → clicks only STAGE, and the
+    // solid Send answers button (armed only at n/n) submits the whole sheet
+    // as Q:/A: pairs the Facilitator cannot misread.
+    const groups = optionsRow.locator(".option-group");
+    const groupCount = await groups.count();
+    const userBubblesBefore = await frame.locator(".message.user").count();
+    const chosen = ((await buttons.first().locator(".option-btn-text").textContent()) || "").trim();
+
+    if (groupCount > 1) {
+      const sendBtn = optionsRow.locator(".option-send-btn");
+      await expect(sendBtn, "no Send answers footer on a multi-question sheet").toBeVisible();
+      for (let i = 0; i < groupCount; i++) {
+        await expect(sendBtn, "Send armed before every question was answered").toBeDisabled();
+        await groups.nth(i).locator(".option-btn").first().click();
+        // THE BROKEN FLOW: a click on one of several questions used to fire
+        // inference immediately, abandoning the rest.
+        expect(
+          await frame.locator(".message.user").count(),
+          `clicking answer ${i + 1}/${groupCount} sent a message before the sheet was complete`,
+        ).toBe(userBubblesBefore);
+      }
+      await expect(sendBtn, "Send did not arm at n/n").toBeEnabled();
+      await expect(sendBtn.locator(".option-send-count")).toHaveText(`${groupCount}/${groupCount}`);
+      await sendBtn.click();
+
+      await expect
+        .poll(async () => frame.locator(".message.user").count(), { timeout: 15_000 })
+        .toBe(userBubblesBefore + 1);
+      const sentText = (await frame.locator(".message.user").last().textContent()) || "";
+      expect(sentText, "the sheet must go out as explicit Q/A pairs").toContain("Here are my answers");
+      expect(sentText).toContain("Q: ");
+      expect(sentText, "the recommended answer is missing from the sheet").toContain(chosen);
+    } else {
+      await buttons.first().click();
+      await expect
+        .poll(async () => frame.locator(".message.user").count(), { timeout: 15_000 })
+        .toBe(userBubblesBefore + 1);
+      const sentText = (await frame.locator(".message.user").last().textContent()) || "";
+      expect(sentText, "the clicked answer is not what was sent").toContain(chosen);
+    }
 
     // …the menu is spent immediately (no double-answering)…
     await expect(buttons.first()).toBeDisabled();
