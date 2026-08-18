@@ -110,6 +110,66 @@ test("uploads journey: paperclip, chips, rejection line, image OCR, remove", asy
     // "not readable".
     expect(img.chars, "the image stored no OCR text — the browser hop did not run").toBeGreaterThan(60);
 
+    // ---- DRAG AND DROP, against the DEPLOYED page --------------------------
+    // The handler contract lives in the offline stub; what only THIS can prove
+    // is the wiring: the listeners are really attached to the deployed body,
+    // the overlay really exists in the shipped markup, and a dropped file
+    // really reaches the same upload path as the paperclip. The DataTransfer
+    // is synthesised in-frame — Playwright cannot start an OS drag — shaped
+    // exactly as a browser would shape it.
+    const dropName = `dropped-${stamp}.md`;
+    const overlayStates = await frame.locator("body").evaluate(async (body, name) => {
+      const mk = (type: string, dt: unknown) => {
+        const ev = new DragEvent(type, { bubbles: true, cancelable: true });
+        Object.defineProperty(ev, "dataTransfer", { value: dt });
+        body.dispatchEvent(ev);
+      };
+      const file = new File(
+        [`# Dropped\n\nThis file arrived by drag and drop, not the paperclip.`],
+        name,
+        { type: "text/markdown" },
+      );
+      const dt = {
+        types: ["Files"],
+        items: [{ kind: "file", type: file.type, webkitGetAsEntry: () => null }],
+        files: [file],
+        dropEffect: "none",
+      };
+      const overlay = () =>
+        document.getElementById("dropOverlay")?.classList.contains("visible") === true;
+      mk("dragenter", dt);
+      const during = overlay();
+      mk("dragover", dt);
+      mk("drop", dt);
+      const after = overlay();
+      return { during, after };
+    }, dropName);
+    expect(overlayStates.during, "the drop overlay never lit up on dragenter").toBe(true);
+    expect(overlayStates.after, "the overlay stayed lit after the drop").toBe(false);
+
+    const dropChip = frame.locator(`#attachmentRow .attachment-chip[data-filename="${dropName}"]`);
+    await expect(dropChip, "the dropped file produced no chip").toBeVisible({ timeout: 60_000 });
+    await expect
+      .poll(async () => {
+        const r = await callResolver<any>(frame, GLOBAL_APP, "getChatFiles", { conversationId });
+        return (r?.files || []).some((f: any) => f.filename === dropName);
+      }, { timeout: 30_000 })
+      .toBe(true);
+
+    // ---- PASTE, same wiring ------------------------------------------------
+    const pasteName = `pasted-${stamp}.txt`;
+    await frame.locator("#chatInput").evaluate((input, name) => {
+      const dt = new DataTransfer();
+      dt.items.add(new File(["Pasted straight into the composer."], name, { type: "text/plain" }));
+      input.dispatchEvent(
+        new ClipboardEvent("paste", { bubbles: true, cancelable: true, clipboardData: dt }),
+      );
+    }, pasteName);
+    await expect(
+      frame.locator(`#attachmentRow .attachment-chip[data-filename="${pasteName}"]`),
+      "the pasted file produced no chip",
+    ).toBeVisible({ timeout: 60_000 });
+
     // ---- Remove a chip through its own ✕ ----------------------------------
     await chip.hover();
     await chip.locator(".chip-remove").click();

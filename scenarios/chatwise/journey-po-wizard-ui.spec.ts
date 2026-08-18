@@ -72,6 +72,24 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
     // The client always appends its own escape hatch.
     await expect(optionsRow.locator(".option-btn-own").first()).toHaveText(/type your own answer/i);
 
+    // ---- "Type your own answer" is the escape hatch, live ------------------
+    // It must focus the composer and SEND NOTHING — it exists so a click-first
+    // flow never traps the user in the offered answers.
+    const ownBtn = optionsRow.locator(".option-btn-own").first();
+    const userBubblesBeforeOwn = await frame.locator(".message.user").count();
+    await ownBtn.click();
+    expect(
+      await frame.locator("#chatInput").evaluate((el) => document.activeElement === el),
+      '"Type your own answer" did not focus the composer',
+    ).toBe(true);
+    expect(
+      await frame.locator(".message.user").count(),
+      '"Type your own answer" sent a message by itself',
+    ).toBe(userBubblesBeforeOwn);
+    // The menu is NOT spent by choosing to type — the user may change their
+    // mind and click an option after all.
+    await expect(buttons.first()).toBeEnabled();
+
     // ---- Click the recommendation ------------------------------------------
     // The options attach a beat before the streaming flag clears, and
     // _chooseAnswer refuses clicks mid-stream. Wait for the composer to
