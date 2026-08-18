@@ -1,22 +1,24 @@
-// LIVE: the window between a major-version deploy and its approval.
+// LIVE: the agile capability gate, from the approved side.
 //
-// Adding a scope makes the app a MAJOR version. Every install must click
-// Approve, and with Rolling Releases the new code ships BEFORE that happens —
-// so for a period measured in days the agile scopes are declared and refused
-// on an install that is otherwise perfectly healthy.
+// This spec was written during the window between the major-version deploy and
+// its approval, when the only provable claim was that the tools are WITHHELD
+// and nothing 403s at the user. Both installs are now upgraded, so it asserts
+// the stronger thing: agile is actually reachable.
 //
-// This is the only moment that state can be tested, and it is the state real
-// customers will be in. What must hold: the agile tools are not offered at all
-// (seven schemas that can only 403 still cost tokens on every iteration), and
-// a forced call explains the actual cause rather than surfacing a raw 403,
-// which reads as "you lack permission" — a completely different problem with a
-// completely different fix.
+// The no-raw-403 assertion is kept and still earns its place. If the scopes are
+// ever lost — a manifest edit, a re-install, a customer who has not approved —
+// the failure must arrive as a sentence naming the pending approval, not as
+// "unauthorized", which reads as "you lack permission": a completely different
+// problem with a completely different fix.
+//
+// `agile-end-to-end.spec.ts` proves the tools WORK. This one proves they are
+// offered and that the failure path is humane.
 import { test, expect } from "@playwright/test";
 import { launchHarnessContext } from "../../forge/browser";
 import { getTarget } from "../../config/targets";
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 
-test("agile degrades honestly before the upgrade is approved", async () => {
+test("agile is reachable, and never leaks a raw authorization failure", async () => {
   test.setTimeout(600_000);
   const T = getTarget("chatwise-global");
   const context = await launchHarnessContext({});
