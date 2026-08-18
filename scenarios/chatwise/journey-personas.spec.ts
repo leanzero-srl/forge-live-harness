@@ -197,7 +197,11 @@ test("Epic Master: decomposes a real epic into a real hierarchy", async ({ page 
     // CAPABILITY: Jira state, read back BY KEY (never JQL — eventually
     // consistent). This is Epic Master doing the exact thing its description
     // sells, on its own configuration, for the first time ever.
-    const mentioned = Array.from(new Set(reply.match(/\b[A-Z][A-Z0-9_]+-\d+\b/g) || []))
+    // No \b boundaries: the reply is bubble textContent, which glues block
+    // elements together ("...843403WFH-1617"), and \b never matches between a
+    // digit and a letter — a glued key would be invisible. The project key is
+    // known, so match it literally.
+    const mentioned = Array.from(new Set(reply.match(new RegExp(`${PROJECT}-\\d+`, "g")) || []))
       .filter((k) => k !== epicKey);
     expect(mentioned.length, `the reply names no created issues: ${reply.slice(0, 300)}`).toBeGreaterThanOrEqual(2);
     for (const key of mentioned.slice(0, 4)) {

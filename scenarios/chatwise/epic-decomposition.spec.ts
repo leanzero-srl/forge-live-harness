@@ -106,7 +106,10 @@ test("asking to split an Epic produces typed children with real parents", async 
     // is on what Jira actually stored, fetched by key. A model that claimed to
     // create issues it did not create fails on the GET.
     const reply = String(data.result?.response || "");
-    const mentioned = Array.from(new Set(reply.match(/\b[A-Z][A-Z0-9_]+-\d+\b/g) || [])).filter(
+    // Project-scoped, no \b boundaries — \b fails between a digit and a
+    // letter, so a key glued to preceding text is invisible to a bounded
+    // match (this bit journey-personas, whose reply is DOM textContent).
+    const mentioned = Array.from(new Set(reply.match(new RegExp(`${PROJECT}-\\d+`, "g")) || [])).filter(
       (k) => k !== epicKey,
     );
     console.log("keys mentioned in the reply:", mentioned);
