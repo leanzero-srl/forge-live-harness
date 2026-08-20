@@ -6,11 +6,20 @@
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 
-const ATT = `sv-aql-watch-${Date.now().toString(36)}`;
-const ME = "sv-aql-watcher";
-const OP = "sv-aql-op-owner";
+// SV-SEC-1: these are REAL wolfaenpak accounts, not synthetic ids. The resolvers driven here now
+// verify the caller's own entitlement to the target content before the app acts on it, so an
+// unresolvable account id is correctly REFUSED — which is the whole point of the fix, and means a
+// synthetic actor can no longer stand in for a person on these paths. (The refusal itself is
+// covered by authz-content-gate.spec.ts; this spec is about the feature working for real users.)
+// watchArtifact and the pageId-filtered recentDispatches both reach the gate, so the ATTACHMENT,
+// the PAGE and the watcher are real. OP/OTHER stay synthetic — operator-scoped dispatch listing
+// filters on the caller's own accountId and never touches content.
+const ATT = process.env.SV_ATTACHMENT_ID || "att265945089"; // the seeded fixture attachment
+const ME = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";   // Mihai — real, can read the fixture
+// OP is real too: the pageId-filtered recentDispatches call below reaches the entitlement gate.
+const OP = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55"; // Gabriela — real, can read the fixture page
 const OTHER = "sv-aql-op-other";
-const PAGE = "sv-aql-page-watchtest";
+const PAGE = process.env.SV_PAGE_ID || "265912321";          // the fixture page
 const inv = (fn: string, params: Record<string, string>) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
 const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(val) });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;

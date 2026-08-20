@@ -9,9 +9,18 @@ import { getTestState } from "../../testhook/client";
 
 const PAGE = process.env.SV_PAGE_ID || "265912321";
 const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
+// SV-SEC-1: these are REAL wolfaenpak accounts, not synthetic ids. The resolvers driven here now
+// verify the caller's own entitlement to the target content before the app acts on it, so an
+// unresolvable account id is correctly REFUSED — which is the whole point of the fix, and means a
+// synthetic actor can no longer stand in for a person on these paths. (The refusal itself is
+// covered by authz-content-gate.spec.ts; this spec is about the feature working for real users.)
+// OWNER stays SYNTHETIC on purpose: requestSectionEdit answers the owner from the seal record
+// itself (self-knowledge, checked before the entitlement gate), so the owner-can't-request guard
+// still exercises correctly without a third person. The two REQUESTERS must be real, because
+// their path does reach the gate.
 const OWNER = "sv-aql-secowner";
-const REQ = "sv-aql-secreq1";
-const REQ2 = "sv-aql-secreq2";
+const REQ = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55";  // Gabriela — real, can read the page
+const REQ2 = "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b"; // LeanZero SRL — real, can read the page
 const SECTION = `sv-aql-sec-${Date.now()}`;
 const SEAL_KEY = `section-protection-${SECTION}`;
 const reqKey = (a: string) => `section-edit-request-${SECTION}-${a}`;

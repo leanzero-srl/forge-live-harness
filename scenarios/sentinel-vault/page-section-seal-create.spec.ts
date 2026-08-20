@@ -10,7 +10,12 @@ import { spaceIdByKey, createPage, readPage, deletePage } from "../../data/confl
 import { heading, paragraph } from "../../data/adf.mjs";
 
 const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
-const ACTOR = "sv-aql-sec-creator";
+// SV-SEC-1: these are REAL wolfaenpak accounts, not synthetic ids. The resolvers driven here now
+// verify the caller's own entitlement to the target content before the app acts on it, so an
+// unresolvable account id is correctly REFUSED — which is the whole point of the fix, and means a
+// synthetic actor can no longer stand in for a person on these paths. (The refusal itself is
+// covered by authz-content-gate.spec.ts; this spec is about the feature working for real users.)
+const ACTOR = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"; // Mihai — can edit the disposable page
 const inv = (fn: string, params: Record<string, string>) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
