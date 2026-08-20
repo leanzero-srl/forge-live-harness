@@ -125,7 +125,13 @@ test(`🔎 sealed-image resize (${POLICY}): saved-or-reverted per policy, never 
       const now = await readPage(pg.id);
       return JSON.stringify(now.adf).includes(att.fileId) ? "restored" : false;
     }, { timeout: 90_000, interval: 4_000, label: "positive control: removed sealed media restored" });
-    const afterControl = await countCommentsMatching(pg.id, filename);
+    // The RESTORE and the COMMENT are two separate writes; observing the restore does not mean
+    // the comment has landed yet. Reading the count once raced that gap (~1 run in 2). Poll for
+    // the comment instead — the assertion is unchanged, it just stops sampling too early.
+    const afterControl = await waitForTerminal(async () => {
+      const n = await countCommentsMatching(pg.id, filename);
+      return n > comments ? n : false;
+    }, { timeout: 60_000, interval: 3_000, label: "positive control: violation comment posted" });
     expect(afterControl, "positive control produced a violation comment").toBeGreaterThan(comments);
     console.log("### positive control: restore + comment ✓ (pipeline was live)");
   } finally {
