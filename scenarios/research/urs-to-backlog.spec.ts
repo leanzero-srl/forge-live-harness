@@ -38,9 +38,14 @@ async function turn(frame: any, text: string, label: string): Promise<string> {
   await expect
     .poll(async () => frame.locator(".message.assistant").count(), { timeout: 950_000 })
     .toBeGreaterThan(before);
+  // The SAME ceiling as the message-arrival poll. 180 s is right for an
+  // ordinary turn and wrong for this one: drafting a backlog from a
+  // 44-requirement specification is one extraction call plus one per epic, and
+  // the streaming flag stays true for the whole of it. The first run of this
+  // spec failed here, on the test's own impatience, with the app working.
   await expect
     .poll(async () => readAppState<boolean>(frame, GLOBAL_APP, "app.components.chat.isStreaming"), {
-      timeout: 180_000,
+      timeout: 950_000,
     })
     .toBe(false);
   const reply = ((await frame.locator(".message.assistant").last().innerText()) || "").trim();
