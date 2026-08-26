@@ -89,9 +89,10 @@ test("the URS becomes a real, traceable backlog in Jira", async ({ page }) => {
     expect(cov, `no coverage line in: ${preview.slice(0, 500)}`).toBeTruthy();
     const [, pct, covered, total] = cov!;
     console.log(`\n>>> ${total} requirements read, ${covered} covered (${pct}%)`);
-    // The document has ~132 numbered requirements. Reading fewer than 60 means
-    // the windowing or the extraction is losing most of the specification.
-    expect(Number(total), "far too few requirements extracted from a 132-requirement URS").toBeGreaterThanOrEqual(60);
+    // 44 numbered requirements, plus the scenarios and non-goals that are also
+    // worth extracting. Below 35 means the windowing or the extraction is
+    // losing a real part of the specification.
+    expect(Number(total), "far too few requirements extracted from a 44-requirement URS").toBeGreaterThanOrEqual(35);
     expect(Number(pct), "coverage too low to call this a backlog OF the document").toBeGreaterThanOrEqual(70);
 
     const totals = /Backlog draft — (\d+) issues/.exec(preview);
