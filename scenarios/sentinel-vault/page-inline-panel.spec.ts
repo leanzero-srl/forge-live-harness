@@ -15,22 +15,35 @@ test("inline-panel loads past spinner, shows the sealed fixture, and agrees with
   mkdirSync(OUT, { recursive: true });
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(9000);
-  await page.screenshot({ path: `${OUT}/page.png` });
 
   const iframes = page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"], iframe[src*="atlassian-dev.net"]');
-  const n = await iframes.count();
 
-  // 1) find the DEV inline-panel (has .sv-panel-container; the banner iframe does not)
+  // 1) find the DEV inline-panel (has .sv-panel-container; the banner iframe does not) and the
+  // dev doc-ribbon banner.
+  //
+  // POLL, do not sleep. The it49 lesson, which this spec had not picked up: the banner iframe
+  // lazy-loads and renders a skeleton bar first, so a fixed waitForTimeout RACES it and captures
+  // an empty body — a flake that reads exactly like "the banner is broken". Re-resolve the frames
+  // on every iteration too: Forge iframes REMOUNT after first paint, so a reference taken before
+  // the remount goes stale.
   let panel: any = null, bannerText = "";
-  for (let i = 0; i < n; i++) {
-    const src = (await iframes.nth(i).getAttribute("src").catch(() => "")) || "";
-    if (!src.includes(DEV)) continue;
-    const cf = iframes.nth(i).contentFrame();
-    if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) { panel = cf; continue; }
-    // the doc-ribbon banner (NOT the panel) is the iframe carrying the "Manage Attachments" action
-    const t = (await cf.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").trim();
-    if (/Manage Attachments/i.test(t) && /on this page/i.test(t)) bannerText = t.slice(0, 90);
+  const deadline = Date.now() + 45_000;
+  while (Date.now() < deadline) {
+    panel = null; bannerText = "";
+    const n = await iframes.count();
+    for (let i = 0; i < n; i++) {
+      const src = (await iframes.nth(i).getAttribute("src").catch(() => "")) || "";
+      if (!src.includes(DEV)) continue;
+      const cf = iframes.nth(i).contentFrame();
+      if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) { panel = cf; continue; }
+      // the doc-ribbon banner (NOT the panel) is the iframe carrying the "Manage Attachments" action
+      const t = (await cf.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").trim();
+      if (/Manage Attachments/i.test(t) && /on this page/i.test(t)) bannerText = t.slice(0, 90);
+    }
+    if (panel && bannerText) break;
+    await page.waitForTimeout(1500);
   }
+  await page.screenshot({ path: `${OUT}/page.png` });
   expect(panel, "dev inline-panel present on the page").toBeTruthy();
 
   // 2) STUCK-LOADING GUARD: the spinner must not be the terminal state (it26 hang class)
