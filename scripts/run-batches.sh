@@ -2,8 +2,9 @@
 # Batched, evidence-backed scenario runner.
 #
 # A full-suite `npx playwright test scenarios/<app>` in one shot has two failure
-# modes this script exists to kill: (1) a wedged "Chrome for Testing" / stale
-# profile Singleton* lock poisons every browser-lane spec after the first crash,
+# modes this script exists to kill: (1) a wedged browser holding the persistent
+# profile / a stale Singleton* lock poisons every browser-lane spec after the first
+# crash — matched by --user-data-dir, since the launcher prefers the INSTALLED Chrome,
 # and (2) a run that silently skipped or double-ran a spec still "looks green".
 # So: plan the run up front, execute one small batch at a time (browser lanes get
 # a clean browser), and refuse to call the run good until the merged evidence
@@ -17,8 +18,9 @@
 #       per batch. Writes evidence/<app>/<run-id>/plan.json.
 #
 #   scripts/run-batches.sh <scenarioDir> --batch N --run-id R
-#       Run ONE batch in the foreground. Browser-lane batches first kill any
-#       "Chrome for Testing" and clear .auth/profile Singleton* locks. Emits
+#       Run ONE batch in the foreground. Browser-lane batches first kill anything
+#       holding .auth/profile (matched by --user-data-dir, so the operator's own
+#       Chrome is never touched) and clear its Singleton* locks. Emits
 #       line output + JSON report to evidence/<app>/<R>/batch-N.json and
 #       records the exit code in batch-N.exit. Exits with playwright's code.
 #
@@ -135,8 +137,24 @@ if [ "$MODE" = "batch" ]; then
   if [ "$LANE" = "browser" ]; then
     # A dead Chrome or a stale profile lock makes the persistent context refuse
     # to launch and fails the whole batch before the first test runs.
+    #
+    # Match on the PROFILE PATH, not on the binary name. forge/browser.ts prefers
+    # channel:"chrome", so the leftover is usually the INSTALLED "Google Chrome" and a
+    # pkill for "Chrome for Testing" walks straight past it — which is how a wedged
+    # browser survived the cleanup that exists to remove it and timed out a whole batch
+    # in fixture setup. Matching the profile path also guarantees we never touch the
+    # operator's own Chrome, which shares the binary but not the --user-data-dir.
     pkill -f "Chrome for Testing" || true
-    rm -f .auth/profile/SingletonLock .auth/profile/SingletonSocket .auth/profile/SingletonCookie
+    PROFILE_ABS="$(cd "$(dirname "$0")/.." && pwd)/.auth/profile"
+    pkill -f -- "--user-data-dir=$PROFILE_ABS" || true
+    sleep 2
+    # RunningChromeVersion belongs in this list. It is a symlink Chrome writes on start and
+    # removes on a clean exit, and a leftover one from a killed run makes launchPersistentContext
+    # die with "Target page, context or browser has been closed" even with every Singleton* gone —
+    # which reads as a broken profile rather than as leftover state. Clearing the Singletons alone
+    # is not enough; proved by launching by hand with each file removed in turn.
+    rm -f .auth/profile/SingletonLock .auth/profile/SingletonSocket .auth/profile/SingletonCookie \
+          .auth/profile/RunningChromeVersion
   fi
 
   PLAYWRIGHT_JSON_OUTPUT_NAME="$EV_DIR/batch-$BATCH_N.json" \
