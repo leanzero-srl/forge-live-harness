@@ -127,7 +127,11 @@ test.describe("#6 section edit-access request/approve/deny loop", () => {
       const r = await inv("requestSectionEdit", { section: expSection, actor: REQ, reason: "late" });
       expect(r.result?.success, "a request is still accepted while the seal record exists").toBe(true);
       const ap = await inv("approveSectionEdit", { section: expSection, actor: OWNER, requester: REQ });
-      expect(ap.result?.reason, "approving an expired seal is rejected").toMatch(/expired/i);
+      // The refusal is unchanged (it54: the grant would be born dead); the WORDING changed with
+      // the 2026-08-27 owner feedback so it names the remedy the UI now offers, since a bare
+      // "expired" is what made Approve look like a dead button. Assert the remedy, not one word.
+      expect(ap.result?.reason, "approving a lapsed seal is rejected").toMatch(/lapsed|expired/i);
+      expect(ap.result?.reason, "…and the refusal points at Extend").toMatch(/extend/i);
       expect(await getKvs(expGrantKey), "no zombie grant is written for an expired seal").toBeFalsy();
       console.log("### it54: expired-seal approve rejected, no zombie grant ✓");
     } finally {
