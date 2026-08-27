@@ -21,7 +21,25 @@ export const STORAGE_STATE = path.join(AUTH_DIR, "storage-state.json");
 
 export const EVIDENCE_DIR = process.env.EVIDENCE_DIR ?? path.join(REPO_ROOT, "evidence");
 
-export const HEADLESS = process.env.HEADLESS === "1";
+/**
+ * Headless by DEFAULT; `HEADED=1` (or `HEADLESS=0`) opens a visible window.
+ *
+ * It used to be the other way round, and headed was the wrong default for a suite that
+ * runs 30+ browser specs unattended. Two reasons it flipped:
+ *
+ *   - A headed launch on a cold profile can raise a MODAL first-run dialog ("Something
+ *     went wrong when opening your profile"). Nothing is watching to click OK, so the
+ *     launch sits there until the 120s fixture timeout — and because sharedContext is a
+ *     WORKER fixture, that one hang took out ten specs in a row. Headless has no dialog
+ *     to block on: the same spec goes from a 120s timeout to passing in 15s.
+ *   - It stops the suite throwing browser windows over whatever the operator is doing.
+ *
+ * auth/auth.setup.ts passes `headed: true` explicitly, so an interactive login is
+ * unaffected — and that is the one flow that genuinely needs a window.
+ */
+export const HEADLESS = process.env.HEADED === "1" ? false
+  : process.env.HEADLESS === "0" ? false
+  : true;
 export const VIEWPORT = { width: 1440, height: 900 };
 
 /**

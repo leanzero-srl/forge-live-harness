@@ -98,7 +98,19 @@ test("B11: live AI validation (real Haiku) — enqueue → queue → findings, w
     expect(refs, "a finding references the missing Document Owner rule").toMatch(/owner|document owner/);
 
     // getAiFindings returns the stored findings with per-finding triage state attached.
-    const fnd = await inv("getAiFindings", { page: page.id, space: SPACE });
+    // getAiFindings gates on canReadPage — the findings quote up to 25 verbatim excerpts of the
+    // page body back — so the caller has to be someone who can actually READ the page, which is
+    // NOT the same person as the one allowed to enqueue.
+    //
+    // Found 2026-08-27: the steward in admin-settings-space-WFH is UNLICENSED. Confluence answers
+    // `content.permission.check.user.no.access` — "User is not allowed to use Confluence" — for
+    // her, so the app is right to refuse. She can still enqueue, because in a webtrigger asUser()
+    // has no session and isOperatorSteward can only answer from the explicit adminUsers list. A
+    // steward-gated ACTION and a content-gated READ are therefore two different questions, and a
+    // steward with no product licence passes the first and fails the second. Use the harness user
+    // for the read; the steward stays where the spec actually means to test the steward gate.
+    const READER = process.env.SV_HARNESS_ACCOUNT_ID || "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
+    const fnd = await inv("getAiFindings", { page: page.id, space: SPACE, actor: READER });
     expect(fnd.result?.aiEnabled, "getAiFindings reports AI enabled for the space").toBe(true);
     expect(fnd.result?.findings?.findings?.length, "findings are retrievable after the run").toBeGreaterThan(0);
     expect(fnd.result.findings.findings[0].state, "each finding carries a triage state (default open)").toBeTruthy();
