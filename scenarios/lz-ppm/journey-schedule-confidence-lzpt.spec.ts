@@ -63,9 +63,14 @@ test("dashboard: schedule confidence computes ordered P50/P80/P90 on LZPT", asyn
   expect(a.drivers, "drivers listed").toBeGreaterThan(0);
   await card.screenshot({ path: "evidence/schedule-confidence-medium.png" }).catch(() => {});
 
-  // Hover a bar → tooltip.
-  await card.locator('[data-testid="sc-bar"]').first().hover({ force: true });
+  // Hover a bar → tooltip. A real mouse move (not a forced hover on the iframe's
+  // FrameLocator, which landed nowhere) — same gesture the offline probe verified.
+  const bar = card.locator('[data-testid="sc-bar"]').first();
+  await bar.scrollIntoViewIfNeeded();
   await page.waitForTimeout(300);
+  const bb = await bar.boundingBox();
+  if (bb) { await page.mouse.move(bb.x - 40, bb.y - 40); await page.mouse.move(bb.x + bb.width / 2, bb.y + bb.height / 2, { steps: 4 }); }
+  await page.waitForTimeout(400);
   const tip = (await card.locator('[role="status"]').textContent().catch(() => "")) || "";
   console.log("TOOLTIP", tip);
   expect(tip).toMatch(/week of .* of \d+ runs/);
