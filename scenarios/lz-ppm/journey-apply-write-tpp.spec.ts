@@ -133,7 +133,10 @@ test("TPP APPLY: a plan on a project whose edit screen omits the date fields sti
         const box = await row.boundingBox().catch(() => null);
         if (!box) { await page.waitForTimeout(2000); continue; }
         // Click well right of the sticky sidebar, in the middle of the visible timeline.
-        const x = Math.max(box.x + 700, 1000);
+        // The ghost click ignores NON-WORKING days, and which weekday a fixed x lands on
+        // drifts with the calendar (fit-to-work scrolls to today on a dateless plan) — so
+        // walk right by ~3 days per attempt instead of hammering the same pixel.
+        const x = Math.max(box.x + 700, 1000) + attempt * 40;
         await page.mouse.click(x, box.y + box.height / 2);
         await page.waitForTimeout(1500);
         done = (await frame.locator(`[data-testid="gantt-bar"][data-key="${key}"]`).count()) > 0;
