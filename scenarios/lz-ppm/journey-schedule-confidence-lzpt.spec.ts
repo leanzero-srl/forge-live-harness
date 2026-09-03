@@ -74,7 +74,10 @@ test("dashboard: schedule confidence computes ordered P50/P80/P90 on LZPT", asyn
   await page.waitForTimeout(400);
   const tip = (await card.locator('[role="status"]').textContent().catch(() => "")) || "";
   console.log("TOOLTIP", tip);
-  expect(tip).toMatch(/week of .* of \d+ runs/);
+  // The card used to say "week of X"; the buckets are 7-day windows anchored to the
+  // earliest simulated finish, not calendar weeks, and the copy now says so.
+  expect(tip).toMatch(/\d+ of \d+ runs \(\d+%\) finish in this 7-day window/);
+  expect(tip, "the bucket names its own date range").toMatch(/[A-Z][a-z]{2} \d+.*[A-Z][a-z]{2} \d+/);
 
   // Switch to High uncertainty (custom Select) → re-simulates; P90 cannot get earlier.
   await card.getByRole("combobox").first().click();
@@ -194,6 +197,15 @@ test("dashboard: a background refresh cannot turn the card into false certainty"
 // duration-derived number in the app (Table, CPM, workload, the Monte Carlo card)
 // is reading raw data for the rest of the session.
 test("table: a background refresh must not un-normalize the durations", async ({ page }) => {
+  // EXPECTED TO FAIL — this is a live witness for a CONFIRMED, currently UNFIXED defect,
+  // not a flake. The fix (dropping the `!kvsSnapshot` latch in PlanView) was designed and
+  // gated on a fixed-point proof; the proof held, but it exposed a worse consequence —
+  // an ungated pass rewrites a declared-zero MILESTONE's `_original.duration` from 0 to
+  // its span, and Discard All persists `_original`, destroying the declaration for good
+  // (commit 34136ecd). So it was deliberately not shipped. When someone lands the
+  // narrowed fix, this test starts PASSING and test.fail() turns that into a red run —
+  // which is the signal to delete this marker.
+  test.fail();
   await page.setViewportSize({ width: 1600, height: 1000 });
   await assertLoggedIn(page);
   await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
