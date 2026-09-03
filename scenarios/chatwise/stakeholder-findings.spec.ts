@@ -145,11 +145,26 @@ test("FINDING 2/4: a write to an ARCHIVED issue is not blamed on screen configur
     key = String(made.key);
     const KEY = key;
 
-    // Archiving needs Jira Premium. If this site cannot archive, SKIP rather
-    // than pass — a test that quietly proves nothing is worse than no test.
-    const arch = await put(`/rest/api/3/issue/${KEY}/archive`, undefined).catch((e: any) => e);
-    archived = !(arch instanceof Error);
-    test.skip(!archived, `this site cannot archive issues (${(arch as any)?.message || ""}) — nothing to prove`);
+    // ARCHIVING IS `PUT /rest/api/3/issue/archive` WITH THE KEYS IN THE BODY.
+    // Not `PUT /issue/{key}/archive`, which is a 404 — that endpoint does not
+    // exist. Not `POST /issue/archive`, which is the JQL form and answers 400
+    // to a key list. Measured on the test tenant; both wrong shapes were tried
+    // first and the singular one silently skipped this whole test.
+    const arch: any = await put("/rest/api/3/issue/archive", { issueIdsOrKeys: [KEY] }).catch((e: any) => e);
+    archived = arch?.numberOfIssuesUpdated === 1;
+    test.skip(!archived, `this site cannot archive issues (${arch?.message || JSON.stringify(arch)}) — nothing to prove`);
+
+    // Prove the PREMISE before testing the reaction to it: an archived issue is
+    // still readable by key, and a write to it returns the screen-wording 400.
+    // If Jira ever changes either, this test would otherwise pass for the wrong
+    // reason.
+    const stillReadable: any = await get(`/rest/api/3/issue/${KEY}?fields=summary`).catch(() => null);
+    expect(stillReadable?.key, "an archived issue should still be readable by key").toBe(KEY);
+    const rawEdit: any = await put(`/rest/api/3/issue/${KEY}`, { fields: { summary: "probe" } }).catch((e: any) => e);
+    expect(
+      String(rawEdit?.message || ""),
+      "the premise changed: Jira no longer answers an archived write with the screen wording",
+    ).toMatch(/not on the appropriate screen/i);
 
     // Let the search index catch up; the archival signal IS index-based.
     await page.waitForTimeout(20_000);
@@ -186,7 +201,7 @@ test("FINDING 2/4: a write to an ARCHIVED issue is not blamed on screen configur
       `screen configuration was stated as THE cause of an archived-issue failure — the exact finding. Reply: ${reply.slice(0, 600)}`,
     ).toBe(false);
   } finally {
-    if (key && archived) await put(`/rest/api/3/issue/${key}/restore`, undefined).catch(() => {});
+    if (key && archived) await put("/rest/api/3/issue/unarchive", { issueIdsOrKeys: [key] }).catch(() => {});
     if (key) await del(`/rest/api/3/issue/${key}?deleteSubtasks=true`).catch(() => {});
     if (frame) await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
   }

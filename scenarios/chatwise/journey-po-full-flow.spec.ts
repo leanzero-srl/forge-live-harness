@@ -125,17 +125,28 @@ test("PO full flow: initiative → wizard → approval → a real Epic in Jira, 
       test.skip(true, "site fully quota-blocked right now — friendly wait bubble verified, full flow not drivable");
     }
 
+    // Did THIS reply announce a created Epic? Hoisted out of the loop because
+    // the loop used to check the PREVIOUS turn's reply at the top and then take
+    // a turn at the bottom — so the LAST turn's reply was never examined.
+    //
+    // That is not theoretical. On 4 Sep the wizard created WFH-2197 on turn 14,
+    // the reply said "✅ Epic created WFH-2197", and the test reported "no Epic
+    // was created after 14 turns" — a green app failed by an off-by-one in its
+    // own harness. A test that can report a success as a failure is as bad as
+    // one that reports a failure as a success.
+    const epicIn = async (text: string): Promise<string | null> => {
+      const keys = text.match(new RegExp(`${PROJECT}-\\d+`, "g")) || [];
+      for (const k of Array.from(new Set(keys))) {
+        const issue: any = await get(`/rest/api/3/issue/${k}?fields=issuetype,summary,description`).catch(() => null);
+        if (issue?.fields?.issuetype?.hierarchyLevel === 1) return k;
+      }
+      return null;
+    };
+
     // ---- Drive the wizard to creation, answering whatever it deals --------
     for (let i = 0; i < MAX_TURNS && !epicKey; i++) {
       // Created already? The reply announces the key.
-      const keys = reply.match(new RegExp(`${PROJECT}-\\d+`, "g")) || [];
-      for (const k of Array.from(new Set(keys))) {
-        const issue: any = await get(`/rest/api/3/issue/${k}?fields=issuetype,summary,description`).catch(() => null);
-        if (issue?.fields?.issuetype?.hierarchyLevel === 1) {
-          epicKey = k;
-          break;
-        }
-      }
+      epicKey = await epicIn(reply);
       if (epicKey) break;
 
       // THE DIRECT FLOW: a live sheet is answered by CLICKING — never by
@@ -161,6 +172,10 @@ test("PO full flow: initiative → wizard → approval → a real Epic in Jira, 
         test.skip(true, "all model tiers quota-blocked mid-flow — friendly wait bubble verified in situ");
       }
     }
+
+    // THE FINAL REPLY COUNTS TOO. Without this, an Epic created on the last
+    // turn is invisible to the assertion below — see epicIn() above.
+    if (!epicKey) epicKey = await epicIn(reply);
 
     // ---- The point of the whole persona: a real Epic exists ---------------
     expect(epicKey, `no Epic was created after ${MAX_TURNS} turns — last reply: ${reply.slice(0, 300)}`).toBeTruthy();

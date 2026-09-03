@@ -70,6 +70,37 @@ async function lastMeta(frame: any): Promise<string> {
   return ((await frame.locator(".message.assistant").last().locator(".message-meta").textContent().catch(() => "")) || "").toLowerCase();
 }
 
+/**
+ * The persona's PINNED model served the turn — or a fallback did AND SAID SO.
+ *
+ * A bare `toContain("sonnet")` is the wrong assertion, and a live run proved it:
+ * `[ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier`
+ * appeared six times in the consumer log, the ladder served opus, and the test
+ * went red over the app doing exactly what it is designed to do (degrade the
+ * tier, never kill the turn).
+ *
+ * But relaxing it to "any model" would excuse a SILENT swap, which is a real
+ * defect — the user is paying for a tier and reading a reply from another. So
+ * this asserts the stronger property instead: either the pinned model served
+ * it, or the reply DISCLOSES the substitution. `quotaNote` reaches the UI as
+ * `contextNote`, which is in job.routes.js's explicit ALLOW-LIST — a field
+ * dropped from that list is invisible with no error anywhere, and this
+ * assertion is what would notice.
+ */
+async function expectPinnedModelOrDisclosedFallback(frame: any, pinned: string) {
+  const meta = await lastMeta(frame);
+  if (meta.includes(pinned)) return;
+
+  const bubble = ((await frame.locator(".message.assistant").last().textContent()) || "").toLowerCase();
+  const disclosed = /token limit|came from|instead|quota/.test(bubble);
+  expect(
+    disclosed,
+    `the chip says "${meta}" instead of "${pinned}" and NOTHING told the user why. ` +
+      `A silent model substitution is a defect; a disclosed one is the quota ladder working.`,
+  ).toBe(true);
+  console.log(`[quota] ${pinned} did not serve this turn; the fallback was disclosed. meta="${meta}"`);
+}
+
 test("the global page offers exactly the four factory personas", async ({ page }) => {
   test.skip(!G.envId, "env unresolved");
   const frame = await openGlobalPage(page, G);
@@ -149,8 +180,7 @@ test("JIRA Scrubber: flags the defects a bad ticket actually has", async ({ page
     expect(reply, "no mention of acceptance criteria — the persona's headline concern").toMatch(
       /acceptance criteria/i,
     );
-    const chips = await lastMeta(frame);
-    expect(chips, `meta was: ${chips}`).toContain("sonnet");
+    await expectPinnedModelOrDisclosedFallback(frame, "sonnet");
   } finally {
     if (frame && issueKey) {
       await callResolver(frame, PANEL_APP, "deleteConversation", { conversationId: `issue-${issueKey}` }).catch(() => {});
