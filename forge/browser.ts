@@ -62,6 +62,40 @@ function clearStaleProfileLocks(dir: string): void {
   }
 }
 
+
+/**
+ * HOST FLAG BANNERS SWALLOW CLICKS. Jira renders site notices into
+ * `#aui-flag-container` (and the newer `[data-testid$="flag-group"]`) with a high
+ * z-index, floating OVER the Forge iframe. Playwright's actionability check then
+ * reports "<div class=aui-message…> intercepts pointer events" and every click
+ * inside the app times out — a healthy app failing for a host reason. Measured
+ * 2026-09-03 on wolfaenpak: an "Email notifications are off until 04/Sep/26"
+ * evaluation notice blocked the entire Apply flow of two journeys.
+ *
+ * Installed as an INIT script so it survives every navigation and reload, and it
+ * only removes the containers' ability to receive pointer events — the banner is
+ * still visible in screenshots, so evidence stays honest.
+ */
+const FLAG_SUPPRESSOR_CSS = `#aui-flag-container, [data-testid="flag-group"], [data-testid$=".flag-group"], #jira-flags { pointer-events: none !important; }`;
+
+export async function installHostFlagSuppressor(context: BrowserContext): Promise<void> {
+  await context.addInitScript((css: string) => {
+    const inject = () => {
+      if (document.getElementById("lz-harness-flag-suppressor")) return;
+      if (!document.head) return;
+      const st = document.createElement("style");
+      st.id = "lz-harness-flag-suppressor";
+      st.textContent = css;
+      document.head.appendChild(st);
+    };
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", inject, { once: true });
+    else inject();
+    // Some hosts replace <head> late in boot; re-assert once the app has settled.
+    setTimeout(inject, 2000);
+    setTimeout(inject, 6000);
+  }, FLAG_SUPPRESSOR_CSS).catch(() => {});
+}
+
 export async function launchHarnessContext(opts: LaunchOpts = {}): Promise<BrowserContext> {
   fs.mkdirSync(USER_DATA_DIR, { recursive: true });
   clearStaleProfileLocks(USER_DATA_DIR);
@@ -80,10 +114,14 @@ export async function launchHarnessContext(opts: LaunchOpts = {}): Promise<Brows
   // the very failure this function cleans up after is left for the next process to find.
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      return await chromium.launchPersistentContext(USER_DATA_DIR, { channel: "chrome", ...common });
+      const ctx = await chromium.launchPersistentContext(USER_DATA_DIR, { channel: "chrome", ...common });
+      await installHostFlagSuppressor(ctx);
+      return ctx;
     } catch (chromeErr) {
       try {
-        return await chromium.launchPersistentContext(USER_DATA_DIR, common);
+        const ctx = await chromium.launchPersistentContext(USER_DATA_DIR, common);
+        await installHostFlagSuppressor(ctx);
+        return ctx;
       } catch (chromiumErr) {
         if (attempt === 1) throw chromiumErr;
         clearStaleProfileLocks(USER_DATA_DIR);
@@ -118,4 +156,32 @@ export async function assertLoggedIn(page: Page): Promise<void> {
   if (!ok && LOGIN_URL_RE.test(page.url())) {
     throw new Error("Atlassian session appears expired. Run `npm run auth`.");
   }
+}
+
+/**
+ * Remove HOST-level flag banners that float over the page and swallow clicks.
+ *
+ * Jira renders site notices into `#aui-flag-container` / `[data-testid$="flag-group"]`
+ * with a high z-index. They sit ON TOP of the Forge iframe, so Playwright's
+ * actionability check reports "<div class=aui-message…> intercepts pointer events"
+ * and every click inside the app times out — a green app failing for a host reason.
+ * (Measured 2026-09-03 on wolfaenpak: an "Email notifications are off until …"
+ * evaluation-plan notice blocked the whole Apply flow.)
+ *
+ * Only host chrome is removed; the app's own DOM lives inside the iframe and is
+ * never touched. Safe to call repeatedly.
+ */
+export async function dismissHostFlags(page: Page): Promise<number> {
+  return page.evaluate(() => {
+    const sels = ["#aui-flag-container", '[data-testid="flag-group"]', '[data-testid$=".flag-group"]', "#jira-flags"];
+    let n = 0;
+    for (const sel of sels) {
+      for (const el of Array.from(document.querySelectorAll(sel))) {
+        if (el.childElementCount === 0) continue;
+        el.remove();
+        n++;
+      }
+    }
+    return n;
+  }).catch(() => 0);
 }

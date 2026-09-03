@@ -2,7 +2,7 @@
 //
 // The dashboard's Monte Carlo card runs the plan's own cascade engine under
 // duration uncertainty and reports P50/P80/P90 finish dates. Assert the card
-// actually computes on the real 58-issue plan: percentiles are populated,
+// actually computes on the real 45-issue plan: percentiles are populated,
 // ordered, and never earlier than the deterministic planned finish; the histogram
 // paints bars whose counts sum to the run count; switching the uncertainty preset
 // to High re-simulates and cannot make P90 earlier.
@@ -83,4 +83,28 @@ test("dashboard: schedule confidence computes ordered P50/P80/P90 on LZPT", asyn
   console.log("HIGH", JSON.stringify(b));
   expect(b.p90! >= a.p90!, "High uncertainty never yields an earlier P90").toBe(true);
   await card.screenshot({ path: "evidence/schedule-confidence-high.png" }).catch(() => {});
+
+  // --- NOT-DEGENERATE: the simulation must actually vary what it claims to vary --
+  // LZPT's finish is owned by an OPEN 6-working-day leaf (FANOUT-4), so a ±60%
+  // preset cannot collapse to a single point. A degenerate P50==P80==P90==planned
+  // is the signature of the card simulating with the RAW Jira durations (null →
+  // treated as 1 → every sample rounds back to 1 → nothing moves) instead of the
+  // normalized working-day spans the Table renders. Verified offline on the same
+  // plan data: normalized → P50 Oct 13 / P90 Oct 14 (medium), P50 Oct 14 / P90 Oct 16
+  // (high); raw → P50=P80=P90=planned for BOTH presets.
+  expect(b.p90! > b.p50!, "High uncertainty on a 6-day terminal task must spread the finish").toBe(true);
+
+  // Cross-check the durations the card should have used — read AFTER the dashboard,
+  // because opening the Table first makes the card compute correctly and would mask it.
+  await frame.getByRole("button", { name: /^Table/i }).first().click();
+  await page.waitForTimeout(3500);
+  const rows = frame.locator('[data-testid="table-row"]');
+  const durs: Record<string, string | null> = {};
+  const n = await rows.count();
+  for (let i = 0; i < n; i++) {
+    const key = await rows.nth(i).getAttribute("data-row-key");
+    if (key && ["LZPT-209", "LZPT-215"].includes(key)) durs[key] = await rows.nth(i).getAttribute("data-row-duration");
+  }
+  console.log("TABLE DURATIONS (what the simulation should see)", JSON.stringify(durs));
+  expect(Number(durs["LZPT-209"] || 0), "the finish-owning task is multi-day, so uncertainty must bite").toBeGreaterThan(1);
 });

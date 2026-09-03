@@ -7,6 +7,7 @@
 //  - Production src is under *.cdn.prod.atlassian-dev.net (NOT permanent — never hardcode).
 //  - UI Kit renders natively into the host DOM (no iframe).
 import { type Page, type FrameLocator, type Locator } from "@playwright/test";
+import { dismissHostFlags } from "./browser";
 
 const CUSTOM_IFRAME_SELECTORS = [
   'iframe[data-testid="hosted-resources-iframe"]', // canonical
@@ -35,6 +36,11 @@ export async function enterForgeSurface(page: Page, o: EnterOpts): Promise<Surfa
     }
     return { kind: "uikit", root };
   }
+
+  // Host flag banners (Jira site notices) overlay the iframe and intercept clicks —
+  // clear them before handing the surface over, or every click inside the app times
+  // out for a reason that has nothing to do with the app.
+  await dismissHostFlags(page);
 
   // A page can host MANY Forge iframes (esp. Confluence space pages: other apps,
   // banners, nav). Pick the one that actually hosts THIS app, not just the first.

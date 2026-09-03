@@ -1,8 +1,11 @@
 // IMPORT-A-JIRA-PLAN + WRITABILITY journey.
 //
-// wolfaenpak is a Jira FREE site, so the real Jira Plans API answers 403 there.
-// Part A drives the REAL wizard and asserts it explains that honestly (the
-// classified 'premium-required' state, Continue disabled) instead of a raw error.
+// wolfaenpak was a Jira FREE site when this was written (the Plans API answered 403
+// and the wizard had to explain that). It was upgraded to PREMIUM on 2026-09-03, so
+// Part A now asserts the opposite: the wizard reaches the real listing instead of the
+// unavailable panel. The full Premium path (list -> preview -> import -> indexed plan)
+// lives in journey-import-premium.spec.ts; the Free-site copy is covered by the
+// `?harness=import` visual scene, which is the only place it can still be exercised.
 //
 // Part B creates a plan through the SAME import pipeline from a synthetic Jira-plan
 // object (test hook `importFixture`: TPP project, Target start/end scheduling, a
@@ -35,21 +38,25 @@ async function open(page: any) {
   return frame;
 }
 
-test("A: the import wizard explains a Free site instead of failing", async ({ page }) => {
+test("A: the import wizard reaches the real Jira Plans listing", async ({ page }) => {
   const frame = await open(page);
   const entry = frame.locator('[data-testid="import-jira-plan-btn"]').first();
   await entry.waitFor({ state: "visible", timeout: 20_000 });
   await entry.click();
+  const rows = frame.locator('[data-testid="jira-plan-row"]');
   const panel = frame.locator('[data-testid="jira-plans-unavailable"]').first();
-  await panel.waitFor({ state: "visible", timeout: 30_000 });
-  const code = await panel.getAttribute("data-code");
-  const text = (await panel.textContent()) || "";
-  const continueDisabled = await frame.locator('[data-testid="import-continue"]').first().isDisabled();
-  console.log("UNAVAILABLE code=", code, "continueDisabled=", continueDisabled, "text=", text.slice(0, 160));
-  expect(code, "the real Free site is classified as premium-required").toBe("premium-required");
-  expect(text).toMatch(/Jira Premium/);
-  expect(continueDisabled).toBe(true);
-  await frame.getByRole("button", { name: /Cancel/i }).first().click().catch(() => {});
+  for (let i = 0; i < 60; i++) {
+    if ((await rows.count()) > 0 || (await panel.count()) > 0) break;
+    await page.waitForTimeout(500);
+  }
+  const code = await panel.getAttribute("data-code").catch(() => null);
+  const count = await rows.count();
+  console.log("PICK STATE unavailableCode=", code, "planRows=", count);
+  expect(code, "wolfaenpak is Premium since 2026-09-03 — no unavailable panel").toBeNull();
+  expect(count, "the site's Jira plans are listed").toBeGreaterThan(0);
+  // Continue is gated on a SELECTION, not on availability.
+  expect(await frame.locator('[data-testid="import-continue"]').first().isDisabled()).toBe(true);
+  await frame.getByRole("button", { name: /Back/i }).first().click().catch(() => {});
 });
 
 test("B: an imported plan flags exactly which issues Jira can't fully update", async ({ page }) => {
