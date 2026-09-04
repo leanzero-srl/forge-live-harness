@@ -201,7 +201,17 @@ export class Recorder {
         // Backwards-compatible default for every existing scenario.
         shot = await this.page.screenshot();
       }
-    } catch { /* page may be navigating */ }
+    } catch (captureError) {
+      // Explicit capture modes are evidence requirements, not best-effort
+      // decoration. A passing manifest with a missing screenshot is false
+      // confidence; only the legacy default viewport capture remains tolerant
+      // of a page that is still navigating.
+      if (opts.capture) {
+        status = "fail";
+        const detail = String((captureError as Error)?.message ?? captureError);
+        error = [error, `evidence capture failed: ${detail}`].filter(Boolean).join("; ");
+      }
+    }
     if (shot) {
       this.screenshots.push({ name: file, buffer: shot });
       await this.testInfo.attach(file, { body: shot, contentType: "image/png" }).catch(() => {});
