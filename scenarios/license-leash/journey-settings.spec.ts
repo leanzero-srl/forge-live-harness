@@ -225,6 +225,43 @@ test.describe("License Leash Settings visual matrix", () => {
 
         expect(observer.counts(MOUNT_ONCE_RESOLVERS), "tab switches do not re-run mount-only Settings resolvers").toEqual(mountCallsBefore);
         observer.assertNoMutations();
+
+        if (theme === "light" && viewport.width === 1440) {
+          await recorder.step("Overview — unchanged reference", async () => {
+            await surface.frame.getByRole("button", { name: "Overview", exact: true }).click();
+            await expect(surface.frame.getByText("Include suspended & deactivated accounts", { exact: true })).toBeVisible();
+          }, {
+            action: "reopen Overview after the Settings journey",
+            capture: "surface-full",
+            expectation: {
+              assertion: "the existing Overview content and controls remain available",
+              narrative: "The visual-only Settings change has a stable Overview reference image.",
+            },
+          });
+          await recorder.step("Audit Log — unchanged reference", async () => {
+            await surface.frame.getByRole("button", { name: "Audit Log", exact: true }).click();
+            await expect(surface.frame.getByRole("tablist", { name: "Log views" })).toBeVisible();
+          }, {
+            action: "reopen Audit Log after the Settings journey",
+            capture: "surface-full",
+            expectation: {
+              assertion: "the existing Audit Log content and controls remain available",
+              narrative: "The visual-only Settings change has a stable Audit Log reference image.",
+            },
+          });
+          await recorder.step("return to Settings after unchanged surfaces", async () => {
+            await surface.frame.getByRole("button", { name: "Settings", exact: true }).click();
+            await expect(surface.frame.getByRole("heading", { name: "Configuration", exact: true })).toBeVisible();
+            await expect(surface.frame.locator('[role="tabpanel"]')).toHaveCount(SETTINGS_TABS.length);
+          }, {
+            action: "return to Settings",
+            capture: "surface-full",
+            expectation: {
+              assertion: "Settings still mounts all 11 panels after visiting both sibling surfaces",
+              narrative: "Overview and Audit navigation leaves the Settings route healthy.",
+            },
+          });
+        }
         await observer.assertNoAppErrors();
       });
     }
