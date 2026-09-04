@@ -304,7 +304,14 @@ export async function enterSettings(
   captureFrames = true,
 ): Promise<SettingsSurface> {
   if (captureFrames) recorder.setFrames(await dumpForgeFrames(page));
-  const surface = await enterForgeSurface(page, { surface: target.surface, readySelector: target.readySelector, timeout: 45_000 });
+  // Confluence Settings can host several visible Forge iframes. The License
+  // Leash logo is a stable app-specific selector; generic body text can select
+  // a neighbouring app after a host-shell reload.
+  const surface = await enterForgeSurface(page, {
+    surface: target.surface,
+    readySelector: target.readySelector ?? 'img[src*="logo-48.png"]',
+    timeout: 45_000,
+  });
   if (surface.kind !== "custom") throw new Error("License Leash Settings must render in a Custom UI iframe");
   recorder.attachSurface(surface);
 
