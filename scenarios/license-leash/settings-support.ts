@@ -468,10 +468,19 @@ export async function assertExpectedBuildStamp(surface: SettingsSurface): Promis
 
 export function freshnessField(surface: SettingsSurface): { field: Locator; input: Locator; save: Locator } {
   const accessPanel = settingsPanel(surface, "App access");
-  const field = accessPanel.getByText("Sign-in check freshness (minutes)", { exact: true }).locator("..");
+  const field = fieldContainingLabel(accessPanel, "Sign-in check freshness (minutes)");
   return {
     field,
     input: field.locator('input[type="number"]'),
     save: field.getByRole("button", { name: "Save", exact: true }),
   };
+}
+
+// Labels and controls may be direct siblings or live in separate copy/control
+// columns. Resolve the nearest ancestor that actually contains a control so
+// the live journey follows the semantic field instead of its current layout.
+export function fieldContainingLabel(panel: Locator, label: string): Locator {
+  return panel
+    .getByText(label, { exact: true })
+    .locator("xpath=ancestor::div[.//input or .//button][1]");
 }

@@ -20,6 +20,7 @@ import {
   assertExpectedBuildStamp,
   closeGroupMenu,
   enterSettings,
+  fieldContainingLabel,
   freshnessField,
   openGroupMenuAndAssertContained,
   selectAndAssertTab,
@@ -95,7 +96,7 @@ async function captureExpandedRunbook(surface: SettingsSurface, recorder: Parame
 
 async function captureSecretState(surface: SettingsSurface, recorder: Parameters<typeof enterSettings>[1]): Promise<void> {
   const panel = settingsPanel(surface, "Detection");
-  const field = panel.getByText("Org API Key", { exact: true }).locator("..");
+  const field = fieldContainingLabel(panel, "Org API Key");
   const replace = field.getByRole("button", { name: "Replace", exact: true });
   if (await replace.isVisible().catch(() => false)) {
     try {
