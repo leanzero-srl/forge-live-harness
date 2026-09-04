@@ -186,7 +186,10 @@ async function screenshotCustomSurface(page: Page, root: Surface["root"], host?:
       || paintedHostBox.x + paintedHostBox.width > page.viewportSize()!.width
       || paintedHostBox.y + paintedHostBox.height > page.viewportSize()!.height
     ) {
-      throw new Error("Expanded Forge host is not fully inside the compositor viewport");
+      const expandedViewport = page.viewportSize()!;
+      throw new Error(
+        `Expanded Forge host ${JSON.stringify(paintedHostBox)} is not fully inside compositor viewport ${expandedViewport.width}x${expandedViewport.height}`,
+      );
     }
 
     // Capture the top-level iframe element rather than translating a child-frame
