@@ -165,6 +165,10 @@ async function screenshotCustomSurface(page: Page, root: Surface["root"], host?:
     });
     await page.evaluate(() => window.scrollTo(0, 0));
     await host.scrollIntoViewIfNeeded();
+    await root.evaluate(() => window.scrollTo(0, 0));
+    const expandedViewport = page.viewportSize()!;
+    await page.mouse.move(expandedViewport.width - 1, 0);
+    await page.waitForTimeout(250);
     await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
 
     const preservedWidth = await root.evaluate(() => document.documentElement.clientWidth);
