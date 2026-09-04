@@ -229,7 +229,7 @@ test.describe("License Leash Settings visual matrix", () => {
         if (theme === "light" && viewport.width === 1440) {
           await recorder.step("Overview — unchanged reference", async () => {
             await surface.frame.getByRole("button", { name: "Overview", exact: true }).click();
-            await expect(surface.frame.getByText("Include suspended & deactivated accounts", { exact: true })).toBeVisible();
+            await expect(surface.frame.getByRole("checkbox", { name: /Include suspended & deactivated accounts/ })).toBeVisible();
           }, {
             action: "reopen Overview after the Settings journey",
             capture: "surface-full",
