@@ -168,7 +168,7 @@ async function screenshotCustomSurface(page: Page, root: Surface["root"], host?:
     await root.evaluate(() => window.scrollTo(0, 0));
     const expandedViewport = page.viewportSize()!;
     await page.mouse.move(expandedViewport.width - 1, 0);
-    await page.waitForTimeout(250);
+    await page.waitForTimeout(600);
     await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
 
     const preservedWidth = await root.evaluate(() => document.documentElement.clientWidth);
@@ -197,10 +197,10 @@ async function screenshotCustomSurface(page: Page, root: Surface["root"], host?:
       );
     }
 
-    // Capture the top-level iframe element rather than translating a child-frame
-    // locator through Chromium. That translation becomes stale after a narrow
-    // tab strip scrolls, producing host chrome instead of the Custom UI pixels.
-    return await host.screenshot({ animations: "disabled" });
+    // The host is now fully painted and measurable inside the compositor. Take
+    // the child root so a focused control cannot leave the evidence scrolled
+    // partway down the iframe; the full document remains the capture target.
+    return await root.screenshot({ animations: "disabled" });
   } finally {
     await page.setViewportSize(viewport).catch(() => {});
     await host.evaluate((element, style) => {
