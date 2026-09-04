@@ -2,7 +2,8 @@ import type { ConsoleMessage, FrameLocator, Locator, Page, Request, Response } f
 import { expect } from "../../fixtures/forge";
 import type { Recorder } from "../../capture/recorder";
 import type { Target } from "../../config/targets";
-import { dumpForgeFrames, enterForgeSurface } from "../../forge/frame";
+import { dismissHostFlags } from "../../forge/browser";
+import { dumpForgeFrames } from "../../forge/frame";
 
 export type SettingsTheme = "light" | "dark";
 
@@ -304,18 +305,16 @@ export async function enterSettings(
   captureFrames = true,
 ): Promise<SettingsSurface> {
   if (captureFrames) recorder.setFrames(await dumpForgeFrames(page));
-  // Confluence Settings can host several visible Forge iframes. The License
-  // Leash logo is a stable app-specific selector; generic body text can select
-  // a neighbouring app after a host-shell reload.
-  const surface = await enterForgeSurface(page, {
-    surface: target.surface,
-    readySelector: target.readySelector ?? 'img[src*="logo-48.png"]',
-    timeout: 45_000,
-  });
-  if (surface.kind !== "custom") throw new Error("License Leash Settings must render in a Custom UI iframe");
+  // This page hosts several visible Forge iframes, including License Leash's
+  // own banner. Select the manifest resource path, not a transient nth index:
+  // Confluence can insert neighbouring iframes while the page settles.
+  await dismissHostFlags(page);
+  const iframe = page.locator('iframe[data-testid="hosted-resources-iframe"][src*="/adminDashboard/"]').first();
+  await iframe.waitFor({ state: "visible", timeout: 45_000 });
+  const frame = iframe.contentFrame();
+  const surface = { kind: "custom" as const, frame, root: frame.locator(":root") };
   recorder.attachSurface(surface);
 
-  const frame = surface.frame;
   await expect(frame.getByRole("heading", { name: "License Leash", exact: true })).toBeVisible({ timeout: 30_000 });
   const settings = frame.getByRole("button", { name: "Settings", exact: true });
   await expect(settings, "the signed-in operator can open Settings").toBeVisible({ timeout: 30_000 });
