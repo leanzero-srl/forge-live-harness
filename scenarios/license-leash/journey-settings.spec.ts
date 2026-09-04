@@ -341,9 +341,9 @@ async function captureOverviewEvidence(
       await tile.hover();
       await expect.poll(async () => {
         const hover = await tileVisualState(tile);
-        return hover.shadow !== rest.shadow && hover.translateY < -1;
+        return hover.shadow !== rest.shadow && Math.abs(hover.translateY - rest.translateY) < 0.5;
       }, {
-        message: `${index < 6 ? filterNames[index] : "License usage"} has a visible hover glow`,
+        message: `${index < 6 ? filterNames[index] : "License usage"} has a visible hover glow without jumping`,
         timeout: 5_000,
       }).toBe(true);
     }
@@ -358,9 +358,11 @@ async function captureOverviewEvidence(
       await expect(tile).toBeFocused();
       await expect.poll(async () => {
         const focused = await tileVisualState(tile);
-        return focused.focusVisible && focused.shadow !== restStates[index].shadow && focused.translateY < -1;
+        return focused.focusVisible
+          && focused.shadow !== restStates[index].shadow
+          && Math.abs(focused.translateY - restStates[index].translateY) < 0.5;
       }, {
-        message: `${index < 6 ? filterNames[index] : "License usage"} has a visible keyboard-focus glow`,
+        message: `${index < 6 ? filterNames[index] : "License usage"} has a visible keyboard-focus glow without jumping`,
         timeout: 5_000,
       }).toBe(true);
 
@@ -371,9 +373,11 @@ async function captureOverviewEvidence(
         await surface.frame.getByRole("heading", { name: "License Leash", exact: true }).hover();
         await expect.poll(async () => {
           const selected = await tileVisualState(tile);
-          return !selected.focusVisible && selected.shadow !== restStates[index].shadow && selected.translateY < -1;
+          return !selected.focusVisible
+            && selected.shadow !== restStates[index].shadow
+            && Math.abs(selected.translateY - restStates[index].translateY) < 0.5;
         }, {
-          message: `${filterNames[index]} keeps a visible selected glow`,
+          message: `${filterNames[index]} keeps a visible selected glow without jumping`,
           timeout: 5_000,
         }).toBe(true);
       }
@@ -388,7 +392,7 @@ async function captureOverviewEvidence(
     action: "exercise hover, keyboard focus and selection on all Overview tiles",
     capture: "surface-full",
     expectation: {
-      assertion: "all six filters and the licence gauge show a real glow, while KPI rows remain even at the active responsive breakpoint",
+      assertion: "all six filters and the licence gauge show a real glow without motion, while KPI rows remain even at the active responsive breakpoint",
       narrative: `The ${theme} ${width}px Overview finishes with Inactive selected and License usage keyboard-focused so both persistent and transient emphasis are visible.`,
     },
   });
