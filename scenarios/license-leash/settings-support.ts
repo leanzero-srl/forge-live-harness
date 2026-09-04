@@ -363,6 +363,38 @@ export async function waitForHostedFrameToSettle(surface: SettingsSurface): Prom
   }, { timeout: 10_000, intervals: [100, 150, 200, 250] }).toBe(true);
 }
 
+/**
+ * Confluence currently gives this global-settings iframe a 636px minimum even
+ * when the browser is narrower. Pin the hosted resource itself for the 390px
+ * matrix so the app's real mobile breakpoint is exercised, rather than merely
+ * proving that a desktop-width iframe fits inside a horizontally scrolling host.
+ */
+export async function pinHostedAppWidth(surface: SettingsSurface, width: number): Promise<void> {
+  await surface.hostIframe.evaluate((element, targetWidth) => {
+    type WidthPinWindow = Window & { __licenseLeashWidthPin?: MutationObserver };
+    const win = window as WidthPinWindow;
+    const iframe = element as HTMLIFrameElement;
+    const target = `${targetWidth}px`;
+    const apply = () => {
+      for (const property of ["width", "min-width", "max-width"] as const) {
+        if (iframe.style.getPropertyValue(property) !== target || iframe.style.getPropertyPriority(property) !== "important") {
+          iframe.style.setProperty(property, target, "important");
+        }
+      }
+    };
+    win.__licenseLeashWidthPin?.disconnect();
+    apply();
+    const observer = new MutationObserver(apply);
+    observer.observe(iframe, { attributes: true, attributeFilter: ["style"] });
+    win.__licenseLeashWidthPin = observer;
+  }, width);
+  await expect.poll(
+    () => surface.frame.locator(":root").evaluate(() => document.documentElement.clientWidth),
+    { timeout: 10_000, intervals: [100, 200, 400] },
+  ).toBe(width);
+  await waitForHostedFrameToSettle(surface);
+}
+
 export async function pinTheme(frame: FrameLocator, theme: SettingsTheme): Promise<void> {
   const root = frame.locator(":root");
   await root.evaluate((element, selectedTheme) => {

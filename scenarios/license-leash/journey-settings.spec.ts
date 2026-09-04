@@ -23,6 +23,7 @@ import {
   fieldContainingLabel,
   freshnessField,
   openGroupMenuAndAssertContained,
+  pinHostedAppWidth,
   selectAndAssertTab,
   settingsPanel,
   waitForHostedFrameToSettle,
@@ -61,6 +62,12 @@ function setEvidenceTarget(recorder: Parameters<typeof enterSettings>[1]): void 
     repo: T.repo,
     gitShaAppUnderTest: APP_SHA,
   });
+}
+
+async function waitForDashboardBoot(page: Parameters<typeof assertLoggedIn>[0]): Promise<void> {
+  const iframe = page.locator('iframe[data-testid="hosted-resources-iframe"][src*="/adminDashboard/"]').first();
+  await iframe.waitFor({ state: "visible", timeout: 45_000 });
+  await expect(iframe.contentFrame().getByRole("heading", { name: "License Leash", exact: true })).toBeVisible({ timeout: 30_000 });
 }
 
 async function navigateToSettings(
@@ -188,6 +195,7 @@ test.describe("License Leash Settings visual matrix", () => {
         const observer = new LicenseLeashObserver(page, T.module);
         await recorder.step("navigate to License Leash Settings", async () => {
           await page.goto(targetUrl(), { waitUntil: "domcontentloaded" });
+          await waitForDashboardBoot(page);
         }, {
           action: "navigate",
           expectation: {
@@ -197,6 +205,7 @@ test.describe("License Leash Settings visual matrix", () => {
         });
 
         const surface = await enterSettings(page, recorder, T, theme);
+        if (viewport.width < 600) await pinHostedAppWidth(surface, viewport.width);
         observer.setAppUrl(surface.appUrl);
         await waitForSettingsToSettle(surface.shell);
         const mountCallsBefore = observer.counts(MOUNT_ONCE_RESOLVERS);
@@ -319,6 +328,7 @@ test.describe("License Leash App access persistence", () => {
     const observer = new LicenseLeashObserver(page, T.module);
     await recorder.step("navigate to App access", async () => {
       await page.goto(targetUrl(), { waitUntil: "domcontentloaded" });
+      await waitForDashboardBoot(page);
     }, {
       action: "navigate",
       expectation: {
