@@ -335,19 +335,22 @@ export async function enterSettings(
 
 export async function waitForHostedFrameToSettle(surface: SettingsSurface): Promise<void> {
   let lastGeometry = "";
-  let stableSamples = 0;
+  let stableSince = 0;
   await expect.poll(async () => {
     const box = await surface.hostIframe.boundingBox();
     if (!box) {
       lastGeometry = "";
-      stableSamples = 0;
-      return stableSamples;
+      stableSince = 0;
+      return false;
     }
-    const geometry = [box.x, box.y, box.width, box.height].map(Math.round).join(":");
-    stableSamples = geometry === lastGeometry ? Math.min(stableSamples + 1, 3) : 0;
-    lastGeometry = geometry;
-    return stableSamples;
-  }, { timeout: 10_000, intervals: [100, 100, 150, 200, 250] }).toBe(3);
+    const geometry = [box.x, box.y, box.width, box.height].map((value) => value.toFixed(2)).join(":");
+    if (geometry !== lastGeometry) {
+      lastGeometry = geometry;
+      stableSince = Date.now();
+      return false;
+    }
+    return Date.now() - stableSince >= 1_000;
+  }, { timeout: 10_000, intervals: [100, 150, 200, 250] }).toBe(true);
 }
 
 export async function pinTheme(frame: FrameLocator, theme: SettingsTheme): Promise<void> {
