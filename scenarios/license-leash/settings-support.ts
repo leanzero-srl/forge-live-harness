@@ -468,6 +468,23 @@ export async function assertContainedLayout(surface: SettingsSurface, strict = t
       const rect = element.getBoundingClientRect();
       if (style.display === "none" || style.visibility === "hidden" || rect.width === 0 || rect.height === 0) return [];
       if (rect.left >= -1 && rect.right <= clientWidth + 1) return [];
+
+      // Wide data tables deliberately keep their complete column/control set
+      // inside a bounded horizontal scroller. Off-screen controls in that
+      // scroll content are not document overflow (and are reachable by
+      // scrolling the table); counting them here produced hundreds of false
+      // positives once Confluence's admin sidebar narrowed the hosted iframe.
+      // Do not exempt overflow:hidden: an interactive control clipped by a
+      // non-scrollable component remains a real layout failure.
+      for (let ancestor = element.parentElement; ancestor && ancestor !== body && ancestor !== doc; ancestor = ancestor.parentElement) {
+        const ancestorStyle = getComputedStyle(ancestor);
+        if (!/(auto|scroll)/.test(ancestorStyle.overflowX)) continue;
+        if (ancestor.scrollWidth <= ancestor.clientWidth + 1) continue;
+        const ancestorRect = ancestor.getBoundingClientRect();
+        const scrollerIsContained = ancestorRect.left >= -1 && ancestorRect.right <= clientWidth + 1;
+        const controlIsInClippedScrollContent = rect.left < ancestorRect.left - 1 || rect.right > ancestorRect.right + 1;
+        if (scrollerIsContained && controlIsInClippedScrollContent) return [];
+      }
       return [{
         tag: element.tagName.toLowerCase(),
         name: element.getAttribute("aria-label") || element.textContent?.trim().slice(0, 80) || element.getAttribute("placeholder") || "",

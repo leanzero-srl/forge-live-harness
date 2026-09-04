@@ -439,7 +439,10 @@ async function captureAuditControls(
     const listbox = audit.getByRole("listbox");
     await expect(listbox).toBeVisible();
     await expect(listbox.getByRole("option")).toHaveCount(17);
-    await expect(listbox.getByRole("option", { name: "All event types", exact: true })).toHaveAttribute("aria-selected", "true");
+    // The selected option exposes its visible checkmark in the accessible
+    // name, so match the semantic label suffix rather than pretending the
+    // selected and unselected names are byte-identical.
+    await expect(listbox.getByRole("option", { name: /All event types$/ })).toHaveAttribute("aria-selected", "true");
     await expect(listbox.getByRole("option", { name: "Configuration changes", exact: true })).toBeVisible();
     await expect(listbox.locator('[role="option"]:focus')).toHaveCount(1);
     await assertContainedLayout(surface, STRICT_LAYOUT);
@@ -524,7 +527,7 @@ async function captureAuditControls(
 
   await search.fill("");
   await eventType.click();
-  await audit.getByRole("option", { name: "All event types", exact: true }).click();
+  await audit.getByRole("option", { name: /All event types$/ }).click();
 }
 
 test.describe("License Leash admin visual matrix", () => {
