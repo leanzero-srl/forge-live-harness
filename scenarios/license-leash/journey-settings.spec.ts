@@ -116,7 +116,13 @@ async function captureSecretState(surface: SettingsSurface, recorder: Parameters
       });
     } finally {
       const cancel = field.getByRole("button", { name: "Cancel", exact: true });
-      if (await cancel.isVisible().catch(() => false)) await cancel.click();
+      if (await cancel.isVisible().catch(() => false)) {
+        await cancel.click();
+        // The secret field changes both its subtree and the hosted iframe's
+        // measured height. Do not click the next horizontal tab while that
+        // resize is still settling at tablet widths.
+        await expect(replace).toBeVisible();
+      }
     }
     return;
   }
