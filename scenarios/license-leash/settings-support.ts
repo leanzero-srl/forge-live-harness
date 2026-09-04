@@ -435,6 +435,10 @@ export async function selectAndAssertTab(surface: SettingsSurface, label: typeof
   const expectedPanelIndex = SETTINGS_PANEL_ORDER.indexOf(label);
   expect(state.flatMap((visible, panelIndex) => visible ? [panelIndex] : []), "exactly the selected panel is visible").toEqual([expectedPanelIndex]);
   expect(await surface.tabs.getByRole("tab", { selected: true }).count(), "exactly one Settings tab is selected").toBe(1);
+  // A tab can substantially change the Custom UI document height. Wait for
+  // Forge's host iframe to finish following that height before the recorder
+  // captures it or Playwright computes coordinates for the next tab click.
+  await waitForHostedFrameToSettle(surface);
 }
 
 export async function assertContainedLayout(surface: SettingsSurface, strict = true): Promise<void> {

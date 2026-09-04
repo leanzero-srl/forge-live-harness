@@ -84,6 +84,7 @@ async function captureExpandedRunbook(surface: SettingsSurface, recorder: Parame
     await toggle.click();
     await expect(panel.getByText(/Set up the funnel: mode on/)).toBeVisible();
     await assertContainedLayout(surface, STRICT_LAYOUT);
+    await waitForHostedFrameToSettle(surface);
   }, {
     action: "expand the non-mutating cutover runbook",
     capture: "surface-full",
@@ -93,6 +94,7 @@ async function captureExpandedRunbook(surface: SettingsSurface, recorder: Parame
     },
   });
   await toggle.click();
+  await waitForHostedFrameToSettle(surface);
 }
 
 async function captureSecretState(surface: SettingsSurface, recorder: Parameters<typeof enterSettings>[1]): Promise<void> {
@@ -107,6 +109,7 @@ async function captureSecretState(surface: SettingsSurface, recorder: Parameters
         await expect(input).toBeVisible();
         await expect(input).toHaveValue("");
         await assertContainedLayout(surface, STRICT_LAYOUT);
+        await waitForHostedFrameToSettle(surface);
       }, {
         action: "open the local Replace editor without entering or saving a secret",
         capture: "surface-full",
@@ -134,6 +137,7 @@ async function captureSecretState(surface: SettingsSurface, recorder: Parameters
     await expect(input).toBeVisible();
     await expect(input).toHaveValue("");
     await assertContainedLayout(surface, STRICT_LAYOUT);
+    await waitForHostedFrameToSettle(surface);
   }, {
     capture: "surface-full",
     expectation: {
@@ -152,6 +156,7 @@ async function captureEmptyAdminSearch(surface: SettingsSurface, recorder: Param
       await input.fill(query);
       await expect(panel.getByText("Nobody matched. The search covers people the app has already synced.", { exact: true })).toBeVisible({ timeout: 20_000 });
       await assertContainedLayout(surface, STRICT_LAYOUT);
+      await waitForHostedFrameToSettle(surface);
     }, {
       action: "run a non-mutating impossible-name search",
       capture: "surface-full",
@@ -162,6 +167,7 @@ async function captureEmptyAdminSearch(surface: SettingsSurface, recorder: Param
     });
   } finally {
     await input.fill("").catch(() => {});
+    await waitForHostedFrameToSettle(surface).catch(() => {});
   }
 }
 
@@ -239,6 +245,7 @@ test.describe("License Leash Settings visual matrix", () => {
           await recorder.step("Overview — unchanged reference", async () => {
             await surface.frame.getByRole("button", { name: "Overview", exact: true }).click();
             await expect(surface.frame.getByRole("checkbox", { name: /Include suspended & deactivated accounts/ })).toBeVisible();
+            await waitForHostedFrameToSettle(surface);
           }, {
             action: "reopen Overview after the Settings journey",
             capture: "surface-full",
@@ -250,6 +257,7 @@ test.describe("License Leash Settings visual matrix", () => {
           await recorder.step("Audit Log — unchanged reference", async () => {
             await surface.frame.getByRole("button", { name: "Audit Log", exact: true }).click();
             await expect(surface.frame.getByRole("tablist", { name: "Log views" })).toBeVisible();
+            await waitForHostedFrameToSettle(surface);
           }, {
             action: "reopen Audit Log after the Settings journey",
             capture: "surface-full",
@@ -262,6 +270,7 @@ test.describe("License Leash Settings visual matrix", () => {
             await surface.frame.getByRole("button", { name: "Settings", exact: true }).click();
             await expect(surface.frame.getByRole("heading", { name: "Configuration", exact: true })).toBeVisible();
             await expect(surface.frame.locator('[role="tabpanel"]')).toHaveCount(SETTINGS_TABS.length);
+            await waitForHostedFrameToSettle(surface);
           }, {
             action: "return to Settings",
             capture: "surface-full",
