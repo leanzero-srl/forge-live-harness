@@ -67,6 +67,10 @@ async function navigateToSettings(
   theme: SettingsTheme,
   captureFrames = true,
 ): Promise<SettingsSurface> {
+  // Atlassian's shell can retain detached hosted-resource iframe locators when
+  // navigating to the same SPA URL repeatedly. A neutral document guarantees
+  // the next discovery sees only the newly mounted app iframe.
+  await page.goto("about:blank");
   await page.goto(targetUrl(), { waitUntil: "domcontentloaded" });
   return enterSettings(page, recorder, T, theme, captureFrames);
 }
@@ -254,7 +258,10 @@ test.describe("License Leash App access persistence", () => {
     await waitForSettingsToSettle(surface.shell);
     await selectAndAssertTab(surface, "App access");
 
-    const original = await freshnessField(surface).input.inputValue();
+    const observedOriginal = await freshnessField(surface).input.inputValue();
+    // Recovery-only escape hatch for an interrupted prior run. Normal evidence
+    // always restores the value it observed when the test started.
+    const original = process.env.RECOVER_FRESHNESS_TO?.trim() || observedOriginal;
     const originalNumber = Number(original);
     expect(Number.isFinite(originalNumber) && originalNumber > 0, "freshness starts as a positive numeric value").toBe(true);
     const adjacent = String(originalNumber === 1440 ? originalNumber - 1 : originalNumber + 1);
