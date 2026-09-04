@@ -133,8 +133,10 @@ async function screenshotCustomSurface(page: Page, root: Surface["root"], host?:
   try {
     return await screenshotSeparateFrame(page, root);
   } catch (error) {
-    const message = String((error as Error)?.message ?? error);
-    if (!message.includes("does not have a separate CDP session") || !host) throw error;
+    // Depending on Chromium's process model, the child can reject either the
+    // session attachment or Page.captureScreenshot itself. The compositor
+    // expansion below is the supported fallback whenever we retained its host.
+    if (!host) throw error;
   }
 
   const viewport = page.viewportSize();
