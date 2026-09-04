@@ -170,7 +170,29 @@ async function screenshotCustomSurface(page: Page, root: Surface["root"], host?:
     if (Math.abs(preservedWidth - documentSize.width) > 1) {
       throw new Error(`Full-surface capture changed the app breakpoint (${documentSize.width}px to ${preservedWidth}px)`);
     }
-    return await root.screenshot({ animations: "disabled" });
+    const paintedHostBox = await host.boundingBox();
+    if (!paintedHostBox) throw new Error("Forge host iframe detached during full-surface capture");
+    if (
+      Math.abs(paintedHostBox.width - documentSize.width) > 1
+      || Math.abs(paintedHostBox.height - documentSize.height) > 1
+    ) {
+      throw new Error(
+        `Expanded Forge host is ${paintedHostBox.width}x${paintedHostBox.height}, expected ${documentSize.width}x${documentSize.height}`,
+      );
+    }
+    if (
+      paintedHostBox.x < 0
+      || paintedHostBox.y < 0
+      || paintedHostBox.x + paintedHostBox.width > page.viewportSize()!.width
+      || paintedHostBox.y + paintedHostBox.height > page.viewportSize()!.height
+    ) {
+      throw new Error("Expanded Forge host is not fully inside the compositor viewport");
+    }
+
+    // Capture the top-level iframe element rather than translating a child-frame
+    // locator through Chromium. That translation becomes stale after a narrow
+    // tab strip scrolls, producing host chrome instead of the Custom UI pixels.
+    return await host.screenshot({ animations: "disabled" });
   } finally {
     await page.setViewportSize(viewport).catch(() => {});
     await host.evaluate((element, style) => {
