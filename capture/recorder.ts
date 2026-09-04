@@ -112,7 +112,7 @@ async function waitForHostPaint(page: Page, host: Surface["root"]): Promise<void
       if (geometry !== previous) {
         previous = geometry;
         stableSince = Date.now();
-      } else if (Date.now() - stableSince >= 250) {
+      } else if (Date.now() - stableSince >= 1_000) {
         return;
       }
     }
