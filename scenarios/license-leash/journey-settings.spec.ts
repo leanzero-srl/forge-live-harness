@@ -172,7 +172,9 @@ async function captureEmptyAdminSearch(surface: SettingsSurface, recorder: Param
 }
 
 test.describe("License Leash Settings visual matrix", () => {
-  test.describe.configure({ timeout: 420_000, retries: 1 });
+  // A retry can turn a missed host click or broken evidence capture into a
+  // deceptively green journey. Every viewport must pass on its first attempt.
+  test.describe.configure({ timeout: 420_000, retries: 0 });
 
   for (const theme of ["light", "dark"] as const) {
     for (const viewport of MATRIX) {
