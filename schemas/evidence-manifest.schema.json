@@ -41,6 +41,7 @@
           "action": { "type": "string" },
           "status": { "enum": ["pass", "fail"] },
           "screenshot": { "type": "string", "description": "relative path, e.g. steps/03-load.png" },
+          "aria": { "type": "string", "description": "per-step ARIA snapshot path, e.g. steps/03-load.aria.yaml" },
           "ariaInline": { "type": "boolean" },
           "error": { "type": "string" },
           "expectation": {

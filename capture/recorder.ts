@@ -32,8 +32,26 @@ export interface StepRecord {
   error?: string;
   timing: { tStart: number; tEnd: number };
 }
-interface ConsoleEntry { t: number; level: string; text: string }
-interface NetworkEntry { t: number; method: string; url: string; status: number; resolver?: string }
+interface ConsoleEntry {
+  t: number;
+  level: string;
+  text: string;
+  /** Source location reported by Chromium. Additive: old evidence readers can ignore it. */
+  url?: string;
+  lineNumber?: number;
+  columnNumber?: number;
+}
+interface NetworkEntry {
+  t: number;
+  method: string;
+  url: string;
+  status: number;
+  resolver?: string;
+  /** Present only for transport failures, which have no HTTP response/status. */
+  failure?: string;
+}
+
+export type ScreenshotCapture = "viewport" | "page-full" | "surface-full";
 
 /** Thrown by step() when its body (action or expectation) fails — aborts the test. */
 export class RecorderStepError extends Error {
@@ -51,6 +69,10 @@ function decodeResolver(url: string): string | undefined {
   return undefined;
 }
 
+function isStaticAsset(url: string): boolean {
+  return /\.(png|jpe?g|gif|webp|woff2?|css|svg|ico|map)(\?|$)/i.test(url);
+}
+
 export class Recorder {
   steps: StepRecord[] = [];
   console: ConsoleEntry[] = [];
@@ -65,12 +87,34 @@ export class Recorder {
   private t0 = Date.now();
 
   constructor(public page: Page, public testInfo: TestInfo) {
-    page.on("console", (m) => this.console.push({ t: this.dt(), level: m.type(), text: m.text() }));
+    page.on("console", (m) => {
+      const location = m.location();
+      this.console.push({
+        t: this.dt(),
+        level: m.type(),
+        text: m.text(),
+        ...(location.url ? { url: location.url } : {}),
+        ...(Number.isFinite(location.lineNumber) ? { lineNumber: location.lineNumber } : {}),
+        ...(Number.isFinite(location.columnNumber) ? { columnNumber: location.columnNumber } : {}),
+      });
+    });
     page.on("pageerror", (e: Error) => this.pageErrors.push(String(e?.message ?? e)));
     page.on("response", (r) => {
       const url = r.url();
-      if (/\.(png|jpe?g|gif|webp|woff2?|css|svg|ico|map)(\?|$)/i.test(url)) return; // skip static noise
+      if (isStaticAsset(url)) return; // skip static noise
       this.network.push({ t: this.dt(), method: r.request().method(), url, status: r.status(), resolver: decodeResolver(url) });
+    });
+    page.on("requestfailed", (r) => {
+      const url = r.url();
+      if (isStaticAsset(url)) return;
+      this.network.push({
+        t: this.dt(),
+        method: r.method(),
+        url,
+        status: 0,
+        resolver: decodeResolver(url),
+        failure: r.failure()?.errorText ?? "request failed",
+      });
     });
   }
 
@@ -94,7 +138,7 @@ export class Recorder {
   async step(
     name: string,
     fn: () => Promise<void>,
-    opts: { expectation?: Expectation; action?: string } = {},
+    opts: { expectation?: Expectation; action?: string; capture?: ScreenshotCapture } = {},
   ): Promise<void> {
     const index = this.steps.length + 1;
     const tStart = this.dt();
@@ -109,7 +153,20 @@ export class Recorder {
 
     const file = `${String(index).padStart(2, "0")}-${slug(name)}.png`;
     let shot: Buffer | undefined;
-    try { shot = await this.page.screenshot(); } catch { /* page may be navigating */ }
+    try {
+      if (opts.capture === "surface-full") {
+        // Element screenshots capture the whole app document, not just the slice
+        // currently visible through the host page's Forge iframe.
+        shot = this.surface
+          ? await this.surface.root.screenshot({ animations: "disabled" })
+          : await this.page.screenshot({ fullPage: true, animations: "disabled" });
+      } else if (opts.capture === "page-full") {
+        shot = await this.page.screenshot({ fullPage: true, animations: "disabled" });
+      } else {
+        // Backwards-compatible default for every existing scenario.
+        shot = await this.page.screenshot();
+      }
+    } catch { /* page may be navigating */ }
     if (shot) {
       this.screenshots.push({ name: file, buffer: shot });
       await this.testInfo.attach(file, { body: shot, contentType: "image/png" }).catch(() => {});

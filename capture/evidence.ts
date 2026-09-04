@@ -47,8 +47,17 @@ export async function writeEvidenceBundle(a: FinalizeArgs): Promise<string> {
   fs.writeFileSync(path.join(dir, "console.json"), JSON.stringify(recorder.console, null, 2));
   fs.writeFileSync(path.join(dir, "network.json"), JSON.stringify(recorder.network, null, 2));
   if (recorder.frames) fs.writeFileSync(path.join(dir, "frames.json"), JSON.stringify(recorder.frames, null, 2));
+  for (const step of recorder.steps) {
+    if (!step.aria) continue;
+    const ariaFile = step.screenshot.replace(/\.png$/i, ".aria.yaml");
+    fs.writeFileSync(path.join(dir, ariaFile), step.aria);
+  }
   const lastAria = [...recorder.steps].reverse().find((s) => s.aria)?.aria;
+  // Keep the historical top-level alias for assessors and old evidence readers.
   if (lastAria) fs.writeFileSync(path.join(dir, "aria.yaml"), lastAria);
+
+  const viewport = recorder.page.viewportSize()
+    ?? await recorder.page.evaluate(() => ({ width: window.innerWidth, height: window.innerHeight })).catch(() => VIEWPORT);
 
   const captureStatus: "pass" | "fail" | "error" =
     recorder.errored ? "error" : recorder.failureCount > 0 ? "fail" : "pass";
@@ -66,6 +75,7 @@ export async function writeEvidenceBundle(a: FinalizeArgs): Promise<string> {
       action: s.action,
       status: s.status,
       screenshot: s.screenshot,
+      ...(s.aria ? { aria: s.screenshot.replace(/\.png$/i, ".aria.yaml") } : {}),
       error: s.error,
       expectation: s.expectation,
       timing: s.timing,
@@ -81,7 +91,7 @@ export async function writeEvidenceBundle(a: FinalizeArgs): Promise<string> {
     env: {
       site: SITE_HOST,
       browser: "chromium/chrome",
-      viewport: `${VIEWPORT.width}x${VIEWPORT.height}`,
+      viewport: `${viewport.width}x${viewport.height}`,
       capturedAt: new Date().toISOString(),
       harnessVersion: "0.1.0",
     },
