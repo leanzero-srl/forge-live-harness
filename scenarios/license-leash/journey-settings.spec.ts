@@ -198,6 +198,15 @@ test.describe("License Leash Settings visual matrix", () => {
         observer.setAppUrl(surface.appUrl);
         await waitForSettingsToSettle(surface.shell);
         const mountCallsBefore = observer.counts(MOUNT_ONCE_RESOLVERS);
+        await surface.panels.evaluateAll((panels) => {
+          type IdentityWindow = Window & {
+            __licenseLeashPanelIdentity?: Array<{ panel: Element; content: Element | null }>;
+          };
+          (window as IdentityWindow).__licenseLeashPanelIdentity = panels.map((panel) => ({
+            panel,
+            content: panel.firstElementChild,
+          }));
+        });
 
         for (const label of SETTINGS_TABS) {
           await recorder.step(`${label} — ${theme} ${viewport.width}px`, async () => {
@@ -239,6 +248,14 @@ test.describe("License Leash Settings visual matrix", () => {
         }
 
         expect(observer.counts(MOUNT_ONCE_RESOLVERS), "tab switches do not re-run mount-only Settings resolvers").toEqual(mountCallsBefore);
+        expect(await surface.panels.evaluateAll((panels) => {
+          type IdentityWindow = Window & {
+            __licenseLeashPanelIdentity?: Array<{ panel: Element; content: Element | null }>;
+          };
+          const before = (window as IdentityWindow).__licenseLeashPanelIdentity;
+          return before?.length === panels.length && panels.every((panel, index) =>
+            before[index]?.panel === panel && before[index]?.content === panel.firstElementChild);
+        }), "tab round-trips preserve every panel and its component root DOM node").toBe(true);
         observer.assertNoMutations();
 
         if (theme === "light" && viewport.width === 1440) {

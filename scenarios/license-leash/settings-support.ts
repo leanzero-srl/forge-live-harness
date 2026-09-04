@@ -46,15 +46,21 @@ export const MOUNT_ONCE_RESOLVERS = [
   "getLeashAdmins",
   "getReactivationUrl",
   "getTrackedEventsConfig",
-  "getAllowlistStatus",
-  "getJoinerStatus",
-  "getGuestOnboardingStatus",
   "getLeashSpace",
   "getRouterStatus",
   "getRateLimitReport",
   "getLicenceRefresh",
   "getOverflowQueue",
   "getReleaseNotes",
+] as const;
+
+// These load on mount too, but deliberately refresh on timers while the panels
+// stay mounted: allowlist every 20s, joiners every 15s, guest onboarding every
+// 10s. Raw counts cannot diagnose remounts once a visual run spans those gates.
+export const SETTINGS_POLLING_RESOLVERS = [
+  "getAllowlistStatus",
+  "getJoinerStatus",
+  "getGuestOnboardingStatus",
 ] as const;
 
 const MUTATING_RESOLVERS = new Set([
