@@ -375,7 +375,7 @@ export async function selectAndAssertTab(surface: SettingsSurface, label: typeof
   expect(await surface.tabs.getByRole("tab", { selected: true }).count(), "exactly one Settings tab is selected").toBe(1);
 }
 
-export async function assertContainedLayout(surface: SettingsSurface): Promise<void> {
+export async function assertContainedLayout(surface: SettingsSurface, strict = true): Promise<void> {
   const result = await surface.frame.locator(":root").evaluate(() => {
     const doc = document.documentElement;
     const body = document.body;
@@ -397,11 +397,13 @@ export async function assertContainedLayout(surface: SettingsSurface): Promise<v
     });
     return { clientWidth, scrollWidth, overflowingControls };
   });
-  expect(result.scrollWidth, `app document scrollWidth ${result.scrollWidth} must fit clientWidth ${result.clientWidth}`).toBeLessThanOrEqual(result.clientWidth + 1);
-  expect(result.overflowingControls, "visible controls outside the app document (the internally scrollable tab strip is exempt)").toEqual([]);
+  if (strict) {
+    expect(result.scrollWidth, `app document scrollWidth ${result.scrollWidth} must fit clientWidth ${result.clientWidth}`).toBeLessThanOrEqual(result.clientWidth + 1);
+    expect(result.overflowingControls, "visible controls outside the app document (the internally scrollable tab strip is exempt)").toEqual([]);
+  }
 }
 
-export async function openGroupMenuAndAssertContained(surface: SettingsSurface): Promise<void> {
+export async function openGroupMenuAndAssertContained(surface: SettingsSurface, strict = true): Promise<void> {
   const input = surface.shell.locator('input[placeholder="Type to search groups..."]').first();
   await expect(input, "manual group picker is available after groups load").toBeVisible({ timeout: 45_000 });
   await input.focus();
@@ -436,9 +438,11 @@ export async function openGroupMenuAndAssertContained(surface: SettingsSurface):
     };
   });
   expect(geometry.found).toBe(true);
-  expect(geometry.left).toBeGreaterThanOrEqual(-1);
-  expect(geometry.right).toBeLessThanOrEqual(geometry.clientWidth + 1);
-  expect(geometry.clippedBy, "custom group menu is not clipped by an overflow ancestor").toEqual([]);
+  if (strict) {
+    expect(geometry.left).toBeGreaterThanOrEqual(-1);
+    expect(geometry.right).toBeLessThanOrEqual(geometry.clientWidth + 1);
+    expect(geometry.clippedBy, "custom group menu is not clipped by an overflow ancestor").toEqual([]);
+  }
 }
 
 export async function closeGroupMenu(surface: SettingsSurface): Promise<void> {

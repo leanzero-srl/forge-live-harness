@@ -32,6 +32,7 @@ const APP_SHA = process.env.EXPECTED_APP_SHA?.trim() || (() => {
   try { return execFileSync("git", ["-C", T.repo, "rev-parse", "--short", "HEAD"], { encoding: "utf8" }).trim(); }
   catch { return "unknown"; }
 })();
+const STRICT_LAYOUT = process.env.BASELINE_CAPTURE !== "1";
 
 const MATRIX: Array<{ width: number; height: number }> = [
   { width: 1440, height: 900 },
@@ -76,7 +77,7 @@ async function captureExpandedRunbook(surface: SettingsSurface, recorder: Parame
   await recorder.step("Access funnel — expanded cutover runbook", async () => {
     await toggle.click();
     await expect(panel.getByText(/Set up the funnel: mode on/)).toBeVisible();
-    await assertContainedLayout(surface);
+    await assertContainedLayout(surface, STRICT_LAYOUT);
   }, {
     action: "expand the non-mutating cutover runbook",
     capture: "surface-full",
@@ -99,7 +100,7 @@ async function captureSecretState(surface: SettingsSurface, recorder: Parameters
         const input = field.locator('input[type="password"][placeholder="Paste new key…"]');
         await expect(input).toBeVisible();
         await expect(input).toHaveValue("");
-        await assertContainedLayout(surface);
+        await assertContainedLayout(surface, STRICT_LAYOUT);
       }, {
         action: "open the local Replace editor without entering or saving a secret",
         capture: "surface-full",
@@ -119,7 +120,7 @@ async function captureSecretState(surface: SettingsSurface, recorder: Parameters
     const input = field.locator('input[type="password"][placeholder="Paste key…"]');
     await expect(input).toBeVisible();
     await expect(input).toHaveValue("");
-    await assertContainedLayout(surface);
+    await assertContainedLayout(surface, STRICT_LAYOUT);
   }, {
     capture: "surface-full",
     expectation: {
@@ -137,7 +138,7 @@ async function captureEmptyAdminSearch(surface: SettingsSurface, recorder: Param
     await recorder.step("App access — empty administrator search", async () => {
       await input.fill(query);
       await expect(panel.getByText("Nobody matched. The search covers people the app has already synced.", { exact: true })).toBeVisible({ timeout: 20_000 });
-      await assertContainedLayout(surface);
+      await assertContainedLayout(surface, STRICT_LAYOUT);
     }, {
       action: "run a non-mutating impossible-name search",
       capture: "surface-full",
@@ -182,7 +183,7 @@ test.describe("License Leash Settings visual matrix", () => {
         for (const label of SETTINGS_TABS) {
           await recorder.step(`${label} — ${theme} ${viewport.width}px`, async () => {
             await selectAndAssertTab(surface, label);
-            await assertContainedLayout(surface);
+            await assertContainedLayout(surface, STRICT_LAYOUT);
             if (label === "Maintenance") {
               await expect(settingsPanel(surface, label).getByRole("heading", { name: "Danger zone", exact: true })).toBeVisible();
               await assertExpectedBuildStamp(surface);
@@ -198,8 +199,8 @@ test.describe("License Leash Settings visual matrix", () => {
 
           if (label === "Groups & access") {
             await recorder.step("Groups — expanded custom menu", async () => {
-              await openGroupMenuAndAssertContained(surface);
-              await assertContainedLayout(surface);
+              await openGroupMenuAndAssertContained(surface, STRICT_LAYOUT);
+              await assertContainedLayout(surface, STRICT_LAYOUT);
             }, {
               action: "focus the custom group picker without choosing an option",
               capture: "surface-full",
