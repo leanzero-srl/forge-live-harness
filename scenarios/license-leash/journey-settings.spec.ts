@@ -1,11 +1,13 @@
 // Permanent live journey for the License Leash Settings worksheet.
 //
 // The visual matrix is read-only: it switches already-mounted tabs, opens local
-// disclosure/editor states, and performs one impossible-name search. The only
-// live write in this file is the dedicated freshness proof, which restores the
-// original value through the UI in a finally block and verifies that restoration
-// after a second reload.
+// disclosure/editor states, exercises Overview filters, queries Audit and downloads
+// its two CSV scopes. The only live write in this file is the dedicated freshness
+// proof, which restores the original value through the UI in a finally block and
+// verifies that restoration after a second reload.
 import { execFileSync } from "node:child_process";
+import { readFile } from "node:fs/promises";
+import type { Download, Locator, Page } from "@playwright/test";
 import { test, expect } from "../../fixtures/forge";
 import { BASE_URL } from "../../config/env";
 import { getTarget } from "../../config/targets";
@@ -178,14 +180,361 @@ async function captureEmptyAdminSearch(surface: SettingsSurface, recorder: Param
   }
 }
 
-test.describe("License Leash Settings visual matrix", () => {
+interface TileVisualState {
+  shadow: string;
+  translateY: number;
+  focusVisible: boolean;
+}
+
+async function tileVisualState(tile: Locator): Promise<TileVisualState> {
+  return tile.evaluate((element) => {
+    const style = getComputedStyle(element);
+    const matrix = style.transform === "none" ? null : new DOMMatrixReadOnly(style.transform);
+    return {
+      shadow: style.boxShadow,
+      translateY: matrix?.m42 ?? 0,
+      focusVisible: element.matches(":focus-visible"),
+    };
+  });
+}
+
+async function assertOverviewGridIsEven(surface: SettingsSurface): Promise<void> {
+  const geometry = await surface.frame.locator(".stats-grid").evaluate((grid) => {
+    const rect = grid.getBoundingClientRect();
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>(":scope > .stat-card")).map((card) => {
+      const box = card.getBoundingClientRect();
+      return { x: box.x, y: box.y, width: box.width, height: box.height };
+    });
+    return {
+      appWidth: document.documentElement.clientWidth,
+      gridWidth: rect.width,
+      columns: getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean).length,
+      cards,
+    };
+  });
+
+  expect(geometry.cards, "Overview renders six filter cards and one licence gauge").toHaveLength(7);
+  const expectedColumns = geometry.appWidth <= 700 ? 2 : geometry.appWidth <= 980 ? 3 : 7;
+  expect(geometry.columns, `Overview grid follows the ${expectedColumns}-column breakpoint at app width ${geometry.appWidth}px`).toBe(expectedColumns);
+
+  const within = (actual: number, expected: number, tolerance = 2) => Math.abs(actual - expected) <= tolerance;
+  const firstSix = geometry.cards.slice(0, 6);
+  const expectedCardWidth = firstSix[0].width;
+  const expectedCardHeight = firstSix[0].height;
+  expect(firstSix.every(card => within(card.width, expectedCardWidth)), "all six KPI cards have equal width").toBe(true);
+  expect(firstSix.every(card => within(card.height, expectedCardHeight, 1)), "all six KPI cards have equal height").toBe(true);
+
+  if (expectedColumns === 7) {
+    expect(geometry.cards.every(card => within(card.y, geometry.cards[0].y)), "all seven desktop tiles share one row").toBe(true);
+    expect(within(geometry.cards[6].width, expectedCardWidth), "the desktop licence gauge matches the KPI width").toBe(true);
+    expect(within(geometry.cards[6].height, expectedCardHeight, 1), "the desktop licence gauge matches the KPI height").toBe(true);
+    return;
+  }
+
+  const expectedRows = 6 / expectedColumns;
+  for (let row = 0; row < expectedRows; row += 1) {
+    const rowCards = firstSix.slice(row * expectedColumns, (row + 1) * expectedColumns);
+    expect(rowCards.every(card => within(card.y, rowCards[0].y)), `responsive KPI row ${row + 1} is level`).toBe(true);
+    if (row > 0) {
+      const firstRow = firstSix.slice(0, expectedColumns);
+      expect(rowCards.every((card, index) => within(card.x, firstRow[index].x)), `responsive KPI row ${row + 1} aligns with row 1`).toBe(true);
+    }
+  }
+  const gauge = geometry.cards[6];
+  expect(within(gauge.width, geometry.gridWidth), "the responsive licence gauge spans the complete grid").toBe(true);
+  expect(gauge.y).toBeGreaterThan(firstSix[firstSix.length - 1].y);
+}
+
+async function captureOverviewEvidence(
+  page: Page,
+  surface: SettingsSurface,
+  recorder: Parameters<typeof enterSettings>[1],
+  theme: SettingsTheme,
+  width: number,
+): Promise<void> {
+  await surface.frame.getByRole("button", { name: "Overview", exact: true }).click();
+  await expect(surface.frame.getByRole("checkbox", { name: /Include suspended & deactivated accounts/ })).toBeVisible();
+
+  const health = surface.frame.locator(".engine-health");
+  await recorder.step(`Overview engine evidence — ${theme} ${width}px`, async () => {
+    await expect(health, "the wolfaenpak stopped-job fixture exposes the Engine Health treatment").toBeVisible({ timeout: 30_000 });
+    const showDetail = health.getByRole("button", { name: "Show detail", exact: true });
+    await expect(showDetail).toBeVisible();
+    await showDetail.click();
+    await expect(health.getByRole("button", { name: "Hide detail", exact: true })).toBeVisible();
+    await expect.poll(() => health.locator(".engine-health__job-row").count(), {
+      message: "expanded Engine Health contains concrete job evidence",
+      timeout: 15_000,
+    }).toBeGreaterThan(0);
+
+    const treatment = await health.evaluate((element) => {
+      const alpha = (colour: string) => {
+        const rgba = colour.match(/^rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)$/);
+        return rgba ? Number(rgba[1]) : 1;
+      };
+      const style = getComputedStyle(element);
+      const header = element.querySelector<HTMLElement>(".engine-health__header")!;
+      const body = element.querySelector<HTMLElement>(".engine-health__body")!;
+      const jobs = element.querySelector<HTMLElement>(".engine-health__jobs")!;
+      const rows = Array.from(element.querySelectorAll<HTMLElement>(".engine-health__job-row"));
+      const states = Array.from(element.querySelectorAll<HTMLElement>(".engine-health__state"));
+      const widths = (value: CSSStyleDeclaration) => [
+        value.borderTopWidth, value.borderRightWidth, value.borderBottomWidth, value.borderLeftWidth,
+      ];
+      const colours = (value: CSSStyleDeclaration) => [
+        value.borderTopColor, value.borderRightColor, value.borderBottomColor, value.borderLeftColor,
+      ];
+      const jobStyle = getComputedStyle(jobs);
+      return {
+        semanticClass: element.classList.contains("engine-health--stopped") || element.classList.contains("engine-health--warning"),
+        headerBackground: getComputedStyle(header).backgroundColor,
+        headerAlpha: alpha(getComputedStyle(header).backgroundColor),
+        bodyBackground: getComputedStyle(body).backgroundColor,
+        rowBackgrounds: rows.map(row => getComputedStyle(row).backgroundColor),
+        stateAlphas: states.map(state => alpha(getComputedStyle(state).backgroundColor)),
+        shellBorderWidths: widths(style),
+        shellBorderColours: colours(style),
+        jobsBorderWidths: widths(jobStyle),
+        jobsBorderColours: colours(jobStyle),
+      };
+    });
+    expect(treatment.semanticClass, "Engine Health uses a semantic stopped/warning state").toBe(true);
+    expect(treatment.headerAlpha, "Engine Health header uses a solid semantic colour").toBe(1);
+    expect(treatment.headerBackground, "Engine Health header has a visible semantic fill").not.toBe("rgba(0, 0, 0, 0)");
+    expect(treatment.headerBackground, "Engine Health header has a visible semantic fill").not.toBe("transparent");
+    expect(treatment.headerBackground, "the semantic header is distinct from the neutral evidence body").not.toBe(treatment.bodyBackground);
+    expect(treatment.rowBackgrounds.every(background => background === "rgba(0, 0, 0, 0)" || background === treatment.bodyBackground),
+      "job evidence rows stay neutral instead of using pale semantic strips").toBe(true);
+    expect(treatment.stateAlphas.every(alpha => alpha === 1), "job state pills use solid colours").toBe(true);
+    expect(new Set(treatment.shellBorderWidths).size, "Engine Health has a full, even outline rather than a left rail").toBe(1);
+    expect(parseFloat(treatment.shellBorderWidths[0]), "Engine Health outline is visibly present").toBeGreaterThan(0);
+    expect(new Set(treatment.shellBorderColours).size, "Engine Health outline uses one colour on all sides").toBe(1);
+    expect(new Set(treatment.jobsBorderWidths).size, "the evidence worksheet is outlined on all sides").toBe(1);
+    expect(parseFloat(treatment.jobsBorderWidths[0]), "the evidence worksheet outline is visibly present").toBeGreaterThan(0);
+    expect(new Set(treatment.jobsBorderColours).size, "the evidence worksheet outline is visually even").toBe(1);
+    await assertContainedLayout(surface, STRICT_LAYOUT);
+    await waitForHostedFrameToSettle(surface);
+  }, {
+    action: "open the redesigned Engine Health evidence",
+    capture: "surface-full",
+    expectation: {
+      assertion: "a solid semantic header sits above neutral, fully outlined job evidence without pale red strips or a left rail",
+      narrative: `The ${theme} ${width}px Overview captures the real stopped-job state with each item visually separated and readable.`,
+    },
+  });
+
+  const filterNames = ["Licensed", "Managed seats", "Awaiting claim", "Protected", "Active (30d)", "Inactive"];
+  const filters = filterNames.map(name => surface.frame.getByRole("button", { name: `Filter users by ${name}`, exact: true }));
+  const gauge = surface.frame.getByRole("button", { name: "Open license usage trends", exact: true });
+  const tiles = [...filters, gauge];
+
+  await recorder.step(`Overview KPI interactions — ${theme} ${width}px`, async () => {
+    for (const [index, tile] of tiles.entries()) {
+      await expect(tile, `${index < 6 ? filterNames[index] : "License usage"} tile is interactive`).toBeVisible();
+    }
+    await assertOverviewGridIsEven(surface);
+
+    const restStates: TileVisualState[] = [];
+    for (const [index, tile] of tiles.entries()) {
+      const rest = await tileVisualState(tile);
+      restStates.push(rest);
+      await tile.hover();
+      await expect.poll(async () => {
+        const hover = await tileVisualState(tile);
+        return hover.shadow !== rest.shadow && hover.translateY < -1;
+      }, {
+        message: `${index < 6 ? filterNames[index] : "License usage"} has a visible hover glow`,
+        timeout: 5_000,
+      }).toBe(true);
+    }
+
+    await surface.frame.getByRole("heading", { name: "License Leash", exact: true }).hover();
+    for (const [index, tile] of tiles.entries()) {
+      // Shift+Tab then Tab turns programmatic placement into real keyboard focus,
+      // so this proves :focus-visible rather than the weaker :focus state.
+      await tile.focus();
+      await page.keyboard.press("Shift+Tab");
+      await page.keyboard.press("Tab");
+      await expect(tile).toBeFocused();
+      await expect.poll(async () => {
+        const focused = await tileVisualState(tile);
+        return focused.focusVisible && focused.shadow !== restStates[index].shadow && focused.translateY < -1;
+      }, {
+        message: `${index < 6 ? filterNames[index] : "License usage"} has a visible keyboard-focus glow`,
+        timeout: 5_000,
+      }).toBe(true);
+
+      if (index < filters.length) {
+        await tile.press("Enter");
+        await expect(tile, `${filterNames[index]} exposes its selected state`).toHaveAttribute("aria-pressed", "true", { timeout: 10_000 });
+        await tile.blur();
+        await surface.frame.getByRole("heading", { name: "License Leash", exact: true }).hover();
+        await expect.poll(async () => {
+          const selected = await tileVisualState(tile);
+          return !selected.focusVisible && selected.shadow !== restStates[index].shadow && selected.translateY < -1;
+        }, {
+          message: `${filterNames[index]} keeps a visible selected glow`,
+          timeout: 5_000,
+        }).toBe(true);
+      }
+    }
+
+    const loadingOverlay = surface.frame.getByText("Loading…", { exact: true }).locator("../..");
+    await expect(loadingOverlay).toHaveAttribute("aria-hidden", "true", { timeout: 15_000 });
+    await expect(filters[5]).toHaveAttribute("aria-pressed", "true");
+    await assertContainedLayout(surface, STRICT_LAYOUT);
+    await waitForHostedFrameToSettle(surface);
+  }, {
+    action: "exercise hover, keyboard focus and selection on all Overview tiles",
+    capture: "surface-full",
+    expectation: {
+      assertion: "all six filters and the licence gauge show a real glow, while KPI rows remain even at the active responsive breakpoint",
+      narrative: `The ${theme} ${width}px Overview finishes with Inactive selected and License usage keyboard-focused so both persistent and transient emphasis are visible.`,
+    },
+  });
+}
+
+async function readDownloadedCsv(download: Download): Promise<string> {
+  const path = await download.path();
+  expect(path, "the browser completed the CSV download").not.toBeNull();
+  return readFile(path!, "utf8");
+}
+
+function csvActions(csv: string): string[] {
+  expect(csv.replace(/^\uFEFF/, "")).toMatch(/^performed_at,action,account_id,display_name,performed_by,reason\r?\n/);
+  return Array.from(csv.matchAll(/^(?:\uFEFF)?\d{4}-\d{2}-\d{2}[^,\r\n]*,([A-Z][A-Z0-9_]*),/gm), match => match[1]);
+}
+
+async function captureAuditControls(
+  page: Page,
+  surface: SettingsSurface,
+  recorder: Parameters<typeof enterSettings>[1],
+  theme: SettingsTheme,
+  width: number,
+  proveDownloads: boolean,
+): Promise<void> {
+  await surface.frame.getByRole("button", { name: "Audit Log", exact: true }).click();
+  await expect(surface.frame.getByRole("tablist", { name: "Log views" })).toBeVisible();
+  const audit = surface.frame.locator(".audit-log");
+  const search = audit.getByRole("textbox", { name: "Search audit log", exact: true });
+  const eventType = audit.getByRole("button", { name: "Event type", exact: true });
+  const exportButton = audit.getByRole("button", { name: "Export CSV", exact: true });
+  const count = audit.locator(".audit-log__count");
+  await expect(count).toHaveText(/^\d[\d,]* entries$/);
+  await expect.poll(async () => Number((await count.textContent() ?? "").replace(/\D/g, "")), {
+    message: "the live Audit Log has loaded its unfiltered rows",
+    timeout: 30_000,
+  }).toBeGreaterThan(0);
+  const initialTotal = Number((await count.textContent() ?? "").replace(/\D/g, ""));
+  let filteredTotal = 0;
+
+  await recorder.step(`Audit Log event picker — ${theme} ${width}px`, async () => {
+    await expect(search).toBeVisible();
+    await expect(eventType).toHaveAttribute("aria-haspopup", "listbox");
+    await expect(exportButton).toBeVisible();
+    expect(await audit.locator("select").count(), "Audit uses no browser-native select").toBe(0);
+
+    await eventType.focus();
+    await eventType.press("ArrowDown");
+    const listbox = audit.getByRole("listbox");
+    await expect(listbox).toBeVisible();
+    await expect(listbox.getByRole("option")).toHaveCount(17);
+    await expect(listbox.getByRole("option", { name: "All event types", exact: true })).toHaveAttribute("aria-selected", "true");
+    await expect(listbox.getByRole("option", { name: "Configuration changes", exact: true })).toBeVisible();
+    await expect(listbox.locator('[role="option"]:focus')).toHaveCount(1);
+    await assertContainedLayout(surface, STRICT_LAYOUT);
+    await waitForHostedFrameToSettle(surface);
+  }, {
+    action: "open the keyboard-operable custom Event type picker",
+    capture: "surface-full",
+    expectation: {
+      assertion: "the custom listbox exposes every event group, marks the current choice, receives keyboard focus, and remains contained",
+      narrative: `The ${theme} ${width}px Audit Log captures its non-native event filter open.`,
+    },
+  });
+  await audit.getByRole("listbox").locator('[role="option"]:focus').press("Escape");
+  await expect(eventType).toBeFocused();
+
+  await recorder.step(`Audit Log filtered export choices — ${theme} ${width}px`, async () => {
+    await eventType.click();
+    await audit.getByRole("option", { name: "Configuration changes", exact: true }).click();
+    await expect(eventType).toContainText("Configuration changes");
+    await search.fill("config");
+
+    await exportButton.click();
+    const menu = audit.getByRole("dialog", { name: "Export audit log", exact: true });
+    await expect(menu).toBeVisible();
+    const current = menu.getByRole("button", { name: "Export current selection", exact: true });
+    await expect(current).toBeEnabled({ timeout: 30_000 });
+    filteredTotal = Number((await count.textContent() ?? "").replace(/\D/g, ""));
+    expect(filteredTotal, "the live configuration filter has matching entries").toBeGreaterThan(0);
+    await expect(menu.getByRole("button", { name: "Export all audit entries", exact: true })).toBeEnabled();
+    await expect(menu.getByText(`${filteredTotal.toLocaleString()} matching ${filteredTotal === 1 ? "entry" : "entries"}, including every matching page.`, { exact: true })).toBeVisible();
+    await expect.poll(() => audit.locator(".audit-log__badge").count(), {
+      message: "the configuration filter has visible live matches",
+      timeout: 30_000,
+    }).toBeGreaterThan(0);
+    expect((await audit.locator(".audit-log__badge").allTextContents()).every(text => text.trim().toLowerCase() === "config"),
+      "event type and visible-label text filters constrain every visible result").toBe(true);
+    await assertContainedLayout(surface, STRICT_LAYOUT);
+    await waitForHostedFrameToSettle(surface);
+  }, {
+    action: "filter by Configuration changes and visible text, then open Export CSV",
+    capture: "surface-full",
+    expectation: {
+      assertion: "the live results obey both filters and Export CSV offers current-selection and complete-log scopes",
+      narrative: `The ${theme} ${width}px Audit Log captures the bounded export menu against a settled filtered selection.`,
+    },
+  });
+
+  if (proveDownloads) {
+    await recorder.step("Audit Log — both CSV scopes download", async () => {
+      const currentMenu = audit.getByRole("dialog", { name: "Export audit log", exact: true });
+      const currentDownloadPromise = page.waitForEvent("download", { timeout: 60_000 });
+      await currentMenu.getByRole("button", { name: "Export current selection", exact: true }).click();
+      const currentDownload = await currentDownloadPromise;
+      expect(currentDownload.suggestedFilename()).toMatch(/^license-leash_audit_current-selection_.+\.csv$/);
+      const currentActions = csvActions(await readDownloadedCsv(currentDownload));
+      expect(currentActions.length, "current-selection CSV contains the visible configuration results").toBeGreaterThan(0);
+      expect(currentActions.length, "current-selection CSV includes every matching page exactly once").toBe(filteredTotal);
+      expect(currentActions.every(action => action === "CONFIG_CHANGED"), "current-selection CSV applies the event filter on every page").toBe(true);
+
+      await exportButton.click();
+      const allMenu = audit.getByRole("dialog", { name: "Export audit log", exact: true });
+      const allDownloadPromise = page.waitForEvent("download", { timeout: 60_000 });
+      await allMenu.getByRole("button", { name: "Export all audit entries", exact: true }).click();
+      const allDownload = await allDownloadPromise;
+      expect(allDownload.suggestedFilename()).toMatch(/^license-leash_audit_all_.+\.csv$/);
+      const allActions = csvActions(await readDownloadedCsv(allDownload));
+      expect(allActions.length, "complete-log CSV contains at least the entries counted before filtering").toBeGreaterThanOrEqual(initialTotal);
+      expect(allActions.length, "complete-log CSV contains at least the filtered rows").toBeGreaterThanOrEqual(currentActions.length);
+      expect(allActions.some(action => action !== "CONFIG_CHANGED"), "complete-log CSV ignores the active event/text filters").toBe(true);
+    }, {
+      action: "download current selection, then the complete audit log",
+      expectation: {
+        assertion: "the two export choices emit distinct CSVs and only current selection is constrained to CONFIG_CHANGED",
+        narrative: "Live resolver and browser-download evidence proves both scopes, not merely that two menu labels render.",
+      },
+    });
+  } else {
+    await page.keyboard.press("Escape");
+    await expect(audit.getByRole("dialog", { name: "Export audit log", exact: true })).toBeHidden();
+    await expect(exportButton).toBeFocused();
+  }
+
+  await search.fill("");
+  await eventType.click();
+  await audit.getByRole("option", { name: "All event types", exact: true }).click();
+}
+
+test.describe("License Leash admin visual matrix", () => {
   // A retry can turn a missed host click or broken evidence capture into a
   // deceptively green journey. Every viewport must pass on its first attempt.
   test.describe.configure({ timeout: 420_000, retries: 0 });
 
   for (const theme of ["light", "dark"] as const) {
     for (const viewport of MATRIX) {
-      test(`${theme} ${viewport.width}px — all 11 Settings tabs and non-mutating states`, async ({ page, recorder }) => {
+      test(`${theme} ${viewport.width}px — Settings, Overview and Audit`, async ({ page, recorder }) => {
         test.skip(!T.envId, "LICENSELEASH_ENV_ID unresolved");
         await page.setViewportSize(viewport);
         await page.emulateMedia({ colorScheme: theme });
@@ -269,45 +618,30 @@ test.describe("License Leash Settings visual matrix", () => {
         }), "tab round-trips preserve every panel and its component root DOM node").toBe(true);
         observer.assertNoMutations();
 
-        if (theme === "light" && viewport.width === 1440) {
-          await recorder.step("Overview — unchanged reference", async () => {
-            await surface.frame.getByRole("button", { name: "Overview", exact: true }).click();
-            await expect(surface.frame.getByRole("checkbox", { name: /Include suspended & deactivated accounts/ })).toBeVisible();
-            await waitForHostedFrameToSettle(surface);
-          }, {
-            action: "reopen Overview after the Settings journey",
-            capture: "surface-full",
-            expectation: {
-              assertion: "the existing Overview content and controls remain available",
-              narrative: "The visual-only Settings change has a stable Overview reference image.",
-            },
-          });
-          await recorder.step("Audit Log — unchanged reference", async () => {
-            await surface.frame.getByRole("button", { name: "Audit Log", exact: true }).click();
-            await expect(surface.frame.getByRole("tablist", { name: "Log views" })).toBeVisible();
-            await waitForHostedFrameToSettle(surface);
-          }, {
-            action: "reopen Audit Log after the Settings journey",
-            capture: "surface-full",
-            expectation: {
-              assertion: "the existing Audit Log content and controls remain available",
-              narrative: "The visual-only Settings change has a stable Audit Log reference image.",
-            },
-          });
-          await recorder.step("return to Settings after unchanged surfaces", async () => {
-            await surface.frame.getByRole("button", { name: "Settings", exact: true }).click();
-            await expect(surface.frame.getByRole("heading", { name: "Configuration", exact: true })).toBeVisible();
-            await expect(surface.frame.locator('[role="tabpanel"]')).toHaveCount(SETTINGS_TABS.length);
-            await waitForHostedFrameToSettle(surface);
-          }, {
-            action: "return to Settings",
-            capture: "surface-full",
-            expectation: {
-              assertion: "Settings still mounts all 11 panels after visiting both sibling surfaces",
-              narrative: "Overview and Audit navigation leaves the Settings route healthy.",
-            },
-          });
-        }
+        await captureOverviewEvidence(page, surface, recorder, theme, viewport.width);
+        await captureAuditControls(
+          page,
+          surface,
+          recorder,
+          theme,
+          viewport.width,
+          theme === "light" && viewport.width === 1440,
+        );
+        observer.assertNoMutations();
+
+        await recorder.step(`return to Settings — ${theme} ${viewport.width}px`, async () => {
+          await surface.frame.getByRole("button", { name: "Settings", exact: true }).click();
+          await expect(surface.frame.getByRole("heading", { name: "Configuration", exact: true })).toBeVisible();
+          await expect(surface.frame.locator('[role="tabpanel"]')).toHaveCount(SETTINGS_TABS.length);
+          await waitForHostedFrameToSettle(surface);
+        }, {
+          action: "return to Settings after exercising both redesigned sibling surfaces",
+          capture: "surface-full",
+          expectation: {
+            assertion: "Settings still mounts all 11 panels after the Overview and Audit interaction journeys",
+            narrative: "Overview and Audit navigation leaves the Settings route healthy at this theme and viewport.",
+          },
+        });
         await observer.assertNoAppErrors();
       });
     }
