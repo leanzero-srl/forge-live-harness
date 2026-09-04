@@ -189,6 +189,10 @@ export class LicenseLeashObserver {
       const failure = request.failure()?.errorText ?? "request failed";
       // Page navigation intentionally aborts the old iframe's outstanding poll.
       if (/ERR_ABORTED|NS_BINDING_ABORTED/i.test(failure)) return;
+      // Atlassian's own browser-security reporter is occasionally blocked by
+      // Chromium ORB. It is neither app traffic nor a Forge resolver; keep it
+      // in raw recorder evidence, but never misclassify it as an app failure.
+      if (/^https:\/\/web-security-reports\.services\.atlassian\.com\/csp-report\//.test(request.url())) return;
       this.requestProblems.push({
         url: request.url(), failure, frameUrl: requestFrameUrl(request),
         invocation: forgeInvocation(request),
