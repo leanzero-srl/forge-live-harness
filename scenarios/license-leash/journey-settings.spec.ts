@@ -23,6 +23,7 @@ import {
   freshnessField,
   openGroupMenuAndAssertContained,
   selectAndAssertTab,
+  settingsPanel,
   waitForSettingsToSettle,
 } from "./settings-support";
 
@@ -70,7 +71,7 @@ async function navigateToSettings(
 }
 
 async function captureExpandedRunbook(surface: SettingsSurface, recorder: Parameters<typeof enterSettings>[1]): Promise<void> {
-  const panel = surface.panels.nth(SETTINGS_TABS.indexOf("Access funnel"));
+  const panel = settingsPanel(surface, "Access funnel");
   const toggle = panel.getByRole("button", { name: /Cutover runbook — the safe order/ });
   await recorder.step("Access funnel — expanded cutover runbook", async () => {
     await toggle.click();
@@ -88,7 +89,7 @@ async function captureExpandedRunbook(surface: SettingsSurface, recorder: Parame
 }
 
 async function captureSecretState(surface: SettingsSurface, recorder: Parameters<typeof enterSettings>[1]): Promise<void> {
-  const panel = surface.panels.nth(SETTINGS_TABS.indexOf("Detection"));
+  const panel = settingsPanel(surface, "Detection");
   const field = panel.getByText("Org API Key", { exact: true }).locator("..");
   const replace = field.getByRole("button", { name: "Replace", exact: true });
   if (await replace.isVisible().catch(() => false)) {
@@ -129,7 +130,7 @@ async function captureSecretState(surface: SettingsSurface, recorder: Parameters
 }
 
 async function captureEmptyAdminSearch(surface: SettingsSurface, recorder: Parameters<typeof enterSettings>[1]): Promise<void> {
-  const panel = surface.panels.nth(SETTINGS_TABS.indexOf("App access"));
+  const panel = settingsPanel(surface, "App access");
   const input = panel.locator('input[placeholder="Search by name — e.g. David, Solomon"]');
   const query = `__harness_no_match_${Date.now()}__`;
   try {
@@ -178,12 +179,12 @@ test.describe("License Leash Settings visual matrix", () => {
         await waitForSettingsToSettle(surface.shell);
         const mountCallsBefore = observer.counts(MOUNT_ONCE_RESOLVERS);
 
-        for (const [index, label] of SETTINGS_TABS.entries()) {
+        for (const label of SETTINGS_TABS) {
           await recorder.step(`${label} — ${theme} ${viewport.width}px`, async () => {
-            await selectAndAssertTab(surface, label, index);
+            await selectAndAssertTab(surface, label);
             await assertContainedLayout(surface);
             if (label === "Maintenance") {
-              await expect(surface.panels.nth(index).getByRole("heading", { name: "Danger zone", exact: true })).toBeVisible();
+              await expect(settingsPanel(surface, label).getByRole("heading", { name: "Danger zone", exact: true })).toBeVisible();
               await assertExpectedBuildStamp(surface);
             }
           }, {
@@ -250,7 +251,7 @@ test.describe("License Leash App access persistence", () => {
     let surface = await enterSettings(page, recorder, T, "light");
     observer.setAppUrl(surface.appUrl);
     await waitForSettingsToSettle(surface.shell);
-    await selectAndAssertTab(surface, "App access", SETTINGS_TABS.indexOf("App access"));
+    await selectAndAssertTab(surface, "App access");
 
     const original = await freshnessField(surface).input.inputValue();
     const originalNumber = Number(original);
@@ -281,7 +282,7 @@ test.describe("License Leash App access persistence", () => {
       observer.setAppUrl(surface.appUrl);
       await waitForSettingsToSettle(surface.shell);
       await recorder.step("adjacent freshness survives reload", async () => {
-        await selectAndAssertTab(surface, "App access", SETTINGS_TABS.indexOf("App access"));
+        await selectAndAssertTab(surface, "App access");
         await expect(freshnessField(surface).input).toHaveValue(adjacent);
       }, {
         action: "reload and reopen App access",
@@ -299,7 +300,7 @@ test.describe("License Leash App access persistence", () => {
           surface = await navigateToSettings(page, recorder, "light", false);
           observer.setAppUrl(surface.appUrl);
           await waitForSettingsToSettle(surface.shell);
-          await selectAndAssertTab(surface, "App access", SETTINGS_TABS.indexOf("App access"));
+          await selectAndAssertTab(surface, "App access");
           await recorder.step("restore original freshness through the UI", async () => {
             const field = freshnessField(surface);
             await field.input.fill(original);
@@ -318,7 +319,7 @@ test.describe("License Leash App access persistence", () => {
           observer.setAppUrl(surface.appUrl);
           await waitForSettingsToSettle(surface.shell);
           await recorder.step("restored freshness survives reload", async () => {
-            await selectAndAssertTab(surface, "App access", SETTINGS_TABS.indexOf("App access"));
+            await selectAndAssertTab(surface, "App access");
             await expect(freshnessField(surface).input).toHaveValue(original);
           }, {
             action: "reload and verify restoration",

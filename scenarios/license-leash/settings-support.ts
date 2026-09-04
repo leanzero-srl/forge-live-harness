@@ -20,6 +20,23 @@ export const SETTINGS_TABS = [
   "Waiting list",
 ] as const;
 
+// The final four panes intentionally retain their historical mount order even
+// though their tab buttons were reordered for navigation. Never use tab index
+// as pane index: doing so would turn a preservation check into a false failure.
+export const SETTINGS_PANEL_ORDER = [
+  "Groups & access",
+  "Limits & dry run",
+  "Notifications",
+  "Access funnel",
+  "Onboarding",
+  "Group router",
+  "Detection",
+  "Waiting list",
+  "App access",
+  "Maintenance",
+  "API allowance",
+] as const;
+
 export const MOUNT_ONCE_RESOLVERS = [
   "getGroups",
   "getDetectedLicenseGroups",
@@ -28,7 +45,11 @@ export const MOUNT_ONCE_RESOLVERS = [
   "getLeashAdmins",
   "getReactivationUrl",
   "getTrackedEventsConfig",
+  "getAllowlistStatus",
+  "getJoinerStatus",
+  "getGuestOnboardingStatus",
   "getLeashSpace",
+  "getRouterStatus",
   "getRateLimitReport",
   "getLicenceRefresh",
   "getOverflowQueue",
@@ -271,6 +292,10 @@ export interface SettingsSurface {
   appUrl: string;
 }
 
+export function settingsPanel(surface: SettingsSurface, label: typeof SETTINGS_TABS[number]): Locator {
+  return surface.panels.nth(SETTINGS_PANEL_ORDER.indexOf(label));
+}
+
 export async function enterSettings(
   page: Page,
   recorder: Recorder,
@@ -330,7 +355,7 @@ export async function waitForSettingsToSettle(shell: Locator): Promise<void> {
   ).toBe(0);
 }
 
-export async function selectAndAssertTab(surface: SettingsSurface, label: string, index: number): Promise<void> {
+export async function selectAndAssertTab(surface: SettingsSurface, label: typeof SETTINGS_TABS[number]): Promise<void> {
   const tabButtons = surface.tabs.getByRole("tab");
   await expect(tabButtons).toHaveCount(SETTINGS_TABS.length);
   expect((await tabButtons.allTextContents()).map((text) => text.trim())).toEqual([...SETTINGS_TABS]);
@@ -345,7 +370,8 @@ export async function selectAndAssertTab(surface: SettingsSurface, label: string
     return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
   }));
   expect(state, "all Settings tab panels remain mounted").toHaveLength(SETTINGS_TABS.length);
-  expect(state.flatMap((visible, panelIndex) => visible ? [panelIndex] : []), "exactly the selected panel is visible").toEqual([index]);
+  const expectedPanelIndex = SETTINGS_PANEL_ORDER.indexOf(label);
+  expect(state.flatMap((visible, panelIndex) => visible ? [panelIndex] : []), "exactly the selected panel is visible").toEqual([expectedPanelIndex]);
   expect(await surface.tabs.getByRole("tab", { selected: true }).count(), "exactly one Settings tab is selected").toBe(1);
 }
 
@@ -422,7 +448,7 @@ export async function closeGroupMenu(surface: SettingsSurface): Promise<void> {
 export async function assertExpectedBuildStamp(surface: SettingsSurface): Promise<void> {
   const expected = process.env.EXPECTED_APP_SHA?.trim();
   if (!expected) return;
-  const maintenance = surface.panels.nth(SETTINGS_TABS.indexOf("Maintenance"));
+  const maintenance = settingsPanel(surface, "Maintenance");
   const stamp = maintenance.getByText("Dashboard build", { exact: true }).locator("../..").locator("code");
   await expect(stamp).toBeAttached();
   const value = (await stamp.textContent() ?? "").trim();
@@ -431,7 +457,7 @@ export async function assertExpectedBuildStamp(surface: SettingsSurface): Promis
 }
 
 export function freshnessField(surface: SettingsSurface): { field: Locator; input: Locator; save: Locator } {
-  const accessPanel = surface.panels.nth(SETTINGS_TABS.indexOf("App access"));
+  const accessPanel = settingsPanel(surface, "App access");
   const field = accessPanel.getByText("Sign-in check freshness (minutes)", { exact: true }).locator("..");
   return {
     field,
