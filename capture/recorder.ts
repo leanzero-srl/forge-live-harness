@@ -73,6 +73,41 @@ function isStaticAsset(url: string): boolean {
   return /\.(png|jpe?g|gif|webp|woff2?|css|svg|ico|map)(\?|$)/i.test(url);
 }
 
+/**
+ * Chromium's normal Locator.screenshot() is issued through the top-level page
+ * session, even when the locator belongs to a cross-origin Forge iframe. That
+ * leaves off-viewport OOPIF pixels unpainted. Capture through the owning
+ * frame's CDP session so "surface-full" really includes the whole Custom UI
+ * document without resizing it or changing its responsive breakpoint.
+ */
+async function screenshotCustomSurface(page: Page, root: Surface["root"]): Promise<Buffer> {
+  const handle = await root.elementHandle();
+  if (!handle) throw new Error("Custom UI root detached before evidence capture");
+  try {
+    const frame = await handle.ownerFrame();
+    if (!frame) throw new Error("Custom UI root has no owning frame");
+    const session = await page.context().newCDPSession(frame);
+    try {
+      const metrics = await session.send("Page.getLayoutMetrics");
+      const size = metrics.cssContentSize ?? metrics.contentSize;
+      const width = Math.ceil(size.width);
+      const height = Math.ceil(size.height);
+      if (width < 1 || height < 1) throw new Error(`Invalid Custom UI capture size ${width}x${height}`);
+      const screenshot = await session.send("Page.captureScreenshot", {
+        format: "png",
+        fromSurface: true,
+        captureBeyondViewport: true,
+        clip: { x: 0, y: 0, width, height, scale: 1 },
+      });
+      return Buffer.from(screenshot.data, "base64");
+    } finally {
+      await session.detach();
+    }
+  } finally {
+    await handle.dispose();
+  }
+}
+
 export class Recorder {
   steps: StepRecord[] = [];
   console: ConsoleEntry[] = [];
@@ -155,11 +190,11 @@ export class Recorder {
     let shot: Buffer | undefined;
     try {
       if (opts.capture === "surface-full") {
-        // Element screenshots capture the whole app document, not just the slice
-        // currently visible through the host page's Forge iframe.
-        shot = this.surface
-          ? await this.surface.root.screenshot({ animations: "disabled" })
-          : await this.page.screenshot({ fullPage: true, animations: "disabled" });
+        shot = this.surface?.kind === "custom"
+          ? await screenshotCustomSurface(this.page, this.surface.root)
+          : this.surface
+            ? await this.surface.root.screenshot({ animations: "disabled" })
+            : await this.page.screenshot({ fullPage: true, animations: "disabled" });
       } else if (opts.capture === "page-full") {
         shot = await this.page.screenshot({ fullPage: true, animations: "disabled" });
       } else {
