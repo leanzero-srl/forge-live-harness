@@ -166,8 +166,11 @@ async function screenshotCustomSurface(page: Page, root: Surface["root"], host?:
     await page.evaluate(() => window.scrollTo(0, 0));
     await host.scrollIntoViewIfNeeded();
     await root.evaluate(() => window.scrollTo(0, 0));
-    const expandedViewport = page.viewportSize()!;
-    await page.mouse.move(expandedViewport.width - 1, 0);
+    const pointerHostBox = await host.boundingBox();
+    if (!pointerHostBox) throw new Error("Forge host iframe detached before pointer reset");
+    // Moving within the child onto inert background reliably emits mouseleave
+    // from a hovered OOPIF control; moving outside the iframe does not always.
+    await page.mouse.move(pointerHostBox.x + 1, pointerHostBox.y + 1);
     await page.waitForTimeout(600);
     await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
 
