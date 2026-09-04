@@ -313,7 +313,7 @@ export async function enterSettings(
   const iframe = page.locator('iframe[data-testid="hosted-resources-iframe"][src*="/adminDashboard/"]').first();
   await iframe.waitFor({ state: "visible", timeout: 45_000 });
   const frame = iframe.contentFrame();
-  const surface = { kind: "custom" as const, frame, root: frame.locator(":root") };
+  const surface = { kind: "custom" as const, frame, root: frame.locator(":root"), host: iframe };
   recorder.attachSurface(surface);
 
   await expect(frame.getByRole("heading", { name: "License Leash", exact: true })).toBeVisible({ timeout: 30_000 });

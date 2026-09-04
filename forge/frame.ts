@@ -16,7 +16,7 @@ const CUSTOM_IFRAME_SELECTORS = [
 ];
 
 export type Surface =
-  | { kind: "custom"; frame: FrameLocator; root: Locator }
+  | { kind: "custom"; frame: FrameLocator; root: Locator; host?: Locator }
   | { kind: "uikit"; root: Locator };
 
 export interface EnterOpts {

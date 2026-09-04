@@ -73,14 +73,7 @@ function isStaticAsset(url: string): boolean {
   return /\.(png|jpe?g|gif|webp|woff2?|css|svg|ico|map)(\?|$)/i.test(url);
 }
 
-/**
- * Chromium's normal Locator.screenshot() is issued through the top-level page
- * session, even when the locator belongs to a cross-origin Forge iframe. That
- * leaves off-viewport OOPIF pixels unpainted. Capture through the owning
- * frame's CDP session so "surface-full" really includes the whole Custom UI
- * document without resizing it or changing its responsive breakpoint.
- */
-async function screenshotCustomSurface(page: Page, root: Surface["root"]): Promise<Buffer> {
+async function screenshotSeparateFrame(page: Page, root: Surface["root"]): Promise<Buffer> {
   const handle = await root.elementHandle();
   if (!handle) throw new Error("Custom UI root detached before evidence capture");
   try {
@@ -105,6 +98,84 @@ async function screenshotCustomSurface(page: Page, root: Surface["root"]): Promi
     }
   } finally {
     await handle.dispose();
+  }
+}
+
+async function waitForHostPaint(page: Page, host: Surface["root"]): Promise<void> {
+  let previous = "";
+  let stableSince = 0;
+  const deadline = Date.now() + 10_000;
+  while (Date.now() < deadline) {
+    const box = await host.boundingBox();
+    if (box) {
+      const geometry = [box.x, box.y, box.width, box.height].map((value) => value.toFixed(2)).join(":");
+      if (geometry !== previous) {
+        previous = geometry;
+        stableSince = Date.now();
+      } else if (Date.now() - stableSince >= 250) {
+        return;
+      }
+    }
+    await page.waitForTimeout(50);
+  }
+  throw new Error("Forge host iframe did not settle after evidence capture");
+}
+
+/**
+ * Chromium normally captures an iframe element through the top-level page
+ * compositor, which leaves off-viewport frame pixels unpainted. A true OOPIF
+ * can be captured through its own CDP session. When Chromium keeps the frame in
+ * the parent's process, temporarily enlarge only the outer compositor while
+ * pinning the iframe to its original dimensions, preserving the tested app
+ * breakpoint and making every frame pixel paintable.
+ */
+async function screenshotCustomSurface(page: Page, root: Surface["root"], host?: Surface["root"]): Promise<Buffer> {
+  try {
+    return await screenshotSeparateFrame(page, root);
+  } catch (error) {
+    const message = String((error as Error)?.message ?? error);
+    if (!message.includes("does not have a separate CDP session") || !host) throw error;
+  }
+
+  const viewport = page.viewportSize();
+  const hostBox = await host.boundingBox();
+  if (!viewport || !hostBox) throw new Error("Forge host iframe is not measurable for full-surface capture");
+  const documentSize = await root.evaluate(() => ({
+    width: Math.ceil(Math.max(document.documentElement.clientWidth, document.documentElement.scrollWidth, document.body?.scrollWidth ?? 0)),
+    height: Math.ceil(Math.max(document.documentElement.clientHeight, document.documentElement.scrollHeight, document.body?.scrollHeight ?? 0)),
+  }));
+  const originalStyle = await host.getAttribute("style");
+
+  try {
+    await host.evaluate((element, size) => {
+      const iframe = element as HTMLIFrameElement;
+      for (const [property, value] of Object.entries({
+        width: `${size.width}px`, minWidth: `${size.width}px`, maxWidth: `${size.width}px`,
+        height: `${size.height}px`, minHeight: `${size.height}px`, maxHeight: `${size.height}px`,
+      })) {
+        iframe.style.setProperty(property.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`), value, "important");
+      }
+    }, documentSize);
+
+    await page.setViewportSize({
+      width: Math.max(viewport.width, Math.ceil(hostBox.x + documentSize.width + 64)),
+      height: Math.max(viewport.height, Math.ceil(hostBox.y + documentSize.height + 64)),
+    });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+
+    const preservedWidth = await root.evaluate(() => document.documentElement.clientWidth);
+    if (Math.abs(preservedWidth - documentSize.width) > 1) {
+      throw new Error(`Full-surface capture changed the app breakpoint (${documentSize.width}px to ${preservedWidth}px)`);
+    }
+    return await root.screenshot({ animations: "disabled" });
+  } finally {
+    await page.setViewportSize(viewport).catch(() => {});
+    await host.evaluate((element, style) => {
+      if (style === null) element.removeAttribute("style");
+      else element.setAttribute("style", style);
+    }, originalStyle).catch(() => {});
+    await waitForHostPaint(page, host).catch(() => {});
   }
 }
 
@@ -191,7 +262,7 @@ export class Recorder {
     try {
       if (opts.capture === "surface-full") {
         shot = this.surface?.kind === "custom"
-          ? await screenshotCustomSurface(this.page, this.surface.root)
+          ? await screenshotCustomSurface(this.page, this.surface.root, this.surface.host)
           : this.surface
             ? await this.surface.root.screenshot({ animations: "disabled" })
             : await this.page.screenshot({ fullPage: true, animations: "disabled" });
