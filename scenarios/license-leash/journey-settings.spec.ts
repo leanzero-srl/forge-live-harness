@@ -25,6 +25,7 @@ import {
   openGroupMenuAndAssertContained,
   selectAndAssertTab,
   settingsPanel,
+  waitForHostedFrameToSettle,
   waitForSettingsToSettle,
 } from "./settings-support";
 
@@ -122,6 +123,7 @@ async function captureSecretState(surface: SettingsSurface, recorder: Parameters
         // measured height. Do not click the next horizontal tab while that
         // resize is still settling at tablet widths.
         await expect(replace).toBeVisible();
+        await waitForHostedFrameToSettle(surface);
       }
     }
     return;

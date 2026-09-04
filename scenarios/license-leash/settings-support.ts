@@ -286,6 +286,7 @@ export class LicenseLeashObserver {
 }
 
 export interface SettingsSurface {
+  hostIframe: Locator;
   frame: FrameLocator;
   shell: Locator;
   panels: Locator;
@@ -329,7 +330,24 @@ export async function enterSettings(
 
   await pinTheme(frame, theme);
   const appUrl = await surface.root.evaluate(() => window.location.href);
-  return { frame, shell, panels, tabs, appUrl };
+  return { hostIframe: iframe, frame, shell, panels, tabs, appUrl };
+}
+
+export async function waitForHostedFrameToSettle(surface: SettingsSurface): Promise<void> {
+  let lastGeometry = "";
+  let stableSamples = 0;
+  await expect.poll(async () => {
+    const box = await surface.hostIframe.boundingBox();
+    if (!box) {
+      lastGeometry = "";
+      stableSamples = 0;
+      return stableSamples;
+    }
+    const geometry = [box.x, box.y, box.width, box.height].map(Math.round).join(":");
+    stableSamples = geometry === lastGeometry ? Math.min(stableSamples + 1, 3) : 0;
+    lastGeometry = geometry;
+    return stableSamples;
+  }, { timeout: 10_000, intervals: [100, 100, 150, 200, 250] }).toBe(3);
 }
 
 export async function pinTheme(frame: FrameLocator, theme: SettingsTheme): Promise<void> {
