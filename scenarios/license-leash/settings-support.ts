@@ -367,7 +367,42 @@ export async function selectAndAssertTab(surface: SettingsSurface, label: typeof
   expect((await tabButtons.allTextContents()).map((text) => text.trim())).toEqual([...SETTINGS_TABS]);
 
   const selected = surface.tabs.getByRole("tab", { name: label, exact: true });
+  if (process.env.SETTINGS_CLICK_DIAGNOSTICS === "1") {
+    await selected.evaluate((element) => {
+      type DiagnosticWindow = Window & { __settingsClickEvents?: Array<Record<string, unknown>> };
+      const win = window as DiagnosticWindow;
+      win.__settingsClickEvents = [];
+      for (const type of ["pointerdown", "mousedown", "mouseup", "click"]) {
+        document.addEventListener(type, (event) => {
+          const target = event.target as HTMLElement | null;
+          win.__settingsClickEvents?.push({
+            type,
+            target: target?.textContent?.trim(),
+            role: target?.getAttribute("role"),
+            defaultPrevented: event.defaultPrevented,
+          });
+        }, { once: true });
+      }
+    });
+  }
   await selected.click();
+  if (process.env.SETTINGS_CLICK_DIAGNOSTICS === "1") {
+    const diagnostics = await selected.evaluate((element) => {
+      type DiagnosticWindow = Window & { __settingsClickEvents?: Array<Record<string, unknown>> };
+      const rect = element.getBoundingClientRect();
+      const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2) as HTMLElement | null;
+      return {
+        events: (window as DiagnosticWindow).__settingsClickEvents,
+        selected: element.getAttribute("aria-selected"),
+        activeText: (document.activeElement as HTMLElement | null)?.textContent?.trim(),
+        hitText: hit?.textContent?.trim(),
+        hitRole: hit?.getAttribute("role"),
+        rect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
+        stripScrollLeft: element.parentElement?.scrollLeft,
+      };
+    });
+    console.log(`[settings-click] ${label}: ${JSON.stringify(diagnostics)}`);
+  }
   await expect(selected).toHaveAttribute("aria-selected", "true");
 
   const state = await surface.panels.evaluateAll((panels) => panels.map((panel) => {
