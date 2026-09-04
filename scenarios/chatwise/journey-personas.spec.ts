@@ -137,7 +137,12 @@ test("Coffee Break AI: casual chat on ITS model, no Jira machinery", async ({ pa
     const meta = await lastMeta(frame);
     // CONFIGURATION PURPOSE: this persona is pinned to the cheap tier. A
     // sonnet/opus chip here means per-persona model settings are being ignored.
-    expect(meta, `meta was: ${meta}`).toContain("haiku");
+    //
+    // THE THIRD HOME OF THE SAME RULE. Pinned-or-disclosed catches that defect
+    // just as well — a SILENT swap still fails — while not going red when the
+    // haiku tier is quota-blocked and the ladder legitimately serves the next
+    // one. Two copies of this rule have now cost a false regression report each.
+    await expectPinnedModelOrDisclosedFallback(frame, "haiku");
     // A casual-chat turn has no business running the tool loop.
     expect(meta, "coffee chat burned tool iterations").not.toMatch(/tool calls/);
   } finally {
@@ -245,7 +250,14 @@ test("Epic Master: decomposes a real epic into a real hierarchy", async ({ page 
 
     const chips = await lastMeta(frame);
     expect(chips, "the tool loop never ran — creations came from nowhere?").toMatch(/tool calls/);
-    expect(chips, `meta was: ${chips}`).toContain("sonnet");
+    // THE SECOND HOME OF THIS RULE, WHICH DID NOT GET THE FIX.
+    // `expectPinnedModelOrDisclosedFallback` exists ~170 lines above with a
+    // comment explaining precisely why a bare toContain("sonnet") is wrong —
+    // and this line kept doing it anyway. It went red again on a run where the
+    // quota ladder served opus and disclosed it, i.e. the app working as
+    // designed, and the failure was investigated as a regression. Same rule,
+    // one home.
+    await expectPinnedModelOrDisclosedFallback(frame, "sonnet");
   } finally {
     for (const k of childKeys) await del(`/rest/api/3/issue/${k}?deleteSubtasks=true`).catch(() => {});
     if (epicKey) await del(`/rest/api/3/issue/${epicKey}?deleteSubtasks=true`).catch(() => {});

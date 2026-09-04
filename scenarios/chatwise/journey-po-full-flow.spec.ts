@@ -24,7 +24,22 @@ import {
 
 const T = getTarget("chatwise-global");
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
-const MAX_TURNS = 14;
+// THE BUDGET HAS TWO PARTS, AND CONFLATING THEM COST A FALSE REGRESSION.
+//
+// Every question sheet the wizard deals consumes one turn to answer, and the
+// creation itself needs turns AFTER the last sheet — approve the preview, and
+// sometimes approve a drafted field first. This was a flat 14 while the wizard
+// had grown to dealing 14 sheets, so the budget was spent entirely on answering
+// and there was no turn left to say yes. The run reported "no Epic was created
+// after 14 turns", which reads exactly like the product failing to create an
+// Epic, and was investigated as one. It passes at 24.
+//
+// Named separately so the next person can see which half ran out, and generous
+// on purpose: this is a live model driving a conversational wizard, and the
+// sheet count is not ours to fix.
+const MAX_SHEETS = 20;
+const CLOSING_TURNS = 6;
+const MAX_TURNS = MAX_SHEETS + CLOSING_TURNS;
 const QUOTA_BUBBLE = /token allowance|Nothing was lost/i;
 
 test.describe.configure({ timeout: 1_500_000 });
@@ -178,7 +193,21 @@ test("PO full flow: initiative → wizard → approval → a real Epic in Jira, 
     if (!epicKey) epicKey = await epicIn(reply);
 
     // ---- The point of the whole persona: a real Epic exists ---------------
-    expect(epicKey, `no Epic was created after ${MAX_TURNS} turns — last reply: ${reply.slice(0, 300)}`).toBeTruthy();
+    // SAY WHICH FAILURE THIS IS. A budget that ran out while the wizard was
+    // still asking questions is a HARNESS problem; a wizard that stopped asking
+    // and produced no Epic is a PRODUCT problem. One message for both is how
+    // the first one got filed as the second.
+    const ranOutAnswering = sheetRounds >= MAX_SHEETS;
+    expect(
+      epicKey,
+      ranOutAnswering
+        ? `HARNESS BUDGET, NOT A PRODUCT DEFECT: the wizard was still dealing sheets when the ` +
+          `budget ran out — ${sheetRounds} answered, MAX_SHEETS=${MAX_SHEETS}. Raise MAX_SHEETS ` +
+          `and re-run before treating this as a regression. Last reply: ${reply.slice(0, 300)}`
+        : `no Epic was created after ${MAX_TURNS} turns (${sheetRounds} sheets answered, so the ` +
+          `wizard STOPPED asking and still created nothing — this one is real). ` +
+          `Last reply: ${reply.slice(0, 300)}`,
+    ).toBeTruthy();
     const epic: any = await get(`/rest/api/3/issue/${epicKey}?fields=issuetype,summary,description,labels`);
     expect(epic.fields.issuetype.hierarchyLevel, `${epicKey} is not an Epic`).toBe(1);
     expect((epic.fields.summary || "").length, "the Epic has no summary").toBeGreaterThan(8);
