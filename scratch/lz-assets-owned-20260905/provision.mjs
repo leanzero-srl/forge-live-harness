@@ -42,7 +42,7 @@ async function sharedGuard(){
  const issues={};for(const key of ['JT-56','JT-16']){const r=await read(`/rest/api/3/issue/${key}?fields=project,issuetype,customfield_11081,customfield_10015,customfield_10180,duedate`);assert.equal(r.fields.project.id,'10008');assert.equal(r.fields.issuetype.id,'10005');issues[key]={id:r.id,key:r.key,fields:{project:{id:r.fields.project.id,key:r.fields.project.key},issuetype:{id:r.fields.issuetype.id,name:r.fields.issuetype.name},customfield_11081:refs(r.fields.customfield_11081),customfield_10015:r.fields.customfield_10015,customfield_10180:r.fields.customfield_10180,duedate:r.fields.duedate}};}
  assert.deepEqual(refs(issues['JT-56'].fields.customfield_11081).map(x=>x.objectId),['71']);assert.deepEqual(refs(issues['JT-16'].fields.customfield_11081),[]);
  const objects={};for(const id of ['71','72'])objects[id]=objectProjection(await read(`/object/${id}`,true));
- const current={config,issues,objects};if(state.sharedBefore)assert.deepEqual(current,state.sharedBefore);else{state.sharedBefore=current;save();}
+ const current=JSON.parse(JSON.stringify({config,issues,objects}));if(state.sharedBefore)assert.deepEqual(current,state.sharedBefore);else{state.sharedBefore=current;save();}
  state.lastSharedGuard={verifiedAt:new Date().toISOString(),unchanged:true};save();
 }
 async function validateObjects(){for(const object of Object.values(state.objects)){const actual=objectProjection(await read(`/object/${object.id}`,true));assert.equal(actual.label,object.label);assert.equal(actual.objectKey,object.objectKey);assert.equal(actual.objectTypeId,typeId);object.readback=actual;save();}}

@@ -6,10 +6,189 @@
   "schemaId": "35",
   "typeId": "43",
   "nameAttr": "156",
-  "objects": {},
+  "objects": {
+    "A": {
+      "id": "411",
+      "objectKey": "CRT-411",
+      "label": "[harness-test] LZ Assets owned 20260905 A",
+      "readback": {
+        "id": "411",
+        "objectKey": "CRT-411",
+        "label": "[harness-test] LZ Assets owned 20260905 A",
+        "objectTypeId": "43",
+        "attributes": [
+          {
+            "objectTypeAttributeId": "156",
+            "values": [
+              "[harness-test] LZ Assets owned 20260905 A"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "153",
+            "values": [
+              "CRT-411"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "154",
+            "values": [
+              "2026-09-05T20:47:08.113Z"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "155",
+            "values": [
+              "2026-09-05T20:47:08.113Z"
+            ]
+          }
+        ]
+      }
+    },
+    "B": {
+      "id": "412",
+      "objectKey": "CRT-412",
+      "label": "[harness-test] LZ Assets owned 20260905 B",
+      "readback": {
+        "id": "412",
+        "objectKey": "CRT-412",
+        "label": "[harness-test] LZ Assets owned 20260905 B",
+        "objectTypeId": "43",
+        "attributes": [
+          {
+            "objectTypeAttributeId": "156",
+            "values": [
+              "[harness-test] LZ Assets owned 20260905 B"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "153",
+            "values": [
+              "CRT-412"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "154",
+            "values": [
+              "2026-09-05T20:47:08.708Z"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "155",
+            "values": [
+              "2026-09-05T20:47:08.708Z"
+            ]
+          }
+        ]
+      }
+    },
+    "C": {
+      "id": "413",
+      "objectKey": "CRT-413",
+      "label": "[harness-test] LZ Assets owned 20260905 C",
+      "readback": {
+        "id": "413",
+        "objectKey": "CRT-413",
+        "label": "[harness-test] LZ Assets owned 20260905 C",
+        "objectTypeId": "43",
+        "attributes": [
+          {
+            "objectTypeAttributeId": "156",
+            "values": [
+              "[harness-test] LZ Assets owned 20260905 C"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "153",
+            "values": [
+              "CRT-413"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "154",
+            "values": [
+              "2026-09-05T20:47:09.618Z"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "155",
+            "values": [
+              "2026-09-05T20:47:09.618Z"
+            ]
+          }
+        ]
+      }
+    }
+  },
   "fields": {},
   "issues": {},
-  "operations": [],
+  "operations": [
+    {
+      "kind": "object-A",
+      "method": "POST",
+      "route": "/object/create",
+      "body": {
+        "objectTypeId": "43",
+        "attributes": [
+          {
+            "objectTypeAttributeId": "156",
+            "objectAttributeValues": [
+              {
+                "value": "[harness-test] LZ Assets owned 20260905 A"
+              }
+            ]
+          }
+        ]
+      },
+      "startedAt": "2026-09-05T20:47:07.919Z",
+      "state": "acknowledged",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:47:08.341Z"
+    },
+    {
+      "kind": "object-B",
+      "method": "POST",
+      "route": "/object/create",
+      "body": {
+        "objectTypeId": "43",
+        "attributes": [
+          {
+            "objectTypeAttributeId": "156",
+            "objectAttributeValues": [
+              {
+                "value": "[harness-test] LZ Assets owned 20260905 B"
+              }
+            ]
+          }
+        ]
+      },
+      "startedAt": "2026-09-05T20:47:08.524Z",
+      "state": "acknowledged",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:47:08.904Z"
+    },
+    {
+      "kind": "object-C",
+      "method": "POST",
+      "route": "/object/create",
+      "body": {
+        "objectTypeId": "43",
+        "attributes": [
+          {
+            "objectTypeAttributeId": "156",
+            "objectAttributeValues": [
+              {
+                "value": "[harness-test] LZ Assets owned 20260905 C"
+              }
+            ]
+          }
+        ]
+      },
+      "startedAt": "2026-09-05T20:47:09.442Z",
+      "state": "acknowledged",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:47:09.794Z"
+    }
+  ],
   "createdAt": "2026-09-05T20:46:10.310Z",
   "sharedBefore": {
     "config": {
@@ -135,7 +314,7 @@
     }
   },
   "lastSharedGuard": {
-    "verifiedAt": "2026-09-05T20:46:11.928Z",
+    "verifiedAt": "2026-09-05T20:47:07.917Z",
     "unchanged": true
   },
   "preflight": {
