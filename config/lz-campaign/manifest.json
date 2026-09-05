@@ -477,7 +477,11 @@
         "OBS-PRIVATE-REOPEN",
         "OBS-FRESH-ACCESS-CHECK",
         "OBS-SUPERSEDED-STATE",
-        "OBS-EXACT-RAW-EVIDENCE"
+        "OBS-EXACT-RAW-EVIDENCE",
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE"
       ],
       "specs": [
         "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
@@ -490,7 +494,7 @@
         "scenarios/lz-ppm/journey-campaign-report.spec.ts",
         "scenarios/lz-ppm/journey-campaign-observations.spec.ts"
       ],
-      "minTests": 10,
+      "minTests": 11,
       "timeoutSeconds": 7200,
       "componentFeatures": [
         "private-simulation-live",
@@ -501,9 +505,10 @@
         "private-completed-observation-live",
         "sensitivity-boundaries-live",
         "sponsor-report-live",
-        "private-observations-live"
+        "private-observations-live",
+        "forecast-outcomes-live"
       ],
-      "scopeNote": "Worker-scoped real browser batch; every configured spec must execute, every ordinary test must pass, and the complete batch has before/after identity. Per-test fixture cleanup and output remain unchanged. Broad planned acceptance stays open."
+      "scopeNote": "Worker-scoped real browser batch; every configured spec must execute, every ordinary test must pass, and the complete batch has before/after identity. Per-test fixture cleanup and output remain unchanged. Broad planned acceptance stays open. Exact discovery is11 tests in9 files, including both session and private observation tests in their shared file; repeated session-outcome verification is not a new distinct acceptance."
     }
   ]
 }
