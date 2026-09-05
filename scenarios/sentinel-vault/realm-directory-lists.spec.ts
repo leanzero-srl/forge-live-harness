@@ -126,7 +126,20 @@ test("realm-console directory lists: real space name, initial users, groups, my 
     // The input only exists once teamList is non-empty — skeletons until enumerate-teams returns
     // (index.jsx:2004-2008). Its appearance is itself the proof the resolver answered.
     await expect(groupInput, "group search input (teamList populated by enumerate-teams)").toBeVisible({ timeout: 30000 });
+    // The dropdown opens on focus and closes 200 ms after blur (index.jsx:2016). In the shared
+    // suite browser a host-page reflow can steal focus between the click and the poll, leaving
+    // the input rendered and the list closed (seen once in-suite, never alone). Re-arming through
+    // the change handler is legitimate: onTeamSearch re-opens the list whenever teamList is
+    // non-empty, and typing-then-deleting leaves an empty filter, i.e. the full list.
+    await groupInput.scrollIntoViewIfNeeded();
     await groupInput.click(); // focus → showTeamDropdown
+    for (let attempt = 0; attempt < 4 && (await groupRows.count()) === 0; attempt++) {
+      await page.waitForTimeout(1500);
+      if ((await groupRows.count()) > 0) break;
+      await groupInput.click();
+      await groupInput.press("a");
+      await groupInput.press("Backspace");
+    }
     await expect.poll(() => groupRows.count(), { timeout: 20000, message: "≥1 group row in the Groups dropdown" }).toBeGreaterThanOrEqual(1);
     expect(await groupInput.inputValue(), "no group filter typed").toBe("");
     const n = await groupRows.count();
