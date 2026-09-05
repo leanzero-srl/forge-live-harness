@@ -78,7 +78,7 @@ test('epic targets: actual hierarchy retains outside predecessor influence; targ
   }finally{
    const cleanupErrors:any[]=[];journal.cleanup=[];
    const clean=async(label:string,action:()=>Promise<void>)=>{try{await action();journal.cleanup.push({label,ok:true});}catch(error){cleanupErrors.push(error);journal.cleanup.push({label,ok:false,error:String(error)});}retain();};
-   await clean('restore timer and close owned editor',async()=>{if(release)await release();if(editorPage&&!editorPage.isClosed())await editorPage.close();});rpc?.stop();
+   await clean('restore primary timer',async()=>{if(release)await release();});await clean('close owned editor',async()=>{if(editorPage&&!editorPage.isClosed())await editorPage.close();});rpc?.stop();
    await clean('leave primary UI',async()=>{if(!page.isClosed())await page.goto('about:blank');});
    await clean('identify owned plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
    if(journal.planId){
