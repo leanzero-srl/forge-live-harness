@@ -2,8 +2,104 @@
   "marker": "lz-assets-owned-20260905-wfh",
   "prefix": "[harness-test] LZ Assets owned 20260905 WFH",
   "base": "https://wolfaenpak.atlassian.net",
-  "operations": [],
-  "fields": {},
+  "operations": [
+    {
+      "kind": "context-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/field/customfield_11148/context",
+      "body": {
+        "name": "[harness-test] LZ Assets owned 20260905 WFH Work package",
+        "description": "lz-assets-owned-20260905-wfh",
+        "projectIds": [
+          "10001"
+        ],
+        "issueTypeIds": [
+          "10004"
+        ]
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:21.609Z",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:58:22.009Z"
+    },
+    {
+      "kind": "context-gate",
+      "method": "POST",
+      "route": "/rest/api/3/field/customfield_11149/context",
+      "body": {
+        "name": "[harness-test] LZ Assets owned 20260905 WFH Work package",
+        "description": "lz-assets-owned-20260905-wfh",
+        "projectIds": [
+          "10001"
+        ],
+        "issueTypeIds": [
+          "10004"
+        ]
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:22.589Z",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:58:22.916Z"
+    }
+  ],
+  "fields": {
+    "multiple": {
+      "id": "customfield_11148",
+      "contextId": "11761",
+      "projects": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11761",
+            "projectId": "10001"
+          }
+        ]
+      },
+      "types": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11761",
+            "issueTypeId": "10004"
+          }
+        ]
+      }
+    },
+    "gate": {
+      "id": "customfield_11149",
+      "contextId": "11762",
+      "projects": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11762",
+            "projectId": "10001"
+          }
+        ]
+      },
+      "types": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11762",
+            "issueTypeId": "10004"
+          }
+        ]
+      }
+    }
+  },
   "createdAt": "2026-09-05T20:57:56.084Z",
   "protectedBefore": {
     "configs": {
@@ -121,7 +217,7 @@
     }
   },
   "lastProtection": {
-    "at": "2026-09-05T20:57:57.908Z",
+    "at": "2026-09-05T20:58:21.445Z",
     "unchanged": true
   },
   "discovery": {
