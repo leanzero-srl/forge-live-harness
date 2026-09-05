@@ -27,9 +27,10 @@
 //      visibility."
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
+import {  deleteFixtures,
+ GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 // eslint-disable-next-line
-import { get, post, put, del } from "../../data/jira.mjs";
+import { get, post, put } from "../../data/jira.mjs";
 
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 
@@ -116,7 +117,7 @@ test("FINDING 1: 'what was decided and what is outstanding' reads the comments",
     expect(/40|pool size/i.test(reply), `the DECISION in the comments is absent: ${reply.slice(0, 400)}`).toBe(true);
     expect(/load[- ]?test|black friday|outstanding/i.test(reply), `the OUTSTANDING item is absent: ${reply.slice(0, 400)}`).toBe(true);
   } finally {
-    if (key) await del(`/rest/api/3/issue/${key}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([key], "stakeholder-findings");
     if (frame) await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
   }
 });
@@ -202,7 +203,7 @@ test("FINDING 2/4: a write to an ARCHIVED issue is not blamed on screen configur
     ).toBe(false);
   } finally {
     if (key && archived) await put("/rest/api/3/issue/unarchive", { issueIdsOrKeys: [key] }).catch(() => {});
-    if (key) await del(`/rest/api/3/issue/${key}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([key], "stakeholder-findings");
     if (frame) await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
   }
 });
@@ -270,7 +271,7 @@ test("FINDING 5: a project's security levels can be listed, and set at creation"
       `the issue was created WITHOUT a security level — create-then-secure is the visibility window the finding is about`,
     ).toBe(String(target.id));
   } finally {
-    if (key) await del(`/rest/api/3/issue/${key}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([key], "stakeholder-findings");
     if (frame) await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
   }
 });

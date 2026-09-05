@@ -33,6 +33,7 @@ import { BASE_URL } from "../../config/env";
 import { dumpForgeFrames, enterForgeSurface } from "../../forge/frame";
 import { assertLoggedIn } from "../../forge/browser";
 import { openIssuePanel } from "../../forge/host";
+import { get, del } from "../../data/jira.mjs";
 
 /** `window` key each entry point publishes its booted app instance on. */
 export const GLOBAL_APP = "chatWiseGlobal";
@@ -360,6 +361,44 @@ export function errorBubbles(t: RenderedMessage[]): RenderedMessage[] {
 /* ------------------------------------------------------------------ */
 /* Composer driving                                                     */
 /* ------------------------------------------------------------------ */
+
+/**
+ * DELETE THE FIXTURES AND SAY WHAT SURVIVED.
+ *
+ * Every spec's `finally` did `del(...).catch(() => {})`, which throws away the
+ * one fact worth keeping. `agile-end-to-end` seeds into COGTEST — the only
+ * project with a scrum board, so not its choice — where the harness account
+ * cannot delete: `DELETE /rest/api/3/issue/COGTEST-2690` answers 403. Every run
+ * stranded two issues and reported nothing, and a later run found the strays
+ * and had to work out whose they were.
+ *
+ * The other specs seed where delete works, so they do not leak TODAY. They
+ * swallow the failure just as completely, so the day a permission changes they
+ * will leak in exactly the same silence. A cleanup that cannot succeed is
+ * acceptable; one that cannot ADMIT failure is not.
+ *
+ * Verifies rather than trusts: a swallowed rejection and a silent no-op are
+ * indistinguishable from the call site, and both have happened here.
+ *
+ * @returns the keys that are still present, already reported to the console.
+ */
+export async function deleteFixtures(keys: (string | null | undefined)[], where = ""): Promise<string[]> {
+  const wanted = keys.filter(Boolean) as string[];
+  const stranded: string[] = [];
+  for (const k of wanted) {
+    await del(`/rest/api/3/issue/${k}?deleteSubtasks=true`).catch(() => {});
+    const still = await get(`/rest/api/3/issue/${k}?fields=summary`).catch(() => null);
+    if (still) stranded.push(k);
+  }
+  if (stranded.length) {
+    console.warn(
+      `[cleanup] COULD NOT DELETE ${stranded.length} fixture(s)${where ? ` in ${where}` : ""}: ` +
+        `${stranded.join(", ")}. They are still in Jira. A later run reporting strays should look ` +
+        `here first rather than hunting for a leak elsewhere.`,
+    );
+  }
+  return stranded;
+}
 
 /**
  * PUT THE TEXT IN AND PROVE IT WENT IN. Use this instead of fill+click.

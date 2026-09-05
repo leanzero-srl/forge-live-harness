@@ -23,9 +23,10 @@
 // user's own yes was refused" assertion. That is the regression this pins.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
+import {  deleteFixtures,
+ GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 // eslint-disable-next-line
-import { get, post, del } from "../../data/jira.mjs";
+import { get, post } from "../../data/jira.mjs";
 
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 
@@ -131,7 +132,7 @@ test("a German 'ja' is a yes: the user's own approval is honoured, in one turn",
       `the app asked for confirmation AGAIN after the user approved: ${second.slice(0, 300)}`,
     ).toBe(false);
   } finally {
-    if (victim) await del(`/rest/api/3/issue/${victim}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([victim], "consent-any-language");
     if (frame) {
       if (policyChanged) {
         await callResolver(frame, GLOBAL_APP, "saveToolPolicy", {
@@ -197,7 +198,7 @@ test("a refusal in another language is still a refusal — the fix did not open 
         `approve. Reply was: ${reply.slice(0, 300)}`,
     ).toBe(true);
   } finally {
-    if (victim) await del(`/rest/api/3/issue/${victim}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([victim], "consent-any-language");
     if (frame) {
       if (policyChanged) {
         await callResolver(frame, GLOBAL_APP, "saveToolPolicy", {

@@ -17,12 +17,13 @@
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
+  deleteFixtures,
   deliverMessage,
   GLOBAL_APP, PANEL_APP, awaitSwapSettled, callResolver, openGlobalPage, openPanel,
   readAppState, settleBootSelection, waitForChatApp,
 } from "./chatwise-support";
 // eslint-disable-next-line
-import { get, post, del } from "../../data/jira.mjs";
+import { get, post } from "../../data/jira.mjs";
 
 const G = getTarget("chatwise-global");
 const P = getTarget("chatwise-issue-panel");
@@ -190,7 +191,7 @@ test("JIRA Scrubber: flags the defects a bad ticket actually has", async ({ page
     if (frame && issueKey) {
       await callResolver(frame, PANEL_APP, "deleteConversation", { conversationId: `issue-${issueKey}` }).catch(() => {});
     }
-    if (issueKey) await del(`/rest/api/3/issue/${issueKey}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([issueKey], "journey-personas");
   }
 });
 
@@ -259,8 +260,8 @@ test("Epic Master: decomposes a real epic into a real hierarchy", async ({ page 
     // one home.
     await expectPinnedModelOrDisclosedFallback(frame, "sonnet");
   } finally {
-    for (const k of childKeys) await del(`/rest/api/3/issue/${k}?deleteSubtasks=true`).catch(() => {});
-    if (epicKey) await del(`/rest/api/3/issue/${epicKey}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures(childKeys, "journey-personas");
+    await deleteFixtures([epicKey], "journey-personas");
     if (frame && conversationId) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }

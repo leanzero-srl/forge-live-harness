@@ -12,7 +12,8 @@
 // the reply text.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
+import {  deleteFixtures,
+ GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 // eslint-disable-next-line
 import { get, post, del } from "../../data/jira.mjs";
 
@@ -70,10 +71,14 @@ test("ChatWise can find a board, make a sprint and put work in it", async ({ pag
   let frame: any = null;
   const madeIssues: string[] = [];
   const madeSprints: number[] = [];
+  // Hoisted: the cleanup block names the project it could not delete from, and
+  // "which project" is the first thing a reader of that warning needs.
+  let PROJECT: string | null = null;
 
   try {
     // ---- Find a SCRUM board and the project it actually covers ------------
-    const { board: scrum, project: PROJECT } = await findScrumBoardAndProject();
+    const { board: scrum, project } = await findScrumBoardAndProject();
+    PROJECT = project;
     expect(scrum, "this site has no scrum board — nothing to test sprints against").toBeTruthy();
     expect(PROJECT, `could not determine which project board ${scrum?.id} covers`).toBeTruthy();
     console.log(`board: ${scrum.id} "${scrum.name}" (${scrum.type}) over ${PROJECT}`);
@@ -112,7 +117,9 @@ test("ChatWise can find a board, make a sprint and put work in it", async ({ pag
     // so the usual "[harness-test] …" prefix does not fit — and the app now
     // refuses the call itself with that explanation, which is what caught this
     // test's first attempt at a 39-character name. The sprint is deleted by id
-    // in `finally`, so findability by prefix is not needed.
+    // in `finally` — which is why the NAME need not be findable. The ISSUES are
+    // a different matter: their delete can 403 in this project, so they keep the
+    // "harness-test" label and the cleanup block reports whatever it stranded.
     const sprintName = `hx-e2e-${String(stamp).slice(-8)}`;
     expect(sprintName.length, "the test's own sprint name is too long").toBeLessThan(30);
     const reply = await ask(
@@ -163,12 +170,26 @@ test("ChatWise can find a board, make a sprint and put work in it", async ({ pag
     const leftover = (after?.issues || []).map((i: any) => i.key).filter((k: string) => madeIssues.includes(k));
     expect(leftover, `still in the sprint: ${leftover.join(", ")}`).toEqual([]);
   } finally {
+    // CLEANUP THAT CHECKS ITSELF.
+    //
+    // This block used to be `del(...).catch(() => {})`, which swallows the one
+    // thing worth knowing. The harness account cannot delete in the project
+    // this spec is forced to use — `DELETE /rest/api/3/issue/COGTEST-2690`
+    // answers 403 — so every run stranded two issues and said nothing, and a
+    // later run found them and had to work out whose they were.
+    //
+    // The project is NOT this spec's to choose: it is discovered from the only
+    // scrum board on the site, because sprints cannot be tested anywhere else.
+    // So the leak cannot be fixed by seeding elsewhere, and a cleanup that
+    // cannot succeed must at least be HONEST about it.
     for (const id of madeSprints) {
-      await del(`/rest/agile/1.0/sprint/${id}`).catch(() => {});
+      await del(`/rest/agile/1.0/sprint/${id}`).catch(() => {
+        console.warn(`[cleanup] sprint ${id} could not be deleted`);
+      });
     }
-    for (const k of madeIssues) {
-      await del(`/rest/api/3/issue/${k}?deleteSubtasks=true`).catch(() => {});
-    }
+    // Reports whatever it could not remove. The issues carry the "harness-test"
+    // label, so a stray named in that warning is findable rather than mysterious.
+    await deleteFixtures(madeIssues, PROJECT || "the scrum board's project");
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }

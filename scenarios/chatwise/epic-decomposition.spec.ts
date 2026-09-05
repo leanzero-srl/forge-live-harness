@@ -24,10 +24,11 @@
 // looks almost identical to the right one.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
+import {  deleteFixtures,
+ GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 import { waitForTerminal } from "../_support/wait";
 // eslint-disable-next-line
-import { get, post, del, searchJql } from "../../data/jira.mjs";
+import { get, post, searchJql } from "../../data/jira.mjs";
 
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 
@@ -158,9 +159,9 @@ test("asking to split an Epic produces typed children with real parents", async 
     }
   } finally {
     for (const key of childKeys) {
-      await del(`/rest/api/3/issue/${key}?deleteSubtasks=true`).catch(() => {});
+      await deleteFixtures([key], "epic-decomposition");
     }
-    if (epicKey) await del(`/rest/api/3/issue/${epicKey}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([epicKey], "epic-decomposition");
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }

@@ -18,6 +18,7 @@ import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { get, del } from "../../data/jira.mjs";
 import {
+  deleteFixtures,
   deliverMessage,
   ERROR_BUBBLE, GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage,
   readAppState, readThread, settleBootSelection, waitForChatApp,
@@ -223,7 +224,7 @@ test("PO full flow: initiative → wizard → approval → a real Epic in Jira, 
     ).toBeGreaterThanOrEqual(2);
     console.log(`direct flow: ${sheetRounds} question sheets answered by clicking, epic ${epicKey}`);
   } finally {
-    if (epicKey) await del(`/rest/api/3/issue/${epicKey}`).catch(() => {});
+    await deleteFixtures([epicKey], "journey-po-full-flow");
     if (conversationId) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }

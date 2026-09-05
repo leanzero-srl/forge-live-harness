@@ -12,9 +12,10 @@
 // did nothing" — a completely different diagnosis.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
+import {  deleteFixtures,
+ GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from "./chatwise-support";
 // eslint-disable-next-line
-import { get, post, put, del } from "../../data/jira.mjs";
+import { get, post, put } from "../../data/jira.mjs";
 
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 
@@ -113,7 +114,7 @@ test("multi-field edit, re-parent, and the new discovery tools", async ({ page, 
     });
     expect(kids?.success).toBeTruthy();
   } finally {
-    for (const k of made.reverse()) await del(`/rest/api/3/issue/${k}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures(made.reverse(), "tool-surface");
     if (frame) await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
   }
 });
@@ -218,7 +219,7 @@ test("a delete needs the USER's confirmation, and cannot self-confirm", async ({
         policy: { allowDestructive: false, allowBulk: true, allowAgile: true },
       }).catch(() => {});
     }
-    if (victim) await del(`/rest/api/3/issue/${victim}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([victim], "tool-surface");
     if (frame) await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
   }
 });

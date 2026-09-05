@@ -8,6 +8,7 @@
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
+  deleteFixtures,
   deliverMessage,
   BASE_URL, PANEL_APP, callResolver, openPanel, waitForChatApp,
 } from "./chatwise-support";
@@ -108,7 +109,7 @@ test("issue panel journey: boot, in-panel upload, attachment read, persona lock"
     if (frame && conversationId) {
       await callResolver(frame, PANEL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }
-    if (issueKey) await del(`/rest/api/3/issue/${issueKey}?deleteSubtasks=true`).catch(() => {});
+    await deleteFixtures([issueKey], "journey-issue-panel");
   }
 });
 
