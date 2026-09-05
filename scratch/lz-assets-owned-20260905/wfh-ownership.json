@@ -1,0 +1,381 @@
+{
+  "marker": "lz-assets-owned-20260905-wfh",
+  "prefix": "[harness-test] LZ Assets owned 20260905 WFH",
+  "base": "https://wolfaenpak.atlassian.net",
+  "operations": [],
+  "fields": {},
+  "createdAt": "2026-09-05T20:57:56.084Z",
+  "protectedBefore": {
+    "configs": {
+      "11589": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "11757": {
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "11758": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "11759": {
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "11760": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      }
+    },
+    "mappings": {
+      "customfield_11148": {
+        "projects": {
+          "maxResults": 50,
+          "startAt": 0,
+          "total": 1,
+          "isLast": true,
+          "values": [
+            {
+              "contextId": "11758",
+              "projectId": "10008"
+            }
+          ]
+        },
+        "types": {
+          "maxResults": 50,
+          "startAt": 0,
+          "total": 1,
+          "isLast": true,
+          "values": [
+            {
+              "contextId": "11758",
+              "issueTypeId": "10005"
+            }
+          ]
+        }
+      },
+      "customfield_11149": {
+        "projects": {
+          "maxResults": 50,
+          "startAt": 0,
+          "total": 1,
+          "isLast": true,
+          "values": [
+            {
+              "contextId": "11760",
+              "projectId": "10008"
+            }
+          ]
+        },
+        "types": {
+          "maxResults": 50,
+          "startAt": 0,
+          "total": 1,
+          "isLast": true,
+          "values": [
+            {
+              "contextId": "11760",
+              "issueTypeId": "10005"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "lastProtection": {
+    "at": "2026-09-05T20:57:57.908Z",
+    "unchanged": true
+  },
+  "discovery": {
+    "at": "2026-09-05T20:58:00.004Z",
+    "project": {
+      "id": "10001",
+      "key": "WFH"
+    },
+    "issueType": {
+      "id": "10004",
+      "name": "Work package"
+    },
+    "association": {
+      "maxResults": 50,
+      "startAt": 0,
+      "total": 1,
+      "isLast": true,
+      "values": [
+        {
+          "issueTypeScreenScheme": {
+            "id": "10001",
+            "name": "WFH: Kanban Issue Type Screen Scheme",
+            "description": "",
+            "projects": {
+              "maxResults": 0,
+              "startAt": 0,
+              "total": 0,
+              "isLast": true,
+              "values": []
+            }
+          },
+          "projectIds": [
+            "10001"
+          ]
+        }
+      ]
+    },
+    "mappings": {
+      "maxResults": 50,
+      "startAt": 0,
+      "total": 4,
+      "isLast": true,
+      "values": [
+        {
+          "issueTypeScreenSchemeId": "10001",
+          "issueTypeId": "default",
+          "screenSchemeId": "10004"
+        },
+        {
+          "issueTypeScreenSchemeId": "10001",
+          "issueTypeId": "10007",
+          "screenSchemeId": "10005"
+        },
+        {
+          "issueTypeScreenSchemeId": "10001",
+          "issueTypeId": "10000",
+          "screenSchemeId": "10016"
+        },
+        {
+          "issueTypeScreenSchemeId": "10001",
+          "issueTypeId": "10006",
+          "screenSchemeId": "10017"
+        }
+      ]
+    },
+    "scheme": {
+      "id": 10004,
+      "name": "WFH: Kanban Default Screen Scheme",
+      "description": "",
+      "screens": {
+        "default": 10009,
+        "edit": 10014,
+        "create": 10004,
+        "view": 10009
+      }
+    },
+    "screens": [
+      {
+        "id": 10009,
+        "tabId": 10012,
+        "tabs": [
+          {
+            "id": 10012,
+            "name": "General"
+          }
+        ],
+        "fieldIds": [
+          "summary",
+          "description",
+          "customfield_10035",
+          "customfield_10036",
+          "customfield_10038",
+          "attachment",
+          "customfield_10034",
+          "reporter",
+          "assignee",
+          "fixVersions",
+          "customfield_10014",
+          "parent",
+          "timetracking",
+          "customfield_10040",
+          "customfield_10049",
+          "customfield_10050",
+          "customfield_10052",
+          "customfield_10053",
+          "customfield_10056",
+          "priority",
+          "customfield_10042"
+        ]
+      },
+      {
+        "id": 10014,
+        "tabId": 10017,
+        "tabs": [
+          {
+            "id": 10017,
+            "name": "General"
+          }
+        ],
+        "fieldIds": [
+          "summary",
+          "description",
+          "customfield_10035",
+          "customfield_10036",
+          "customfield_10038",
+          "attachment",
+          "reporter",
+          "assignee",
+          "fixVersions",
+          "customfield_10014",
+          "parent",
+          "timetracking",
+          "customfield_10040",
+          "customfield_10052",
+          "customfield_10050",
+          "customfield_10049",
+          "customfield_10053",
+          "customfield_10034",
+          "customfield_10056",
+          "priority",
+          "customfield_10042",
+          "customfield_10015",
+          "customfield_10180",
+          "customfield_10181"
+        ]
+      },
+      {
+        "id": 10004,
+        "tabId": 10007,
+        "tabs": [
+          {
+            "id": 10007,
+            "name": "General"
+          }
+        ],
+        "fieldIds": [
+          "customfield_10011",
+          "issuetype",
+          "summary",
+          "description",
+          "customfield_10034",
+          "attachment"
+        ]
+      }
+    ],
+    "create": {
+      "total": 7,
+      "fields": [
+        {
+          "fieldId": "attachment",
+          "name": "Attachment",
+          "required": false,
+          "schema": {
+            "type": "array",
+            "items": "attachment",
+            "system": "attachment"
+          },
+          "operations": [
+            "set",
+            "copy"
+          ]
+        },
+        {
+          "fieldId": "customfield_10034",
+          "name": "Hourly rate",
+          "required": false,
+          "schema": {
+            "type": "number",
+            "custom": "com.atlassian.jira.plugin.system.customfieldtypes:float",
+            "customId": 10034
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        {
+          "fieldId": "description",
+          "name": "Description",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "system": "description"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        {
+          "fieldId": "issuetype",
+          "name": "Issue Type",
+          "required": true,
+          "schema": {
+            "type": "issuetype",
+            "system": "issuetype"
+          },
+          "operations": []
+        },
+        {
+          "fieldId": "parent",
+          "name": "Parent",
+          "required": false,
+          "schema": {
+            "type": "issuelink",
+            "system": "parent"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        {
+          "fieldId": "project",
+          "name": "Project",
+          "required": true,
+          "schema": {
+            "type": "project",
+            "system": "project"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        {
+          "fieldId": "summary",
+          "name": "Summary",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "system": "summary"
+          },
+          "operations": [
+            "set"
+          ]
+        }
+      ]
+    }
+  }
+}
