@@ -179,6 +179,19 @@ test("createAssetObject writes a real CMDB object, and searchAssets reads it bac
         `"${searchReply.slice(0, 600)}"`,
     ).toContain(objectKey);
   } finally {
+    // FIND IT AGAIN RATHER THAN TRUSTING THE HAPPY PATH. `objectId` is only
+    // set once the ground-truth query has run, and this spec can leave the body
+    // early — a quota skip lands between the create and that query. The write
+    // has still happened by then, so cleanup asks Assets who exists rather than
+    // reading a variable that a skip never reached.
+    if (!objectId) {
+      const orphan = await aql(`Name = "${CANARY}"`).catch(() => null);
+      const row = orphan?.body?.values?.[0];
+      if (row) {
+        objectId = String(row.id);
+        console.warn(`[cleanup] the body exited early but ${row.objectKey} had been created`);
+      }
+    }
     // The app cannot clean this up: delete:cmdb-object:jira is deliberately not
     // in the manifest. The harness's own token can, and the deletion is
     // VERIFIED rather than assumed.
