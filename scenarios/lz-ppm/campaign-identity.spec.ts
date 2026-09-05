@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import {fileURLToPath} from 'node:url';
 import { test, expect } from '../../fixtures/forge';
 import { openPlans, scheduleFields, LZPT_PLAN } from './forecast-fixture';
 import { getTestState } from '../../testhook/client';
@@ -56,7 +57,9 @@ test('campaign: actual UI version and preserved LZPT source', async ({ page }) =
     if(!ledgerPath)expect(planIds, 'no temporary plan remains or original plan disappeared').toEqual(before.planIds);
     else{
       expect(path.resolve(ledgerPath)).toBe(path.join(path.resolve(dir!),'retained-uat-ledger.json'));
-      expect(fs.lstatSync(ledgerPath).isSymbolicLink()).toBe(false);const ledger=JSON.parse(fs.readFileSync(ledgerPath,'utf8'));
+      expect(fs.lstatSync(ledgerPath).isSymbolicLink()).toBe(false);const ledgerBytes=fs.readFileSync(ledgerPath),ledger=JSON.parse(ledgerBytes.toString('utf8'));
+      const globalLedger=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../scratch/lz-retained-uat-20260906/ownership.json');
+      expect(ledger.ledgerPath).toBe(globalLedger);expect(fs.realpathSync(globalLedger)).toBe(globalLedger);expect(fs.readFileSync(globalLedger).equals(ledgerBytes),'attempt mirror matches the fixed exclusive ownership claim').toBe(true);
       const retained=Object.values(retainedPlanNames).map(name=>{const found=plans.filter((p:any)=>p.name===name);expect(found).toHaveLength(1);return found[0];});
       for(const p of retained)await expect(frame.locator('.lz-card',{hasText:p.name})).toContainText(/0\s*DRAFTS/i);
       const details=await Promise.all(retained.map(p=>getTestState('lz-ppm',{what:'plan',planId:p.id})));
