@@ -79,7 +79,7 @@ if(command==='fields'){
 if(command==='config'){
  for(const role of ['multiple','gate']){
   const field=state.fields[role];assert.ok(field?.contextId);assert.notEqual(field.id,'customfield_11081');assert.notEqual(field.contextId,'11589');
-  const config={...state.sharedBefore.config,objectFilterQuery:`objectTypeId = ${typeId} AND objectId IN (${Object.values(state.objects).map(o=>o.id).join(',')})`,multiple:role==='multiple'};
+  const config={...state.sharedBefore.config,attributesDisplayedOnIssue:['Name'],objectFilterQuery:`objectTypeId = ${typeId} AND objectId IN (${Object.values(state.objects).map(o=>o.id).join(',')})`,multiple:role==='multiple'};
   if(!field.configured)await write(`configure-${role}`,'PUT',`/rest/servicedesk/cmdb/latest/fieldconfig/${field.contextId}`,config,()=>{field.configured=true;});
   const actual=await read(`/rest/servicedesk/cmdb/latest/fieldconfig/${field.contextId}`);for(const k of ['objectSchemaId','workspaceId','objectFilterQuery','multiple'])assert.deepEqual(actual[k],config[k]);field.config=actual;save();
   const route='/rest/api/3/screens/10038/tabs/10043/fields';let screen=await read(route);

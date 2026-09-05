@@ -163,7 +163,25 @@
             "issueTypeId": "10005"
           }
         ]
-      }
+      },
+      "configured": true,
+      "config": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "screenAttached": true
     },
     "gate": {
       "id": "customfield_11149",
@@ -208,7 +226,25 @@
             "issueTypeId": "10005"
           }
         ]
-      }
+      },
+      "configured": true,
+      "config": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "screenAttached": true
     }
   },
   "issues": {},
@@ -344,6 +380,105 @@
       "state": "acknowledged",
       "status": 201,
       "finishedAt": "2026-09-05T20:49:37.275Z"
+    },
+    {
+      "kind": "configure-multiple",
+      "method": "PUT",
+      "route": "/rest/servicedesk/cmdb/latest/fieldconfig/11758",
+      "body": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "startedAt": "2026-09-05T20:49:55.593Z",
+      "state": "rejected",
+      "status": 500,
+      "finishedAt": "2026-09-05T20:49:55.925Z",
+      "error": {
+        "message": "Cannot invoke \"java.util.List.size()\" because the return value of \"com.atlassian.servicedesk.cmdb.integration.field.config.CmdbObjectFieldConfigInfo.getAttributesDisplayedOnIssue()\" is null"
+      }
+    },
+    {
+      "kind": "configure-multiple",
+      "method": "PUT",
+      "route": "/rest/servicedesk/cmdb/latest/fieldconfig/11758",
+      "body": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50,
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ]
+      },
+      "startedAt": "2026-09-05T20:50:30.043Z",
+      "state": "acknowledged",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:50:30.325Z"
+    },
+    {
+      "kind": "screen-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10038/tabs/10043/fields",
+      "body": {
+        "fieldId": "customfield_11148"
+      },
+      "startedAt": "2026-09-05T20:50:30.718Z",
+      "state": "acknowledged",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:50:31.242Z"
+    },
+    {
+      "kind": "configure-gate",
+      "method": "PUT",
+      "route": "/rest/servicedesk/cmdb/latest/fieldconfig/11760",
+      "body": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50,
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ]
+      },
+      "startedAt": "2026-09-05T20:50:31.411Z",
+      "state": "acknowledged",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:50:31.766Z"
+    },
+    {
+      "kind": "screen-gate",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10038/tabs/10043/fields",
+      "body": {
+        "fieldId": "customfield_11149"
+      },
+      "startedAt": "2026-09-05T20:50:32.099Z",
+      "state": "acknowledged",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:50:32.621Z"
     }
   ],
   "createdAt": "2026-09-05T20:46:10.310Z",
@@ -471,7 +606,7 @@
     }
   },
   "lastSharedGuard": {
-    "verifiedAt": "2026-09-05T20:49:34.953Z",
+    "verifiedAt": "2026-09-05T20:50:30.042Z",
     "unchanged": true
   },
   "preflight": {
