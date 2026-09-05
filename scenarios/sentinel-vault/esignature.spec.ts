@@ -102,10 +102,13 @@ test("enrol, sign a decision, refuse replay and unsigned decisions, revoke", asy
     expect(String(locked?.reason), "…with a lockout message").toMatch(/Too many wrong codes/);
     console.log("### device swap/revoke need a code ✓; lockout after five wrong codes ✓");
     await delKvs(`sig-fail-${MIHAI}`); // lift the lockout for the rest of the proof
-    // Revoke WITH the code → back to "set up first".
-    expect((await inv("revokeSignature", { actor: MIHAI, code: totp(en.secret, 2) })).result?.success, "revoke with the device's code").toBe(true);
+    // Revoke WITH the code → back to "set up first". Wait for the next time-step first, then use
+    // the step after it: strictly later than any step already accepted, and inside the window.
+    await new Promise((r) => setTimeout(r, 30500 - (Date.now() % 30000)));
+    const rv = (await inv("revokeSignature", { actor: MIHAI, code: totp(en.secret, 1) })).result;
+    expect(rv?.success, `revoke with the device's code (got ${JSON.stringify(rv)})`).toBe(true);
     expect((await inv("signatureStatus", { actor: MIHAI })).result?.enrolled, "revoked").toBe(false);
-    const after = (await inv("decideApproval", { pageId: p.id, approver: MIHAI, decision: "denied", code: totp(en.secret, 2) })).result;
+    const after = (await inv("decideApproval", { pageId: p.id, approver: MIHAI, decision: "denied", code: totp(en.secret, 1) })).result;
     expect(after?.success, "after revoking, even a valid code is refused").toBe(false);
     // Space no longer requires a signature → a plain decision works again.
     await setKvs(SETTINGS_KEY, { ...(prior || { workflowId: "default", autoAssignNew: false }), enabled: true, requireSignature: false });

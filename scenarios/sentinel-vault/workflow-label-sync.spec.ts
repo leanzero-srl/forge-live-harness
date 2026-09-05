@@ -28,7 +28,7 @@ const stateLabels = (labels: string[]) => labels.filter((l) => l.startsWith("sv-
 test.describe.configure({ timeout: 300_000, retries: 1 });
 
 async function cleanup(pageId: string) {
-  for (const k of [`workflow-state-${pageId}`, `workflow-pending-${pageId}`, `workflow-autoassigned-${pageId}`,
+  for (const k of [`workflow-state-${pageId}`, `workflow-pending-${pageId}`, `workflow-autoassigned-${pageId}`, `workflow-label-${pageId}`,
     `workflow-idx-${SPACE}-draft-${pageId}`, `workflow-idx-${SPACE}-in_review-${pageId}`, `workflow-idx-${SPACE}-approved-${pageId}`]) await delKvs(k).catch(() => {});
   for (const prefix of [`workflow-log-${pageId}-`, `activity-page-${pageId}-`]) for (const k of await queryKvs(prefix).catch(() => [] as string[])) await delKvs(k).catch(() => {});
   await deletePage(pageId).catch(() => {}); await purgePage(pageId).catch(() => {});
@@ -52,7 +52,7 @@ test("state labels follow the workflow: assign, transition, backfill, removal; f
     let labels = await getPageLabels(pA.id);
     expect(stateLabels(labels), "assign → sv-state-draft").toEqual(["sv-state-draft"]);
     expect(labels, "…and the foreign label is still there").toContain("harness-keep-me");
-    expect((await getKvs(`workflow-state-${pA.id}`))?.labelState, "the record is stamped").toBe("draft");
+    expect((await getKvs(`workflow-label-${pA.id}`))?.stateId, "the stamp (its own key, never the record) says draft").toBe("draft");
 
     const t = await inv("transitionWorkflow", { pageId: pA.id, spaceKey: SPACE, to: "in_review", actor: MIHAI });
     expect(t.result?.success, "moved to In Review").toBe(true);
@@ -74,7 +74,7 @@ test("state labels follow the workflow: assign, transition, backfill, removal; f
     expect(stateLabels(await getPageLabels(pA.id)), "off → A's state label removed").toEqual([]);
     expect(stateLabels(await getPageLabels(pB.id)), "off → B's state label removed").toEqual([]);
     expect(await getPageLabels(pA.id), "…the foreign label survives").toContain("harness-keep-me");
-    expect((await getKvs(`workflow-state-${pA.id}`))?.labelState ?? null, "…and the stamp is cleared").toBeNull();
+    expect(await getKvs(`workflow-label-${pA.id}`), "…and the stamp is cleared").toBeFalsy();
     console.log("### removal on off ✓");
   } finally {
     if (prior) await setKvs(SETTINGS_KEY, prior); else await delKvs(SETTINGS_KEY).catch(() => {});
