@@ -162,6 +162,7 @@ test("#7: approval dialog — opens from the awaiting chip, Escape returns focus
     expect(href, "…for this page").toContain(`pageId=${p.id}`);
     expect(String(state.approvedVersion), "…and it is the approvedVersion on the record").toBe(m![1]);
     await ribbon.locator("body").screenshot({ path: `${OUT}/4-evidence-panel.png` }).catch(() => {});
+    await page.screenshot({ path: `${OUT}/4-evidence-panel-page.png` }).catch(() => {}); // the dialog overflows the banner bar; the page shot shows it whole
     // Make the approved version HISTORICAL first: Confluence canonicalises a viewpage URL for the
     // CURRENT version to the pretty /spaces/…/pages/{id}/ URL and drops pageVersion, so a click
     // to the current version is indistinguishable from staying put. A later version written over
