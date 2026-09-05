@@ -1,3 +1,4 @@
+import {settledScreenshot} from './settled-screenshot.mjs';
 // Real fixtures and resolver calls. The two controlled response tests disclose
 // transport instrumentation; no fabricated backend state is counted as a pass.
 import {gunzipSync} from 'node:zlib';
@@ -61,7 +62,7 @@ for(const status of[403,503])test(`persistence: simulated draft-read HTTP${statu
   const handler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getDraft'||c.payload?.planId!==f.planId)return route.continue();injected++;await route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated draft transport ${status}`})});};
   await page.route('**/gateway/api/graphql**',handler);
   try{
-   frame=await openPlan(page,f.name);const alert=frame.getByRole('alert').filter({hasText:'Your saved draft could not be loaded'});await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(frame.locator('[inert] [data-testid="plan-save-btn"]')).toHaveCount(1);await alert.screenshot({path:info.outputPath(`draft-${status}-blocked.png`)});
+   frame=await openPlan(page,f.name);const alert=frame.getByRole('alert').filter({hasText:'Your saved draft could not be loaded'});await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(frame.locator('[inert] [data-testid="plan-save-btn"]')).toHaveCount(1);await settledScreenshot(alert,{path:info.outputPath(`draft-${status}-blocked.png`)});
    const recovered=actualResponse(page,'getDraft',f.planId);await alert.getByRole('button',{name:'Retry saved draft',exact:true}).click();const body=await recovered;expect(body.draft.changes[b].duration).toBe(9);await expect(alert).toHaveCount(0);await frame.getByRole('button',{name:/^Table/i}).first().click();await exact(frame,b,9,'2026-10-15');await editDuration(frame,a,'6');await save(frame);frame=await table(page,f.name);await exact(frame,a,6,'2026-10-12');await exact(frame,b,9,'2026-10-15');
    await row(frame,b).screenshot({path:info.outputPath(`draft-${status}-recovered9.png`)});await info.attach('failure-instrumentation',{body:JSON.stringify({injectedHttpStatus:status,request:'getDraft',planId:f.planId,count:injected,realRetry:true,backendDraftNeverMutatedByFault:true}),contentType:'application/json'});
   }finally{await page.unroute('**/gateway/api/graphql**',handler);}

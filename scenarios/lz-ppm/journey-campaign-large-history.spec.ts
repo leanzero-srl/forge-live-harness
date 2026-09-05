@@ -1,3 +1,4 @@
+import {settledScreenshot} from './settled-screenshot.mjs';
 import fs from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {test,expect} from '../../fixtures/forge';
@@ -31,7 +32,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
   const expected=rowFields(basis);fs.writeFileSync(info.outputPath('large-capture-expected.json'),JSON.stringify(expected));
   await work.getByLabel('Capture name',{exact:true}).fill('Complete large decision');const captureStart=Date.now();const captured=actualResponse(page,'getSnapshot',planId!);await work.getByRole('button',{name:'Capture working plan',exact:true}).click();const snapshot=(await captured).snapshot;journal.metrics.captureAndReadMs=Date.now()-captureStart;journal.metrics.snapshotBytes=Buffer.byteLength(JSON.stringify(snapshot));
   expect(snapshot.calendar.workingDays).toEqual([1,2,3,4,5]);expect(snapshot.calendar.holidays).toEqual([]);expect(snapshot.issueCount).toBe(population.count);expect(snapshot.issues.map((i:any)=>i.key).sort()).toEqual(keys);expect(rowFields(snapshot.issues)).toEqual(expected);journal.snapshot={id:snapshot.id,hash:snapshot.hash,count:snapshot.issueCount,lastExpected:expected.slice(-5),lastSnapshot:rowFields(snapshot.issues).slice(-5)};retain();
-  await expect(work.locator('[data-testid="snapshot-detail"]')).toContainText(`${population.count} retained issues`);await work.screenshot({path:info.outputPath('large-capture-visible-count-and-context.png')});
+  await expect(work.locator('[data-testid="snapshot-detail"]')).toContainText(`${population.count} retained issues`);await settledScreenshot(work,{path:info.outputPath('large-capture-visible-count-and-context.png')});
   // Reopen is another real read, compared across the entire result, not its count.
   frame=await openPlan(page,name);work=await planning(frame);const reread=actualResponse(page,'getSnapshot',planId!);await work.getByRole('navigation',{name:'Retained captures'}).getByRole('button').filter({hasText:'Complete large decision'}).click();const reopened=(await reread).snapshot;expect(reopened.hash).toBe(snapshot.hash);expect(rowFields(reopened.issues)).toEqual(expected);
   await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();const report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name',{exact:true}).fill('Every existing performance row');const reportStart=Date.now(),reportRead=actualResponse(page,'captureSponsorReport',planId!);await report.getByRole('button',{name:'Capture sponsor report',exact:true}).click();const summary=(await reportRead).report;journal.metrics.reportCaptureMs=Date.now()-reportStart;expect(summary.counts.timeline).toBe(population.count);expect(summary.pages.timeline).toBeGreaterThan(40);journal.report=summary;retain();
@@ -50,7 +51,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
    expect(rendered.map(r=>r.key).sort()).toEqual(keys);const renderedByKey=new Map(rendered.map(r=>[r.key,r]));
    for(const item of expected){const row:any=renderedByKey.get(item.key);expect(row.cells.slice(0,6)).toEqual([item.key,item.summary,item.startDate??'—',item.dueDate??'—',String(item.duration??'—'),item.statusCategory]);}
    await expect(html.locator('script,iframe,img,link')).toHaveCount(0);expect(external).toEqual([]);
-   for(const [label,key]of [['first',population.first.key],['terminal',population.last.key]]){await html.locator(`tr[data-issue-key="${key}"]`).scrollIntoViewIfNeeded();await html.screenshot({path:info.outputPath(`large-report-${label}-row-visible.png`)});}
+   for(const [label,key]of [['first',population.first.key],['terminal',population.last.key]]){await html.locator(`tr[data-issue-key="${key}"]`).scrollIntoViewIfNeeded();await settledScreenshot(html,{path:info.outputPath(`large-report-${label}-row-visible.png`)});}
    journal.renderedTerminalRow=renderedByKey.get(population.last.key);journal.allHtmlFieldsVerified=true;retain();
   }finally{await html.close();}
   const again=await rpc.invoke('getSnapshot',{planId,snapshotId:snapshot.id});expect(again.success).toBe(true);expect(again.snapshot.hash).toBe(snapshot.hash);expect(rowFields(again.snapshot.issues)).toEqual(expected);

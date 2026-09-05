@@ -1,3 +1,4 @@
+import {settledScreenshot} from './settled-screenshot.mjs';
 import {replayHeaders} from './replay-headers.mjs';
 import fs from 'node:fs';
 import {gunzipSync} from 'node:zlib';
@@ -104,14 +105,14 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
       let editor=work.locator('[data-testid="scenario-editor"]');
       // Calendar-only edit must preserve declared work. The source dates contain
       // five old-calendar workdays; the added holiday moves finish, not duration.
-      await editor.getByLabel('Holiday dates, one YYYY-MM-DD per line',{exact:true}).fill('2026-03-04');
+      await editor.getByRole('textbox',{name:'Holiday dates, one YYYY-MM-DD per line',exact:true}).fill('2026-03-04');
       await editor.getByRole('button',{name:'Preview simulation',exact:true}).click();
       let calendarPreview=editor.locator('[data-testid="scenario-preview"]');
       const calendarPred=calendarPreview.locator('tbody tr').filter({hasText:pred}).locator('td');
       await expect(calendarPred.nth(1)).toHaveText('2026-03-02');
       await expect(calendarPred.nth(2)).toHaveText('2026-03-09');
       await expect(calendarPred.nth(3)).toHaveText('5');
-      await calendarPreview.screenshot({path:info.outputPath('simulation-calendar-only-five-days.png')});
+      await settledScreenshot(calendarPreview,{path:info.outputPath('simulation-calendar-only-five-days.png')});
       loaded=response(page,'getSimulationModel',simId!);
       await editor.getByRole('button',{name:'Save simulation',exact:true}).click();
       const calendarOnly=await loaded;
@@ -123,7 +124,7 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
       await expect(editor.getByRole('button',{name:'Save simulation',exact:true})).toBeDisabled();
       await editor.getByRole('checkbox',{name:`Include ${late}`,exact:true}).click();
       await editor.getByLabel(`${pred} duration`,{exact:true}).fill('6');
-      await editor.getByLabel('Holiday dates, one YYYY-MM-DD per line',{exact:true}).fill('2026-03-04');
+      await editor.getByRole('textbox',{name:'Holiday dates, one YYYY-MM-DD per line',exact:true}).fill('2026-03-04');
       await editor.locator('summary').filter({hasText:'Edit finish-to-start dependencies'}).click();
       const details=editor.locator('details');
       await details.locator('label').filter({hasText:'Predecessor'}).getByRole('combobox').click();
@@ -147,7 +148,7 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
         await expect(cells.nth(1)).toHaveText(item.start); await expect(cells.nth(2)).toHaveText(item.due);
         await expect(cells.nth(3)).toHaveText(String(item.duration));
       }
-      await preview.screenshot({path:info.outputPath('simulation-scope-holiday-lag-preview.png')});
+      await settledScreenshot(preview,{path:info.outputPath('simulation-scope-holiday-lag-preview.png')});
       loaded=response(page,'getSimulationModel',simId!);
       await editor.getByRole('button',{name:'Save simulation',exact:true}).click();
       const saved=await loaded;
@@ -166,18 +167,18 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
         await expect(row(frame,item.key)).toHaveAttribute('data-row-due',item.due);
         await expect(row(frame,item.key)).toHaveAttribute('data-row-duration',String(item.duration));
       }
-      await page.screenshot({path:info.outputPath('simulation-table-reopen.png')});
+      await settledScreenshot(page,{path:info.outputPath('simulation-table-reopen.png')});
       await frame.getByRole('button',{name:/^Gantt/i}).first().click();
       await expect(frame.locator('[data-testid="gantt-bar"]')).toHaveCount(2);
       for (const key of [pred,succ]) await expect(frame.locator(`[data-testid="gantt-bar"][data-key="${key}"]`)).toBeVisible();
       await expect(frame.locator('[data-testid="gantt-dep-arrows"] .dep-arrow-line')).toHaveCount(1);
-      await page.screenshot({path:info.outputPath('simulation-gantt-reopen.png')});
+      await settledScreenshot(page,{path:info.outputPath('simulation-gantt-reopen.png')});
       await frame.getByRole('button',{name:/^Dashboard/i}).first().click();
       const confidence=frame.locator('[data-testid="schedule-confidence"]');
       await expect(confidence).toHaveAttribute('data-leaves','2');
       await expect(confidence).toHaveAttribute('data-runs','300');
       await expect(confidence.locator('[data-testid="sc-planned"]')).toContainText('Mar 19');
-      await confidence.screenshot({path:info.outputPath('simulation-dashboard-reopen.png')});
+      await settledScreenshot(confidence,{path:info.outputPath('simulation-dashboard-reopen.png')});
 
       // Same authenticated owner is allowed to model but forbidden to sync,
       // replace sources, or share. These real denials do not prove AUTH-1.
@@ -217,7 +218,7 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
       const finalModel=await invoke('getSimulationModel',{planId:simId});
       expect(modelRows(finalModel.model)).toEqual(restoredExpected);
       expect(finalModel.model.calendar).toEqual(saved.model.calendar);
-      await page.screenshot({path:info.outputPath('simulation-excluded-task-restored.png')});
+      await settledScreenshot(page,{path:info.outputPath('simulation-excluded-task-restored.png')});
       journal.steps.push({name:'excluded-task-restored-after-reopen',version:finalModel.version,rows:modelRows(finalModel.model)}); retain();
       const original=await invoke('getSnapshot',{planId:f.planId,snapshotId:base.id});
       expect(original.success).toBe(true); expect(original.snapshot.hash).toBe(base.hash);

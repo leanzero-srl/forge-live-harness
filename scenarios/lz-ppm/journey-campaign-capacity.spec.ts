@@ -1,3 +1,4 @@
+import {settledScreenshot} from './settled-screenshot.mjs';
 import {replayHeaders} from './replay-headers.mjs';
 import fs from 'node:fs';
 import {gunzipSync} from 'node:zlib';
@@ -45,7 +46,7 @@ test('capacity: real Jira seconds deduplicate across plans, explicit availabilit
    expect(reopenedReport.startDate).toBe(reopenedDay);expect(reopenedReport.endDate).toBe(add(reopenedDay,55));
    const dateText=(d:string)=>new Date(d+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
    await expect(cap.getByRole('button',{name:'Report starts',exact:true})).toContainText(dateText(reopenedDay));await expect(cap.getByRole('button',{name:'Report ends',exact:true})).toContainText(dateText(add(reopenedDay,55)));
-   notes.reopenedWindow={startDate:reopenedReport.startDate,endDate:reopenedReport.endDate,behavior:'visit-local rolling default'};journal();await expect(cell(idA,M)).toContainText('12h / 12h');await expect(cell(idA,M2)).toContainText('20h / 15h');expect(await f.read(shared)).toEqual(beforeJira);await cap.screenshot({path:info.outputPath('capacity-alternative-reopen.png')});
+   notes.reopenedWindow={startDate:reopenedReport.startDate,endDate:reopenedReport.endDate,behavior:'visit-local rolling default'};journal();await expect(cell(idA,M)).toContainText('12h / 12h');await expect(cell(idA,M2)).toContainText('20h / 15h');expect(await f.read(shared)).toEqual(beforeJira);await settledScreenshot(cap,{path:info.outputPath('capacity-alternative-reopen.png')});
   }finally{
    let restorationError:any;
    try{if(originalSettings){const current=await invoke('getCapacitySettings');await invoke('saveCapacitySettings',{settings:originalSettings,expectedVersion:current.version});expect((await invoke('getCapacitySettings')).settings).toEqual(originalSettings);notes.privateSettingsRestored=true;journal();}}

@@ -1,3 +1,4 @@
+import {settledScreenshot} from './settled-screenshot.mjs';
 import fs from 'node:fs';
 import {test,expect} from '../../fixtures/forge';
 import {getTestState} from '../../testhook/client';
@@ -25,7 +26,7 @@ test('assets: native object label, exact matching and empty filters persist acro
   await chooseMode('Any selected object');await bar.getByTitle(new RegExp(`^Filter .*${IDENTITY}$`)).click();
   await expect(bar.locator('[data-testid="assets-match-count"]')).toHaveText('1 matching tasks of 2');
   await expect(frame.locator('[data-testid="table-row"]')).toHaveCount(1);await expect(frame.locator('[data-testid="table-row"]')).toHaveAttribute('data-row-key',KEY);
-  await page.screenshot({path:info.outputPath('assets-native-match.png'),fullPage:true,animations:'disabled'});
+  await settledScreenshot(page,{path:info.outputPath('assets-native-match.png'),fullPage:true,animations:'disabled'});
   frame=await openPlan(page,name);await frame.getByRole('button',{name:/^Table/i}).first().click();bar=frame.locator('[data-testid="assets-filter-bar"]');
   await expect(bar.locator('[data-testid="assets-match-count"]')).toHaveText('1 matching tasks of 2',{timeout:90_000});await expect(frame.locator('[data-testid="table-row"]')).toHaveAttribute('data-row-key',KEY);
   const refreshed=page.waitForResponse((r:any)=>r.status()===200&&(r.request().postData()||'').includes('getPlanAssets'),{timeout:90_000});
@@ -34,7 +35,7 @@ test('assets: native object label, exact matching and empty filters persist acro
   await bar.getByRole('button',{name:'Clear Assets filters',exact:true}).click();await expect(frame.locator('[data-testid="table-row"]')).toHaveCount(2);await expect(frame.locator(`[data-row-key="${KEY}"] [data-testid="table-asset-value"]`)).toContainText('CRT-71');
   expect((await getTestState('lz-ppm',{what:'plan',planId:planId!})).issues.map((i:any)=>i.key).sort()).toEqual([EMPTY,KEY].sort());
   expect((await get(`/rest/api/3/issue/${KEY}?fields=${FIELD}`)).fields[FIELD]).toEqual(populated.fields[FIELD]);expect((await get(`/rest/api/3/issue/${EMPTY}?fields=${FIELD}`)).fields[FIELD]).toEqual([]);
-  await page.screenshot({path:info.outputPath('assets-clear-all-values.png'),fullPage:true,animations:'disabled'});persist({phase:'verified'});
+  await settledScreenshot(page,{path:info.outputPath('assets-clear-all-values.png'),fullPage:true,animations:'disabled'});persist({phase:'verified'});
  }finally{
   await page.goto('about:blank');if(!planId)planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;
   if(planId){await getTestState('lz-ppm',{what:'clearDrafts',planId});await getTestState('lz-ppm',{what:'deleteFixture',planId});}

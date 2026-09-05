@@ -1,3 +1,4 @@
+import {settledScreenshot} from './settled-screenshot.mjs';
 import fs from 'node:fs';
 import {test,expect} from '../../fixtures/forge';
 import {get,put} from '../../data/jira.mjs';
@@ -40,7 +41,7 @@ test('capacity boundaries: real missing and zero effort, custom-calendar partial
    };
    body=await availability(A,'16',true);await expect(cell(A)).toContainText('16h / 16h');await expect(cell(A)).toHaveAttribute('data-status','effort-unknown');await expect(cell(A)).not.toContainText('%');await expect(cell(A)).toContainText('1 work item(s) not fully allocated');
    await availability(A,'0',true);await expect(cell(A)).toHaveAttribute('data-status','overloaded');await expect(cell(A)).toContainText('16h / 0h');await expect(cell(A)).not.toContainText('%');
-   body=await availability(B,'0',false);await expect(cell(B)).toHaveAttribute('data-status','no-capacity');await expect(cell(B)).toContainText('0h / 0h');await expect(cell(B)).not.toContainText('%');await cap.screenshot({path:info.outputPath('capacity-zero-and-unknown-controls.png')});journal.steps.push({name:'explicit-zero-capacity',report:body.report});retain();
+   body=await availability(B,'0',false);await expect(cell(B)).toHaveAttribute('data-status','no-capacity');await expect(cell(B)).toContainText('0h / 0h');await expect(cell(B)).not.toContainText('%');await settledScreenshot(cap,{path:info.outputPath('capacity-zero-and-unknown-controls.png')});journal.steps.push({name:'explicit-zero-capacity',report:body.report});retain();
    // A real correction of only the owned missing-effort issue distinguishes
    // unknown work from explicit zero. Duration remains5 throughout.
    await put(`/rest/api/3/issue/${missing}`,{fields:{timetracking:{originalEstimate:'0h',remainingEstimate:'0h'}}});expect((await get(`/rest/api/3/issue/${missing}?fields=timeestimate`)).fields.timeestimate).toBe(0);
@@ -48,11 +49,11 @@ test('capacity boundaries: real missing and zero effort, custom-calendar partial
    for(const status of[403,503]){
     let injected=0;const handler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getCapacityReport')return route.continue();injected++;return route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated capacity transport ${status}`})});};
     await page.route('**/gateway/api/graphql**',handler);
-    try{await cap.getByRole('button',{name:'Save selection and calculate',exact:true}).click();const alert=cap.getByRole('alert');await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(cap.locator('[data-testid="capacity-cell"]')).toHaveCount(0);await expect(cap.locator('[data-testid="capacity-coverage"]')).toHaveCount(0);await expect(alert).not.toContainText('useInvokeExtensionRelayMutation');await alert.screenshot({path:info.outputPath(`capacity-${status}-clears-old-totals.png`)});
+    try{await cap.getByRole('button',{name:'Save selection and calculate',exact:true}).click();const alert=cap.getByRole('alert');await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(cap.locator('[data-testid="capacity-cell"]')).toHaveCount(0);await expect(cap.locator('[data-testid="capacity-coverage"]')).toHaveCount(0);await expect(alert).not.toContainText('useInvokeExtensionRelayMutation');await settledScreenshot(alert,{path:info.outputPath(`capacity-${status}-clears-old-totals.png`)});
      pending=actualResponse(page,'getCapacityReport');await alert.getByRole('button',{name:'Retry',exact:true}).click();body=await pending;await expect(alert).toHaveCount(0);await expect(cell(A)).toHaveAttribute('data-status','at-capacity');await expect(cell(A)).toContainText('16h / 16h');expect(body.report.totals.allocatedHours).toBe(20);journal.steps.push({name:'simulated-report-failure-real-retry',injectedHttpStatus:status,requestsInjected:injected,realReport:body.report});retain();
     }finally{await page.unroute('**/gateway/api/graphql**',handler);}
    }
-   expect(await Promise.all(f.keys.map((key:string)=>f.read(key)))).toEqual(scheduleBefore);await cap.screenshot({path:info.outputPath('capacity-boundaries-real-retry.png')});
+   expect(await Promise.all(f.keys.map((key:string)=>f.read(key)))).toEqual(scheduleBefore);await settledScreenshot(cap,{path:info.outputPath('capacity-boundaries-real-retry.png')});
   }finally{
    try{if(original){const current=await rpc.invoke('getCapacitySettings');expect(current.success).toBe(true);const saved=await rpc.invoke('saveCapacitySettings',{settings:original,expectedVersion:current.version});expect(saved.success).toBe(true);expect((await rpc.invoke('getCapacitySettings')).settings).toEqual(original);restored=true;}}
    finally{rpc.stop();journal.privateSettingsRestored=restored;retain();}
