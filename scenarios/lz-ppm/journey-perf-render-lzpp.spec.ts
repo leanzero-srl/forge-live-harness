@@ -20,9 +20,9 @@ test("PERF: large LZPP plan indexes, renders, and stays interactive", async ({ p
   await assertLoggedIn(page);
   await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
   await page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]').first().waitFor({ state: "attached", timeout: 30_000 });
-  let s = await enterForgeSurface(page, { surface: "custom" });
-  let frame = s.kind === "custom" ? s.frame : null;
-  if (!frame) throw new Error("no frame");
+  const s = await enterForgeSurface(page, { surface: "custom" });
+  if (s.kind !== "custom") throw new Error("no frame");
+  let frame = s.frame;
   await page.waitForTimeout(2000);
 
   const metrics: Record<string, any> = {};

@@ -1,0 +1,14 @@
+✔ typed oracle preserves known chain dates and exact source input (1.85425ms)
+✔ missing fixture or edit key cannot produce a false empty expected schedule (0.179375ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 121.20425
+{
+  "fixtureCount": 23,
+  "everyScheduleFieldUnchanged": true
+}
