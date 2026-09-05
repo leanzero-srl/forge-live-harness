@@ -23,15 +23,18 @@ const repo=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 export const ledgerPath=path.join(repo,'scratch/lz-retained-uat-20260906/ownership.json');
 // This is the checked-in independent app-doc oracle, not a result imported
 // from the live report or a model function called on received data.
-export const oracle=JSON.parse(fs.readFileSync(path.resolve(repo,'../lz-ppm-forge/docs/campaign-2026-09/retained-uat-oracle.json'),'utf8'));
+const oracleBytes=fs.readFileSync(path.resolve(repo,'../lz-ppm-forge/docs/campaign-2026-09/retained-uat-oracle.json'));
+export const oracleSha256=createHash('sha256').update(oracleBytes).digest('hex');
+export const oracle=JSON.parse(oracleBytes.toString('utf8'));
 
 export async function createRetainedUat(info:any){
+ expect(oracleSha256,'independently reviewed oracle bytes must match before any tenant write').toBe('487ac1e69615a8bf56bc30c89eccd42968ac982edef3afd3d1caaae85932da2e');
  expect(BASE).toBe('https://wolfaenpak.atlassian.net');
  expect(new Date().toISOString().slice(0,10)<'2026-10-05','fixed future fixture must run before October5; do not invent past forecast validity').toBe(true);
  fs.mkdirSync(path.dirname(ledgerPath),{recursive:true});fs.mkdirSync(info.outputDir,{recursive:true});
  const unitDir=process.env.LZ_CAMPAIGN_UNIT_DIR?path.resolve(process.env.LZ_CAMPAIGN_UNIT_DIR):null;const mirror=process.env.LZ_RETAINED_UAT_LEDGER?path.resolve(process.env.LZ_RETAINED_UAT_LEDGER):null;if(mirror)expect(unitDir&&mirror.startsWith(unitDir+path.sep),'optional ledger mirror must be inside this attempt').toBeTruthy();
  const beforeIdentitySha256=unitDir?createHash('sha256').update(fs.readFileSync(path.join(unitDir,'before-identity.json'))).digest('hex'):null;
- const journal:any={schema:1,state:'admission',startedAt:new Date().toISOString(),ledgerPath,runId:process.env.LZ_CAMPAIGN_RUN_ID||null,unitDir,beforeIdentitySha256,optionalLedger:mirror,noPendingDrafts:false,issues:{},plans:{},steps:[],cleanup:[]};
+ const journal:any={schema:1,oracleSha256,state:'admission',startedAt:new Date().toISOString(),ledgerPath,runId:process.env.LZ_CAMPAIGN_RUN_ID||null,unitDir,beforeIdentitySha256,optionalLedger:mirror,noPendingDrafts:false,issues:{},plans:{},steps:[],cleanup:[]};
  // Durable exclusive claim prevents a retry from creating a second retained UAT
  // over an earlier uncertain/retained run. Operator reconciles the ledger first.
  fs.writeFileSync(ledgerPath,JSON.stringify(journal,null,2),{flag:'wx'});

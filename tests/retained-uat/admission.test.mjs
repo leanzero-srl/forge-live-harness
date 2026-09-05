@@ -12,7 +12,7 @@ const require=createRequire(import.meta.url),ts=require('typescript'),{expect}=r
 const source=fs.readFileSync(new URL('../../scenarios/lz-ppm/retained-uat-fixture.ts',import.meta.url),'utf8');
 const oracle=fs.readFileSync(new URL('../../../lz-ppm-forge/docs/campaign-2026-09/retained-uat-oracle.json',import.meta.url),'utf8');
 function fixture(mode){
- const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'lz-retained-admission-')),repo=path.join(tmp,'harness'),out=path.join(tmp,'out'),app=path.join(tmp,'lz-ppm-forge/docs/campaign-2026-09');fs.mkdirSync(app,{recursive:true});fs.writeFileSync(path.join(app,'retained-uat-oracle.json'),oracle);
+ const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'lz-retained-admission-')),repo=path.join(tmp,'harness'),out=path.join(tmp,'out'),app=path.join(tmp,'lz-ppm-forge/docs/campaign-2026-09');fs.mkdirSync(app,{recursive:true});fs.writeFileSync(path.join(app,'retained-uat-oracle.json'),mode==='oracle-drift'?oracle+' ':oracle);
  const calls=[],issues=Array.from({length:45},(_,n)=>({key:`LZPT-${n+1}`}));let deleted=false;
  const get=async uri=>{calls.push(['get',uri]);if(uri.endsWith('/issuetypes'))return{issueTypes:[{id:'10000'},{id:'10004'}]};if(uri.endsWith('/myself'))return{accountId:'actor',displayName:'Actor'};if(uri.includes('/user/assignable/'))return[{accountId:'actor',active:true}];if(uri.endsWith('/editmeta'))throw Error('isolated admission field failure');if(uri.includes('/issue/1?'))return{id:'1',key:'WFH-1',fields:{project:{key:'WFH'},issuetype:{id:'10000'},summary:mode==='foreign'?'Unowned issue':'[harness-test] LZ retained UAT 20260906 October release',labels:['lz-retained-uat-20260906']}};throw Error(`Unexpected fake GET ${uri}`);};
  const jira={BASE:'https://wolfaenpak.atlassian.net',get,post:async uri=>{calls.push(['post',uri]);return{issues:[]};},put:async()=>{throw Error('No edit should occur after failed admission');},request:async(method,uri)=>{calls.push([method,uri]);if(method==='DELETE'){deleted=true;return null;}return{status:deleted?404:200};}};
@@ -36,4 +36,8 @@ test('ownership mismatch prevents delete even when an earlier create returned th
 });
 test('an existing ledger blocks a second run before any second REST/hook call',async()=>{
  const f=fixture('field-failure');try{await assert.rejects(f.api.createRetainedUat(f.info));const count=f.calls.length;await assert.rejects(f.api.createRetainedUat(f.info),/EEXIST/);assert.equal(f.calls.length,count);}finally{f.cleanup();}
+});
+
+test('changed oracle bytes refuse admission before any tenant call or ownership ledger write',async()=>{
+ const f=fixture('oracle-drift');try{await assert.rejects(f.api.createRetainedUat(f.info),/independently reviewed oracle bytes/);assert.deepEqual(f.calls,[]);assert.equal(fs.existsSync(f.api.ledgerPath),false);}finally{f.cleanup();}
 });
