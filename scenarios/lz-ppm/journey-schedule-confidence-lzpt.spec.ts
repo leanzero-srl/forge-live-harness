@@ -19,7 +19,7 @@ test('dashboard: schedule confidence computes ordered distributions and replaces
     await expect(card).toContainText('Not calibrated against historical delivery');
     await expect(card).toContainText('conditional on the model, not delivery guarantees');
     await expect(card).toContainText('Task finish variability');
-    await expect(card).toContainText('90% of simulated finishes');
+    await expect(card).toContainText('At least 90% finish by this date');
     await expect(card).toContainText('Simulated finishes by target');
     await expect(card).not.toContainText('WHAT MOVES THE FINISH');
     await expect(card).not.toContainText('chance to make it');
