@@ -1,3 +1,4 @@
+import {createCapacityPreferences} from './capacity-preferences.mjs';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test,expect} from '../../fixtures/forge';
@@ -30,20 +31,17 @@ test('capacity size limit: actual 5300-issue selection refuses a partial report,
   let original:any,lastOwned:any,bodyError:any,restored=false;
   const journal:any={M,end,largePlanId:LARGE,largeIssues:5300,largeHash:hash(large.issues),effort,steps:[]};
   const retain=()=>fs.writeFileSync(info.outputPath('capacity-limit-journal.json'),JSON.stringify(journal,null,2));retain();
+  const preferences=createCapacityPreferences({invoke:rpc.invoke,observe:(key:string)=>observedResponse(page,key),onState:(state:any)=>{journal.preferences=state;journal.lastOwnedSettings=state.lastOwned;retain();}});
   try{
    let frame=await openPlans(page),pending=actualResponse(page,'getCapacitySettings');await frame.getByRole('button',{name:'Capacity',exact:true}).click();
-   const initial=await pending;original=initial.settings;journal.originalSettings=original;retain();
+   const initial=await pending;original=initial.settings;preferences.admit(initial);journal.originalSettings=original;retain();
    await expect(frame.locator('[data-testid="capacity-view"]').getByRole('status')).toHaveCount(0,{timeout:120000});
    const profile={hoursPerDay:8,partTimePct:100,reservePct:0,workingDays:[1,2,3,4,5],leaveDates:[]};
-   const setup=await rpc.invoke('saveCapacitySettings',{settings:{selectedPlanIds:[f.planId],profiles:{...original.profiles,[me.accountId]:profile},issueChoices:{}},expectedVersion:initial.version});
+   const setup=await preferences.write({selectedPlanIds:[f.planId],profiles:{...original.profiles,[me.accountId]:profile},issueChoices:{}});
    expect(setup.success).toBe(true);lastOwned=setup.settings;journal.lastOwnedSettings=lastOwned;retain();
    frame=await openPlans(page);pending=actualResponse(page,'getCapacityReport');await frame.getByRole('button',{name:'Capacity',exact:true}).click();await pending;
    const cap=frame.locator('[data-testid="capacity-view"]');await chooseDate(frame,cap,'Report starts',M);await chooseDate(frame,cap,'Report ends',end);
-   const calculate=async()=>{
-    const saved=actualResponse(page,'saveCapacitySettings'),reported=observedResponse(page,'getCapacityReport').then((body:any)=>({body}),(error:any)=>({error}));
-    await cap.getByRole('button',{name:'Save selection and calculate',exact:true}).click();
-    const savedResult=await saved;lastOwned=savedResult.settings;journal.lastOwnedSettings=lastOwned;retain();const result=await reported;if('error' in result)throw result.error;return result.body;
-   };
+   const calculate=()=>preferences.calculate(()=>cap.getByRole('button',{name:'Save selection and calculate',exact:true}).click(),{allowReportFailure:true});
    const selectOnly=async(name:string)=>{
     const boxes=cap.getByRole('checkbox');await expect(boxes).not.toHaveCount(0);
     const target=cap.getByRole('checkbox',{name:`Include ${name}`,exact:true});await expect(target).toHaveCount(1);
@@ -64,8 +62,8 @@ test('capacity size limit: actual 5300-issue selection refuses a partial report,
   }catch(error){bodyError=error;journal.bodyError=String(error);retain();throw error;
   }finally{
    const cleanupErrors:any[]=[];
-   try{if(original&&lastOwned){const current=await rpc.invoke('getCapacitySettings');expect(current.success).toBe(true);expect(current.settings,'refuse to overwrite an unrecognized concurrent preference change').toEqual(lastOwned);expect((await rpc.invoke('saveCapacitySettings',{settings:original,expectedVersion:current.version})).success).toBe(true);for(let n=0;n<2;n++)expect((await rpc.invoke('getCapacitySettings')).settings).toEqual(original);restored=true;}}
-   catch(error){cleanupErrors.push(error);journal.settingsRestoreError=String(error);}
+   try{const state=await preferences.restore();restored=!state.initialized||state.restored;}
+   catch(error){f.retainForRecovery(error);cleanupErrors.push(error);journal.settingsRestoreError=String(error);}
    finally{rpc.stop();journal.privateSettingsRestored=restored;retain();}
    try{expect((await getTestState('lz-ppm',{what:'plan',planId:LARGE})).issues).toEqual(large.issues);journal.largeSourceGuard=true;}catch(error){cleanupErrors.push(error);journal.largeSourceGuardError=String(error);}retain();
    if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Capacity size test and/or exact private settings restoration failed');
