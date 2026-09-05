@@ -225,32 +225,51 @@ test("a generated deck downloads as a real .pptx, and it is still there after a 
 
 
 /**
- * THE CEILING THE MODEL USED TO INVENT.
+ * THE CEILING THE MODEL USED TO INVENT — AND THE BUDGET THAT MADE OBEYING IT
+ * IMPOSSIBLE.
  *
- * `MAX_SLIDES` is 40 and it was stated ONLY in the tool RESULT, so the model
- * never saw it — and the decision NOT to call a tool is taken from its
+ * TWO DEFECTS MET ON THIS ONE REQUEST, and the second was only visible because
+ * the first was fixed.
+ *
+ * ONE: `MAX_SLIDES` is 40 and it was stated ONLY in the tool RESULT, so the
+ * model never saw it — and the decision NOT to call a tool is taken from its
  * DESCRIPTION. Three live runs on v6.102.0 produced three different invented
- * limits and, in one of them, a refusal up front with no tool call at all:
+ * limits ("works best with 5-20 slides", "idealerweise 5-10 Folien", and a
+ * promise to build 45 outright). The number is interpolated into the schema
+ * now, so a 45-slide ask has exactly two correct outcomes and both NAME FORTY.
+ * That assertion is over the stated-ceiling SHAPE, not over the presence of the
+ * string "40", because the defect returns as a sentence rather than an error.
  *
- *     "works best with 5-20 slides"
- *     "idealerweise 5-10 Folien"
- *     — and a promise to build 45 outright
+ * TWO: with the ceiling visible the model split correctly — and then could not
+ * afford the split it had just been told to make. `createPresentation` was
+ * `risk: "write"` unconditionally, so every call cost one of the turn's three
+ * write units. Measured on v6.103.0, twice:
  *
- * The number is interpolated into the schema now, from the same constant the
- * renderer throws on. So a 45-slide ask has exactly two correct outcomes and
- * both of them NAME FORTY: the tool runs and the deck is split, or the model
- * declines and says forty is the per-call ceiling. Anything that states a
- * different maximum is the defect back again, and it will be back as a
- * SENTENCE rather than as an error, which is why the assertion is over the
- * stated-ceiling shape and not over the presence of the word "40".
+ *     run 1 — four calls, the fourth refused
+ *             `[writeGuard] refused createPresentation —
+ *              {"allowWrites":true,"writesRemaining":0,...}`
+ *             ZERO decks. User told: "neither file was produced".
+ *     run 2 — three calls, ONE deck of 23 slides, part two never built.
  *
- * WHY THE TOOL CALL IS RECORDED AND NOT REQUIRED: refusing to build a deck
- * nobody can use is a legitimate answer to "45 slides", and forcing the call
- * would pin one of two acceptable behaviours. What is NOT acceptable is a
- * number the app has never had.
+ * A budget is meant to bound what a turn CHANGES, and a deck that is never
+ * attached changes nothing in Jira. v6.104.0 charges `createPresentation` zero
+ * unless it carries an `issueKey`, and REFUNDS a pre-flight refusal that
+ * declares `sideEffects: false`.
+ *
+ * SO THE ASSERTION IS THE DELIVERABLE, NOT THE PROSE: `decks.length === 2`.
+ * A reply that describes two files while the job row carries one is the
+ * narration defect wearing this feature's clothes, and it is exactly what run 2
+ * produced — "Both decks follow the diconium brand" beside a single handle.
+ *
+ * WHY THE TOOL CALL IS RECORDED AND NOT REQUIRED ON THE CEILING SIDE: refusing
+ * to build a deck nobody can use is a legitimate answer to "45 slides". What is
+ * NOT acceptable is a number the app has never had, or a budget that stops the
+ * remedy the app itself recommended.
  */
-test("a 45-slide ask meets the REAL ceiling of 40, not an invented one", async ({ page }) => {
-  test.setTimeout(900_000);
+test("a 45-slide ask meets the REAL ceiling of 40 — and both files actually arrive", async ({
+  page,
+}) => {
+  test.setTimeout(1_200_000);
   const T = getTarget("chatwise-global");
   const stamp = Date.now();
   const conversationId = `conv_harness_deck45_${stamp}`;
@@ -259,6 +278,10 @@ test("a 45-slide ask meets the REAL ceiling of 40, not an invented one", async (
   try {
     frame = await openGlobalPage(page, T);
     await waitForChatApp(page, frame, GLOBAL_APP, 120_000);
+    const pol: any = await callResolver(frame, GLOBAL_APP, "getToolPolicy");
+    expect(pol?.policy?.allowDocuments, "allowDocuments is off — there is no deck tool to call").toBe(
+      true,
+    );
     await callResolver(frame, GLOBAL_APP, "createConversation", {
       conversationId,
       title: "[harness-test] deck ceiling",
@@ -274,28 +297,23 @@ test("a 45-slide ask meets the REAL ceiling of 40, not an invented one", async (
         "Do not attach it to any Jira issue.",
     );
     const reply = String(result.response || "");
-    // RECORDED, because "neither file was produced" is a CLAIM the model makes
-    // about its own tool calls, and this is the field that can contradict it.
-    // Measured 5 Sep 2026: four createPresentation calls on one turn, the
-    // fourth refused by writeGuard at writesRemaining=0, and a reply telling
-    // the user nothing was built — with nobody reading `decks` to check.
+    const decks = Array.isArray(result.decks) ? result.decks : [];
     console.log(
-      `[deck45] decks=${JSON.stringify(result.decks)} iterations=${result.iterations}`,
+      `[deck45] decks=${JSON.stringify(decks)} iterations=${result.iterations}`,
     );
     console.log(`[deck45] reply:\n${reply.slice(0, 2000)}`);
     skipIfQuotaBlocked(reply, "deck-download/45-slide ceiling");
 
-    // Recorded, not required — see this test's header.
     const lines = await logWindow(
       page,
       (ls) => ls.some((l) => l.at >= t0 && /^\[Consumer\] toolset:/.test(l.text)),
       { label: "the ceiling turn's consumer line" },
     );
     const win = lines.filter((l) => l.at >= t0);
-    const called = win.filter((l) => /^\[Tools\] createPresentation/.test(l.text));
+    const calls = win.filter((l) => /^\[Tools\] createPresentation/.test(l.text));
     console.log(
-      `[deck45] createPresentation called=${called.length}\n` +
-        describeLogs(win.filter((l) => /^\[Tools\]/.test(l.text))),
+      `[deck45] createPresentation calls=${calls.length}\n` +
+        describeLogs(win.filter((l) => /^\[Tools\] createPresentation|^\[writeGuard\]/.test(l.text))),
     );
 
     // ---- THE REAL NUMBER IS IN THE ANSWER ---------------------------------
@@ -305,23 +323,18 @@ test("a 45-slide ask meets the REAL ceiling of 40, not an invented one", async (
         "silently built something smaller, or it is back to guessing.",
     ).toMatch(/\b40\b/);
 
-    // ---- AND NO OTHER NUMBER IS PRESENTED AS THE CEILING ------------------
     const stated = [
       ...reply.matchAll(
         /(?:max(?:imum|imal)?|limit(?:ed)?(?:\s+to)?|up to|no more than|capped? at|höchstens|maximal)\D{0,12}(\d{1,3})\s*(?:slides?|folien)/gi,
       ),
     ].map((m) => m[1]);
-    const wrong = stated.filter((n) => n !== "40");
     expect(
-      wrong,
+      stated.filter((n) => n !== "40"),
       `the reply states a per-call slide ceiling that is not 40: ${JSON.stringify(stated)}. ` +
         `MAX_SLIDES is 40 and it is interpolated into the tool's own description, so any other ` +
         `number is invented. Reply:\n${reply.slice(0, 1500)}`,
     ).toEqual([]);
 
-    // The measured shape of the invented limit was a RANGE recommendation
-    // ("works best with 5-20 slides"), which names no maximum at all and so
-    // slips past the pattern above.
     const ranges = [...reply.matchAll(/\b(\d{1,3})\s*[-–]\s*(\d{1,3})\s*(?:slides?|folien)/gi)].map(
       (m) => m[0],
     );
@@ -331,6 +344,92 @@ test("a 45-slide ask meets the REAL ceiling of 40, not an invented one", async (
         `the invented ceiling measured on v6.102.0 — "works best with 5-20 slides" — and the app ` +
         `has no such guidance anywhere.`,
     ).toEqual([]);
+
+    // ---- THE BUDGET NO LONGER BITES ---------------------------------------
+    // A deck with no issueKey attaches nothing, so it must cost nothing. This
+    // is the assertion that would have caught both v6.103.0 runs.
+    const refused = win.filter((l) => /^\[writeGuard\] refused createPresentation/.test(l.text));
+    expect(
+      refused.map((l) => l.text),
+      `the write budget refused a deck build. A deck with no issueKey changes nothing in Jira ` +
+        `and must cost zero write units — this is the v6.103.0 defect, where the model was told ` +
+        `to split and then could not afford to.`,
+    ).toEqual([]);
+
+    // A REFUND IS ONLY OWED ON A CALL THAT WAS CHARGED, and this is where the
+    // first version of this assertion was WRONG about the app rather than the
+    // other way round. `costOf` is
+    //
+    //     createPresentation: (args) => (args?.issueKey ? 1 : 0)
+    //
+    // and `refund()` returns 0 when `cost <= 0`. So an over-ceiling deck with
+    // no issueKey is refused having paid nothing, and NO `[writeGuard]
+    // refunded` line is the correct outcome — printing one would mean budget
+    // had been invented. Measured on v6.104.0: a `slides:<array 45>` call, no
+    // refusal, no refund, and both files still delivered.
+    //
+    // The refund therefore only has work to do on an ATTACHED deck, which is
+    // the branch `deck-refund` below reaches for.
+    const overCeiling = calls.filter((l) => {
+      const m = l.text.match(/slides:<array (\d+)>/);
+      return m ? Number(m[1]) > 40 : false;
+    });
+    const charged = overCeiling.filter((l) => /issueKey:"/.test(l.text));
+    const refunded = win.filter((l) => /^\[writeGuard\] refunded/.test(l.text));
+    console.log(
+      `[deck45] over-ceiling calls=${overCeiling.length} (charged=${charged.length}) ` +
+        `refunds=${refunded.length}`,
+    );
+    if (charged.length) {
+      expect(
+        refunded.map((l) => l.text),
+        `${charged.length} over-ceiling createPresentation call(s) CARRIED an issueKey, so each ` +
+          `was charged a write unit — and nothing was refunded. A pre-flight refusal declares ` +
+          `sideEffects:false precisely so the model is not billed for being told no.\n` +
+          `${describeLogs(charged)}`,
+      ).not.toEqual([]);
+    }
+    expect(
+      refunded.length,
+      `a refund was issued for a deck that cost nothing — that is budget being invented, and ` +
+        `Math.min on the budget is the only thing bounding it.\n${describeLogs(refunded)}`,
+    ).toBe(charged.length ? refunded.length : 0);
+
+    // ---- BOTH FILES ACTUALLY ARRIVE ---------------------------------------
+    expect(
+      decks.length,
+      `the job row carries ${decks.length} deck handle(s), not 2. The reply may well DESCRIBE two ` +
+        `files — v6.103.0 said "Both decks follow the diconium brand" beside a single handle — ` +
+        `but the handle is what the Download button uses, and a file with no handle does not ` +
+        `exist for the user. decks=${JSON.stringify(decks)}`,
+    ).toBe(2);
+    const slideTotal = decks.reduce((n: number, d: any) => n + (Number(d?.slides) || 0), 0);
+    console.log(`[deck45] slide totals: ${decks.map((d: any) => d.slides).join(" + ")} = ${slideTotal}`);
+    for (const d of decks) {
+      expect(
+        Number(d.slides),
+        `a delivered deck has ${d.slides} slides, over the ceiling of 40: ${JSON.stringify(d)}`,
+      ).toBeLessThanOrEqual(40);
+      expect(Number(d.slides), `a delivered deck has no slides: ${JSON.stringify(d)}`).toBeGreaterThan(0);
+      expect(d.attached, "a deck was attached to Jira and the ask said not to").toBe(false);
+    }
+
+    // ---- AND THE LOG LINE IS A SHAPE, NOT A PAYLOAD -----------------------
+    // v6.103.0 printed the whole deck: forty slides of the user's own text into
+    // `forge logs`, which is billed, stored, read by a different audience, and
+    // pushes the one line an operator needs out of a window that already
+    // truncates silently at ~30 lines.
+    for (const l of calls) {
+      expect(
+        l.text.length,
+        `a [Tools] createPresentation log line is ${l.text.length} chars. LOG_LINE_MAX is 500 and ` +
+          `nothing may recurse into the slide array.\n${l.text.slice(0, 300)}…`,
+      ).toBeLessThanOrEqual(560); // 500 + the "[Tools] createPresentation " prefix and the user suffix
+      expect(
+        l.text,
+        `the [Tools] log line contains slide CONTENT rather than a shape:\n${l.text.slice(0, 300)}`,
+      ).toMatch(/slides:<array \d+>|slides:<\d+ chars>/);
+    }
   } finally {
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
