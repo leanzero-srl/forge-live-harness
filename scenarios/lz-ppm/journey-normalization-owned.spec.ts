@@ -12,6 +12,7 @@ test('normalization: declared zero survives dependency movement, Save/reopen, re
     const [predecessor, milestone] = f.keys;
     let frame = await table(page, f.name);
     await expect(row(frame, milestone)).toHaveAttribute('data-row-duration', '0');
+    await expect(row(frame, milestone).locator(':scope > div').nth(5)).toHaveText('0d');
     await refresh(page, frame, f.planId);
     await expect(row(frame, milestone)).toHaveAttribute('data-row-duration', '0');
     await expect(frame.locator('[data-testid="plan-save-btn"]')).toHaveAttribute('data-has-changes', '0');
@@ -38,7 +39,35 @@ test('normalization: declared zero survives dependency movement, Save/reopen, re
     frame = await table(page, f.name);
     await expect(row(frame, milestone)).toHaveAttribute('data-row-duration', '0');
     await expect(row(frame, milestone)).toHaveAttribute('data-row-start', '2026-10-07');
+    await expect(row(frame, milestone).locator(':scope > div').nth(5)).toHaveText('0d');
+    // Exercise both real user entry surfaces: positive -> zero in the table,
+    // then positive -> zero in the Gantt popover. Inspect the actual diamond.
+    await editDuration(frame, milestone, '2');
+    await editDuration(frame, milestone, '0');
+    await expect(row(frame, milestone)).toHaveAttribute('data-row-duration', '0');
+    await expect(row(frame, milestone)).toHaveAttribute('data-row-start', '2026-10-07');
+    await expect(row(frame, milestone)).toHaveAttribute('data-row-due', '2026-10-07');
+    await expect(row(frame, milestone).locator(':scope > div').nth(5)).toHaveText('0d');
     await page.screenshot({ path: info.outputPath('declared-zero-discard-reopen.png'), fullPage: true, animations: 'disabled' });
+    await frame.getByRole('button', {name:/^Gantt/i}).first().click();
+    const bar=frame.locator(`[data-testid="gantt-bar"][data-key="${milestone}"]`);
+    await expect(bar).toHaveAttribute('data-milestone','1');
+    await expect(bar.locator('div[style*="rotate(45deg)"]')).toBeVisible();
+    await bar.click();
+    const editor=frame.locator(`[data-testid="date-editor"][data-issue-key="${milestone}"]`);
+    await expect(editor.locator('input[inputmode="numeric"]')).toHaveValue('0');
+    await editor.locator('input[inputmode="numeric"]').fill('2');
+    await editor.locator('[data-testid="dateeditor-apply"]').click();
+    await expect(bar).not.toHaveAttribute('data-milestone','1');
+    await bar.click();await editor.locator('input[inputmode="numeric"]').fill('0');
+    await editor.locator('[data-testid="dateeditor-apply"]').click();
+    await expect(bar).toHaveAttribute('data-milestone','1');
+    await expect(bar.locator('div[style*="rotate(45deg)"]')).toBeVisible();
+    await page.screenshot({path:info.outputPath('zero-gantt-diamond.png'),fullPage:true,animations:'disabled'});
+    await frame.getByRole('button',{name:/^Table/i}).first().click();
+    await expect(row(frame,milestone)).toHaveAttribute('data-row-duration','0');
+    await expect(row(frame,milestone)).toHaveAttribute('data-row-due','2026-10-07');
+
   }, true);
 });
 
