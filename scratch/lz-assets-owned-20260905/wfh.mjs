@@ -21,7 +21,7 @@ async function protect(){
  const mappings={};for(const f of Object.values(original.fields)){const p=await read(`/rest/api/3/field/${f.id}/context/projectmapping?contextId=${f.contextId}`),t=await read(`/rest/api/3/field/${f.id}/context/issuetypemapping?contextId=${f.contextId}`);assert.deepEqual(p,f.projectMappings);assert.deepEqual(t,f.issueTypeMappings);mappings[f.id]={projects:p,types:t};}
  const current={configs,mappings};if(state.protectedBefore)assert.deepEqual(current,state.protectedBefore);else state.protectedBefore=current;state.lastProtection={at:new Date().toISOString(),unchanged:true};save();
 }
-const command=process.argv[2]||'status';assert.ok(['discover','contexts','config','issue','verify','status'].includes(command));await protect();
+const command=process.argv[2]||'status';assert.ok(['discover','contexts','config','issue','mapped-due','verify','status'].includes(command));await protect();
 if(command==='discover'){
  const p=await read('/rest/api/3/project/WFH');assert.equal(p.id,projectId);assert.ok(p.issueTypes.some(t=>t.id===issueTypeId));
  const association=await read(`/rest/api/3/issuetypescreenscheme/project?projectId=${projectId}`);assert.equal(association.total,1);assert.equal(association.isLast,true);const schemeId=association.values[0].issueTypeScreenScheme.id;
@@ -48,7 +48,7 @@ if(command==='config'){
  }
  state.createAfter=summaryMeta(await read('/rest/api/3/issue/createmeta/WFH/issuetypes/10004'));for(const f of Object.values(state.fields))assert.ok(state.createAfter.fields.some(x=>x.fieldId===f.id));save();
 }
-async function ownIssue(){const i=await read(`/rest/api/3/issue/${state.issue.key}?fields=summary,project,issuetype,description,${schedule.join(',')},customfield_11148,customfield_11149`);assert.equal(i.id,state.issue.id);assert.equal(i.fields.project.id,projectId);assert.equal(i.fields.issuetype.id,issueTypeId);assert.equal(i.fields.summary,prefix+' positive control');assert.equal(i.fields.description?.content?.[0]?.content?.[0]?.text,marker);return i;}
+async function ownIssue(){const i=await read(`/rest/api/3/issue/${state.issue.key}?fields=summary,project,issuetype,description,duedate,${schedule.join(',')},customfield_11148,customfield_11149`);assert.equal(i.id,state.issue.id);assert.equal(i.fields.project.id,projectId);assert.equal(i.fields.issuetype.id,issueTypeId);assert.equal(i.fields.summary,prefix+' positive control');assert.equal(i.fields.description?.content?.[0]?.content?.[0]?.text,marker);return i;}
 if(command==='issue'){
  assert.equal(Object.keys(state.fields).length,2);assert.ok(Object.values(state.fields).every(f=>f.configured));assert.ok(state.createAfter);
  if(!state.issue)await write('issue','POST','/rest/api/3/issue',{fields:{project:{id:projectId},issuetype:{id:issueTypeId},summary:prefix+' positive control',description:{type:'doc',version:1,content:[{type:'paragraph',content:[{type:'text',text:marker}]}]}}},b=>{state.issue={id:b.id,key:b.key};});
@@ -56,6 +56,11 @@ if(command==='issue'){
  const ref=id=>({workspaceId:original.workspaceId,id:`${original.workspaceId}:${id}`,objectId:id});
  const expected={customfield_10015:'2026-10-05',customfield_10042:'2026-10-09',customfield_10180:5,customfield_11148:[ref('411'),ref('412')],customfield_11149:[ref('411')]};
  if(!state.issue.assigned)await write('assign','PUT',`/rest/api/3/issue/${state.issue.key}`,{fields:expected},()=>{state.issue.assigned=true;state.issue.expected=expected;});
+}
+if(command==='mapped-due'){
+ const url=new URL(requireEnv('LZ_PPM_TESTHOOK_URL'));url.searchParams.set('what','fieldConfig');const response=await fetch(url,{headers:{Authorization:'Bearer '+requireEnv('HARNESS_SECRET')}});assert.equal(response.status,200);const config=await response.json();assert.equal(config.fields.dueDate,'duedate');state.mappedFields={at:new Date().toISOString(),fields:config.fields};save();
+ const before=await ownIssue();assert.equal(before.fields.customfield_10042,'2026-10-09');state.issue.beforeMappedDue={customfield_10042:before.fields.customfield_10042,duedate:before.fields.duedate};save();
+ await write('mapped-due','PUT',`/rest/api/3/issue/${state.issue.key}`,{fields:{duedate:'2026-10-09'}},()=>{state.issue.expected.duedate='2026-10-09';});
 }
 if(command==='verify'){
  state.ready=false;save();assert.ok(state.issue?.assigned);state.issue.reads=[];

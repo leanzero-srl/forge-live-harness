@@ -232,6 +232,20 @@
       "startedAt": "2026-09-05T20:58:51.155Z",
       "status": 204,
       "finishedAt": "2026-09-05T20:58:52.062Z"
+    },
+    {
+      "kind": "mapped-due",
+      "method": "PUT",
+      "route": "/rest/api/3/issue/WFH-2820",
+      "body": {
+        "fields": {
+          "duedate": "2026-10-09"
+        }
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T21:02:57.695Z",
+      "status": 204,
+      "finishedAt": "2026-09-05T21:02:58.415Z"
     }
   ],
   "fields": {
@@ -443,7 +457,7 @@
     }
   },
   "lastProtection": {
-    "at": "2026-09-05T20:59:11.914Z",
+    "at": "2026-09-05T21:03:19.593Z",
     "unchanged": true
   },
   "discovery": {
@@ -1005,11 +1019,12 @@
           "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
           "objectId": "411"
         }
-      ]
+      ],
+      "duedate": "2026-10-09"
     },
     "reads": [
       {
-        "at": "2026-09-05T20:59:07.970Z",
+        "at": "2026-09-05T21:03:15.364Z",
         "id": "25020",
         "key": "WFH-2820",
         "fields": {
@@ -1034,11 +1049,12 @@
               "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
               "objectId": "411"
             }
-          ]
+          ],
+          "duedate": "2026-10-09"
         }
       },
       {
-        "at": "2026-09-05T20:59:08.168Z",
+        "at": "2026-09-05T21:03:15.619Z",
         "id": "25020",
         "key": "WFH-2820",
         "fields": {
@@ -1063,11 +1079,27 @@
               "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
               "objectId": "411"
             }
-          ]
+          ],
+          "duedate": "2026-10-09"
         }
       }
-    ]
+    ],
+    "beforeMappedDue": {
+      "customfield_10042": "2026-10-09",
+      "duedate": null
+    }
   },
   "ready": true,
-  "verifiedAt": "2026-09-05T20:59:11.915Z"
+  "verifiedAt": "2026-09-05T21:03:19.594Z",
+  "mappedFields": {
+    "at": "2026-09-05T21:02:57.323Z",
+    "fields": {
+      "startDate": "customfield_10015",
+      "dueDate": "duedate",
+      "duration": "customfield_10180",
+      "buffer": "customfield_10181",
+      "bufferPercentage": null,
+      "rank": "customfield_10019"
+    }
+  }
 }
