@@ -283,3 +283,125 @@ test("loadSkill applies the skill's OWN direction, not a plausible summary of it
     }
   }
 });
+
+/**
+ * THE TOGGLE IS THE LEVER THAT HAD NEVER RENDERED — so now that it does, the
+ * question is whether it WORKS, both ways, for this reader.
+ *
+ * Two separate things could still be wrong behind a control that finally
+ * appears, and only a live round trip tells them apart:
+ *
+ *   1. `setSkillEnabled` asks `probeSiteAdmin(accountId)` and hands the answer
+ *      to the store, which refuses a non-admin's write to the SHARED row. If
+ *      the probe says false for this account the click does nothing and the
+ *      page flashes an error — a refusal, not a bug, and the refusal text is
+ *      the finding. (It was ungated until 03f7ebc: any beta user could switch
+ *      a site skill off for the whole site.)
+ *
+ *   2. OFF MUST BE REVERSIBLE. `getSkills` used to build its answer from
+ *      `listSkillsForTurn`, which drops `enabled !== false` because that list
+ *      is what the MODEL is offered — so a skill switched off vanished from
+ *      the only page that could switch it back on. A one-way door. The row
+ *      staying on the list, wearing the solid-red Disabled lozenge, is the
+ *      whole proof, and the lozenge had never once appeared.
+ *
+ * GROUND TRUTH IS `getSkills`, read from a chat surface, both ways. The card's
+ * own state is optimistic and would round-trip against itself.
+ *
+ * `diconium-brand` is the subject because no factory persona binds it, so a
+ * failed restore cannot silently change what another spec's model turn is told.
+ */
+test("an admin can switch a site skill OFF and back ON, and OFF is not a one-way door", async ({
+  page,
+}) => {
+  test.skip(!T.envId || !CHAT.envId, "env ids unresolved — run `npm run discover`.");
+  const SUBJECT = "diconium-brand";
+  let flipped = false;
+
+  const readOne = async () => {
+    const roster = await readRoster(page);
+    const row = roster.find((s) => s.id === SUBJECT);
+    expect(row, `${SUBJECT} is not in the roster at all`).toBeTruthy();
+    return row;
+  };
+
+  try {
+    const before = await readOne();
+    expect(before.visibility, `${SUBJECT} is not site-scoped, so this tab does not own it`).toBe("site");
+    expect(
+      before.enabled,
+      `${SUBJECT} is already disabled on this install — restore it before running this spec, or ` +
+        `the OFF assertion below would pass without anything being switched.`,
+    ).not.toBe(false);
+
+    const root = await openSkillsTab(page);
+    // Forge drops the `forge-app-<hash>-` id prefix after the first re-render,
+    // so the selector anchors on the BARE name and matches both shapes.
+    const toggle = root.locator(`input[type="checkbox"][id$="skill-on-${SUBJECT}"]`).first();
+    await expect(
+      toggle,
+      `no enable/disable toggle for ${SUBJECT}. Every control on a site skill renders inside the ` +
+        `siteSkills branch — an absent toggle means the row landed in the private queue again.`,
+    ).toBeVisible({ timeout: 30_000 });
+    expect(await toggle.isChecked(), "the toggle does not reflect enabled=true").toBe(true);
+
+    // ---- OFF ---------------------------------------------------------------
+    // Atlaskit hides the real input under a styled track.
+    await toggle.click({ force: true });
+    flipped = true;
+
+    // THE ROW STAYS, AND IT SAYS SO. "Disabled" is rendered by exactly one
+    // element in this tab (the solid-red Lozenge on a site row), so a count of
+    // one is a scoped assertion without needing to walk the row.
+    await expect(
+      root.getByText("Disabled", { exact: true }),
+      "the skill was switched off and nothing on the page says so — the Disabled lozenge is the " +
+        "only thing that renders that state, and it is inside the site-wide roster",
+    ).toHaveCount(1, { timeout: 30_000 });
+    await expect(
+      root.getByText(before.name, { exact: true }).first(),
+      "the disabled skill DROPPED OFF the roster. That is the one-way door: the only page that " +
+        "can switch it back on no longer lists it.",
+    ).toBeVisible();
+
+    const off = await readOne();
+    expect(
+      off.enabled,
+      `the click did not reach storage: getSkills still reports enabled=${off.enabled}. If the ` +
+        `page flashed a refusal, probeSiteAdmin answered false for the harness account and this ` +
+        `is a permission finding rather than a broken toggle.`,
+    ).toBe(false);
+
+    // ---- AND BACK ON -------------------------------------------------------
+    const toggleAgain = root.locator(`input[type="checkbox"][id$="skill-on-${SUBJECT}"]`).first();
+    await expect(toggleAgain).toBeVisible({ timeout: 20_000 });
+    await toggleAgain.click({ force: true });
+    await expect(
+      root.getByText("Disabled", { exact: true }),
+      "the skill was switched back on and still wears the Disabled lozenge",
+    ).toHaveCount(0, { timeout: 30_000 });
+
+    const on = await readOne();
+    expect(on.enabled, `enabled did not round-trip back to true: ${JSON.stringify(on.enabled)}`).not.toBe(
+      false,
+    );
+    flipped = false;
+  } finally {
+    if (flipped) {
+      const p = await page.context().newPage();
+      try {
+        const frame = await openGlobalPage(p, CHAT);
+        await waitForChatApp(p, frame, GLOBAL_APP, 120_000);
+        const r = await callResolver<any>(frame, GLOBAL_APP, "setSkillEnabled", {
+          id: SUBJECT,
+          enabled: true,
+        });
+        console.log(`[restore] setSkillEnabled(${SUBJECT}, true) -> ${JSON.stringify(r)}`);
+      } catch (e) {
+        console.warn(`[restore] COULD NOT RE-ENABLE ${SUBJECT}: ${(e as Error)?.message}`);
+      } finally {
+        await p.close().catch(() => {});
+      }
+    }
+  }
+});
