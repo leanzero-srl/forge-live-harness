@@ -115,9 +115,14 @@ test("a withdrawn tool answers with the admin cause and its address, not with si
     // BOTH TIERS, SAME ASK. Not a ladder — each is scored on its own, because
     // the default persona is the cheap one and it is the one that used to
     // reason its way to a false answer.
+    // TWO RUNS PER TIER. One bubble per tier is a sample of one from a
+    // non-deterministic system, and round 3 measured the address landing 1 time
+    // in 4 — a single green run would have read as "fixed".
     const TIERS = [
-      { personaId: "coffee-break-ai", tier: "haiku" },
-      { personaId: "jira-scrubber", tier: "sonnet" },
+      { personaId: "coffee-break-ai", tier: "haiku-1" },
+      { personaId: "jira-scrubber", tier: "sonnet-1" },
+      { personaId: "coffee-break-ai", tier: "haiku-2" },
+      { personaId: "jira-scrubber", tier: "sonnet-2" },
     ];
     const failures: string[] = [];
     let sawWithheldLog = false;
@@ -142,9 +147,15 @@ test("a withdrawn tool answers with the admin cause and its address, not with si
       }
       expect(data?.status, `${tier}: job did not complete: ${data?.error}`).toBe("completed");
       const reply = String(data.result?.response || "");
+      // THE CHECKPOINT'S OWN VERDICT, off the job row. `withdrawalCheck` is in
+      // job.routes.js's explicit ALLOW-LIST, so a field the consumer writes and
+      // that route does not name is dropped in silence — reading it back here
+      // is the only way to know the checkpoint ran at all.
+      const wc = data.result?.withdrawalCheck ?? null;
       console.log(
         `[withdrawn] ${tier} model=${data.result?.model} iterations=${data.result?.iterations} ` +
-          `redactions=${JSON.stringify(data.result?.redactions)}`,
+          `redactions=${JSON.stringify(data.result?.redactions)} ` +
+          `withdrawalCheck=${JSON.stringify(wc)}`,
       );
       console.log(`[withdrawn] ${tier} reply:\n${reply}`);
       skipIfQuotaBlocked(reply, `withdrawn-tool-cause/${tier}`);
@@ -169,7 +180,20 @@ test("a withdrawn tool answers with the admin cause and its address, not with si
           `(description alone = ${withheldLog.length === 0})`,
       );
 
-      const say = (why: string) => failures.push(`[${tier}] ${why}\nREPLY:\n${reply}`);
+      const say = (why: string) =>
+        failures.push(`[${tier}] ${why}\nwithdrawalCheck=${JSON.stringify(wc)}\nREPLY:\n${reply}`);
+
+      // THE CHECKPOINT MUST HAVE SEEN THIS TURN. A reply that attributes a
+      // withdrawal and does NOT trigger is the English-shaped-trigger gap, and
+      // it is invisible from the bubble alone.
+      if (/switched off|site-wide|high-impact|ChatWise admin/i.test(reply) && wc?.triggered !== true) {
+        say(
+          `the reply makes a withdrawal claim and the checkpoint did NOT trigger ` +
+            `(withdrawalCheck=${JSON.stringify(wc)}). The trigger set is derived from OUR English ` +
+            `admin-off sentences, so a reply that attributes a withdrawal in its own words — or ` +
+            `in another language — passes straight through unchecked.`,
+        );
+      }
 
       // ---- 1. THE ADDRESS, AND WHOSE SWITCH IT IS ------------------------
       // NOT A LITERAL-STRING MATCH. The first version demanded "Manage apps"
