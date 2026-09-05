@@ -443,7 +443,7 @@
     }
   },
   "lastProtection": {
-    "at": "2026-09-05T20:58:49.951Z",
+    "at": "2026-09-05T20:59:11.914Z",
     "unchanged": true
   },
   "discovery": {
@@ -1006,6 +1006,68 @@
           "objectId": "411"
         }
       ]
-    }
-  }
+    },
+    "reads": [
+      {
+        "at": "2026-09-05T20:59:07.970Z",
+        "id": "25020",
+        "key": "WFH-2820",
+        "fields": {
+          "customfield_10015": "2026-10-05",
+          "customfield_10042": "2026-10-09",
+          "customfield_10180": 5,
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ]
+        }
+      },
+      {
+        "at": "2026-09-05T20:59:08.168Z",
+        "id": "25020",
+        "key": "WFH-2820",
+        "fields": {
+          "customfield_10015": "2026-10-05",
+          "customfield_10042": "2026-10-09",
+          "customfield_10180": 5,
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "ready": true,
+  "verifiedAt": "2026-09-05T20:59:11.915Z"
 }

@@ -1,0 +1,25 @@
+{
+  "command": "verify",
+  "stateFile": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-assets-owned-20260905/ownership.json",
+  "ready": true,
+  "objects": {
+    "A": "411",
+    "B": "412",
+    "C": "413"
+  },
+  "fields": {
+    "multiple": {
+      "id": "customfield_11148",
+      "contextId": "11758"
+    },
+    "gate": {
+      "id": "customfield_11149",
+      "contextId": "11760"
+    }
+  },
+  "issues": {
+    "R1": "JT-74",
+    "R2": "JT-75",
+    "R3": "JT-76"
+  }
+}
