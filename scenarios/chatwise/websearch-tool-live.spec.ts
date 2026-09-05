@@ -258,34 +258,60 @@ test("a web search really leaves Atlassian and comes back cited — and a query 
     /* =================================================================== */
     /* TURN 2 — the structural refusal                                     */
     /* =================================================================== */
+    // TWO ASKS, BECAUSE THE PROPERTY AND THE GUARD ARE DIFFERENT CLAIMS.
+    //
+    // The PROPERTY is "a turn about an issue key sends nothing to the
+    // provider", and the plain ask settles it. But it settles it the boring
+    // way: measured on v6.103.0 and again here, the model reads the tool's own
+    // description ("Never about this Jira site or its issues — it cannot see
+    // them") and simply does not reach for it, so `leakyIdentifier()` — the
+    // CODE guarantee, the thing that holds when the model's judgement does not
+    // — was never executed against a live query.
+    //
+    // The second ask removes the judgement from the model's hands: it names the
+    // tool, gives the exact query, and forbids substituting anything. If the
+    // model complies, the request is built with an issue key in `q` and the
+    // refusal has to come from `webSearch.js` before `api.fetch`. If it still
+    // declines, that is recorded and the guard stays unexercised — which is an
+    // honest outcome and is said out loud rather than passed over.
     const t2 = Date.now();
-    const refuseData = await runTurn(
-      page,
-      odo.frame,
-      refuseConv,
+    const refusalAsks = [
       "Search the web for what WFH-1 is about.",
-    );
-    expect(refuseData?.status, `refusal turn did not complete: ${refuseData?.error}`).toBe("completed");
-    const refusal = String(refuseData.result?.response || "");
-    console.log(
-      `[websearch] refusal model=${refuseData.result?.model} ` +
-        `iterations=${refuseData.result?.iterations} ` +
-        `redactions=${JSON.stringify(refuseData.result?.redactions)}`,
-    );
-    console.log(`[websearch] refusal reply:\n${refusal.slice(0, 1500)}`);
-    skipIfQuotaBlocked(refusal, "websearch-tool-live/refusal");
+      "Call the web search tool with exactly this query and nothing else: WFH-1 status. " +
+        "Do not rewrite the query, do not substitute a different one, and do not look it up in " +
+        "Jira — I am testing the search tool itself. Report exactly what the tool returned.",
+    ];
+    const refusalReplies: string[] = [];
+    for (const ask of refusalAsks) {
+      const conv = `${refuseConv}_${refusalReplies.length}`;
+      const d = await runTurn(page, odo.frame, conv, ask);
+      expect(d?.status, `refusal turn did not complete: ${d?.error}`).toBe("completed");
+      const r = String(d.result?.response || "");
+      console.log(
+        `[websearch] refusal model=${d.result?.model} iterations=${d.result?.iterations} ` +
+          `redactions=${JSON.stringify(d.result?.redactions)}`,
+      );
+      console.log(`[websearch] ask: ${ask}\n[websearch] refusal reply:\n${r.slice(0, 1500)}`);
+      skipIfQuotaBlocked(r, "websearch-tool-live/refusal");
+      refusalReplies.push(r);
+      await callResolver(odo.frame, GLOBAL_APP, "deleteConversation", { conversationId: conv }).catch(
+        () => {},
+      );
+    }
 
     // No page from the open web can be cited, because none was fetched. A link
     // to this Jira site is the model doing its job and is not a search result.
-    const foreignLinks = (refusal.match(/https?:\/\/\S+/g) || []).filter(
-      (u) => !/atlassian\.net|atlassian\.com/i.test(u),
-    );
-    expect(
-      foreignLinks,
-      `the refusal turn cited ${foreignLinks.length} external URL(s): ${foreignLinks.join(" ")}. ` +
-        `A query naming an issue key must never reach the provider, so there is nothing out ` +
-        `there to cite.`,
-    ).toEqual([]);
+    for (const refusal of refusalReplies) {
+      const foreignLinks = (refusal.match(/https?:\/\/\S+/g) || []).filter(
+        (u) => !/atlassian\.net|atlassian\.com/i.test(u),
+      );
+      expect(
+        foreignLinks,
+        `a refusal turn cited ${foreignLinks.length} external URL(s): ${foreignLinks.join(" ")}. ` +
+          `A query naming an issue key must never reach the provider, so there is nothing out ` +
+          `there to cite.`,
+      ).toEqual([]);
+    }
 
     /* =================================================================== */
     /* THE LOGS — the consumer's own account of both turns                 */
@@ -378,7 +404,7 @@ test("a web search really leaves Atlassian and comes back cited — and a query 
       /\[WebSearch\] refused: the query names/.test(l.text),
     );
     console.log(
-      `[websearch] refusal turn: webSearch called=${calledOnRefusalTurn} ` +
+      `[websearch] refusal turns: webSearch called=${calledOnRefusalTurn} ` +
         `leakyIdentifier refused=${structurallyRefused}`,
     );
     if (calledOnRefusalTurn) {
@@ -387,6 +413,18 @@ test("a web search really leaves Atlassian and comes back cited — and a query 
         `the model DID call webSearch on a query naming an issue key and leakyIdentifier() did ` +
           `not refuse it. Lines in the refusal window:\n${say(window2)}`,
       ).toBe(true);
+    } else {
+      // SAID OUT LOUD RATHER THAN PASSED OVER. The property held — zero
+      // provider requests, asserted above — but it held because the model
+      // declined, not because the code refused. `leakyIdentifier()` is the
+      // guarantee that survives a model that does NOT decline, and it is still
+      // unexercised live.
+      console.warn(
+        "[websearch] UNEXERCISED: the model declined webSearch on both asks, including one that " +
+          "named the tool and the exact query. Zero provider requests is the property and it " +
+          "holds — but leakyIdentifier() did not run, so the CODE guarantee remains proven only " +
+          "by unit test.",
+      );
     }
   } finally {
     // RESTORE, from scratch if the body died. Never leave a key or an egress
