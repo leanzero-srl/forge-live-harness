@@ -40,8 +40,11 @@ test('capacity: real Jira seconds deduplicate across plans, explicit availabilit
    await cap.getByRole('region',{name:'Conflicting plan alternatives'}).getByRole('combobox').click();result=response(page,'getCapacityReport');await frame.getByRole('option').filter({hasText:f.name+' secondary:'}).click();body=await result;await expect(cell(idA,M)).toContainText('12h / 12h');await expect(cell(idA,M2)).toContainText('20h / 15h');expect(body.report.coverage.conflictingIssues).toBe(0);notes.chosenReport=body.report;journal();
    frame=await openPlans(page);result=response(page,'getCapacityReport');await frame.getByRole('button',{name:'Capacity',exact:true}).click();await result;cap=frame.locator('[data-testid="capacity-view"]');await expect(cell(idA,M)).toContainText('12h / 12h');await expect(cell(idA,M2)).toContainText('20h / 15h');expect(await f.read(shared)).toEqual(beforeJira);await cap.screenshot({path:info.outputPath('capacity-alternative-reopen.png')});
   }finally{
-   if(originalSettings){const current=await invoke('getCapacitySettings');await invoke('saveCapacitySettings',{settings:originalSettings,expectedVersion:current.version});expect((await invoke('getCapacitySettings')).settings).toEqual(originalSettings);notes.privateSettingsRestored=true;journal();}
-   page.off('request',capture);await page.goto('about:blank');if(secondPlan){await getTestState('lz-ppm',{what:'clearDrafts',planId:secondPlan});await getTestState('lz-ppm',{what:'deleteFixture',planId:secondPlan});notes.secondaryDeleted=true;journal();}
+   let restorationError:any;
+   try{if(originalSettings){const current=await invoke('getCapacitySettings');await invoke('saveCapacitySettings',{settings:originalSettings,expectedVersion:current.version});expect((await invoke('getCapacitySettings')).settings).toEqual(originalSettings);notes.privateSettingsRestored=true;journal();}}
+   catch(error:any){restorationError=error;notes.settingsRestorationError=String(error.message);journal();}
+   finally{page.off('request',capture);if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());if(secondPlan){await getTestState('lz-ppm',{what:'clearDrafts',planId:secondPlan});await getTestState('lz-ppm',{what:'deleteFixture',planId:secondPlan});notes.secondaryDeleted=true;journal();}}
+   if(restorationError)throw restorationError;
   }
  },false,[0,1]);
 });
