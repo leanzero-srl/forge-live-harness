@@ -96,7 +96,7 @@ def classify_report(report, feature, exit_code):
     if report.get('errors'):
         reasons.append('Playwright top-level errors')
     if len(passes) + len(witnesses) < feature['minTests']:
-        reasons.append('insufficient executed tests')
+        reasons.append('insufficient passing tests or explicitly allowed defect witnesses')
     for name in feature.get('specs', []):
         if not any(str(f).replace('\\', '/').endswith(name) for f in files):
             reasons.append('configured spec did not execute: ' + name)

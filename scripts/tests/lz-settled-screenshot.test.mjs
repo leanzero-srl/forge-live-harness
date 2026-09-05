@@ -18,6 +18,8 @@ test('real browser capture waits for a transparent ancestor to paint and rejects
   const page=await browser.newPage();await page.setContent('<div id="ancestor" style="opacity:0"><section style="width:500px;height:200px;background:#123abc;color:white"><h1>Actual result</h1><p>20 hours demand / 12 hours capacity</p></section></div>');
   await page.evaluate(()=>setTimeout(()=>document.querySelector('#ancestor').style.opacity='1',400));
   const result=await settledScreenshot(page.locator('section'),{path:path.join(dir,'result.png')});assert.equal(result.nonblank,true);
+  const embedded='<style>@keyframes reveal {from{opacity:0}to{opacity:1}} section{animation:reveal .8s linear;width:400px;height:150px;background:#123abc;color:white}</style><section><h1>Rendered app outcome</h1></section>';
+  await page.setContent(`<h1>Stable host chrome</h1><iframe data-testid="hosted-resources-iframe" srcdoc="${embedded.replaceAll('&','&amp;').replaceAll('"','&quot;')}"></iframe>`);await settledScreenshot(page,{path:path.join(dir,'embedded.png')});assert.equal(await page.locator('iframe').contentFrame().locator('section').evaluate(el=>getComputedStyle(el).opacity),'1');
   await page.setContent('<div style="height:5000px">Top</div><h1 id="last">Exact terminal row</h1>');await page.locator('#last').scrollIntoViewIfNeeded();const scroll=await page.evaluate(()=>window.scrollY);assert.ok(scroll>4000);await settledScreenshot(page,{path:path.join(dir,'terminal.png')});assert.equal(await page.evaluate(()=>window.scrollY),scroll);
   await page.setContent('<section style="width:500px;height:200px;background:#123abc"></section>');
   await assert.rejects(()=>settledScreenshot(page.locator('section'),{path:path.join(dir,'blank.png')}),/Blank screenshot rejected/);

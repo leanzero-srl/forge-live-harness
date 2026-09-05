@@ -12,10 +12,14 @@ export function pngContent(buffer){
  return {width,height,colors:colors.size,differentPixels:different,nonblank:colors.size>=16&&different>=Math.max(100,width*height*.002)};
 }
 export async function settledScreenshot(target,options){
- const isPage=typeof target.context==='function',element=isPage?target.locator('body'):target;
+ const isPage=typeof target.context==='function';let element=isPage?target.locator('body'):target;
+ if(isPage){const hosted=target.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]').first();if(await hosted.count())element=hosted.contentFrame().locator('body');}
  await expect(element).toBeVisible();if(!isPage)await element.scrollIntoViewIfNeeded();
  await expect.poll(()=>element.evaluate(el=>{
   for(let p=el;p;p=p.parentElement){const s=getComputedStyle(p);if(Number(s.opacity)<.99||s.visibility!=='visible'||s.display==='none')return false;}
+  // A full-page image can contain visible Jira chrome while the app's child
+  // panel is still fading. Wait for finite animations in the subject document.
+  if(el.ownerDocument.getAnimations().some(a=>a.playState==='running'&&Number.isFinite(a.effect?.getComputedTiming().endTime)))return false;
   const r=el.getBoundingClientRect();return r.width>0&&r.height>0;
  }),{timeout:15000,message:'screenshot subject and all ancestors are fully painted'}).toBe(true);
  await element.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve))));
