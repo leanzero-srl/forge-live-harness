@@ -28,8 +28,8 @@ test('persistence: acknowledged Save7 replaces earlier autosaved6 before immedia
 test('persistence: an actual held Save response preserves a later local edit as unsaved',async({page},info)=>{
  await withOwnedSchedule(page,info,[seed('inflight save')],async(f)=>{
   const key=f.keys[0];let frame=await table(page,f.name);const original=await f.read(key);await editDuration(frame,key,'6');
-  let release!:()=>void,arrived!:()=>void;const held=new Promise<void>(resolve=>release=resolve),received=new Promise<void>(resolve=>arrived=resolve);let captured:any;
-  const handler=async(route:any)=>{const c=callOf(route.request());if(c?.functionKey!=='savePlanState'||c.payload?.planId!==f.planId)return route.continue();await page.unroute('**/gateway/api/graphql**',handler);const response=await route.fetch();const body=await responseBody(response);expect(body.success).toBe(true);captured={functionKey:c.functionKey,planId:f.planId,submitted:c.payload.issues.map((i:any)=>({key:i.key,duration:i.duration,startDate:i.startDate,dueDate:i.dueDate})),result:body};arrived();await held;await route.fulfill({response});};
+  let release!:()=>void,arrived!:()=>void;const held=new Promise<void>(resolve=>release=resolve),received=new Promise<void>(resolve=>arrived=resolve);let captured:any,intercepted=false;
+  const handler=async(route:any)=>{const c=callOf(route.request());if(intercepted||c?.functionKey!=='savePlanState'||c.payload?.planId!==f.planId)return route.continue();intercepted=true;const response=await route.fetch();const body=await responseBody(response);expect(body.success).toBe(true);captured={functionKey:c.functionKey,planId:f.planId,submitted:c.payload.issues.map((i:any)=>({key:i.key,duration:i.duration,startDate:i.startDate,dueDate:i.dueDate})),result:body};arrived();await held;await route.fulfill({response});};
   await page.route('**/gateway/api/graphql**',handler);
   try{
    await frame.locator('[data-testid="plan-save-btn"]').click();await expect.poll(()=>Boolean(captured),{timeout:60000,message:'real Save response reached the controlled hold'}).toBe(true);await received;
@@ -58,7 +58,7 @@ test('persistence: partial Apply discards a previously Saved sibling durably thr
 for(const status of[403,503])test(`persistence: simulated draft-read HTTP${status} gates edits and real Retry recovers unseen draft`,async({page},info)=>{
  await withOwnedSchedule(page,info,[seed('edit after recovery'),seed('unseen draft')],async(f)=>{
   const[a,b]=f.keys;let frame=await table(page,f.name);const drafted=actualResponse(page,'saveDraft',f.planId);await editDuration(frame,b,'9');await drafted;await page.goto('about:blank');let injected=0;
-  const handler=async(route:any)=>{const c=callOf(route.request());if(c?.functionKey!=='getDraft'||c.payload?.planId!==f.planId)return route.continue();injected++;await page.unroute('**/gateway/api/graphql**',handler);await route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated draft transport ${status}`})});};
+  const handler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getDraft'||c.payload?.planId!==f.planId)return route.continue();injected++;await route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated draft transport ${status}`})});};
   await page.route('**/gateway/api/graphql**',handler);
   try{
    frame=await openPlan(page,f.name);const alert=frame.getByRole('alert').filter({hasText:'Your saved draft could not be loaded'});await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(frame.locator('[inert] [data-testid="plan-save-btn"]')).toHaveCount(1);await alert.screenshot({path:info.outputPath(`draft-${status}-blocked.png`)});

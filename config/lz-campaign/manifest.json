@@ -211,6 +211,22 @@
       ],
       "minTests": 5,
       "timeoutSeconds": 1200
+    },
+    {
+      "id": "capacity-live-numeric",
+      "status": "ready",
+      "acceptance": [
+        "CAP-REAL-SECONDS",
+        "CAP-DEDUP",
+        "CAP-PERSON-AVAILABILITY",
+        "CAP-ALTERNATIVE-REOPEN",
+        "CAP-PRIVATE-SETTINGS-RESTORE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-capacity.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
     }
   ]
 }

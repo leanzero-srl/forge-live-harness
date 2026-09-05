@@ -6,7 +6,7 @@ import { openPlan, scheduleFields, LZPT_PLAN, waitForIssueReload } from './forec
 import { get, post, put, request, BASE } from '../../data/jira.mjs';
 
 export type Seed = { label: string; start: string; due: string; duration: number | null; release?: boolean };
-export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], work: (f: any) => Promise<void>, linked = false) {
+export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], work: (f: any) => Promise<void>, linked = false, primaryIndexes?: number[]) {
   expect(BASE).toBe('https://wolfaenpak.atlassian.net');
   const before = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
   const registry = (await getTestState('lz-ppm', { what: 'plans' })).plans.map((p: any) => p.id).sort();
@@ -46,10 +46,12 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
       const type = types.issueLinkTypes.find((t: any) => t.outward.toLowerCase() === 'blocks'); expect(type).toBeTruthy();
       await post('/rest/api/3/issueLink', { type: { id: type.id }, inwardIssue: { key: journal.issues[0].key }, outwardIssue: { key: journal.issues[1].key } });
     }
-    const fixtureJql = `key in (${journal.issues.map((i: any) => i.key).join(',')}) ORDER BY Rank ASC`;
+    const primaryIssues=primaryIndexes ? primaryIndexes.map(index=>journal.issues[index]) : journal.issues;
+    expect(primaryIssues.length).toBeGreaterThan(0);for(const issue of primaryIssues)expect(issue).toBeTruthy();expect(new Set(primaryIssues.map((i:any)=>i.key)).size).toBe(primaryIssues.length);
+    const fixtureJql = `key in (${primaryIssues.map((i: any) => i.key).join(',')}) ORDER BY Rank ASC`;
     // Direct GET is strongly visible before Jira's search index necessarily is.
     // Wait for the exact owned rows and all seeded schedule fields in real JQL.
-    const indexedExpected = journal.issues.map((i:any)=>({key:i.key,start:i.seed.start,due:i.seed.due,duration:i.seed.duration})).sort((a:any,b:any)=>a.key.localeCompare(b.key));
+    const indexedExpected = primaryIssues.map((i:any)=>({key:i.key,start:i.seed.start,due:i.seed.due,duration:i.seed.duration})).sort((a:any,b:any)=>a.key.localeCompare(b.key));
     await expect.poll(async()=>{
       const indexed = await post('/rest/api/3/search/jql',{jql:fixtureJql,maxResults:100,fields:[fields.startDate,fields.dueDate,fields.duration]});
       return indexed.issues.map((i:any)=>({key:i.key,start:i.fields[fields.startDate],due:i.fields[fields.dueDate],duration:i.fields[fields.duration]})).sort((a:any,b:any)=>a.key.localeCompare(b.key));
@@ -68,12 +70,18 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
         const observation=indexedShape(created.issues);journal.forgeIndexObservations.push(observation);persist();return observation;
       },{timeout:90000,intervals:[1000,3000,5000],message:'Forge reader sees the complete owned fixture schedule'}).toEqual(indexedExpected);
     }
-    expect(created.issues.map((i: any) => i.key).sort()).toEqual(journal.issues.map((i: any) => i.key).sort());
-    for (const i of journal.issues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
+    expect(created.issues.map((i: any) => i.key).sort()).toEqual(primaryIssues.map((i: any) => i.key).sort());
+    for (const i of primaryIssues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
     if (linked) expect(created.issues.find((i: any) => i.key === journal.issues[1].key).predecessors).toContain(journal.issues[0].key);
     await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });
   } finally {
-    await page.goto('about:blank');
+    // A route/test failure can already have closed the worker. Stopping its UI
+    // is then complete; backend fixture cleanup must still run.
+    if (!page.isClosed()) await page.goto('about:blank').catch(async(error:any)=>{
+      await page.close().catch(()=>{});
+      if (!page.isClosed()) throw error;
+      journal.browserAlreadyClosedDuringCleanup=String(error.message);persist();
+    });
     if (!journal.planId) journal.planId = (await getTestState('lz-ppm', { what: 'plans' })).plans.find((p: any) => p.name === name)?.id;
     if (journal.planId) {
       await getTestState('lz-ppm', { what: 'clearDrafts', planId: journal.planId });
