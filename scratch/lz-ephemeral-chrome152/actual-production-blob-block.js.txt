@@ -1,0 +1,4 @@
+    const url = URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
+    const anchor = document.createElement('a'); anchor.href = url; anchor.download = `sponsor-report-${selected.id}.html`;
+    document.body.appendChild(anchor); anchor.click(); anchor.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);

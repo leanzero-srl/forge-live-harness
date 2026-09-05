@@ -1,0 +1,38 @@
+{
+  "commandCount": 498,
+  "actualDownloadOverrides": [
+    {
+      "id": 7,
+      "method": "Browser.setDownloadBehavior",
+      "params": {
+        "behavior": "allowAndName",
+        "browserContextId": "9F44EBED489727F2067A723077F2C4E2",
+        "downloadPath": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/playwright-artifacts-DRrv6f",
+        "eventsEnabled": true
+      }
+    },
+    {
+      "id": 7,
+      "method": "Browser.setDownloadBehavior",
+      "params": {
+        "behavior": "allowAndName",
+        "browserContextId": "6C01F9FAA12C6BA666A11305AFC75274",
+        "downloadPath": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/playwright-artifacts-37YkY5",
+        "eventsEnabled": true
+      }
+    },
+    {
+      "id": 7,
+      "method": "Browser.setDownloadBehavior",
+      "params": {
+        "behavior": "allowAndName",
+        "browserContextId": "4EED51ED8C455EA8426537D29A2C9905",
+        "downloadPath": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/playwright-artifacts-Bj9edR",
+        "eventsEnabled": true
+      }
+    }
+  ],
+  "contexts": 3,
+  "downloadsVerified": 9,
+  "allProcessCloseAndAbsenceChecksPassed": true
+}
