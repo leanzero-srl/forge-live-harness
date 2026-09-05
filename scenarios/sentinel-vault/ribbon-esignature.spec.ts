@@ -25,6 +25,7 @@ const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what:
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
 const queryKvs = async (prefix: string): Promise<string[]> => (await getTestState("sentinel-vault", { what: "query", prefix })).keys || [];
 const doc = (...n: any[]) => ({ version: 1, type: "doc", content: n });
+const clearDevice = async () => { for (const k of [`sig-secret-${MIHAI}`, `sig-enroll-${MIHAI}`, `sig-last-${MIHAI}`, `sig-fail-${MIHAI}`]) await delKvs(k).catch(() => {}); };
 const B32 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 function b32(s: string): Buffer { let bits = 0, v = 0; const out: number[] = []; for (const ch of s.toUpperCase().replace(/[^A-Z2-7]/g, "")) { v = (v << 5) | B32.indexOf(ch); bits += 5; if (bits >= 8) { out.push((v >>> (bits - 8)) & 255); bits -= 8; } } return Buffer.from(out); }
 function totp(secret: string, stepOffset = 0): string {
@@ -57,7 +58,7 @@ test("signed approval from the ribbon: setup pointer, code field, wrong code, ri
   const prior = await getKvs(SETTINGS_KEY);
   const spaceId = await spaceIdByKey(SPACE);
   const p = await createPage({ spaceId, title: `HARNESS sv-esign-ui ${Date.now()}`, adf: doc(heading("Sign", 2), paragraph("ribbon signature")) });
-  await inv("revokeSignature", { actor: MIHAI });
+  await clearDevice();
   try {
     await setKvs(SETTINGS_KEY, { ...(prior || { workflowId: "default", autoAssignNew: false }), enabled: true, requireSignature: true });
     await inv("assignWorkflow", { pageId: p.id, spaceKey: SPACE, workflowId: "default", actor: REQUESTER });
@@ -147,7 +148,7 @@ test("signed approval from the ribbon: setup pointer, code field, wrong code, ri
     await page.screenshot({ path: `${OUT}/3-signed-record.png` });
     console.log("### evidence dialog marks the decision Signed ✓");
   } finally {
-    await inv("revokeSignature", { actor: MIHAI }).catch(() => {});
+    await clearDevice();
     if (prior) await setKvs(SETTINGS_KEY, prior); else await delKvs(SETTINGS_KEY).catch(() => {});
     for (const k of [`workflow-state-${p.id}`, `workflow-pending-${p.id}`, `workflow-autoassigned-${p.id}`, `workflow-inbox-${MIHAI}-${p.id}`, `workflow-approval-${p.id}-approved-approval-${MIHAI}`,
       `workflow-idx-${SPACE}-draft-${p.id}`, `workflow-idx-${SPACE}-in_review-${p.id}`, `workflow-idx-${SPACE}-approved-${p.id}`]) await delKvs(k).catch(() => {});

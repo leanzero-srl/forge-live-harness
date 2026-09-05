@@ -11,6 +11,7 @@ import { mkdirSync } from "node:fs";
 const T = getTarget("sentinel-vault-realm");
 const SPACE = "WFH";
 const DEF_KEY = `workflow-def-space-${SPACE}`;
+const STEWARD_KEY = `admin-settings-space-${SPACE}`; // the hook's steward gate reads ONLY this list (a real admin passes in the browser, not in a webtrigger)
 const MIHAI = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
 const OUT = "/tmp/sv-def-editor";
 const inv = (fn: string, params: Record<string, string> = {}) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
@@ -23,7 +24,10 @@ test.describe.configure({ timeout: 300_000, retries: 1 });
 test("steward adds a state and a transition in the definition editor; the chips show it", async ({ page }) => {
   mkdirSync(OUT, { recursive: true });
   const priorDef = await getKvs(DEF_KEY);
+  const priorSteward = await getKvs(STEWARD_KEY);
   try {
+    const users = [...new Set([...(priorSteward?.adminUsers || []).map((u: any) => (typeof u === "string" ? u : u?.accountId)), MIHAI])];
+    await setKvs(STEWARD_KEY, { ...(priorSteward || {}), adminUsers: users });
     await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
     const s = await enterForgeSurface(page, { surface: "custom", readySelector: ".space-admin-title", timeout: 45000 });
     const app = (s as any).frame;
@@ -60,6 +64,8 @@ test("steward adds a state and a transition in the definition editor; the chips 
     expect(await msg.innerText(), "saved (a dead-end warning would name a state)").toMatch(/saved/i);
 
     const list = (await inv("listSpaceWorkflows", { spaceKey: SPACE, actor: MIHAI })).result;
+    console.log("### listing after save:", JSON.stringify({ source: list?.source, states: list?.default?.states?.map((x: any) => x.id), kvs: (await getKvs(DEF_KEY))?.states?.map((x: any) => x.id) }));
+    await page.screenshot({ path: `${OUT}/2-saved.png`, fullPage: true });
     const legal = list?.default?.states?.find((x: any) => x.id === "legal_check");
     expect(legal?.name, "the resolver lists the new state").toBe("Legal check");
     expect(list.default.transitions.some((t: any) => t.from === "draft" && t.to === "legal_check"), "…with its edge").toBe(true);
@@ -68,5 +74,6 @@ test("steward adds a state and a transition in the definition editor; the chips 
     console.log("### definition edited from the console ✓");
   } finally {
     if (priorDef) await setKvs(DEF_KEY, priorDef); else await delKvs(DEF_KEY).catch(() => {});
+    if (priorSteward) await setKvs(STEWARD_KEY, priorSteward); else await delKvs(STEWARD_KEY).catch(() => {});
   }
 });

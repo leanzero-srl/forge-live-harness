@@ -23,6 +23,7 @@ const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what:
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
 const queryKvs = async (prefix: string): Promise<string[]> => (await getTestState("sentinel-vault", { what: "query", prefix })).keys || [];
 const doc = (...n: any[]) => ({ version: 1, type: "doc", content: n });
+const clearDevice = async () => { for (const k of [`sig-secret-${MIHAI}`, `sig-enroll-${MIHAI}`, `sig-last-${MIHAI}`, `sig-fail-${MIHAI}`]) await delKvs(k).catch(() => {}); };
 
 // An authenticator: RFC 6238 over HMAC-SHA1, 30 s steps, 6 digits.
 const B32 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
@@ -41,7 +42,7 @@ test("enrol, sign a decision, refuse replay and unsigned decisions, revoke", asy
   const prior = await getKvs(SETTINGS_KEY);
   const spaceId = await spaceIdByKey(SPACE);
   const p = await createPage({ spaceId, title: `HARNESS sv-esign ${Date.now()}`, adf: doc(heading("Sign", 2), paragraph("signed approval")) });
-  await inv("revokeSignature", { actor: MIHAI }); // a clean device state for Mihai
+  await clearDevice(); // a clean device state for Mihai (revoke needs the device code; the hook deletes the keys)
   try {
     await setKvs(SETTINGS_KEY, { ...(prior || { workflowId: "default", autoAssignNew: false }), enabled: true, requireSignature: true });
     await inv("assignWorkflow", { pageId: p.id, spaceKey: SPACE, workflowId: "default", actor: REQUESTER });
@@ -87,8 +88,22 @@ test("enrol, sign a decision, refuse replay and unsigned decisions, revoke", asy
     expect(replay?.success, "the SAME code is refused a second time").toBe(false);
     console.log("### replay refused ✓");
 
-    // Revoke → back to "set up first".
-    expect((await inv("revokeSignature", { actor: MIHAI })).result?.success).toBe(true);
+    // Replacing or removing the device needs ITS code (review finding 2): a stolen session alone
+    // cannot swap the second factor.
+    const swap = (await inv("enrollSignature", { actor: MIHAI })).result;
+    expect(swap?.success, "starting a NEW enrolment without the current code is refused").toBe(false);
+    expect(swap?.codeRequired, "…and says a code is needed").toBe(true);
+    const rv0 = (await inv("revokeSignature", { actor: MIHAI })).result;
+    expect(rv0?.success, "revoking without the current code is refused").toBe(false);
+    // Lockout (review finding 3): five wrong codes → refused for 15 minutes, whatever the code.
+    for (let i = 0; i < 5; i++) await inv("decideApproval", { pageId: p.id, approver: MIHAI, decision: "approved", code: String(100000 + i) });
+    const locked = (await inv("decideApproval", { pageId: p.id, approver: MIHAI, decision: "approved", code: totp(en.secret, 2) })).result;
+    expect(locked?.success, "after five wrong codes even a valid code is refused").toBe(false);
+    expect(String(locked?.reason), "…with a lockout message").toMatch(/Too many wrong codes/);
+    console.log("### device swap/revoke need a code ✓; lockout after five wrong codes ✓");
+    await delKvs(`sig-fail-${MIHAI}`); // lift the lockout for the rest of the proof
+    // Revoke WITH the code → back to "set up first".
+    expect((await inv("revokeSignature", { actor: MIHAI, code: totp(en.secret, 2) })).result?.success, "revoke with the device's code").toBe(true);
     expect((await inv("signatureStatus", { actor: MIHAI })).result?.enrolled, "revoked").toBe(false);
     const after = (await inv("decideApproval", { pageId: p.id, approver: MIHAI, decision: "denied", code: totp(en.secret, 2) })).result;
     expect(after?.success, "after revoking, even a valid code is refused").toBe(false);
@@ -98,7 +113,7 @@ test("enrol, sign a decision, refuse replay and unsigned decisions, revoke", asy
     expect(plain?.success, "with the requirement off, an unsigned decision works").toBe(true);
     console.log("### revoke + requirement off ✓");
   } finally {
-    await inv("revokeSignature", { actor: MIHAI }).catch(() => {});
+    await clearDevice();
     if (prior) await setKvs(SETTINGS_KEY, prior); else await delKvs(SETTINGS_KEY).catch(() => {});
     for (const k of [`workflow-state-${p.id}`, `workflow-pending-${p.id}`, `workflow-autoassigned-${p.id}`, `workflow-inbox-${MIHAI}-${p.id}`, `workflow-approval-${p.id}-approved-approval-${MIHAI}`,
       `workflow-idx-${SPACE}-draft-${p.id}`, `workflow-idx-${SPACE}-in_review-${p.id}`, `workflow-idx-${SPACE}-approved-${p.id}`]) await delKvs(k).catch(() => {});
