@@ -1,0 +1,32 @@
+✔ actual central launcher preserves worker/video/auth options and context reservation across imports (93.339292ms)
+✔ all ordinary worker/video/auth launch sites still use the central function (0.305541ms)
+✔ actual batch runner launches browser lane without any kill or marker deletion command (447.623625ms)
+✔ two independent processes: exactly one launch entrant, loser busy; close permits next entrant (250.651584ms)
+✔ canonical symlink alias shares one lock; different profiles remain independent; inode survives release (94.567166ms)
+✔ parent-exit leaves durable unclean intent before any Chrome marker; next launch refused (102.114167ms)
+✔ parent-kill leaves durable unclean intent before any Chrome marker; next launch refused (101.41075ms)
+✔ holder-kill leaves durable unclean intent before any Chrome marker; next launch refused (94.712583ms)
+✔ holder death while live Node context closes only owned context and durable intent blocks new launch (42.691292ms)
+✔ marker state missing owner is preserved and blocks launch (43.765709ms)
+✔ marker state malformed is preserved and blocks launch (43.510583ms)
+✔ marker state foreign-host-123 is preserved and blocks launch (51.073916ms)
+✔ marker state Mihai-Macbook-2.local-34395 is preserved and blocks launch (93.551959ms)
+✔ marker state Mihai-Macbook-2.local-123456789 is preserved and blocks launch (69.797417ms)
+✔ non-symlink marker remains untouched; existing empty/malformed reservation fails closed (123.30825ms)
+✔ known missing Chrome permits fallback under same reservation, preserves both failed causes (45.39325ms)
+✔ unknown Chrome launch failure never starts a fallback or clears orphan markers (44.18475ms)
+✔ explicit close failure and unexpected context close retain unclean intent (90.845291ms)
+✔ clean close waits for actual context close completion before releasing; duplicate close is idempotent (70.399584ms)
+✔ EPERM and stale-read replacement preserve all markers without unlink (1.092125ms)
+✔ holder lost during pending launch closes the eventual returned owned context and never returns it (57.757458ms)
+✔ known absent Chrome fallback success remains reserved until close (67.93175ms)
+✔ missing Python and bounded unresponsive holder never launch a browser (84.485375ms)
+✔ clean-close refuses surviving Chrome owner markers and leaves orphan protected (49.9245ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1693.336584
