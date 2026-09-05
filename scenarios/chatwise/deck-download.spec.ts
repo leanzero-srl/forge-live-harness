@@ -395,14 +395,54 @@ test("a 45-slide ask meets the REAL ceiling of 40 — and both files actually ar
         `Math.min on the budget is the only thing bounding it.\n${describeLogs(refunded)}`,
     ).toBe(charged.length ? refunded.length : 0);
 
-    // ---- BOTH FILES ACTUALLY ARRIVE ---------------------------------------
+    // ---- THE REPLY MAY NOT PROMISE MORE FILES THAN THE ROW CARRIES -------
+    //
+    // THIS IS THE ASSERTION, and it took three runs to find the right one.
+    // "decks.length === 2" pins ONE of several acceptable model behaviours —
+    // 34+11, 23+22 and a single 40 are all defensible answers to "45 slides".
+    // What is never defensible is the bubble describing files the user cannot
+    // download, and that is deterministic: the handle is what the Download
+    // button uses, so a part with no handle does not exist.
+    //
+    // MEASURED, v6.104.0, run 3 of 3 on this exact prompt. The model built
+    // three decks — `slides:<array 23>`, `<array 25>`, `<array 20>` — ALL under
+    // the same title, and told the user:
+    //
+    //     "the 45 slides came out as two downloadable files, both below this
+    //      message.  Part 1 — 25 slides … Part 2 — 20 slides"
+    //
+    // `decks` carried ONE handle, 20 slides. The user asked for 45 and received
+    // the back half of a deck with no cover, under a message saying both files
+    // were there.
+    //
+    // THE CAUSE IS IN agent.js:970-982, not in the model. Decks are collapsed
+    // by TITLE, last-write-wins, on the assumption that a repeated title is a
+    // RETRY of the same deck. A SPLIT breaks that assumption: two genuinely
+    // different decks share a title whenever the model does not think to
+    // suffix it, and the schema says `title` is "the deck's subject". The
+    // comment there already worries about the opposite direction. Two cards for
+    // a retry is a smaller harm than one card for a split.
+    const claimedParts = new Set(
+      [...reply.matchAll(/\b(?:part|teil)\s*(\d{1,2})\b/gi)].map((m) => Number(m[1])),
+    );
+    const wordCount = /\b(two|zwei)\s+(?:downloadable\s+)?(?:separate\s+)?(?:files|decks|dateien)\b/i.test(
+      reply,
+    )
+      ? 2
+      : 0;
+    const claimed = Math.max(claimedParts.size, wordCount, 1);
+    console.log(`[deck45] reply claims ${claimed} file(s); the row carries ${decks.length}`);
     expect(
       decks.length,
-      `the job row carries ${decks.length} deck handle(s), not 2. The reply may well DESCRIBE two ` +
-        `files — v6.103.0 said "Both decks follow the diconium brand" beside a single handle — ` +
-        `but the handle is what the Download button uses, and a file with no handle does not ` +
-        `exist for the user. decks=${JSON.stringify(decks)}`,
-    ).toBe(2);
+      `THE REPLY PROMISES ${claimed} FILE(S) AND THE JOB ROW CARRIES ${decks.length}. The handle ` +
+        `is what the Download button uses, so every part without one is a file the user was told ` +
+        `about and cannot open. See this block's comment: agent.js collapses decks by TITLE, ` +
+        `last-write-wins, which treats a SPLIT as a RETRY.\n` +
+        `decks=${JSON.stringify(decks)}\n\nreply:\n${reply.slice(0, 1800)}`,
+    ).toBeGreaterThanOrEqual(claimed);
+
+    // ---- AND EVERY DELIVERED FILE IS A LEGAL ONE --------------------------
+    expect(decks.length, "no deck was delivered at all for a 45-slide ask").toBeGreaterThan(0);
     const slideTotal = decks.reduce((n: number, d: any) => n + (Number(d?.slides) || 0), 0);
     console.log(`[deck45] slide totals: ${decks.map((d: any) => d.slides).join(" + ")} = ${slideTotal}`);
     for (const d of decks) {
@@ -413,6 +453,11 @@ test("a 45-slide ask meets the REAL ceiling of 40 — and both files actually ar
       expect(Number(d.slides), `a delivered deck has no slides: ${JSON.stringify(d)}`).toBeGreaterThan(0);
       expect(d.attached, "a deck was attached to Jira and the ask said not to").toBe(false);
     }
+    // TWO DELIVERED FILES MUST NOT BE THE SAME FILE UNDER TWO NAMES.
+    expect(
+      new Set(decks.map((d: any) => d.handle)).size,
+      `two entries share a handle: ${JSON.stringify(decks)}`,
+    ).toBe(decks.length);
 
     // ---- AND THE LOG LINE IS A SHAPE, NOT A PAYLOAD -----------------------
     // v6.103.0 printed the whole deck: forty slides of the user's own text into
