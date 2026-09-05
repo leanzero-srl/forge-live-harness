@@ -93,6 +93,25 @@ test("#7: approval dialog — opens from the awaiting chip, Escape returns focus
     expect(myRow, "approver list marks the signed-in user").toContain("(you)");
     await expect(dialog.locator("button.wf-appr-approve"), "Approve control present").toBeVisible();
     await expect(dialog.locator("button.wf-appr-deny"), "Deny control present").toBeVisible();
+    // THE CLIPPING GUARD (2026-09-05): every ribbon popover used to be position:absolute inside a
+    // banner iframe that only grows with in-flow content, so a person saw the dialog cut off
+    // before Approve/Deny while the DOM said "visible". The Deny button's box must lie inside
+    // the iframe's box.
+    {
+      const frameEl = page.locator(`iframe[src*="${DEV}"]`).filter({ has: page.locator("body") }).first();
+      let frameBox: any = null;
+      const n = await ifr.count();
+      for (let i = 0; i < n; i++) {
+        const src = (await ifr.nth(i).getAttribute("src").catch(() => "")) || "";
+        if (!src.includes(DEV)) continue;
+        if ((await ifr.nth(i).contentFrame().locator(".wf-chip-awaiting").count().catch(() => 0)) > 0) { frameBox = await ifr.nth(i).boundingBox(); break; }
+      }
+      const denyBox = await dialog.locator("button.wf-appr-deny").boundingBox();
+      expect(frameBox && denyBox, "iframe and Deny boxes measurable").toBeTruthy();
+      console.log(`### iframe bottom=${Math.round(frameBox.y + frameBox.height)} deny bottom=${Math.round(denyBox!.y + denyBox!.height)}`);
+      expect(denyBox!.y + denyBox!.height, "the approval dialog is NOT clipped by the banner iframe").toBeLessThanOrEqual(frameBox.y + frameBox.height + 2);
+      void frameEl;
+    }
     await ribbon.locator("body").screenshot({ path: `${OUT}/2-dialog-open.png` }).catch(() => {});
     console.log(`### approval dialog open — progress "${progress}" ✓`);
 
