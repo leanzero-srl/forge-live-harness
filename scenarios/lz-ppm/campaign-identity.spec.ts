@@ -20,9 +20,8 @@ test('campaign: actual UI version and preserved LZPT source', async ({ page }) =
   const actual = body.match(/REV\s+V(\d+\.\d+\.\d+)/i)?.[1];
   expect(actual, 'read the actual revision from the rendered app').toBe(expected);
   const card = frame.locator('.lz-card', { hasText: 'LZPT Scenarios' }).first();
-  const text = await card.innerText();
-  expect(text).toMatch(/45\s*ISSUES/i);
-  expect(text).toMatch(/0\s*DRAFTS/i);
+  await expect(card).toContainText(/45\s*ISSUES/i);
+  await expect(card).toContainText(/0\s*DRAFTS/i);
   const detail = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
   expect(detail.issues.length, 'the same protected bed is positively visible').toBe(45);
   expect(detail.meta.issueCount).toBe(45);
