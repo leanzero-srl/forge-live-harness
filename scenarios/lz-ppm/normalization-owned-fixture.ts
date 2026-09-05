@@ -1,3 +1,4 @@
+import {waitForAppReady} from './settled-screenshot.mjs';
 import fs from 'node:fs';
 import { expect } from '../../fixtures/forge';
 import { getTestState } from '../../testhook/client';
@@ -117,9 +118,11 @@ export async function table(page: any, name: string) {
   const frame = await openPlan(page, name);
   await frame.getByRole('button', { name: /^Table/i }).first().click();
   await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);
+  await waitForAppReady(frame.locator('[data-testid="table-row"]').first().or(frame.getByText(/^No tasks match /)).first());
   return frame;
 }
 export async function editDuration(frame: any, key: string, value: string) {
+  await waitForAppReady(row(frame,key));
   // Fixed primary columns from TableView: selection,key,summary,start,due,duration.
   await row(frame, key).locator(':scope > div').nth(5).click();
   const input = row(frame, key).locator('input[inputmode="numeric"]');

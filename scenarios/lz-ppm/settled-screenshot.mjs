@@ -11,19 +11,29 @@ export function pngContent(buffer){
  let dominant=0;for(const count of colors.values())dominant=Math.max(dominant,count);const different=width*height-dominant;
  return {width,height,colors:colors.size,differentPixels:different,nonblank:colors.size>=16&&different>=Math.max(100,width*height*.002)};
 }
-export async function settledScreenshot(target,options){
- const isPage=typeof target.context==='function';let element=isPage?target.locator('body'):target;
- if(isPage){const hosted=target.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]').first();if(await hosted.count())element=hosted.contentFrame().locator('body');}
- await expect(element).toBeVisible();if(!isPage)await element.scrollIntoViewIfNeeded();
- await expect.poll(()=>element.evaluate(el=>{
-  for(let p=el;p;p=p.parentElement){const s=getComputedStyle(p);if(Number(s.opacity)<.99||s.visibility!=='visible'||s.display==='none')return false;}
-  // A full-page image can contain visible Jira chrome while the app's child
-  // panel is still fading. Wait for finite animations in the subject document.
+// This predicate is also checked immediately after capture: waiting afterwards
+// could accept a loading overlay that disappeared only after the image was made.
+async function painted(subject) {
+ return subject.evaluate(el=>{
+  for(let p=el;p;p=p.parentElement){const s=getComputedStyle(p);if(p.hasAttribute('inert')||Number(s.opacity)<.99||s.visibility!=='visible'||s.display==='none')return false;}
   if(el.ownerDocument.getAnimations().some(a=>a.playState==='running'&&Number.isFinite(a.effect?.getComputedTiming().endTime)))return false;
   const r=el.getBoundingClientRect();return r.width>0&&r.height>0;
- }),{timeout:15000,message:'screenshot subject and all ancestors are fully painted'}).toBe(true);
- await element.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve))));
- const buffer=await target.screenshot({...options,animations:'disabled'}),content=pngContent(buffer);
+ });
+}
+export async function waitForAppReady(subject) {
+ await expect(subject).toBeVisible();
+ await expect.poll(()=>painted(subject),{timeout:30000,message:'intended app subject is painted and outside every inert loading/adoption boundary'}).toBe(true);
+}
+export async function settledScreenshot(target,options) {
+ const {subject:specifiedSubject,...shotOptions}=options;
+ const isPage=typeof target.context==='function';
+ assert.ok(!isPage||specifiedSubject,'Page screenshots require an explicit intended subject; host chrome cannot prove app readiness');
+ const subject=specifiedSubject||target;
+ await waitForAppReady(subject);await subject.scrollIntoViewIfNeeded();
+ await subject.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve))));
+ assert.equal(await painted(subject),true,'Screenshot subject became blocked before capture');
+ const buffer=await target.screenshot({...shotOptions,animations:'disabled'}),content=pngContent(buffer);
+ assert.equal(await painted(subject),true,`Screenshot subject became blocked during capture: ${options.path}`);
  assert.equal(content.nonblank,true,`Blank screenshot rejected: ${options.path} ${JSON.stringify(content)}`);
  return content;
 }

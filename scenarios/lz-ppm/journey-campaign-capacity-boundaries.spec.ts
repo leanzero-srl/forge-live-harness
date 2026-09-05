@@ -4,7 +4,7 @@ import {test,expect} from '../../fixtures/forge';
 import {get,put} from '../../data/jira.mjs';
 import {withOwnedSchedule,table} from './normalization-owned-fixture';
 import {openPlans} from './forecast-fixture';
-import {currentUserResolver,actualResponse,chooseDate,callOf} from './campaign-ui';
+import {currentUserResolver,actualResponse,chooseDate,callOf,observedResponse} from './campaign-ui';
 test.describe.configure({retries:0,timeout:900000});
 const add=(date:string,n:number)=>new Date(Date.parse(date+'T00:00:00Z')+n*86400000).toISOString().slice(0,10);
 function monday(){const now=new Date(),date=now.toISOString().slice(0,10);return add(date,(8-now.getUTCDay())%7||7);}
@@ -33,11 +33,11 @@ test('capacity boundaries: real missing and zero effort, custom-calendar partial
    expect(body.report.weeks).toEqual([{key:M,startDate:add(M,1),endDate:end}]);expect(body.report.coverage).toMatchObject({uniqueIssues:4,missingEffort:1,unassignedIssues:1});expect(body.report.totals).toMatchObject({knownEffortHours:30,allocatedHours:20,outsideWindowHours:10,unallocatedHours:0});
    const A=me.accountId,B=other.accountId;const cell=(id:string)=>cap.locator(`[data-testid="capacity-cell"][data-person-id="${id}"][data-week="${M}"]`);
    await expect(cell(A)).toContainText('16h / ?h');await expect(cell(A)).toHaveAttribute('data-status','capacity-unknown');await expect(cell(A)).not.toContainText('%');await expect(cell(B)).toContainText('0h / ?h');await expect(cell('unassigned')).toContainText('4h / ?h');journal.steps.push({name:'missing-zero-partial-week',report:body.report});retain();
-   const availability=async(id:string,hours:string,leave:boolean)=>{
+   const availability=async(id:string,hours:string,leave:boolean,observeConsistency=false)=>{
     await cap.locator(`tr[data-person-id="${id}"]`).getByRole('button',{name:/availability/}).click();const form=cap.getByRole('form');await form.getByLabel('Hours per full working day',{exact:true}).fill(hours);await form.getByLabel('Part-time percent',{exact:true}).fill('100');await form.getByLabel('Operational reserve percent',{exact:true}).fill('0');
     for(const day of['Sun','Mon','Tue','Wed','Thu','Fri','Sat']){const box=form.getByRole('checkbox',{name:`Works ${day}`,exact:true});const wanted=['Mon','Wed','Fri'].includes(day);if((await box.getAttribute('aria-checked')==='true')!==wanted)await box.click();}
     for(const remove of await form.getByRole('button',{name:/Remove date off/}).all())await remove.click();if(leave){await chooseDate(frame,form,'Leave or holiday',add(M,2));await form.getByRole('button',{name:'Add date off',exact:true}).click();}
-    const completed=actualResponse(page,'getCapacityReport');await form.getByRole('button',{name:'Save availability and calculate',exact:true}).click();return completed;
+    const completed=observeConsistency?observedResponse(page,'getCapacityReport'):actualResponse(page,'getCapacityReport');await form.getByRole('button',{name:'Save availability and calculate',exact:true}).click();return completed;
    };
    body=await availability(A,'16',true);await expect(cell(A)).toContainText('16h / 16h');await expect(cell(A)).toHaveAttribute('data-status','effort-unknown');await expect(cell(A)).not.toContainText('%');await expect(cell(A)).toContainText('1 work item(s) not fully allocated');
    await availability(A,'0',true);await expect(cell(A)).toHaveAttribute('data-status','overloaded');await expect(cell(A)).toContainText('16h / 0h');await expect(cell(A)).not.toContainText('%');
@@ -45,7 +45,20 @@ test('capacity boundaries: real missing and zero effort, custom-calendar partial
    // A real correction of only the owned missing-effort issue distinguishes
    // unknown work from explicit zero. Duration remains5 throughout.
    await put(`/rest/api/3/issue/${missing}`,{fields:{timetracking:{originalEstimate:'0h',remainingEstimate:'0h'}}});expect((await get(`/rest/api/3/issue/${missing}?fields=timeestimate`)).fields.timeestimate).toBe(0);
-   body=await availability(A,'16',true);expect(body.report.coverage.missingEffort).toBe(0);await expect(cell(A)).toHaveAttribute('data-status','at-capacity');await expect(cell(A)).toContainText('100%');journal.steps.push({name:'missing-corrected-to-zero',report:body.report});retain();
+   body=await availability(A,'16',true,true);
+   journal.steps.push({name:'actual-report-after-owned-effort-correction',response:body});retain();
+   if(body.success!==true){
+    // Only this observed consistency refusal licenses one explicit user Retry.
+    // Other resolver failures remain failures; there is no hidden recalculation.
+    expect(body).toEqual({success:false,error:'A selected plan changed during the read. Retry the report.'});
+    const alert=cap.getByRole('alert');await expect(alert).toContainText(body.error);
+    await expect(cap.locator('[data-testid="capacity-cell"]')).toHaveCount(0);
+    await expect(cap.locator('[data-testid="capacity-coverage"]')).toHaveCount(0);
+    await settledScreenshot(alert,{path:info.outputPath('capacity-actual-consistency-refusal-clears-totals.png')});
+    pending=actualResponse(page,'getCapacityReport');await alert.getByRole('button',{name:'Retry',exact:true}).click();body=await pending;
+    await expect(alert).toHaveCount(0);journal.steps.push({name:'actual-consistency-refusal-explicit-real-retry',report:body.report});retain();
+   }
+   expect(body.report.coverage.missingEffort).toBe(0);await expect(cell(A)).toHaveAttribute('data-status','at-capacity');await expect(cell(A)).toContainText('100%');journal.steps.push({name:'missing-corrected-to-zero',report:body.report});retain();
    for(const status of[403,503]){
     let injected=0;const handler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getCapacityReport')return route.continue();injected++;return route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated capacity transport ${status}`})});};
     await page.route('**/gateway/api/graphql**',handler);

@@ -1,3 +1,4 @@
+import {assetsConfigured} from './assets-readiness';
 import {settledScreenshot} from './settled-screenshot.mjs';
 import fs from 'node:fs';
 import {test,expect} from '../../fixtures/forge';
@@ -19,14 +20,14 @@ test('assets: native object label, exact matching and empty filters persist acro
   const created=await getTestState('lz-ppm',{what:'createFixture',name,jql:`key IN (${KEY},${EMPTY}) ORDER BY key`});planId=created.planId;persist({phase:'created'});expect(created.issues.map((i:any)=>i.key).sort()).toEqual([EMPTY,KEY].sort());
   let frame=await openPlan(page,name);await frame.getByRole('button',{name:/^Table/i}).first().click();let bar=frame.locator('[data-testid="assets-filter-bar"]');
   await bar.getByRole('button',{name:'Configure fields',exact:true}).click();await bar.getByTitle('Configure COGTEST Asset',{exact:true}).click();await bar.getByRole('button',{name:'Save fields',exact:true}).click();
-  await expect(bar.getByRole('button',{name:'Save fields',exact:true})).toHaveCount(0,{timeout:90_000});
+  await assetsConfigured(frame,bar,1);
   const value=frame.locator(`[data-testid="table-row"][data-row-key="${KEY}"] [data-testid="table-asset-value"]`);
   await expect(value).toContainText('CRT-71',{timeout:90_000});await expect(value).toContainText('MacBook Pro');
   const chooseMode=async(label:string)=>{await bar.getByRole('combobox').click();await frame.getByRole('option',{name:label,exact:true}).click();};
   await chooseMode('Any selected object');await bar.getByTitle(new RegExp(`^Filter .*${IDENTITY}$`)).click();
   await expect(bar.locator('[data-testid="assets-match-count"]')).toHaveText('1 matching tasks of 2');
   await expect(frame.locator('[data-testid="table-row"]')).toHaveCount(1);await expect(frame.locator('[data-testid="table-row"]')).toHaveAttribute('data-row-key',KEY);
-  await settledScreenshot(page,{path:info.outputPath('assets-native-match.png'),fullPage:true,animations:'disabled'});
+  await settledScreenshot(page,{subject:value,path:info.outputPath('assets-native-match.png'),fullPage:true,animations:'disabled'});
   frame=await openPlan(page,name);await frame.getByRole('button',{name:/^Table/i}).first().click();bar=frame.locator('[data-testid="assets-filter-bar"]');
   await expect(bar.locator('[data-testid="assets-match-count"]')).toHaveText('1 matching tasks of 2',{timeout:90_000});await expect(frame.locator('[data-testid="table-row"]')).toHaveAttribute('data-row-key',KEY);
   const refreshed=page.waitForResponse((r:any)=>r.status()===200&&(r.request().postData()||'').includes('getPlanAssets'),{timeout:90_000});
@@ -35,7 +36,7 @@ test('assets: native object label, exact matching and empty filters persist acro
   await bar.getByRole('button',{name:'Clear Assets filters',exact:true}).click();await expect(frame.locator('[data-testid="table-row"]')).toHaveCount(2);await expect(frame.locator(`[data-row-key="${KEY}"] [data-testid="table-asset-value"]`)).toContainText('CRT-71');
   expect((await getTestState('lz-ppm',{what:'plan',planId:planId!})).issues.map((i:any)=>i.key).sort()).toEqual([EMPTY,KEY].sort());
   expect((await get(`/rest/api/3/issue/${KEY}?fields=${FIELD}`)).fields[FIELD]).toEqual(populated.fields[FIELD]);expect((await get(`/rest/api/3/issue/${EMPTY}?fields=${FIELD}`)).fields[FIELD]).toEqual([]);
-  await settledScreenshot(page,{path:info.outputPath('assets-clear-all-values.png'),fullPage:true,animations:'disabled'});persist({phase:'verified'});
+  await settledScreenshot(page,{subject:value,path:info.outputPath('assets-clear-all-values.png'),fullPage:true,animations:'disabled'});persist({phase:'verified'});
  }finally{
   await page.goto('about:blank');if(!planId)planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;
   if(planId){await getTestState('lz-ppm',{what:'clearDrafts',planId});await getTestState('lz-ppm',{what:'deleteFixture',planId});}

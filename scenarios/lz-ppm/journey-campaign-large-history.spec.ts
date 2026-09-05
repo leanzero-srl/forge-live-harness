@@ -51,7 +51,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
    expect(rendered.map(r=>r.key).sort()).toEqual(keys);const renderedByKey=new Map(rendered.map(r=>[r.key,r]));
    for(const item of expected){const row:any=renderedByKey.get(item.key);expect(row.cells.slice(0,6)).toEqual([item.key,item.summary,item.startDate??'—',item.dueDate??'—',String(item.duration??'—'),item.statusCategory]);}
    await expect(html.locator('script,iframe,img,link')).toHaveCount(0);expect(external).toEqual([]);
-   for(const [label,key]of [['first',population.first.key],['terminal',population.last.key]]){await html.locator(`tr[data-issue-key="${key}"]`).scrollIntoViewIfNeeded();await settledScreenshot(html,{path:info.outputPath(`large-report-${label}-row-visible.png`)});}
+   for(const [label,key]of [['first',population.first.key],['terminal',population.last.key]]){await html.locator(`tr[data-issue-key="${key}"]`).scrollIntoViewIfNeeded();await settledScreenshot(html,{subject:html.locator(`tr[data-issue-key="${key}"]`),path:info.outputPath(`large-report-${label}-row-visible.png`)});}
    journal.renderedTerminalRow=renderedByKey.get(population.last.key);journal.allHtmlFieldsVerified=true;retain();
   }finally{await html.close();}
   const again=await rpc.invoke('getSnapshot',{planId,snapshotId:snapshot.id});expect(again.success).toBe(true);expect(again.snapshot.hash).toBe(snapshot.hash);expect(rowFields(again.snapshot.issues)).toEqual(expected);

@@ -167,12 +167,12 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
         await expect(row(frame,item.key)).toHaveAttribute('data-row-due',item.due);
         await expect(row(frame,item.key)).toHaveAttribute('data-row-duration',String(item.duration));
       }
-      await settledScreenshot(page,{path:info.outputPath('simulation-table-reopen.png')});
+      await settledScreenshot(page,{subject:row(frame,pred),path:info.outputPath('simulation-table-reopen.png')});
       await frame.getByRole('button',{name:/^Gantt/i}).first().click();
       await expect(frame.locator('[data-testid="gantt-bar"]')).toHaveCount(2);
       for (const key of [pred,succ]) await expect(frame.locator(`[data-testid="gantt-bar"][data-key="${key}"]`)).toBeVisible();
       await expect(frame.locator('[data-testid="gantt-dep-arrows"] .dep-arrow-line')).toHaveCount(1);
-      await settledScreenshot(page,{path:info.outputPath('simulation-gantt-reopen.png')});
+      await settledScreenshot(page,{subject:frame.locator(`[data-testid="gantt-row"][data-row-key="${pred}"]`),path:info.outputPath('simulation-gantt-reopen.png')});
       await frame.getByRole('button',{name:/^Dashboard/i}).first().click();
       const confidence=frame.locator('[data-testid="schedule-confidence"]');
       await expect(confidence).toHaveAttribute('data-leaves','2');
@@ -218,7 +218,7 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
       const finalModel=await invoke('getSimulationModel',{planId:simId});
       expect(modelRows(finalModel.model)).toEqual(restoredExpected);
       expect(finalModel.model.calendar).toEqual(saved.model.calendar);
-      await settledScreenshot(page,{path:info.outputPath('simulation-excluded-task-restored.png')});
+      await settledScreenshot(page,{subject:row(frame,late),path:info.outputPath('simulation-excluded-task-restored.png')});
       journal.steps.push({name:'excluded-task-restored-after-reopen',version:finalModel.version,rows:modelRows(finalModel.model)}); retain();
       const original=await invoke('getSnapshot',{planId:f.planId,snapshotId:base.id});
       expect(original.success).toBe(true); expect(original.snapshot.hash).toBe(base.hash);

@@ -1,3 +1,4 @@
+import {waitForAppReady} from './settled-screenshot.mjs';
 import {replayHeaders} from './replay-headers.mjs';
 import {gunzipSync} from 'node:zlib';
 import {expect} from '../../fixtures/forge';
@@ -6,9 +7,14 @@ export function callEnvelope(req:any) {
 }
 export const callOf=(req:any)=>callEnvelope(req)?.variables?.input?.payload?.call;
 export const bodyOf=async(res:any)=>(await res.json()).data?.invokeExtension?.response?.body;
+/** Actual transport/body observation; callers must explicitly grade success or
+ * one named expected refusal. This does not retry or modify backend responses. */
+export function observedResponse(page:any,functionKey:string,planId?:string) {
+ return page.waitForResponse((r:any)=>{const c=callOf(r.request());return c?.functionKey===functionKey&&(!planId||c.payload?.planId===planId);},{timeout:120000})
+  .then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=await bodyOf(r);expect(b).toBeTruthy();return b;});
+}
 export function actualResponse(page:any,functionKey:string,planId?:string) {
-  return page.waitForResponse((r:any)=>{const c=callOf(r.request());return c?.functionKey===functionKey&&(!planId||c.payload?.planId===planId);},{timeout:120000})
-    .then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=await bodyOf(r);expect(b.success).toBe(true);return b;});
+ return observedResponse(page,functionKey,planId).then((b:any)=>{expect(b.success,`${functionKey}: ${b.error||'unspecified failure'}`).toBe(true);return b;});
 }
 /** Capture only an actual current-user request. Secrets remain memory-only. */
 export function currentUserResolver(page:any,filter:(call:any)=>boolean) {
@@ -27,7 +33,7 @@ export function currentUserResolver(page:any,filter:(call:any)=>boolean) {
 }
 export async function planning(frame:any) {
   await frame.getByRole('button',{name:/^Planning/i}).first().click();await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);
-  return frame.locator('[data-testid="planning-workspace"]');
+  const workspace=frame.locator('[data-testid="planning-workspace"]');await waitForAppReady(workspace);return workspace;
 }
 export async function chooseDate(frame:any,within:any,label:string,iso:string) {
   await within.getByRole('button',{name:label,exact:true}).click();const cal=frame.locator('.lz-datepicker');

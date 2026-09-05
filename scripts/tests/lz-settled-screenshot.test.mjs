@@ -19,9 +19,26 @@ test('real browser capture waits for a transparent ancestor to paint and rejects
   await page.evaluate(()=>setTimeout(()=>document.querySelector('#ancestor').style.opacity='1',400));
   const result=await settledScreenshot(page.locator('section'),{path:path.join(dir,'result.png')});assert.equal(result.nonblank,true);
   const embedded='<style>@keyframes reveal {from{opacity:0}to{opacity:1}} section{animation:reveal .8s linear;width:400px;height:150px;background:#123abc;color:white}</style><section><h1>Rendered app outcome</h1></section>';
-  await page.setContent(`<h1>Stable host chrome</h1><iframe data-testid="hosted-resources-iframe" srcdoc="${embedded.replaceAll('&','&amp;').replaceAll('"','&quot;')}"></iframe>`);await settledScreenshot(page,{path:path.join(dir,'embedded.png')});assert.equal(await page.locator('iframe').contentFrame().locator('section').evaluate(el=>getComputedStyle(el).opacity),'1');
-  await page.setContent('<div style="height:5000px">Top</div><h1 id="last">Exact terminal row</h1>');await page.locator('#last').scrollIntoViewIfNeeded();const scroll=await page.evaluate(()=>window.scrollY);assert.ok(scroll>4000);await settledScreenshot(page,{path:path.join(dir,'terminal.png')});assert.equal(await page.evaluate(()=>window.scrollY),scroll);
+  await page.setContent(`<h1>Stable host chrome</h1><iframe data-testid="hosted-resources-iframe" srcdoc="${embedded.replaceAll('&','&amp;').replaceAll('"','&quot;')}"></iframe>`);await settledScreenshot(page,{subject:page.locator('iframe').contentFrame().locator('section'),path:path.join(dir,'embedded.png')});assert.equal(await page.locator('iframe').contentFrame().locator('section').evaluate(el=>getComputedStyle(el).opacity),'1');
+  await page.setContent('<div style="height:5000px">Top</div><h1 id="last">Exact terminal row</h1>');await page.locator('#last').scrollIntoViewIfNeeded();const scroll=await page.evaluate(()=>window.scrollY);assert.ok(scroll>4000);await settledScreenshot(page,{subject:page.locator('#last'),path:path.join(dir,'terminal.png')});assert.equal(await page.evaluate(()=>window.scrollY),scroll);
   await page.setContent('<section style="width:500px;height:200px;background:#123abc"></section>');
   await assert.rejects(()=>settledScreenshot(page.locator('section'),{path:path.join(dir,'blank.png')}),/Blank screenshot rejected/);
  }finally{await browser.close();fs.rmSync(dir,{recursive:true,force:true});}
+});
+
+test('real inert overlay cannot be accepted as feature evidence, while an intentional outer error can',async()=>{
+ const browser=await chromium.launch({channel:'chrome',headless:true}),dir=fs.mkdtempSync(path.join(os.tmpdir(),'lz-inert-shot-'));
+ try {
+  const page=await browser.newPage();
+  await page.setContent('<div role="alert" style="position:absolute;inset:0;background:#1543ac;color:white;z-index:2"><h1>Checking your saved draft</h1></div><main inert><section><h1>Exact JT-74 result</h1><p>Two native values and one visible task</p></section></main>');
+  await assert.rejects(()=>settledScreenshot(page,{path:path.join(dir,'unspecified.png')}),/explicit intended subject/);
+  await settledScreenshot(page,{subject:page.getByRole('alert'),path:path.join(dir,'intentional-blocked-alert.png')});
+  await page.evaluate(()=>setTimeout(()=>{document.querySelector('main').removeAttribute('inert');document.querySelector('[role=alert]').remove();},450));
+  await settledScreenshot(page,{subject:page.locator('section'),path:path.join(dir,'settled-result.png')});
+  assert.equal(await page.locator('main').getAttribute('inert'),null);assert.equal(await page.getByRole('alert').count(),0);
+  // Simulate a real mid-capture app reindex. The image is retained but rejected.
+  const screenshot=page.screenshot.bind(page);page.screenshot=async options=>{await page.locator('main').evaluate(el=>el.setAttribute('inert',''));return screenshot(options);};
+  await assert.rejects(()=>settledScreenshot(page,{subject:page.locator('section'),path:path.join(dir,'interrupted.png')}),/became blocked during capture/);
+  assert.ok(fs.existsSync(path.join(dir,'interrupted.png')));
+ }finally {await browser.close();fs.rmSync(dir,{recursive:true,force:true});}
 });
