@@ -53,7 +53,7 @@ const PROBE_TAB = "Beta access";
  * admin page 2026-09-05: the FIRST paint of the Settings tab carries
  * `forge-app-cf6cc-uploadsProject`, and after any interaction the same controls
  * come back as bare `uploadsProject` / `allowWebSearch` / `webSearchKey`. So
- * `[id$="-allowDestructive"]` — with the dash — matches on the first render and
+ * `[id$="allowDestructive"]` — with the dash — matches on the first render and
  * silently stops matching afterwards, which is exactly how this spec first
  * failed with "element(s) not found" one line after filling that same field.
  * Every selector here ends WITHOUT the dash so both shapes match.

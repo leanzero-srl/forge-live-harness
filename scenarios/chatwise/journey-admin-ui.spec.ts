@@ -61,7 +61,7 @@ test("admin journey: tool-policy toggle round-trips; persona modal offers the cu
 
     // The Toggle is a checkbox input whose id Forge PREFIXES
     // (forge-app-<hash>-allowDestructive) — ends-with is the stable selector.
-    const toggle = root.locator('input[type="checkbox"][id$="-allowDestructive"]').first();
+    const toggle = root.locator('input[type="checkbox"][id$="allowDestructive"]').first();
     const before = await toggle.isChecked().catch(() => null);
     expect(before, "destructive must be OFF before this test touches it").toBe(false);
 
@@ -105,7 +105,7 @@ test("admin journey: tool-policy toggle round-trips; persona modal offers the cu
     // role=option elements after opening the menu, because a body-text match
     // happily matches a PARENT element's combined text and proves nothing.
     // (Select inputId="pmodel" → Forge prefixes it, hence ends-with.)
-    const modelInput = root.locator('input[id$="-pmodel"]').first();
+    const modelInput = root.locator('input[id$="pmodel"]').first();
     await modelInput.click();
     const options = root.getByRole("option");
     await expect(options.first(), "the model menu did not open").toBeVisible({ timeout: 10_000 });
