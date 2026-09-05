@@ -87,6 +87,13 @@ export async function deletePage(pageId) {
   return request("DELETE", `/wiki/api/v2/pages/${pageId}`, { raw: true });
 }
 
+/** Names of the labels on a page (v2). */
+export async function getPageLabels(pageId) {
+  const res = await request("GET", `/wiki/api/v2/pages/${pageId}/labels?limit=250`, { raw: true });
+  if (res.status >= 400) throw new Error(`getPageLabels ${pageId} -> ${res.status}`);
+  return (JSON.parse(res.text).results || []).map((l) => l.name);
+}
+
 /** Permanently purge a TRASHED page (v2 DELETE ?purge=true — unrecoverable; GET 404s afterwards). */
 export async function purgePage(pageId) {
   const res = await request("DELETE", `/wiki/api/v2/pages/${pageId}?purge=true`, { raw: true });
