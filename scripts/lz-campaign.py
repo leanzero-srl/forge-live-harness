@@ -54,6 +54,8 @@ def validate_manifest(manifest):
     if not features or len({f['id'] for f in features}) != len(features):
         raise ValueError('A nonempty unique feature inventory is required')
     for f in features:
+        if f.get('retainedUat') is not None and (f.get('retainedUat') is not True or f['id'] != 'retained-uat-live' or f.get('specs') != ['scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts']):
+            raise ValueError('Fixture retention is restricted to the explicit connected UAT unit')
         if f['status'] not in ['ready', 'planned'] or not f.get('acceptance'):
             raise ValueError('Every feature needs explicit readiness and acceptance IDs')
         if f['status'] == 'ready':
@@ -198,6 +200,9 @@ def run_phase(config, feature, phase, attempt, heartbeat):
     report_path = attempt / (phase + '-playwright.json')
     env = {**os.environ, 'PLAYWRIGHT_JSON_OUTPUT_NAME': str(report_path), 'LZ_EXPECTED_UI_VERSION': config['uiVersion'],
            'LZ_CAMPAIGN_SOURCE_EXTENSION': json.dumps(config.get('sourceExtension')), 'LZ_CAMPAIGN_PHASE': phase, 'LZ_CAMPAIGN_UNIT_DIR': str(attempt), 'LZ_CAMPAIGN_RUN_ID': config['runId']}
+    env.pop('LZ_RETAINED_UAT_LEDGER', None)
+    if feature.get('retainedUat') is True and phase in ['tests', 'after']:
+        env['LZ_RETAINED_UAT_LEDGER'] = str(attempt / 'retained-uat-ledger.json')
     gate = {'specs': [config['identitySpec']], 'minTests': 1} if phase != 'tests' else feature
     command = [str(ROOT / 'node_modules/.bin/playwright'), 'test', *gate['specs'], '--project=chromium', '--workers=1', '--reporter=line,json', '--output=' + str(attempt / (phase + '-artifacts'))]
     if phase == 'tests':

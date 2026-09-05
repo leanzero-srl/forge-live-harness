@@ -20,6 +20,28 @@ def report(expected='passed', actual='passed', status='expected', title='real as
 
 
 class CampaignControls(unittest.TestCase):
+    def test_retention_requires_the_exact_uat_unit(self):
+        exact = {'id': 'retained-uat-live', 'status': 'ready', 'acceptance': ['UAT-1'], 'specs': ['scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts'], 'minTests': 1, 'retainedUat': True}
+        self.assertEqual(m.validate_manifest({'features': [exact]}), [exact])
+        for changed in [{'id': 'other'}, {'retainedUat': False}, {'retainedUat': 'true'}, {'specs': ['scenarios/lz-ppm/campaign-identity.spec.ts']}]:
+            with self.assertRaises(ValueError):
+                m.validate_manifest({'features': [{**exact, **changed}]})
+
+    def test_retention_env_is_attempt_bound_and_scrubbed_for_other_phases(self):
+        config = {'uiVersion': '4.58.578', 'runId': 'isolated-control', 'identitySpec': 'scenarios/lz-ppm/campaign-identity.spec.ts'}
+        with tempfile.TemporaryDirectory() as d:
+            attempt = Path(d)
+            for retained in [False, True]:
+                for phase in ['before', 'tests', 'after']:
+                    seen = []
+                    def child(command, env, *args):
+                        seen.append(dict(env)); return {'exit': 0}
+                    feature = {**FEATURE, **({'retainedUat': True} if retained else {})}
+                    with patch.dict(os.environ, {'LZ_RETAINED_UAT_LEDGER': '/tmp/foreign-ledger.json'}), patch.object(m, 'wait_profile_free'), patch.object(m, 'run_child', side_effect=child):
+                        m.run_phase(config, feature, phase, attempt, lambda _: None)
+                    expected = str(attempt / 'retained-uat-ledger.json') if retained and phase in ['tests', 'after'] else None
+                    self.assertEqual(seen[0].get('LZ_RETAINED_UAT_LEDGER'), expected)
+
     def test_population_reader_change_invalidates_instrument(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

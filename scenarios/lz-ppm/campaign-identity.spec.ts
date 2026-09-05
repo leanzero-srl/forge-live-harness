@@ -6,6 +6,8 @@ import crypto from 'node:crypto';
 import { test, expect } from '../../fixtures/forge';
 import { openPlans, scheduleFields, LZPT_PLAN } from './forecast-fixture';
 import { getTestState } from '../../testhook/client';
+import {retainedIdentityPolicy,retainedPlanNames} from './retained-identity-policy.mjs';
+import {actualResponse,currentUserResolver} from './campaign-ui';
 
 test.describe.configure({ retries: 0, timeout: 180_000 });
 test('campaign: actual UI version and preserved LZPT source', async ({ page }) => {
@@ -46,11 +48,26 @@ test('campaign: actual UI version and preserved LZPT source', async ({ page }) =
   const fingerprint = crypto.createHash('sha256').update(JSON.stringify(source)).digest('hex');
   const plans = (await getTestState('lz-ppm', { what: 'plans' })).plans;
   const planIds = plans.map((p: any) => p.id).sort();
-  const identity = { time: new Date().toISOString(), phase, uiVersion: actual, sourceFingerprint: fingerprint, issueCount: detail.issues.length, coordinatedSourceExtension: extension, drafts: 0, protectionEnabled: false, planIds };
+  const identity:any = { time: new Date().toISOString(), phase, uiVersion: actual, sourceFingerprint: fingerprint, issueCount: detail.issues.length, coordinatedSourceExtension: extension, drafts: 0, protectionEnabled: false, planIds };
   if (phase === 'after') {
     const before = JSON.parse(fs.readFileSync(path.join(dir!, 'before-identity.json'), 'utf8'));
     expect(fingerprint, 'the complete source schedule and plan settings are unchanged').toBe(before.sourceFingerprint);
-    expect(planIds, 'no temporary plan remains or original plan disappeared').toEqual(before.planIds);
+    const ledgerPath=process.env.LZ_RETAINED_UAT_LEDGER;
+    if(!ledgerPath)expect(planIds, 'no temporary plan remains or original plan disappeared').toEqual(before.planIds);
+    else{
+      expect(path.resolve(ledgerPath)).toBe(path.join(path.resolve(dir!),'retained-uat-ledger.json'));
+      expect(fs.lstatSync(ledgerPath).isSymbolicLink()).toBe(false);const ledger=JSON.parse(fs.readFileSync(ledgerPath,'utf8'));
+      const retained=Object.values(retainedPlanNames).map(name=>{const found=plans.filter((p:any)=>p.name===name);expect(found).toHaveLength(1);return found[0];});
+      for(const p of retained)await expect(frame.locator('.lz-card',{hasText:p.name})).toContainText(/0\s*DRAFTS/i);
+      const details=await Promise.all(retained.map(p=>getTestState('lz-ppm',{what:'plan',planId:p.id})));
+      const rpc=currentUserResolver(page,c=>c?.functionKey==='getCapacitySettings');
+      try{
+        const settingsResponse=actualResponse(page,'getCapacitySettings');await frame.getByRole('button',{name:'Capacity',exact:true}).click();const saved=await settingsResponse;
+        const actualDrafts=[];for(const p of retained){const draft=await rpc.invoke('getDraft',{planId:p.id}),active=await rpc.invoke('getActiveDrafts',{planId:p.id});expect(draft.success).toBe(true);expect(active.success).toBe(true);actualDrafts.push({planId:p.id,draft:draft.draft,drafts:active.drafts});}
+        identity.retention=retainedIdentityPolicy({ledger,beforeBytes:fs.readFileSync(path.join(dir!,'before-identity.json')),runId:process.env.LZ_CAMPAIGN_RUN_ID,unitDir:dir,ledgerPath,actualLedgerPath:fs.realpathSync(ledgerPath),plans,details,actualCapacitySettings:saved.settings,actualDrafts});
+      }finally{rpc.stop();}
+      await openPlans(page);
+    }
   }
   fs.mkdirSync(dir!, { recursive: true });
   fs.writeFileSync(path.join(dir!, `${phase}-identity.json`), JSON.stringify(identity, null, 2) + '\n');
