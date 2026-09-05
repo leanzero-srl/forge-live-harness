@@ -22,7 +22,7 @@ test('persistence: acknowledged Save7 replaces earlier autosaved6 before immedia
   await page.goto('about:blank');frame=await table(page,f.name);await exact(frame,key,7,'2026-10-13');
   await expect(frame.locator('[data-testid="plan-save-btn"]')).toHaveAttribute('data-has-changes','0');
   const stored=(await getTestState('lz-ppm',{what:'plan',planId:f.planId})).issues.find((i:any)=>i.key===key);expect(stored).toMatchObject({duration:7,startDate:'2026-10-05',dueDate:'2026-10-13'});
-  expect(await f.read(key)).toEqual(original);await row(frame,key).screenshot({path:info.outputPath('save7-immediate-reopen.png')});
+  expect(await f.read(key)).toEqual(original);await settledScreenshot(row(frame,key),{path:info.outputPath('save7-immediate-reopen.png')});
  });
 });
 
@@ -39,7 +39,7 @@ test('persistence: an actual held Save response preserves a later local edit as 
    await exact(frame,key,7,'2026-10-13');expect(captured.submitted.find((i:any)=>i.key===key).duration).toBe(6);
    expect((await getTestState('lz-ppm',{what:'plan',planId:f.planId})).issues.find((i:any)=>i.key===key).duration).toBe(6);
    await info.attach('transport-instrumentation',{body:JSON.stringify({method:'Real savePlanState request executed and returned success; only its unchanged response delivery was held while the user edited7.',...captured}),contentType:'application/json'});
-   await row(frame,key).screenshot({path:info.outputPath('late7-remains-unsaved.png')});await save(frame);frame=await table(page,f.name);await exact(frame,key,7,'2026-10-13');expect(await f.read(key)).toEqual(original);
+   await settledScreenshot(row(frame,key),{path:info.outputPath('late7-remains-unsaved.png')});await save(frame);frame=await table(page,f.name);await exact(frame,key,7,'2026-10-13');expect(await f.read(key)).toEqual(original);
   }finally{release();await page.unroute('**/gateway/api/graphql**',handler);}
  });
 });
@@ -52,7 +52,7 @@ test('persistence: partial Apply discards a previously Saved sibling durably thr
   await expect.poll(()=>f.read(a),{timeout:60000}).toEqual({key:a,start:'2026-10-05',due:'2026-10-12',duration:6});expect(await f.read(b)).toEqual(originalB);
   frame=await table(page,f.name);await exact(frame,a,6,'2026-10-12');await exact(frame,b,5,'2026-10-09');await expect(frame.getByRole('button',{name:/^Apply \d+ change/i})).toHaveCount(0);await expect(frame.locator('[data-testid="plan-save-btn"]')).toHaveAttribute('data-has-changes','0');
   const stored=(await getTestState('lz-ppm',{what:'plan',planId:f.planId})).issues;expect(stored.find((i:any)=>i.key===b)).toMatchObject({duration:5,startDate:'2026-10-05',dueDate:'2026-10-09'});
-  await row(frame,b).screenshot({path:info.outputPath('discarded-sibling-stays5.png')});await info.attach('actual-jira-second-reads',{body:JSON.stringify({applied:await f.read(a),discarded:await f.read(b)}),contentType:'application/json'});
+  await settledScreenshot(row(frame,b),{path:info.outputPath('discarded-sibling-stays5.png')});await info.attach('actual-jira-second-reads',{body:JSON.stringify({applied:await f.read(a),discarded:await f.read(b)}),contentType:'application/json'});
  });
 });
 
@@ -64,7 +64,7 @@ for(const status of[403,503])test(`persistence: simulated draft-read HTTP${statu
   try{
    frame=await openPlan(page,f.name);const alert=frame.getByRole('alert').filter({hasText:'Your saved draft could not be loaded'});await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(frame.locator('[inert] [data-testid="plan-save-btn"]')).toHaveCount(1);await settledScreenshot(alert,{path:info.outputPath(`draft-${status}-blocked.png`)});
    const recovered=actualResponse(page,'getDraft',f.planId);await alert.getByRole('button',{name:'Retry saved draft',exact:true}).click();const body=await recovered;expect(body.draft.changes[b].duration).toBe(9);await expect(alert).toHaveCount(0);await frame.getByRole('button',{name:/^Table/i}).first().click();await exact(frame,b,9,'2026-10-15');await editDuration(frame,a,'6');await save(frame);frame=await table(page,f.name);await exact(frame,a,6,'2026-10-12');await exact(frame,b,9,'2026-10-15');
-   await row(frame,b).screenshot({path:info.outputPath(`draft-${status}-recovered9.png`)});await info.attach('failure-instrumentation',{body:JSON.stringify({injectedHttpStatus:status,request:'getDraft',planId:f.planId,count:injected,realRetry:true,backendDraftNeverMutatedByFault:true}),contentType:'application/json'});
+   await settledScreenshot(row(frame,b),{path:info.outputPath(`draft-${status}-recovered9.png`)});await info.attach('failure-instrumentation',{body:JSON.stringify({injectedHttpStatus:status,request:'getDraft',planId:f.planId,count:injected,realRetry:true,backendDraftNeverMutatedByFault:true}),contentType:'application/json'});
   }finally{await page.unroute('**/gateway/api/graphql**',handler);}
  });
 });
