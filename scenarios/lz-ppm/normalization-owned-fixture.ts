@@ -55,8 +55,19 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
       return indexed.issues.map((i:any)=>({key:i.key,start:i.fields[fields.startDate],due:i.fields[fields.dueDate],duration:i.fields[fields.duration]})).sort((a:any,b:any)=>a.key.localeCompare(b.key));
     },{timeout:60000,intervals:[500,1000,2000],message:'new fixture is searchable with complete seeded schedule'}).toEqual(indexedExpected);
     journal.searchIndexVerified = indexedExpected; persist();
-    const created = await getTestState('lz-ppm', { what: 'createFixture', name, jql: fixtureJql });
+    let created = await getTestState('lz-ppm', { what: 'createFixture', name, jql: fixtureJql });
     journal.planId = created.planId; persist();
+    const indexedShape=(rows:any[])=>rows.map((i:any)=>({key:i.key,start:i.startDate,due:i.dueDate,duration:i.duration})).sort((a:any,b:any)=>a.key.localeCompare(b.key));
+    journal.forgeIndexObservations=[indexedShape(created.issues)]; persist();
+    if (JSON.stringify(indexedShape(created.issues)) !== JSON.stringify(indexedExpected)) {
+      // Jira asApp search can lag the external REST reader independently. This
+      // is fixture setup only: refresh the SAME owned plan until complete.
+      await expect.poll(async()=>{
+        await getTestState('lz-ppm',{what:'refreshPlan',planId:journal.planId});
+        const refreshed=await getTestState('lz-ppm',{what:'plan',planId:journal.planId});created={...created,...refreshed};
+        const observation=indexedShape(created.issues);journal.forgeIndexObservations.push(observation);persist();return observation;
+      },{timeout:90000,intervals:[1000,3000,5000],message:'Forge reader sees the complete owned fixture schedule'}).toEqual(indexedExpected);
+    }
     expect(created.issues.map((i: any) => i.key).sort()).toEqual(journal.issues.map((i: any) => i.key).sort());
     for (const i of journal.issues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
     if (linked) expect(created.issues.find((i: any) => i.key === journal.issues[1].key).predecessors).toContain(journal.issues[0].key);
