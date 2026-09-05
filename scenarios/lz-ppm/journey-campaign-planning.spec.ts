@@ -6,16 +6,16 @@ const seed=(label:string,duration:number,start='2026-10-05',due='2026-10-09')=>(
 test.describe.configure({retries:0,timeout:600_000});
 const planning=async(frame:any)=>{await frame.getByRole('button',{name:/^Planning/i}).first().click();return frame.locator('[data-testid="planning-workspace"]');};
 async function chooseDate(frame:any,form:any,iso:string){
- await form.locator('svg').first().locator('..').click();
+ await form.getByRole('button',{name:'Target date',exact:true}).click();
  const cal=frame.locator('.lz-datepicker');await expect(cal).toBeVisible();
  const [year,month,day]=iso.split('-').map(Number);const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
  for(let n=0;n<30;n++){
   const title=(await cal.locator('span').first().textContent()).trim();if(title===`${months[month-1]} ${year}`)break;
   const [currentMonth,currentYear]=title.split(' ');const earlier=Number(currentYear)*12+months.indexOf(currentMonth)<year*12+month-1;
-  await cal.getByRole('button',{name:earlier?'›':'‹',exact:true}).click();
+  await cal.getByRole('button',{name:earlier?'Next month':'Previous month',exact:true}).click();
  }
  await expect(cal.locator('span').first()).toHaveText(`${months[month-1]} ${year}`);
- await cal.locator('div').filter({hasText:new RegExp(`^${day}$`)}).last().click();await expect(cal).toHaveCount(0);
+ await cal.getByRole('button',{name:iso,exact:true}).click();await expect(cal).toHaveCount(0);
 }
 
 test('targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent',async({page},info)=>{

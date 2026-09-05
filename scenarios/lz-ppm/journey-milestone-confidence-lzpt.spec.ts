@@ -47,21 +47,19 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
   const pickDate = async (rowIndex: number, want: { year: number; month: string; day: number }) => {
     // The milestone row has no testid; its date control is the custom DatePicker,
     // whose unset trigger reads "Select date...".
-    const triggers = frame.locator('div').filter({ hasText: /^Select date\.\.\.$/ });
+    const triggers = frame.getByRole('button', { name: 'Choose date', exact: true }).filter({ hasText: 'Select date...' });
     await triggers.nth(rowIndex).click();
     const cal = frame.locator('.lz-datepicker').first();
     await cal.waitFor({ state: "visible", timeout: 10_000 });
     for (let i = 0; i < 24; i++) {
       const title = ((await cal.locator('span').first().textContent()) || "").trim();
       if (title === `${want.month} ${want.year}`) break;
-      await cal.getByRole("button", { name: "›" }).click().catch(async () => {
-        await cal.locator('button').nth(1).click();
-      });
+      await cal.getByRole("button", { name: "Next month", exact: true }).click();
       await page.waitForTimeout(150);
     }
     const title = ((await cal.locator('span').first().textContent()) || "").trim();
     expect(title, "the calendar reached the target month").toBe(`${want.month} ${want.year}`);
-    await cal.locator('div').filter({ hasText: new RegExp(`^${want.day}$`) }).last().click();
+    await cal.getByRole('button', { name: `${want.year}-${String(['January','February','March','April','May','June','July','August','September','October','November','December'].indexOf(want.month)+1).padStart(2,'0')}-${String(want.day).padStart(2,'0')}`, exact: true }).click();
     await page.waitForTimeout(400);
   };
 
