@@ -1,0 +1,106 @@
+import fs from 'node:fs';
+import { expect } from '../../fixtures/forge';
+import { getTestState } from '../../testhook/client';
+import { openPlan, scheduleFields, LZPT_PLAN, waitForIssueReload } from './forecast-fixture';
+// @ts-ignore REST helpers operate on real, owned wolfaenpak issues.
+import { get, post, put, request, BASE } from '../../data/jira.mjs';
+
+export type Seed = { label: string; start: string; due: string; duration: number | null };
+export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], work: (f: any) => Promise<void>, linked = false) {
+  expect(BASE).toBe('https://wolfaenpak.atlassian.net');
+  const before = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
+  const registry = (await getTestState('lz-ppm', { what: 'plans' })).plans.map((p: any) => p.id).sort();
+  const fields = (await getTestState('lz-ppm', { what: 'fieldConfig' })).fields;
+  expect(fields).toMatchObject({ startDate: 'customfield_10015', dueDate: 'duedate', duration: 'customfield_10180' });
+  const marker = `lz-norm-${Date.now().toString(36)}`;
+  const name = `[harness-test] ${marker}`;
+  const journal: any = { marker, name, time: new Date().toISOString(), issues: [], planId: null, cleanup: [] };
+  const persist = () => fs.writeFileSync(info.outputPath('fixture-journal.json'), JSON.stringify(journal, null, 2));
+  fs.mkdirSync(info.outputDir, { recursive: true }); persist();
+  const read = async (key: string) => {
+    expect(journal.issues.some((i: any) => i.key === key), 'REST target belongs to this test').toBe(true);
+    const issue = await get(`/rest/api/3/issue/${key}?fields=project,labels,summary,${fields.startDate},${fields.dueDate},${fields.duration}`);
+    expect(issue.fields.project.key).toBe('WFH'); expect(issue.fields.labels).toContain(marker);
+    return { key, start: issue.fields[fields.startDate], due: issue.fields[fields.dueDate], duration: issue.fields[fields.duration] };
+  };
+  try {
+    // Same-project, same-type positive control. Field absence is not null.
+    const control = await get('/rest/api/3/issue/WFH-1990?fields=project,issuetype,customfield_10180,customfield_10015,duedate');
+    expect(control.fields.project.key).toBe('WFH'); expect(control.fields.issuetype.id).toBe('10004');
+    for (const id of [fields.startDate, fields.dueDate, fields.duration]) expect(Object.hasOwn(control.fields, id), id).toBe(true);
+    const meta = await get('/rest/api/3/issue/createmeta/WFH/issuetypes');
+    expect(meta.issueTypes.some((t: any) => t.id === '10004')).toBe(true);
+    for (const seed of seeds) {
+      const created = await post('/rest/api/3/issue', { fields: { project: { key: 'WFH' }, issuetype: { id: '10004' }, summary: `${name} ${seed.label}`, labels: [marker] } });
+      journal.issues.push({ key: created.key, seed }); persist();
+      await put(`/rest/api/3/issue/${created.key}`, { fields: { [fields.startDate]: seed.start, [fields.dueDate]: seed.due, [fields.duration]: seed.duration } });
+      expect(await read(created.key)).toEqual({ key: created.key, start: seed.start, due: seed.due, duration: seed.duration });
+    }
+    if (linked) {
+      expect(journal.issues).toHaveLength(2);
+      const types = await get('/rest/api/3/issueLinkType');
+      const type = types.issueLinkTypes.find((t: any) => t.outward.toLowerCase() === 'blocks'); expect(type).toBeTruthy();
+      await post('/rest/api/3/issueLink', { type: { id: type.id }, inwardIssue: { key: journal.issues[0].key }, outwardIssue: { key: journal.issues[1].key } });
+    }
+    const created = await getTestState('lz-ppm', { what: 'createFixture', name, jql: `key in (${journal.issues.map((i: any) => i.key).join(',')}) ORDER BY Rank ASC` });
+    journal.planId = created.planId; persist();
+    expect(created.issues.map((i: any) => i.key).sort()).toEqual(journal.issues.map((i: any) => i.key).sort());
+    for (const i of journal.issues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
+    if (linked) expect(created.issues.find((i: any) => i.key === journal.issues[1].key).predecessors).toContain(journal.issues[0].key);
+    await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields });
+  } finally {
+    await page.goto('about:blank');
+    if (!journal.planId) journal.planId = (await getTestState('lz-ppm', { what: 'plans' })).plans.find((p: any) => p.name === name)?.id;
+    if (journal.planId) {
+      await getTestState('lz-ppm', { what: 'clearDrafts', planId: journal.planId });
+      await getTestState('lz-ppm', { what: 'deleteFixture', planId: journal.planId });
+      journal.cleanup.push({ plan: journal.planId, deleted: true }); persist();
+    }
+    for (const issue of [...journal.issues].reverse()) {
+      await read(issue.key); // Positive ownership control on this exact issue before delete.
+      await request('DELETE', `/rest/api/3/issue/${issue.key}`);
+      const absent = await request('GET', `/rest/api/3/issue/${issue.key}`, { raw: true });
+      expect(absent.status).toBe(404); journal.cleanup.push({ issue: issue.key, deleted: true }); persist();
+    }
+    expect((await getTestState('lz-ppm', { what: 'plans' })).plans.map((p: any) => p.id).sort()).toEqual(registry);
+    expect(scheduleFields((await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN })).issues)).toEqual(scheduleFields(before.issues));
+    journal.integrityPassed = true; persist(); console.log('OWNED_SCHEDULE_CLEANUP', JSON.stringify(journal));
+  }
+}
+
+export const row = (frame: any, key: string) => frame.locator(`[data-testid="table-row"][data-row-key="${key}"]`);
+export async function table(page: any, name: string) {
+  const frame = await openPlan(page, name);
+  await frame.getByRole('button', { name: /^Table/i }).first().click();
+  return frame;
+}
+export async function editDuration(frame: any, key: string, value: string) {
+  // Fixed primary columns from TableView: selection,key,summary,start,due,duration.
+  await row(frame, key).locator(':scope > div').nth(5).click();
+  const input = row(frame, key).locator('input[inputmode="numeric"]');
+  await expect(input).toBeVisible(); await input.fill(value); await input.press('Enter');
+}
+export async function save(frame: any) {
+  const button = frame.locator('[data-testid="plan-save-btn"]');
+  await expect(button).toHaveAttribute('data-has-changes', '1'); await button.click();
+  await expect(button).toHaveAttribute('data-has-changes', '0', { timeout: 30_000 });
+}
+export async function refresh(page: any, frame: any, planId: string) {
+  await frame.getByRole('button', { name: /^Dashboard/i }).first().click();
+  const received = waitForIssueReload(page);
+  expect((await getTestState('lz-ppm', { what: 'refreshPlan', planId })).ok).toBe(true);
+  await frame.getByRole('button', { name: /^Table/i }).first().click();
+  expect(await received).toEqual({ ok: true });
+  await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);
+}
+export async function review(frame: any) {
+  await frame.getByRole('button', { name: /^Apply \d+ change/i }).first().click();
+  const modal = frame.locator('[data-testid="apply-review-modal"]'); await expect(modal).toBeVisible(); return modal;
+}
+export async function discard(frame: any) {
+  const modal = await review(frame); await modal.getByRole('button', { name: 'Discard All', exact: true }).click();
+  await expect(modal).toHaveCount(0);
+}
+export async function snapshot(frame: any, key: string) {
+  const r = row(frame, key); return { duration: await r.getAttribute('data-row-duration'), start: await r.getAttribute('data-row-start'), due: await r.getAttribute('data-row-due') };
+}
