@@ -104,7 +104,7 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
     }
     expect(opened, "the new plan opened").toBe(true);
     const plans = (await getTestState("lz-ppm", { what: "plans" })).plans as any[];
-    createdId = (plans.find((p) => !idsBefore.has(p.id)) || {}).id || null;
+    createdId = (plans.find((p) => p.name === NAME && !idsBefore.has(p.id)) || {}).id || null;
     expect(createdId, "the plan exists in KVS").toBeTruthy();
     const detail = await getTestState("lz-ppm", { what: "plan", planId: createdId! });
     const meta = detail.meta || {};
@@ -148,6 +148,11 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
     if (p90 && LATE.iso >= p90) expect(late.prob).toBeGreaterThanOrEqual(0.9);
   } finally {
     await page.goto("about:blank"); // stop autosave before deleting this test's plan
+    if (!createdId) {
+      const ownPlan = ((await getTestState("lz-ppm", { what: "plans" })).plans as any[])
+        .find((p) => p.name === NAME && !idsBefore.has(p.id));
+      createdId = ownPlan?.id || null;
+    }
     if (createdId) {
       await getTestState("lz-ppm", { what: "clearDrafts", planId: createdId }).catch(() => {});
       await getTestState("lz-ppm", { what: "deleteFixture", planId: createdId }).catch(() => {});

@@ -41,8 +41,8 @@ export async function openPlan(page: any, name: string) {
 export async function withForecastFixture(page: any, label: string, work: (fixture: any) => Promise<any>) {
   const sourceBefore = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
   let planId: string | undefined;
+  const name = `[harness-test] Forecast proof ${label} ${Date.now().toString(36)}`;
   try {
-    const name = `[harness-test] Forecast proof ${label} ${Date.now().toString(36)}`;
     const created = await getTestState('lz-ppm', { what: 'createFixture', name, jql: FORECAST_JQL });
     planId = created.planId;
     expect(planId, 'the temporary plan was created').toBeTruthy();
@@ -62,6 +62,10 @@ export async function withForecastFixture(page: any, label: string, work: (fixtu
     // Stop the component before clearing its own draft so autosave cannot race
     // cleanup. Never clear a persistent bed's or another user's drafts.
     await page.goto('about:blank');
+    if (!planId) {
+      const plans = (await getTestState('lz-ppm', { what: 'plans' })).plans || [];
+      planId = plans.find((p: any) => p.name === name)?.id;
+    }
     if (planId) {
       await getTestState('lz-ppm', { what: 'clearDrafts', planId });
       await getTestState('lz-ppm', { what: 'deleteFixture', planId });
