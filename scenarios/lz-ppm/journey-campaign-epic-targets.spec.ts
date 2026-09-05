@@ -27,14 +27,14 @@ test('epic targets: actual hierarchy retains outside predecessor influence; targ
   const name=`${f.name} Epic target`,summary=`${name} owned parent`;
   const journal:any={name,summary,source,phase:'before-owned-epic',epic:null,planId:null};
   const retain=()=>fs.writeFileSync(info.outputPath('epic-target-journal.json'),JSON.stringify(journal,null,2));retain();
-  let rpc:any,release:any,editorPage:any;
+  let rpc:any,release:any,editorPage:any,testFailure:any;
   const ownEpic=async()=>{const i=await get(`/rest/api/3/issue/${journal.epic.key}?fields=project,issuetype,summary`);expect(i.id).toBe(journal.epic.id);expect(i.fields.project.key).toBe('WFH');expect(i.fields.issuetype.id).toBe('10000');expect(i.fields.summary).toBe(summary);return i;};
   try{
    const meta=await get('/rest/api/3/issue/createmeta/WFH/issuetypes');expect(meta.issueTypes.find((t:any)=>t.id==='10000')).toMatchObject({hierarchyLevel:1,name:'Epic'});
    // One create request, no automatic create retry after an uncertain response.
    journal.phase='epic-create-requested';retain();
    const response=await fetch(`${BASE}/rest/api/3/issue`,{method:'POST',headers:{Authorization:'Basic '+Buffer.from(`${requireEnv('JIRA_ADMIN_EMAIL')}:${requireEnv('JIRA_API_TOKEN')}`).toString('base64'),'Content-Type':'application/json'},body:JSON.stringify({fields:{project:{key:'WFH'},issuetype:{id:'10000'},summary,customfield_10011:name}})});
-   expect(response.status).toBe(201);journal.epic=await response.json();journal.phase='epic-created';retain();await ownEpic();
+   journal.createStatus=response.status;journal.createBody=await response.text();if(response.status>=400&&response.status<500)journal.phase='epic-create-rejected';retain();expect(response.status).toBe(201);journal.epic=JSON.parse(journal.createBody);expect(journal.epic.id).toBeTruthy();expect(journal.epic.key).toBeTruthy();journal.phase='epic-created';retain();await ownEpic();
    await f.read(member);await put(`/rest/api/3/issue/${member}`,{fields:{parent:{key:journal.epic.key}}});
    expect((await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent.key).toBe(journal.epic.key);
    // Jira search and Forge asApp indexing can converge independently. Assert the
@@ -69,17 +69,27 @@ test('epic targets: actual hierarchy retains outside predecessor influence; targ
    const mountedForecast=await confidence.elementHandle();expect(mountedForecast).toBeTruthy();
    await editorPanel.locator(`[data-target-id="${target.id}"]`).getByRole('button',{name:'Edit',exact:true}).click();const editorForm=editorPanel.locator('form');await chooseDate(editorFrame,editorForm,'Target date','2026-03-01');await editorForm.getByRole('button',{name:'Save target',exact:true}).click();await expect(editorForm).toHaveCount(0);
    data=await rpc.invoke('getTargets',{planId:journal.planId});expect(data.targets).toEqual([{...target,date:'2026-03-01'}]);
-   const metadata=actualResponse(page,'getPlan',journal.planId);await editorFrame.getByRole('button',{name:'Re-index',exact:true}).click();expect((await metadata).plan.milestones).toEqual([{...target,date:'2026-03-01'}]);
+   const metadata=actualResponse(page,'getPlan',journal.planId);await editorFrame.getByRole('button',{name:'Re-index',exact:true}).click();const {coverage:_coverage,...storedTarget}=target;expect((await metadata).plan.milestones).toEqual([{...storedTarget,date:'2026-03-01'}]);
    expect(await mountedForecast!.evaluate((el:any)=>el.isConnected)).toBe(true);await expect(confidence).toHaveAttribute('data-runs','');await expect(confidence.locator('[data-testid="sc-milestone"]')).toHaveCount(0);journal.forecastRemainedMounted=true;retain();
    await release();release=null;await expect(targetRow).toHaveAttribute('data-probability','0');await expect(targetRow).toContainText('Mar 1');await expect(confidence).toHaveAttribute('data-runs','300');await settledScreenshot(confidence,{path:info.outputPath('epic-edited-target-after-old-yield.png')});await editorPage.close();editorPage=null;
    frame=await table(page,name);work=await planning(frame);await work.getByRole('button',{name:'Targets',exact:true}).click();await expect(frame.locator(`[data-target-id="${target.id}"]`)).toContainText('2026-03-01');expect((await rpc.invoke('getTargets',{planId:journal.planId})).targets).toEqual([{...target,date:'2026-03-01'}]);
    expect(await Promise.all(f.keys.map((key:string)=>f.read(key)))).toEqual(source);expect((await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent.key).toBe(journal.epic.key);journal.targetAfter={...target,date:'2026-03-01'};journal.sourceDatesUnchanged=true;journal.phase='verified';retain();
+  }catch(error){testFailure=error;journal.failure=String(error);retain();throw error;
   }finally{
-   if(release)await release().catch(()=>{});if(editorPage&&!editorPage.isClosed())await editorPage.close();rpc?.stop();if(!page.isClosed())await page.goto('about:blank').catch(()=>{});
-   if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;
-   if(journal.planId){await getTestState('lz-ppm',{what:'clearDrafts',planId:journal.planId});await getTestState('lz-ppm',{what:'deleteFixture',planId:journal.planId});journal.planDeleted=true;retain();}
-   if(journal.epic){await ownEpic();await f.read(member);const parent=(await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent;if(parent){expect(parent.key).toBe(journal.epic.key);await put(`/rest/api/3/issue/${member}`,{fields:{parent:null}});expect((await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent||null).toBe(null);}await request('DELETE',`/rest/api/3/issue/${journal.epic.key}`);expect((await request('GET',`/rest/api/3/issue/${journal.epic.key}`,{raw:true})).status).toBe(404);journal.epicDeleted=true;retain();}
-   else if(journal.phase==='epic-create-requested')throw Error(`Uncertain epic create; reconcile exact owned summary before retry: ${summary}`);
+   const cleanupErrors:any[]=[];journal.cleanup=[];
+   const clean=async(label:string,action:()=>Promise<void>)=>{try{await action();journal.cleanup.push({label,ok:true});}catch(error){cleanupErrors.push(error);journal.cleanup.push({label,ok:false,error:String(error)});}retain();};
+   await clean('restore timer and close owned editor',async()=>{if(release)await release();if(editorPage&&!editorPage.isClosed())await editorPage.close();});rpc?.stop();
+   await clean('leave primary UI',async()=>{if(!page.isClosed())await page.goto('about:blank');});
+   await clean('identify owned plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
+   if(journal.planId){
+    await clean('clear owned plan draft',async()=>{await getTestState('lz-ppm',{what:'clearDrafts',planId:journal.planId});});
+    await clean('delete owned plan',async()=>{const result=await getTestState('lz-ppm',{what:'deleteFixture',planId:journal.planId});expect(result).toEqual({deleted:journal.planId,registryRemoved:true});journal.planDeleted=true;});
+   }
+   if(journal.epic){
+    await clean('detach owned child',async()=>{await ownEpic();await f.read(member);const parent=(await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent;if(parent){expect(parent.key).toBe(journal.epic.key);await put(`/rest/api/3/issue/${member}`,{fields:{parent:null}});expect((await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent||null).toBe(null);}});
+    await clean('delete owned epic',async()=>{await ownEpic();await request('DELETE',`/rest/api/3/issue/${journal.epic.key}`);expect((await request('GET',`/rest/api/3/issue/${journal.epic.key}`,{raw:true})).status).toBe(404);journal.epicDeleted=true;});
+   }else if(journal.phase==='epic-create-requested')cleanupErrors.push(Error(`Uncertain epic create; reconcile exact owned summary before retry: ${summary}`));
+   if(cleanupErrors.length)throw new AggregateError([...(testFailure?[testFailure]:[]),...cleanupErrors],'Epic target test and/or owned cleanup failed; original evidence retained');
   }
  },[[0,1]]);
 });
