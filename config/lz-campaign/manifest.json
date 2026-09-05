@@ -290,6 +290,18 @@
       "grep": "private observations:",
       "minTests": 1,
       "timeoutSeconds": 1200
+    },
+    {
+      "id": "baseline-visible-ghost",
+      "status": "ready",
+      "acceptance": [
+        "HIST-VISIBLE-EXPOSED-BASELINE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-baseline-visual.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 900
     }
   ]
 }
