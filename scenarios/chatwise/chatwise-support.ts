@@ -35,6 +35,12 @@ import { dumpForgeFrames, enterForgeSurface } from "../../forge/frame";
 import { assertLoggedIn } from "../../forge/browser";
 import { openIssuePanel } from "../../forge/host";
 import { get, del } from "../../data/jira.mjs";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+import nodeOs from "node:os";
+import nodePath from "node:path";
+
+const execFileAsync = promisify(execFile);
 
 /** `window` key each entry point publishes its booted app instance on. */
 export const GLOBAL_APP = "chatWiseGlobal";
@@ -785,6 +791,110 @@ export async function awaitSwapSettled(frame: FrameLocator, timeoutMs = 5_000): 
     .first()
     .waitFor({ state: "detached", timeout: timeoutMs })
     .catch(() => {}); // no ghost at all (first render) is the common case
+}
+
+/* ------------------------------------------------------------------ */
+/* The backend's own log window                                        */
+/* ------------------------------------------------------------------ */
+
+/**
+ * READ THE APP'S LOGS FROM A SPEC — three traps, all of them measured.
+ *
+ * 1. **`forge logs` TRUNCATES SILENTLY.** It caps output at roughly 30 lines
+ *    REGARDLESS of `--since`, and says nothing about having cut anything. So a
+ *    grep over the default output reports "not found" for a line that IS in the
+ *    log, and the investigation reasonably concludes the backend never ran.
+ *    That cost two live runs on a 900-second stall. `-n 2000`, always.
+ *
+ * 2. **IT LAGS BY MINUTES.** Measured 5 Sep 2026 on wolfaenpak: a line written
+ *    at 17:33:05 was still absent from `--since 20m` at 17:35:50 and present by
+ *    17:39. A spec that reads once, or polls for two minutes, reports an empty
+ *    window — which is indistinguishable from "no request was ever made", and
+ *    that is exactly how an environmental silence becomes a false P0.
+ *    `logWindow()` polls to a deadline for a line the caller names.
+ *
+ * 3. **PLAYWRIGHT SETS `FORCE_COLOR` ON CHILD PROCESSES**, so `forge logs`
+ *    emits ANSI colour codes into a pipe it would never colour from a shell.
+ *    The level token arrives wrapped in escape sequences, no line matches a
+ *    plain-text parser, and the spec finds ZERO lines while the identical
+ *    command in a terminal prints 38. Measured: 7,179 bytes through `execFile`
+ *    against 6,744 through a shell redirect, the difference being 435 bytes of
+ *    escapes. Stripped here AND suppressed through the child env, because
+ *    either alone is one library upgrade away from the same silence.
+ *
+ * ONE HOME: two specs needed this within an hour of each other, and a second
+ * copy would have been the third place in this repo to re-derive a truncation
+ * rule that has already cost days.
+ */
+export interface LogLine {
+  /** epoch ms, parsed from the line's own ISO timestamp. */
+  at: number;
+  /** The message, with the level, timestamp and invocation id stripped. */
+  text: string;
+}
+
+/** CSI colour sequences, built from a code point so no raw ESC is in the source. */
+const ANSI = new RegExp(`${String.fromCharCode(27)}\\[[0-9;]*m`, "g");
+const LOG_LINE = /^(?:INFO|WARN|ERROR|DEBUG)\s+(\S+Z)\s+\S+\s+(.*)$/;
+
+/** Where `forge logs` has to be run from: the app repo. */
+export const APP_REPO =
+  process.env.CHATWISE_REPO || nodePath.join(nodeOs.homedir(), "Projects/ChatWise");
+
+export async function readForgeLogs(sinceMinutes = 30): Promise<LogLine[]> {
+  const { stdout } = await execFileAsync(
+    "npx",
+    ["forge", "logs", "--environment", "development", "--since", `${sinceMinutes}m`, "-n", "2000"],
+    {
+      cwd: APP_REPO,
+      timeout: 180_000,
+      maxBuffer: 32 * 1024 * 1024,
+      env: { ...process.env, FORCE_COLOR: "0", NO_COLOR: "1" },
+    },
+  ).catch((e) => ({ stdout: String((e as { stdout?: string })?.stdout || "") }));
+  const out: LogLine[] = [];
+  for (const raw of String(stdout).replace(ANSI, "").split("\n")) {
+    const m = raw.match(LOG_LINE);
+    if (!m) continue;
+    const at = Date.parse(m[1]);
+    if (Number.isFinite(at)) out.push({ at, text: m[2] });
+  }
+  return out;
+}
+
+/**
+ * Poll the log window until `pred` is satisfied, then return every parsed line.
+ * On timeout it returns what it has AND says so — a caller must be able to tell
+ * "the line is not there" from "the log has not caught up", and both of those
+ * from "the parser matched nothing", which is why the counts are printed.
+ */
+export async function logWindow(
+  page: Page,
+  pred: (lines: LogLine[]) => boolean,
+  o: { timeoutMs?: number; intervalMs?: number; label?: string } = {},
+): Promise<LogLine[]> {
+  const timeoutMs = o.timeoutMs ?? 600_000;
+  const intervalMs = o.intervalMs ?? 20_000;
+  const deadline = Date.now() + timeoutMs;
+  let lines: LogLine[] = [];
+  for (;;) {
+    lines = await readForgeLogs();
+    if (pred(lines)) return lines;
+    if (Date.now() > deadline) {
+      console.warn(
+        `[logs] gave up after ${Math.round(timeoutMs / 1000)}s waiting for ` +
+          `${o.label || "the expected line"} — ${lines.length} line(s) parsed in the window. ` +
+          `Zero parsed with a non-empty log means the PARSER missed, not the app.`,
+      );
+      return lines;
+    }
+    await page.waitForTimeout(intervalMs);
+  }
+}
+
+/** Render a log slice for an assertion message. */
+export function describeLogs(lines: LogLine[]): string {
+  return lines.map((l) => `${new Date(l.at).toISOString()} ${l.text}`).join("\n") || "(nothing)";
 }
 
 export const SCRIPTED = {

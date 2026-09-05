@@ -42,16 +42,15 @@
 // never called: it spends a credit to learn what the search turn proves better.
 import { test, expect } from "../../fixtures/forge";
 import type { Page, FrameLocator, Locator } from "@playwright/test";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
 import fs from "node:fs";
-import os from "node:os";
 import path from "node:path";
 import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";
 import {
   GLOBAL_APP,
   callResolver,
+  describeLogs,
+  logWindow,
   openGlobalPage,
   skipIfQuotaBlocked,
   waitForChatApp,
@@ -59,7 +58,6 @@ import {
 
 const T = getTarget("chatwise-admin");
 const CHAT = getTarget("chatwise-global");
-const execFileP = promisify(execFile);
 
 /** Where the operator left the provider key. Never printed, never committed. */
 const KEY_FILE =
@@ -68,8 +66,6 @@ const KEY_FILE =
     "/private/tmp/claude-501/-Users-mihaiperdum-Projects-ChatWise",
     "6fbc7d3d-08a3-41d3-9673-62eea36d3527/scratchpad/.serper_key",
   );
-/** The app repo, because `forge logs` is only meaningful from inside it. */
-const APP_REPO = process.env.CHATWISE_REPO || path.join(os.homedir(), "Projects/ChatWise");
 
 type Root = Page | FrameLocator;
 const PROBE_TAB = "Beta access";
@@ -90,62 +86,6 @@ async function resolveAdminRoot(page: Page, timeout = 40_000): Promise<Root> {
     }
     if (Date.now() > deadline) throw new Error("admin page never rendered its tabs");
     await page.waitForTimeout(500);
-  }
-}
-
-interface LogLine {
-  at: number;
-  text: string;
-}
-
-/**
- * The backend's own log window, parsed to `{at, text}`.
- *
- * `forge logs` CAPS OUTPUT AT ~30 LINES REGARDLESS OF `--since`, silently, so
- * `-n 2000` is not a tuning choice — without it a grep reports "not found" for
- * a line that is in the log, which is how a stall went undiagnosed across two
- * live runs. It also LAGS: the caller polls.
- */
-async function readLogs(sinceMinutes = 20): Promise<LogLine[]> {
-  const { stdout } = await execFileP(
-    "npx",
-    ["forge", "logs", "--environment", "development", "--since", `${sinceMinutes}m`, "-n", "2000"],
-    { cwd: APP_REPO, timeout: 180_000, maxBuffer: 32 * 1024 * 1024 },
-  ).catch((e) => ({ stdout: String((e as { stdout?: string })?.stdout || "") }));
-  const out: LogLine[] = [];
-  for (const raw of String(stdout).split("\n")) {
-    const m = raw.match(/^(?:INFO|WARN|ERROR|DEBUG)\s+(\S+Z)\s+\S+\s+(.*)$/);
-    if (!m) continue;
-    const at = Date.parse(m[1]);
-    if (Number.isFinite(at)) out.push({ at, text: m[2] });
-  }
-  return out;
-}
-
-/** Poll the log window until `pred` is satisfied, or give up and return what we saw. */
-async function logsUntil(
-  page: Page,
-  pred: (lines: LogLine[]) => boolean,
-  timeoutMs = 600_000,
-): Promise<LogLine[]> {
-  // THE LAG IS MINUTES, NOT SECONDS. Measured 5 Sep 2026 on this tenant: a line
-  // written at 17:33:05 was still absent from `forge logs --since 20m` at
-  // 17:35:50 and present by 17:39. A 150-second poll therefore reported "the
-  // backend logged nothing", which is indistinguishable from "no request was
-  // ever made" — the exact false P0 this spec exists to avoid producing.
-  const deadline = Date.now() + timeoutMs;
-  let lines: LogLine[] = [];
-  for (;;) {
-    lines = await readLogs();
-    if (pred(lines)) return lines;
-    if (Date.now() > deadline) {
-      console.warn(
-        `[websearch] the log window never showed the expected line within ` +
-          `${Math.round(timeoutMs / 1000)}s (${lines.length} parsed line(s) in the window).`,
-      );
-      return lines;
-    }
-    await page.waitForTimeout(20_000);
   }
 }
 
@@ -350,13 +290,14 @@ test("a web search really leaves Atlassian and comes back cited — and a query 
     /* =================================================================== */
     /* THE LOGS — the consumer's own account of both turns                 */
     /* =================================================================== */
-    const lines = await logsUntil(page, (ls) =>
-      ls.some((l) => l.at >= t1 && /\[WebSearch\] attempt \d+/.test(l.text)),
+    const lines = await logWindow(
+      page,
+      (ls) => ls.some((l) => l.at >= t1 && /\[WebSearch\] attempt \d+/.test(l.text)),
+      { label: "the search turn's `[WebSearch] attempt` line" },
     );
     const window1 = lines.filter((l) => l.at >= t1 && l.at < t2);
     const window2 = lines.filter((l) => l.at >= t2);
-    const say = (ls: LogLine[]) =>
-      ls.map((l) => `${new Date(l.at).toISOString()} ${l.text}`).join("\n") || "(nothing)";
+    const say = describeLogs;
     console.log(
       `[websearch] SEARCH-TURN log window:\n${say(
         window1.filter((l) => /\[WebSearch\]|\[Tools\] webSearch|\[Consumer\] web search|\[searchGuard\]/.test(l.text)),

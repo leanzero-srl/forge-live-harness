@@ -43,6 +43,8 @@ import { getTarget } from "../../config/targets";
 import {
   GLOBAL_APP,
   callResolver,
+  describeLogs,
+  logWindow,
   openGlobalPage,
   skipIfQuotaBlocked,
   waitForChatApp,
@@ -214,6 +216,113 @@ test("a generated deck downloads as a real .pptx, and it is still there after a 
       Buffer.from(again.base64, "base64").length,
       "the deck came back a different size after a reload",
     ).toBe(bytes.length);
+  } finally {
+    if (frame) {
+      await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
+    }
+  }
+});
+
+
+/**
+ * THE CEILING THE MODEL USED TO INVENT.
+ *
+ * `MAX_SLIDES` is 40 and it was stated ONLY in the tool RESULT, so the model
+ * never saw it — and the decision NOT to call a tool is taken from its
+ * DESCRIPTION. Three live runs on v6.102.0 produced three different invented
+ * limits and, in one of them, a refusal up front with no tool call at all:
+ *
+ *     "works best with 5-20 slides"
+ *     "idealerweise 5-10 Folien"
+ *     — and a promise to build 45 outright
+ *
+ * The number is interpolated into the schema now, from the same constant the
+ * renderer throws on. So a 45-slide ask has exactly two correct outcomes and
+ * both of them NAME FORTY: the tool runs and the deck is split, or the model
+ * declines and says forty is the per-call ceiling. Anything that states a
+ * different maximum is the defect back again, and it will be back as a
+ * SENTENCE rather than as an error, which is why the assertion is over the
+ * stated-ceiling shape and not over the presence of the word "40".
+ *
+ * WHY THE TOOL CALL IS RECORDED AND NOT REQUIRED: refusing to build a deck
+ * nobody can use is a legitimate answer to "45 slides", and forcing the call
+ * would pin one of two acceptable behaviours. What is NOT acceptable is a
+ * number the app has never had.
+ */
+test("a 45-slide ask meets the REAL ceiling of 40, not an invented one", async ({ page }) => {
+  test.setTimeout(900_000);
+  const T = getTarget("chatwise-global");
+  const stamp = Date.now();
+  const conversationId = `conv_harness_deck45_${stamp}`;
+  let frame: any = null;
+
+  try {
+    frame = await openGlobalPage(page, T);
+    await waitForChatApp(page, frame, GLOBAL_APP, 120_000);
+    await callResolver(frame, GLOBAL_APP, "createConversation", {
+      conversationId,
+      title: "[harness-test] deck ceiling",
+      personaId: "jira-scrubber",
+    });
+
+    const t0 = Date.now();
+    const result = await ask(
+      frame,
+      page,
+      conversationId,
+      "Build me a 45-slide PowerPoint deck introducing agile ceremonies to a new team. " +
+        "Do not attach it to any Jira issue.",
+    );
+    const reply = String(result.response || "");
+    console.log(`[deck45] reply:\n${reply.slice(0, 2000)}`);
+    skipIfQuotaBlocked(reply, "deck-download/45-slide ceiling");
+
+    // Recorded, not required — see this test's header.
+    const lines = await logWindow(
+      page,
+      (ls) => ls.some((l) => l.at >= t0 && /^\[Consumer\] toolset:/.test(l.text)),
+      { label: "the ceiling turn's consumer line" },
+    );
+    const win = lines.filter((l) => l.at >= t0);
+    const called = win.filter((l) => /^\[Tools\] createPresentation/.test(l.text));
+    console.log(
+      `[deck45] createPresentation called=${called.length}\n` +
+        describeLogs(win.filter((l) => /^\[Tools\]/.test(l.text))),
+    );
+
+    // ---- THE REAL NUMBER IS IN THE ANSWER ---------------------------------
+    expect(
+      reply,
+      "the reply never names 40 — the ONLY per-call slide ceiling this app has. Either it " +
+        "silently built something smaller, or it is back to guessing.",
+    ).toMatch(/\b40\b/);
+
+    // ---- AND NO OTHER NUMBER IS PRESENTED AS THE CEILING ------------------
+    const stated = [
+      ...reply.matchAll(
+        /(?:max(?:imum|imal)?|limit(?:ed)?(?:\s+to)?|up to|no more than|capped? at|höchstens|maximal)\D{0,12}(\d{1,3})\s*(?:slides?|folien)/gi,
+      ),
+    ].map((m) => m[1]);
+    const wrong = stated.filter((n) => n !== "40");
+    expect(
+      wrong,
+      `the reply states a per-call slide ceiling that is not 40: ${JSON.stringify(stated)}. ` +
+        `MAX_SLIDES is 40 and it is interpolated into the tool's own description, so any other ` +
+        `number is invented. Reply:\n${reply.slice(0, 1500)}`,
+    ).toEqual([]);
+
+    // The measured shape of the invented limit was a RANGE recommendation
+    // ("works best with 5-20 slides"), which names no maximum at all and so
+    // slips past the pattern above.
+    const ranges = [...reply.matchAll(/\b(\d{1,3})\s*[-–]\s*(\d{1,3})\s*(?:slides?|folien)/gi)].map(
+      (m) => m[0],
+    );
+    expect(
+      ranges,
+      `the reply recommends a slide RANGE (${JSON.stringify(ranges)}). That is the exact shape of ` +
+        `the invented ceiling measured on v6.102.0 — "works best with 5-20 slides" — and the app ` +
+        `has no such guidance anywhere.`,
+    ).toEqual([]);
   } finally {
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
