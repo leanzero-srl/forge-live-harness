@@ -136,3 +136,24 @@ export async function dumpForgeFrames(page: Page, settleMs = 1200): Promise<Fram
     canonicalTestidFound: iframes.some((i) => i.testid === "hosted-resources-iframe"),
   };
 }
+
+/**
+ * Bring an element that lives INSIDE a cross-origin Forge iframe into the top window's viewport.
+ * `scrollIntoView` from inside the iframe scrolls only the iframe's own document — Confluence's
+ * real scroller is a DIV (`#AkMainContent`), and Playwright's click then waits forever for an
+ * element that is "visible" but 1,500px below the fold (realm-workflow-persist, 2026-09-05, once
+ * the Workflow tab grew a dashboard above the settings). A mouse wheel over the page moves the
+ * host scroller; step until the element's box sits inside the viewport.
+ */
+export async function ensureInViewport(page: Page, target: Locator, { maxSteps = 12 } = {}): Promise<void> {
+  const vp = page.viewportSize() || { width: 1280, height: 800 };
+  for (let i = 0; i < maxSteps; i++) {
+    const box = await target.boundingBox().catch(() => null);
+    if (!box) { await page.waitForTimeout(300); continue; }
+    if (box.y >= 0 && box.y + box.height <= vp.height) return;
+    const delta = box.y + box.height > vp.height ? Math.min(box.y + box.height - vp.height + 120, 1200) : Math.max(box.y - 120, -1200);
+    await page.mouse.move(Math.floor(vp.width / 2), Math.floor(vp.height / 2));
+    await page.mouse.wheel(0, delta);
+    await page.waitForTimeout(250);
+  }
+}

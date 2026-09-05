@@ -7,7 +7,7 @@
 // @covers resolver:get-space-workflow-settings
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
-import { enterForgeSurface } from "../../forge/frame";
+import { enterForgeSurface, ensureInViewport } from "../../forge/frame";
 import { BASE_URL } from "../../config/env";
 const T = getTarget("sentinel-vault-realm");
 const REVIEW = 'input[aria-label="Re-review Approved pages after this many days"]';
@@ -19,7 +19,10 @@ async function openWorkflow(page: any) {
   const app = s.frame;
   await expect(app.locator(".space-admin-title")).toBeVisible({ timeout: 15000 });
   await app.locator(".tab-navigation .tab-button", { hasText: "Workflow" }).click();
-  await page.waitForTimeout(1600);
+  // The dashboard above the settings loads a beat later and pushes the editor ~800px down;
+  // wait for it to settle or the Save click below aims at where the button WAS.
+  await app.locator(".wf-dash-loading").waitFor({ state: "detached", timeout: 20000 }).catch(() => {});
+  await page.waitForTimeout(800);
   return app;
 }
 async function ensureEnabledReviewVisible(app: any, page: any) {
@@ -42,7 +45,11 @@ test("workflow review-period change persists across a reload (set-space-workflow
     const cur = (await review.inputValue()).trim();
     next = cur === "90" ? "120" : "90";
     await review.fill(next);
-    await app.getByRole("button", { name: /Save workflow settings/i }).click();
+    // The Workflow tab carries the dashboard above the settings, so Save sits well below the
+    // fold; the host scroller is a DIV the iframe cannot scroll — wheel it into view first.
+    const save = app.getByRole("button", { name: /Save workflow settings/i });
+    await ensureInViewport(page, save);
+    await save.click();
     await expect(app.locator(".alert-success")).toBeVisible({ timeout: 15000 });
     console.log("### saved reviewAfterDays =", next);
   }, { expectation: { assertion: "the workflow review-period saves with a success confirmation", narrative: "Sets review period and Saves; asserts success alert." } });

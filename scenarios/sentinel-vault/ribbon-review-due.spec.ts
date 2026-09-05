@@ -22,7 +22,11 @@ const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete",
 const queryKvs = async (prefix: string): Promise<string[]> => (await getTestState("sentinel-vault", { what: "query", prefix })).keys || [];
 const doc = (...n: any[]) => ({ version: 1, type: "doc", content: n });
 const DAY = 24 * 3600 * 1000;
-const ymd = (d: Date) => d.toISOString().slice(0, 10);
+// The picker offers LOCAL calendar days (data-date is a local Y-M-D); the app stores the picked
+// day as a UTC end-of-day instant and renders it in UTC, so the stored ISO's date part and the
+// chip's day are the picked Y-M-D itself — compare strings, never re-zoned Dates.
+const pad = (n: number) => String(n).padStart(2, "0");
+const ymd = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 
 test.describe.configure({ timeout: 240_000, retries: 1 });
 
@@ -97,8 +101,9 @@ test("steward moves the review date from the ribbon; the dialog is fully visible
 
     // The record moved, and the chip says so.
     let rec: any = null;
-    for (let i = 0; i < 10; i++) { rec = await getKvs(`workflow-state-${p.id}`); if (rec?.reviewDueAt && ymd(new Date(rec.reviewDueAt)) === ymd(target)) break; await page.waitForTimeout(1500); }
-    expect(rec?.reviewDueAt && ymd(new Date(rec.reviewDueAt)), "the record carries the picked date").toBe(ymd(target));
+    for (let i = 0; i < 10; i++) { rec = await getKvs(`workflow-state-${p.id}`); if (rec?.reviewDueAt && String(rec.reviewDueAt).slice(0, 10) === ymd(target)) break; await page.waitForTimeout(1500); }
+    expect(rec?.reviewDueAt && String(rec.reviewDueAt).slice(0, 10), "the record carries the picked date").toBe(ymd(target));
+    expect(String(rec?.reviewDueAt), "…anchored to the END of that day in UTC").toBe(`${ymd(target)}T23:59:59.999Z`);
     let after = "";
     for (let i = 0; i < 10; i++) {
       after = ((await ribbon.locator('[data-testid="wf-review-due"]').innerText().catch(() => "")) as string).replace(/\s+/g, " ").trim();
@@ -108,7 +113,7 @@ test("steward moves the review date from the ribbon; the dialog is fully visible
     console.log("### review-due after:", JSON.stringify(after));
     expect(after, "the chip re-rendered with the new date").not.toBe(before);
     const monthName = target.toLocaleDateString("en-US", { month: "short" });
-    expect(after, `…naming ${monthName} ${target.getUTCDate()}`).toMatch(new RegExp(`${monthName}\\s+${target.getUTCDate()}\\b`));
+    expect(after, `…naming ${monthName} ${target.getDate()}`).toMatch(new RegExp(`${monthName}\\s+${target.getDate()}\\b`));
     await page.screenshot({ path: `${OUT}/2-after-save.png` });
     console.log("### review date set from the ribbon ✓");
   } finally {

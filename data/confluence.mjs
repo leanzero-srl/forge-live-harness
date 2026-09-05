@@ -87,6 +87,21 @@ export async function deletePage(pageId) {
   return request("DELETE", `/wiki/api/v2/pages/${pageId}`, { raw: true });
 }
 
+/** Permanently purge a TRASHED page (v2 DELETE ?purge=true — unrecoverable; GET 404s afterwards). */
+export async function purgePage(pageId) {
+  const res = await request("DELETE", `/wiki/api/v2/pages/${pageId}?purge=true`, { raw: true });
+  if (res.status >= 400) throw new Error(`purgePage ${pageId} -> ${res.status}`);
+}
+
+/** v2 page status: "current" | "archived" | "trashed" | "deleted" (404). Probed 2026-09-05: a trashed page
+ *  still answers a plain GET with status "trashed"; only a purge makes it 404. */
+export async function getPageStatus(pageId) {
+  const res = await request("GET", `/wiki/api/v2/pages/${pageId}`, { raw: true });
+  if (res.status === 404) return "deleted";
+  if (res.status >= 400) throw new Error(`getPageStatus ${pageId} -> ${res.status}`);
+  return JSON.parse(res.text).status;
+}
+
 export async function postComment(pageId, storageHtml) {
   return post(`/wiki/rest/api/content/${pageId}/child/comment`, {
     type: "comment",
