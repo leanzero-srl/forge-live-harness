@@ -361,6 +361,68 @@ export function errorBubbles(t: RenderedMessage[]): RenderedMessage[] {
 /* Composer driving                                                     */
 /* ------------------------------------------------------------------ */
 
+/**
+ * PUT THE TEXT IN AND PROVE IT WENT IN. Use this instead of fill+click.
+ *
+ * A 900-second "no assistant reply" was investigated as a product hang for two
+ * runs. It was not one: the click never entered the ChatWise iframe at all. A
+ * capture-phase listener on #sendButton and a bubble listener on document both
+ * counted ZERO, while Playwright reported the click delivered in 0.0s with no
+ * error — the app was healthy, the button live and enabled, the text sitting in
+ * the composer, and calling `chat.sendMessage()` directly worked on the spot.
+ * The host page had 24 leftover `.atlaskit-portal` nodes from the admin journey
+ * that runs immediately before it in alphabetical order, and something in that
+ * host-side wreckage swallows the event. It clears by itself: the next two
+ * attempts in the same window delivered and passed.
+ *
+ * SIX journey specs hand-rolled `fill(); click(); poll(assistant count)` and not
+ * one of them checked that the USER'S OWN bubble had landed. So a swallowed
+ * click burns the whole timeout — up to fifteen minutes — and then reports
+ * "no assistant reply", which reads exactly like the app hanging. The backend
+ * had never been asked for anything; the conversation was deleted with 0 message
+ * rows.
+ *
+ * The user's bubble is rendered synchronously by the composer, with no model
+ * and no network in the way, so it is the cheapest possible proof that input was
+ * delivered. It separates "the app did not answer" — a real defect — from "the
+ * app was never asked", and it does it in seconds instead of a quarter of an
+ * hour. One retry, because the fault is transient by observation.
+ */
+export async function deliverMessage(
+  page: Page,
+  frame: FrameLocator,
+  text: string,
+  label = "",
+): Promise<void> {
+  const seen = async () =>
+    (await readThread(frame)).some((m) => m.role === "user" && m.text.includes(text));
+
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    await frame.locator("#chatInput").fill(text);
+    await frame.locator("#sendButton").click();
+    const deadline = Date.now() + 15_000;
+    while (Date.now() < deadline) {
+      if (await seen()) return;
+      await page.waitForTimeout(300);
+    }
+    if (attempt === 1) {
+      // Not a product failure and not worth failing the run over: reset the
+      // host page's focus and event path, then try once more.
+      console.log(`[deliver] the click did not reach the iframe${label ? ` (${label})` : ""} — retrying once`);
+      await page.mouse.click(2, 2).catch(() => {});
+      await frame.locator("#chatInput").click().catch(() => {});
+    }
+  }
+
+  throw new Error(
+    `INPUT WAS NEVER DELIVERED${label ? ` (${label})` : ""}: the user's own bubble for ` +
+      `"${text.slice(0, 60)}…" did not render within 15s across two attempts. The composer ` +
+      `renders it synchronously, so this is the HARNESS failing to deliver a click — not the ` +
+      `app failing to answer. Do NOT read this as a product hang; check for leftover host-page ` +
+      `overlays from the previously-run spec.`,
+  );
+}
+
 /** Type into the composer and press Send. Waits for the user bubble to land. */
 export async function sendMessage(page: Page, frame: FrameLocator, text: string): Promise<void> {
   const input = frame.locator("#chatInput");

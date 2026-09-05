@@ -11,6 +11,7 @@
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
+  deliverMessage,
   GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage, readAppState,
   settleBootSelection, waitForChatApp,
 } from "./chatwise-support";
@@ -48,11 +49,13 @@ test("PO wizard journey: starter flips persona, options render, a click answers"
     expect(filled.length, "the starter did not fill the composer").toBeGreaterThan(10);
 
     // Make the initiative concrete so the wizard has something to ask about.
-    await frame.locator("#chatInput").fill(
+    await deliverMessage(
+      page,
+      frame,
       "I want an Epic for a customer-facing status page: real-time incident " +
         "banners, per-component uptime history, and email subscriptions for outages.",
+      "po-wizard-ui",
     );
-    await frame.locator("#sendButton").click();
 
     conversationId = (await readAppState<string | null>(
       frame, GLOBAL_APP, "app.getActiveConversationId()",

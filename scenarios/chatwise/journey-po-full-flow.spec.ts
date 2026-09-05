@@ -18,6 +18,7 @@ import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { get, del } from "../../data/jira.mjs";
 import {
+  deliverMessage,
   ERROR_BUBBLE, GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage,
   readAppState, readThread, settleBootSelection, waitForChatApp,
 } from "./chatwise-support";
@@ -45,10 +46,9 @@ const QUOTA_BUBBLE = /token allowance|Nothing was lost/i;
 test.describe.configure({ timeout: 1_500_000 });
 
 /** Send text and wait for the NEXT settled assistant turn; returns its text. */
-async function turn(_page: any, frame: any, text: string): Promise<string> {
+async function turn(page: any, frame: any, text: string): Promise<string> {
   const before = await frame.locator(".message.assistant").count();
-  await frame.locator("#chatInput").fill(text);
-  await frame.locator("#sendButton").click();
+  await deliverMessage(page, frame, text, "po-full-flow");
   await expect
     .poll(async () => frame.locator(".message.assistant").count(), { timeout: 300_000 })
     .toBeGreaterThan(before);

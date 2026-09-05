@@ -8,6 +8,7 @@
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
+  deliverMessage,
   BASE_URL, PANEL_APP, callResolver, openPanel, waitForChatApp,
 } from "./chatwise-support";
 // eslint-disable-next-line
@@ -80,10 +81,12 @@ test("issue panel journey: boot, in-panel upload, attachment read, persona lock"
     await expect(chip.locator(".chip-meta")).toContainText("chars");
 
     // ---- Ask the model to read the ISSUE ATTACHMENT (live turn) ------------
-    await frame.locator("#chatInput").fill(
+    await deliverMessage(
+      page,
+      frame!,
       "Read the file attached to this issue and reply with ONLY the code word it contains. No other words.",
+      "issue-panel",
     );
-    await frame.locator("#sendButton").click();
 
     await expect
       .poll(async () => frame!.locator(".message.assistant").count(), { timeout: 300_000 })

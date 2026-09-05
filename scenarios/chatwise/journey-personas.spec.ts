@@ -17,6 +17,7 @@
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
+  deliverMessage,
   GLOBAL_APP, PANEL_APP, awaitSwapSettled, callResolver, openGlobalPage, openPanel,
   readAppState, settleBootSelection, waitForChatApp,
 } from "./chatwise-support";
@@ -41,8 +42,7 @@ async function pickPersona(frame: any, name: RegExp): Promise<void> {
 /** Send through the composer and wait for a settled assistant reply. */
 async function sendAndAwait(page: any, frame: any, appKey: string, text: string): Promise<string> {
   const before = await frame.locator(".message.assistant").count();
-  await frame.locator("#chatInput").fill(text);
-  await frame.locator("#sendButton").click();
+  await deliverMessage(page, frame, text, "personas");
   await expect
     .poll(async () => frame.locator(".message.assistant").count(), { timeout: 300_000 })
     .toBeGreaterThan(before);

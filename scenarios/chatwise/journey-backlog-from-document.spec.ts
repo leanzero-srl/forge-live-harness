@@ -17,6 +17,7 @@ import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { del, get } from "../../data/jira.mjs";
 import {
+  deliverMessage,
   ERROR_BUBBLE, GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage,
   readAppState, readThread, settleBootSelection, waitForChatApp,
 } from "./chatwise-support";
@@ -63,10 +64,9 @@ Acceptance: a released locker becomes available and the event is recorded.
 Payment for parcels is out of scope for this version.
 `;
 
-async function turn(frame: any, text: string, label: string): Promise<string> {
+async function turn(page: any, frame: any, text: string, label: string): Promise<string> {
   const before = await frame.locator(".message.assistant").count();
-  await frame.locator("#chatInput").fill(text);
-  await frame.locator("#sendButton").click();
+  await deliverMessage(page, frame, text, "backlog-from-document");
   await expect
     .poll(async () => frame.locator(".message.assistant").count(), { timeout: 900_000 })
     .toBeGreaterThan(before);
@@ -105,6 +105,7 @@ test("a document becomes a real, correctly-parented backlog in Jira", async ({ p
 
     // ---- 1. the draft ---------------------------------------------------
     const preview = await turn(
+      page,
       frame,
       `Generate the full backlog from this document in project ${PROJECT}, with no sub-tasks.`,
       "1 — draft",
@@ -126,7 +127,7 @@ test("a document becomes a real, correctly-parented backlog in Jira", async ({ p
     expect(draftSession, "resolver call failed").toBeTruthy();
 
     // ---- 2. approval ----------------------------------------------------
-    const created = await turn(frame, `approve`, "2 — approve");
+    const created = await turn(page, frame, `approve`, "2 — approve");
     expect(created, "approval did not create anything").toMatch(/issues created/i);
 
     for (const m of created.matchAll(new RegExp(`\\b${PROJECT}-\\d+\\b`, "g"))) createdKeys.push(m[0]);
@@ -172,7 +173,7 @@ test("a document becomes a real, correctly-parented backlog in Jira", async ({ p
     expect(red.length, `error bubble: ${red[0]?.text?.slice(0, 200)}`).toBe(0);
 
     // ---- 5. re-approving must not duplicate -----------------------------
-    const again = await turn(frame, `approve`, "3 — approve again (must not duplicate)");
+    const again = await turn(page, frame, `approve`, "3 — approve again (must not duplicate)");
     expect(again, "a second approval re-ran the creation").not.toMatch(/^## ✅ \d+ issues created/m);
   } finally {
     // Delete deepest-first so a parent never blocks on its children.

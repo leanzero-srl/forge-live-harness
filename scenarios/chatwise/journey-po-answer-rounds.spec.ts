@@ -18,6 +18,7 @@
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
+  deliverMessage,
   GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage, readAppState,
   settleBootSelection, waitForChatApp,
 } from "./chatwise-support";
@@ -57,12 +58,14 @@ test("PO wizard: recommended clicks are always understood, round after round", a
       timeout: 10_000,
     });
 
-    await frame.locator("#chatInput").fill(
+    await deliverMessage(
+      page,
+      frame,
       "I want an Epic for a support-deflection knowledge base: AI-suggested " +
         "articles inside the ticket form, weekly gap reports from unresolved " +
         "tickets, and article freshness scoring.",
+      "po-answer-rounds",
     );
-    await frame.locator("#sendButton").click();
     conversationId = (await readAppState<string | null>(
       frame, GLOBAL_APP, "app.getActiveConversationId()",
     )) as string | null;
