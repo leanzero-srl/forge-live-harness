@@ -91,6 +91,7 @@ export const row = (frame: any, key: string) => frame.locator(`[data-testid="tab
 export async function table(page: any, name: string) {
   const frame = await openPlan(page, name);
   await frame.getByRole('button', { name: /^Table/i }).first().click();
+  await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);
   return frame;
 }
 export async function editDuration(frame: any, key: string, value: string) {
