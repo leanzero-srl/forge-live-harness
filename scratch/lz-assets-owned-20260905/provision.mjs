@@ -70,7 +70,7 @@ if(command==='fields'){
  for(const role of ['multiple','gate']){
   if(!state.fields[role])await write(`field-${role}`,'POST','/rest/api/3/field',{name:`${prefix} ${role}`,description:`Owned ${marker}. Retained for LeanZero UAT; do not modify shared COGTEST field.`,type:nativeType},b=>{state.fields[role]={id:b.id,name:b.name};});
   const field=state.fields[role];assert.match(field.id,/^customfield_\d+$/);assert.notEqual(field.id,'customfield_11081');
-  const inventory=await read('/rest/api/3/field');const actual=inventory.find(f=>f.id===field.id);assert.equal(actual?.name,field.name);assert.equal(actual?.schema?.custom,nativeType);
+  const inventory=await read(`/rest/api/3/field/search?id=${field.id}`);const actual=inventory.values.find(f=>f.id===field.id);assert.equal(actual?.name,field.name);assert.equal(actual?.schema?.custom,nativeType);
   if(!field.contextId)await write(`context-${role}`,'POST',`/rest/api/3/field/${field.id}/context`,{name:`${prefix} JT Task`,description:marker,projectIds:['10008'],issueTypeIds:['10005']},b=>{field.contextId=String(b.id);});
   const contexts=await read(`/rest/api/3/field/${field.id}/context`);assert.ok(contexts.values.some(c=>String(c.id)===field.contextId&&!c.isGlobalContext&&!c.isAnyIssueType));
   field.contexts=contexts.values;field.projectMappings=await read(`/rest/api/3/field/${field.id}/context/projectmapping?contextId=${field.contextId}`);field.issueTypeMappings=await read(`/rest/api/3/field/${field.id}/context/issuetypemapping?contextId=${field.contextId}`);save();
