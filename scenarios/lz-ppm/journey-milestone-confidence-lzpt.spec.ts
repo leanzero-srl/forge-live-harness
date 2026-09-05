@@ -133,7 +133,7 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
       read.push({ name: txt, prob: Number(await rows.nth(i).getAttribute("data-probability")) });
     }
     console.log("CARD p50=", p50, "p90=", p90, "milestones=", JSON.stringify(read));
-    await card.screenshot({ path: "evidence/milestone-confidence.png" }).catch(() => {});
+    await card.screenshot({ animations: 'disabled', path: "evidence/milestone-confidence.png" }).catch(() => {});
 
     expect(n, "both milestones are listed on the card").toBe(2);
     const early = read.find((r) => r.name.includes(EARLY.name))!;

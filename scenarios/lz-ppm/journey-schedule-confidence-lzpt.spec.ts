@@ -26,7 +26,7 @@ test('dashboard: schedule confidence computes ordered distributions and replaces
     await expect(card.locator('[data-testid="sc-coverage"]')).toHaveAttribute('data-dated', '3');
     await expect(card.locator('[data-testid="sc-coverage"]')).toHaveAttribute('data-total', '3');
     await expect(card.locator('[data-testid="sc-driver"]')).toHaveCount(3);
-    await card.screenshot({ path: testInfo.outputPath('forecast-medium.png') });
+    await card.screenshot({ animations: 'disabled', path: testInfo.outputPath('forecast-medium.png') });
 
     const bar = card.locator('[data-testid="sc-bar"]').first();
     await bar.hover();
@@ -37,7 +37,7 @@ test('dashboard: schedule confidence computes ordered distributions and replaces
     await expect(card).toContainText('High −20% / +60%');
     expect(high.p90 >= medium.p90).toBe(true);
     expect(high.p90 > high.p50, 'multi-day terminal task produces a genuine finish range').toBe(true);
-    await card.screenshot({ path: testInfo.outputPath('forecast-high.png') });
+    await card.screenshot({ animations: 'disabled', path: testInfo.outputPath('forecast-high.png') });
 
     // Observe real renders during fast preset replacements. A displayed P90 may
     // never belong to a different preset from the visible custom Select label.
@@ -61,7 +61,7 @@ test('dashboard: schedule confidence computes ordered distributions and replaces
     await expect(card).toContainText('Low −10% / +15%');
     console.log('LOW AFTER RAPID REPLACEMENT', JSON.stringify(low), 'observed renders', samples.length);
     await testInfo.attach('preset-replacement-observations', { body: JSON.stringify(samples, null, 2), contentType: 'application/json' });
-    await card.screenshot({ path: testInfo.outputPath('forecast-low-final.png') });
+    await card.screenshot({ animations: 'disabled', path: testInfo.outputPath('forecast-low-final.png') });
   });
 });
 
@@ -83,7 +83,7 @@ test('dashboard: a background refresh cannot turn the card into false certainty'
     expect(after.p90 > after.p50, 'raw-duration reload must retain a distribution').toBe(true);
     expect(after.onBaseline).toBeLessThan(1);
     expect(after.p50).toBe(before.p50);
-    await card.screenshot({ path: testInfo.outputPath('forecast-after-refresh.png') });
+    await card.screenshot({ animations: 'disabled', path: testInfo.outputPath('forecast-after-refresh.png') });
   });
 });
 
@@ -111,7 +111,7 @@ test('dashboard: invalid or missing source dates make the untouched LZPT forecas
     await expect(coverage).toContainText('Forecast unavailable');
     await expect(card).toHaveAttribute('data-p90', '');
     console.log('INVALID COVERAGE', await coverage.innerText());
-    await card.screenshot({ path: testInfo.outputPath('forecast-unavailable-lzpt.png') });
+    await card.screenshot({ animations: 'disabled', path: testInfo.outputPath('forecast-unavailable-lzpt.png') });
   } finally {
     await page.goto('about:blank');
     const after = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
@@ -153,7 +153,7 @@ test('table: a background refresh must not un-normalize the durations', async ({
     await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);
     after = await read();
     console.log('NORMALIZATION DURATIONS', JSON.stringify({ before, after }));
-    await page.screenshot({ path: testInfo.outputPath('normalization-after-refresh.png'), fullPage: true });
+    await page.screenshot({ animations: 'disabled', path: testInfo.outputPath('normalization-after-refresh.png'), fullPage: true });
   });
   // No cleanup or setup can be hidden behind this marker.
   test.fail();
