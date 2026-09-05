@@ -152,6 +152,10 @@ test('apply: owned edit Cancel writes nothing, confirmation writes exact dates a
     await expect(frame.locator('[data-testid="plan-save-btn"]')).toHaveAttribute('data-has-changes', '0');
     await expect(frame.getByRole('button', { name: /^Apply \d+ change/i })).toHaveCount(0);
     console.log('APPLY_REOPEN', JSON.stringify(await snapshot(frame, key)));
+    await expect(row(frame,key)).toBeVisible();
+    await row(frame,key).screenshot({ path: info.outputPath('apply-complete-reopen-row.png'), animations: 'disabled' });
+    await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);
+    await expect(row(frame,key)).toBeVisible();
     await page.screenshot({ path: info.outputPath('apply-complete-reopen.png'), fullPage: true, animations: 'disabled' });
   });
 });

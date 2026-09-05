@@ -34,7 +34,7 @@ test('targets: real release scope CRUD persists and produces independently bound
   await expect(card).toHaveAttribute('data-p90',/^\d{4}-\d{2}-\d{2}$/,{timeout:90_000});
   await expect(card.locator('[data-testid="sc-milestone"]').filter({hasText:'Owned release'})).toHaveAttribute('data-probability','1');
   await expect(card.locator('[data-testid="sc-milestone"]').filter({hasText:'Whole plan control'})).toHaveAttribute('data-probability','0');
-  await page.screenshot({path:info.outputPath('scoped-release-numeric.png'),fullPage:true,animations:'disabled'});
+  await card.screenshot({path:info.outputPath('scoped-release-numeric.png'),animations:'disabled'});
   workspace=await planning(frame);await workspace.getByRole('button',{name:'Targets',exact:true}).click();panel=frame.locator('[data-testid="targets-editor"]');
   await panel.locator('[data-testid="target-row"]').filter({hasText:'Owned release'}).getByRole('button',{name:'Edit',exact:true}).click();const form=panel.locator('form');
   await form.getByLabel('Target name').fill('Owned release revised');await chooseDate(frame,form,'2026-11-30');await expect(form).toBeVisible();await form.getByRole('button',{name:'Save target',exact:true}).click();await expect(form).toHaveCount(0);
@@ -42,7 +42,7 @@ test('targets: real release scope CRUD persists and produces independently bound
   const revised=panel.locator('[data-testid="target-row"]').filter({hasText:'Owned release revised'});await expect(revised).toContainText('2026-11-30');await expect(revised).toContainText('1 leaf tasks');
   await revised.getByRole('button',{name:'Refresh scope',exact:true}).click();await expect(panel).toContainText('Target scope refreshed');
   await revised.getByRole('button',{name:'Delete',exact:true}).click();await frame.getByRole('button',{name:'Delete target',exact:true}).click();await expect(revised).toHaveCount(0);
-  await expect(panel.locator('[data-testid="target-row"]')).toHaveCount(1);await page.screenshot({path:info.outputPath('scoped-target-crud.png'),fullPage:true,animations:'disabled'});
+  await expect(panel.locator('[data-testid="target-row"]')).toHaveCount(1);await panel.screenshot({path:info.outputPath('scoped-target-crud.png'),animations:'disabled'});
  });
 });
 
@@ -61,6 +61,6 @@ test('history: captures retain schedules, active baseline cannot be deleted, rep
   await workspace.getByRole('button',{name:/baseline\s*Commitment one/}).click();await expect(workspace.locator('[data-testid="snapshot-detail"] h3')).toHaveText('Commitment one');await remove();await expect(workspace).toContainText('Capture deleted.');
   frame=await openPlan(page,f.name);workspace=await planning(frame);await expect(workspace.getByRole('button',{name:/baseline\s*Commitment one/})).toHaveCount(0);await workspace.getByRole('button',{name:/baseline\s*Commitment two/}).click();await expect(workspace.locator('[data-testid="snapshot-detail"] h3')).toHaveText('Commitment two');
   expect(await f.read(f.keys[0]),'history capture/activation never writes Jira').toEqual(original);
-  await page.screenshot({path:info.outputPath('history-reopen-retained.png'),fullPage:true,animations:'disabled'});
+  await workspace.screenshot({path:info.outputPath('history-reopen-retained.png'),animations:'disabled'});
  });
 });
