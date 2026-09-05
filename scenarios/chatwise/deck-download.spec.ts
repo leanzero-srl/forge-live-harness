@@ -459,6 +459,49 @@ test("a 45-slide ask meets the REAL ceiling of 40 — and both files actually ar
       `two entries share a handle: ${JSON.stringify(decks)}`,
     ).toBe(decks.length);
 
+    // ---- THREE BUILDS IS THE CEILING, AND ONLY BUILDS COUNT ---------------
+    // v6.105.0 caps a turn at MAX_DECKS_PER_TURN = 3 BUILT decks. The
+    // distinction matters: on v6.104.0 one turn made SEVEN createPresentation
+    // calls (40, 45, 24, 23, 21, 34, 11) of which five produced nothing,
+    // because making decks free removed the only counter there was. A refused
+    // over-ceiling attempt is not a build and must not be charged, or the
+    // model pays for being told no — which is the v6.103.0 defect in a new
+    // coat.
+    //
+    // COUNTED FROM THE LOG, not from the reply: `slides:<array N>` with N <= 40
+    // is a call that could have built. Over-ceiling calls are excluded because
+    // presentation.js refuses them before the renderer.
+    const buildAttempts = calls.filter((l) => {
+      const m = l.text.match(/slides:<array (\d+)>/);
+      return m ? Number(m[1]) <= 40 : false;
+    });
+    console.log(
+      `[deck45] build-shaped calls=${buildAttempts.length} (over-ceiling=${overCeiling.length}, ` +
+        `total=${calls.length})`,
+    );
+    expect(
+      buildAttempts.length,
+      `${buildAttempts.length} build-shaped createPresentation calls in one turn. ` +
+        `MAX_DECKS_PER_TURN is 3 and only BUILT decks count toward it, so a fourth build must be ` +
+        `refused rather than executed.\n${describeLogs(calls)}`,
+    ).toBeLessThanOrEqual(3);
+
+    // IF a fourth was attempted, the refusal has to name the ceiling and the
+    // way through. A budget refusal that does not say "a new message restores
+    // it" reads as a dead end — that rule is why every other budget refusal in
+    // this app carries it.
+    if (buildAttempts.length > 3 || /deck limit|three decks|3 decks/i.test(reply)) {
+      expect(
+        reply,
+        `the reply mentions hitting the deck ceiling but does not name 3:\n${reply.slice(0, 1200)}`,
+      ).toMatch(/\b3\b|three/i);
+      expect(
+        reply,
+        `the deck-ceiling refusal does not tell the user a NEW MESSAGE restores the allowance, ` +
+          `so a per-turn cap reads as a permanent one:\n${reply.slice(0, 1200)}`,
+      ).toMatch(/new message|next message|another message|send.{0,20}again/i);
+    }
+
     // ---- AND THE LOG LINE IS A SHAPE, NOT A PAYLOAD -----------------------
     // v6.103.0 printed the whole deck: forty slides of the user's own text into
     // `forge logs`, which is billed, stored, read by a different audience, and
