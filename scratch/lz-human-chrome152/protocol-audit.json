@@ -1,0 +1,40 @@
+{
+  "commands": 212,
+  "downloadOverrides": [],
+  "methods": {
+    "Browser.getVersion": 6,
+    "Target.setAutoAttach": 9,
+    "Runtime.runIfWaitingForDebugger": 15,
+    "Page.enable": 9,
+    "Page.getFrameTree": 6,
+    "Log.enable": 6,
+    "Page.setLifecycleEventsEnabled": 6,
+    "Runtime.enable": 7,
+    "Page.addScriptToEvaluateOnNewDocument": 6,
+    "Network.enable": 7,
+    "Target.getTargetInfo": 3,
+    "Target.detachFromTarget": 8,
+    "Page.createIsolatedWorld": 6,
+    "Emulation.setUserAgentOverride": 1,
+    "Page.navigate": 6,
+    "Target.attachToBrowserTarget": 3,
+    "Target.attachToTarget": 3,
+    "Runtime.evaluate": 15,
+    "Runtime.callFunctionOn": 48,
+    "Runtime.releaseObject": 12,
+    "DOM.scrollIntoViewIfNeeded": 3,
+    "DOM.getContentQuads": 3,
+    "Input.dispatchMouseEvent": 9,
+    "Target.createTarget": 3,
+    "Page.getLayoutMetrics": 3,
+    "Page.captureScreenshot": 3,
+    "Target.closeTarget": 3,
+    "Browser.close": 3
+  },
+  "sourceContract": {
+    "publicTypes": "node_modules/playwright-core/types/types.d.ts:23413",
+    "CDPSetup": "node_modules/playwright-core/lib/coreBundle.js:42325",
+    "conditionalDownloadOverride": "node_modules/playwright-core/lib/coreBundle.js:37977"
+  },
+  "allThreeCyclesPassed": true
+}

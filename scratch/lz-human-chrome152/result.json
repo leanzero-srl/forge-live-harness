@@ -1,0 +1,217 @@
+{
+  "startedAt": "2026-09-05T23:51:43.031Z",
+  "owned": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV",
+  "profile": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/profile",
+  "downloads": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads",
+  "exe": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "version": "Google Chrome 152.0.7977.76",
+  "launchMode": "direct-headed-binary-CDP-noDefaults",
+  "cycles": [
+    {
+      "cycle": 1,
+      "startedAt": "2026-09-05T23:51:43.079Z",
+      "events": [
+        {
+          "name": "attached-noDefaults",
+          "time": "2026-09-05T23:51:43.537Z"
+        },
+        {
+          "name": "actual-button-click",
+          "time": "2026-09-05T23:51:43.617Z"
+        },
+        {
+          "name": "named-file-bytes-complete",
+          "time": "2026-09-05T23:51:43.821Z"
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:51:46.575Z"
+        },
+        {
+          "name": "graceful-browser-close-requested",
+          "time": "2026-09-05T23:51:46.580Z"
+        },
+        {
+          "name": "process-exit",
+          "time": "2026-09-05T23:51:46.655Z",
+          "code": 0,
+          "signal": null
+        }
+      ],
+      "argv": [
+        "--user-data-dir=/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/profile",
+        "--remote-debugging-port=60865",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "file:///var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/fixture.html?cycle=1"
+      ],
+      "pid": 99495,
+      "cdpVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/152.0.7977.76",
+        "revision": "@0d89dfa2dd7c1ec4b8a14b9f303f887bb63b6174",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+        "jsVersion": "15.2.124.19"
+      },
+      "webdriver": false,
+      "download": {
+        "path": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-1.html",
+        "bytes": 109,
+        "sha256": "d7d8d6d7700dbbe5a8ac4bc12cb1dfad20f1dfe7780f522cfd3253304be03b86"
+      },
+      "history": [
+        [
+          "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-1.html",
+          1,
+          109,
+          109
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "cycle": 2,
+      "startedAt": "2026-09-05T23:51:47.679Z",
+      "events": [
+        {
+          "name": "attached-noDefaults",
+          "time": "2026-09-05T23:51:48.030Z"
+        },
+        {
+          "name": "actual-button-click",
+          "time": "2026-09-05T23:51:48.098Z"
+        },
+        {
+          "name": "named-file-bytes-complete",
+          "time": "2026-09-05T23:51:48.404Z"
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:51:51.015Z"
+        },
+        {
+          "name": "graceful-browser-close-requested",
+          "time": "2026-09-05T23:51:51.021Z"
+        },
+        {
+          "name": "process-exit",
+          "time": "2026-09-05T23:51:51.101Z",
+          "code": 0,
+          "signal": null
+        }
+      ],
+      "argv": [
+        "--user-data-dir=/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/profile",
+        "--remote-debugging-port=60888",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "file:///var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/fixture.html?cycle=2"
+      ],
+      "pid": 99661,
+      "cdpVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/152.0.7977.76",
+        "revision": "@0d89dfa2dd7c1ec4b8a14b9f303f887bb63b6174",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+        "jsVersion": "15.2.124.19"
+      },
+      "webdriver": false,
+      "download": {
+        "path": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-2.html",
+        "bytes": 109,
+        "sha256": "967efc9fee2cf8f44bb978e04c9efa438389c7d8514f85cc5718ef7d1f95f28f"
+      },
+      "history": [
+        [
+          "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-1.html",
+          1,
+          109,
+          109
+        ],
+        [
+          "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-2.html",
+          1,
+          109,
+          109
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "cycle": 3,
+      "startedAt": "2026-09-05T23:51:52.128Z",
+      "events": [
+        {
+          "name": "attached-noDefaults",
+          "time": "2026-09-05T23:51:52.495Z"
+        },
+        {
+          "name": "actual-button-click",
+          "time": "2026-09-05T23:51:52.562Z"
+        },
+        {
+          "name": "named-file-bytes-complete",
+          "time": "2026-09-05T23:51:52.971Z"
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:51:55.604Z"
+        },
+        {
+          "name": "graceful-browser-close-requested",
+          "time": "2026-09-05T23:51:55.609Z"
+        },
+        {
+          "name": "process-exit",
+          "time": "2026-09-05T23:51:55.693Z",
+          "code": 0,
+          "signal": null
+        }
+      ],
+      "argv": [
+        "--user-data-dir=/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/profile",
+        "--remote-debugging-port=60911",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "file:///var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/fixture.html?cycle=3"
+      ],
+      "pid": 99733,
+      "cdpVersion": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/152.0.7977.76",
+        "revision": "@0d89dfa2dd7c1ec4b8a14b9f303f887bb63b6174",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+        "jsVersion": "15.2.124.19"
+      },
+      "webdriver": false,
+      "download": {
+        "path": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-3.html",
+        "bytes": 109,
+        "sha256": "01d6bd9b963b122a08c912a7c5a6c74b0e3c4470b8c89e2a47019d4514d6496d"
+      },
+      "history": [
+        [
+          "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-1.html",
+          1,
+          109,
+          109
+        ],
+        [
+          "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-2.html",
+          1,
+          109,
+          109
+        ],
+        [
+          "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-human-chrome152-nU2CQV/downloads/owned-report-3.html",
+          1,
+          109,
+          109
+        ]
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "finishedAt": "2026-09-05T23:51:56.718Z"
+}
