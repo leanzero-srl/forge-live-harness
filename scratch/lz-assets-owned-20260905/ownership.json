@@ -247,7 +247,205 @@
       "screenAttached": true
     }
   },
-  "issues": {},
+  "issues": {
+    "R1": {
+      "id": "25003",
+      "key": "JT-74",
+      "editable": {
+        "customfield_10015": null,
+        "duedate": {
+          "name": "Due date",
+          "schema": {
+            "type": "date",
+            "system": "duedate"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        "customfield_10180": null,
+        "customfield_10181": null,
+        "customfield_11148": {
+          "name": "[harness-test] LZ Assets owned 20260905 multiple",
+          "schema": {
+            "type": "array",
+            "items": "cmdb-object-field",
+            "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+            "customId": 11148
+          },
+          "operations": [
+            "set"
+          ],
+          "configuration": {
+            "isInsightAvailable": true,
+            "attributesIncludedInAutoCompleteSearch": [
+              "Name"
+            ],
+            "multiple": true
+          }
+        },
+        "customfield_11149": {
+          "name": "[harness-test] LZ Assets owned 20260905 gate",
+          "schema": {
+            "type": "array",
+            "items": "cmdb-object-field",
+            "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+            "customId": 11149
+          },
+          "operations": [
+            "set"
+          ],
+          "configuration": {
+            "isInsightAvailable": true,
+            "attributesIncludedInAutoCompleteSearch": [
+              "Name"
+            ],
+            "multiple": false
+          }
+        }
+      },
+      "assigned": true,
+      "expected": {
+        "multiple": [
+          "A",
+          "B"
+        ],
+        "gate": [
+          "A"
+        ]
+      }
+    },
+    "R2": {
+      "id": "25004",
+      "key": "JT-75",
+      "editable": {
+        "customfield_10015": null,
+        "duedate": {
+          "name": "Due date",
+          "schema": {
+            "type": "date",
+            "system": "duedate"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        "customfield_10180": null,
+        "customfield_10181": null,
+        "customfield_11148": {
+          "name": "[harness-test] LZ Assets owned 20260905 multiple",
+          "schema": {
+            "type": "array",
+            "items": "cmdb-object-field",
+            "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+            "customId": 11148
+          },
+          "operations": [
+            "set"
+          ],
+          "configuration": {
+            "isInsightAvailable": true,
+            "multiple": true,
+            "attributesIncludedInAutoCompleteSearch": [
+              "Name"
+            ]
+          }
+        },
+        "customfield_11149": {
+          "name": "[harness-test] LZ Assets owned 20260905 gate",
+          "schema": {
+            "type": "array",
+            "items": "cmdb-object-field",
+            "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+            "customId": 11149
+          },
+          "operations": [
+            "set"
+          ],
+          "configuration": {
+            "isInsightAvailable": true,
+            "multiple": false,
+            "attributesIncludedInAutoCompleteSearch": [
+              "Name"
+            ]
+          }
+        }
+      },
+      "assigned": true,
+      "expected": {
+        "multiple": [
+          "B"
+        ],
+        "gate": [
+          "C"
+        ]
+      }
+    },
+    "R3": {
+      "id": "25005",
+      "key": "JT-76",
+      "editable": {
+        "customfield_10015": null,
+        "duedate": {
+          "name": "Due date",
+          "schema": {
+            "type": "date",
+            "system": "duedate"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        "customfield_10180": null,
+        "customfield_10181": null,
+        "customfield_11148": {
+          "name": "[harness-test] LZ Assets owned 20260905 multiple",
+          "schema": {
+            "type": "array",
+            "items": "cmdb-object-field",
+            "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+            "customId": 11148
+          },
+          "operations": [
+            "set"
+          ],
+          "configuration": {
+            "multiple": true,
+            "isInsightAvailable": true,
+            "attributesIncludedInAutoCompleteSearch": [
+              "Name"
+            ]
+          }
+        },
+        "customfield_11149": {
+          "name": "[harness-test] LZ Assets owned 20260905 gate",
+          "schema": {
+            "type": "array",
+            "items": "cmdb-object-field",
+            "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+            "customId": 11149
+          },
+          "operations": [
+            "set"
+          ],
+          "configuration": {
+            "multiple": false,
+            "isInsightAvailable": true,
+            "attributesIncludedInAutoCompleteSearch": [
+              "Name"
+            ]
+          }
+        }
+      },
+      "assigned": true,
+      "expected": {
+        "multiple": [],
+        "gate": [
+          "A"
+        ]
+      }
+    }
+  },
   "operations": [
     {
       "kind": "object-A",
@@ -479,6 +677,179 @@
       "state": "acknowledged",
       "status": 200,
       "finishedAt": "2026-09-05T20:50:32.621Z"
+    },
+    {
+      "kind": "issue-R1",
+      "method": "POST",
+      "route": "/rest/api/3/issue",
+      "body": {
+        "fields": {
+          "project": {
+            "id": "10008"
+          },
+          "issuetype": {
+            "id": "10005"
+          },
+          "summary": "[harness-test] LZ Assets owned 20260905 R1",
+          "labels": [
+            "lz-assets-owned-20260905"
+          ]
+        }
+      },
+      "startedAt": "2026-09-05T20:50:52.026Z",
+      "state": "acknowledged",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:50:52.740Z"
+    },
+    {
+      "kind": "assign-R1",
+      "method": "PUT",
+      "route": "/rest/api/3/issue/JT-74",
+      "body": {
+        "update": {
+          "customfield_11148": [
+            {
+              "set": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+                  "objectId": "411"
+                },
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+                  "objectId": "412"
+                }
+              ]
+            }
+          ],
+          "customfield_11149": [
+            {
+              "set": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+                  "objectId": "411"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "startedAt": "2026-09-05T20:50:53.265Z",
+      "state": "acknowledged",
+      "status": 204,
+      "finishedAt": "2026-09-05T20:50:54.170Z"
+    },
+    {
+      "kind": "issue-R2",
+      "method": "POST",
+      "route": "/rest/api/3/issue",
+      "body": {
+        "fields": {
+          "project": {
+            "id": "10008"
+          },
+          "issuetype": {
+            "id": "10005"
+          },
+          "summary": "[harness-test] LZ Assets owned 20260905 R2",
+          "labels": [
+            "lz-assets-owned-20260905"
+          ]
+        }
+      },
+      "startedAt": "2026-09-05T20:50:54.172Z",
+      "state": "acknowledged",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:50:55.045Z"
+    },
+    {
+      "kind": "assign-R2",
+      "method": "PUT",
+      "route": "/rest/api/3/issue/JT-75",
+      "body": {
+        "update": {
+          "customfield_11148": [
+            {
+              "set": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+                  "objectId": "412"
+                }
+              ]
+            }
+          ],
+          "customfield_11149": [
+            {
+              "set": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413",
+                  "objectId": "413"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "startedAt": "2026-09-05T20:50:55.443Z",
+      "state": "acknowledged",
+      "status": 204,
+      "finishedAt": "2026-09-05T20:50:56.244Z"
+    },
+    {
+      "kind": "issue-R3",
+      "method": "POST",
+      "route": "/rest/api/3/issue",
+      "body": {
+        "fields": {
+          "project": {
+            "id": "10008"
+          },
+          "issuetype": {
+            "id": "10005"
+          },
+          "summary": "[harness-test] LZ Assets owned 20260905 R3",
+          "labels": [
+            "lz-assets-owned-20260905"
+          ]
+        }
+      },
+      "startedAt": "2026-09-05T20:50:56.246Z",
+      "state": "acknowledged",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:50:56.937Z"
+    },
+    {
+      "kind": "assign-R3",
+      "method": "PUT",
+      "route": "/rest/api/3/issue/JT-76",
+      "body": {
+        "update": {
+          "customfield_11148": [
+            {
+              "set": []
+            }
+          ],
+          "customfield_11149": [
+            {
+              "set": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+                  "objectId": "411"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "startedAt": "2026-09-05T20:50:57.355Z",
+      "state": "acknowledged",
+      "status": 204,
+      "finishedAt": "2026-09-05T20:50:57.989Z"
     }
   ],
   "createdAt": "2026-09-05T20:46:10.310Z",
@@ -606,7 +977,7 @@
     }
   },
   "lastSharedGuard": {
-    "verifiedAt": "2026-09-05T20:50:30.042Z",
+    "verifiedAt": "2026-09-05T20:50:52.023Z",
     "unchanged": true
   },
   "preflight": {
