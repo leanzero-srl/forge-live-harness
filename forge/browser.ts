@@ -4,6 +4,9 @@
 // copying bare storageState into a fresh context.
 import { chromium, type BrowserContext, type Page } from "@playwright/test";
 import { launchReservedProfile } from "./profile-reservation";
+import { createPortableLauncher, getPortableReceipt, type PortableReceipt } from "./portable-browser.mjs";
+const launchReceipts = new WeakMap<BrowserContext, PortableReceipt | { mode: "persistent-chrome"; browserVersion: string | null }>();
+export function getHarnessLaunchReceipt(context: BrowserContext) { return launchReceipts.get(context) ?? null; }
 import {
   USER_DATA_DIR,
   STORAGE_STATE,
@@ -17,6 +20,12 @@ import {
 export interface LaunchOpts {
   /** Force headed (auth) / headless. Default: follow HEADLESS env. */
   headed?: boolean;
+  /** Explicit opt-in only; runner environment remains authoritative. */
+  browserMode?: "persistent-chrome" | "portable-cft151";
+  expectedAccountId?: string;
+  expectedUiVersion?: string;
+  /** Interactive auth must always use the existing persistent profile. */
+  authFlow?: boolean;
   /** Record video to this dir (one webm per page). */
   recordVideoDir?: string;
 }
@@ -55,7 +64,29 @@ export async function installHostFlagSuppressor(context: BrowserContext): Promis
 }
 
 export async function launchHarnessContext(opts: LaunchOpts = {}): Promise<BrowserContext> {
+  const envMode = process.env.LZ_HARNESS_BROWSER_MODE;
+  if (opts.browserMode && envMode !== undefined && opts.browserMode !== envMode) throw new Error("BROWSER_MODE_MISMATCH");
+  const mode = envMode ?? opts.browserMode ?? "persistent-chrome";
+  if (!["persistent-chrome", "portable-cft151"].includes(mode)) throw new Error("BROWSER_MODE_UNKNOWN");
   const headless = opts.headed === true ? false : opts.headed === false ? true : HEADLESS;
+  if (mode === "portable-cft151") {
+    if (opts.authFlow) throw new Error("PORTABLE_AUTH_FLOW_FORBIDDEN");
+    if (opts.expectedAccountId && process.env.LZ_EXPECTED_ACCOUNT_ID !== undefined && opts.expectedAccountId !== process.env.LZ_EXPECTED_ACCOUNT_ID) throw new Error("BROWSER_PRINCIPAL_BINDING_MISMATCH");
+    if (opts.expectedUiVersion && process.env.LZ_EXPECTED_UI_VERSION !== undefined && opts.expectedUiVersion !== process.env.LZ_EXPECTED_UI_VERSION) throw new Error("BROWSER_UI_BINDING_MISMATCH");
+    const context = await createPortableLauncher({ chromium, installHostFlagSuppressor })({
+      mode, headed: !headless, authFlow: opts.authFlow, viewport: VIEWPORT, recordVideoDir: opts.recordVideoDir,
+      expected: { accountId: process.env.LZ_EXPECTED_ACCOUNT_ID ?? opts.expectedAccountId ?? "", uiVersion: process.env.LZ_EXPECTED_UI_VERSION ?? opts.expectedUiVersion ?? "" },
+    });
+    const receipt = getPortableReceipt(context);
+    if (!receipt) {
+      const error = new Error("PORTABLE_LAUNCH_RECEIPT_MISSING");
+      try { await context.close(); } catch (cleanup) { throw new AggregateError([error, cleanup], "Portable receipt missing and cleanup failed"); }
+      throw error;
+    }
+    launchReceipts.set(context, receipt);
+    console.log("HARNESS_BROWSER_RECEIPT " + JSON.stringify(receipt));
+    return context;
+  }
   const common: Parameters<typeof chromium.launchPersistentContext>[1] = {
     headless,
     viewport: VIEWPORT,
@@ -64,16 +95,21 @@ export async function launchHarnessContext(opts: LaunchOpts = {}): Promise<Brows
   if (opts.recordVideoDir) common.recordVideo = { dir: opts.recordVideoDir, size: VIEWPORT };
   // One canonical cross-process reservation covers worker, video and auth callers.
   // Unknown launch/owner failures retain an unclean record; no marker deletion or kill.
-  return launchReservedProfile(USER_DATA_DIR, async (profile, channel) => {
+  const context = await launchReservedProfile(USER_DATA_DIR, async (profile, channel) => {
     const ctx = await chromium.launchPersistentContext(profile,
       channel === "chrome" ? { channel: "chrome", ...common } : common);
     await installHostFlagSuppressor(ctx);
     return ctx;
   });
+  const receipt = Object.freeze({ mode: "persistent-chrome" as const, browserVersion: context.browser()?.version() ?? null });
+  launchReceipts.set(context, receipt);
+  console.log("HARNESS_BROWSER_RECEIPT " + JSON.stringify(receipt));
+  return context;
 }
 
 /** Export a portable storageState snapshot (the profile remains the primary store). */
 export async function exportStorageState(context: BrowserContext): Promise<void> {
+  if (getPortableReceipt(context)) throw new Error("PORTABLE_STATE_EXPORT_FORBIDDEN");
   await context.storageState({ path: STORAGE_STATE });
 }
 

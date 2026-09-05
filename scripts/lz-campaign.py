@@ -19,6 +19,48 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / 'config/lz-campaign/manifest.json'
 STOP_NOW = False
 
+BROWSER_MODES = ('persistent-chrome', 'portable-cft151')
+
+
+def browser_mode(config):
+    mode = config.get('browserMode', 'persistent-chrome')
+    if mode not in BROWSER_MODES:
+        raise ValueError('Unknown persisted browser mode')
+    return mode
+
+
+def browser_binding(requested, account, previous, verb):
+    prior_mode = browser_mode(previous) if previous else None
+    if verb == 'resume' and not previous:
+        raise ValueError('Resume requires persisted config')
+    mode = requested if requested is not None else prior_mode or 'persistent-chrome'
+    if mode not in BROWSER_MODES:
+        raise ValueError('Unknown browser mode')
+    if prior_mode is not None and prior_mode != mode:
+        raise ValueError('Browser mode changed; use a new run ID')
+    previous_account = previous.get('expectedAccountId') if previous else None
+    if previous_account is not None and account is not None and previous_account != account:
+        raise ValueError('Expected principal changed; use a new run ID')
+    expected = account if account is not None else previous_account
+    if mode == 'portable-cft151' and (not isinstance(expected, str) or not expected.strip()):
+        raise ValueError('Portable mode requires the independently known expected account ID')
+    return {'browserMode': mode, 'expectedAccountId': expected}
+
+
+def browser_environment(config, inherited):
+    mode = browser_mode(config)
+    expected = config.get('expectedAccountId')
+    if mode == 'portable-cft151' and (not isinstance(expected, str) or not expected.strip()):
+        raise ValueError('Portable config has no expected principal')
+    env = dict(inherited)
+    # Authoritative binding on entry/tests/after/resume, never inherited shell mode.
+    env['LZ_HARNESS_BROWSER_MODE'] = mode
+    env.pop('LZ_EXPECTED_ACCOUNT_ID', None)
+    if expected is not None:
+        env['LZ_EXPECTED_ACCOUNT_ID'] = expected
+    return env
+
+
 
 def utc():
     return dt.datetime.now(dt.timezone.utc).isoformat()
@@ -198,7 +240,7 @@ def run_child(command, env, log_path, timeout_seconds, heartbeat=None):
 
 def run_phase(config, feature, phase, attempt, heartbeat):
     report_path = attempt / (phase + '-playwright.json')
-    env = {**os.environ, 'PLAYWRIGHT_JSON_OUTPUT_NAME': str(report_path), 'LZ_EXPECTED_UI_VERSION': config['uiVersion'],
+    env = {**browser_environment(config, os.environ), 'PLAYWRIGHT_JSON_OUTPUT_NAME': str(report_path), 'LZ_EXPECTED_UI_VERSION': config['uiVersion'],
            'LZ_CAMPAIGN_SOURCE_EXTENSION': json.dumps(config.get('sourceExtension')), 'LZ_CAMPAIGN_PHASE': phase, 'LZ_CAMPAIGN_UNIT_DIR': str(attempt), 'LZ_CAMPAIGN_RUN_ID': config['runId']}
     env.pop('LZ_RETAINED_UAT_LEDGER', None)
     if feature.get('retainedUat') is True and phase in ['tests', 'after']:
@@ -210,8 +252,9 @@ def run_phase(config, feature, phase, attempt, heartbeat):
             command += ['--grep', feature['grep']]
         if feature.get('grepInvert'):
             command += ['--grep-invert', feature['grepInvert']]
-    atomic(attempt / (phase + '-command.json'), {'argv': command, 'cwd': str(ROOT), 'phase': phase, 'uiVersion': config['uiVersion']})
-    wait_profile_free()
+    atomic(attempt / (phase + '-command.json'), {'argv': command, 'cwd': str(ROOT), 'phase': phase, 'uiVersion': config['uiVersion'], 'browserMode': browser_mode(config)})
+    if browser_mode(config) == 'persistent-chrome':
+        wait_profile_free()
     process = run_child(command, env, attempt / (phase + '.log'), feature.get('timeoutSeconds', 900) if phase == 'tests' else 240, heartbeat)
     if process.get('timedOut') or process.get('interrupted'):
         return {'status': 'timed_out' if process.get('timedOut') else 'interrupted', 'process': process}
@@ -231,7 +274,7 @@ def require_entry_source(result, identity, expected_fingerprint):
 
 
 def result_stamp(config, feature, instrument):
-    return digest({'instrument': instrument, 'feature': feature, 'ui': config['uiVersion'], 'forge': config['forgeVersion'], 'appCommit': config['appCommit'], 'source': config.get('sourceFingerprint'), 'sourceExtension': config.get('sourceExtension')})
+    return digest({'instrument': instrument, 'feature': feature, 'ui': config['uiVersion'], 'forge': config['forgeVersion'], 'appCommit': config['appCommit'], 'source': config.get('sourceFingerprint'), 'sourceExtension': config.get('sourceExtension'), 'browserMode': browser_mode(config), 'expectedAccountId': config.get('expectedAccountId')})
 
 
 def reusable(result, stamp):
@@ -257,7 +300,7 @@ def summarize(config, features, directory, instrument, blocker=None):
         status = 'not_implemented' if feature['status'] == 'planned' else 'not_run' if not result else result['status'] if result.get('stamp') == stamp else 'stale'
         rows.append({'id': feature['id'], 'status': status, 'acceptance': feature['acceptance'], 'result': str(directory / feature['id'] / 'result.json') if result else None})
     summary = {'time': utc(), 'runId': config['runId'], 'uiVersion': config['uiVersion'], 'forgeVersion': config['forgeVersion'],
-               'instrumentHash': instrument, 'complete': not blocker and bool(rows) and all(r['status'] == 'passed' for r in rows), 'blocker': blocker, 'features': rows}
+               'instrumentHash': instrument, 'browserMode': browser_mode(config), 'complete': not blocker and bool(rows) and all(r['status'] == 'passed' for r in rows), 'blocker': blocker, 'features': rows}
     atomic(directory / 'summary.json', summary)
     (directory / 'summary.md').write_text('# LZ campaign ' + config['runId'] + '\n\n' + ('COMPLETE' if summary['complete'] else 'INCOMPLETE') + '\n\n' + '\n'.join('- ' + r['id'] + ': ' + r['status'] for r in rows) + '\n')
     return summary
@@ -265,6 +308,7 @@ def summarize(config, features, directory, instrument, blocker=None):
 
 def run(config, directory):
     global STOP_NOW
+    browser_environment(config, {})  # Validate before any subprocess or lane acquisition.
     signal.signal(signal.SIGTERM, lambda *_: globals().__setitem__('STOP_NOW', True))
     signal.signal(signal.SIGINT, lambda *_: globals().__setitem__('STOP_NOW', True))
     manifest = read(Path(config['manifest']))
@@ -321,7 +365,7 @@ def run(config, directory):
             sweep_time = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(seconds=estimate * remaining)).isoformat() if estimate else 'unknown until first measured feature'
             print(utc(), 'NOW', feature['id'], 'NEXT estimated', next_time, 'SWEEP estimated', sweep_time, flush=True)
             result = {'status': 'running', 'stamp': stamp, 'startedAt': started, 'attempt': str(attempt), 'uiVersion': config['uiVersion'],
-                      'forgeVersion': config['forgeVersion'], 'appCommit': config['appCommit'], 'instrumentHash': instrument, 'phases': {}}
+                      'forgeVersion': config['forgeVersion'], 'appCommit': config['appCommit'], 'instrumentHash': instrument, 'browserMode': browser_mode(config), 'phases': {}}
             atomic(unit / 'result.json', result)
             try:
                 def heartbeat(child_pid):
@@ -374,6 +418,8 @@ def main():
     parser.add_argument('--manifest', default=str(DEFAULT_MANIFEST))
     parser.add_argument('--ui-version'); parser.add_argument('--forge-version'); parser.add_argument('--app-commit')
     parser.add_argument('--source-extension', help='JSON evidence of an explicitly coordinated foreign issue set; persisted with the run')
+    parser.add_argument('--browser-mode', choices=BROWSER_MODES)
+    parser.add_argument('--expected-account-id', help='Portable mode: independently known principal, persisted for resume')
     parser.add_argument('--features', help='comma-separated exact feature IDs')
     parser.add_argument('--max-minutes', type=int, default=240)
     parser.add_argument('--now', action='store_true', help='stop: interrupt current subprocess group; cleanup may require follow-up')
@@ -403,11 +449,15 @@ def main():
     if args.verb == 'plan':
         print(json.dumps({'features': features, 'instrumentHash': instrument_hash(), 'liveTestsExecuted': False}, indent=2)); return 0
     config = read(config_path, {})
+    try:
+        binding = browser_binding(args.browser_mode, args.expected_account_id, config, args.verb)
+    except ValueError as exc:
+        parser.error(str(exc))
     if args.verb != 'run':
         for name in ['ui_version', 'forge_version', 'app_commit']:
             if not getattr(args, name):
                 parser.error('--' + name.replace('_', '-') + ' is required; do not infer a deployment from local source')
-        config = {'runId': args.run_id, 'manifest': str(Path(args.manifest).resolve()), 'identitySpec': manifest['identitySpec'],
+        config = {**binding, 'runId': args.run_id, 'manifest': str(Path(args.manifest).resolve()), 'identitySpec': manifest['identitySpec'],
                   'uiVersion': args.ui_version, 'forgeVersion': args.forge_version, 'appCommit': args.app_commit,
                   'sourceExtension': read(Path(args.source_extension).resolve()) if args.source_extension else None,
                   'features': args.features.split(',') if args.features else None, 'maxMinutes': args.max_minutes}
