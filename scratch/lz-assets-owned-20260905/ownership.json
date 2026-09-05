@@ -181,7 +181,16 @@
         "assignStrict": false,
         "attributesLimit": 50
       },
-      "screenAttached": true
+      "screenAttached": true,
+      "unconfiguredGlobal": {
+        "contextId": "11757",
+        "config": {
+          "multiple": false,
+          "shouldSetDefaultValuesFromEmptySearch": false,
+          "assignStrict": false,
+          "attributesLimit": 50
+        }
+      }
     },
     "gate": {
       "id": "customfield_11149",
@@ -244,7 +253,16 @@
         "assignStrict": false,
         "attributesLimit": 50
       },
-      "screenAttached": true
+      "screenAttached": true,
+      "unconfiguredGlobal": {
+        "contextId": "11759",
+        "config": {
+          "multiple": false,
+          "shouldSetDefaultValuesFromEmptySearch": false,
+          "assignStrict": false,
+          "attributesLimit": 50
+        }
+      }
     }
   },
   "issues": {
@@ -313,7 +331,61 @@
         "gate": [
           "A"
         ]
-      }
+      },
+      "reads": [
+        {
+          "at": "2026-09-05T20:52:01.251Z",
+          "id": "25003",
+          "key": "JT-74",
+          "fields": {
+            "customfield_11148": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "411",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411"
+              },
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "412",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412"
+              }
+            ],
+            "customfield_11149": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "411",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411"
+              }
+            ]
+          }
+        },
+        {
+          "at": "2026-09-05T20:52:01.420Z",
+          "id": "25003",
+          "key": "JT-74",
+          "fields": {
+            "customfield_11148": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "411",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411"
+              },
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "412",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412"
+              }
+            ],
+            "customfield_11149": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "411",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411"
+              }
+            ]
+          }
+        }
+      ]
     },
     "R2": {
       "id": "25004",
@@ -379,7 +451,51 @@
         "gate": [
           "C"
         ]
-      }
+      },
+      "reads": [
+        {
+          "at": "2026-09-05T20:52:01.595Z",
+          "id": "25004",
+          "key": "JT-75",
+          "fields": {
+            "customfield_11148": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "412",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412"
+              }
+            ],
+            "customfield_11149": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "413",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413"
+              }
+            ]
+          }
+        },
+        {
+          "at": "2026-09-05T20:52:01.799Z",
+          "id": "25004",
+          "key": "JT-75",
+          "fields": {
+            "customfield_11148": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "412",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412"
+              }
+            ],
+            "customfield_11149": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "413",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413"
+              }
+            ]
+          }
+        }
+      ]
     },
     "R3": {
       "id": "25005",
@@ -443,7 +559,39 @@
         "gate": [
           "A"
         ]
-      }
+      },
+      "reads": [
+        {
+          "at": "2026-09-05T20:52:02.021Z",
+          "id": "25005",
+          "key": "JT-76",
+          "fields": {
+            "customfield_11148": [],
+            "customfield_11149": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "411",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411"
+              }
+            ]
+          }
+        },
+        {
+          "at": "2026-09-05T20:52:02.293Z",
+          "id": "25005",
+          "key": "JT-76",
+          "fields": {
+            "customfield_11148": [],
+            "customfield_11149": [
+              {
+                "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                "objectId": "411",
+                "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411"
+              }
+            ]
+          }
+        }
+      ]
     }
   },
   "operations": [
@@ -977,7 +1125,7 @@
     }
   },
   "lastSharedGuard": {
-    "verifiedAt": "2026-09-05T20:50:52.023Z",
+    "verifiedAt": "2026-09-05T20:52:03.568Z",
     "unchanged": true
   },
   "preflight": {
@@ -1023,5 +1171,30 @@
       "project",
       "summary"
     ]
-  }
+  },
+  "ready": true,
+  "verifiedAt": "2026-09-05T20:52:03.569Z",
+  "verifiedScreenFieldIds": [
+    "summary",
+    "issuetype",
+    "attachment",
+    "duedate",
+    "description",
+    "reporter",
+    "issuelinks",
+    "assignee",
+    "priority",
+    "labels",
+    "customfield_10074",
+    "customfield_10010",
+    "customfield_10077",
+    "customfield_10073",
+    "customfield_10003",
+    "customfield_10002",
+    "timetracking",
+    "customfield_10078",
+    "customfield_11081",
+    "customfield_11148",
+    "customfield_11149"
+  ]
 }

@@ -103,12 +103,24 @@ if(command==='issues'){
  }
 }
 if(command==='verify'){
+ state.ready=false;save();
  await validateObjects();assert.equal(Object.keys(state.issues).length,3);
+ for(const [role,field]of Object.entries(state.fields)){
+  const config=await read(`/rest/servicedesk/cmdb/latest/fieldconfig/${field.contextId}`);assert.deepEqual(config,field.config);
+  const projects=await read(`/rest/api/3/field/${field.id}/context/projectmapping?contextId=${field.contextId}`);
+  const types=await read(`/rest/api/3/field/${field.id}/context/issuetypemapping?contextId=${field.contextId}`);
+  assert.deepEqual(projects.values,[{contextId:field.contextId,projectId:'10008'}]);assert.equal(projects.isLast,true);
+  assert.deepEqual(types.values,[{contextId:field.contextId,issueTypeId:'10005'}]);assert.equal(types.isLast,true);
+  for(const context of field.contexts.filter(c=>c.isGlobalContext)){
+   const fallback=await read(`/rest/servicedesk/cmdb/latest/fieldconfig/${context.id}`);assert.ok(!fallback.workspaceId&&!fallback.objectSchemaId);field.unconfiguredGlobal={contextId:context.id,config:fallback};
+  }
+ }
+ const screen=await read('/rest/api/3/screens/10038/tabs/10043/fields');assert.ok([...state.preflight.screenFieldIds,...Object.values(state.fields).map(f=>f.id)].every(id=>screen.some(f=>f.id===id)));state.verifiedScreenFieldIds=screen.map(f=>f.id);save();
  for(const[label,assignment]of Object.entries(matrix)){
   const issue=state.issues[label];issue.reads=[];
   for(let n=0;n<2;n++){
    const actual=await ownIssue(issue.key),fields={};
-   for(const[role,labels]of Object.entries(assignment)){const value=refs(actual.fields[state.fields[role].id]);assert.deepEqual(value.map(r=>r.objectId).sort(),labels.map(l=>state.objects[l].id).sort());assert.ok(value.every(r=>r.workspaceId===workspaceId));fields[state.fields[role].id]=value;}
+   for(const[role,labels]of Object.entries(assignment)){assert.ok(Object.hasOwn(actual.fields,state.fields[role].id),`Missing field is not empty: ${actual.key} ${role}`);const value=refs(actual.fields[state.fields[role].id]);assert.deepEqual(value.map(r=>r.objectId).sort(),labels.map(l=>state.objects[l].id).sort());assert.ok(value.every(r=>r.workspaceId===workspaceId&&r.id===`${workspaceId}:${r.objectId}`));fields[state.fields[role].id]=value;}
    issue.reads.push({at:new Date().toISOString(),id:actual.id,key:actual.key,fields});save();
   }
  }
