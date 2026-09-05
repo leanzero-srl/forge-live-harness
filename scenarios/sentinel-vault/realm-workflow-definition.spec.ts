@@ -25,7 +25,12 @@ test("steward adds a state and a transition in the definition editor; the chips 
   mkdirSync(OUT, { recursive: true });
   const priorDef = await getKvs(DEF_KEY);
   const priorSteward = await getKvs(STEWARD_KEY);
+  const SETTINGS_KEY = `workflow-settings-${SPACE}`;
+  const priorSettings = await getKvs(SETTINGS_KEY);
   try {
+    // The state chips render only while the workflow is ENABLED for the space; other specs
+    // restore whatever they found, which may be "off".
+    await setKvs(SETTINGS_KEY, { ...(priorSettings || { workflowId: "default", autoAssignNew: false }), enabled: true });
     const users = [...new Set([...(priorSteward?.adminUsers || []).map((u: any) => (typeof u === "string" ? u : u?.accountId)), MIHAI])];
     await setKvs(STEWARD_KEY, { ...(priorSteward || {}), adminUsers: users });
     await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
@@ -69,11 +74,19 @@ test("steward adds a state and a transition in the definition editor; the chips 
     const legal = list?.default?.states?.find((x: any) => x.id === "legal_check");
     expect(legal?.name, "the resolver lists the new state").toBe("Legal check");
     expect(list.default.transitions.some((t: any) => t.from === "draft" && t.to === "legal_check"), "…with its edge").toBe(true);
-    await expect(app.locator(".wf-state-preview .wf-state-chip", { hasText: "Legal check" }), "the state chips above the settings show it").toBeVisible({ timeout: 15000 });
+    let chips: string[] = [];
+    for (let i = 0; i < 10; i++) {
+      chips = await app.locator(".wf-state-preview .wf-state-chip").allInnerTexts().catch(() => []);
+      if (chips.some((c) => /Legal check/.test(c))) break;
+      await page.waitForTimeout(1500);
+    }
+    console.log("### chips after save:", JSON.stringify(chips), "enabled toggle:", await app.locator('.settings-row:has-text("Enable document workflow") input[type="checkbox"]').isChecked().catch(() => "?"));
+    expect(chips.some((c) => /Legal check/.test(c)), `the state chips above the settings show it (chips: ${chips.join(" | ")})`).toBe(true);
     await page.screenshot({ path: `${OUT}/2-saved.png`, fullPage: true });
     console.log("### definition edited from the console ✓");
   } finally {
     if (priorDef) await setKvs(DEF_KEY, priorDef); else await delKvs(DEF_KEY).catch(() => {});
+    if (priorSettings) await setKvs(SETTINGS_KEY, priorSettings); else await delKvs(SETTINGS_KEY).catch(() => {});
     if (priorSteward) await setKvs(STEWARD_KEY, priorSteward); else await delKvs(STEWARD_KEY).catch(() => {});
   }
 });
