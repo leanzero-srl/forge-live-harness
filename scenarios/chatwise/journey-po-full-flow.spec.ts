@@ -18,6 +18,7 @@ import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { get, del } from "../../data/jira.mjs";
 import {
+  QUOTA_BUBBLE,
   deleteFixtures,
   deliverMessage,
   ERROR_BUBBLE, GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage,
@@ -42,7 +43,6 @@ const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 const MAX_SHEETS = 20;
 const CLOSING_TURNS = 6;
 const MAX_TURNS = MAX_SHEETS + CLOSING_TURNS;
-const QUOTA_BUBBLE = /token allowance|Nothing was lost/i;
 
 test.describe.configure({ timeout: 1_500_000 });
 

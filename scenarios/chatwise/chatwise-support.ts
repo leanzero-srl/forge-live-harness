@@ -26,6 +26,7 @@
 //     under test (a restored assistant message once rendered as the user's own
 //     bubble), so every assertion keys off `.message.assistant` /
 //     `.message.user` rather than "the text appears somewhere on screen".
+import { test } from "@playwright/test";
 import type { Page, FrameLocator } from "@playwright/test";
 import type { Target } from "../../config/targets";
 import type { Recorder } from "../../capture/recorder";
@@ -361,6 +362,51 @@ export function errorBubbles(t: RenderedMessage[]): RenderedMessage[] {
 /* ------------------------------------------------------------------ */
 /* Composer driving                                                     */
 /* ------------------------------------------------------------------ */
+
+/**
+ * THE MODEL NEVER ANSWERED — say so, do not assert on the silence.
+ *
+ * The tenant's Forge LLM quota is 50,000 tokens PER MODEL. A long session
+ * exhausts a tier, the ladder walks to the next, and when every tier is blocked
+ * the agent returns a calm wait bubble instead of a reply. That is the app
+ * behaving correctly.
+ *
+ * A spec that then asserts on the outcome measures nothing — and the more
+ * alarming the assertion, the worse the lie. `tool-surface` reported
+ * "the user DID confirm on a second turn and the issue survived — the gate is
+ * not merely strict, it is broken", a P0-shaped security claim, when the truth
+ * was that no model ran, `deleteIssue` was never called, and the issue survived
+ * because NOTHING HAPPENED. The logs said so plainly:
+ *
+ *   [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+ *   [ForgeLLM] claude-opus-5 token quota exhausted — trying the next tier
+ *   [ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+ *   [Agent] all models quota-blocked — returning a friendly wait
+ *
+ * That failure was investigated twice as a broken consent gate. It is the
+ * swallowed-click defect wearing a different costume: an environmental silence
+ * asserted as a product fault.
+ *
+ * Two specs had grown their own private copy of this regex and the specs that
+ * most needed it had none. One home now.
+ */
+export const QUOTA_BUBBLE = /token allowance|Nothing was lost|quota-blocked/i;
+
+/**
+ * Skip THIS TEST when the reply is the quota wait bubble.
+ *
+ * Skip, never pass: a green result here would claim the behaviour was verified.
+ * The message names the spec so a skipped run is legible in a batch summary.
+ */
+export function skipIfQuotaBlocked(reply: string, where: string): void {
+  if (!QUOTA_BUBBLE.test(String(reply || ""))) return;
+  test.skip(
+    true,
+    `${where}: every model tier is quota-blocked on this tenant, so no model ran and ` +
+      `there is no behaviour to assert. NOT a product failure — re-run when the ` +
+      `allowance resets.`,
+  );
+}
 
 /**
  * DELETE THE FIXTURES AND SAY WHAT SURVIVED.

@@ -18,6 +18,7 @@
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
+  QUOTA_BUBBLE,
   deliverMessage,
   GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage, readAppState,
   settleBootSelection, waitForChatApp,
@@ -25,7 +26,6 @@ import {
 
 const T = getTarget("chatwise-global");
 const ROUNDS = 4;
-const QUOTA_BUBBLE = /token allowance|Nothing was lost/i;
 
 // Confusion, in any of its shapes — the model's own words or a fallback.
 const CONFUSION =
