@@ -102,7 +102,7 @@ async function expectPinnedModelOrDisclosedFallback(frame: any, pinned: string) 
   console.log(`[quota] ${pinned} did not serve this turn; the fallback was disclosed. meta="${meta}"`);
 }
 
-test("the global page offers exactly the four factory personas", async ({ page }) => {
+test("the global page offers exactly the five factory personas", async ({ page }) => {
   test.skip(!G.envId, "env unresolved");
   const frame = await openGlobalPage(page, G);
   await waitForChatApp(page, frame, GLOBAL_APP);
@@ -114,8 +114,13 @@ test("the global page offers exactly the four factory personas", async ({ page }
   const names = (await frame.locator("#dropdownOptions .dropdown-option .option-text").allTextContents())
     .map((t) => t.trim());
   await frame.locator("#dropdownSelected").click(); // close
+  // Jira Administrator is gated to site admins, but VISIBLE-AND-DISABLED rather
+  // than hidden — the owner's call — so it is in the roster for everyone. The
+  // harness account holds ADMINISTER, so here it is also selectable. A
+  // non-admin sees the same five rows with that one blocked; that is
+  // persona-unavailable-row.spec.ts, not this test.
   expect(names, `roster drifted: ${names.join(" | ")}`).toEqual([
-    "Coffee Break AI", "JIRA Scrubber", "Epic Master", "Product Owner",
+    "Coffee Break AI", "JIRA Scrubber", "Epic Master", "Product Owner", "Jira Administrator",
   ]);
 });
 
