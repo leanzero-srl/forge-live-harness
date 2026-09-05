@@ -6,7 +6,7 @@ import { openPlan, scheduleFields, LZPT_PLAN, waitForIssueReload } from './forec
 import { get, post, put, request, BASE } from '../../data/jira.mjs';
 
 export type Seed = { label: string; start: string; due: string; duration: number | null; release?: boolean };
-export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], work: (f: any) => Promise<void>, linked = false, primaryIndexes?: number[]) {
+export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], work: (f: any) => Promise<void>, linked: boolean | Array<[number, number]> = false, primaryIndexes?: number[]) {
   expect(BASE).toBe('https://wolfaenpak.atlassian.net');
   const before = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
   const registry = (await getTestState('lz-ppm', { what: 'plans' })).plans.map((p: any) => p.id).sort();
@@ -40,11 +40,17 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
       await put(`/rest/api/3/issue/${created.key}`, { fields: { [fields.startDate]: seed.start, [fields.dueDate]: seed.due, [fields.duration]: seed.duration, ...(seed.release ? {fixVersions:[{id:journal.version.id}]} : {}) } });
       expect(await read(created.key)).toEqual({ key: created.key, start: seed.start, due: seed.due, duration: seed.duration });
     }
-    if (linked) {
-      expect(journal.issues).toHaveLength(2);
+    const linkPairs: Array<[number, number]> = linked === true ? [[0, 1]] : linked || [];
+    if (linked === true) expect(journal.issues).toHaveLength(2);
+    if (linkPairs.length) {
       const types = await get('/rest/api/3/issueLinkType');
       const type = types.issueLinkTypes.find((t: any) => t.outward.toLowerCase() === 'blocks'); expect(type).toBeTruthy();
-      await post('/rest/api/3/issueLink', { type: { id: type.id }, inwardIssue: { key: journal.issues[0].key }, outwardIssue: { key: journal.issues[1].key } });
+      for (const [from, to] of linkPairs) {
+        expect(Number.isInteger(from) && Number.isInteger(to) && from !== to).toBe(true);
+        expect(journal.issues[from]).toBeTruthy(); expect(journal.issues[to]).toBeTruthy();
+        await post('/rest/api/3/issueLink', { type: { id: type.id }, inwardIssue: { key: journal.issues[from].key }, outwardIssue: { key: journal.issues[to].key } });
+      }
+      journal.linkPairs = linkPairs.map(([from, to]) => ({from:journal.issues[from].key,to:journal.issues[to].key})); persist();
     }
     const primaryIssues=primaryIndexes ? primaryIndexes.map(index=>journal.issues[index]) : journal.issues;
     expect(primaryIssues.length).toBeGreaterThan(0);for(const issue of primaryIssues)expect(issue).toBeTruthy();expect(new Set(primaryIssues.map((i:any)=>i.key)).size).toBe(primaryIssues.length);
@@ -72,7 +78,7 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
     }
     expect(created.issues.map((i: any) => i.key).sort()).toEqual(primaryIssues.map((i: any) => i.key).sort());
     for (const i of primaryIssues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
-    if (linked) expect(created.issues.find((i: any) => i.key === journal.issues[1].key).predecessors).toContain(journal.issues[0].key);
+    for (const [from, to] of linkPairs) expect(created.issues.find((i: any) => i.key === journal.issues[to].key).predecessors).toContain(journal.issues[from].key);
     await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });
   } finally {
     // A route/test failure can already have closed the worker. Stopping its UI
