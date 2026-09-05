@@ -17,7 +17,7 @@ test('same-account simultaneous Capacity saves admit one winner and reject the s
   const source=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});expect(source.meta.id).toBe(LZPT_PLAN);expect(source.issues).toHaveLength(45);
   let frame=await openPlans(page);await expect(frame.locator('body')).toContainText(/REV\s+V4\.58\.579/i);
   let pending=actualResponse(page,'getCapacitySettings');await frame.getByRole('button',{name:'Capacity',exact:true}).click();preferences.admit(await pending);
-  const original=preferences.state.original;const candidates=[{...structuredClone(original),selectedPlanIds:[]},{...structuredClone(original),selectedPlanIds:[LZPT_PLAN]}];
+  const original=preferences.state.original;const candidates=[{...structuredClone(original),selectedPlanIds:[],issueChoices:{}},{...structuredClone(original),selectedPlanIds:[LZPT_PLAN],issueChoices:{}}];
   expect(candidates[0]).not.toEqual(candidates[1]);
   journal.candidates=candidates;retain();const expectedVersion=await preferences.beginWrite({kind:'same-account concurrent control'});
   // Both actual HTTP requests are dispatched together, with exactly the same
