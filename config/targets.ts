@@ -147,6 +147,20 @@ export const TARGETS: Record<string, Target> = {
     repo: path.join(PROJECTS, "axpo-license-manager"),
   },
 
+  // A7: cross-space "My work" globalPage (approvals waiting on me, edit requests on my seals, my sealed files).
+  "sentinel-my-work": {
+    id: "sentinel-my-work",
+    product: "confluence",
+    app: "Sentinel Vault",
+    appId: SENTINEL_APP,
+    envId: SENTINEL_ENV,
+    module: "my-work",
+    moduleType: "confluence:globalPage",
+    surface: "custom",
+    deepLink: (env) => deeplink.confluenceGlobalPage(SENTINEL_APP, env, "my-work"),
+    repo: path.join(PROJECTS, "Sentinel Vault"),
+  },
+
   "sentinel-steward-console": {
     id: "sentinel-steward-console",
     product: "confluence",
