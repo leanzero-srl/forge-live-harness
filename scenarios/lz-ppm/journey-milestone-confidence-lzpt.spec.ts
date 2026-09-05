@@ -6,7 +6,8 @@
 // `sc-milestone` count 0 and the whole feature half went unexercised (the visual
 // suite covers only its RENDERING, against a mock plan).
 //
-// This creates a throwaway plan over the LZPT bed with two milestones chosen to sit
+// This creates a throwaway plan over three valid LZPT leaves (the persistent
+// bed intentionally has invalid/missing dates, which now blocks forecasts) with two milestones chosen to sit
 // on opposite sides of the simulated finish distribution, and asserts the
 // probabilities are not just present but CORRECT:
 //   - "Gate A"  2026-10-05 — before every simulated finish  → ~0%
@@ -19,9 +20,10 @@ import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";
 import { enterForgeSurface } from "../../forge/frame";
 import { getTestState } from "../../testhook/client";
+import { FORECAST_JQL, FORECAST_KEYS } from "./forecast-fixture";
 
 const T = getTarget("lz-ppm-dashboard");
-const NAME = `MS confidence ${Date.now().toString(36)}`;
+const NAME = `[harness-test] MS confidence ${Date.now().toString(36)}`;
 const EARLY = { name: "Gate A", year: 2026, month: "October", day: 5, iso: "2026-10-05" };
 const LATE = { name: "Go-live", year: 2026, month: "November", day: 30, iso: "2026-11-30" };
 
@@ -73,7 +75,7 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
     const cont = () => frame.getByRole("button", { name: /Continue/i }).first();
     await cont().click();
     await page.waitForTimeout(1000);
-    await frame.getByPlaceholder(/project = PROJ/i).first().fill("project = LZPT");
+    await frame.getByPlaceholder(/project = PROJ/i).first().fill(FORECAST_JQL);
     await frame.getByText(/✓ Valid/i).first().waitFor({ state: "visible", timeout: 20_000 }).catch(() => {});
     await cont().click(); await page.waitForTimeout(900);   // -> Schedule
     await cont().click(); await page.waitForTimeout(900);   // -> Milestones
@@ -104,7 +106,11 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
     const plans = (await getTestState("lz-ppm", { what: "plans" })).plans as any[];
     createdId = (plans.find((p) => !idsBefore.has(p.id)) || {}).id || null;
     expect(createdId, "the plan exists in KVS").toBeTruthy();
-    const meta = (await getTestState("lz-ppm", { what: "plan", planId: createdId! })).meta || {};
+    const detail = await getTestState("lz-ppm", { what: "plan", planId: createdId! });
+    const meta = detail.meta || {};
+    const parents = new Set(detail.issues.map((i: any) => i.parentKey).filter(Boolean));
+    expect(detail.issues.filter((i: any) => !parents.has(i.key)).map((i: any) => i.key).sort(), "only valid forecast leaves were indexed")
+      .toEqual([...FORECAST_KEYS].sort());
     console.log("PLAN META milestones =", JSON.stringify(meta.milestones), "issues =", meta.issueCount);
     expect((meta.milestones || []).length, "both milestones were stored on the plan").toBe(2);
     expect((meta.milestones || []).map((m: any) => m.date).sort()).toEqual([EARLY.iso, LATE.iso]);
@@ -141,6 +147,7 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
     // definition, so any milestone on or after P90 must also be >= 0.9.
     if (p90 && LATE.iso >= p90) expect(late.prob).toBeGreaterThanOrEqual(0.9);
   } finally {
+    await page.goto("about:blank"); // stop autosave before deleting this test's plan
     if (createdId) {
       await getTestState("lz-ppm", { what: "clearDrafts", planId: createdId }).catch(() => {});
       await getTestState("lz-ppm", { what: "deleteFixture", planId: createdId }).catch(() => {});
