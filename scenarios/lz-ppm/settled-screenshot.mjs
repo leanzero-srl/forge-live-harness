@@ -16,6 +16,14 @@ export function pngContent(buffer){
 async function painted(subject) {
  return subject.evaluate(el=>{
   for(let p=el;p;p=p.parentElement){const s=getComputedStyle(p);if(p.hasAttribute('inert')||Number(s.opacity)<.99||s.visibility!=='visible'||s.display==='none')return false;}
+  // Indexing uses a sibling overlay, unlike the inert draft/adoption boundary.
+  // Only a screenshot intentionally targeting that overlay may show it.
+  for(const overlay of el.ownerDocument.querySelectorAll('[data-testid="tab-loading-overlay"]')){
+   if(overlay.contains(el))continue;
+   const r=overlay.getBoundingClientRect();let visible=r.width>0&&r.height>0;
+   for(let p=overlay;p;p=p.parentElement){const style=getComputedStyle(p);if(style.display==='none'||style.visibility!=='visible'||Number(style.opacity)===0)visible=false;}
+   if(visible)return false;
+  }
   if(el.ownerDocument.getAnimations().some(a=>a.playState==='running'&&Number.isFinite(a.effect?.getComputedTiming().endTime)))return false;
   const r=el.getBoundingClientRect();return r.width>0&&r.height>0;
  });

@@ -24,6 +24,7 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
     expect(issue.fields.project.key).toBe('WFH'); expect(issue.fields.labels).toContain(marker);
     return { key, start: issue.fields[fields.startDate], due: issue.fields[fields.dueDate], duration: issue.fields[fields.duration] };
   };
+  let bodyError:any;
   try {
     // Same-project, same-type positive control. Field absence is not null.
     const control = await get('/rest/api/3/issue/WFH-1990?fields=project,issuetype,customfield_10180,customfield_10015,duedate');
@@ -81,35 +82,39 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
     for (const i of primaryIssues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
     for (const [from, to] of linkPairs) expect(created.issues.find((i: any) => i.key === journal.issues[to].key).predecessors).toContain(journal.issues[from].key);
     await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });
+  } catch(error) {
+    bodyError=error;journal.bodyError={name:(error as any)?.name,message:String((error as any)?.message||error)};persist();
   } finally {
-    // A route/test failure can already have closed the worker. Stopping its UI
-    // is then complete; backend fixture cleanup must still run.
-    if (!page.isClosed()) await page.goto('about:blank').catch(async(error:any)=>{
-      await page.close().catch(()=>{});
-      if (!page.isClosed()) throw error;
-      journal.browserAlreadyClosedDuringCleanup=String(error.message);persist();
+    const cleanupErrors:any[]=[];
+    const attempt=async(stage:string,action:()=>Promise<void>)=>{
+      try{await action();}catch(error){cleanupErrors.push(error);journal.cleanupErrors??=[];journal.cleanupErrors.push({stage,name:(error as any)?.name,message:String((error as any)?.message||error)});persist();}
+    };
+    // Independent owned resources must still be cleaned if a sibling fails.
+    // Every issue retains its own positive ownership check before deletion.
+    await attempt('stop-owned-ui',async()=>{if(!page.isClosed())await page.goto('about:blank').catch(async(error:any)=>{await page.close().catch(()=>{});if(!page.isClosed())throw error;journal.browserAlreadyClosedDuringCleanup=String(error.message);persist();});});
+    await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
+    if(journal.planId)await attempt('delete-owned-plan',async()=>{
+      await getTestState('lz-ppm',{what:'clearDrafts',planId:journal.planId});
+      await getTestState('lz-ppm',{what:'deleteFixture',planId:journal.planId});
+      journal.cleanup.push({plan:journal.planId,deleted:true});persist();
     });
-    if (!journal.planId) journal.planId = (await getTestState('lz-ppm', { what: 'plans' })).plans.find((p: any) => p.name === name)?.id;
-    if (journal.planId) {
-      await getTestState('lz-ppm', { what: 'clearDrafts', planId: journal.planId });
-      await getTestState('lz-ppm', { what: 'deleteFixture', planId: journal.planId });
-      journal.cleanup.push({ plan: journal.planId, deleted: true }); persist();
-    }
-    for (const issue of [...journal.issues].reverse()) {
-      await read(issue.key); // Positive ownership control on this exact issue before delete.
-      await request('DELETE', `/rest/api/3/issue/${issue.key}`);
-      const absent = await request('GET', `/rest/api/3/issue/${issue.key}`, { raw: true });
-      expect(absent.status).toBe(404); journal.cleanup.push({ issue: issue.key, deleted: true }); persist();
-    }
-    if (journal.version) {
-      const version = await get(`/rest/api/3/version/${journal.version.id}`); expect(version.name).toBe(name); expect(version.projectId).toBe(journal.version.projectId);
-      await request('DELETE', `/rest/api/3/version/${journal.version.id}`);
-      expect((await request('GET', `/rest/api/3/version/${journal.version.id}`, {raw:true})).status).toBe(404);
+    for(const issue of [...journal.issues].reverse())await attempt(`delete-owned-issue:${issue.key}`,async()=>{
+      await read(issue.key);
+      await request('DELETE',`/rest/api/3/issue/${issue.key}`);
+      const absent=await request('GET',`/rest/api/3/issue/${issue.key}`,{raw:true});
+      expect(absent.status).toBe(404);journal.cleanup.push({issue:issue.key,deleted:true});persist();
+    });
+    if(journal.version)await attempt('delete-owned-version',async()=>{
+      const version=await get(`/rest/api/3/version/${journal.version.id}`);expect(version.name).toBe(name);expect(version.projectId).toBe(journal.version.projectId);
+      await request('DELETE',`/rest/api/3/version/${journal.version.id}`);
+      expect((await request('GET',`/rest/api/3/version/${journal.version.id}`,{raw:true})).status).toBe(404);
       journal.cleanup.push({version:journal.version.id,deleted:true});persist();
-    }
-    expect((await getTestState('lz-ppm', { what: 'plans' })).plans.map((p: any) => p.id).sort()).toEqual(registry);
-    expect(scheduleFields((await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN })).issues)).toEqual(scheduleFields(before.issues));
-    journal.integrityPassed = true; persist(); console.log('OWNED_SCHEDULE_CLEANUP', JSON.stringify(journal));
+    });
+    await attempt('registry-integrity',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(registry);});
+    await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(before.issues));});
+    journal.integrityPassed=cleanupErrors.length===0;persist();console.log('OWNED_SCHEDULE_CLEANUP',JSON.stringify(journal));
+    if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Owned schedule body/cleanup failures; every independent cleanup attempted');
+    if(bodyError)throw bodyError;
   }
 }
 

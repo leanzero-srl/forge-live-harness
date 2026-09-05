@@ -16,10 +16,13 @@ test('report analytics: actual capture retains exact seeded quantiles, scoped pr
   const key=f.keys[0],me=await get('/rest/api/3/myself'),originalDates=await f.read(key);
   await put(`/rest/api/3/issue/${key}`,{fields:{assignee:{accountId:me.accountId},timetracking:{originalEstimate:'20h',remainingEstimate:'20h'}}});
   const effort=await get(`/rest/api/3/issue/${key}?fields=timeestimate,assignee`);expect(effort.fields.timeestimate).toBe(72000);expect(effort.fields.assignee.accountId).toBe(me.accountId);
-  const rpc=currentUserResolver(page,c=>c?.functionKey==='getCapacitySettings');let originalSettings:any,restored=false;
-  const journal:any={key,M,due,leave,p50,p90,expectedDemand:20,expectedCapacity:12};const retain=()=>fs.writeFileSync(info.outputPath('numeric-report-journal.json'),JSON.stringify(journal,null,2));retain();
+  const rpc=currentUserResolver(page,c=>c?.functionKey==='getCapacitySettings');let originalSettings:any,restored=false,bodyError:any;
+  const journal:any={key,M,due,leave,p50,p90,expectedDemand:20,expectedCapacity:12,lifecycle:[]};const retain=()=>fs.writeFileSync(info.outputPath('numeric-report-journal.json'),JSON.stringify(journal,null,2));retain();
+  const stage=(name:string,detail:any={})=>{journal.lifecycle.push({name,time:new Date().toISOString(),...detail});retain();};
+  const crashed=()=>stage('app-page-crash'),closed=()=>stage('app-page-closed'),contextClosed=()=>stage('browser-context-closed');
+  page.on('crash',crashed);page.on('close',closed);page.context().on('close',contextClosed);
   try{
-   let frame=await openPlans(page),pending=actualResponse(page,'getCapacitySettings');await frame.getByRole('button',{name:'Capacity',exact:true}).click();const savedSettings=await pending;originalSettings=savedSettings.settings;await expect(frame.locator('[data-testid="capacity-view"]').getByRole('status')).toHaveCount(0,{timeout:120000});
+   let frame=await openPlans(page),pending=actualResponse(page,'getCapacitySettings');await frame.getByRole('button',{name:'Capacity',exact:true}).click();const savedSettings=await pending;originalSettings=savedSettings.settings;journal.originalSettings=originalSettings;retain();await expect(frame.locator('[data-testid="capacity-view"]').getByRole('status')).toHaveCount(0,{timeout:120000});
    // Deliberately select the unrelated standing plan in the personal portfolio.
    // Opt-in report must still use only the captured owned plan and relevant user.
    const profile={hoursPerDay:8,partTimePct:50,reservePct:25,workingDays:[1,2,3,4,5],leaveDates:[leave]};
@@ -46,13 +49,19 @@ test('report analytics: actual capture retains exact seeded quantiles, scoped pr
    const section=async(name:string)=>{await report.locator('label').filter({hasText:'Preview section'}).getByRole('combobox').click();await report.getByRole('option',{name,exact:true}).click();};
    await section('Targets (2)');const preview=report.getByRole('table',{name:'Report preview'});await expect(preview.locator('tbody tr')).toHaveCount(2);await expect(preview.locator('tbody tr').filter({hasText:'Scoped earliest'})).toContainText('By target: 0%');await expect(preview.locator('tbody tr').filter({hasText:'Scoped later'})).toContainText('By target: 100%');await settledScreenshot(report,{path:info.outputPath('numeric-report-target-probabilities.png')});
    await section('Capacity (1)');await expect(preview.locator('tbody tr')).toHaveCount(1);await expect(preview.locator('tbody tr')).toContainText('overloaded');await expect(preview.locator('tbody tr td').last()).toHaveText('20h / 12h');await settledScreenshot(report,{path:info.outputPath('numeric-report-captured-overload.png')});
-   const download=async(suffix:string)=>{const event=page.waitForEvent('download');await report.getByRole('button',{name:'Download complete HTML report',exact:true}).click();const file=await event;expect(file.suggestedFilename()).toBe(`sponsor-report-${summary.id}.html`);const path=info.outputPath(`numeric-report-${suffix}.html`);await file.saveAs(path);return path;};
-   const first=await download('original');const doc=await page.context().newPage(),external:string[]=[];doc.on('request',(r:any)=>{if(/^https?:/.test(r.url()))external.push(r.url());});
+   const download=async(suffix:string)=>{
+    stage('download-wait-started',{suffix});const event=page.waitForEvent('download',{timeout:120000});event.catch(()=>{});
+    await report.getByRole('button',{name:'Download complete HTML report',exact:true}).click();stage('download-button-clicked',{suffix});
+    const file=await event;stage('download-event-observed',{suffix,filename:file.suggestedFilename()});expect(file.suggestedFilename()).toBe(`sponsor-report-${summary.id}.html`);
+    const path=info.outputPath(`numeric-report-${suffix}.html`);await file.saveAs(path);stage('download-saved',{suffix,bytes:fs.statSync(path).size});return path;
+   };
+   const first=await download('original');stage('report-document-page-opening');const doc=await page.context().newPage(),external:string[]=[];stage('report-document-page-opened');doc.on('request',(r:any)=>{if(/^https?:/.test(r.url()))external.push(r.url());});
+   let documentError:any;
    try{
-    await doc.goto(pathToFileURL(first).href);await expect(doc.locator('script,iframe,img,link')).toHaveCount(0);expect(external).toEqual([]);await expect(doc.locator('tr[data-issue-key]')).toHaveCount(1);await expect(doc.locator(`tr[data-issue-key="${key}"]`)).toContainText(M);await expect(doc.locator(`tr[data-issue-key="${key}"]`)).toContainText(due);
+    stage('report-document-navigation-started');await doc.goto(pathToFileURL(first).href);stage('report-document-navigation-completed');await expect(doc.locator('script,iframe,img,link')).toHaveCount(0);expect(external).toEqual([]);await expect(doc.locator('tr[data-issue-key]')).toHaveCount(1);await expect(doc.locator(`tr[data-issue-key="${key}"]`)).toContainText(M);await expect(doc.locator(`tr[data-issue-key="${key}"]`)).toContainText(due);
     await expect(doc.locator('body')).toContainText(`P50 ${p50} · P80 ${p50} · P90 ${p90}`);await expect(doc.locator('tr[data-target-key]')).toHaveCount(2);for(const[name,probability]of[['Scoped earliest','0%'],['Scoped later','100%']]){const row=doc.locator('tr[data-target-key]').filter({hasText:name});await expect(row.locator('td').nth(3)).toHaveText(`${p50} / ${p50} / ${p90}`);await expect(row.locator('td').nth(4)).toHaveText(probability);}
-    const cap=doc.locator('tr[data-capacity-key]');await expect(cap).toHaveCount(1);await expect(cap.locator('td').nth(2)).toHaveText('20');await expect(cap.locator('td').nth(3)).toHaveText('12');await expect(cap.locator('td').nth(5)).toHaveText('overloaded');await expect(doc.locator('body')).toContainText(leave);await expect(doc.locator('body')).not.toContainText('LZPT-');await settledScreenshot(doc,{subject:cap,path:info.outputPath('numeric-report-complete-html.png'),fullPage:true});await doc.pdf({path:info.outputPath('numeric-report.pdf'),printBackground:true,preferCSSPageSize:true});
-   }finally{await doc.close();}
+    const cap=doc.locator('tr[data-capacity-key]');await expect(cap).toHaveCount(1);await expect(cap.locator('td').nth(2)).toHaveText('20');await expect(cap.locator('td').nth(3)).toHaveText('12');await expect(cap.locator('td').nth(5)).toHaveText('overloaded');await expect(doc.locator('body')).toContainText(leave);await expect(doc.locator('body')).not.toContainText('LZPT-');await settledScreenshot(doc,{subject:cap,path:info.outputPath('numeric-report-complete-html.png'),fullPage:true});stage('report-pdf-started');await doc.pdf({path:info.outputPath('numeric-report.pdf'),printBackground:true,preferCSSPageSize:true});stage('report-pdf-saved');
+   }catch(error){documentError=error;stage('report-document-error',{message:String((error as any)?.message||error)});throw error;}finally{stage('report-document-close-started');try{await doc.close();stage('report-document-close-completed');}catch(error){stage('report-document-close-error',{message:String((error as any)?.message||error)});throw new AggregateError([...(documentError?[documentError]:[]),error],'Report document body/close failures');}}
    frame=await table(page,f.name);await editDuration(frame,key,'9');await save(frame);expect(await f.read(key)).toEqual(originalDates);
    await put(`/rest/api/3/issue/${key}`,{fields:{timetracking:{originalEstimate:'40h',remainingEstimate:'40h'}}});expect((await get(`/rest/api/3/issue/${key}?fields=timeestimate`)).fields.timeestimate).toBe(144000);
    prefs=await rpc.invoke('getCapacitySettings');expect((await rpc.invoke('saveCapacitySettings',{settings:{selectedPlanIds:[LZPT_PLAN],profiles:{[me.accountId]:{...profile,hoursPerDay:1,leaveDates:[]}},issueChoices:{}},expectedVersion:prefs.version})).success).toBe(true);
@@ -60,9 +69,10 @@ test('report analytics: actual capture retains exact seeded quantiles, scoped pr
    expect((await rpc.invoke('getSponsorReport',{planId:f.planId,reportId:summary.id})).report).toEqual(summary);expect((await rpc.invoke('getSponsorReportPage',{planId:f.planId,reportId:summary.id,section:'capacity',page:0})).page.rows).toEqual(capPage.page.rows);
    const second=await download('after-live-changes');expect(fs.readFileSync(second,'utf8')).toBe(fs.readFileSync(first,'utf8'));journal.immutableAfterScheduleEffortProfileChanges=true;retain();
    await report.getByRole('button',{name:'Delete report',exact:true}).click();await frame.getByRole('dialog',{name:'Delete sponsor report',exact:true}).getByRole('button',{name:'Delete report',exact:true}).click();await expect(report.getByRole('navigation',{name:'Retained sponsor reports'}).getByRole('button')).toHaveCount(0);
-  }finally{
+  }catch(error){bodyError=error;journal.bodyError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw error;}finally{
    try{if(originalSettings){const current=await rpc.invoke('getCapacitySettings');expect(current.success).toBe(true);expect((await rpc.invoke('saveCapacitySettings',{settings:originalSettings,expectedVersion:current.version})).success).toBe(true);expect((await rpc.invoke('getCapacitySettings')).settings).toEqual(originalSettings);restored=true;}}
-   finally{rpc.stop();journal.originalPrivateSettingsRestored=restored;retain();}
+   catch(error){journal.settingsCleanupError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw new AggregateError([...(bodyError?[bodyError]:[]),error],'Numeric report body and private settings cleanup failures');}
+   finally{rpc.stop();journal.originalPrivateSettingsRestored=restored;retain();page.off('crash',crashed);page.off('close',closed);page.context().off('close',contextClosed);}
   }
  });
 });
