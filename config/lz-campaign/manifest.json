@@ -384,6 +384,37 @@
       ],
       "minTests": 1,
       "timeoutSeconds": 1200
+    },
+    {
+      "id": "private-completed-observation-live",
+      "status": "ready",
+      "acceptance": [
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "sensitivity-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts"
+      ],
+      "minTests": 2,
+      "timeoutSeconds": 1800
     }
   ]
 }
