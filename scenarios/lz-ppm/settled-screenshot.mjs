@@ -12,8 +12,8 @@ export function pngContent(buffer){
  return {width,height,colors:colors.size,differentPixels:different,nonblank:colors.size>=16&&different>=Math.max(100,width*height*.002)};
 }
 export async function settledScreenshot(target,options){
- const element=typeof target.context==='function'?target.locator('body'):target;
- await expect(element).toBeVisible();await element.scrollIntoViewIfNeeded();
+ const isPage=typeof target.context==='function',element=isPage?target.locator('body'):target;
+ await expect(element).toBeVisible();if(!isPage)await element.scrollIntoViewIfNeeded();
  await expect.poll(()=>element.evaluate(el=>{
   for(let p=el;p;p=p.parentElement){const s=getComputedStyle(p);if(Number(s.opacity)<.99||s.visibility!=='visible'||s.display==='none')return false;}
   const r=el.getBoundingClientRect();return r.width>0&&r.height>0;

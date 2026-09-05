@@ -35,11 +35,13 @@ test('campaign: actual UI version and preserved LZPT source', async ({ page }) =
   for (const key of ['LZPT-209', 'LZPT-212', 'LZPT-214', 'LZPT-215']) expect(detail.issues.some((i: any) => i.key === key)).toBe(true);
   const source = { issues: scheduleFields(detail.issues), sources: detail.meta.sources, calendarKey: detail.meta.calendarKey,
     holidayYears: detail.meta.holidayYears, milestones: detail.meta.milestones, protectionEnabled: detail.meta.protectionEnabled };
-  if (extension) {
+  const ORIGINAL_FINGERPRINT='2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104';
+  {
     const originalKeys = Array.from({length:45},(_,n)=>`LZPT-${186+n}`);
     expect(detail.issues.map((i:any)=>i.key).sort()).toEqual([...originalKeys,...foreignKeys].sort());
     const original = {...source, issues: source.issues.filter((i:any)=>originalKeys.includes(i.key))};
-    expect(crypto.createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'original 45 complete source schedule remains unchanged').toBe(extension.originalFingerprint);
+    expect(crypto.createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'original 45 complete source schedule remains unchanged').toBe(ORIGINAL_FINGERPRINT);
+    if(extension)expect(extension.originalFingerprint).toBe(ORIGINAL_FINGERPRINT);
   }
   const fingerprint = crypto.createHash('sha256').update(JSON.stringify(source)).digest('hex');
   const plans = (await getTestState('lz-ppm', { what: 'plans' })).plans;

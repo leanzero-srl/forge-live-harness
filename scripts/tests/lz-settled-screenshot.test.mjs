@@ -18,6 +18,7 @@ test('real browser capture waits for a transparent ancestor to paint and rejects
   const page=await browser.newPage();await page.setContent('<div id="ancestor" style="opacity:0"><section style="width:500px;height:200px;background:#123abc;color:white"><h1>Actual result</h1><p>20 hours demand / 12 hours capacity</p></section></div>');
   await page.evaluate(()=>setTimeout(()=>document.querySelector('#ancestor').style.opacity='1',400));
   const result=await settledScreenshot(page.locator('section'),{path:path.join(dir,'result.png')});assert.equal(result.nonblank,true);
+  await page.setContent('<div style="height:5000px">Top</div><h1 id="last">Exact terminal row</h1>');await page.locator('#last').scrollIntoViewIfNeeded();const scroll=await page.evaluate(()=>window.scrollY);assert.ok(scroll>4000);await settledScreenshot(page,{path:path.join(dir,'terminal.png')});assert.equal(await page.evaluate(()=>window.scrollY),scroll);
   await page.setContent('<section style="width:500px;height:200px;background:#123abc"></section>');
   await assert.rejects(()=>settledScreenshot(page.locator('section'),{path:path.join(dir,'blank.png')}),/Blank screenshot rejected/);
  }finally{await browser.close();fs.rmSync(dir,{recursive:true,force:true});}
