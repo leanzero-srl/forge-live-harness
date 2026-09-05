@@ -274,6 +274,14 @@ test("a 45-slide ask meets the REAL ceiling of 40, not an invented one", async (
         "Do not attach it to any Jira issue.",
     );
     const reply = String(result.response || "");
+    // RECORDED, because "neither file was produced" is a CLAIM the model makes
+    // about its own tool calls, and this is the field that can contradict it.
+    // Measured 5 Sep 2026: four createPresentation calls on one turn, the
+    // fourth refused by writeGuard at writesRemaining=0, and a reply telling
+    // the user nothing was built — with nobody reading `decks` to check.
+    console.log(
+      `[deck45] decks=${JSON.stringify(result.decks)} iterations=${result.iterations}`,
+    );
     console.log(`[deck45] reply:\n${reply.slice(0, 2000)}`);
     skipIfQuotaBlocked(reply, "deck-download/45-slide ceiling");
 
