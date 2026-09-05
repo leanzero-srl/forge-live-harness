@@ -156,15 +156,21 @@ def wait_profile_free(timeout_seconds=300):
 
 
 def kill_group(child):
-    if child.poll() is not None:
-        return
+    # A group can outlive its leader. Always signal the owned group even when
+    # Playwright has exited, otherwise a background browser can leak the lane.
     try:
         os.killpg(child.pid, signal.SIGTERM)
-        child.wait(timeout=10)
-    except subprocess.TimeoutExpired:
-        os.killpg(child.pid, signal.SIGKILL); child.wait()
     except ProcessLookupError:
         pass
+    try:
+        child.wait(timeout=10)
+    except subprocess.TimeoutExpired:
+        pass
+    try:
+        os.killpg(child.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    child.wait()
 
 
 def run_child(command, env, log_path, timeout_seconds, heartbeat=None):
@@ -199,6 +205,7 @@ def run_phase(config, feature, phase, attempt, heartbeat):
             command += ['--grep', feature['grep']]
         if feature.get('grepInvert'):
             command += ['--grep-invert', feature['grepInvert']]
+    atomic(attempt / (phase + '-command.json'), {'argv': command, 'cwd': str(ROOT), 'phase': phase, 'uiVersion': config['uiVersion']})
     wait_profile_free()
     process = run_child(command, env, attempt / (phase + '.log'), feature.get('timeoutSeconds', 900) if phase == 'tests' else 240, heartbeat)
     if process.get('timedOut') or process.get('interrupted'):

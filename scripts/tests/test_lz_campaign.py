@@ -105,6 +105,18 @@ class CampaignControls(unittest.TestCase):
             proc = subprocess.run(['ps', '-p', str(pid), '-o', 'stat='], text=True, capture_output=True)
             self.assertTrue(not proc.stdout.strip() or proc.stdout.strip().startswith('Z'), proc.stdout)
 
+    def test_exited_leader_cannot_leave_background_child(self):
+        with tempfile.TemporaryDirectory() as d:
+            log = Path(d) / 'child.log'
+            code = 'import subprocess,sys; p=subprocess.Popen([sys.executable,"-c","import signal,time; signal.signal(signal.SIGTERM,signal.SIG_IGN); time.sleep(60)"]); print(p.pid,flush=True)'
+            result = m.run_child([sys.executable, '-u', '-c', code], os.environ.copy(), log, 5)
+            self.assertEqual(result['exit'], 0)
+            pid = int(log.read_text().strip())
+            import time
+            time.sleep(0.1)
+            proc = subprocess.run(['ps', '-p', str(pid), '-o', 'stat='], text=True, capture_output=True)
+            self.assertTrue(not proc.stdout.strip() or proc.stdout.strip().startswith('Z'), proc.stdout)
+
     def test_ready_without_tests_is_rejected(self):
         with self.assertRaises(ValueError):
             m.validate_manifest({'features': [{'id': 'x', 'status': 'ready', 'acceptance': ['X'], 'specs': [], 'minTests': 0}]})
