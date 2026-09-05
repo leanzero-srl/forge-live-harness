@@ -40,6 +40,128 @@
       "startedAt": "2026-09-05T20:58:22.589Z",
       "status": 201,
       "finishedAt": "2026-09-05T20:58:22.916Z"
+    },
+    {
+      "kind": "config-multiple",
+      "method": "PUT",
+      "route": "/rest/servicedesk/cmdb/latest/fieldconfig/11761",
+      "body": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:35.837Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:36.177Z"
+    },
+    {
+      "kind": "screen-10009-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10009/tabs/10012/fields",
+      "body": {
+        "fieldId": "customfield_11148"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:36.631Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:37.252Z"
+    },
+    {
+      "kind": "screen-10014-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10014/tabs/10017/fields",
+      "body": {
+        "fieldId": "customfield_11148"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:37.669Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:38.096Z"
+    },
+    {
+      "kind": "screen-10004-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10004/tabs/10007/fields",
+      "body": {
+        "fieldId": "customfield_11148"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:38.478Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:38.895Z"
+    },
+    {
+      "kind": "config-gate",
+      "method": "PUT",
+      "route": "/rest/servicedesk/cmdb/latest/fieldconfig/11762",
+      "body": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:39.064Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:39.288Z"
+    },
+    {
+      "kind": "screen-10009-gate",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10009/tabs/10012/fields",
+      "body": {
+        "fieldId": "customfield_11149"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:39.700Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:40.285Z"
+    },
+    {
+      "kind": "screen-10014-gate",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10014/tabs/10017/fields",
+      "body": {
+        "fieldId": "customfield_11149"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:40.559Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:40.912Z"
+    },
+    {
+      "kind": "screen-10004-gate",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10004/tabs/10007/fields",
+      "body": {
+        "fieldId": "customfield_11149"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:41.359Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:41.717Z"
     }
   ],
   "fields": {
@@ -69,6 +191,23 @@
             "issueTypeId": "10004"
           }
         ]
+      },
+      "configured": true,
+      "config": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
       }
     },
     "gate": {
@@ -97,6 +236,23 @@
             "issueTypeId": "10004"
           }
         ]
+      },
+      "configured": true,
+      "config": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
       }
     }
   },
@@ -217,7 +373,7 @@
     }
   },
   "lastProtection": {
-    "at": "2026-09-05T20:58:21.445Z",
+    "at": "2026-09-05T20:58:35.835Z",
     "unchanged": true
   },
   "discovery": {
@@ -326,6 +482,31 @@
           "customfield_10056",
           "priority",
           "customfield_10042"
+        ],
+        "afterIds": [
+          "summary",
+          "description",
+          "customfield_10035",
+          "customfield_10036",
+          "customfield_10038",
+          "attachment",
+          "customfield_10034",
+          "reporter",
+          "assignee",
+          "fixVersions",
+          "customfield_10014",
+          "parent",
+          "timetracking",
+          "customfield_10040",
+          "customfield_10049",
+          "customfield_10050",
+          "customfield_10052",
+          "customfield_10053",
+          "customfield_10056",
+          "priority",
+          "customfield_10042",
+          "customfield_11148",
+          "customfield_11149"
         ]
       },
       {
@@ -362,6 +543,34 @@
           "customfield_10015",
           "customfield_10180",
           "customfield_10181"
+        ],
+        "afterIds": [
+          "summary",
+          "description",
+          "customfield_10035",
+          "customfield_10036",
+          "customfield_10038",
+          "attachment",
+          "reporter",
+          "assignee",
+          "fixVersions",
+          "customfield_10014",
+          "parent",
+          "timetracking",
+          "customfield_10040",
+          "customfield_10052",
+          "customfield_10050",
+          "customfield_10049",
+          "customfield_10053",
+          "customfield_10034",
+          "customfield_10056",
+          "priority",
+          "customfield_10042",
+          "customfield_10015",
+          "customfield_10180",
+          "customfield_10181",
+          "customfield_11148",
+          "customfield_11149"
         ]
       },
       {
@@ -380,6 +589,16 @@
           "description",
           "customfield_10034",
           "attachment"
+        ],
+        "afterIds": [
+          "customfield_10011",
+          "issuetype",
+          "summary",
+          "description",
+          "customfield_10034",
+          "attachment",
+          "customfield_11148",
+          "customfield_11149"
         ]
       }
     ],
@@ -473,5 +692,137 @@
         }
       ]
     }
+  },
+  "createAfter": {
+    "total": 9,
+    "fields": [
+      {
+        "fieldId": "attachment",
+        "name": "Attachment",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": "attachment",
+          "system": "attachment"
+        },
+        "operations": [
+          "set",
+          "copy"
+        ]
+      },
+      {
+        "fieldId": "customfield_10034",
+        "name": "Hourly rate",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:float",
+          "customId": 10034
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      {
+        "fieldId": "customfield_11148",
+        "name": "[harness-test] LZ Assets owned 20260905 multiple",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": "cmdb-object-field",
+          "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+          "customId": 11148
+        },
+        "operations": [
+          "set"
+        ],
+        "configuration": {
+          "multiple": true,
+          "attributesIncludedInAutoCompleteSearch": [
+            "Name"
+          ],
+          "isInsightAvailable": true
+        }
+      },
+      {
+        "fieldId": "customfield_11149",
+        "name": "[harness-test] LZ Assets owned 20260905 gate",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": "cmdb-object-field",
+          "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+          "customId": 11149
+        },
+        "operations": [
+          "set"
+        ],
+        "configuration": {
+          "multiple": false,
+          "attributesIncludedInAutoCompleteSearch": [
+            "Name"
+          ],
+          "isInsightAvailable": true
+        }
+      },
+      {
+        "fieldId": "description",
+        "name": "Description",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "system": "description"
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      {
+        "fieldId": "issuetype",
+        "name": "Issue Type",
+        "required": true,
+        "schema": {
+          "type": "issuetype",
+          "system": "issuetype"
+        },
+        "operations": []
+      },
+      {
+        "fieldId": "parent",
+        "name": "Parent",
+        "required": false,
+        "schema": {
+          "type": "issuelink",
+          "system": "parent"
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      {
+        "fieldId": "project",
+        "name": "Project",
+        "required": true,
+        "schema": {
+          "type": "project",
+          "system": "project"
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      {
+        "fieldId": "summary",
+        "name": "Summary",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "system": "summary"
+        },
+        "operations": [
+          "set"
+        ]
+      }
+    ]
   }
 }
