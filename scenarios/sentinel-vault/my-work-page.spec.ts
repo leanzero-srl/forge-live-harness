@@ -47,6 +47,15 @@ test("My work lists my approvals, edit requests and seals across spaces; Approve
     expect(ra.result?.pending, `approval requested (got ${JSON.stringify(ra.result)})`).toBe(true);
     const er = await inv("requestEditAccess", { att: ATT, reason: "Need to fix the totals", actor: GABI });
     expect(er.result?.success, `Gabriela's edit request lands (got ${JSON.stringify(er.result)})`).toBe(true);
+    // Both inboxes read a per-caller INDEX prefix (eventually consistent) and confirm by key —
+    // wait until the seeded rows are visible to the queries before loading the page, or the
+    // first render can legitimately say "nothing waiting" (flaked once in sv-it66-final).
+    for (let i = 0; i < 10; i++) {
+      const a = ((await inv("listMyApprovals", { actor: MIHAI })).result?.approvals || []) as any[];
+      const e = ((await inv("listMyEditRequests", { actor: MIHAI })).result?.requests || []) as any[];
+      if (a.some((x) => String(x.pageId) === String(p.id)) && e.some((x) => x.requesterAccountId === GABI)) break;
+      await new Promise((r) => setTimeout(r, 1500));
+    }
 
     await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
     const s = await enterForgeSurface(page, { surface: "custom", readySelector: '[data-testid="mw-page"]', timeout: 60000 });
