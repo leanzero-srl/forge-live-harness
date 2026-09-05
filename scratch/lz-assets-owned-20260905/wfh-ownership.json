@@ -162,6 +162,76 @@
       "startedAt": "2026-09-05T20:58:41.359Z",
       "status": 200,
       "finishedAt": "2026-09-05T20:58:41.717Z"
+    },
+    {
+      "kind": "issue",
+      "method": "POST",
+      "route": "/rest/api/3/issue",
+      "body": {
+        "fields": {
+          "project": {
+            "id": "10001"
+          },
+          "issuetype": {
+            "id": "10004"
+          },
+          "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+          "description": {
+            "type": "doc",
+            "version": 1,
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "lz-assets-owned-20260905-wfh"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:49.953Z",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:58:50.746Z"
+    },
+    {
+      "kind": "assign",
+      "method": "PUT",
+      "route": "/rest/api/3/issue/WFH-2820",
+      "body": {
+        "fields": {
+          "customfield_10015": "2026-10-05",
+          "customfield_10042": "2026-10-09",
+          "customfield_10180": 5,
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ]
+        }
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:51.155Z",
+      "status": 204,
+      "finishedAt": "2026-09-05T20:58:52.062Z"
     }
   ],
   "fields": {
@@ -373,7 +443,7 @@
     }
   },
   "lastProtection": {
-    "at": "2026-09-05T20:58:35.835Z",
+    "at": "2026-09-05T20:58:49.951Z",
     "unchanged": true
   },
   "discovery": {
@@ -824,5 +894,118 @@
         ]
       }
     ]
+  },
+  "issue": {
+    "id": "25020",
+    "key": "WFH-2820",
+    "editable": {
+      "customfield_10015": {
+        "name": "Start date",
+        "schema": {
+          "type": "date",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:datepicker",
+          "customId": 10015
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      "customfield_10042": {
+        "name": "Due Date",
+        "schema": {
+          "type": "date",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:datepicker",
+          "customId": 10042
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      "customfield_10180": {
+        "name": "PPM Duration",
+        "schema": {
+          "type": "number",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:float",
+          "customId": 10180
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      "customfield_10181": {
+        "name": "PPM Buffer",
+        "schema": {
+          "type": "option",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+          "customId": 10181
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      "customfield_11148": {
+        "name": "[harness-test] LZ Assets owned 20260905 multiple",
+        "schema": {
+          "type": "array",
+          "items": "cmdb-object-field",
+          "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+          "customId": 11148
+        },
+        "operations": [
+          "set"
+        ],
+        "configuration": {
+          "isInsightAvailable": true,
+          "multiple": true,
+          "attributesIncludedInAutoCompleteSearch": [
+            "Name"
+          ]
+        }
+      },
+      "customfield_11149": {
+        "name": "[harness-test] LZ Assets owned 20260905 gate",
+        "schema": {
+          "type": "array",
+          "items": "cmdb-object-field",
+          "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+          "customId": 11149
+        },
+        "operations": [
+          "set"
+        ],
+        "configuration": {
+          "isInsightAvailable": true,
+          "multiple": false,
+          "attributesIncludedInAutoCompleteSearch": [
+            "Name"
+          ]
+        }
+      }
+    },
+    "assigned": true,
+    "expected": {
+      "customfield_10015": "2026-10-05",
+      "customfield_10042": "2026-10-09",
+      "customfield_10180": 5,
+      "customfield_11148": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        },
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+          "objectId": "412"
+        }
+      ],
+      "customfield_11149": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        }
+      ]
+    }
   }
 }
