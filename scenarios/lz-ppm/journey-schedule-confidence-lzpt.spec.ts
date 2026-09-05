@@ -1,7 +1,7 @@
 // The persistent LZPT bed deliberately contains missing/inverted dates. Its
 // honest forecast is unavailable. Numeric proof uses an isolated plan containing
 // only known valid Jira leaves and their auto-discovered ancestors, not repaired
-// or reseeded source data. The normalization defect remains a standing witness.
+// or reseeded source data. Normalization is an ordinary regression after its live fix.
 import { test, expect } from '../../fixtures/forge';
 import { getTestState } from '../../testhook/client';
 import { withForecastFixture, openPlan, finished, selectPreset, scheduleFields, LZPT_PLAN, waitForIssueReload } from './forecast-fixture';
@@ -120,17 +120,14 @@ test('dashboard: invalid or missing source dates make the untouched LZPT forecas
 });
 
 test('table: a background refresh must not un-normalize the durations', async ({ page }, testInfo) => {
-  // Standing witness for the REFUSED normalization-latch cut (app 34136ecd).
-  // The broad proposed fix could permanently rewrite a declared-zero milestone's
-  // baseline during Discard All. No marker is active during setup or cleanup:
-  // auth, indexing, clean initial durations and refresh must genuinely succeed.
-  // Only the final equality assertion is expected to fail. A future real fix
-  // turns it into an unexpected pass and requires removal of test.fail().
+  // The original expected-failure witness unexpectedly passed on development
+  // 4.58.572 / Forge 6.1.0 with setup and cleanup intact. This ordinary guard
+  // retains that refresh path and additionally waits for stable visible rows.
   let before: any, after: any;
   await withForecastFixture(page, 'normalization', async ({ name, planId }: any) => {
     const frame = await openPlan(page, name);
-    const read = async () => {
-      await frame.getByRole('button', { name: /^Table/i }).first().click();
+    const read = async (navigate = true) => {
+      if (navigate) await frame.getByRole('button', { name: /^Table/i }).first().click();
       const out: Record<string, string | null> = {};
       for (const key of ['LZPT-215', 'LZPT-209']) {
         // data-testid and data-row-key are on the SAME node.
@@ -151,11 +148,15 @@ test('table: a background refresh must not un-normalize the durations', async ({
     await frame.getByRole('button', { name: /^Table/i }).first().click();
     expect(await reloaded, 'the open client fetched the refreshed issue snapshot').toEqual({ ok: true });
     await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);
-    after = await read();
+    let stable = 0;
+    await expect.poll(async () => {
+      const current = await read(false);
+      stable = JSON.stringify(current) === JSON.stringify(before) ? stable + 1 : 0;
+      return stable >= 3 ? current : null;
+    }, {timeout:45_000,intervals:[1000]}).toEqual(before);
+    after = await read(false);
     console.log('NORMALIZATION DURATIONS', JSON.stringify({ before, after }));
     await page.screenshot({ animations: 'disabled', path: testInfo.outputPath('normalization-after-refresh.png'), fullPage: true });
   });
-  // No cleanup or setup can be hidden behind this marker.
-  test.fail();
   expect(after, 'the refresh must not un-normalize the durations').toEqual(before);
 });

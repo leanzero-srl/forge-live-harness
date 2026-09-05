@@ -19,6 +19,13 @@ def report(expected='passed', actual='passed', status='expected', title='real as
 
 
 class CampaignControls(unittest.TestCase):
+    def test_source_cannot_change_between_feature_units(self):
+        passed = {'status': 'passed', 'ordinaryPasses': ['identity']}
+        self.assertEqual(m.require_entry_source(passed, {'sourceFingerprint':'A'}, 'A')['status'], 'passed')
+        self.assertEqual(m.require_entry_source(passed, {'sourceFingerprint':'B'}, 'A')['status'], 'failed')
+        self.assertEqual(m.require_entry_source(passed, {}, 'A')['status'], 'failed')
+        self.assertEqual(m.require_entry_source({'status':'failed'}, {'sourceFingerprint':'A'}, 'A')['status'], 'failed')
+
     def test_positive_control(self):
         self.assertEqual(m.classify_report(report(), FEATURE, 0)['status'], 'passed')
 

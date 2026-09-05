@@ -219,6 +219,12 @@ def run_phase(config, feature, phase, attempt, heartbeat):
         return {'status': 'failed', 'reasons': [str(exc)], 'process': process}
 
 
+def require_entry_source(result, identity, expected_fingerprint):
+    if result.get('status') == 'passed' and identity.get('sourceFingerprint') != expected_fingerprint:
+        return {**result, 'status': 'failed', 'reasons': ['Source fingerprint changed since the campaign entry guard']}
+    return result
+
+
 def result_stamp(config, feature, instrument):
     return digest({'instrument': instrument, 'feature': feature, 'ui': config['uiVersion'], 'forge': config['forgeVersion'], 'appCommit': config['appCommit'], 'source': config.get('sourceFingerprint')})
 
@@ -317,6 +323,8 @@ def run(config, directory):
                     atomic(state_path, {**owner, 'status': 'running', 'feature': feature['id'], 'childPid': child_pid, 'time': utc()})
                     print(utc(), 'ACTIVE', feature['id'], 'child', child_pid, flush=True)
                 before = run_phase(config, feature, 'before', attempt, heartbeat)
+                if before['status'] == 'passed':
+                    before = require_entry_source(before, read(attempt / 'before-identity.json') or {}, config['sourceFingerprint'])
                 result['phases']['before'] = before
                 if before['status'] != 'passed':
                     result['status'] = 'identity_failed'
