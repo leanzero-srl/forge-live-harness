@@ -13,6 +13,11 @@ test('campaign: actual UI version and preserved LZPT source', async ({ page }) =
   test.skip(!dir, 'Explicit campaign identity guard; run through scripts/lz-campaign.py');
   const expected = process.env.LZ_EXPECTED_UI_VERSION;
   const phase = process.env.LZ_CAMPAIGN_PHASE;
+  const extension = JSON.parse(process.env.LZ_CAMPAIGN_SOURCE_EXTENSION || 'null');
+  const foreignKeys: string[] = extension?.keys || [];
+  expect(new Set(foreignKeys).size).toBe(foreignKeys.length);
+  if (extension) { expect(extension.reason).toBeTruthy(); expect(extension.originalFingerprint).toMatch(/^[a-f0-9]{64}$/); }
+  const expectedCount = 45 + foreignKeys.length;
   expect(expected, 'a concrete deployed UI version is required').toMatch(/^\d+\.\d+\.\d+$/);
   expect(['before', 'after']).toContain(phase);
   const frame = await openPlans(page);
@@ -20,20 +25,26 @@ test('campaign: actual UI version and preserved LZPT source', async ({ page }) =
   const actual = body.match(/REV\s+V(\d+\.\d+\.\d+)/i)?.[1];
   expect(actual, 'read the actual revision from the rendered app').toBe(expected);
   const card = frame.locator('.lz-card', { hasText: 'LZPT Scenarios' }).first();
-  await expect(card).toContainText(/45\s*ISSUES/i);
+  await expect(card).toContainText(new RegExp(`${expectedCount}\\s*ISSUES`, 'i'));
   await expect(card).toContainText(/0\s*DRAFTS/i);
   const detail = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
-  expect(detail.issues.length, 'the same protected bed is positively visible').toBe(45);
-  expect(detail.meta.issueCount).toBe(45);
+  expect(detail.issues.length, 'the same protected bed is positively visible').toBe(expectedCount);
+  expect(detail.meta.issueCount).toBe(expectedCount);
   expect(detail.meta.protectionEnabled).toBe(false);
-  expect(new Set(detail.issues.map((i: any) => i.key)).size).toBe(45);
+  expect(new Set(detail.issues.map((i: any) => i.key)).size).toBe(expectedCount);
   for (const key of ['LZPT-209', 'LZPT-212', 'LZPT-214', 'LZPT-215']) expect(detail.issues.some((i: any) => i.key === key)).toBe(true);
   const source = { issues: scheduleFields(detail.issues), sources: detail.meta.sources, calendarKey: detail.meta.calendarKey,
     holidayYears: detail.meta.holidayYears, milestones: detail.meta.milestones, protectionEnabled: detail.meta.protectionEnabled };
+  if (extension) {
+    const originalKeys = Array.from({length:45},(_,n)=>`LZPT-${186+n}`);
+    expect(detail.issues.map((i:any)=>i.key).sort()).toEqual([...originalKeys,...foreignKeys].sort());
+    const original = {...source, issues: source.issues.filter((i:any)=>originalKeys.includes(i.key))};
+    expect(crypto.createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'original 45 complete source schedule remains unchanged').toBe(extension.originalFingerprint);
+  }
   const fingerprint = crypto.createHash('sha256').update(JSON.stringify(source)).digest('hex');
   const plans = (await getTestState('lz-ppm', { what: 'plans' })).plans;
   const planIds = plans.map((p: any) => p.id).sort();
-  const identity = { time: new Date().toISOString(), phase, uiVersion: actual, sourceFingerprint: fingerprint, issueCount: detail.issues.length, drafts: 0, protectionEnabled: false, planIds };
+  const identity = { time: new Date().toISOString(), phase, uiVersion: actual, sourceFingerprint: fingerprint, issueCount: detail.issues.length, coordinatedSourceExtension: extension, drafts: 0, protectionEnabled: false, planIds };
   if (phase === 'after') {
     const before = JSON.parse(fs.readFileSync(path.join(dir!, 'before-identity.json'), 'utf8'));
     expect(fingerprint, 'the complete source schedule and plan settings are unchanged').toBe(before.sourceFingerprint);

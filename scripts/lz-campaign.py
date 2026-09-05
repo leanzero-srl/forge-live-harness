@@ -197,7 +197,7 @@ def run_child(command, env, log_path, timeout_seconds, heartbeat=None):
 def run_phase(config, feature, phase, attempt, heartbeat):
     report_path = attempt / (phase + '-playwright.json')
     env = {**os.environ, 'PLAYWRIGHT_JSON_OUTPUT_NAME': str(report_path), 'LZ_EXPECTED_UI_VERSION': config['uiVersion'],
-           'LZ_CAMPAIGN_PHASE': phase, 'LZ_CAMPAIGN_UNIT_DIR': str(attempt), 'LZ_CAMPAIGN_RUN_ID': config['runId']}
+           'LZ_CAMPAIGN_SOURCE_EXTENSION': json.dumps(config.get('sourceExtension')), 'LZ_CAMPAIGN_PHASE': phase, 'LZ_CAMPAIGN_UNIT_DIR': str(attempt), 'LZ_CAMPAIGN_RUN_ID': config['runId']}
     gate = {'specs': [config['identitySpec']], 'minTests': 1} if phase != 'tests' else feature
     command = [str(ROOT / 'node_modules/.bin/playwright'), 'test', *gate['specs'], '--project=chromium', '--workers=1', '--reporter=line,json', '--output=' + str(attempt / (phase + '-artifacts'))]
     if phase == 'tests':
@@ -226,7 +226,7 @@ def require_entry_source(result, identity, expected_fingerprint):
 
 
 def result_stamp(config, feature, instrument):
-    return digest({'instrument': instrument, 'feature': feature, 'ui': config['uiVersion'], 'forge': config['forgeVersion'], 'appCommit': config['appCommit'], 'source': config.get('sourceFingerprint')})
+    return digest({'instrument': instrument, 'feature': feature, 'ui': config['uiVersion'], 'forge': config['forgeVersion'], 'appCommit': config['appCommit'], 'source': config.get('sourceFingerprint'), 'sourceExtension': config.get('sourceExtension')})
 
 
 def reusable(result, stamp):
@@ -368,6 +368,7 @@ def main():
     parser.add_argument('--run-id', required=True)
     parser.add_argument('--manifest', default=str(DEFAULT_MANIFEST))
     parser.add_argument('--ui-version'); parser.add_argument('--forge-version'); parser.add_argument('--app-commit')
+    parser.add_argument('--source-extension', help='JSON evidence of an explicitly coordinated foreign issue set; persisted with the run')
     parser.add_argument('--features', help='comma-separated exact feature IDs')
     parser.add_argument('--max-minutes', type=int, default=240)
     parser.add_argument('--now', action='store_true', help='stop: interrupt current subprocess group; cleanup may require follow-up')
@@ -403,6 +404,7 @@ def main():
                 parser.error('--' + name.replace('_', '-') + ' is required; do not infer a deployment from local source')
         config = {'runId': args.run_id, 'manifest': str(Path(args.manifest).resolve()), 'identitySpec': manifest['identitySpec'],
                   'uiVersion': args.ui_version, 'forgeVersion': args.forge_version, 'appCommit': args.app_commit,
+                  'sourceExtension': read(Path(args.source_extension).resolve()) if args.source_extension else None,
                   'features': args.features.split(',') if args.features else None, 'maxMinutes': args.max_minutes}
         directory.mkdir(parents=True, exist_ok=True)
         state = read(directory / 'state.json')
