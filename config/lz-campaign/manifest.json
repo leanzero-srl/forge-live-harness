@@ -415,6 +415,20 @@
       ],
       "minTests": 2,
       "timeoutSeconds": 1800
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "ready",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-large-history.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 2100
     }
   ]
 }

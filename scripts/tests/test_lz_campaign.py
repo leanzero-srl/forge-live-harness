@@ -6,6 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 MODULE = Path(__file__).resolve().parents[1] / 'lz-campaign.py'
 spec = importlib.util.spec_from_file_location('lz_campaign', MODULE)
@@ -19,6 +20,17 @@ def report(expected='passed', actual='passed', status='expected', title='real as
 
 
 class CampaignControls(unittest.TestCase):
+    def test_population_reader_change_invalidates_instrument(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            files = ['scripts/lz-campaign.py', 'playwright.config.ts', 'package-lock.json', 'scripts/lz-campaign-assets-fixture.mjs', 'scripts/lz-ppm-population-audit.mjs']
+            for name in files:
+                path = root / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_text('original')
+            with patch.object(m, 'ROOT', root), patch.object(m, '__file__', str(root / 'scripts/lz-campaign.py')):
+                before = m.instrument_hash()
+                (root / 'scripts/lz-ppm-population-audit.mjs').write_text('changed pagination logic')
+                self.assertNotEqual(before, m.instrument_hash())
+
     def test_source_cannot_change_between_feature_units(self):
         passed = {'status': 'passed', 'ordinaryPasses': ['identity']}
         self.assertEqual(m.require_entry_source(passed, {'sourceFingerprint':'A'}, 'A')['status'], 'passed')
