@@ -32,8 +32,10 @@ test('pinned executable, ephemeral state object, video/viewport and actual suppr
  await Promise.all([ctx.close({reason:'finished'}),ctx.close()]);assert.deepEqual(f.calls.slice(-2).map(c=>c[0]),['context-close','browser-close']);
 });
 test('runtime mismatch closes browser before any credential context exists',async()=>{
- const f=fixture({version:'152.0.7977.82'});await assert.rejects(f.launch(options()),/VERSION_MISMATCH/);
- assert.deepEqual(f.calls.map(c=>c[0]),['state-read','launch','browser-close']);
+ for(const version of ['151.0.7922.34','152.0.7977.82']) {
+  const f=fixture({version});await assert.rejects(f.launch(options()),/VERSION_MISMATCH/);
+  assert.deepEqual(f.calls.map(c=>c[0]),['state-read','launch','browser-close']);
+ }
 });
 test('missing state refuses before launch',async()=>{
  const f=fixture({stateError:new Error('state missing')});await assert.rejects(f.launch(options()),/state missing/);assert.deepEqual(f.calls.map(c=>c[0]),['state-read']);

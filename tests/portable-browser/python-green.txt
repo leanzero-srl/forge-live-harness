@@ -10,6 +10,6 @@ test_portable_requires_known_identity (runner_test.Binding.test_portable_require
 test_resume_preserves_and_rejects_mismatch (runner_test.Binding.test_resume_preserves_and_rejects_mismatch) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 0.007s
+Ran 10 tests in 0.009s
 
 OK

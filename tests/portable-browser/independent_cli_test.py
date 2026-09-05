@@ -13,8 +13,8 @@ class Review(unittest.TestCase):
     args=['candidate',verb,'--run-id','local','--manifest',str(manifest),'--ui-version','1.2.3','--forge-version','4','--app-commit','local-source',*extra]
     with patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()):return m.main()
    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',lambda _:[]),patch.object(m,'is_owner_alive',lambda _:False),patch.object(m,'process_start',lambda _:'local-start'),patch.object(m.subprocess,'Popen',child),patch.object(m.time,'sleep',lambda _:None):
-    cli('start',['--browser-mode','portable-cft151','--expected-account-id','local-placeholder'])
-    config=root/'evidence/lz-campaign/local/config.json';before=json.loads(config.read_text());self.assertEqual(before['browserMode'],'portable-cft151')
+    cli('start',['--browser-mode','portable-chrome152','--expected-account-id','local-placeholder'])
+    config=root/'evidence/lz-campaign/local/config.json';before=json.loads(config.read_text());self.assertEqual(before['browserMode'],'portable-chrome152')
     cli('resume');after=json.loads(config.read_text());self.assertEqual(after,before)
     for extra in [['--browser-mode','persistent-chrome'],['--expected-account-id','different-placeholder']]:
      with self.assertRaises(SystemExit) as e:cli('resume',extra)
@@ -24,7 +24,7 @@ class Review(unittest.TestCase):
   with tempfile.TemporaryDirectory() as temp:
    seen=[];attempt=Path(temp)
    def child(argv,env,*args):seen.append(env);Path(env['PLAYWRIGHT_JSON_OUTPUT_NAME']).write_text('{}');return{'exit':0}
-   with patch.dict(os.environ,{'LZ_HARNESS_BROWSER_MODE':'portable-cft151','LZ_EXPECTED_ACCOUNT_ID':'foreign-placeholder','LZ_EXPECTED_UI_VERSION':'wrong'}),patch.object(m,'run_child',child),patch.object(m,'wait_profile_free',lambda:seen.append('wait')),patch.object(m,'classify_report',lambda *args:{'status':'passed'}):
+   with patch.dict(os.environ,{'LZ_HARNESS_BROWSER_MODE':'portable-chrome152','LZ_EXPECTED_ACCOUNT_ID':'foreign-placeholder','LZ_EXPECTED_UI_VERSION':'wrong'}),patch.object(m,'run_child',child),patch.object(m,'wait_profile_free',lambda:seen.append('wait')),patch.object(m,'classify_report',lambda *args:{'status':'passed'}):
     m.run_phase({'runId':'local','uiVersion':'1.2.3','identitySpec':'fake.spec.ts'},{'specs':['fake.spec.ts'],'minTests':1},'tests',attempt,None)
    self.assertEqual(seen[0],'wait');self.assertEqual(seen[1]['LZ_HARNESS_BROWSER_MODE'],'persistent-chrome');self.assertNotIn('LZ_EXPECTED_ACCOUNT_ID',seen[1]);self.assertEqual(seen[1]['LZ_EXPECTED_UI_VERSION'],'1.2.3')
  def test_invalid_persisted_mode_refuses_before_any_lane_or_child(self):
@@ -33,5 +33,5 @@ class Review(unittest.TestCase):
     with self.assertRaises(ValueError):m.run({'browserMode':mode},Path('/unused'))
  def test_result_reuse_separates_modes_and_expected_configuration(self):
   c={'uiVersion':'1.2.3','forgeVersion':'4','appCommit':'local'};a=m.result_stamp(c,{},'fixed')
-  for change in [{'browserMode':'portable-cft151','expectedAccountId':'local-placeholder'},{'expectedAccountId':'different-placeholder'}]:self.assertFalse(m.reusable({'status':'passed','stamp':a},m.result_stamp({**c,**change},{},'fixed')))
+  for change in [{'browserMode':'portable-chrome152','expectedAccountId':'local-placeholder'},{'expectedAccountId':'different-placeholder'}]:self.assertFalse(m.reusable({'status':'passed','stamp':a},m.result_stamp({**c,**change},{},'fixed')))
 if __name__=='__main__':unittest.main(verbosity=2)

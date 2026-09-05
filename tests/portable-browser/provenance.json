@@ -73,5 +73,37 @@
       "installedTestSha256": "55c54b281db9953d59b81ce2398e0808501840b2d400ae44dae06ef507b31586",
       "changes": "Only import/source-resolution paths and proposed-to-installed comment; original assertions preserved."
     }
-  ]
+  ],
+  "currentVariant": {
+    "mode": "portable-chrome152",
+    "version": "152.0.7977.76",
+    "changes": "Root updated mode name and pinned native installed Chrome152 paths/hashes; admission/cleanup/runner semantics unchanged. Tests update only corresponding literals plus explicit rejection of retired151 mode/version. Original candidate provenance remains historical.",
+    "pins": {
+      "version": "152.0.7977.76",
+      "executable": {
+        "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "bytes": 367696,
+        "sha256": "755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee"
+      },
+      "framework": {
+        "path": "/Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/152.0.7977.76/Google Chrome Framework",
+        "bytes": 508804848,
+        "sha256": "bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6"
+      }
+    },
+    "productionSha256": {
+      "forge/browser.ts": "ae6228c02c930aa81897318c4d774d81cca04b38d51c48834e8eea8a9c5ce681",
+      "forge/portable-browser.mjs": "dddcf9ded08c8bb22ad3be6a68f92e4e3fd1a1d32c1b33c4d031ed01dd488c52",
+      "forge/portable-browser.d.mts": "b1859e3b00e79cb6fc603170293a2a53880c986fbe92327d7d86ed518ec80c14",
+      "scripts/lz-campaign.py": "85237b2d876e3217b34016e3591e3c903ee08b7038dcb4b3f64f4ad8f30064ea"
+    },
+    "testSha256": {
+      "wrapper.test.mjs": "a436c1b9fe4d853f14114d36bc847d7412decf7b4a05753429f045251e70f2f3",
+      "independent-wrapper.test.mjs": "00e7c08f4e703a8c804346dfccfaab53114590ce53d9783950ea99d2dff10737",
+      "adapter.test.mjs": "bde6ca0a5f0ee05a29e73dc592e2a392efa80c32cef10493a7436bcce2f997ed",
+      "independent_cli_test.py": "abf84325bed4935a90049601b5db7d541b739cb08bba280aa0a311caea171468",
+      "independent-lifecycle.test.mjs": "6ffdf0960b1499571e76f3c670764a91f76bf5486563ec2741abccd56168b620",
+      "runner_test.py": "338f3581590e27d950bbab490a01fc689cbd59fb215aeb2b789c84eae279f1b7"
+    }
+  }
 }
