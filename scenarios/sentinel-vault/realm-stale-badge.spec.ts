@@ -2,6 +2,7 @@
 // attachment is TRASHED ("Trash" lozenge) instead of rendering them as normal live rows
 // (incident 2026-07-22: console and inline panel disagreed — the panel probed, the console not).
 // Seeds a real trashed attachment + index row, drives the REAL console, asserts the badge.
+// @covers resolver:enumerate-realm-seals
 import { test, expect } from "../../fixtures/forge";
 // @ts-ignore
 import { spaceIdByKey, createPage, deletePage, uploadBinaryAttachment, TINY_PNG, trashAttachment, pollAttachmentStatus } from "../../data/confluence.mjs";

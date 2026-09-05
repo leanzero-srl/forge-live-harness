@@ -24,6 +24,7 @@
 // Also asserted: the input RESETS after each selection (handleFileInput clears e.target.value so
 // the same file can be re-picked), and a rejection's error copy clears on the next attempt.
 // Self-cleaning: the throwaway page owns the uploaded attachment; no KVS is seeded.
+// @covers resolver:enumerate-panel-artifacts
 import { test, expect } from "../../fixtures/forge";
 import { waitForTerminal } from "../_support/wait";
 // @ts-ignore

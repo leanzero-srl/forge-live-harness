@@ -6,6 +6,7 @@
 //  2) REVOKE: seed an active edit-grant → owner clicks Revoke in "Editors with access" → assert it
 //     clears from the UI AND the grant KVS record is deleted.
 // Dev-scoped (env 17516615).
+// @covers resolver:deny-edit-request resolver:revoke-edit-grant resolver:list-edit-grants
 import { test, expect } from "../../fixtures/forge";
 import { getTestState } from "../../testhook/client";
 const PAGE = "https://wolfaenpak.atlassian.net/wiki/pages/viewpage.action?pageId=265912321";

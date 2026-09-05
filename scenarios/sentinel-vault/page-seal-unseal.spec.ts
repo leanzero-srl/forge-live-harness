@@ -4,6 +4,7 @@
 // (seal-artifact) and assert it flips back to "Relinquish". Reversible → leaves the fixture in its
 // original sealed state. Proves the core operator loop through real resolvers (not the mock).
 // Dev-scoped throughout (env 17516615) so the prod install can't confound.
+// @covers resolver:enumerate-doc-artifacts
 import { test, expect } from "../../fixtures/forge";
 const PAGE = "https://wolfaenpak.atlassian.net/wiki/pages/viewpage.action?pageId=265912321";
 const DEV = "17516615";

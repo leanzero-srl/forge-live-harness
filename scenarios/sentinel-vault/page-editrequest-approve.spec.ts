@@ -4,6 +4,7 @@
 // the sealed fixture card, click Approve, and assert (a) the request disappears from the UI and
 // (b) an edit-grant KVS record was created. Reversible + self-cleaning (deletes the seeded request
 // and the grant), so the fixture is left exactly as found. Dev-scoped (env 17516615).
+// @covers resolver:list-edit-requests resolver:approve-edit-request
 import { test, expect } from "../../fixtures/forge";
 import { getTestState } from "../../testhook/client";
 const PAGE = "https://wolfaenpak.atlassian.net/wiki/pages/viewpage.action?pageId=265912321";

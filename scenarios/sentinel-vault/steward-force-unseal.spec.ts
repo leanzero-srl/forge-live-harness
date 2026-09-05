@@ -3,6 +3,7 @@
 // and the full cleanup runs (seal record + realm-index key + edit-grants + watchers). Seeds the seal
 // + secondary records via the dev testhook (no 2nd real user), drives the real UI, asserts the KVS
 // teardown, self-cleans. Dev-scoped (realm-console readySelector = new title). WFH realmId 851971.
+// @covers resolver:enumerate-realm-seals
 import { test, expect } from "../../fixtures/forge";
 import { getTestState } from "../../testhook/client";
 import { getTarget } from "../../config/targets";
@@ -16,7 +17,11 @@ const WATCHER = "712020:aql-synth-watcher";
 const K_SEAL = `protection-${ATT}`;
 const K_INDEX = `space-protection-${REALM_ID}-${ATT}`;
 const K_GRANT = `edit-grant-${ATT}-${EDITOR}`;
-const K_WATCH = `notification-${ATT}-${WATCHER}`;
+// The REAL watch key family (bulletins/actions.js watchArtifact). This spec used to seed
+// `notification-${ATT}-…`, the prefix the buggy sweep queried — so it passed while real watches
+// were never swept. A synthetic watcher makes the release notice FAIL (Confluence rejects the
+// mention), so notifyWatchers keeps the key and only the post-notify sweep can remove it.
+const K_WATCH = `notify-request-${ATT}-${WATCHER}`;
 const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(val) });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
@@ -38,7 +43,7 @@ test("steward force-unseals another user's seal via the realm-console → full c
   await setKvs(K_SEAL, { ...common, lockDuration: 259200, sealedVersion: 1 });
   await setKvs(K_INDEX, { ...common, pageTitle: "SV AQL Seal Fixture (do not delete)", fileSize: 1024, creatorAccountId: OWNER_A, creatorName: "AQL Synth A" });
   await setKvs(K_GRANT, { artifactId: ATT, editorAccountId: EDITOR, editorName: "AQL Editor", grantedBy: OWNER_A, grantedAt: new Date().toISOString(), expiresAt: future });
-  await setKvs(K_WATCH, { attachmentId: ATT, watcherAccountId: WATCHER, createdAt: new Date().toISOString() });
+  await setKvs(K_WATCH, { attachmentId: ATT, accountId: WATCHER, requestedAt: Date.now() });
   try {
     await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
     const s = await enterForgeSurface(page, { surface: "custom", readySelector: ".space-admin-title", timeout: 45000 });
@@ -60,7 +65,7 @@ test("steward force-unseals another user's seal via the realm-console → full c
     console.log("### seal record deleted ✓");
     await expect.poll(async () => await getKvs(K_INDEX), { timeout: 15000, message: "realm-index key deleted" }).toBeFalsy();
     await expect.poll(async () => await getKvs(K_GRANT), { timeout: 15000, message: "edit-grant swept (sweepEditAccess)" }).toBeFalsy();
-    await expect.poll(async () => await getKvs(K_WATCH), { timeout: 15000, message: "watcher notification deleted" }).toBeFalsy();
+    await expect.poll(async () => await getKvs(K_WATCH), { timeout: 15000, message: "notify-request watch swept after the (failed) release notice" }).toBeFalsy();
     console.log("### index/grant/watcher cleanup ✓");
   } finally {
     await cleanup();

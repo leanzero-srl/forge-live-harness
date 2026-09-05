@@ -4,6 +4,7 @@
 // guard (not-sealed, owner-can't-request, duplicate-pending, existing-grant, non-owner-approve,
 // deny→48h cooldown) + the durable grant/request records. Seeds a synthetic section-protection seal;
 // self-cleans. Hook-driven (no browser session needed). Retry-safe (pre-cleans the actor keys).
+// @covers resolver:request-section-edit resolver:check-section-edit resolver:list-section-edit-requests resolver:approve-section-edit resolver:deny-section-edit
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 

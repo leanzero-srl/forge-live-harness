@@ -5,6 +5,7 @@
 // pending request via testhook; the harness user (Mihai) is a WFH steward so drives Approve/Deny in
 // the realm-console Access Control tab. PRESERVES + restores the space policy exactly (the grant is a
 // real adminUsers mutation). Dev-scoped.
+// @covers resolver:approve-steward-request resolver:deny-steward-request
 import { test, expect } from "../../fixtures/forge";
 import { getTestState } from "../../testhook/client";
 import { getTarget } from "../../config/targets";

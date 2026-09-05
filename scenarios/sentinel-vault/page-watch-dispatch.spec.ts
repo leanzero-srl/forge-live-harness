@@ -3,6 +3,7 @@
 // notify-request-* keys), operator-scoped dispatch listing + acknowledge/dismiss (the shared
 // recent-notifications events list), and the read-once breach inbox (violation-alert-* keys).
 // Hook-driven, synthetic actors. Preserves + restores the shared recent-notifications key (it47).
+// @covers resolver:watch-artifact resolver:check-watch resolver:unwatch-artifact resolver:acknowledge-dispatch resolver:operator-dispatches resolver:recent-dispatches resolver:list-breach-dispatches
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 

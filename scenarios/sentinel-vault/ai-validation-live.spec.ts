@@ -10,6 +10,7 @@
 // page's REAL space, resolved from its id. The old v1 read (`/wiki/rest/api/content/{id}?expand=space`)
 // now returns 410 Gone for the app → resolvePageSpaceKey returned null → EVERY steward was denied. The
 // fix resolves via v2 (page → spaceId → space key). A successful enqueue here proves that path is live.
+// @covers resolver:get-validation-job resolver:get-ai-findings manifest:consumer:ai-validation-queue
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 // @ts-ignore

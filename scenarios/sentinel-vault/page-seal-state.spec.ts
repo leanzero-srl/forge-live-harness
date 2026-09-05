@@ -4,6 +4,7 @@
 // target the dev banner by env id, else the prod install (no dev seal → "none sealed") confounds.
 // The fixture attachment (page 265912321) is sealed via the dev install, so the dev banner must
 // say "sealed", not "none sealed" — a regression guard for the doc-ribbon's seal detection.
+// @covers resolver:enumerate-doc-artifacts manifest:confluence:pageBanner:sentinel-vault-ribbon
 import { test, expect } from "../../fixtures/forge";
 import { mkdirSync } from "node:fs";
 const PAGE = "https://wolfaenpak.atlassian.net/wiki/pages/viewpage.action?pageId=265912321";

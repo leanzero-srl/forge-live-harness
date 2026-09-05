@@ -21,6 +21,7 @@
 // task. The seals are synthetic and carry contentId:null so the sweep skips its comment — no real
 // page is touched. The clock is moved by rewriting the sweep's own bookkeeping record, which is
 // the only honest way to see a three-day countdown inside one run.
+// @covers resolver:extend-seal resolver:list-edit-requests resolver:approve-edit-request
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 
@@ -169,9 +170,14 @@ test.describe("F5 — three reminders, then the file is handed back", () => {
   const ATT = `harness-lapse-f5-${Date.now().toString(36)}`;
   const SEAL = `protection-${ATT}`;
   const COUNTER = `expiry-notified-${ATT}`;
+  // A "notify me when it is unsealed" watch held by a synthetic account: the release notice for
+  // it FAILS (Confluence rejects the mention), so notifyWatchers keeps the key and only the
+  // post-notify sweep can remove it — which is exactly the sweep that never matched anything
+  // before it was given the real `notify-request-` prefix.
+  const WATCH = `notify-request-${ATT}-712020:aql-synth-watcher`;
 
   test.afterAll(async () => {
-    for (const k of [SEAL, COUNTER, `fifty-percent-reminder-sent-${ATT}`, `reminder-sent-${ATT}`]) {
+    for (const k of [SEAL, COUNTER, WATCH, `fifty-percent-reminder-sent-${ATT}`, `reminder-sent-${ATT}`]) {
       await delKvs(k).catch(() => {});
     }
   });
@@ -187,6 +193,7 @@ test.describe("F5 — three reminders, then the file is handed back", () => {
   test("an overdue seal is reminded 3 times and then RELEASED — the departed-owner case", async () => {
     await setKvs(SEAL, seal(ATT, ago(1 * DAY)));
     await delKvs(COUNTER);
+    await setKvs(WATCH, { attachmentId: ATT, accountId: "712020:aql-synth-watcher", requestedAt: Date.now() });
     expect(await getKvs(COUNTER), "no reminders sent yet").toBeFalsy();
 
     // ── Reminder 1 ──────────────────────────────────────────────────────────
@@ -226,6 +233,7 @@ test.describe("F5 — three reminders, then the file is handed back", () => {
     // The bookkeeping goes with it, so a later re-seal of the same file starts a clean countdown
     // rather than inheriting a spent one.
     expect(await getKvs(COUNTER), "the reminder counter was cleaned up with the seal").toBeFalsy();
+    expect(await getKvs(WATCH), "a watch whose release notice failed does not outlive the seal (sweepWatchers)").toBeFalsy();
     console.log("### F5: after 3 reminders the seal auto-released ✓");
 
     // ── And it does not keep releasing something that is already gone ────────

@@ -3,6 +3,7 @@
 // there is stranded — the ribbon shows a disabled state pill with no move and no explanation. storeWorkflow
 // Config now WARNS (non-blocking) at save time so the steward knows before pages strand. This spec drives
 // the save via a throwaway space key and asserts the warning appears for a dead-end def but not a sound one.
+// @covers resolver:store-workflow-config
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 

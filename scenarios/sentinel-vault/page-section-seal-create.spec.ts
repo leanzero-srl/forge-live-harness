@@ -2,6 +2,7 @@
 // seal-section → snapshot/content-prop → unseal-section), which every existing section spec skips by
 // hook-seeding the seal. Drives the resolvers via the dev testhook fn= seams against a DISPOSABLE page
 // (never the fixture). Verifies the bodied-extension wrap, the KVS records, the guards, and the unwrap.
+// @covers resolver:enumerate-section-seals
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 // @ts-ignore
@@ -57,6 +58,19 @@ test("B6: seal a section via the real resolver + heading picker → wrap + snaps
     expect((await getKvs(`section-snapshot-${sectionId}`))?.bodyContent, "a snapshot body is captured").toBeTruthy();
     console.log("### seal-section ✓ (wrap + snapshot + record owned by actor)");
 
+    // 4b. enumerate-section-seals POSITIVE path (authz-content-gate only proves the refusal, which
+    // a resolver that always returned [] would also pass). kvs.query-backed → poll until visible.
+    let listed: any = null;
+    for (let i = 0; i < 10 && !listed; i++) {
+      const es = await inv("enumerateSectionSeals", { pageId: page.id, actor: ACTOR });
+      listed = (es.result?.sections || []).find((s: any) => s.sectionId === sectionId) || null;
+      if (!listed) await new Promise((r) => setTimeout(r, 1500));
+    }
+    expect(listed, "the new seal is listed for the page").toBeTruthy();
+    expect(listed.isMine, "…as the caller's own").toBe(true);
+    expect(listed.sectionTitle, "…under its heading").toBe("SECTION ALPHA");
+    expect(listed.isExpired).toBe(false);
+
     // 5. guard: sealing an ALREADY-sealed range is rejected
     const dup = await inv("sealSection", { pageId: page.id, hi: String(alpha.index), htext: "SECTION ALPHA", actor: ACTOR });
     expect(/already sealed|refresh/i.test(dup.result?.reason || ""), "re-sealing the wrapped range is rejected").toBe(true);
@@ -68,7 +82,15 @@ test("B6: seal a section via the real resolver + heading picker → wrap + snaps
     expect((p2.adf.content || []).some(isSealedWrap), "the section is unwrapped after unseal").toBe(false);
     expect(JSON.stringify(p2.adf).includes("alpha body content"), "the alpha body is restored inline").toBe(true);
     expect(await getKvs(`section-protection-${sectionId}`), "the seal record is cleared").toBeFalsy();
-    console.log("### unseal-section ✓ (unwrap + records cleared)");
+    // …and the listing no longer carries it (query lag → poll for absence).
+    let gone = false;
+    for (let i = 0; i < 10 && !gone; i++) {
+      const es = await inv("enumerateSectionSeals", { pageId: page.id, actor: ACTOR });
+      gone = !(es.result?.sections || []).some((s: any) => s.sectionId === sectionId);
+      if (!gone) await new Promise((r) => setTimeout(r, 1500));
+    }
+    expect(gone, "enumerate-section-seals no longer lists the unsealed section").toBe(true);
+    console.log("### unseal-section ✓ (unwrap + records cleared + delisted)");
   } finally {
     if (sectionId) { await delKvs(`section-protection-${sectionId}`).catch(() => {}); await delKvs(`section-snapshot-${sectionId}`).catch(() => {}); }
     await deletePage(page.id).catch(() => {});

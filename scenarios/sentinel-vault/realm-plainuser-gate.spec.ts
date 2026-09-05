@@ -4,6 +4,7 @@
 // synthetic non-steward actor: the role gate (check-user-role → "user"), the steward-access request,
 // and the denied → 48h-cooldown state. (Residual: a live screenshot of the non-steward chrome needs a
 // non-steward login — the harness user is a steward.)
+// @covers resolver:request-steward-access resolver:check-steward-request
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 

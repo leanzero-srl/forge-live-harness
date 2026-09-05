@@ -3,6 +3,7 @@
 // store-validation-config write/delete round-trips through KVS (not just that the editor renders).
 // Self-cleaning (removes ALL copies of the test label) so it never accumulates test rules, even
 // after a failed prior run. Dev-scoped via the .space-admin-title readySelector.
+// @covers resolver:load-validation-config
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { enterForgeSurface } from "../../forge/frame";

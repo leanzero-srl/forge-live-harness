@@ -4,6 +4,7 @@
 // persisted. Round-trips the whole set-space-workflow-settings object (enabled/enforceMode/approval/
 // entryConditions/reviewAfterDays) through KVS. reviewAfterDays chosen because it's picker-free and
 // distinctive; flips 90↔120 each run so a real change is exercised. Dev-scoped via .space-admin-title.
+// @covers resolver:get-space-workflow-settings
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { enterForgeSurface } from "../../forge/frame";

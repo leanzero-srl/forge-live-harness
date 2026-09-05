@@ -2,6 +2,7 @@
 // tier was untested). Invoked on demand via the dev hook. A synthetic EXPIRED media seal with
 // contentId:null (so the sweep skips the comment → no real-page side effect) must be picked up:
 // the sweep sets its `expiry-notified` dedup flag + records a dispatch event.
+// @covers manifest:scheduledTrigger:expiry-sweep-scheduled
 import { test, expect } from "@playwright/test";
 import { getTestState } from "../../testhook/client";
 
