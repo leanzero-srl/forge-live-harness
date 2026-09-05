@@ -5,7 +5,7 @@
   "features": [
     {
       "id": "retained-uat-live",
-      "status": "planned",
+      "status": "ready",
       "retainedUat": true,
       "acceptance": [
         "UAT-NATIVE-CONTEXT-SELECTION",
@@ -24,7 +24,7 @@
       ],
       "minTests": 1,
       "timeoutSeconds": 2400,
-      "scopeNote": "Prepared only; remains planned until confirmed ownership/readiness corrections pass independent review. Creates exactly4ownedWFHissues and2retainedplans for later user inspection. Automated evidence never substitutes for user UAT acknowledgement."
+      "scopeNote": "Prepared and independently reviewed at aa90029+a0f8ba3; no live result yet. Creates exactly four owned WFH issues and two retained plans for later user inspection. Automated evidence never substitutes for user UAT acknowledgement."
     }
   ]
 }

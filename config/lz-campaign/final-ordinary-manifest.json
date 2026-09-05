@@ -4,6 +4,21 @@
   "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
   "features": [
     {
+      "id": "capacity-concurrent-save-live",
+      "status": "ready",
+      "acceptance": [
+        "CAP-SAME-ACCOUNT-CONCURRENT-SAVE-SINGLE-WINNER",
+        "CAP-EXPLICIT-STALE-OR-BUSY-REFUSAL",
+        "CAP-FRESH-WINNER-UI",
+        "CAP-GUARDED-ORIGINAL-TWO-READ-RESTORE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-capacity-concurrent.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 300
+    },
+    {
       "id": "sponsor-report-numeric-live",
       "status": "ready",
       "acceptance": [
