@@ -1,3 +1,4 @@
+import {replayHeaders} from './replay-headers.mjs';
 import fs from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {test, expect} from '../../fixtures/forge';
@@ -69,8 +70,7 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
     const invoke=async(name:string,payload:any)=>{
       expect(wire,'real current-user envelope observed during this owned fork').toBeTruthy();
       const data=structuredClone(wire.data); data.variables.input.payload.call={functionKey:name,payload};
-      const headers={...await wire.headers}; for (const key of ['host','content-length','content-encoding']) delete headers[key];
-      headers['content-type']='application/json';
+      const headers=replayHeaders(await wire.headers);
       const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});
       expect(res.status()).toBe(200); const body=await rpcBody(res); expect(body).toBeTruthy(); return body;
     };

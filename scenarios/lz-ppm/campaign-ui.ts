@@ -1,3 +1,4 @@
+import {replayHeaders} from './replay-headers.mjs';
 import {gunzipSync} from 'node:zlib';
 import {expect} from '../../fixtures/forge';
 export function callEnvelope(req:any) {
@@ -19,7 +20,7 @@ export function currentUserResolver(page:any,filter:(call:any)=>boolean) {
     invoke:async(functionKey:string,payload:any={})=>{
       expect(wire,'actual authenticated resolver request observed in this journey').toBeTruthy();
       const data=structuredClone(wire.data);data.variables.input.payload.call={functionKey,payload};
-      const headers={...await wire.headers};for(const key of ['host','content-length','content-encoding'])delete headers[key];headers['content-type']='application/json';
+      const headers=replayHeaders(await wire.headers);
       const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});expect(res.status()).toBe(200);const body=await bodyOf(res);expect(body).toBeTruthy();return body;
     },
   };
