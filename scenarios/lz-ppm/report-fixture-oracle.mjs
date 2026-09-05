@@ -13,7 +13,7 @@ export function fixtureReportRows(raw, calendar) {
   return raw.map(row => {
     const start=date(row.startDate), end=date(row.dueDate);
     let duration=row.duration??null;
-    if(duration===null && !row.durationExplicitlyCleared) {
+    if(duration===null && row.durationExplicitlyCleared!==true) {
       // These untouched rows came from the same raw Jira baseline. Saved
       // explicit clears are a separate contract and remain null above.
       assert.ok(!row._original || (row._original.duration==null && row.startDate===row._original.startDate && row.dueDate===row._original.dueDate), `Unexpected null current edit: ${row.key}`);
@@ -26,7 +26,7 @@ export function fixtureReportRows(raw, calendar) {
       assert.ok(Number.isFinite(duration)&&duration>=0,`Unexpected current duration: ${row.key}`);
       // Fixture numeric inputs must be an explicit zero/capture or a saved
       // current edit. A differing raw import needs its own expected oracle.
-      assert.ok(duration===0 || row.capturedDuration || !row._original || row.duration!==row._original.duration || row.startDate!==row._original.startDate || row.dueDate!==row._original.dueDate,`Unexpected unchanged raw numeric import: ${row.key}`);
+      assert.ok(duration===0 || row.capturedDuration===true || (row._original && (row.duration!==row._original.duration || row.startDate!==row._original.startDate || row.dueDate!==row._original.dueDate)),`Unexpected raw numeric import: ${row.key}`);
     }
     return {key:row.key,summary:row.summary,startDate:row.startDate??null,dueDate:row.dueDate??null,duration};
   }).sort((a,b)=>a.key.localeCompare(b.key));
