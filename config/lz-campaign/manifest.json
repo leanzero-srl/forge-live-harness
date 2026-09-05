@@ -588,7 +588,9 @@
         "ASSET-TEXT-FILTER-COMPOSITION",
         "ASSET-RENAME-STABLE-ID",
         "ASSET-GANTT-VISIBILITY",
-        "ASSET-HIDDEN-SUCCESSOR-APPLY-SECOND-REST"
+        "ASSET-HIDDEN-SUCCESSOR-APPLY-SECOND-REST",
+        "TGT-EPIC-EXTERNAL-PREDECESSOR",
+        "TGT-EDIT-DURING-ACTUAL-FORECAST"
       ],
       "specs": [
         "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
@@ -600,9 +602,10 @@
         "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
         "scenarios/lz-ppm/journey-campaign-report.spec.ts",
         "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
-        "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts"
+        "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts"
       ],
-      "minTests": 13,
+      "minTests": 14,
       "timeoutSeconds": 9000,
       "componentFeatures": [
         "private-simulation-live",
@@ -617,7 +620,7 @@
         "forecast-outcomes-live",
         "native-assets-expanded-live"
       ],
-      "scopeNote": "Thirteen real tests in ten files, single worker and full before/after identity, zero retries. Includes prepared corrected adoption/private/report/visual witnesses and native Assets. Original45 source after explicit foreign-fixture cleanup; report pagination above2000 is a separate large-history-report-live unit. No prepared capability counts as passed."
+      "scopeNote": "Fourteen real tests in eleven files, single worker and full before/after identity, zero retries. Includes prepared corrected adoption/private/report/visual witnesses and native Assets. Original45 source after explicit foreign-fixture cleanup; report pagination above2000 is a separate large-history-report-live unit. No prepared capability counts as passed. Actual epic test independently reviewed e8a11c9; source data and old yielded callbacks remain real."
     }
   ]
 }
