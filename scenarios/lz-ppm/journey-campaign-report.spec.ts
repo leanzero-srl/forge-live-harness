@@ -52,7 +52,7 @@ test('reports: complete actual paged HTML and printed PDF retain all source rows
   const clean=async(label:string,action:()=>Promise<void>)=>{try{await action();journal.cleanup.push({label,ok:true});}catch(error){failures.push(error);journal.cleanup.push({label,ok:false,error:String(error)});}persist();};
   await clean('stop owned UI',async()=>{if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());});
   await clean('identify owned plan',async()=>{if(!planId)planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
-  if(planId){await clean('clear owned drafts',async()=>{await getTestState('lz-ppm',{what:'clearDrafts',planId});});await clean('delete owned plan',async()=>{expect(await getTestState('lz-ppm',{what:'deleteFixture',planId})).toEqual({deleted:planId,registryRemoved:true});});}
+  if(planId){const ownedPlanId=planId;await clean('clear owned drafts',async()=>{await getTestState('lz-ppm',{what:'clearDrafts',planId:ownedPlanId});});await clean('delete owned plan',async()=>{expect(await getTestState('lz-ppm',{what:'deleteFixture',planId:ownedPlanId})).toEqual({deleted:ownedPlanId,registryRemoved:true});});}
   await clean('registry restored',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(registry);});
   await clean('source unchanged',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(source.issues));});
   journal.cleanupVerified=failures.length===0;persist();
