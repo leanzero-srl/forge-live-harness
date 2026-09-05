@@ -41,11 +41,18 @@ export const router = { open: () => {} };
   // One entry per class under test. The stub exposes all three because the
   // upload path spans them: the drop zone hands files to the controller, and
   // both surfaces instantiate the same pair.
+  //
+  // PersonaSelector and the availability contract come too: the picker is a
+  // SHARED component painted by two stylesheets that share no tokens, so its
+  // disabled row has to be looked at on both surfaces or half of it is
+  // unverified.
   writeFileSync(
     join(OUT, "entry.js"),
     `export { ChatInterface } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/components/ChatInterface.js"))};
 export { AttachmentController } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/services/AttachmentController.js"))};
 export { DropZone } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/services/DropZone.js"))};
+export { PersonaSelector } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/components/PersonaSelector.js"))};
+export * as Constants from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/constants/Constants.js"))};
 `,
   );
 
@@ -90,6 +97,11 @@ module.exports = {
     // parameterised by, so a paraphrase would test a composer that does not
     // ship.
     const composer = sliceElement(html, '<div class="chat-input-container">');
+    // Same rule as the composer: taken VERBATIM. The element ids
+    // (personaDropdown / dropdownSelected / dropdownOptions) are the contract
+    // PersonaSelector looks itself up by, and it THROWS if any is missing — so a
+    // paraphrase here would test a picker that does not ship.
+    const persona = sliceElement(html, '<div class="persona-selector-container">');
 
     const file = join(OUT, `${surface}.html`);
     writeFileSync(
@@ -98,6 +110,7 @@ module.exports = {
 <body class="${surface === "issuePanel" ? "issue-panel" : ""}">
 <div class="chat-container">
   <div class="chat-header"></div>
+  <div class="stub-persona-bay" style="display:flex;padding:12px;">${persona}</div>
   <div class="chat-messages" id="chatMessages"></div>
   ${composer}
 </div>
@@ -106,6 +119,30 @@ module.exports = {
     pages[surface] = `file://${file}`;
   }
   return pages;
+}
+
+/**
+ * The same built page, born in DARK mode.
+ *
+ * Deliberately a SEPARATE FILE rather than flipping `data-color-mode` after
+ * load. Several rules on both surfaces carry `transition: all 160ms/0.2s`, so a
+ * theme flipped at runtime is genuinely mid-transition for a sixth of a second
+ * and a screenshot or a getComputedStyle taken inside that window reads the
+ * OLD theme's colour — which looks exactly like a dark-mode bug and cost an
+ * hour of chasing one that did not exist. A page that was never light has no
+ * transition to be caught in.
+ */
+export function darkVariant(url: string): string {
+  const file = url.replace(/^file:\/\//, "");
+  const dark = file.replace(/\.html$/, "-dark.html");
+  writeFileSync(
+    dark,
+    readFileSync(file, "utf8").replace(
+      'data-color-mode="light"',
+      'data-color-mode="dark"',
+    ),
+  );
+  return `file://${dark}`;
 }
 
 /**
