@@ -5,7 +5,7 @@ import { openPlan, scheduleFields, LZPT_PLAN, waitForIssueReload } from './forec
 // @ts-ignore REST helpers operate on real, owned wolfaenpak issues.
 import { get, post, put, request, BASE } from '../../data/jira.mjs';
 
-export type Seed = { label: string; start: string; due: string; duration: number | null };
+export type Seed = { label: string; start: string; due: string; duration: number | null; release?: boolean };
 export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], work: (f: any) => Promise<void>, linked = false) {
   expect(BASE).toBe('https://wolfaenpak.atlassian.net');
   const before = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
@@ -30,10 +30,14 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
     for (const id of [fields.startDate, fields.dueDate, fields.duration]) expect(Object.hasOwn(control.fields, id), id).toBe(true);
     const meta = await get('/rest/api/3/issue/createmeta/WFH/issuetypes');
     expect(meta.issueTypes.some((t: any) => t.id === '10004')).toBe(true);
+    if (seeds.some((seed) => seed.release)) {
+      journal.version = await post('/rest/api/3/version', {name, projectId:Number(control.fields.project.id)}); persist();
+      expect(journal.version.name).toBe(name);
+    }
     for (const seed of seeds) {
       const created = await post('/rest/api/3/issue', { fields: { project: { key: 'WFH' }, issuetype: { id: '10004' }, summary: `${name} ${seed.label}`, labels: [marker] } });
       journal.issues.push({ key: created.key, seed }); persist();
-      await put(`/rest/api/3/issue/${created.key}`, { fields: { [fields.startDate]: seed.start, [fields.dueDate]: seed.due, [fields.duration]: seed.duration } });
+      await put(`/rest/api/3/issue/${created.key}`, { fields: { [fields.startDate]: seed.start, [fields.dueDate]: seed.due, [fields.duration]: seed.duration, ...(seed.release ? {fixVersions:[{id:journal.version.id}]} : {}) } });
       expect(await read(created.key)).toEqual({ key: created.key, start: seed.start, due: seed.due, duration: seed.duration });
     }
     if (linked) {
@@ -47,7 +51,7 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
     expect(created.issues.map((i: any) => i.key).sort()).toEqual(journal.issues.map((i: any) => i.key).sort());
     for (const i of journal.issues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
     if (linked) expect(created.issues.find((i: any) => i.key === journal.issues[1].key).predecessors).toContain(journal.issues[0].key);
-    await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields });
+    await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });
   } finally {
     await page.goto('about:blank');
     if (!journal.planId) journal.planId = (await getTestState('lz-ppm', { what: 'plans' })).plans.find((p: any) => p.name === name)?.id;
@@ -61,6 +65,12 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
       await request('DELETE', `/rest/api/3/issue/${issue.key}`);
       const absent = await request('GET', `/rest/api/3/issue/${issue.key}`, { raw: true });
       expect(absent.status).toBe(404); journal.cleanup.push({ issue: issue.key, deleted: true }); persist();
+    }
+    if (journal.version) {
+      const version = await get(`/rest/api/3/version/${journal.version.id}`); expect(version.name).toBe(name); expect(version.projectId).toBe(journal.version.projectId);
+      await request('DELETE', `/rest/api/3/version/${journal.version.id}`);
+      expect((await request('GET', `/rest/api/3/version/${journal.version.id}`, {raw:true})).status).toBe(404);
+      journal.cleanup.push({version:journal.version.id,deleted:true});persist();
     }
     expect((await getTestState('lz-ppm', { what: 'plans' })).plans.map((p: any) => p.id).sort()).toEqual(registry);
     expect(scheduleFields((await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN })).issues)).toEqual(scheduleFields(before.issues));
