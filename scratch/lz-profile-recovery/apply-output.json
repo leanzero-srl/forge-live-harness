@@ -1,0 +1,38 @@
+{
+  "time": "2026-09-05T22:58:00.314361+00:00",
+  "reason": "Explicit operator recovery; historical operation and close remain unknown",
+  "profile": "/Users/mihaiperdum/Projects/forge-live-harness/.auth/profile",
+  "lock": "/Users/mihaiperdum/.local/state/forge-live-harness/profile-locks/f99fe7ebe7f557192a9e48b1a342745b507990983d86b89e555fbac85dc4c369.lock",
+  "inode": 260145998,
+  "beforeSha256": "4505e1e01f45a5789ea7b27d010c635822ca563d37840e8a75b4ae9c454df93c",
+  "beforeRecord": {
+    "version": 1,
+    "profile": "/Users/mihaiperdum/Projects/forge-live-harness/.auth/profile",
+    "phase": "active",
+    "parentPid": 31453,
+    "holderPid": 31468
+  },
+  "checks": [
+    {
+      "observedAt": "2026-09-05T22:58:00.651807+00:00",
+      "recordedPidsAbsent": true,
+      "sameProfileProcesses": [],
+      "allFourMarkersAbsent": true,
+      "sameProfileOpenDescriptorControl": true,
+      "profileHandles": []
+    },
+    {
+      "observedAt": "2026-09-05T22:58:00.991240+00:00",
+      "recordedPidsAbsent": true,
+      "sameProfileProcesses": [],
+      "allFourMarkersAbsent": true,
+      "sameProfileOpenDescriptorControl": true,
+      "profileHandles": []
+    }
+  ],
+  "applied": true,
+  "privateOriginalArchive": "/Users/mihaiperdum/.local/state/forge-live-harness/operator-recovery-20260906/4505e1e01f45a5789ea7b27d010c635822ca563d37840e8a75b4ae9c454df93c.reservation",
+  "completedAt": "2026-09-05T22:58:00.991692+00:00",
+  "afterSha256": "7bae2034c6eb70fce25a5ee160bb3e0d8a2d3d2658475e1c65cf688689aee815",
+  "sameInode": true
+}
