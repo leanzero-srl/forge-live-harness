@@ -227,6 +227,22 @@
       ],
       "minTests": 1,
       "timeoutSeconds": 1200
+    },
+    {
+      "id": "scenario-sensitivity-live",
+      "status": "ready",
+      "acceptance": [
+        "SCEN-CALENDAR-SAVE",
+        "SCEN-SCOPE-SAVE",
+        "SCEN-ORIGINAL-UNCHANGED",
+        "SCEN-FORECAST-COMPARE",
+        "SENS-CAUSAL-EARLY-VS-TERMINAL"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-analysis.spec.ts"
+      ],
+      "minTests": 2,
+      "timeoutSeconds": 1200
     }
   ]
 }
