@@ -42,7 +42,7 @@ def digest(data):
 def instrument_hash():
     paths = [Path(__file__), ROOT / 'playwright.config.ts', ROOT / 'package-lock.json', ROOT / 'scripts/lz-campaign-assets-fixture.mjs', ROOT / 'scripts/lz-ppm-population-audit.mjs']
     for folder in ['scenarios/lz-ppm', 'fixtures', 'forge', 'config', 'testhook', 'capture', 'data']:
-        paths.extend(p for p in (ROOT / folder).rglob('*') if p.suffix in ['.ts', '.js', '.mjs', '.json'])
+        paths.extend(p for p in (ROOT / folder).rglob('*') if p.suffix in ['.ts', '.js', '.mjs', '.json', '.py'])
     h = hashlib.sha256()
     for p in sorted(set(paths)):
         h.update(str(p.relative_to(ROOT)).encode()); h.update(p.read_bytes())
