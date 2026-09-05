@@ -40,7 +40,7 @@ test('capacity size limit: actual 5300-issue selection refuses a partial report,
    frame=await openPlans(page);pending=actualResponse(page,'getCapacityReport');await frame.getByRole('button',{name:'Capacity',exact:true}).click();await pending;
    const cap=frame.locator('[data-testid="capacity-view"]');await chooseDate(frame,cap,'Report starts',M);await chooseDate(frame,cap,'Report ends',end);
    const calculate=async()=>{
-    const saved=actualResponse(page,'saveCapacitySettings'),reported=observedResponse(page,'getCapacityReport').then((body:any)=>({body}),error=>({error}));
+    const saved=actualResponse(page,'saveCapacitySettings'),reported=observedResponse(page,'getCapacityReport').then((body:any)=>({body}),(error:any)=>({error}));
     await cap.getByRole('button',{name:'Save selection and calculate',exact:true}).click();
     const savedResult=await saved;lastOwned=savedResult.settings;journal.lastOwnedSettings=lastOwned;retain();const result=await reported;if('error' in result)throw result.error;return result.body;
    };
