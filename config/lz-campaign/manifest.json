@@ -9,6 +9,7 @@
     {"id":"normalization-companions","status":"ready","acceptance":["NORM-2","NORM-3","NORM-4","APPLY-1"],"specs":["scenarios/lz-ppm/journey-normalization-owned.spec.ts"],"minTests":4,"timeoutSeconds":2700},
     {"id":"assets-live-foundation","status":"ready","acceptance":["ASSET-LIVE-1"],"specs":["scenarios/lz-ppm/journey-campaign-assets.spec.ts"],"minTests":1,"timeoutSeconds":900},
     {"id":"planning-live-foundation","status":"ready","acceptance":["TGT-LIVE-1","HIST-LIVE-1"],"specs":["scenarios/lz-ppm/journey-campaign-planning.spec.ts"],"minTests":2,"timeoutSeconds":1800},
+    {"id":"history-platform-transaction","status":"ready","acceptance":["HIST-ATOMIC-1"],"specs":["scenarios/lz-ppm/campaign-history-transaction.spec.ts"],"minTests":1,"timeoutSeconds":300},
     {"id":"named-scenarios","status":"planned","acceptance":["SCN-1","SCN-2","SCN-3"],"specs":[],"minTests":3,"timeoutSeconds":1800},
     {"id":"scoped-targets","status":"planned","acceptance":["TGT-1","TGT-2","TGT-3"],"specs":[],"minTests":3,"timeoutSeconds":1500},
     {"id":"capacity","status":"planned","acceptance":["CAP-1","CAP-2","CAP-3","CAP-4"],"specs":[],"minTests":4,"timeoutSeconds":1800},
