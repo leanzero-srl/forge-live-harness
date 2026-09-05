@@ -368,6 +368,22 @@
       ],
       "minTests": 1,
       "timeoutSeconds": 1200
+    },
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
     }
   ]
 }
