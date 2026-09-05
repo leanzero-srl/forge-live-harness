@@ -4,7 +4,7 @@ import {get,post,put,request,BASE} from '../../data/jira.mjs';
 import {requireEnv} from '../../data/env.mjs';
 import {getTestState} from '../../testhook/client';
 import {withOwnedSchedule,table} from './normalization-owned-fixture';
-import {planning,chooseDate,currentUserResolver} from './campaign-ui';
+import {planning,chooseDate,currentUserResolver,actualResponse} from './campaign-ui';
 import {settledScreenshot} from './settled-screenshot.mjs';
 
 test.describe.configure({retries:0,timeout:900000});
@@ -27,7 +27,7 @@ test('epic targets: actual hierarchy retains outside predecessor influence; targ
   const name=`${f.name} Epic target`,summary=`${name} owned parent`;
   const journal:any={name,summary,source,phase:'before-owned-epic',epic:null,planId:null};
   const retain=()=>fs.writeFileSync(info.outputPath('epic-target-journal.json'),JSON.stringify(journal,null,2));retain();
-  let rpc:any,release:any;
+  let rpc:any,release:any,editorPage:any;
   const ownEpic=async()=>{const i=await get(`/rest/api/3/issue/${journal.epic.key}?fields=project,issuetype,summary`);expect(i.id).toBe(journal.epic.id);expect(i.fields.project.key).toBe('WFH');expect(i.fields.issuetype.id).toBe('10000');expect(i.fields.summary).toBe(summary);return i;};
   try{
    const meta=await get('/rest/api/3/issue/createmeta/WFH/issuetypes');expect(meta.issueTypes.find((t:any)=>t.id==='10000')).toMatchObject({hierarchyLevel:1,name:'Epic'});
@@ -57,17 +57,25 @@ test('epic targets: actual hierarchy retains outside predecessor influence; targ
    const outside=sensitivity.locator(`[data-testid="finish-effect"][data-key="${pred}"]`);await expect(outside.locator('td').nth(0)).toHaveText('2026-03-12 (1 calendar days earlier)');await expect(outside.locator('td').nth(1)).toHaveText('2026-03-16 (3 calendar days later)');
    const unrelated=sensitivity.locator(`[data-testid="finish-effect"][data-key="${late}"]`);for(const td of await unrelated.locator('td').all())await expect(td).toContainText('2026-03-13 (0 calendar days');await expect(sensitivity.locator(`[data-key="${journal.epic.key}"]`)).toHaveCount(0);
    await settledScreenshot(sensitivity,{path:info.outputPath('epic-outside-predecessor-exact-influence.png')});journal.exactInfluence=true;retain();
-   // Start a fresh real simulation, freeze at its own yield, then edit the
-   // commitment through the actual Targets UI while that old work is pending.
+   // The primary Dashboard stays mounted while a second real page of the
+   // SAME account edits the target. Re-index from that page delivers actual
+   // metadata to the primary via its existing realtime path, not injected props.
+   editorPage=await page.context().newPage();const editorFrame=await table(editorPage,name);const editorWork=await planning(editorFrame);await editorWork.getByRole('button',{name:'Targets',exact:true}).click();const editorPanel=editorFrame.locator('[data-testid="targets-editor"]');
    await planning(frame);release=await holdForecastYield(frame.locator('body'));await frame.getByRole('button',{name:/^Dashboard/i}).first().click();
    await expect.poll(()=>frame.locator('body').evaluate((el:any)=>el.ownerDocument.defaultView.__lzEpicYield.pending.size),{timeout:15000}).toBeGreaterThan(0);await expect(confidence).toHaveAttribute('data-runs','');await expect(confidence.locator('[data-testid="sc-milestone"]')).toHaveCount(0);
-   work=await planning(frame);await work.getByRole('button',{name:'Targets',exact:true}).click();panel=frame.locator('[data-testid="targets-editor"]');await panel.locator(`[data-target-id="${target.id}"]`).getByRole('button',{name:'Edit',exact:true}).click();form=panel.locator('form');await chooseDate(frame,form,'Target date','2026-03-01');await form.getByRole('button',{name:'Save target',exact:true}).click();await expect(form).toHaveCount(0);await release();release=null;
+   // Real first slice progress distinguishes forecast execution from an unrelated
+   // zero-delay callback. Thirty of three hundred runs have completed before yield.
+   await expect(confidence.locator('[data-testid="schedule-confidence-progress"] > div')).toHaveAttribute('style',/width: 10%/);
+   const mountedForecast=await confidence.elementHandle();expect(mountedForecast).toBeTruthy();
+   await editorPanel.locator(`[data-target-id="${target.id}"]`).getByRole('button',{name:'Edit',exact:true}).click();const editorForm=editorPanel.locator('form');await chooseDate(editorFrame,editorForm,'Target date','2026-03-01');await editorForm.getByRole('button',{name:'Save target',exact:true}).click();await expect(editorForm).toHaveCount(0);
    data=await rpc.invoke('getTargets',{planId:journal.planId});expect(data.targets).toEqual([{...target,date:'2026-03-01'}]);
-   await frame.getByRole('button',{name:/^Dashboard/i}).first().click();await expect(targetRow).toHaveAttribute('data-probability','0');await expect(targetRow).toContainText('Mar 1');await expect(confidence).toHaveAttribute('data-runs','300');await settledScreenshot(confidence,{path:info.outputPath('epic-edited-target-after-old-yield.png')});
+   const metadata=actualResponse(page,'getPlan',journal.planId);await editorFrame.getByRole('button',{name:'Re-index',exact:true}).click();expect((await metadata).plan.milestones).toEqual([{...target,date:'2026-03-01'}]);
+   expect(await mountedForecast!.evaluate((el:any)=>el.isConnected)).toBe(true);await expect(confidence).toHaveAttribute('data-runs','');await expect(confidence.locator('[data-testid="sc-milestone"]')).toHaveCount(0);journal.forecastRemainedMounted=true;retain();
+   await release();release=null;await expect(targetRow).toHaveAttribute('data-probability','0');await expect(targetRow).toContainText('Mar 1');await expect(confidence).toHaveAttribute('data-runs','300');await settledScreenshot(confidence,{path:info.outputPath('epic-edited-target-after-old-yield.png')});await editorPage.close();editorPage=null;
    frame=await table(page,name);work=await planning(frame);await work.getByRole('button',{name:'Targets',exact:true}).click();await expect(frame.locator(`[data-target-id="${target.id}"]`)).toContainText('2026-03-01');expect((await rpc.invoke('getTargets',{planId:journal.planId})).targets).toEqual([{...target,date:'2026-03-01'}]);
    expect(await Promise.all(f.keys.map((key:string)=>f.read(key)))).toEqual(source);expect((await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent.key).toBe(journal.epic.key);journal.targetAfter={...target,date:'2026-03-01'};journal.sourceDatesUnchanged=true;journal.phase='verified';retain();
   }finally{
-   if(release)await release().catch(()=>{});rpc?.stop();if(!page.isClosed())await page.goto('about:blank').catch(()=>{});
+   if(release)await release().catch(()=>{});if(editorPage&&!editorPage.isClosed())await editorPage.close();rpc?.stop();if(!page.isClosed())await page.goto('about:blank').catch(()=>{});
    if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;
    if(journal.planId){await getTestState('lz-ppm',{what:'clearDrafts',planId:journal.planId});await getTestState('lz-ppm',{what:'deleteFixture',planId:journal.planId});journal.planDeleted=true;retain();}
    if(journal.epic){await ownEpic();await f.read(member);const parent=(await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent;if(parent){expect(parent.key).toBe(journal.epic.key);await put(`/rest/api/3/issue/${member}`,{fields:{parent:null}});expect((await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent||null).toBe(null);}await request('DELETE',`/rest/api/3/issue/${journal.epic.key}`);expect((await request('GET',`/rest/api/3/issue/${journal.epic.key}`,{raw:true})).status).toBe(404);journal.epicDeleted=true;retain();}
