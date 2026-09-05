@@ -321,6 +321,53 @@
       ],
       "minTests": 1,
       "timeoutSeconds": 1200
+    },
+    {
+      "id": "scenario-adoption-live",
+      "status": "ready",
+      "acceptance": [
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-adoption.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "target-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "capacity-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
     }
   ]
 }
