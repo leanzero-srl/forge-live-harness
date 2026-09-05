@@ -1,0 +1,4 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:14:1 › campaign: actual UI version and preserved LZPT source
+  [chromium] › scenarios/lz-ppm/campaign-diagnostic-identity.spec.ts:19:1 › campaign: exact retained numeric diagnostic provenance and restored private preferences are unchanged
+Total: 2 tests in 2 files

@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "campaign": "lz-ppm-nondownload-2026-09",
+  "identitySpec": "scenarios/lz-ppm/campaign-diagnostic-identity.spec.ts",
+  "features": [
+    {
+      "id": "integrated-nondownload-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE",
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD",
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE",
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE",
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED",
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION",
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE",
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE",
+        "ASSET-NATIVE-MULTIPLE-ANY",
+        "ASSET-TWO-FIELD-AND",
+        "ASSET-EMPTY-NO-MATCH",
+        "ASSET-COMBINATION-GROUP-ONCE",
+        "ASSET-TEXT-FILTER-COMPOSITION",
+        "ASSET-RENAME-STABLE-ID",
+        "ASSET-GANTT-VISIBILITY",
+        "ASSET-HIDDEN-SUCCESSOR-APPLY-SECOND-REST",
+        "TGT-EPIC-EXTERNAL-PREDECESSOR",
+        "TGT-EDIT-DURING-ACTUAL-FORECAST"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-adoption.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts"
+      ],
+      "minTests": 12,
+      "timeoutSeconds": 9000,
+      "componentFeatures": [
+        "private-simulation-live",
+        "scenario-adoption-live",
+        "target-boundaries-live",
+        "capacity-boundaries-live",
+        "private-completed-observation-live",
+        "sensitivity-boundaries-live",
+        "private-observations-live",
+        "forecast-outcomes-live",
+        "native-assets-expanded-live"
+      ],
+      "scopeNote": "Twelve ordinary tests in nine existing files. Browser download, numeric/45-row/large exports and retained UAT are excluded; all prior failures remain unchanged. Exact diagnostic plan/report/WFH2847/version10289 are additive provenance guarded around each unit."
+    },
+    {
+      "id": "capacity-size-limit-live",
+      "status": "ready",
+      "acceptance": [
+        "CAP-ACTUAL-5300-REFUSAL",
+        "CAP-5000-NO-PARTIAL-METRICS",
+        "CAP-SUPPORTED-SELECTION-REAL-RECOVERY",
+        "CAP-LIMIT-PRIVATE-SETTINGS-RESTORED"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-capacity-limit.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1800
+    }
+  ]
+}
