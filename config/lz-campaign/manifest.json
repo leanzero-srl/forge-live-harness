@@ -243,6 +243,53 @@
       ],
       "minTests": 2,
       "timeoutSeconds": 1200
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1500
+    },
+    {
+      "id": "forecast-outcomes-live",
+      "status": "ready",
+      "acceptance": [
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts"
+      ],
+      "grep": "forecast outcomes:",
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "private-observations-live",
+      "status": "ready",
+      "acceptance": [
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts"
+      ],
+      "grep": "private observations:",
+      "minTests": 1,
+      "timeoutSeconds": 1200
     }
   ]
 }
