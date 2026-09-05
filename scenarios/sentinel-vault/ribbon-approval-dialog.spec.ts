@@ -22,7 +22,7 @@ import { test, expect } from "../../fixtures/forge";
 import { getTestState } from "../../testhook/client";
 import { waitForTerminal } from "../_support/wait";
 // @ts-ignore
-import { spaceIdByKey, createPage, deletePage } from "../../data/confluence.mjs";
+import { spaceIdByKey, createPage, deletePage, writeAdf } from "../../data/confluence.mjs";
 // @ts-ignore
 import { heading, paragraph } from "../../data/adf.mjs";
 
@@ -108,6 +108,14 @@ test("#7: approval dialog — opens from the awaiting chip, Escape returns focus
     // ── reopen and APPROVE — mode=any, so this one decision completes the transition
     await chip.click();
     await expect(dialog).toBeVisible({ timeout: 8000 });
+    // A6: an approver can open exactly the version they are approving.
+    const pinnedLink = dialog.locator('[data-testid="wf-pinned-version-link"]');
+    if (await pinnedLink.count()) {
+      const href = (await pinnedLink.getAttribute("href")) || "";
+      expect(href, "the pinned-version link names the page and a version").toMatch(new RegExp(`pageId=${p.id}.*pageVersion=\\d+`));
+      console.log("### pinned-version link ✓", href.slice(href.indexOf("pageId")));
+    }
+    await dialog.locator(".wf-appr-reason-input").fill("Reviewed the budget table — approved");
     await dialog.locator("button.wf-appr-approve").click();
 
     // record updated: state flips to approved and the pending marker clears (direct kvs gets)
@@ -130,6 +138,48 @@ test("#7: approval dialog — opens from the awaiting chip, Escape returns focus
     expect(uiApproved, "the ribbon chip re-renders as the Approved state chip").toBeTruthy();
     await ribbon.locator("body").screenshot({ path: `${OUT}/3-approved-chip.png` }).catch(() => {});
     console.log("### chip now shows the Approved state ✓");
+
+    // ── A4: the evidence chip opens the approval record with the decision just made
+    const evChip = ribbon.locator('[data-testid="wf-evidence-chip"]');
+    await expect(evChip, "the Approved v{n} evidence chip renders next to the state chip").toBeVisible({ timeout: 20_000 });
+    const evLabel = ((await evChip.innerText()) as string).replace(/\s+/g, " ").trim();
+    expect(evLabel, "the chip names the approved version").toMatch(/Approval record · v\d+/);
+    await evChip.click();
+    const evPanel = ribbon.locator('[data-testid="wf-evidence-panel"]');
+    await expect(evPanel, "the Approval record dialog opens").toBeVisible({ timeout: 8000 });
+    const evText = ((await evPanel.innerText()) as string).replace(/\s+/g, " ");
+    expect(evText, "the record names the approver").toContain("Mihai Perdum");
+    expect(evText, "…their decision").toMatch(/Approved/);
+    expect(evText, "…and the reason typed in the dialog").toContain("Reviewed the budget table");
+    const rows = evPanel.locator('[data-testid="wf-evidence-decision"]');
+    expect(await rows.count(), "one decision row").toBe(1);
+    // ── A6: the approved-version link points at the historical version of THIS page
+    const link = evPanel.locator('[data-testid="wf-approved-version-link"]');
+    await expect(link, "View approved version link present").toBeVisible();
+    const href = (await link.getAttribute("href")) || "";
+    const m = href.match(/pageVersion=(\d+)/);
+    expect(m, `the link carries pageVersion (href: ${href})`).toBeTruthy();
+    expect(href, "…for this page").toContain(`pageId=${p.id}`);
+    expect(String(state.approvedVersion), "…and it is the approvedVersion on the record").toBe(m![1]);
+    await ribbon.locator("body").screenshot({ path: `${OUT}/4-evidence-panel.png` }).catch(() => {});
+    // Make the approved version HISTORICAL first: Confluence canonicalises a viewpage URL for the
+    // CURRENT version to the pretty /spaces/…/pages/{id}/ URL and drops pageVersion, so a click
+    // to the current version is indistinguishable from staying put. A later version written over
+    // REST (as the signed-in admin — a sanctioned edit) turns v{n} into a real historical view; the
+    // link keeps pointing at the REVIEWED version (approvalRecord.pinnedVersion), not the moving
+    // enforce baseline.
+    await writeAdf(p.id, doc(heading("Doc", 2), paragraph("approval dialog journey"), paragraph("a later, sanctioned edit")), { message: "harness: later version" });
+    // Follow it BY CLICKING inside the iframe: the ribbon is a sandboxed frame, so a plain
+    // target="_top" anchor is dropped by the browser — the click must navigate through the Forge
+    // bridge router (the review caught exactly this). A top-level page.goto would prove nothing.
+    await link.click();
+    await page.waitForURL((u) => u.toString().includes(`pageId=${p.id}`) && u.toString().includes(`pageVersion=${m![1]}`), { timeout: 30_000 });
+    await page.waitForLoadState("domcontentloaded");
+    await page.waitForTimeout(3000);
+    expect(page.url(), "the click navigated the TOP window to the historical version URL").toContain(`pageVersion=${m![1]}`);
+    const topTitle = await page.title();
+    expect(topTitle, "the page rendered (not a 404)").not.toMatch(/Page Not Found/i);
+    console.log(`### evidence chip + approved-version link ✓ (v${m![1]})`);
   } finally {
     for (const k of [
       `workflow-state-${p.id}`,
