@@ -1,0 +1,16 @@
+{
+  "time": "2026-09-05T23:12:44.330947+00:00",
+  "status": "aborted-before-mutation",
+  "reason": "exclusive stable-inode flock was held by a new external owner",
+  "previousExpectedRecordSha": "4667c676be56f8c5706ef321f53d92cec348786b8e96707036eefc0ce8d1b24d",
+  "newOwner": {
+    "workerPid": 60972,
+    "holderPid": 60987,
+    "launcherPid": 60938,
+    "command": "bash scripts/run-batches.sh scenarios/sentinel-vault --batch 7 --run-id sv-it67-final",
+    "stdout": "/private/tmp/claude-501/-Users-mihaiperdum-Projects-Sentinel-Vault/f95e8655-9b2a-4911-87b3-865ff46509fa/scratchpad/suite-it67-browser2.log"
+  },
+  "profileWrites": 0,
+  "recordWrites": 0,
+  "staleRecoveryScriptMustNotBeApplied": true
+}
