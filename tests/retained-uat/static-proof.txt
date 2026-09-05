@@ -1,0 +1,18 @@
+✔ failed admission deletes only the positively owned created issue and retains source/registry guards (49.291041ms)
+✔ an ambiguous create with no searchable positive match fails closed and does not license deletion (16.173542ms)
+✔ ownership mismatch prevents delete even when an earlier create returned that ID (14.551167ms)
+✔ an existing ledger blocks a second run before any second REST/hook call (14.484ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 320.522333
+scenarios/sentinel-vault/my-work-page.spec.ts(80,27): error TS7006: Parameter 't' implicitly has an 'any' type.
+scenarios/sentinel-vault/steward-console-deep.spec.ts(31,140): error TS2339: Property 'replace' does not exist on type 'string | number'.
+  Property 'replace' does not exist on type 'number'.
+Listing tests:
+  [chromium] › scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts:18:1 › retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff
+Total: 1 test in 1 file
