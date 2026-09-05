@@ -1,0 +1,185 @@
+{
+  "marker": "lz-assets-owned-20260905",
+  "prefix": "[harness-test] LZ Assets owned 20260905",
+  "base": "https://wolfaenpak.atlassian.net",
+  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+  "schemaId": "35",
+  "typeId": "43",
+  "nameAttr": "156",
+  "objects": {},
+  "fields": {},
+  "issues": {},
+  "operations": [],
+  "createdAt": "2026-09-05T20:46:10.310Z",
+  "sharedBefore": {
+    "config": {
+      "objectSchemaId": "35",
+      "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+      "objectSchemaName": "CogniRunner Test Assets",
+      "objectFilterQuery": "objectTypeId = 43",
+      "attributesIncludedInAutoCompleteSearch": [
+        "Name"
+      ],
+      "multiple": false,
+      "shouldSetDefaultValuesFromEmptySearch": false,
+      "assignStrict": false,
+      "attributesLimit": 50
+    },
+    "issues": {
+      "JT-56": {
+        "id": "24868",
+        "key": "JT-56",
+        "fields": {
+          "issuetype": {
+            "id": "10005",
+            "name": "Task"
+          },
+          "project": {
+            "id": "10008",
+            "key": "JT"
+          },
+          "customfield_11081": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "objectId": "71",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:71"
+            }
+          ],
+          "duedate": null,
+          "customfield_10015": null
+        }
+      },
+      "JT-16": {
+        "id": "24073",
+        "key": "JT-16",
+        "fields": {
+          "issuetype": {
+            "id": "10005",
+            "name": "Task"
+          },
+          "project": {
+            "id": "10008",
+            "key": "JT"
+          },
+          "customfield_11081": [],
+          "duedate": null,
+          "customfield_10015": null
+        }
+      }
+    },
+    "objects": {
+      "71": {
+        "id": "71",
+        "objectKey": "CRT-71",
+        "label": "MacBook Pro 16 (harness)",
+        "objectTypeId": "43",
+        "attributes": [
+          {
+            "objectTypeAttributeId": "156",
+            "values": [
+              "MacBook Pro 16 (harness)"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "153",
+            "values": [
+              "CRT-71"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "154",
+            "values": [
+              "2026-09-03T20:29:13.762Z"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "155",
+            "values": [
+              "2026-09-03T20:29:13.762Z"
+            ]
+          }
+        ]
+      },
+      "72": {
+        "id": "72",
+        "objectKey": "CRT-72",
+        "label": "ThinkPad X1 (harness)",
+        "objectTypeId": "43",
+        "attributes": [
+          {
+            "objectTypeAttributeId": "156",
+            "values": [
+              "ThinkPad X1 (harness)"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "153",
+            "values": [
+              "CRT-72"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "154",
+            "values": [
+              "2026-09-03T20:29:14.180Z"
+            ]
+          },
+          {
+            "objectTypeAttributeId": "155",
+            "values": [
+              "2026-09-03T20:29:14.180Z"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "lastSharedGuard": {
+    "verifiedAt": "2026-09-05T20:46:11.928Z",
+    "unchanged": true
+  },
+  "preflight": {
+    "at": "2026-09-05T20:46:13.103Z",
+    "schema": {
+      "id": "35",
+      "name": "CogniRunner Test Assets",
+      "key": "CRT"
+    },
+    "objectType": {
+      "id": "43",
+      "name": "Laptop"
+    },
+    "requiredEditable": [
+      {
+        "id": "156",
+        "name": "Name"
+      }
+    ],
+    "screenFieldIds": [
+      "summary",
+      "issuetype",
+      "attachment",
+      "duedate",
+      "description",
+      "reporter",
+      "issuelinks",
+      "assignee",
+      "priority",
+      "labels",
+      "customfield_10074",
+      "customfield_10010",
+      "customfield_10077",
+      "customfield_10073",
+      "customfield_10003",
+      "customfield_10002",
+      "timetracking",
+      "customfield_10078",
+      "customfield_11081"
+    ],
+    "createRequired": [
+      "issuetype",
+      "project",
+      "summary"
+    ]
+  }
+}
