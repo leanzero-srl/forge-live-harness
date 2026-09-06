@@ -1,0 +1,9 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "tests/seventeenth-forecast-resume/contracts.test.mjs",
+    "tests/seventeenth-forecast-resume/oracle.test.mjs"
+  ],
+  "exitCode": 0
+}

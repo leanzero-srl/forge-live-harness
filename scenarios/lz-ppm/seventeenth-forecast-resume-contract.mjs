@@ -29,10 +29,12 @@ export async function resumeToPublication({initial,advance,status,probe,onObserv
  }
  assert.equal(job.state,'complete');return job;
 }
+export const UI_READS=Object.freeze(['listPlans','getPlan','getAllIssues','getIssues','getIssue','getPlanVersion','getPlanCalendar','getPlanSchedule','getIndexingProgress','getDraft','getActiveDrafts','getLockStatus','getNotifications','checkConflicts','checkDraftOverlaps','checkUserRole','getCurrentUser','getFullConfig','getHolidays','getWorkingDaysConfig','getFieldConfig','getEngineConfig','getAiConfig','getPresence','getWritability','getPlanAssets','getAssetsFields','getAssetsWorkspaces','getSimulationModel','listSnapshots','getSnapshot','getBaseline','getTargets','listForecastEvaluations','listForecastObservations','getCapacitySettings','getCapacityReport','getSponsorReportCapture','listSponsorReports','getSponsorReport','getSponsorReportPage']);
+// Exact registrations read in src/resolvers and the PlanView/PlanningWorkspace hooks. No prefix grants authority.
 // Only the selected owned plan's normal UI presence bookkeeping may accompany read/export.
 export function uiRequestClass(call){
  if(!call?.functionKey)return 'unrelated';const key=call.functionKey;
- if(/^(get|list|search|check|can)/.test(key))return 'read';
+ if(UI_READS.includes(key))return 'read';
  if(['presenceBeat','presenceLeave'].includes(key)&&call.payload?.planId===retained.planId)return 'owned-presence';
  return 'forbidden';
 }
