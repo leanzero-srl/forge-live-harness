@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {execFileSync} from 'node:child_process';
-import {admitPrivatePhase,admitPrivateSource,admitPrivateFork,verifyPrivateSnapshot,finishPrivateWitness,privateCleanupStep,privateReportOracle,privateHash} from '../../scenarios/lz-ppm/private-report-witness-contract.mjs';
+import {admitPrivatePhase,admitPrivateSource,admitPrivateFork,verifyPrivateSnapshot,finishPrivateWitness,privateDeletedState,privateCleanupStep,privateReportOracle,privateHash} from '../../scenarios/lz-ppm/private-report-witness-contract.mjs';
 import {actualPrivateFixture,app} from './actual-fixture.mjs';
 import {pathToFileURL} from 'node:url';
 const clone=structuredClone;
@@ -18,11 +18,14 @@ test('actual fork model runs through current registered staged handlers and agre
  const opts={owner,job:result.job,summary,name,captureWindow:{startMs,endMs:Date.now()}},expected=privateReportOracle(opts);for(const page of expected.pages)assert.deepEqual((await call('getSponsorReportPage',{reportId:summary.id,section:page.section,page:page.page})).page,page);
  const {exporter}=await import(pathToFileURL(app+'/test/helpers/staged-report-fixture.mjs'));assert.equal(exporter.sponsorReportHtml(summary,expected.pages),expected.html);
  for(const mutate of [x=>x.summary.forecast.p80='2099-01-01',x=>x.summary.counts.timeline=0,x=>x.summary.mode='ordinary',x=>x.summary.consistency.basisHash='0'.repeat(64)]){const bad=clone(opts);mutate(bad);assert.throws(()=>privateReportOracle(bad));}
- assert.deepEqual(await call('deleteSponsorReport',{reportId:summary.id}),{success:true,deleted:true});let cleaned;for(let n=0;n<20;n++){cleaned=await call('cancelSponsorReportCapture',{jobId:result.job.id});assert.equal(cleaned.success,true);if(cleaned.job.cleanupDone)break;}assert.equal(cleaned.job.state,'cancelled');assert.equal(cleaned.job.cleanupDone,true);
+ assert.deepEqual(await call('deleteSponsorReport',{reportId:summary.id}),{success:true,deleted:true});const deletedState=await call('getSponsorReportCapture',{jobId:result.job.id});let cleaned=privateDeletedState(result.job,deletedState.job);assert.deepEqual(deletedState,{success:true,job:cleaned});for(let n=0;n<20&&!cleaned.cleanupDone;n++){const reply=await call('cancelSponsorReportCapture',{jobId:result.job.id});cleaned=privateCleanupStep(cleaned,reply.job);assert.deepEqual(reply,{success:true,job:cleaned});}assert.equal(cleaned.state,'cancelled');assert.equal(cleaned.cleanupDone,true);
  for(let n=0;n<2;n++){assert.deepEqual(await call('getSponsorReport',{reportId:summary.id}),{success:false,error:'This sponsor report was deleted or is unavailable'});assert.deepEqual(await call('getSponsorReportPage',{reportId:summary.id,section:'timeline',page:0}),{success:false,error:'This report is unavailable'});assert.deepEqual((await call('listSponsorReports',{})).entries,[]);}
 });
 
-test('cleanup continuation requires same complete receipt identity and strictly acknowledged checkpoint progression',()=>{
- const previous={id:'job',requestId:'nonce',reportId:'report',name:'name',createdAt:'date',expiresAt:'later',checkpoint:10,state:'complete',cleanupDone:true},next={...previous,checkpoint:12,state:'cancelled',cleanupDone:false};assert.deepEqual(privateCleanupStep(previous,next),next);
- for(const change of [x=>x.id='other',x=>x.requestId='other',x=>x.reportId='other',x=>x.checkpoint=10,x=>x.state='complete',x=>x.cleanupDone='true']){const bad=clone(next);change(bad);assert.throws(()=>privateCleanupStep(previous,bad));}
+test('delete acknowledgement binds a fresh cancelled status, then every cleanup acknowledges exactly one checkpoint',()=>{
+ const complete={id:'job',requestId:'nonce',reportId:'report',name:'name',createdAt:'date',expiresAt:'later',checkpoint:10,state:'complete',cleanupDone:true},deleted={...complete,checkpoint:11,state:'cancelled',cleanupDone:false},next={...deleted,checkpoint:12};
+ assert.deepEqual(privateDeletedState(complete,deleted),deleted);assert.deepEqual(privateCleanupStep(deleted,next),next);
+ for(const change of [x=>x.id='other',x=>x.requestId='other',x=>x.reportId='other',x=>x.checkpoint=10,x=>x.checkpoint=12,x=>x.state='complete',x=>x.cleanupDone=true]){const bad=clone(deleted);change(bad);assert.throws(()=>privateDeletedState(complete,bad));}
+ for(const change of [x=>x.id='other',x=>x.requestId='other',x=>x.reportId='other',x=>x.checkpoint=11,x=>x.checkpoint=13,x=>x.state='complete',x=>x.cleanupDone='true']){const bad=clone(next);change(bad);assert.throws(()=>privateCleanupStep(deleted,bad));}
+ assert.throws(()=>privateCleanupStep(complete,next));assert.throws(()=>privateCleanupStep({...deleted,cleanupDone:true},next));
 });

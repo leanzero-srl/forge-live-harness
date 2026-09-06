@@ -38,8 +38,14 @@ export function privateReportOracle({owner,job,summary,name,captureWindow}){
  const pages=prepared.pages.map(({key,rows})=>{const [,section,n]=key.match(/:page:[^:]+:([^:]+):(\d+)$/);return{reportId:expected.id,hash:expected.hash,section,page:Number(n),pageCount:expected.pages[section],total:expected.counts[section],pageHash:privateHash(rows),rows};});
  return {summary:expected,pages,html:sponsorReportHtml(expected,pages),forecastInputHash:forecast.inputHash};
 }
+function cancelledSuccessor(previous,next){
+ assert.equal(next?.state,'cancelled');for(const key of ['id','requestId','reportId','name','createdAt','expiresAt'])assert.equal(next[key],previous[key]);assert(Number.isSafeInteger(previous.checkpoint));assert(Number.isSafeInteger(next.checkpoint));assert.equal(next.checkpoint,previous.checkpoint+1);assert.equal(typeof next.cleanupDone,'boolean');return next;
+}
+export function privateDeletedState(previous,next){
+ assert.equal(previous.state,'complete');assert.equal(previous.cleanupDone,true);cancelledSuccessor(previous,next);assert.equal(next.cleanupDone,false);return next;
+}
 export function privateCleanupStep(previous,next){
- assert.equal(next?.state,'cancelled');for(const key of ['id','requestId','reportId','name','createdAt','expiresAt'])assert.equal(next[key],previous[key]);assert(Number.isSafeInteger(next.checkpoint)&&next.checkpoint>previous.checkpoint);assert.equal(typeof next.cleanupDone,'boolean');return next;
+ assert.equal(previous.state,'cancelled');assert.equal(previous.cleanupDone,false);return cancelledSuccessor(previous,next);
 }
 export function safePrivateError(error){const detail=String(error?.message??error);return Object.assign(new Error('Private witness operation failed; original detail withheld'),{detailSha256:createHash('sha256').update(detail).digest('hex'),detailBytes:Buffer.byteLength(detail)});}
 export async function finishPrivateWitness({journal,persist,stop,audits}){

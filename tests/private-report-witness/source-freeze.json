@@ -1,9 +1,9 @@
 {
   "base": "b5a97100363a6f33783c2925554f2edb3a484610",
   "files": {
-    "scenarios/lz-ppm/campaign-private-staged-report.spec.ts": "44e531868a625e6645f2528594747b2d7bc11205443145ac5827a39812f6cc24",
-    "scenarios/lz-ppm/private-report-witness-session.ts": "8f721053c40c887cd973c332aaf096a84db4de25815a4f597b8a5405eccfe67f",
-    "scenarios/lz-ppm/private-report-witness-contract.mjs": "6740b3e85b1ddba4b3c84fbbc0cc42cfdd3dd97a154842267b921493c30b3840"
+    "scenarios/lz-ppm/campaign-private-staged-report.spec.ts": "9b8a24e906740914412bd3f33e7f64c32dca904d03399fd6c33a6301fdc04b8e",
+    "scenarios/lz-ppm/private-report-witness-session.ts": "571ae2653a0084aea74271bbe8050efd664b7fd621840b73e302418920c4d210",
+    "scenarios/lz-ppm/private-report-witness-contract.mjs": "5008ccb3532415ccb29edf26583dc43bfc67955591f5e3748664f3c08c455677"
   },
   "applicationReadOnlySources": {
     "src/services/simulation-plans.js": "ea4021b6e50b1c268aca571376b3ede271837714633e4ee76d89bfcfd7da778e",
@@ -14,8 +14,11 @@
     "static/ppm-ui/src/components/planning/SimulationFork.jsx": "453d33d30779f6127c95abecb7f38dade94e420dc8548ab4dc00527a45412740",
     "static/ppm-ui/src/hooks/usePresence.js": "ad429d9a40b01fc1c4d138e3e37e33376cbb9a3bb9a14346ac640cd0d87252ad"
   },
-  "localControls": 13,
+  "localControls": 17,
   "liveRun": false,
   "physicalKvsVerified": false,
-  "secondPrincipalVerified": false
+  "secondPrincipalVerified": false,
+  "previousWitnessFreeze": "60ba8ac",
+  "independentRed": "dcd345b4",
+  "unchangedIndependentControls": 4
 }

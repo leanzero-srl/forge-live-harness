@@ -37,3 +37,9 @@ test('unknown actual capture transport poisons all subsequent mutations and pres
  f.emit('captureSponsorReport',f.f.ack.plan.id,{}, {failed:true,payload:{requestId:'one-real-intent',name:'Owned report'}});await f.turn();await assert.rejects(f.session.drain());assert(protocol.snapshot().error);
  await assert.rejects(f.session.invoke('deleteSponsorReport',{planId:f.f.ack.plan.id,reportId:'unconfirmed'},true));assert.equal(f.posts.length,0);assert.equal(f.session.owner().planId,f.f.ack.plan.id);assert(!f.records.some(r=>r.stage==='actual-blank'));await assert.rejects(f.session.dispose());
 });
+
+test('actual direct mutation drains an already dispatched failed UI response before any POST',async()=>{
+ const f=await fixture();await f.transition();f.emit('getPlan',f.f.ack.plan.id,{}, {failed:true});
+ // Do not yield to terminal classification. The mutation itself must await it.
+ await assert.rejects(f.session.invoke('deleteSponsorReport',{planId:f.f.ack.plan.id,reportId:'known'},true));assert.equal(f.posts.length,0);assert(f.session.failure());await assert.rejects(f.session.dispose());
+});
