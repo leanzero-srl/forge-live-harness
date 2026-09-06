@@ -1,0 +1,209 @@
+{
+  "key": "WFH-2833",
+  "steps": [
+    {
+      "name": "after-source-deletion",
+      "review": {
+        "success": true,
+        "state": "superseded",
+        "reviewId": "a0b0e4eb-34f4-40e4-9692-61b426e42d5e",
+        "saved": {
+          "observation": {
+            "id": "e76cc4e1-5b43-4400-a930-f57d6990cd10",
+            "snapshotId": "479dfb7f-ef0d-4e3f-bfd0-baed2f2ae08b",
+            "scopeId": "plan",
+            "modelVersion": "duration-triangular-fs-v1",
+            "memberCount": 1,
+            "checkedFrom": "2026-09-05T21:31:44.762Z",
+            "checkedTo": "2026-09-05T21:31:44.893Z"
+          },
+          "result": {
+            "actualFinish": "2026-09-05",
+            "capturedAt": "2026-09-05T21:31:42.372Z",
+            "hits": {
+              "p50": true,
+              "p80": true,
+              "p90": true
+            },
+            "memberCount": 1,
+            "modelVersion": "duration-triangular-fs-v1",
+            "observationKind": "current-jira-resolution-completion-utc",
+            "observedAt": "2026-09-05T21:31:44.893Z",
+            "prediction": {
+              "id": "plan",
+              "name": "Captured scope",
+              "p50": "2026-10-09",
+              "p80": "2026-10-12",
+              "p90": "2026-10-12"
+            },
+            "reason": null,
+            "scopeId": "plan",
+            "scopeName": "plan",
+            "state": "observed",
+            "uncertainty": "medium",
+            "memberIds": [
+              "25033"
+            ]
+          }
+        },
+        "checked": {
+          "checkedFrom": "2026-09-05T21:32:08.644Z",
+          "checkedTo": "2026-09-05T21:32:08.889Z",
+          "result": {
+            "state": "insufficient",
+            "reason": "Some captured work is still open or has been reopened.",
+            "actualFinish": null,
+            "hits": null
+          }
+        }
+      },
+      "evidence": {
+        "success": true,
+        "state": "read",
+        "checkedFrom": "2026-09-05T21:32:10.045Z",
+        "checkedTo": "2026-09-05T21:32:10.245Z",
+        "rows": [
+          {
+            "saved": {
+              "id": "25033",
+              "readable": true,
+              "resolutionDate": "2026-09-06T00:31:43.039+0300",
+              "resolutionId": "10001",
+              "statusCategory": "done",
+              "statusCategoryChangedDate": "2026-09-06T00:31:43.057+0300"
+            },
+            "checked": {
+              "id": "25033",
+              "readable": true,
+              "statusCategory": "indeterminate",
+              "resolutionId": "10001",
+              "resolutionDate": "2026-09-06T00:31:43.039+0300",
+              "statusCategoryChangedDate": "2026-09-06T00:31:55.919+0300"
+            },
+            "checkedFrom": "2026-09-05T21:32:10.045Z",
+            "checkedTo": "2026-09-05T21:32:10.245Z"
+          }
+        ],
+        "nextPage": null
+      }
+    }
+  ],
+  "forecast": {
+    "kind": "forecast",
+    "name": "Prospective retained completion",
+    "sourceVersion": 2,
+    "sources": [
+      {
+        "boardId": null,
+        "id": "src-0",
+        "label": "harness",
+        "projectKey": null,
+        "query": "key in (WFH-2833) ORDER BY Rank ASC",
+        "type": "jql"
+      }
+    ],
+    "calendar": {
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "holidays": [],
+      "calendarName": "Standard (Mon-Fri)"
+    },
+    "milestones": [],
+    "uncertainty": "medium",
+    "fieldOverrides": {},
+    "assets": null,
+    "workingChangeCount": 0,
+    "consistency": {
+      "method": "two-matching-reads",
+      "basisHash": "90a8b906654100011c9b9e7b010b2f68ee08df55ee29e826640bee18d2419298",
+      "observedAt": "2026-09-05T21:31:42.347Z"
+    },
+    "forecast": {
+      "modelVersion": "duration-triangular-fs-v1",
+      "runs": 300,
+      "seed": 42,
+      "uncertainty": "medium",
+      "scopes": [
+        {
+          "id": "plan",
+          "name": "Whole plan",
+          "p50": "2026-10-09",
+          "p80": "2026-10-12",
+          "p90": "2026-10-12"
+        }
+      ]
+    },
+    "takenAt": "2026-09-05T21:31:42.372Z",
+    "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "schemaVersion": 1,
+    "planId": "plan-test-mtowe3tg-bvsgwh",
+    "id": "479dfb7f-ef0d-4e3f-bfd0-baed2f2ae08b",
+    "issueCount": 1,
+    "chunkCount": 1,
+    "chunkHashes": [
+      "bb58562ecedb926971a3c101fa67b239598fe8ade48204437a254ec4f1c30a32"
+    ],
+    "hash": "7e89446f570cca146573561e6cd5e9f5fc367a9cfe19cbcb79aadb679e369ada",
+    "state": "complete"
+  },
+  "completed": {
+    "id": "25033",
+    "statusCategory": "done",
+    "resolutionId": "10001",
+    "resolutionDate": "2026-09-06T00:31:43.039+0300",
+    "statusCategoryChangedDate": "2026-09-06T00:31:43.057+0300"
+  },
+  "receipt": {
+    "success": true,
+    "observation": {
+      "id": "e76cc4e1-5b43-4400-a930-f57d6990cd10",
+      "snapshotId": "479dfb7f-ef0d-4e3f-bfd0-baed2f2ae08b",
+      "scopeId": "plan",
+      "modelVersion": "duration-triangular-fs-v1",
+      "memberCount": 1,
+      "checkedFrom": "2026-09-05T21:31:44.762Z",
+      "checkedTo": "2026-09-05T21:31:44.893Z"
+    },
+    "result": {
+      "state": "observed",
+      "reason": null,
+      "actualFinish": "2026-09-05",
+      "observedAt": "2026-09-05T21:31:44.893Z",
+      "memberCount": 1,
+      "scopeId": "plan",
+      "scopeName": "plan",
+      "modelVersion": "duration-triangular-fs-v1",
+      "uncertainty": "medium",
+      "capturedAt": "2026-09-05T21:31:42.372Z",
+      "prediction": {
+        "id": "plan",
+        "name": "Captured scope",
+        "p50": "2026-10-09",
+        "p80": "2026-10-12",
+        "p90": "2026-10-12"
+      },
+      "hits": {
+        "p50": true,
+        "p80": true,
+        "p90": true
+      },
+      "observationKind": "current-jira-resolution-completion-utc",
+      "memberIds": [
+        "25033"
+      ]
+    }
+  },
+  "reopened": {
+    "id": "25033",
+    "statusCategory": "indeterminate",
+    "resolutionId": "10001",
+    "resolutionDate": "2026-09-06T00:31:43.039+0300",
+    "statusCategoryChangedDate": "2026-09-06T00:31:55.919+0300"
+  },
+  "originalScheduleUnchanged": true
+}

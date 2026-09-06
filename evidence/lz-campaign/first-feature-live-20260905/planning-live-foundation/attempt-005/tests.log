@@ -1,0 +1,24 @@
+
+Running 2 tests using 1 worker
+
+
+(node:54701) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/2] [chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:21:1 › targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent
+[chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:21:1 › targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent
+[jira !!] GET /rest/api/3/issue/WFH-2733 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2732 -> 404
+
+[jira !!] GET /rest/api/3/version/10285 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtopkaat","name":"[harness-test] lz-norm-mtopkaat","time":"2026-09-05T18:20:22.949Z","issues":[{"key":"WFH-2732","seed":{"label":"scoped early","duration":2,"start":"2026-10-05","due":"2026-10-06","release":true}},{"key":"WFH-2733","seed":{"label":"outside long","duration":41,"start":"2026-10-05","due":"2026-11-30"}}],"planId":"plan-test-mtopkech-4kbqdk","cleanup":[{"plan":"plan-test-mtopkech-4kbqdk","deleted":true},{"issue":"WFH-2733","deleted":true},{"issue":"WFH-2732","deleted":true},{"version":"10285","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10285","id":"10285","name":"[harness-test] lz-norm-mtopkaat","archived":false,"released":false,"projectId":10001},"searchIndexVerified":[{"key":"WFH-2732","start":"2026-10-05","due":"2026-10-06","duration":2},{"key":"WFH-2733","start":"2026-10-05","due":"2026-11-30","duration":41}],"forgeIndexObservations":[[{"key":"WFH-2732","start":"2026-10-05","due":"2026-10-06","duration":2},{"key":"WFH-2733","start":"2026-10-05","due":"2026-11-30","duration":41}]],"integrityPassed":true}
+
+[2/2] [chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:49:1 › history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion
+[chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:49:1 › history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion
+[jira !!] GET /rest/api/3/issue/WFH-2734 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtopl001","name":"[harness-test] lz-norm-mtopl001","time":"2026-09-05T18:20:56.257Z","issues":[{"key":"WFH-2734","seed":{"label":"history","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtopl1rv-z8rjb2","cleanup":[{"plan":"plan-test-mtopl1rv-z8rjb2","deleted":true},{"issue":"WFH-2734","deleted":true}],"searchIndexVerified":[{"key":"WFH-2734","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2734","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+  2 passed (1.5m)

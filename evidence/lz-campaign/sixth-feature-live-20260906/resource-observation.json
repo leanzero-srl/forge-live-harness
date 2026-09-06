@@ -1,0 +1,36 @@
+{
+  "observedAt": "2026-09-05T22:53:30.878193+00:00",
+  "canonicalProfile": "/Users/mihaiperdum/Projects/forge-live-harness/.auth/profile",
+  "lock": "/Users/mihaiperdum/.local/state/forge-live-harness/profile-locks/f99fe7ebe7f557192a9e48b1a342745b507990983d86b89e555fbac85dc4c369.lock",
+  "record": {
+    "version": 1,
+    "profile": "/Users/mihaiperdum/Projects/forge-live-harness/.auth/profile",
+    "phase": "active",
+    "parentPid": 31453,
+    "holderPid": 31468
+  },
+  "recordSha256": "4505e1e01f45a5789ea7b27d010c635822ca563d37840e8a75b4ae9c454df93c",
+  "device": 16777233,
+  "inode": 260145998,
+  "recordMtime": "2026-09-05T22:45:45.553472+00:00",
+  "markers": {
+    "SingletonLock": false,
+    "SingletonSocket": false,
+    "SingletonCookie": false,
+    "RunningChromeVersion": false
+  },
+  "sameObjectLsofPositiveControl": {
+    "sameProfileFile": "/Users/mihaiperdum/Projects/forge-live-harness/.auth/profile/Local State",
+    "readerPid": 40301,
+    "descriptorObserved": true,
+    "commandExit": 0
+  },
+  "afterCloseProfileLsof": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "limitation": "Task command and reason for unclean exit remain unproven; no recovery performed.",
+  "parentPidAlive": false,
+  "holderPidAlive": false
+}

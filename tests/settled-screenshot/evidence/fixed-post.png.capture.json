@@ -1,0 +1,24 @@
+{
+  "accepted": true,
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-06T00:53:53.216Z",
+      "state": "rejected-during-capture",
+      "rejectedImage": "/Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-post.png.rejected-1.png"
+    },
+    {
+      "number": 2,
+      "startedAt": "2026-09-06T00:53:53.322Z",
+      "state": "accepted",
+      "content": {
+        "width": 640,
+        "height": 480,
+        "colors": 363,
+        "differentPixels": 54185,
+        "nonblank": true
+      }
+    }
+  ],
+  "previousImage": "/Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-post.png.previous-0ebea307-0178-4446-b0eb-7b91795abd47.png"
+}

@@ -1,0 +1,28 @@
+{
+  "marker": "lz-norm-mtooqkyo",
+  "name": "[harness-test] lz-norm-mtooqkyo",
+  "time": "2026-09-05T17:57:17.088Z",
+  "issues": [
+    {
+      "key": "WFH-2713",
+      "seed": {
+        "label": "history",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtooqmly-2v7xjg",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtooqmly-2v7xjg",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2713",
+      "deleted": true
+    }
+  ],
+  "integrityPassed": true
+}

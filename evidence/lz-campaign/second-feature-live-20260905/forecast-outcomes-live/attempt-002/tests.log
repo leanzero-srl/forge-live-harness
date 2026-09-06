@@ -1,0 +1,50 @@
+
+Running 1 test using 1 worker
+
+
+(node:46322) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+[chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+[jira !!] GET /rest/api/3/issue/WFH-2783 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtorgb52","name":"[harness-test] lz-norm-mtorgb52","time":"2026-09-05T19:13:16.646Z","issues":[{"key":"WFH-2783","seed":{"label":"forecast observed work","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtorgd7h-dgp76v","cleanup":[{"plan":"plan-test-mtorgd7h-dgp76v","deleted":true},{"issue":"WFH-2783","deleted":true}],"searchIndexVerified":[{"key":"WFH-2783","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2783","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples 
+
+    TimeoutError: locator.click: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="forecast-evaluation"]').locator('article').filter({ has: locator('[data-testid="forecast-evaluation"]').getByRole('heading', { name: 'Prospective forecast one', exact: true }) }).getByRole('button', { name: 'Check outcome', exact: true })
+
+
+      16 |  await withOwnedSchedule(page,info,[seed],async(f)=>{
+      17 |   const key=f.keys[0],jiraBefore=await f.read(key);let frame=await table(page,f.name),panel=await outcomes(frame);const journal:any={key,observations:[],predictions:[]};const persist=()=>fs.writeFileSync(info.outputPath('forecast-outcome-journal.json'),JSON.stringify(journal,null,2));
+    > 18 |   for(const label of ['Prospective forecast one','Overlapping forecast two']){await panel.getByLabel('Forecast name').fill(label);const pending=result(page,'captureForecast',f.planId);await panel.getByRole('button',{name:'Record working forecast',exact:true}).click();const snapshot=(await pending).snapshot;journal.predictions.push(snapshot);persist();expect(snapshot.forecast.runs).toBe(300);expect(snapshot.issueCount).toBe(1);const retainedRead=result(page,'getSnapshot',f.planId);const capturedItem=panel.locator('article').filter({has:panel.getByRole('heading',{name:label,exact:true})});await capturedItem.getByRole('button',{name:'Check outcome',exact:true}).click();const retained=(await retainedRead).snapshot;expect(retained.id).toBe(snapshot.id);expect(retained.issues.map((r:any)=>r.key)).toEqual([key]);await expect(capturedItem.locator('[data-testid="forecast-outcome"]')).toContainText('still open or has been reopened');const predicted=snapshot.forecast.scopes.find((s:any)=>s.id==='plan');for(const p of ['p50','p80','p90'])expect(predicted[p]).toMatch(/^2026-10-\d{2}$/);await expect(panel.locator('article').filter({has:panel.getByRole('heading',{name:label,exact:true})})).toContainText(`Recorded P50 ${predicted.p50} · P80 ${predicted.p80} · P90 ${predicted.p90}`);}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ^
+      19 |   const first=panel.locator('article').filter({has:panel.getByRole('heading',{name:'Prospective forecast one',exact:true})});await first.getByRole('button',{name:'Check outcome',exact:true}).click();await expect(first.locator('[data-testid="forecast-outcome"]')).toContainText('still open or has been reopened');await expect(panel.locator('[data-testid="forecast-hit-rate"]')).toContainText('Insufficient observed outcomes');
+      20 |   const initial=await read(key);expect(initial.statusCategory).not.toBe('done');journal.observations.push(initial);const transitions=await get(`/rest/api/3/issue/${key}/transitions?expand=transitions.fields`);const done=transitions.transitions.find((t:any)=>t.to.statusCategory.key==='done');expect(done,'real fixture workflow must expose a Done transition').toBeTruthy();journal.transition={id:done.id,name:done.name,to:done.to.name};persist();await post(`/rest/api/3/issue/${key}/transitions`,{transition:{id:done.id}});const resolved=await read(key);journal.observations.push(resolved);persist();expect(resolved.statusCategory).toBe('done');expect(resolved.resolutionId,'positive completion fixture requires a real Jira resolution, never inferred Done').toBeTruthy();expect(Date.parse(resolved.resolutionDate)).toBeGreaterThan(Math.max(...journal.predictions.map((s:any)=>Date.parse(s.takenAt))));
+      21 |   const actualDate=new Date(resolved.resolutionDate).toISOString().slice(0,10);for(const label of ['Prospective forecast one','Overlapping forecast two']){const item=panel.locator('article').filter({has:panel.getByRole('heading',{name:label,exact:true})});await item.getByRole('button',{name:'Check outcome',exact:true}).click();await expect(item.locator('[data-testid="forecast-outcome"]')).toContainText(`Observed Jira resolution completion ${actualDate} for 1 captured tasks. P80 hit.`);}
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:18:668
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:16:2
+
+    Error: page.waitForResponse: Target page, context or browser has been closed
+
+       8 | test.describe.configure({retries:0,timeout:900000});
+       9 | const call=(req:any)=>{try{let raw=req.postDataBuffer();if(raw?.[0]===31&&raw?.[1]===139)raw=gunzipSync(raw);return JSON.parse(raw.toString()).variables?.input?.payload?.call;}catch{return null;}};
+    > 10 | const result=(page:any,name:string,planId:string)=>page.waitForResponse((r:any)=>{const c=call(r.request());return c?.functionKey===name&&c.payload?.planId===planId;},{timeout:90000}).then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=(await r.json()).data.invokeExtension.response.body;expect(b.success).toBe(true);return b;});
+         |                                                         ^
+      11 | const outcomes=async(frame:any)=>{await frame.getByRole('button',{name:/^Planning/i}).first().click();await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);await frame.getByRole('button',{name:'Forecast outcomes',exact:true}).click();return frame.locator('[data-testid="forecast-evaluation"]');};
+      12 | const read=async(key:string)=>{const r=await get(`/rest/api/3/issue/${key}?fields=status,resolution,resolutiondate,statuscategorychangedate`);return{id:r.id,statusCategory:r.fields.status.statusCategory.key,resolutionId:r.fields.resolution?.id??null,resolutionDate:r.fields.resolutiondate??null,statusCategoryChangedDate:r.fields.statuscategorychangedate??null};};
+      13 | const seed={label:'forecast observed work',duration:5,start:'2026-10-05',due:'2026-10-09'};
+        at result (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:10:57)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:18:450
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:16:2
+
+    Error Context: evidence/lz-campaign/second-feature-live-20260905/forecast-outcomes-live/attempt-002/tests-artifacts/scenarios-lz-ppm-journey-c-772e0-verlapping-forecast-samples-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples 

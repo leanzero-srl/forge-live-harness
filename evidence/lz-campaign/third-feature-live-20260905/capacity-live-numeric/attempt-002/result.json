@@ -1,0 +1,52 @@
+{
+  "status": "integrity_failed",
+  "stamp": "445fa5d96314c984fb14b2d9bc330b1b2a5e05e75e99653cfcc721fe5ae99134",
+  "startedAt": "2026-09-05T20:38:08.103455+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/third-feature-live-20260905/capacity-live-numeric/attempt-002",
+  "uiVersion": "4.58.577",
+  "forgeVersion": "6.3.0",
+  "appCommit": "c0de4ed2",
+  "instrumentHash": "ae7d9dcb1d6407ff94e51446b5e694f7729b3d3cf6f7fdf8d461f2f9d04c0b7e",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-identity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"campaign: actual UI version and preserved LZPT source\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T20:41:13.695663+00:00",
+  "elapsedSeconds": 185.59244387500803
+}

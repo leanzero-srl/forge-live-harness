@@ -1,0 +1,40 @@
+
+Running 1 test using 1 worker
+
+
+(node:18391) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-history-transaction.spec.ts:7:1 › history platform: real entity fence rolls back both KVS mutations and preserves successor lease
+  1) [chromium] › scenarios/lz-ppm/campaign-history-transaction.spec.ts:7:1 › history platform: real entity fence rolls back both KVS mutations and preserves successor lease 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 5
+    + Received  + 1
+
+      Object {
+        "acquiredRealEntityLease": true,
+        "guardedMixedCommitReadBack": true,
+    -   "pointerUnchanged": true,
+    -   "replacementLeaseReadBack": true,
+    -   "staleCommitRejected": true,
+    -   "staleFinallyPreservedSuccessor": true,
+    -   "tombstoneUnchanged": true,
+    +   "replacementLeaseReadBack": false,
+      }
+
+      13 |  await info.attach('real-platform-transaction-proof',{body:JSON.stringify(result),contentType:'application/json'});
+      14 |  expect(result.probeId).toBe(probeId);expect(result.planId).toBe(`harness-history-${probeId}`);
+    > 15 |  expect(result.checks).toEqual({acquiredRealEntityLease:true,guardedMixedCommitReadBack:true,replacementLeaseReadBack:true,staleCommitRejected:true,pointerUnchanged:true,tombstoneUnchanged:true,staleFinallyPreservedSuccessor:true});
+         |                        ^
+      16 |  expect(result.reads.positive).toEqual({pointer:{snapshotId:'positive-control'},tombstone:{deleted:false}});expect(result.reads.afterRejected).toEqual(result.reads.positive);
+      17 |  expect(result.rejectedCommit.message).toBeTruthy();expect(result.errors).toEqual([]);expect(result.cleanup).toEqual({pointerAbsent:true,tombstoneAbsent:true,entityAbsent:true});expect(result.passed).toBe(true);
+      18 |  expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(before);
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-history-transaction.spec.ts:15:24
+
+    Error Context: evidence/lz-campaign/first-feature-live-20260905/history-platform-standalone/artifacts/scenarios-lz-ppm-campaign--8838f-d-preserves-successor-lease-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-history-transaction.spec.ts:7:1 › history platform: real entity fence rolls back both KVS mutations and preserves successor lease 

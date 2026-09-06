@@ -1,0 +1,36 @@
+{
+  "marker": "lz-norm-mtoprbgl",
+  "name": "[harness-test] lz-norm-mtoprbgl",
+  "time": "2026-09-05T18:25:51.045Z",
+  "issues": [
+    {
+      "key": "WFH-2736",
+      "seed": {
+        "label": "inflight save",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtoprdq7-sfcqcl",
+  "cleanup": [],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2736",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2736",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ]
+}

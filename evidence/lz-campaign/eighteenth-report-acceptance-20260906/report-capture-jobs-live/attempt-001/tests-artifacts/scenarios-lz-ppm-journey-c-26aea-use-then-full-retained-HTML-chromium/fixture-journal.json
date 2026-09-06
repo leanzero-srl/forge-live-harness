@@ -1,0 +1,93 @@
+{
+  "marker": "lz-norm-mtpzm0tl",
+  "name": "[harness-test] lz-norm-mtpzm0tl",
+  "time": "2026-09-06T15:49:26.313Z",
+  "issues": [
+    {
+      "key": "WFH-2978",
+      "seed": {
+        "label": "report job resume",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    }
+  ],
+  "planId": "plan-test-mtpzm3tg-kkqxi5",
+  "cleanup": [],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2978",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2978",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "recoveryRetention": {
+    "reason": "Owned report departure failed; exact fixture retained",
+    "code": "LZ_REPORT_CAPTURE_RECOVERY_REQUIRED",
+    "reportState": {
+      "planId": "plan-test-mtpzm3tg-kkqxi5",
+      "owner": {
+        "planId": "plan-test-mtpzm3tg-kkqxi5",
+        "name": "[harness-test] lz-norm-mtpzm0tl"
+      },
+      "departureFailed": true
+    },
+    "additionalPlans": [],
+    "causes": [
+      {
+        "code": "LZ_REPORT_CAPTURE_RECOVERY_REQUIRED",
+        "reason": "Report capture cleanup is unverified; exact owned resources must be retained."
+      },
+      {
+        "code": "LZ_REPORT_CAPTURE_RECOVERY_REQUIRED",
+        "reason": "Owned report departure failed; exact fixture retained"
+      }
+    ],
+    "time": "2026-09-06T15:49:48.201Z"
+  },
+  "bodyError": {
+    "name": "AggregateError",
+    "message": "Report job body/cleanup failure; exact recovery state retained"
+  },
+  "cleanupErrors": [
+    {
+      "stage": "stop-owned-ui",
+      "name": "Error",
+      "message": "Owned report departure failed; exact fixture retained"
+    }
+  ],
+  "retainedForRecovery": {
+    "plans": [
+      {
+        "id": "plan-test-mtpzm3tg-kkqxi5",
+        "name": "[harness-test] lz-norm-mtpzm0tl"
+      }
+    ],
+    "issues": [
+      {
+        "key": "WFH-2978",
+        "seed": {
+          "label": "report job resume",
+          "start": "2026-10-05",
+          "due": "2026-10-09",
+          "duration": 5
+        }
+      }
+    ],
+    "version": null,
+    "reason": "Owned report departure failed; exact fixture retained"
+  },
+  "integrityPassed": false
+}

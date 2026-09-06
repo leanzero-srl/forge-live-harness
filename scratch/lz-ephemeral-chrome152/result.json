@@ -1,0 +1,368 @@
+{
+  "startedAt": "2026-09-05T23:54:52.234Z",
+  "sourcePath": "/Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/components/planning/SponsorReports.jsx",
+  "sourceSha256": "0e7d9e506457a49f06e2062b7f349ac51945e9586838d9d25a034b8173205ca3",
+  "blobBlockSha256": "56dd0668c0b1a9f379d3f79ba348c0713f8baeb7e84c76d5a087e54583356eba",
+  "mode": "chromium.launch-channel-chrome-new-ephemeral-context-default-managed-downloads",
+  "cycles": [
+    {
+      "cycle": 1,
+      "startedAt": "2026-09-05T23:54:52.235Z",
+      "downloads": [
+        {
+          "n": 1,
+          "bytes": 187,
+          "sha256": "cd3c83d02c94391d967a65781246ecfb66e74192c7f018a004ff59ca2b7a303c",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-1-1.html"
+        },
+        {
+          "n": 2,
+          "bytes": 187,
+          "sha256": "04c67bf153e8dbd50a5e52d05df9c8222267a4ec4c21f09f0f154eca5c1cc8ab",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-1-2.html"
+        },
+        {
+          "n": 3,
+          "bytes": 187,
+          "sha256": "1c9679c2721ceadd533a3ce7c60223cce0b8334443db9a71b6f0a4a799de1c54",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-1-3.html"
+        }
+      ],
+      "events": [
+        {
+          "name": "ordinary-launch-completed",
+          "time": "2026-09-05T23:54:52.538Z"
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:54:52.671Z",
+          "n": 1
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:54:52.714Z",
+          "n": 1,
+          "filename": "sponsor-report-owned-1-1.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:54:52.715Z",
+          "n": 1
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:54:55.274Z",
+          "n": 1
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:54:55.276Z",
+          "n": 2
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:54:55.310Z",
+          "n": 2,
+          "filename": "sponsor-report-owned-1-2.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:54:55.312Z",
+          "n": 2
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:54:57.867Z",
+          "n": 2
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:54:57.870Z",
+          "n": 3
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:54:57.906Z",
+          "n": 3,
+          "filename": "sponsor-report-owned-1-3.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:54:57.909Z",
+          "n": 3
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:55:00.500Z",
+          "n": 3
+        },
+        {
+          "name": "context-closed",
+          "time": "2026-09-05T23:55:00.504Z"
+        },
+        {
+          "name": "context-clean-close-completed",
+          "time": "2026-09-05T23:55:00.504Z"
+        },
+        {
+          "name": "browser-disconnected",
+          "time": "2026-09-05T23:55:00.522Z"
+        },
+        {
+          "name": "browser-clean-close-completed",
+          "time": "2026-09-05T23:55:00.622Z"
+        }
+      ],
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/152.0.7977.76",
+        "revision": "@0d89dfa2dd7c1ec4b8a14b9f303f887bb63b6174",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "jsVersion": "15.2.124.19"
+      },
+      "pid": 3069,
+      "processAbsentAfterCleanClose": true,
+      "passed": true
+    },
+    {
+      "cycle": 2,
+      "startedAt": "2026-09-05T23:55:00.622Z",
+      "downloads": [
+        {
+          "n": 1,
+          "bytes": 187,
+          "sha256": "fa71c4beddb92aa94a64bec337e5cb47148def3c38580d4c7f40728a5380724d",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-2-1.html"
+        },
+        {
+          "n": 2,
+          "bytes": 187,
+          "sha256": "6233de78ffa52f672702734fbe7b4186bc541733e5956a9754e8e0853275c6cb",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-2-2.html"
+        },
+        {
+          "n": 3,
+          "bytes": 187,
+          "sha256": "aabf2ae91532ecc50ee6f42458170407e23856fa7efd6dd1130fc28d202cbec9",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-2-3.html"
+        }
+      ],
+      "events": [
+        {
+          "name": "ordinary-launch-completed",
+          "time": "2026-09-05T23:55:00.783Z"
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:55:00.908Z",
+          "n": 1
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:55:00.953Z",
+          "n": 1,
+          "filename": "sponsor-report-owned-2-1.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:55:00.954Z",
+          "n": 1
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:55:03.513Z",
+          "n": 1
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:55:03.518Z",
+          "n": 2
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:55:03.549Z",
+          "n": 2,
+          "filename": "sponsor-report-owned-2-2.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:55:03.552Z",
+          "n": 2
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:55:06.110Z",
+          "n": 2
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:55:06.113Z",
+          "n": 3
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:55:06.145Z",
+          "n": 3,
+          "filename": "sponsor-report-owned-2-3.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:55:06.148Z",
+          "n": 3
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:55:08.735Z",
+          "n": 3
+        },
+        {
+          "name": "context-closed",
+          "time": "2026-09-05T23:55:08.738Z"
+        },
+        {
+          "name": "context-clean-close-completed",
+          "time": "2026-09-05T23:55:08.738Z"
+        },
+        {
+          "name": "browser-disconnected",
+          "time": "2026-09-05T23:55:08.755Z"
+        },
+        {
+          "name": "browser-clean-close-completed",
+          "time": "2026-09-05T23:55:08.864Z"
+        }
+      ],
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/152.0.7977.76",
+        "revision": "@0d89dfa2dd7c1ec4b8a14b9f303f887bb63b6174",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "jsVersion": "15.2.124.19"
+      },
+      "pid": 3110,
+      "processAbsentAfterCleanClose": true,
+      "passed": true
+    },
+    {
+      "cycle": 3,
+      "startedAt": "2026-09-05T23:55:08.865Z",
+      "downloads": [
+        {
+          "n": 1,
+          "bytes": 187,
+          "sha256": "f8d9a285b4f7f20b0a2ab557468d135ad3ef6bdb6fd063f3366cf9c9702eae16",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-3-1.html"
+        },
+        {
+          "n": 2,
+          "bytes": 187,
+          "sha256": "b26b0e50b2306dac073f9171c8d4511e921ad864b029cb50d3d543562df2d364",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-3-2.html"
+        },
+        {
+          "n": 3,
+          "bytes": 187,
+          "sha256": "37af2d2d6000adc187ff0a441543036e8ccec44458da934d6eb6c635b38d8fe7",
+          "file": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-ephemeral-chrome152/actual-download-3-3.html"
+        }
+      ],
+      "events": [
+        {
+          "name": "ordinary-launch-completed",
+          "time": "2026-09-05T23:55:09.024Z"
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:55:09.156Z",
+          "n": 1
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:55:09.208Z",
+          "n": 1,
+          "filename": "sponsor-report-owned-3-1.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:55:09.209Z",
+          "n": 1
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:55:11.751Z",
+          "n": 1
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:55:11.754Z",
+          "n": 2
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:55:11.779Z",
+          "n": 2,
+          "filename": "sponsor-report-owned-3-2.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:55:11.782Z",
+          "n": 2
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:55:14.339Z",
+          "n": 2
+        },
+        {
+          "name": "download-wait",
+          "time": "2026-09-05T23:55:14.342Z",
+          "n": 3
+        },
+        {
+          "name": "download-event",
+          "time": "2026-09-05T23:55:14.377Z",
+          "n": 3,
+          "filename": "sponsor-report-owned-3-3.html"
+        },
+        {
+          "name": "full-file-verified",
+          "time": "2026-09-05T23:55:14.380Z",
+          "n": 3
+        },
+        {
+          "name": "subsequent-render-verified",
+          "time": "2026-09-05T23:55:16.970Z",
+          "n": 3
+        },
+        {
+          "name": "context-closed",
+          "time": "2026-09-05T23:55:16.975Z"
+        },
+        {
+          "name": "context-clean-close-completed",
+          "time": "2026-09-05T23:55:16.975Z"
+        },
+        {
+          "name": "browser-disconnected",
+          "time": "2026-09-05T23:55:16.989Z"
+        },
+        {
+          "name": "browser-clean-close-completed",
+          "time": "2026-09-05T23:55:17.104Z"
+        }
+      ],
+      "version": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/152.0.7977.76",
+        "revision": "@0d89dfa2dd7c1ec4b8a14b9f303f887bb63b6174",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+        "jsVersion": "15.2.124.19"
+      },
+      "pid": 3302,
+      "processAbsentAfterCleanClose": true,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "finishedAt": "2026-09-05T23:55:17.104Z"
+}

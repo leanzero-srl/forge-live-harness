@@ -1,0 +1,121 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/private/tmp/lz-harness-retained-cleanup-20260906/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts",
+      "--project=chromium",
+      "--list",
+      "--reporter=json"
+    ],
+    "configFile": "/private/tmp/lz-harness-retained-cleanup-20260906/playwright.config.ts",
+    "rootDir": "/private/tmp/lz-harness-retained-cleanup-20260906",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/lz-harness-retained-cleanup-20260906/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/private/tmp/lz-harness-retained-cleanup-20260906",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/private/tmp/lz-harness-retained-cleanup-20260906/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/private/tmp/lz-harness-retained-cleanup-20260906",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts",
+      "file": "scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "seventeenth owner cleanup: approved report private and public payloads absent before exact normal UI plan deletion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 10800000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/private/tmp/lz-harness-retained-cleanup-20260906/scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts",
+                    "line": 43,
+                    "column": 1
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "1bc2e0a887982e6f75c4-fa1dab4ce970605099c0",
+          "file": "scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts",
+          "line": 43,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T15:17:42.293Z",
+    "duration": 122.37,
+    "expected": 0,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

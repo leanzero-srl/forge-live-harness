@@ -1,0 +1,36 @@
+{
+  "time": "2026-09-05T21:59:36.679126+00:00",
+  "harnessCommit": "7a642813c10c0698fd82c63d0e072178befc2e73",
+  "scope": "Local instrument controls, not live product acceptance",
+  "results": [
+    {
+      "name": "screenshot-author",
+      "command": [
+        "node",
+        "--test",
+        "scripts/tests/lz-settled-screenshot.test.mjs"
+      ],
+      "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+      "exitCode": 0
+    },
+    {
+      "name": "cleanup-independent-unchanged",
+      "command": [
+        "node",
+        "docs/campaign-2026-09/owned-fixture-error-independent.mjs"
+      ],
+      "cwd": "/Users/mihaiperdum/Projects/lz-ppm-forge",
+      "exitCode": 0
+    },
+    {
+      "name": "typescript",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+      "exitCode": 2
+    }
+  ]
+}

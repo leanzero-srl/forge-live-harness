@@ -1,0 +1,138 @@
+{
+  "marker": "lz-norm-mtoziqi3",
+  "name": "[harness-test] lz-norm-mtoziqi3",
+  "time": "2026-09-05T22:59:06.795Z",
+  "issues": [
+    {
+      "key": "WFH-2847",
+      "seed": {
+        "label": "numeric report 20h",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "release": true
+      }
+    }
+  ],
+  "planId": "plan-test-mtozislw-v816ze",
+  "cleanup": [],
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10289",
+    "id": "10289",
+    "name": "[harness-test] lz-norm-mtoziqi3",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2847",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2847",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "recoveryRetention": {
+    "reason": "Capacity preferences could not be proven restored; retain the exact owned fixtures",
+    "code": "LZ_CAPACITY_SETTINGS_RECOVERY_REQUIRED",
+    "settingsState": {
+      "initialized": true,
+      "original": {
+        "selectedPlanIds": [],
+        "profiles": {},
+        "issueChoices": {}
+      },
+      "lastOwned": {
+        "selectedPlanIds": [
+          "plan-msq9dg8l-gz6mz1"
+        ],
+        "profiles": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "hoursPerDay": 8,
+            "partTimePct": 50,
+            "reservePct": 25,
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "leaveDates": [
+              "2026-09-10"
+            ]
+          }
+        },
+        "issueChoices": {}
+      },
+      "version": 35,
+      "pending": null,
+      "restored": false,
+      "history": [
+        {
+          "name": "admitted",
+          "time": "2026-09-05T22:59:17.193Z"
+        },
+        {
+          "name": "write-intent",
+          "time": "2026-09-05T22:59:17.430Z"
+        },
+        {
+          "name": "write-acknowledged",
+          "time": "2026-09-05T22:59:17.880Z"
+        },
+        {
+          "name": "recovery-required",
+          "time": "2026-09-05T22:59:39.899Z",
+          "message": "Capacity preferences could not be proven restored; retain the exact owned fixtures"
+        }
+      ]
+    },
+    "additionalPlans": [],
+    "time": "2026-09-05T22:59:39.899Z"
+  },
+  "bodyError": {
+    "name": "AggregateError",
+    "message": "Numeric report body and private settings cleanup failures"
+  },
+  "retainedForRecovery": {
+    "plans": [
+      {
+        "id": "plan-test-mtozislw-v816ze",
+        "name": "[harness-test] lz-norm-mtoziqi3"
+      }
+    ],
+    "issues": [
+      {
+        "key": "WFH-2847",
+        "seed": {
+          "label": "numeric report 20h",
+          "duration": 5,
+          "start": "2026-09-07",
+          "due": "2026-09-11",
+          "release": true
+        }
+      }
+    ],
+    "version": {
+      "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10289",
+      "id": "10289",
+      "name": "[harness-test] lz-norm-mtoziqi3",
+      "archived": false,
+      "released": false,
+      "projectId": 10001
+    },
+    "reason": "Capacity preferences could not be proven restored; retain the exact owned fixtures"
+  },
+  "integrityPassed": false
+}

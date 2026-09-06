@@ -1,0 +1,64 @@
+{
+  "recordedAt": "2026-09-05T18:58:36.084421+00:00",
+  "classification": "shared browser resource contention, not product failure",
+  "noExternalProcessInterrupted": true,
+  "observations": [
+    {
+      "time": "2026-09-05T18:35:29.404212Z",
+      "lzRunner": 72358,
+      "status": "runner_failed",
+      "reason": "five-minute shared-profile wait expired; no tests launched"
+    },
+    {
+      "time": "2026-09-05T18:43:00Z",
+      "browserPid": 74867,
+      "parentPlaywrightPid": 71710,
+      "owner": "ChatWise journey-*.spec.ts nine-file suite",
+      "action": "left untouched",
+      "timeApproximate": true
+    },
+    {
+      "time": "2026-09-05T18:49:20.390606Z",
+      "lzRunner": 92111,
+      "status": "runner_failed",
+      "reason": "five-minute shared-profile wait expired; no tests launched"
+    },
+    {
+      "time": "2026-09-05T18:50:00Z",
+      "browserPid": 5369,
+      "parentPlaywrightPid": 5358,
+      "owner": "ChatWise journey-backlog-from-document.spec.ts",
+      "action": "left untouched",
+      "timeApproximate": true
+    },
+    {
+      "time": "2026-09-05T18:53:07.917562Z",
+      "lzRunner": 6003,
+      "childPid": 13203,
+      "status": "entry_guard",
+      "productTestsLaunched": false
+    },
+    {
+      "time": "2026-09-05T18:53:17.818785Z",
+      "lzRunner": 6003,
+      "status": "instrument_changed",
+      "reason": "external task added helpers to forge/frame.ts and data/confluence.mjs during queue; controller stopped before product tests",
+      "diffReviewed": "additive Confluence-specific viewport/purge helpers; unrelated files untouched"
+    },
+    {
+      "time": "2026-09-05T18:54:15.461442Z",
+      "lzRunner": 16096,
+      "status": "waiting for profile",
+      "browserPid": 14985,
+      "parentPlaywrightPid": 14962,
+      "owner": "ChatWise assets-tools, bulk-move-issues, deck-download, servicedesk-queues-sla, websearch-settings-card, skills-live, panel-iframe-geometry, websearch-tool-live, workflow-tools-live suite",
+      "action": "left untouched"
+    },
+    {
+      "time": "2026-09-05T18:59:15.583296Z",
+      "lzRunner": 16096,
+      "status": "runner_failed",
+      "reason": "five-minute shared-profile wait expired; no tests launched; ChatWise suite14962 remained alive"
+    }
+  ]
+}

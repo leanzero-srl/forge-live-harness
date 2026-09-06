@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "stamp": "4857bd56c1ee3891ed2e3fc4bc6ed7f77e6e01918262eaed8be0c5e94fc532f6",
+  "startedAt": "2026-09-06T06:27:00.444451+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-lossless-report-live-20260906/report-capture-jobs-live/attempt-001",
+  "uiVersion": "4.58.585",
+  "forgeVersion": "6.16.0",
+  "appCommit": "689574d4eb068111e75f93b8449b421642fd0ad1",
+  "instrumentHash": "73f4d83215147a1f029bc0ad245ee5c4fdff082c66259d3a333f76e116e11332",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML",
+        "report jobs: cancellation during held real advance removes staged keys and refuses stale advance",
+        "report jobs: changed owned source during pause refuses publication and cleans exact staging",
+        "report jobs: changed active baseline during pause refuses publication and preserves original baseline"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 4,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T06:30:26.013925+00:00",
+  "elapsedSeconds": 205.56947924999986
+}

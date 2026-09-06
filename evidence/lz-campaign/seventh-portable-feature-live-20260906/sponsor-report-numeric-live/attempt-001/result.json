@@ -1,0 +1,53 @@
+{
+  "status": "failed",
+  "stamp": "f9d8e34a6ef03b0cf0a495ddc4c19bcfbb45b5362f9bc58d32cb842067dd07e0",
+  "startedAt": "2026-09-06T00:24:10.812627+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/sponsor-report-numeric-live/attempt-001",
+  "uiVersion": "4.58.579",
+  "forgeVersion": "6.5.0",
+  "appCommit": "dce1d154f89a4684b3332508cf9de26fa3a1c746",
+  "instrumentHash": "1cf1dcb55db1a8836b29d5752266684680b498ecc11ca8069cd6036a1a3371cb",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T00:25:38.820276+00:00",
+  "elapsedSeconds": 88.01380841599894
+}

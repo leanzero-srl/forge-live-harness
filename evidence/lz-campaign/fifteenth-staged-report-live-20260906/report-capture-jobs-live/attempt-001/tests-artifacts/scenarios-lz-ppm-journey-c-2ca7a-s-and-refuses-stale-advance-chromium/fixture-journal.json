@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtpcbxeb",
+  "name": "[harness-test] lz-norm-mtpcbxeb",
+  "time": "2026-09-06T04:57:44.147Z",
+  "issues": [
+    {
+      "key": "WFH-2909",
+      "seed": {
+        "label": "report job cancel",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    }
+  ],
+  "planId": "plan-test-mtpcc0la-9eyuei",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtpcc0la-9eyuei",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2909",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2909",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2909",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

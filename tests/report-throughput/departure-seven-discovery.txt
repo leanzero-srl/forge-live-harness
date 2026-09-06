@@ -1,0 +1,9 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/journey-campaign-large-history.spec.ts:17:1 › large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source
+  [chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:14:32 › report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML
+  [chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:14:32 › report jobs: cancellation during held real advance removes staged keys and refuses stale advance
+  [chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:14:32 › report jobs: changed owned source during pause refuses publication and cleans exact staging
+  [chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:14:32 › report jobs: changed active baseline during pause refuses publication and preserves original baseline
+  [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+  [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:17:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy
+Total: 7 tests in 4 files

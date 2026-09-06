@@ -1,0 +1,6 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+invocation: 81b17209-e165-447c-a4e9-9fbe3c0d9e1c
+ERROR   05:29:14.526Z Function timed out. Limit of 25.00 seconds
+

@@ -1,0 +1,312 @@
+
+Running 14 tests using 1 worker
+
+
+(node:50158) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/14] [chromium] › scenarios/lz-ppm/journey-campaign-adoption.spec.ts:9:1 › adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original
+[chromium] › scenarios/lz-ppm/journey-campaign-adoption.spec.ts:9:1 › adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original
+[jira !!] GET /rest/api/3/issue/WFH-2822 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2821 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtow8fsg","name":"[harness-test] lz-norm-mtow8fsg","time":"2026-09-05T21:27:07.504Z","issues":[{"key":"WFH-2821","seed":{"label":"adopt predecessor","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2822","seed":{"label":"adopt successor","duration":5,"start":"2026-03-09","due":"2026-03-13"}}],"planId":"plan-test-mtow8j7h-5kagvm","cleanup":[{"plan":"plan-test-mtow8j7h-5kagvm","deleted":true},{"issue":"WFH-2822","deleted":true},{"issue":"WFH-2821","deleted":true}],"linkPairs":[{"from":"WFH-2821","to":"WFH-2822"}],"searchIndexVerified":[{"key":"WFH-2821","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2822","start":"2026-03-09","due":"2026-03-13","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2821","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2822","start":"2026-03-09","due":"2026-03-13","duration":5}]],"integrityPassed":true}
+
+[2/14] [chromium] › scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts:32:1 › native Assets: actual multi-object ANY, second-field AND, empty and no-match, complete combination grouping, saved filters and object rename preserve source
+[3/14] [chromium] › scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts:65:1 › native Assets: filtered-out successor still cascades and explicit Apply writes both actual Jira schedules without altering either native field
+[chromium] › scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts:65:1 › native Assets: filtered-out successor still cascades and explicit Apply writes both actual Jira schedules without altering either native field
+[jira !!] GET /rest/api/3/issue/WFH-2824 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2823 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtowag1d","name":"[harness-test] lz-norm-mtowag1d","time":"2026-09-05T21:28:41.137Z","issues":[{"key":"WFH-2823","seed":{"label":"Assets visible predecessor","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2824","seed":{"label":"Assets hidden successor","duration":5,"start":"2026-03-09","due":"2026-03-13"}}],"planId":"plan-test-mtowaj7i-te4lwf","cleanup":[{"plan":"plan-test-mtowaj7i-te4lwf","deleted":true},{"issue":"WFH-2824","deleted":true},{"issue":"WFH-2823","deleted":true}],"linkPairs":[{"from":"WFH-2823","to":"WFH-2824"}],"searchIndexVerified":[{"key":"WFH-2823","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2824","start":"2026-03-09","due":"2026-03-13","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2823","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2824","start":"2026-03-09","due":"2026-03-13","duration":5}]],"integrityPassed":true}
+
+[4/14] [chromium] › scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:12:1 › capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity
+[chromium] › scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:12:1 › capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity
+[jira !!] GET /rest/api/3/issue/WFH-2828 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2827 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2826 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2825 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtowbcwo","name":"[harness-test] lz-norm-mtowbcwo","time":"2026-09-05T21:29:23.736Z","issues":[{"key":"WFH-2825","seed":{"label":"24h demand","duration":5,"start":"2026-09-07","due":"2026-09-11"}},{"key":"WFH-2826","seed":{"label":"missing effort","duration":5,"start":"2026-09-07","due":"2026-09-11"}},{"key":"WFH-2827","seed":{"label":"zero effort","duration":5,"start":"2026-09-07","due":"2026-09-11"}},{"key":"WFH-2828","seed":{"label":"unassigned effort","duration":5,"start":"2026-09-07","due":"2026-09-11"}}],"planId":"plan-test-mtowbiiy-av395h","cleanup":[{"plan":"plan-test-mtowbiiy-av395h","deleted":true},{"issue":"WFH-2828","deleted":true},{"issue":"WFH-2827","deleted":true},{"issue":"WFH-2826","deleted":true},{"issue":"WFH-2825","deleted":true}],"searchIndexVerified":[{"key":"WFH-2825","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2826","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2827","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2828","start":"2026-09-07","due":"2026-09-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2825","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2826","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2827","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2828","start":"2026-09-07","due":"2026-09-11","duration":5}]],"integrityPassed":true}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:12:1 › capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       at scenarios/lz-ppm/campaign-ui.ts:11
+
+       9 | export function actualResponse(page:any,functionKey:string,planId?:string) {
+      10 |   return page.waitForResponse((r:any)=>{const c=callOf(r.request());return c?.functionKey===functionKey&&(!planId||c.payload?.planId===planId);},{timeout:120000})
+    > 11 |     .then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=await bodyOf(r);expect(b.success).toBe(true);return b;});
+         |                                                                                                                    ^
+      12 | }
+      13 | /** Capture only an actual current-user request. Secrets remain memory-only. */
+      14 | export function currentUserResolver(page:any,filter:(call:any)=>boolean) {
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:11:116
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:48:9
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:82:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:14:2
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-4ccc2-r-show-false-spare-capacity-chromium/error-context.md
+
+
+
+(node:54076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[5/14] [chromium] › scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:19:1 › epic targets: actual hierarchy retains outside predecessor influence; target edit during a yielded forecast cannot publish the old commitment
+[chromium] › scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:19:1 › epic targets: actual hierarchy retains outside predecessor influence; target edit during a yielded forecast cannot publish the old commitment
+[jira !!] GET /rest/api/3/issue/WFH-2832 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2831 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2830 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2829 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtowcjgi","name":"[harness-test] lz-norm-mtowcjgi","time":"2026-09-05T21:30:18.882Z","issues":[{"key":"WFH-2829","seed":{"label":"outside epic predecessor","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2830","seed":{"label":"epic child","duration":5,"start":"2026-03-09","due":"2026-03-13"}},{"key":"WFH-2831","seed":{"label":"unrelated December work","duration":5,"start":"2026-12-07","due":"2026-12-11"}}],"planId":"plan-test-mtowcqwa-mvcwz4","cleanup":[{"plan":"plan-test-mtowcqwa-mvcwz4","deleted":true},{"issue":"WFH-2831","deleted":true},{"issue":"WFH-2830","deleted":true},{"issue":"WFH-2829","deleted":true}],"linkPairs":[{"from":"WFH-2829","to":"WFH-2830"}],"searchIndexVerified":[{"key":"WFH-2829","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2830","start":"2026-03-09","due":"2026-03-13","duration":5},{"key":"WFH-2831","start":"2026-12-07","due":"2026-12-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2829","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2830","start":"2026-03-09","due":"2026-03-13","duration":5},{"key":"WFH-2831","start":"2026-12-07","due":"2026-12-11","duration":5}]],"integrityPassed":true}
+
+  2) [chromium] › scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:19:1 › epic targets: actual hierarchy retains outside predecessor influence; target edit during a yielded forecast cannot publish the old commitment 
+
+    AggregateError: Epic target test and/or owned cleanup failed; original evidence retained
+
+      90 |     await clean('delete owned epic',async()=>{await ownEpic();await request('DELETE',`/rest/api/3/issue/${journal.epic.key}`);expect((await request('GET',`/rest/api/3/issue/${journal.epic.key}`,{raw:true})).status).toBe(404);journal.epicDeleted=true;});
+      91 |    }else if(journal.phase==='epic-create-requested')cleanupErrors.push(Error(`Uncertain epic create; reconcile exact owned summary before retry: ${summary}`));
+    > 92 |    if(cleanupErrors.length)throw new AggregateError([...(testFailure?[testFailure]:[]),...cleanupErrors],'Epic target test and/or owned cleanup failed; original evidence retained');
+         |                                  ^
+      93 |   }
+      94 |  },[[0,1]]);
+      95 | });
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:92:34
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:82:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:20:2
+
+    TypeError: Cannot read properties of undefined (reading 'parent')
+
+      87 |    }
+      88 |    if(journal.epic){
+    > 89 |     await clean('detach owned child',async()=>{await ownEpic();await f.read(member);const parent=(await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent;if(parent){expect(parent.key).toBe(journal.epic.key);await put(`/rest/api/3/issue/${member}`,{fields:{parent:null}});expect((await get(`/rest/api/3/issue/${member}?fields=parent`)).fields.parent||null).toBe(null);}});
+         |                                                                                                                                                                                                                                                                                                                                                                     ^
+      90 |     await clean('delete owned epic',async()=>{await ownEpic();await request('DELETE',`/rest/api/3/issue/${journal.epic.key}`);expect((await request('GET',`/rest/api/3/issue/${journal.epic.key}`,{raw:true})).status).toBe(404);journal.epicDeleted=true;});
+      91 |    }else if(journal.phase==='epic-create-requested')cleanupErrors.push(Error(`Uncertain epic create; reconcile exact owned summary before retry: ${summary}`));
+      92 |    if(cleanupErrors.length)throw new AggregateError([...(testFailure?[testFailure]:[]),...cleanupErrors],'Epic target test and/or owned cleanup failed; original evidence retained');
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:89:357
+        at clean (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:80:67)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:89:5
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:82:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:20:2
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-79f7a--publish-the-old-commitment-chromium/error-context.md
+
+
+
+(node:55263) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[6/14] [chromium] › scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:12:1 › completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence
+[chromium] › scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:12:1 › completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence
+[jira !!] GET /rest/api/3/issue/WFH-2833 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtowe18s","name":"[harness-test] lz-norm-mtowe18s","time":"2026-09-05T21:31:28.588Z","issues":[{"key":"WFH-2833","seed":{"label":"retained completed outcome","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtowe3tg-bvsgwh","cleanup":[{"plan":"plan-test-mtowe3tg-bvsgwh","deleted":true},{"issue":"WFH-2833","deleted":true}],"searchIndexVerified":[{"key":"WFH-2833","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2833","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[7/14] [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:16:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+[chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:16:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+[jira !!] GET /rest/api/3/issue/WFH-2834 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtowf2vh","name":"[harness-test] lz-norm-mtowf2vh","time":"2026-09-05T21:32:17.357Z","issues":[{"key":"WFH-2834","seed":{"label":"forecast observed work","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtowf4nz-8832a1","cleanup":[{"plan":"plan-test-mtowf4nz-8832a1","deleted":true},{"issue":"WFH-2834","deleted":true}],"searchIndexVerified":[{"key":"WFH-2834","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2834","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[8/14] [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:28:1 › private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact
+[chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:28:1 › private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact
+[jira !!] GET /rest/api/3/issue/WFH-2835 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtowfsxt","name":"[harness-test] lz-norm-mtowfsxt","time":"2026-09-05T21:32:51.137Z","issues":[{"key":"WFH-2835","seed":{"label":"forecast observed work","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtowfukx-tbg1q2","cleanup":[{"plan":"plan-test-mtowfukx-tbg1q2","deleted":true},{"issue":"WFH-2835","deleted":true}],"searchIndexVerified":[{"key":"WFH-2835","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2835","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[9/14] [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:13:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+[chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:13:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+[jira !!] GET /rest/api/3/issue/WFH-2836 -> 404
+
+[jira !!] GET /rest/api/3/version/10288 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtowgiwh","name":"[harness-test] lz-norm-mtowgiwh","time":"2026-09-05T21:33:24.785Z","issues":[{"key":"WFH-2836","seed":{"label":"numeric report 20h","duration":5,"start":"2026-09-07","due":"2026-09-11","release":true}}],"planId":"plan-test-mtowgl2p-bp5w66","cleanup":[{"plan":"plan-test-mtowgl2p-bp5w66","deleted":true},{"issue":"WFH-2836","deleted":true},{"version":"10288","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10288","id":"10288","name":"[harness-test] lz-norm-mtowgiwh","archived":false,"released":false,"projectId":10001},"searchIndexVerified":[{"key":"WFH-2836","start":"2026-09-07","due":"2026-09-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2836","start":"2026-09-07","due":"2026-09-11","duration":5}]],"integrityPassed":true}
+
+  3) [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:13:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 
+
+    Error: apiRequestContext.post: Target page, context or browser has been closed
+
+       at scenarios/lz-ppm/campaign-ui.ts:24
+
+      22 |       const data=structuredClone(wire.data);data.variables.input.payload.call={functionKey,payload};
+      23 |       const headers=replayHeaders(await wire.headers);
+    > 24 |       const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});expect(res.status()).toBe(200);const body=await bodyOf(res);expect(body).toBeTruthy();return body;
+         |                                    ^
+      25 |     },
+      26 |   };
+      27 | }
+        at Object.invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:24:36)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:64:43
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:82:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:15:2
+
+    ProfileReservationError: HOLDER_LOST: Reservation is no longer held
+
+       at forge/profile-reservation.ts:119
+
+      117 |     throw new ProfileReservationError(acquired.kind === "busy" ? "PROFILE_BUSY" : "PROFILE_UNAVAILABLE", acquired.reason ?? "Unknown reservation response");
+      118 |   }
+    > 119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError("HOLDER_LOST", "Reservation is no longer held"); };
+          |                                                                                       ^
+      120 |   const finish = async (command: "clean-close" | "cancel-unlaunched") => {
+      121 |     if (released) return;
+      122 |     assertHeld();
+        at assertHeld (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:119:87)
+        at finish (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:122:5)
+        at Object.cleanClose (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:133:27)
+        at /Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:179:68
+        at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:62:7)
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/error-context.md
+
+
+
+(node:57900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[10/14] [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:14:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy
+  4) [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:14:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy 
+
+    ProfileReservationError: PROFILE_UNAVAILABLE: Unclean or unknown prior reservation; explicit recovery required
+
+       at forge/profile-reservation.ts:117
+
+      115 |   if (acquired.kind !== "acquired" || !acquired.lockFile || !acquired.holderPid || acquired.profile !== profile) {
+      116 |     intentional = true; holder.stdin.end();
+    > 117 |     throw new ProfileReservationError(acquired.kind === "busy" ? "PROFILE_BUSY" : "PROFILE_UNAVAILABLE", acquired.reason ?? "Unknown reservation response");
+          |           ^
+      118 |   }
+      119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError("HOLDER_LOST", "Reservation is no longer held"); };
+      120 |   const finish = async (command: "clean-close" | "cancel-unlaunched") => {
+        at reserveProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:117:11)
+        at launchReservedProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:149:23)
+        at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:50:23)
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-d3bf0-ndent-deleted-baseline-copy-chromium/error-context.md
+
+
+
+(node:57902) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[11/14] [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:18:1 › sensitivity: tied branches have no solo-shortening benefit; actual yielded cancellation and scope change never publish old or partial rankings
+  5) [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:18:1 › sensitivity: tied branches have no solo-shortening benefit; actual yielded cancellation and scope change never publish old or partial rankings 
+
+    ProfileReservationError: PROFILE_UNAVAILABLE: Unclean or unknown prior reservation; explicit recovery required
+
+       at forge/profile-reservation.ts:117
+
+      115 |   if (acquired.kind !== "acquired" || !acquired.lockFile || !acquired.holderPid || acquired.profile !== profile) {
+      116 |     intentional = true; holder.stdin.end();
+    > 117 |     throw new ProfileReservationError(acquired.kind === "busy" ? "PROFILE_BUSY" : "PROFILE_UNAVAILABLE", acquired.reason ?? "Unknown reservation response");
+          |           ^
+      118 |   }
+      119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError("HOLDER_LOST", "Reservation is no longer held"); };
+      120 |   const finish = async (command: "clean-close" | "cancel-unlaunched") => {
+        at reserveProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:117:11)
+        at launchReservedProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:149:23)
+        at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:50:23)
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-cad40-ish-old-or-partial-rankings-chromium/error-context.md
+
+
+
+(node:57904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[12/14] [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:38:1 › sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed
+  6) [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:38:1 › sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed 
+
+    ProfileReservationError: PROFILE_UNAVAILABLE: Unclean or unknown prior reservation; explicit recovery required
+
+       at forge/profile-reservation.ts:117
+
+      115 |   if (acquired.kind !== "acquired" || !acquired.lockFile || !acquired.holderPid || acquired.profile !== profile) {
+      116 |     intentional = true; holder.stdin.end();
+    > 117 |     throw new ProfileReservationError(acquired.kind === "busy" ? "PROFILE_BUSY" : "PROFILE_UNAVAILABLE", acquired.reason ?? "Unknown reservation response");
+          |           ^
+      118 |   }
+      119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError("HOLDER_LOST", "Reservation is no longer held"); };
+      120 |   const finish = async (command: "clean-close" | "cancel-unlaunched") => {
+        at reserveProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:117:11)
+        at launchReservedProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:149:23)
+        at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:50:23)
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-1d0f2--are-not-directly-perturbed-chromium/error-context.md
+
+
+
+(node:57906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[13/14] [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture
+  7) [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture 
+
+    ProfileReservationError: PROFILE_UNAVAILABLE: Unclean or unknown prior reservation; explicit recovery required
+
+       at forge/profile-reservation.ts:117
+
+      115 |   if (acquired.kind !== "acquired" || !acquired.lockFile || !acquired.holderPid || acquired.profile !== profile) {
+      116 |     intentional = true; holder.stdin.end();
+    > 117 |     throw new ProfileReservationError(acquired.kind === "busy" ? "PROFILE_BUSY" : "PROFILE_UNAVAILABLE", acquired.reason ?? "Unknown reservation response");
+          |           ^
+      118 |   }
+      119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError("HOLDER_LOST", "Reservation is no longer held"); };
+      120 |   const finish = async (command: "clean-close" | "cancel-unlaunched") => {
+        at reserveProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:117:11)
+        at launchReservedProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:149:23)
+        at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:50:23)
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-656c4-ut-changing-Jira-or-capture-chromium/error-context.md
+
+
+
+(node:57908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[14/14] [chromium] › scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts:10:1 › targets: outside-release predecessor constrains finish; rename keeps identity, drift requires explicit refresh, empty scope and invalid date never yield success
+  8) [chromium] › scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts:10:1 › targets: outside-release predecessor constrains finish; rename keeps identity, drift requires explicit refresh, empty scope and invalid date never yield success 
+
+    ProfileReservationError: PROFILE_UNAVAILABLE: Unclean or unknown prior reservation; explicit recovery required
+
+       at forge/profile-reservation.ts:117
+
+      115 |   if (acquired.kind !== "acquired" || !acquired.lockFile || !acquired.holderPid || acquired.profile !== profile) {
+      116 |     intentional = true; holder.stdin.end();
+    > 117 |     throw new ProfileReservationError(acquired.kind === "busy" ? "PROFILE_BUSY" : "PROFILE_UNAVAILABLE", acquired.reason ?? "Unknown reservation response");
+          |           ^
+      118 |   }
+      119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError("HOLDER_LOST", "Reservation is no longer held"); };
+      120 |   const finish = async (command: "clean-close" | "cancel-unlaunched") => {
+        at reserveProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:117:11)
+        at launchReservedProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:149:23)
+        at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:50:23)
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-9598b-id-date-never-yield-success-chromium/error-context.md
+
+
+  8 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:12:1 › capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity 
+    [chromium] › scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:19:1 › epic targets: actual hierarchy retains outside predecessor influence; target edit during a yielded forecast cannot publish the old commitment 
+    [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:13:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 
+    [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:14:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy 
+    [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:18:1 › sensitivity: tied branches have no solo-shortening benefit; actual yielded cancellation and scope change never publish old or partial rankings 
+    [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:38:1 › sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed 
+    [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture 
+    [chromium] › scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts:10:1 › targets: outside-release predecessor constrains finish; rename keeps identity, drift requires explicit refresh, empty scope and invalid date never yield success 
+  6 passed (6.9m)

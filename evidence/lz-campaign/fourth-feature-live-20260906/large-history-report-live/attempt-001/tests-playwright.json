@@ -1,0 +1,166 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/large-history-report-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/large-history-report-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/large-history-report-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 1800000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 79492,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31mnull\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31mnull\u001b[39m\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:31:161",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+                      "column": 161,
+                      "line": 31
+                    },
+                    "snippet": "  29 |   // Jira stores no declared duration in this bed, so hydration must count its dates.\n  30 |   const weekdays=(start:string,due:string)=>{let n=0;for(let t=Date.parse(start+'T12:00:00Z');t<=Date.parse(due+'T12:00:00Z');t+=86400000){const day=new Date(t).getUTCDay();if(day>=1&&day<=5)n++;}return n;};\n> 31 |   for(const row of basis){const raw:any=originalByKey.get(row.key);expect(row.startDate).toBe(raw.start);expect(row.dueDate).toBe(raw.due);expect(row.duration).toBe(raw.duration??weekdays(raw.start,raw.due));}\n     |                                                                                                                                                                 ^\n  32 |   const expected=rowFields(basis);fs.writeFileSync(info.outputPath('large-capture-expected.json'),JSON.stringify(expected));\n  33 |   await work.getByLabel('Capture name',{exact:true}).fill('Complete large decision');const captureStart=Date.now();const captured=actualResponse(page,'getSnapshot',planId!);await work.getByRole('button',{name:'Capture working plan',exact:true}).click();const snapshot=(await captured).snapshot;journal.metrics.captureAndReadMs=Date.now()-captureStart;journal.metrics.snapshotBytes=Buffer.byteLength(JSON.stringify(snapshot));\n  34 |   expect(snapshot.calendar.workingDays).toEqual([1,2,3,4,5]);expect(snapshot.calendar.holidays).toEqual([]);expect(snapshot.issueCount).toBe(population.count);expect(snapshot.issues.map((i:any)=>i.key).sort()).toEqual(keys);expect(rowFields(snapshot.issues)).toEqual(expected);journal.snapshot={id:snapshot.id,hash:snapshot.hash,count:snapshot.issueCount,lastExpected:expected.slice(-5),lastSnapshot:rowFields(snapshot.issues).slice(-5)};retain();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+                        "column": 161,
+                        "line": 31
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31mnull\u001b[39m\n\n  29 |   // Jira stores no declared duration in this bed, so hydration must count its dates.\n  30 |   const weekdays=(start:string,due:string)=>{let n=0;for(let t=Date.parse(start+'T12:00:00Z');t<=Date.parse(due+'T12:00:00Z');t+=86400000){const day=new Date(t).getUTCDay();if(day>=1&&day<=5)n++;}return n;};\n> 31 |   for(const row of basis){const raw:any=originalByKey.get(row.key);expect(row.startDate).toBe(raw.start);expect(row.dueDate).toBe(raw.due);expect(row.duration).toBe(raw.duration??weekdays(raw.start,raw.due));}\n     |                                                                                                                                                                 ^\n  32 |   const expected=rowFields(basis);fs.writeFileSync(info.outputPath('large-capture-expected.json'),JSON.stringify(expected));\n  33 |   await work.getByLabel('Capture name',{exact:true}).fill('Complete large decision');const captureStart=Date.now();const captured=actualResponse(page,'getSnapshot',planId!);await work.getByRole('button',{name:'Capture working plan',exact:true}).click();const snapshot=(await captured).snapshot;journal.metrics.captureAndReadMs=Date.now()-captureStart;journal.metrics.snapshotBytes=Buffer.byteLength(JSON.stringify(snapshot));\n  34 |   expect(snapshot.calendar.workingDays).toEqual([1,2,3,4,5]);expect(snapshot.calendar.holidays).toEqual([]);expect(snapshot.issueCount).toBe(population.count);expect(snapshot.issues.map((i:any)=>i.key).sort()).toEqual(keys);expect(rowFields(snapshot.issues)).toEqual(expected);journal.snapshot={id:snapshot.id,hash:snapshot.hash,count:snapshot.issueCount,lastExpected:expected.slice(-5),lastSnapshot:rowFields(snapshot.issues).slice(-5)};retain();\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:31:161"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T21:25:34.351Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/large-history-report-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2f98e-without-mutating-the-source-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+                    "column": 161,
+                    "line": 31
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b8946c56ac8f95bbb7d5-d72898f976270761d924",
+          "file": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+          "line": 12,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T21:25:33.995Z",
+    "duration": 80467.45899999999,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

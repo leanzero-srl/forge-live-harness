@@ -1,0 +1,30 @@
+{
+  "time": "2026-09-06T12:00:51.889498+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.24.0",
+  "appCommit": "abfeca90f3da74fa213db2a010e7bcba78f7aef3",
+  "uiVersion": "4.58.586",
+  "harnessCommit": "f71002199fd42008afde188b6cd8000b8c59b111",
+  "reviewedHarnessCommit": "5472a43c9c4b4434c23308d5d2f7bf0a8206b964",
+  "instrumentHash": "5b44a6a3100671e9a3b875fcdf93814311f56670b6dd0753dbacb813b7e81ac4",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "resume126",
+  "scope": "same retained active126 job, all40 prior actual run receipts; paced full106page report/HTML/reopen; no cleanup/newcapture/retry",
+  "expectedPreferencesVersion": 65,
+  "failedJournalSha256": "333e483b880dae0c81e9369e461c612c8dd99d8daa4e9ee6f4fb9e702b5a02f7",
+  "strongAdmissionSha256": "847489b867f3481372340e39a0263ef09537d1b95973415849c5679ef5046079",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "paced resume:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-paced-forecast-resume-20260906/artifacts"
+  ]
+}

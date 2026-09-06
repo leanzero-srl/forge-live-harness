@@ -1,0 +1,45 @@
+
+Running 4 tests using 1 worker
+
+
+(node:1736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/4] [chromium] › scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:33:1 › LZPT: milestone hit probabilities are computed, ordered and consistent
+[chromium] › scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:33:1 › LZPT: milestone hit probabilities are computed, ordered and consistent
+MILESTONE STEP names = ["Gate A","Go-live"]
+
+PLAN META milestones = [{"date":"2026-10-05","id":"ms-1788630881991-0","name":"Gate A"},{"date":"2026-11-30","id":"ms-1788630883141-1","name":"Go-live"}] issues = 5
+
+CARD p50= 2026-10-13 p90= 2026-10-14 milestones= [{"name":"◆Gate AWhole plan · 3 tasksOct 50% unlikely","prob":0},{"name":"◆Go-liveWhole plan · 3 tasksNov 30100% likely","prob":1}]
+
+CREATED_PLAN_STILL_EXISTS= false
+
+[2/4] [chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:11:1 › dashboard: schedule confidence computes ordered distributions and replaces presets honestly
+[chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:11:1 › dashboard: schedule confidence computes ordered distributions and replaces presets honestly
+FORECAST FIXTURE {"planId":"plan-test-mtoonm3b-92h624","name":"[harness-test] Forecast proof numbers mtoonlx4","keys":["LZPT-205","LZPT-209","LZPT-215"]}
+
+MEDIUM {"p50":"2026-10-13","p80":"2026-10-14","p90":"2026-10-14","runs":300,"leaves":3,"onBaseline":0.36,"bars":[274,26]}
+
+HIGH {"p50":"2026-10-14","p80":"2026-10-15","p90":"2026-10-16","runs":300,"leaves":3,"onBaseline":0.22,"bars":[191,109]}
+
+LOW AFTER RAPID REPLACEMENT {"p50":"2026-10-12","p80":"2026-10-13","p90":"2026-10-13","runs":300,"leaves":3,"onBaseline":0.7333333333333333,"bars":[300]} observed renders 45
+
+FORECAST CLEANUP {"planId":"plan-test-mtoonm3b-92h624","deleted":true,"sourceScheduleUnchanged":true}
+
+[3/4] [chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:68:1 › dashboard: a background refresh cannot turn the card into false certainty
+[chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:68:1 › dashboard: a background refresh cannot turn the card into false certainty
+FORECAST FIXTURE {"planId":"plan-test-mtoonua9-qlpj3w","name":"[harness-test] Forecast proof refresh mtoonu42","keys":["LZPT-205","LZPT-209","LZPT-215"]}
+
+BEFORE / AFTER REFRESH {"before":{"p50":"2026-10-13","p80":"2026-10-14","p90":"2026-10-14","runs":300,"leaves":3,"onBaseline":0.36,"bars":[274,26]},"after":{"p50":"2026-10-13","p80":"2026-10-14","p90":"2026-10-14","runs":300,"leaves":3,"onBaseline":0.36,"bars":[274,26]}}
+
+FORECAST CLEANUP {"planId":"plan-test-mtoonua9-qlpj3w","deleted":true,"sourceScheduleUnchanged":true}
+
+[4/4] [chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:90:1 › dashboard: invalid or missing source dates make the untouched LZPT forecast unavailable
+[chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:90:1 › dashboard: invalid or missing source dates make the untouched LZPT forecast unavailable
+INVALID COVERAGE Forecast unavailable — correct the schedule dates first.
+35 of 37 tasks have valid date pairs · 29 durations eligible for sampling. Not sampled: 6 complete · 0 buffers · 0 declared-zero milestones · 8 parent summaries.
+Missing start or due date (1): LZPT-212.
+Due date before start (1): LZPT-214.
+
+  4 passed (57.0s)

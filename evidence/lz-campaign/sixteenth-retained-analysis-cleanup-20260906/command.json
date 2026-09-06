@@ -1,0 +1,28 @@
+{
+  "time": "2026-09-06T06:57:09.834957+00:00",
+  "forgeVersion": "6.17.0",
+  "uiVersion": "4.58.585",
+  "appCommit": "34372ae3f9cb12b1ff94a58dbda313a6deab6f03",
+  "harnessCommit": "6bbe33ae6aca20d506d2e10f99f3f1302dd36f51",
+  "instrumentHash": "bb7446169ad48fccad0a9cd5d449490338b4d03e9d0dd33afb5a95205cf68232",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "cleanup",
+  "scope": "exact retained report job cancellation and physical absence, normal exact plan deletion; no Jira or preferences writes",
+  "advanceJournal": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-retained-analysis-diagnostic-20260906/artifacts/scenarios-lz-ppm-campaign--23212-pendent-integrity-preserved-chromium/sixteenth-advance.json",
+  "advanceSha": "d8e7fa71a213bbb313e1253bd588e521a5f325317529f8437134fe67d99b5e1d",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "retained large cleanup:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-retained-analysis-cleanup-20260906/artifacts"
+  ],
+  "retries": 0
+}

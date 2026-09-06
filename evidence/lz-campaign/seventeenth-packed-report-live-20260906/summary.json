@@ -1,0 +1,58 @@
+{
+  "time": "2026-09-06T08:18:09.218368+00:00",
+  "runId": "seventeenth-packed-report-live-20260906",
+  "uiVersion": "4.58.585",
+  "forgeVersion": "6.18.0",
+  "instrumentHash": "f94e4e69016f83cbf58668a04c88383afb9fc5850147bb6b955b47a7e9ab0aa0",
+  "browserMode": "portable-chrome152",
+  "complete": false,
+  "blocker": "integrity_failed",
+  "features": [
+    {
+      "id": "report-capture-jobs-live",
+      "status": "passed",
+      "acceptance": [
+        "REP-JOB-RELOAD-RESUME",
+        "REP-JOB-FINAL-PUBLICATION-PAUSE",
+        "REP-JOB-CANCEL-STALE-ADVANCE",
+        "REP-JOB-SOURCE-DRIFT-REFUSAL",
+        "REP-JOB-BASELINE-DRIFT-REFUSAL",
+        "REP-JOB-STRONG-MANIFEST-CLEANUP"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-report-live-20260906/report-capture-jobs-live/result.json"
+    },
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "passed",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-report-live-20260906/sponsor-report-numeric-live/result.json"
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "passed",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-report-live-20260906/sponsor-report-live/result.json"
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "integrity_failed",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-report-live-20260906/large-history-report-live/result.json"
+    }
+  ]
+}

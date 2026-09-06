@@ -1,0 +1,40 @@
+
+Running 1 test using 1 worker
+
+
+(node:9491) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source
+  1) [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('.lz-card').filter({ hasText: 'LZPT Scenarios' }).first()
+    Expected pattern: /45\s*ISSUES/i
+    Received string:  "LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toContainText" with timeout 15000ms
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('.lz-card').filter({ hasText: 'LZPT Scenarios' }).first()
+        5 × locator resolved to <div class="lz-card lz-card--interactive animate-slide-up">…</div>
+          - unexpected value "LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →"
+        29 × locator resolved to <div class="lz-card lz-card--interactive">…</div>
+           - unexpected value "LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →"
+
+
+      21 |   expect(actual, 'read the actual revision from the rendered app').toBe(expected);
+      22 |   const card = frame.locator('.lz-card', { hasText: 'LZPT Scenarios' }).first();
+    > 23 |   await expect(card).toContainText(/45\s*ISSUES/i);
+         |                      ^
+      24 |   await expect(card).toContainText(/0\s*DRAFTS/i);
+      25 |   const detail = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });
+      26 |   expect(detail.issues.length, 'the same protected bed is positively visible').toBe(45);
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts:23:22
+
+    Error Context: evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source 

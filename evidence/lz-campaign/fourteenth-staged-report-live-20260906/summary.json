@@ -1,0 +1,58 @@
+{
+  "time": "2026-09-06T04:31:42.763323+00:00",
+  "runId": "fourteenth-staged-report-live-20260906",
+  "uiVersion": "4.58.585",
+  "forgeVersion": "6.11.0",
+  "instrumentHash": "73e91997b0084fdbd987cff80c8165f7e7182f21efc7dc29cdbab94e0dc8a1c1",
+  "browserMode": "portable-chrome152",
+  "complete": false,
+  "blocker": "integrity_failed",
+  "features": [
+    {
+      "id": "report-capture-jobs-live",
+      "status": "integrity_failed",
+      "acceptance": [
+        "REP-JOB-RELOAD-RESUME",
+        "REP-JOB-FINAL-PUBLICATION-PAUSE",
+        "REP-JOB-CANCEL-STALE-ADVANCE",
+        "REP-JOB-SOURCE-DRIFT-REFUSAL",
+        "REP-JOB-BASELINE-DRIFT-REFUSAL",
+        "REP-JOB-STRONG-MANIFEST-CLEANUP"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourteenth-staged-report-live-20260906/report-capture-jobs-live/result.json"
+    },
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "not_run",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "result": null
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "not_run",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "result": null
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "not_run",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "result": null
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+✔ actual acknowledged6.17 prepare admits only identical same-owner same-job resume (2.504542ms)
+✔ original actual manifest plus exact raw/current packs is required and historical bytes remain unchanged (0.476375ms)
+✔ two measured complete native fixture responses admit exact read-only source (0.6865ms)
+✔ changed native value, field omission, dates, status, parent, issue identity or ownership refuses (2.937958ms)
+✔ exact6.17 encoded artifact identities admit with physical hash equality (0.189833ms)
+✔ legacy raw, missing, extra pack, foreign job and changed physical content cannot masquerade as old encoded layout (0.382792ms)
+✔ frozen actual6.17 producer grades complete supplied indexed row hash and every forecast field (5.81975ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47.246708

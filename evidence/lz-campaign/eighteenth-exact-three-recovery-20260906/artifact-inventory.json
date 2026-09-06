@@ -1,0 +1,102 @@
+{
+  "schema": "exact-recovery-artifacts-v1",
+  "files": [
+    {
+      "path": "artifacts/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "localOnly": false
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/after-cancel-plan-delete.png",
+      "bytes": 195034,
+      "sha256": "6c2c8f7d4e7daad547e883729149b6cbbeca09edabd8576ccacac54dfa66981a",
+      "localOnly": false
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/after-resume-plan-delete.png",
+      "bytes": 187611,
+      "sha256": "76841009124980c258181c4058b4f5620d9887df10255693649426f31fff0ff9",
+      "localOnly": false
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/after-source-drift-plan-delete.png",
+      "bytes": 196947,
+      "sha256": "df2203ee01d0720c77af1688102473d1e4a650a97fe178cddf16295b01005631",
+      "localOnly": false
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/eighteenth-recovery.json",
+      "bytes": 58429210,
+      "sha256": "d38dd677f84f42b9b83c705b40c8a80f568af503491ef035a716f38ba99c874b",
+      "localOnly": false
+    },
+    {
+      "path": "command.json",
+      "bytes": 2120,
+      "sha256": "00b7efc2d624e91353c626f77176e98fa6d14033bc514998c4a659fad9dbe2d4",
+      "localOnly": false
+    },
+    {
+      "path": "launch.json",
+      "bytes": 417,
+      "sha256": "070fad20002c5dd0eb26f796872b9ed74db8e743a4529c116d12d71819c7a423",
+      "localOnly": false
+    },
+    {
+      "path": "prepared-guard-proof.json",
+      "bytes": 411,
+      "sha256": "c5fe882810914f57cc16b064fed8ba0602b450699bb6c612c4d2e05be6d04d48",
+      "localOnly": false
+    },
+    {
+      "path": "prepared-refusal.txt",
+      "bytes": 346,
+      "sha256": "b87d0ee63a13858a7ce549666673dbc57932ca88b2b6af77b308035ae7a24a0b",
+      "localOnly": false
+    },
+    {
+      "path": "process.json",
+      "bytes": 129,
+      "sha256": "3c08a97289e9ed62ccbde2e4da38f895a8788ab87da048b121b8c68828c8b2eb",
+      "localOnly": false
+    },
+    {
+      "path": "result.json",
+      "bytes": 4978,
+      "sha256": "6748672fb1e61c08ab322832042a2c99d7ba3848c9f60cc4ef15f7935da0bea1",
+      "localOnly": false
+    },
+    {
+      "path": "started-once.json",
+      "bytes": 138,
+      "sha256": "d6f42308de2aace03da6c8f728d07d85bdf4fb4bfdde5670aafa9f2693857890",
+      "localOnly": false
+    },
+    {
+      "path": "supervise.py",
+      "bytes": 3303,
+      "sha256": "ec8c50686e355a2fa792f4a0c7ffbf2f06d0bdd7201821201871051aab9c5e81",
+      "localOnly": false
+    },
+    {
+      "path": "supervisor.log",
+      "bytes": 1545,
+      "sha256": "48863a475b152bad3c401b3dafe57daec9a2efe74b944114fd829b22c4228855",
+      "localOnly": false
+    },
+    {
+      "path": "terminal-binding.json",
+      "bytes": 1264,
+      "sha256": "85afbdf0a3cc51ffeac5ff4206e85b565c18ea84811ba67786bbce5674d87011",
+      "localOnly": false
+    },
+    {
+      "path": "terminal-receipt.json",
+      "bytes": 1724,
+      "sha256": "a74aeffa5c2a33555282cc883a153a36ab74b1d9d9a0feea7907f88e54d19979",
+      "localOnly": false
+    }
+  ],
+  "zipArchivesLocalOnly": true
+}

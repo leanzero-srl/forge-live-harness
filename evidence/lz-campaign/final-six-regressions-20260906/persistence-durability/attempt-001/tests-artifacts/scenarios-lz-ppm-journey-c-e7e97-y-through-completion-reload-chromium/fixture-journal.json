@@ -1,0 +1,71 @@
+{
+  "marker": "lz-norm-mtq3d11k",
+  "name": "[harness-test] lz-norm-mtq3d11k",
+  "time": "2026-09-06T17:34:25.160Z",
+  "issues": [
+    {
+      "key": "WFH-2989",
+      "seed": {
+        "label": "apply selected",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    },
+    {
+      "key": "WFH-2990",
+      "seed": {
+        "label": "discard saved sibling",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtq3d3pm-unm86o",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtq3d3pm-unm86o",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2990",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2989",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2989",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2990",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2989",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2990",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

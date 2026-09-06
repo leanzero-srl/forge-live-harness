@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtore2ez",
+  "name": "[harness-test] lz-norm-mtore2ez",
+  "time": "2026-09-05T19:11:32.027Z",
+  "issues": [
+    {
+      "key": "WFH-2782",
+      "seed": {
+        "label": "forecast observed work",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtore46v-wg7t2d",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtore46v-wg7t2d",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2782",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2782",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2782",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

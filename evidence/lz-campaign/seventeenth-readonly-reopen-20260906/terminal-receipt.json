@@ -1,0 +1,24 @@
+{
+  "status": "terminal",
+  "exitCode": 0,
+  "terminalAt": "2026-09-06T15:10:04.913074+00:00",
+  "journalSha256": "9cc1b8c474084ca54506c72382d7f82fffae17e04c1f79e6e44d8be127822471",
+  "journalBytes": 143124067,
+  "completed": true,
+  "sourceAndPreferencesPreserved": true,
+  "advanceCalls": 0,
+  "directPages": 212,
+  "uiRequests": 175,
+  "probes": 2,
+  "traceDiscarded": true,
+  "noTraceArchives": true,
+  "jwtLikeCredentialCount": 0,
+  "personallyViewed": [
+    "retained5300-forecast.png",
+    "retained5300-LZPP-1.png",
+    "retained5300-LZPP-6.png",
+    "retained5300-LZPP-5300.png"
+  ],
+  "scope": "Read-only acceptance only; prior155 remains failed; no cleanup authorized or executed",
+  "largeEvidenceDelivery": "Journal exceeds100MiB. Local evidence committed; future scoped publishing requires lossless representation and credential review. No push."
+}

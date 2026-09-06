@@ -1,0 +1,11 @@
+✔ actual shared fixture finally retains owned plan/issues on departure failure and still reads registry/source (23.711084ms)
+✔ actual full45 and large custom finalizers poison-dependent deletion but preserve independent audits (5.89975ms)
+✔ both actual shared report cleanup stop callbacks use adapter and settle before existing RPC continuation (0.262458ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 382.174583

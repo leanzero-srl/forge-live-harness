@@ -1,0 +1,28 @@
+{
+  "time": "2026-09-06T08:59:15.338646+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.20.0",
+  "appCommit": "7cdb954bdf3b2c5df7eab873f952376a845f2440",
+  "uiVersion": "4.58.585",
+  "harnessCommit": "83b5caba8da3a5c339cd27299d64c647b085be5b",
+  "instrumentHash": "24338998e04f9ac6c51f05e78fd3c1f18e124dc9f25742461bf500c898f6252f",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "advance",
+  "scope": "exact retained seventeenth context-first one advance78 only then stop; no cleanup",
+  "expectedPreferencesVersion": 65,
+  "previousDiagnosticSha256": "da1e5ad18b88f7bbaa80896671270c46148c8103f429fe3c24b0323521bbd4c0",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-context-first.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "context-first retained large advance:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-context-first-diagnostic-20260906/artifacts"
+  ]
+}

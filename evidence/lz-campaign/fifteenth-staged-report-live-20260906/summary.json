@@ -1,0 +1,58 @@
+{
+  "time": "2026-09-06T05:07:50.506637+00:00",
+  "runId": "fifteenth-staged-report-live-20260906",
+  "uiVersion": "4.58.585",
+  "forgeVersion": "6.12.0",
+  "instrumentHash": "d234d8b714a97e8c415acbd0d9453241fcd14a51df3721d189e1ecb5b342195e",
+  "browserMode": "portable-chrome152",
+  "complete": false,
+  "blocker": "integrity_failed",
+  "features": [
+    {
+      "id": "report-capture-jobs-live",
+      "status": "passed",
+      "acceptance": [
+        "REP-JOB-RELOAD-RESUME",
+        "REP-JOB-FINAL-PUBLICATION-PAUSE",
+        "REP-JOB-CANCEL-STALE-ADVANCE",
+        "REP-JOB-SOURCE-DRIFT-REFUSAL",
+        "REP-JOB-BASELINE-DRIFT-REFUSAL",
+        "REP-JOB-STRONG-MANIFEST-CLEANUP"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/report-capture-jobs-live/result.json"
+    },
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "failed",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/sponsor-report-numeric-live/result.json"
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "passed",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/sponsor-report-live/result.json"
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "integrity_failed",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/large-history-report-live/result.json"
+    }
+  ]
+}

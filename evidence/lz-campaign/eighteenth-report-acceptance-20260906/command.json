@@ -1,0 +1,40 @@
+{
+  "status": "authorized",
+  "harnessCommit": "a7f67cbba81c533d95d538d160db720404dac4d3",
+  "instrumentHash": "c3585358703e57417324982e77b77fb3ce723616814abe979b76e811884aac73",
+  "appCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "forgeVersion": "6.26.0",
+  "uiVersion": "4.58.588",
+  "deploymentReceipt": "4196119a",
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0"
+  },
+  "command": [
+    "python3",
+    "scripts/lz-campaign.py",
+    "start",
+    "--run-id",
+    "eighteenth-report-acceptance-20260906",
+    "--manifest",
+    "config/lz-campaign/staged-report-manifest.json",
+    "--ui-version",
+    "4.58.588",
+    "--forge-version",
+    "6.26.0",
+    "--app-commit",
+    "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+    "--browser-mode",
+    "portable-chrome152",
+    "--expected-account-id",
+    "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "--max-minutes",
+    "240"
+  ],
+  "cases": 7,
+  "retries": 0,
+  "automaticFailedUnitResume": false,
+  "rawTraceArchiveDelivery": "local-only excluded from delivery",
+  "rootDispatchCommit": "5c8e8264",
+  "authorizedAt": "2026-09-06T15:48:57.158923+00:00"
+}

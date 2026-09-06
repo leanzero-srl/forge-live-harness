@@ -1,0 +1,22 @@
+✔ exact independently pinned installed receipt accepted (0.770708ms)
+✔ mode mismatch refused (0.476166ms)
+✔ browserVersion mismatch refused (0.096541ms)
+✔ principalSha256 mismatch refused (0.066875ms)
+✔ uiVersion mismatch refused (0.057ms)
+✔ executableSha256 mismatch refused (0.065291ms)
+✔ frameworkSha256 mismatch refused (0.068125ms)
+✔ appUrl mismatch refused (0.098083ms)
+✔ admittedAt mismatch refused (0.070792ms)
+✔ missing, future or stale receipt refused (0.0985ms)
+✔ missing, future or stale receipt refused (0.065166ms)
+✔ missing, future or stale receipt refused (0.049666ms)
+✔ actual runtime helper reads version and detaches when obsolete commandline method is unavailable (0.384875ms)
+✔ actual runtime helper rejects another version and still detaches (0.113583ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40.8235

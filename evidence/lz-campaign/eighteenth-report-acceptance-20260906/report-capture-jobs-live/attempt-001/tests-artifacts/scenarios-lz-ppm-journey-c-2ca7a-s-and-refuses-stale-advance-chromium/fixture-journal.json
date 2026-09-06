@@ -1,0 +1,93 @@
+{
+  "marker": "lz-norm-mtpzn01w",
+  "name": "[harness-test] lz-norm-mtpzn01w",
+  "time": "2026-09-06T15:50:11.972Z",
+  "issues": [
+    {
+      "key": "WFH-2979",
+      "seed": {
+        "label": "report job cancel",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    }
+  ],
+  "planId": "plan-test-mtpzn218-4ref5x",
+  "cleanup": [],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2979",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2979",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "recoveryRetention": {
+    "reason": "Owned report departure failed; exact fixture retained",
+    "code": "LZ_REPORT_CAPTURE_RECOVERY_REQUIRED",
+    "reportState": {
+      "planId": "plan-test-mtpzn218-4ref5x",
+      "owner": {
+        "planId": "plan-test-mtpzn218-4ref5x",
+        "name": "[harness-test] lz-norm-mtpzn01w"
+      },
+      "departureFailed": true
+    },
+    "additionalPlans": [],
+    "causes": [
+      {
+        "code": "LZ_REPORT_CAPTURE_RECOVERY_REQUIRED",
+        "reason": "Report capture cleanup is unverified; exact owned resources must be retained."
+      },
+      {
+        "code": "LZ_REPORT_CAPTURE_RECOVERY_REQUIRED",
+        "reason": "Owned report departure failed; exact fixture retained"
+      }
+    ],
+    "time": "2026-09-06T15:50:32.936Z"
+  },
+  "bodyError": {
+    "name": "AggregateError",
+    "message": "Report job body/cleanup failure; exact recovery state retained"
+  },
+  "cleanupErrors": [
+    {
+      "stage": "stop-owned-ui",
+      "name": "Error",
+      "message": "Owned report departure failed; exact fixture retained"
+    }
+  ],
+  "retainedForRecovery": {
+    "plans": [
+      {
+        "id": "plan-test-mtpzn218-4ref5x",
+        "name": "[harness-test] lz-norm-mtpzn01w"
+      }
+    ],
+    "issues": [
+      {
+        "key": "WFH-2979",
+        "seed": {
+          "label": "report job cancel",
+          "start": "2026-10-05",
+          "due": "2026-10-09",
+          "duration": 5
+        }
+      }
+    ],
+    "version": null,
+    "reason": "Owned report departure failed; exact fixture retained"
+  },
+  "integrityPassed": false
+}

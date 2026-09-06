@@ -1,0 +1,59 @@
+{
+  "marker": "lz-norm-mtouzba2",
+  "name": "[harness-test] lz-norm-mtouzba2",
+  "time": "2026-09-05T20:52:02.138Z",
+  "issues": [
+    {
+      "key": "WFH-2807",
+      "seed": {
+        "label": "numeric report 20h",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "release": true
+      }
+    }
+  ],
+  "planId": "plan-test-mtouzev3-61ousc",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtouzev3-61ousc",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2807",
+      "deleted": true
+    },
+    {
+      "version": "10286",
+      "deleted": true
+    }
+  ],
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10286",
+    "id": "10286",
+    "name": "[harness-test] lz-norm-mtouzba2",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2807",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2807",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

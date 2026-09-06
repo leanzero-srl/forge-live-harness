@@ -1,0 +1,340 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-002/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-002/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-002/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "persistence: acknowledged Save7 replaces earlier autosaved6 before immediate reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28080,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2768 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtor5njt\",\"name\":\"[harness-test] lz-norm-mtor5njt\",\"time\":\"2026-09-05T19:04:59.514Z\",\"issues\":[{\"key\":\"WFH-2768\",\"seed\":{\"label\":\"older autosave\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtor5psa-tjtv79\",\"cleanup\":[{\"plan\":\"plan-test-mtor5psa-tjtv79\",\"deleted\":true},{\"issue\":\"WFH-2768\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2768\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2768\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T19:04:58.409Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-751f75d11b6c247eb03b",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "persistence: an actual held Save response preserves a later local edit as unsaved",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25596,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2769 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtor694k\",\"name\":\"[harness-test] lz-norm-mtor694k\",\"time\":\"2026-09-05T19:05:27.476Z\",\"issues\":[{\"key\":\"WFH-2769\",\"seed\":{\"label\":\"inflight save\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtor6bmi-omiupl\",\"cleanup\":[{\"plan\":\"plan-test-mtor6bmi-omiupl\",\"deleted\":true},{\"issue\":\"WFH-2769\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2769\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2769\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T19:05:26.818Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "transport-instrumentation",
+                      "contentType": "application/json",
+                      "body": "eyJtZXRob2QiOiJSZWFsIHNhdmVQbGFuU3RhdGUgcmVxdWVzdCBleGVjdXRlZCBhbmQgcmV0dXJuZWQgc3VjY2Vzczsgb25seSBpdHMgdW5jaGFuZ2VkIHJlc3BvbnNlIGRlbGl2ZXJ5IHdhcyBoZWxkIHdoaWxlIHRoZSB1c2VyIGVkaXRlZDcuIiwiZnVuY3Rpb25LZXkiOiJzYXZlUGxhblN0YXRlIiwicGxhbklkIjoicGxhbi10ZXN0LW10b3I2Ym1pLW9taXVwbCIsInN1Ym1pdHRlZCI6W3sia2V5IjoiV0ZILTI3NjkiLCJkdXJhdGlvbiI6Niwic3RhcnREYXRlIjoiMjAyNi0xMC0wNSIsImR1ZURhdGUiOiIyMDI2LTEwLTEyIn1dLCJyZXN1bHQiOnsic3VjY2VzcyI6dHJ1ZSwic2F2ZWQiOjEsIm5vdEluZGV4ZWQiOltdLCJ2ZXJzaW9uIjozfX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-bc67bacac5b9767558eb",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "persistence: partial Apply discards a previously Saved sibling durably through completion reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 36826,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2771 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2770 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtor6svc\",\"name\":\"[harness-test] lz-norm-mtor6svc\",\"time\":\"2026-09-05T19:05:53.064Z\",\"issues\":[{\"key\":\"WFH-2770\",\"seed\":{\"label\":\"apply selected\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}},{\"key\":\"WFH-2771\",\"seed\":{\"label\":\"discard saved sibling\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtor6wl9-v9ultb\",\"cleanup\":[{\"plan\":\"plan-test-mtor6wl9-v9ultb\",\"deleted\":true},{\"issue\":\"WFH-2771\",\"deleted\":true},{\"issue\":\"WFH-2770\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2770\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5},{\"key\":\"WFH-2771\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2770\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5},{\"key\":\"WFH-2771\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T19:05:52.420Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "actual-jira-second-reads",
+                      "contentType": "application/json",
+                      "body": "eyJhcHBsaWVkIjp7ImtleSI6IldGSC0yNzcwIiwic3RhcnQiOiIyMDI2LTEwLTA1IiwiZHVlIjoiMjAyNi0xMC0xMiIsImR1cmF0aW9uIjo2fSwiZGlzY2FyZGVkIjp7ImtleSI6IldGSC0yNzcxIiwic3RhcnQiOiIyMDI2LTEwLTA1IiwiZHVlIjoiMjAyNi0xMC0wOSIsImR1cmF0aW9uIjo1fX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-547e8d7ca1307c037461",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "persistence: simulated draft-read HTTP403 gates edits and real Retry recovers unseen draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 33319,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2773 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2772 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtor7lbd\",\"name\":\"[harness-test] lz-norm-mtor7lbd\",\"time\":\"2026-09-05T19:06:29.929Z\",\"issues\":[{\"key\":\"WFH-2772\",\"seed\":{\"label\":\"edit after recovery\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}},{\"key\":\"WFH-2773\",\"seed\":{\"label\":\"unseen draft\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtor7otu-2xp86o\",\"cleanup\":[{\"plan\":\"plan-test-mtor7otu-2xp86o\",\"deleted\":true},{\"issue\":\"WFH-2773\",\"deleted\":true},{\"issue\":\"WFH-2772\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2772\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5},{\"key\":\"WFH-2773\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2772\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5},{\"key\":\"WFH-2773\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T19:06:29.253Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "failure-instrumentation",
+                      "contentType": "application/json",
+                      "body": "eyJpbmplY3RlZEh0dHBTdGF0dXMiOjQwMywicmVxdWVzdCI6ImdldERyYWZ0IiwicGxhbklkIjoicGxhbi10ZXN0LW10b3I3b3R1LTJ4cDg2byIsImNvdW50IjoxLCJyZWFsUmV0cnkiOnRydWUsImJhY2tlbmREcmFmdE5ldmVyTXV0YXRlZEJ5RmF1bHQiOnRydWV9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-1f60af677340252c49bc",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 58,
+          "column": 30
+        },
+        {
+          "title": "persistence: simulated draft-read HTTP503 gates edits and real Retry recovers unseen draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 35115,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2775 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2774 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtor8b22\",\"name\":\"[harness-test] lz-norm-mtor8b22\",\"time\":\"2026-09-05T19:07:03.290Z\",\"issues\":[{\"key\":\"WFH-2774\",\"seed\":{\"label\":\"edit after recovery\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}},{\"key\":\"WFH-2775\",\"seed\":{\"label\":\"unseen draft\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtor8fnb-8fucj0\",\"cleanup\":[{\"plan\":\"plan-test-mtor8fnb-8fucj0\",\"deleted\":true},{\"issue\":\"WFH-2775\",\"deleted\":true},{\"issue\":\"WFH-2774\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2774\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5},{\"key\":\"WFH-2775\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2774\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5},{\"key\":\"WFH-2775\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T19:07:02.578Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "failure-instrumentation",
+                      "contentType": "application/json",
+                      "body": "eyJpbmplY3RlZEh0dHBTdGF0dXMiOjUwMywicmVxdWVzdCI6ImdldERyYWZ0IiwicGxhbklkIjoicGxhbi10ZXN0LW10b3I4Zm5iLThmdWNqMCIsImNvdW50IjoxLCJyZWFsUmV0cnkiOnRydWUsImJhY2tlbmREcmFmdE5ldmVyTXV0YXRlZEJ5RmF1bHQiOnRydWV9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-c23147f9de9f25493f0b",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 58,
+          "column": 30
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T19:04:58.091Z",
+    "duration": 159947.809,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

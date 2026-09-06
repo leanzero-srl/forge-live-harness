@@ -1,0 +1,3 @@
+{"stage": "planId", "value": "plan-test-mtp7i5hm-noacad", "observedAt": "2026-09-06T02:43:11.690745+00:00"}
+{"stage": "pristineCapture", "value": {"changes": [], "workingChangeCount": 0}, "observedAt": "2026-09-06T02:43:57.507685+00:00"}
+{"stage": "capture-before-click", "callId": "call@299", "approximateUtc": "2026-09-06T02:44:12.171437+00:00", "trace": "evidence/lz-campaign/thirteenth-native-batch-report-live-20260906/large-history-report-live/attempt-001/tests-artifacts/.playwright-artifacts-0/traces/4e50c3fe8d3849280b5ec3231fb593d3-chunk1.trace", "observedAt": "2026-09-06T02:44:12.290082+00:00"}

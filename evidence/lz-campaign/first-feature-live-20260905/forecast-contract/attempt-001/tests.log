@@ -1,0 +1,62 @@
+
+Running 4 tests using 1 worker
+
+
+(node:86968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/4] [chromium] › scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:33:1 › LZPT: milestone hit probabilities are computed, ordered and consistent
+  1) [chromium] › scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:33:1 › LZPT: milestone hit probabilities are computed, ordered and consistent 
+
+    TimeoutError: locator.click: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('div').filter({ hasText: /^Select date\.\.\.$/ }).first()
+
+
+      49 |     // whose unset trigger reads "Select date...".
+      50 |     const triggers = frame.locator('div').filter({ hasText: /^Select date\.\.\.$/ });
+    > 51 |     await triggers.nth(rowIndex).click();
+         |                                  ^
+      52 |     const cal = frame.locator('.lz-datepicker').first();
+      53 |     await cal.waitFor({ state: "visible", timeout: 10_000 });
+      54 |     for (let i = 0; i < 24; i++) {
+        at pickDate (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:51:34)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:86:11
+
+    Error Context: evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-m-fbfe7-uted-ordered-and-consistent-chromium/error-context.md
+
+
+
+(node:88675) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[2/4] [chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:11:1 › dashboard: schedule confidence computes ordered distributions and replaces presets honestly
+[chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:11:1 › dashboard: schedule confidence computes ordered distributions and replaces presets honestly
+FORECAST FIXTURE {"planId":"plan-test-mtoog4we-knwmgb","name":"[harness-test] Forecast proof numbers mtoog4qg","keys":["LZPT-205","LZPT-209","LZPT-215"]}
+
+MEDIUM {"p50":"2026-10-13","p80":"2026-10-14","p90":"2026-10-14","runs":300,"leaves":3,"onBaseline":0.36,"bars":[274,26]}
+
+HIGH {"p50":"2026-10-14","p80":"2026-10-15","p90":"2026-10-16","runs":300,"leaves":3,"onBaseline":0.22,"bars":[191,109]}
+
+LOW AFTER RAPID REPLACEMENT {"p50":"2026-10-12","p80":"2026-10-13","p90":"2026-10-13","runs":300,"leaves":3,"onBaseline":0.7333333333333333,"bars":[300]} observed renders 44
+
+FORECAST CLEANUP {"planId":"plan-test-mtoog4we-knwmgb","deleted":true,"sourceScheduleUnchanged":true}
+
+[3/4] [chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:68:1 › dashboard: a background refresh cannot turn the card into false certainty
+[chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:68:1 › dashboard: a background refresh cannot turn the card into false certainty
+FORECAST FIXTURE {"planId":"plan-test-mtoogero-58g797","name":"[harness-test] Forecast proof refresh mtoogelq","keys":["LZPT-205","LZPT-209","LZPT-215"]}
+
+BEFORE / AFTER REFRESH {"before":{"p50":"2026-10-13","p80":"2026-10-14","p90":"2026-10-14","runs":300,"leaves":3,"onBaseline":0.36,"bars":[274,26]},"after":{"p50":"2026-10-13","p80":"2026-10-14","p90":"2026-10-14","runs":300,"leaves":3,"onBaseline":0.36,"bars":[274,26]}}
+
+FORECAST CLEANUP {"planId":"plan-test-mtoogero-58g797","deleted":true,"sourceScheduleUnchanged":true}
+
+[4/4] [chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:90:1 › dashboard: invalid or missing source dates make the untouched LZPT forecast unavailable
+[chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:90:1 › dashboard: invalid or missing source dates make the untouched LZPT forecast unavailable
+INVALID COVERAGE Forecast unavailable — correct the schedule dates first.
+35 of 37 tasks have valid date pairs · 29 durations eligible for sampling. Not sampled: 6 complete · 0 buffers · 0 declared-zero milestones · 8 parent summaries.
+Missing start or due date (1): LZPT-212.
+Due date before start (1): LZPT-214.
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:33:1 › LZPT: milestone hit probabilities are computed, ordered and consistent 
+  3 passed (1.5m)

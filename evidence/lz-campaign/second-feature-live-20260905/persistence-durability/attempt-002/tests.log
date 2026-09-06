@@ -1,0 +1,44 @@
+
+Running 5 tests using 1 worker
+
+
+(node:38885) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/5] [chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:15:1 › persistence: acknowledged Save7 replaces earlier autosaved6 before immediate reopen
+[chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:15:1 › persistence: acknowledged Save7 replaces earlier autosaved6 before immediate reopen
+[jira !!] GET /rest/api/3/issue/WFH-2768 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtor5njt","name":"[harness-test] lz-norm-mtor5njt","time":"2026-09-05T19:04:59.514Z","issues":[{"key":"WFH-2768","seed":{"label":"older autosave","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtor5psa-tjtv79","cleanup":[{"plan":"plan-test-mtor5psa-tjtv79","deleted":true},{"issue":"WFH-2768","deleted":true}],"searchIndexVerified":[{"key":"WFH-2768","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2768","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[2/5] [chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:28:1 › persistence: an actual held Save response preserves a later local edit as unsaved
+[chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:28:1 › persistence: an actual held Save response preserves a later local edit as unsaved
+[jira !!] GET /rest/api/3/issue/WFH-2769 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtor694k","name":"[harness-test] lz-norm-mtor694k","time":"2026-09-05T19:05:27.476Z","issues":[{"key":"WFH-2769","seed":{"label":"inflight save","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtor6bmi-omiupl","cleanup":[{"plan":"plan-test-mtor6bmi-omiupl","deleted":true},{"issue":"WFH-2769","deleted":true}],"searchIndexVerified":[{"key":"WFH-2769","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2769","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[3/5] [chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:46:1 › persistence: partial Apply discards a previously Saved sibling durably through completion reload
+[chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:46:1 › persistence: partial Apply discards a previously Saved sibling durably through completion reload
+[jira !!] GET /rest/api/3/issue/WFH-2771 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2770 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtor6svc","name":"[harness-test] lz-norm-mtor6svc","time":"2026-09-05T19:05:53.064Z","issues":[{"key":"WFH-2770","seed":{"label":"apply selected","duration":5,"start":"2026-10-05","due":"2026-10-09"}},{"key":"WFH-2771","seed":{"label":"discard saved sibling","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtor6wl9-v9ultb","cleanup":[{"plan":"plan-test-mtor6wl9-v9ultb","deleted":true},{"issue":"WFH-2771","deleted":true},{"issue":"WFH-2770","deleted":true}],"searchIndexVerified":[{"key":"WFH-2770","start":"2026-10-05","due":"2026-10-09","duration":5},{"key":"WFH-2771","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2770","start":"2026-10-05","due":"2026-10-09","duration":5},{"key":"WFH-2771","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[4/5] [chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:58:30 › persistence: simulated draft-read HTTP403 gates edits and real Retry recovers unseen draft
+[chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:58:30 › persistence: simulated draft-read HTTP403 gates edits and real Retry recovers unseen draft
+[jira !!] GET /rest/api/3/issue/WFH-2773 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2772 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtor7lbd","name":"[harness-test] lz-norm-mtor7lbd","time":"2026-09-05T19:06:29.929Z","issues":[{"key":"WFH-2772","seed":{"label":"edit after recovery","duration":5,"start":"2026-10-05","due":"2026-10-09"}},{"key":"WFH-2773","seed":{"label":"unseen draft","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtor7otu-2xp86o","cleanup":[{"plan":"plan-test-mtor7otu-2xp86o","deleted":true},{"issue":"WFH-2773","deleted":true},{"issue":"WFH-2772","deleted":true}],"searchIndexVerified":[{"key":"WFH-2772","start":"2026-10-05","due":"2026-10-09","duration":5},{"key":"WFH-2773","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2772","start":"2026-10-05","due":"2026-10-09","duration":5},{"key":"WFH-2773","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[5/5] [chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:58:30 › persistence: simulated draft-read HTTP503 gates edits and real Retry recovers unseen draft
+[chromium] › scenarios/lz-ppm/journey-campaign-persistence.spec.ts:58:30 › persistence: simulated draft-read HTTP503 gates edits and real Retry recovers unseen draft
+[jira !!] GET /rest/api/3/issue/WFH-2775 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2774 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtor8b22","name":"[harness-test] lz-norm-mtor8b22","time":"2026-09-05T19:07:03.290Z","issues":[{"key":"WFH-2774","seed":{"label":"edit after recovery","duration":5,"start":"2026-10-05","due":"2026-10-09"}},{"key":"WFH-2775","seed":{"label":"unseen draft","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtor8fnb-8fucj0","cleanup":[{"plan":"plan-test-mtor8fnb-8fucj0","deleted":true},{"issue":"WFH-2775","deleted":true},{"issue":"WFH-2774","deleted":true}],"searchIndexVerified":[{"key":"WFH-2774","start":"2026-10-05","due":"2026-10-09","duration":5},{"key":"WFH-2775","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2774","start":"2026-10-05","due":"2026-10-09","duration":5},{"key":"WFH-2775","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+  5 passed (2.7m)

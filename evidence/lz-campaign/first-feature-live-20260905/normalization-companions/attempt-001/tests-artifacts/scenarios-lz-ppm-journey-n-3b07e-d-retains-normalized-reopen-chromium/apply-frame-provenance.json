@@ -1,0 +1,6 @@
+{
+  "source": "trace.zip",
+  "eventType": "screencast-frame",
+  "timestamp": 101111.154,
+  "note": "Unmodified recorded browser frame just before a concurrent refresh. Final fullPage PNG catches the subsequent spinner; stable final visual follow-up remains required."
+}

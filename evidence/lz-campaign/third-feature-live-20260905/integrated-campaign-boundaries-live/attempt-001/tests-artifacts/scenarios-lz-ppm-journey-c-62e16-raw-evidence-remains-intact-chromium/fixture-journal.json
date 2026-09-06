@@ -1,0 +1,47 @@
+{
+  "marker": "lz-norm-mtouyku7",
+  "name": "[harness-test] lz-norm-mtouyku7",
+  "time": "2026-09-05T20:51:27.871Z",
+  "issues": [
+    {
+      "key": "WFH-2806",
+      "seed": {
+        "label": "forecast observed work",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtouymhj-pya9ao",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtouymhj-pya9ao",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2806",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2806",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [],
+    [
+      {
+        "key": "WFH-2806",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-diagnostic-exact-cleanup-20260906/artifacts"
+  ],
+  "mode": "portable-chrome152",
+  "sourceFreeze": "dce1d154f89a4684b3332508cf9de26fa3a1c746",
+  "harness": "a8f915e",
+  "review": "3a1a7c2b",
+  "startedAt": 1788653988.824915,
+  "exitCode": 1,
+  "finishedAt": 1788654048.946208
+}

@@ -1,0 +1,1702 @@
+{
+  "name": "[harness-test] Large retained capture mtq28qzq",
+  "population": {
+    "count": 5300,
+    "sha256": "9c737a31682ae8b23b1ce14cba71397ebd8bcaff0400893f7b62a633fc02b078",
+    "first": {
+      "id": "15413",
+      "key": "LZPP-1",
+      "summary": "PERF-00001",
+      "labels": [],
+      "start": "2026-01-05",
+      "due": "2026-01-06",
+      "duration": null
+    },
+    "last": {
+      "id": "20712",
+      "key": "LZPP-5300",
+      "summary": "PERF-05300",
+      "labels": [],
+      "start": "2026-04-14",
+      "due": "2026-04-19",
+      "duration": null
+    },
+    "pages": [
+      {
+        "number": 1,
+        "count": 100,
+        "first": "LZPP-1",
+        "last": "LZPP-100",
+        "elapsedMs": 520,
+        "returnedIsLast": false
+      },
+      {
+        "number": 2,
+        "count": 100,
+        "first": "LZPP-101",
+        "last": "LZPP-200",
+        "elapsedMs": 250,
+        "returnedIsLast": false
+      },
+      {
+        "number": 3,
+        "count": 100,
+        "first": "LZPP-201",
+        "last": "LZPP-300",
+        "elapsedMs": 302,
+        "returnedIsLast": false
+      },
+      {
+        "number": 4,
+        "count": 100,
+        "first": "LZPP-301",
+        "last": "LZPP-400",
+        "elapsedMs": 282,
+        "returnedIsLast": false
+      },
+      {
+        "number": 5,
+        "count": 100,
+        "first": "LZPP-401",
+        "last": "LZPP-500",
+        "elapsedMs": 281,
+        "returnedIsLast": false
+      },
+      {
+        "number": 6,
+        "count": 100,
+        "first": "LZPP-501",
+        "last": "LZPP-600",
+        "elapsedMs": 393,
+        "returnedIsLast": false
+      },
+      {
+        "number": 7,
+        "count": 100,
+        "first": "LZPP-601",
+        "last": "LZPP-700",
+        "elapsedMs": 251,
+        "returnedIsLast": false
+      },
+      {
+        "number": 8,
+        "count": 100,
+        "first": "LZPP-701",
+        "last": "LZPP-800",
+        "elapsedMs": 238,
+        "returnedIsLast": false
+      },
+      {
+        "number": 9,
+        "count": 100,
+        "first": "LZPP-801",
+        "last": "LZPP-900",
+        "elapsedMs": 284,
+        "returnedIsLast": false
+      },
+      {
+        "number": 10,
+        "count": 100,
+        "first": "LZPP-901",
+        "last": "LZPP-1000",
+        "elapsedMs": 267,
+        "returnedIsLast": false
+      },
+      {
+        "number": 11,
+        "count": 100,
+        "first": "LZPP-1001",
+        "last": "LZPP-1100",
+        "elapsedMs": 295,
+        "returnedIsLast": false
+      },
+      {
+        "number": 12,
+        "count": 100,
+        "first": "LZPP-1101",
+        "last": "LZPP-1200",
+        "elapsedMs": 355,
+        "returnedIsLast": false
+      },
+      {
+        "number": 13,
+        "count": 100,
+        "first": "LZPP-1201",
+        "last": "LZPP-1300",
+        "elapsedMs": 388,
+        "returnedIsLast": false
+      },
+      {
+        "number": 14,
+        "count": 100,
+        "first": "LZPP-1301",
+        "last": "LZPP-1400",
+        "elapsedMs": 413,
+        "returnedIsLast": false
+      },
+      {
+        "number": 15,
+        "count": 100,
+        "first": "LZPP-1401",
+        "last": "LZPP-1500",
+        "elapsedMs": 357,
+        "returnedIsLast": false
+      },
+      {
+        "number": 16,
+        "count": 100,
+        "first": "LZPP-1501",
+        "last": "LZPP-1600",
+        "elapsedMs": 260,
+        "returnedIsLast": false
+      },
+      {
+        "number": 17,
+        "count": 100,
+        "first": "LZPP-1601",
+        "last": "LZPP-1700",
+        "elapsedMs": 361,
+        "returnedIsLast": false
+      },
+      {
+        "number": 18,
+        "count": 100,
+        "first": "LZPP-1701",
+        "last": "LZPP-1800",
+        "elapsedMs": 383,
+        "returnedIsLast": false
+      },
+      {
+        "number": 19,
+        "count": 100,
+        "first": "LZPP-1801",
+        "last": "LZPP-1900",
+        "elapsedMs": 259,
+        "returnedIsLast": false
+      },
+      {
+        "number": 20,
+        "count": 100,
+        "first": "LZPP-1901",
+        "last": "LZPP-2000",
+        "elapsedMs": 292,
+        "returnedIsLast": false
+      },
+      {
+        "number": 21,
+        "count": 100,
+        "first": "LZPP-2001",
+        "last": "LZPP-2100",
+        "elapsedMs": 251,
+        "returnedIsLast": false
+      },
+      {
+        "number": 22,
+        "count": 100,
+        "first": "LZPP-2101",
+        "last": "LZPP-2200",
+        "elapsedMs": 284,
+        "returnedIsLast": false
+      },
+      {
+        "number": 23,
+        "count": 100,
+        "first": "LZPP-2201",
+        "last": "LZPP-2300",
+        "elapsedMs": 251,
+        "returnedIsLast": false
+      },
+      {
+        "number": 24,
+        "count": 100,
+        "first": "LZPP-2301",
+        "last": "LZPP-2400",
+        "elapsedMs": 338,
+        "returnedIsLast": false
+      },
+      {
+        "number": 25,
+        "count": 100,
+        "first": "LZPP-2401",
+        "last": "LZPP-2500",
+        "elapsedMs": 258,
+        "returnedIsLast": false
+      },
+      {
+        "number": 26,
+        "count": 100,
+        "first": "LZPP-2501",
+        "last": "LZPP-2600",
+        "elapsedMs": 283,
+        "returnedIsLast": false
+      },
+      {
+        "number": 27,
+        "count": 100,
+        "first": "LZPP-2601",
+        "last": "LZPP-2700",
+        "elapsedMs": 269,
+        "returnedIsLast": false
+      },
+      {
+        "number": 28,
+        "count": 100,
+        "first": "LZPP-2701",
+        "last": "LZPP-2800",
+        "elapsedMs": 441,
+        "returnedIsLast": false
+      },
+      {
+        "number": 29,
+        "count": 100,
+        "first": "LZPP-2801",
+        "last": "LZPP-2900",
+        "elapsedMs": 325,
+        "returnedIsLast": false
+      },
+      {
+        "number": 30,
+        "count": 100,
+        "first": "LZPP-2901",
+        "last": "LZPP-3000",
+        "elapsedMs": 285,
+        "returnedIsLast": false
+      },
+      {
+        "number": 31,
+        "count": 100,
+        "first": "LZPP-3001",
+        "last": "LZPP-3100",
+        "elapsedMs": 439,
+        "returnedIsLast": false
+      },
+      {
+        "number": 32,
+        "count": 100,
+        "first": "LZPP-3101",
+        "last": "LZPP-3200",
+        "elapsedMs": 262,
+        "returnedIsLast": false
+      },
+      {
+        "number": 33,
+        "count": 100,
+        "first": "LZPP-3201",
+        "last": "LZPP-3300",
+        "elapsedMs": 278,
+        "returnedIsLast": false
+      },
+      {
+        "number": 34,
+        "count": 100,
+        "first": "LZPP-3301",
+        "last": "LZPP-3400",
+        "elapsedMs": 260,
+        "returnedIsLast": false
+      },
+      {
+        "number": 35,
+        "count": 100,
+        "first": "LZPP-3401",
+        "last": "LZPP-3500",
+        "elapsedMs": 395,
+        "returnedIsLast": false
+      },
+      {
+        "number": 36,
+        "count": 100,
+        "first": "LZPP-3501",
+        "last": "LZPP-3600",
+        "elapsedMs": 349,
+        "returnedIsLast": false
+      },
+      {
+        "number": 37,
+        "count": 100,
+        "first": "LZPP-3601",
+        "last": "LZPP-3700",
+        "elapsedMs": 267,
+        "returnedIsLast": false
+      },
+      {
+        "number": 38,
+        "count": 100,
+        "first": "LZPP-3701",
+        "last": "LZPP-3800",
+        "elapsedMs": 266,
+        "returnedIsLast": false
+      },
+      {
+        "number": 39,
+        "count": 100,
+        "first": "LZPP-3801",
+        "last": "LZPP-3900",
+        "elapsedMs": 312,
+        "returnedIsLast": false
+      },
+      {
+        "number": 40,
+        "count": 100,
+        "first": "LZPP-3901",
+        "last": "LZPP-4000",
+        "elapsedMs": 266,
+        "returnedIsLast": false
+      },
+      {
+        "number": 41,
+        "count": 100,
+        "first": "LZPP-4001",
+        "last": "LZPP-4100",
+        "elapsedMs": 240,
+        "returnedIsLast": false
+      },
+      {
+        "number": 42,
+        "count": 100,
+        "first": "LZPP-4101",
+        "last": "LZPP-4200",
+        "elapsedMs": 268,
+        "returnedIsLast": false
+      },
+      {
+        "number": 43,
+        "count": 100,
+        "first": "LZPP-4201",
+        "last": "LZPP-4300",
+        "elapsedMs": 256,
+        "returnedIsLast": false
+      },
+      {
+        "number": 44,
+        "count": 100,
+        "first": "LZPP-4301",
+        "last": "LZPP-4400",
+        "elapsedMs": 246,
+        "returnedIsLast": false
+      },
+      {
+        "number": 45,
+        "count": 100,
+        "first": "LZPP-4401",
+        "last": "LZPP-4500",
+        "elapsedMs": 308,
+        "returnedIsLast": false
+      },
+      {
+        "number": 46,
+        "count": 100,
+        "first": "LZPP-4501",
+        "last": "LZPP-4600",
+        "elapsedMs": 363,
+        "returnedIsLast": false
+      },
+      {
+        "number": 47,
+        "count": 100,
+        "first": "LZPP-4601",
+        "last": "LZPP-4700",
+        "elapsedMs": 307,
+        "returnedIsLast": false
+      },
+      {
+        "number": 48,
+        "count": 100,
+        "first": "LZPP-4701",
+        "last": "LZPP-4800",
+        "elapsedMs": 254,
+        "returnedIsLast": false
+      },
+      {
+        "number": 49,
+        "count": 100,
+        "first": "LZPP-4801",
+        "last": "LZPP-4900",
+        "elapsedMs": 397,
+        "returnedIsLast": false
+      },
+      {
+        "number": 50,
+        "count": 100,
+        "first": "LZPP-4901",
+        "last": "LZPP-5000",
+        "elapsedMs": 362,
+        "returnedIsLast": false
+      },
+      {
+        "number": 51,
+        "count": 100,
+        "first": "LZPP-5001",
+        "last": "LZPP-5100",
+        "elapsedMs": 389,
+        "returnedIsLast": false
+      },
+      {
+        "number": 52,
+        "count": 100,
+        "first": "LZPP-5101",
+        "last": "LZPP-5200",
+        "elapsedMs": 372,
+        "returnedIsLast": false
+      },
+      {
+        "number": 53,
+        "count": 100,
+        "first": "LZPP-5201",
+        "last": "LZPP-5300",
+        "elapsedMs": 273,
+        "returnedIsLast": true
+      }
+    ],
+    "elapsedMs": 17665
+  },
+  "metrics": {
+    "indexMs": 37853,
+    "completeWorkingUiReadMs": 993,
+    "captureAndReadMs": 8374,
+    "snapshotBytes": 4085046,
+    "reportCaptureMs": 591399,
+    "reportPageReads": [
+      {
+        "page": 0,
+        "rows": 50,
+        "elapsedMs": 708,
+        "bytes": 8188
+      },
+      {
+        "page": 1,
+        "rows": 50,
+        "elapsedMs": 658,
+        "bytes": 8197
+      },
+      {
+        "page": 2,
+        "rows": 50,
+        "elapsedMs": 519,
+        "bytes": 8194
+      },
+      {
+        "page": 3,
+        "rows": 50,
+        "elapsedMs": 525,
+        "bytes": 8194
+      },
+      {
+        "page": 4,
+        "rows": 50,
+        "elapsedMs": 525,
+        "bytes": 8194
+      },
+      {
+        "page": 5,
+        "rows": 50,
+        "elapsedMs": 522,
+        "bytes": 8194
+      },
+      {
+        "page": 6,
+        "rows": 50,
+        "elapsedMs": 529,
+        "bytes": 8194
+      },
+      {
+        "page": 7,
+        "rows": 50,
+        "elapsedMs": 532,
+        "bytes": 8194
+      },
+      {
+        "page": 8,
+        "rows": 50,
+        "elapsedMs": 520,
+        "bytes": 8191
+      },
+      {
+        "page": 9,
+        "rows": 50,
+        "elapsedMs": 602,
+        "bytes": 8194
+      },
+      {
+        "page": 10,
+        "rows": 50,
+        "elapsedMs": 473,
+        "bytes": 8200
+      },
+      {
+        "page": 11,
+        "rows": 50,
+        "elapsedMs": 576,
+        "bytes": 8193
+      },
+      {
+        "page": 12,
+        "rows": 50,
+        "elapsedMs": 691,
+        "bytes": 8194
+      },
+      {
+        "page": 13,
+        "rows": 50,
+        "elapsedMs": 494,
+        "bytes": 8196
+      },
+      {
+        "page": 14,
+        "rows": 50,
+        "elapsedMs": 616,
+        "bytes": 8194
+      },
+      {
+        "page": 15,
+        "rows": 50,
+        "elapsedMs": 735,
+        "bytes": 8196
+      },
+      {
+        "page": 16,
+        "rows": 50,
+        "elapsedMs": 525,
+        "bytes": 8194
+      },
+      {
+        "page": 17,
+        "rows": 50,
+        "elapsedMs": 688,
+        "bytes": 8193
+      },
+      {
+        "page": 18,
+        "rows": 50,
+        "elapsedMs": 597,
+        "bytes": 8200
+      },
+      {
+        "page": 19,
+        "rows": 50,
+        "elapsedMs": 664,
+        "bytes": 8195
+      },
+      {
+        "page": 20,
+        "rows": 50,
+        "elapsedMs": 471,
+        "bytes": 8192
+      },
+      {
+        "page": 21,
+        "rows": 50,
+        "elapsedMs": 471,
+        "bytes": 8195
+      },
+      {
+        "page": 22,
+        "rows": 50,
+        "elapsedMs": 487,
+        "bytes": 8202
+      },
+      {
+        "page": 23,
+        "rows": 50,
+        "elapsedMs": 514,
+        "bytes": 8198
+      },
+      {
+        "page": 24,
+        "rows": 50,
+        "elapsedMs": 585,
+        "bytes": 8192
+      },
+      {
+        "page": 25,
+        "rows": 50,
+        "elapsedMs": 459,
+        "bytes": 8198
+      },
+      {
+        "page": 26,
+        "rows": 50,
+        "elapsedMs": 469,
+        "bytes": 8192
+      },
+      {
+        "page": 27,
+        "rows": 50,
+        "elapsedMs": 502,
+        "bytes": 8198
+      },
+      {
+        "page": 28,
+        "rows": 50,
+        "elapsedMs": 540,
+        "bytes": 8192
+      },
+      {
+        "page": 29,
+        "rows": 50,
+        "elapsedMs": 481,
+        "bytes": 8195
+      },
+      {
+        "page": 30,
+        "rows": 50,
+        "elapsedMs": 608,
+        "bytes": 8197
+      },
+      {
+        "page": 31,
+        "rows": 50,
+        "elapsedMs": 506,
+        "bytes": 8193
+      },
+      {
+        "page": 32,
+        "rows": 50,
+        "elapsedMs": 481,
+        "bytes": 8197
+      },
+      {
+        "page": 33,
+        "rows": 50,
+        "elapsedMs": 617,
+        "bytes": 8196
+      },
+      {
+        "page": 34,
+        "rows": 50,
+        "elapsedMs": 483,
+        "bytes": 8194
+      },
+      {
+        "page": 35,
+        "rows": 50,
+        "elapsedMs": 543,
+        "bytes": 8196
+      },
+      {
+        "page": 36,
+        "rows": 50,
+        "elapsedMs": 493,
+        "bytes": 8194
+      },
+      {
+        "page": 37,
+        "rows": 50,
+        "elapsedMs": 525,
+        "bytes": 8193
+      },
+      {
+        "page": 38,
+        "rows": 50,
+        "elapsedMs": 498,
+        "bytes": 8194
+      },
+      {
+        "page": 39,
+        "rows": 50,
+        "elapsedMs": 502,
+        "bytes": 8198
+      },
+      {
+        "page": 40,
+        "rows": 50,
+        "elapsedMs": 663,
+        "bytes": 8195
+      },
+      {
+        "page": 41,
+        "rows": 50,
+        "elapsedMs": 506,
+        "bytes": 8198
+      },
+      {
+        "page": 42,
+        "rows": 50,
+        "elapsedMs": 523,
+        "bytes": 8192
+      },
+      {
+        "page": 43,
+        "rows": 50,
+        "elapsedMs": 574,
+        "bytes": 8195
+      },
+      {
+        "page": 44,
+        "rows": 50,
+        "elapsedMs": 523,
+        "bytes": 8192
+      },
+      {
+        "page": 45,
+        "rows": 50,
+        "elapsedMs": 529,
+        "bytes": 8195
+      },
+      {
+        "page": 46,
+        "rows": 50,
+        "elapsedMs": 508,
+        "bytes": 8192
+      },
+      {
+        "page": 47,
+        "rows": 50,
+        "elapsedMs": 765,
+        "bytes": 8198
+      },
+      {
+        "page": 48,
+        "rows": 50,
+        "elapsedMs": 524,
+        "bytes": 8192
+      },
+      {
+        "page": 49,
+        "rows": 50,
+        "elapsedMs": 571,
+        "bytes": 8201
+      },
+      {
+        "page": 50,
+        "rows": 50,
+        "elapsedMs": 484,
+        "bytes": 8194
+      },
+      {
+        "page": 51,
+        "rows": 50,
+        "elapsedMs": 528,
+        "bytes": 8193
+      },
+      {
+        "page": 52,
+        "rows": 50,
+        "elapsedMs": 563,
+        "bytes": 8197
+      },
+      {
+        "page": 53,
+        "rows": 50,
+        "elapsedMs": 508,
+        "bytes": 8193
+      },
+      {
+        "page": 54,
+        "rows": 50,
+        "elapsedMs": 495,
+        "bytes": 8194
+      },
+      {
+        "page": 55,
+        "rows": 50,
+        "elapsedMs": 515,
+        "bytes": 8193
+      },
+      {
+        "page": 56,
+        "rows": 50,
+        "elapsedMs": 532,
+        "bytes": 8200
+      },
+      {
+        "page": 57,
+        "rows": 50,
+        "elapsedMs": 526,
+        "bytes": 8196
+      },
+      {
+        "page": 58,
+        "rows": 50,
+        "elapsedMs": 525,
+        "bytes": 8194
+      },
+      {
+        "page": 59,
+        "rows": 50,
+        "elapsedMs": 519,
+        "bytes": 8195
+      },
+      {
+        "page": 60,
+        "rows": 50,
+        "elapsedMs": 521,
+        "bytes": 8192
+      },
+      {
+        "page": 61,
+        "rows": 50,
+        "elapsedMs": 532,
+        "bytes": 8198
+      },
+      {
+        "page": 62,
+        "rows": 50,
+        "elapsedMs": 520,
+        "bytes": 8192
+      },
+      {
+        "page": 63,
+        "rows": 50,
+        "elapsedMs": 601,
+        "bytes": 8195
+      },
+      {
+        "page": 64,
+        "rows": 50,
+        "elapsedMs": 605,
+        "bytes": 8198
+      },
+      {
+        "page": 65,
+        "rows": 50,
+        "elapsedMs": 517,
+        "bytes": 8195
+      },
+      {
+        "page": 66,
+        "rows": 50,
+        "elapsedMs": 695,
+        "bytes": 8192
+      },
+      {
+        "page": 67,
+        "rows": 50,
+        "elapsedMs": 587,
+        "bytes": 8195
+      },
+      {
+        "page": 68,
+        "rows": 50,
+        "elapsedMs": 668,
+        "bytes": 8198
+      },
+      {
+        "page": 69,
+        "rows": 50,
+        "elapsedMs": 651,
+        "bytes": 8198
+      },
+      {
+        "page": 70,
+        "rows": 50,
+        "elapsedMs": 543,
+        "bytes": 8194
+      },
+      {
+        "page": 71,
+        "rows": 50,
+        "elapsedMs": 563,
+        "bytes": 8193
+      },
+      {
+        "page": 72,
+        "rows": 50,
+        "elapsedMs": 612,
+        "bytes": 8194
+      },
+      {
+        "page": 73,
+        "rows": 50,
+        "elapsedMs": 551,
+        "bytes": 8196
+      },
+      {
+        "page": 74,
+        "rows": 50,
+        "elapsedMs": 538,
+        "bytes": 8194
+      },
+      {
+        "page": 75,
+        "rows": 50,
+        "elapsedMs": 502,
+        "bytes": 8199
+      },
+      {
+        "page": 76,
+        "rows": 50,
+        "elapsedMs": 565,
+        "bytes": 8194
+      },
+      {
+        "page": 77,
+        "rows": 50,
+        "elapsedMs": 508,
+        "bytes": 8193
+      },
+      {
+        "page": 78,
+        "rows": 50,
+        "elapsedMs": 544,
+        "bytes": 8197
+      },
+      {
+        "page": 79,
+        "rows": 50,
+        "elapsedMs": 474,
+        "bytes": 8195
+      },
+      {
+        "page": 80,
+        "rows": 50,
+        "elapsedMs": 547,
+        "bytes": 8192
+      },
+      {
+        "page": 81,
+        "rows": 50,
+        "elapsedMs": 534,
+        "bytes": 8198
+      },
+      {
+        "page": 82,
+        "rows": 50,
+        "elapsedMs": 494,
+        "bytes": 8192
+      },
+      {
+        "page": 83,
+        "rows": 50,
+        "elapsedMs": 668,
+        "bytes": 8198
+      },
+      {
+        "page": 84,
+        "rows": 50,
+        "elapsedMs": 621,
+        "bytes": 8195
+      },
+      {
+        "page": 85,
+        "rows": 50,
+        "elapsedMs": 521,
+        "bytes": 8195
+      },
+      {
+        "page": 86,
+        "rows": 50,
+        "elapsedMs": 524,
+        "bytes": 8195
+      },
+      {
+        "page": 87,
+        "rows": 50,
+        "elapsedMs": 621,
+        "bytes": 8195
+      },
+      {
+        "page": 88,
+        "rows": 50,
+        "elapsedMs": 495,
+        "bytes": 8189
+      },
+      {
+        "page": 89,
+        "rows": 50,
+        "elapsedMs": 486,
+        "bytes": 8195
+      },
+      {
+        "page": 90,
+        "rows": 50,
+        "elapsedMs": 535,
+        "bytes": 8197
+      },
+      {
+        "page": 91,
+        "rows": 50,
+        "elapsedMs": 611,
+        "bytes": 8196
+      },
+      {
+        "page": 92,
+        "rows": 50,
+        "elapsedMs": 476,
+        "bytes": 8194
+      },
+      {
+        "page": 93,
+        "rows": 50,
+        "elapsedMs": 568,
+        "bytes": 8196
+      },
+      {
+        "page": 94,
+        "rows": 50,
+        "elapsedMs": 496,
+        "bytes": 8194
+      },
+      {
+        "page": 95,
+        "rows": 50,
+        "elapsedMs": 502,
+        "bytes": 8177
+      },
+      {
+        "page": 96,
+        "rows": 50,
+        "elapsedMs": 480,
+        "bytes": 8144
+      },
+      {
+        "page": 97,
+        "rows": 50,
+        "elapsedMs": 492,
+        "bytes": 8146
+      },
+      {
+        "page": 98,
+        "rows": 50,
+        "elapsedMs": 529,
+        "bytes": 8144
+      },
+      {
+        "page": 99,
+        "rows": 50,
+        "elapsedMs": 527,
+        "bytes": 8146
+      },
+      {
+        "page": 100,
+        "rows": 50,
+        "elapsedMs": 523,
+        "bytes": 8148
+      },
+      {
+        "page": 101,
+        "rows": 50,
+        "elapsedMs": 527,
+        "bytes": 8147
+      },
+      {
+        "page": 102,
+        "rows": 50,
+        "elapsedMs": 592,
+        "bytes": 8145
+      },
+      {
+        "page": 103,
+        "rows": 50,
+        "elapsedMs": 513,
+        "bytes": 8144
+      },
+      {
+        "page": 104,
+        "rows": 50,
+        "elapsedMs": 598,
+        "bytes": 8148
+      },
+      {
+        "page": 105,
+        "rows": 50,
+        "elapsedMs": 468,
+        "bytes": 8146
+      }
+    ],
+    "completeDownloadMs": 55577,
+    "htmlBytes": 1248688,
+    "htmlRenderMs": 418
+  },
+  "planId": "plan-test-mtq28rmh-qpdgyd",
+  "workingDurationCounts": {
+    "1": 597,
+    "2": 1363,
+    "3": 1352,
+    "4": 1379,
+    "5": 450,
+    "null": 159
+  },
+  "pristineCapture": {
+    "changes": [],
+    "workingChangeCount": 0
+  },
+  "snapshot": {
+    "id": "aee29fe3-e578-472e-9737-ee632e35609e",
+    "hash": "e7bc76e7972563f4391359d26af900e67db8faeda145028dc5f80733eea493fc",
+    "count": 5300,
+    "terminalExpected": {
+      "key": "LZPP-5300",
+      "id": "20712",
+      "summary": "PERF-05300",
+      "statusCategory": "new",
+      "startDate": "2026-04-14",
+      "dueDate": "2026-04-19",
+      "duration": null,
+      "buffer": "No",
+      "parentKey": null,
+      "predecessors": [],
+      "successors": []
+    },
+    "lastExpected": [
+      {
+        "key": "LZPP-995",
+        "id": "16407",
+        "summary": "PERF-00995",
+        "statusCategory": "new",
+        "startDate": "2026-07-18",
+        "dueDate": "2026-07-23",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-996"
+        ],
+        "successors": [
+          "LZPP-595",
+          "LZPP-994"
+        ]
+      },
+      {
+        "key": "LZPP-996",
+        "id": "16408",
+        "summary": "PERF-00996",
+        "statusCategory": "new",
+        "startDate": "2026-07-19",
+        "dueDate": "2026-07-20",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-997"
+        ],
+        "successors": [
+          "LZPP-995"
+        ]
+      },
+      {
+        "key": "LZPP-997",
+        "id": "16409",
+        "summary": "PERF-00997",
+        "statusCategory": "new",
+        "startDate": "2026-07-20",
+        "dueDate": "2026-07-22",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-998"
+        ],
+        "successors": [
+          "LZPP-996"
+        ]
+      },
+      {
+        "key": "LZPP-998",
+        "id": "16410",
+        "summary": "PERF-00998",
+        "statusCategory": "new",
+        "startDate": "2026-07-21",
+        "dueDate": "2026-07-24",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-999"
+        ],
+        "successors": [
+          "LZPP-997"
+        ]
+      },
+      {
+        "key": "LZPP-999",
+        "id": "16411",
+        "summary": "PERF-00999",
+        "statusCategory": "new",
+        "startDate": "2026-07-22",
+        "dueDate": "2026-07-26",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-1000"
+        ],
+        "successors": [
+          "LZPP-998"
+        ]
+      }
+    ],
+    "lastSnapshot": [
+      {
+        "key": "LZPP-995",
+        "id": "16407",
+        "summary": "PERF-00995",
+        "statusCategory": "new",
+        "startDate": "2026-07-18",
+        "dueDate": "2026-07-23",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-996"
+        ],
+        "successors": [
+          "LZPP-595",
+          "LZPP-994"
+        ]
+      },
+      {
+        "key": "LZPP-996",
+        "id": "16408",
+        "summary": "PERF-00996",
+        "statusCategory": "new",
+        "startDate": "2026-07-19",
+        "dueDate": "2026-07-20",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-997"
+        ],
+        "successors": [
+          "LZPP-995"
+        ]
+      },
+      {
+        "key": "LZPP-997",
+        "id": "16409",
+        "summary": "PERF-00997",
+        "statusCategory": "new",
+        "startDate": "2026-07-20",
+        "dueDate": "2026-07-22",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-998"
+        ],
+        "successors": [
+          "LZPP-996"
+        ]
+      },
+      {
+        "key": "LZPP-998",
+        "id": "16410",
+        "summary": "PERF-00998",
+        "statusCategory": "new",
+        "startDate": "2026-07-21",
+        "dueDate": "2026-07-24",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-999"
+        ],
+        "successors": [
+          "LZPP-997"
+        ]
+      },
+      {
+        "key": "LZPP-999",
+        "id": "16411",
+        "summary": "PERF-00999",
+        "statusCategory": "new",
+        "startDate": "2026-07-22",
+        "dueDate": "2026-07-26",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-1000"
+        ],
+        "successors": [
+          "LZPP-998"
+        ]
+      }
+    ]
+  },
+  "report": {
+    "id": "2e8279ed-f0c9-42c4-b1af-6360f4cc528a",
+    "hash": "0727442790382bdea5ffbdaa557723aa6d34c7374606404fef69e90167432cfa",
+    "name": "Every existing performance row",
+    "planName": "[harness-test] Large retained capture mtq28qzq",
+    "takenAt": "2026-09-06T17:04:46.139Z",
+    "sourceVersion": 2,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 5300,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 5300,
+        "totalLeaves": 5300
+      },
+      "inputHash": "74e3f14bb519b5733ec1a65d729605f63ccebf4e6594b1f1ddf0682b90404e4a",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0,
+      "p50": "2052-02-26",
+      "p80": "2052-03-04",
+      "p90": "2052-03-14",
+      "reason": null,
+      "runs": 40,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "medium"
+    },
+    "capacity": {
+      "reason": "Capacity was not included at capture. No availability is assumed.",
+      "scope": "captured-plan",
+      "state": "not-included"
+    },
+    "uncertainty": "medium",
+    "consistency": {
+      "basisHash": "4c606981c8bada022ca54d970135dac71382bb82ebbdf2072be1b4a0e00d26f7",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T17:04:53.482Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T17:13:14.775Z"
+    },
+    "baseline": null,
+    "counts": {
+      "timeline": 5300,
+      "targets": 0,
+      "changes": 0
+    },
+    "pages": {
+      "timeline": 106,
+      "targets": 0,
+      "changes": 0
+    },
+    "document": {
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "timeline": {
+        "hashes": [
+          "c784956bcc2c5041ec23bc01745fa0e01c13f2874aca3a56a104ae46a04e3261",
+          "a22ae7da2dae2b6b9ed2034ad3d0f92d3d09a9bb98e2a8406cfaf969d0ac6fc2",
+          "a7389c969b4f1092c71208b230957d0c8c807836b20e5c3d267106f474281277",
+          "a14be057f1ce3d69b254adfa97657f7d346354cbf9538b6a394a1fb54005b48e",
+          "40dcf410418201e8e68584c88f594c7b094844ce74208dbb873a4b7b447813b3",
+          "e21acedd9d82b2a04acf179865cc562da5fca506702f13046d1112d5b1ef1dd4",
+          "a9cb6d75a6f4b1aab5113d1af19e5cc1de5b67394f5ae5693d321124a8403ded",
+          "53b43f7bc18dbfe254adb7a8529daceb89522c31c357bdb2d792e45a01c49298",
+          "2bafc92eb2544b069351729b5618188c87a1e87b94c07aa0fc8805369cae0fb5",
+          "3413b6851a5e4acfdf27d421ccd6c084582f6a1a8c32c1ad587ba689b0706ec0",
+          "cbe7df059b3f536fdc77426bd9de95979c488e69cf100d2237922bbd8e064a11",
+          "d40bd658c1f5f27ade368536dc138cf1e0437523f17251f02dc4cbafa4bcf6e7",
+          "7b41cf529378169624a68e60e275ab1e3810df0bcd9de287c79811c0bc319152",
+          "85ac7f536745bc3cef55f546b8599a62f72572c2e8a6d73d46c6f9f06c8f2e84",
+          "c6487d36d9cfa67a8f101834023c4eea4c9b889cda1b3e66bae7175fcebaa0ca",
+          "4bf3dfe7f0c7116a44f6a3141a8880922e00f237bf6518a043b09f089cb28964",
+          "c4ce01335eead23a3a2a2b0966d4809bc14499560e6709a7911d5531267d49f9",
+          "ca50729a5366f691d7ed64239e089658ba6ebc88691b224bd5a7431a354cee9c",
+          "eb6221d7e9364d7bf9610b0802e6dc627ff5b06606ba300435e76ae8545c3ba6",
+          "e4bb326ed9cefa405bb362cc45717cf9bbe4f4634e67e93794d4b4c9ba32bc59",
+          "8b03f22ea7314283470b2a84d4b30dee361bc7a59faebe813ceb8b058c12bdb5",
+          "55c69fef3c1ba0d960ec98b1eb06339d4827807940618296d6baab0b7033a4a3",
+          "aa71be17a3a57c50cdc5557c7d11588ca673e49d27b9915ac792987224dae4c5",
+          "76518566f616e41bb19ff2e4c82d4e3774c995e3e52c5b1da73a34919fa59d02",
+          "9ea8b6e4b1942f9428172d5762fe3bcd5266a7e824bc75b3bb7c48de1383197b",
+          "1ea9f3697887b7ec7d9ec37fed717c06a7280c56e774c71641d92bda9734228d",
+          "bbdb1ad873e926f31e015a2c2ef6738152fd976dd66622ac56e774b0d460f450",
+          "3a245f3d826c4a31712df35a663c98410a467c60b3cfd743b7fc433be6d64edd",
+          "7ba1432ab23c68a5783014833185b442ff1d42f2a0a2ffbbc3665432a81da0ef",
+          "f3b26430beb6e98d3e7efcce3be3c21bca95f5b2291c52a456bbaf35834f0ad2",
+          "0b23f370e7c73f78757b0fac37c0e858def28df28bc63b8383666e0eed3a8da8",
+          "4042e036a2ee576872ad6db4adddaacd601e81c602802ee443c3f68ca96bcb2d",
+          "0c6abd1eb969f95d20abdcd41a4e28d021c8dec220c99b633666a4993ef81b8f",
+          "0a876f033826417c593329a6a80e6c4a90839e4221acc056720ea3c29b1195ef",
+          "86e920db023b98d65196f3d013d452ed97477f65c5157b57109a5bff9acfe2e0",
+          "aba06d498ddc198601d49ec7fc492f31888a710f4a528b7caab57ae97c2089a6",
+          "4ab9dc211e1d6752bb919fbdc4e1b6f225cbc6f5c3457de171f1ada56ac69b18",
+          "c9fe2629aad9109118973cd677ee57664ca7f43433c8840e6aba440791b030c4",
+          "5288165b1a433ac25c339fe65f92e83b3d2a0c2bc0b76edddf2ff5dc97ea48a8",
+          "8574018713ff485bf4f1e7c5cf3d1745ae9b2f7986831b194171089bd76d8304",
+          "43b20ce2b131b1e4339b475d69e60077580a237bbab792513554b2b9f323ff90",
+          "bb9c648b3ac582c96b0b77e88228d8f563d9b6836d81cea1f0c418c1e5e13613",
+          "803f6fd85e4cfcda5a696e1c4f913af8d942db80fb1ac8ad192d3f4356ebf475",
+          "007a4d79ef7413d50b59208a093efebfd46cc476d62547d6d648dc881684f272",
+          "187f729b40057004972e2cb951346dd08cac40cbd2ca84127902acc67c15e415",
+          "2c03e878f8198c821787aec1b20b50091a9a29b566689c2bf7c63d24e2b983ca",
+          "baaa0a81468b56437c3a06ebee0dde47e4d3480f81b838d4590d2f47175b2992",
+          "58e6ee0d344eb9c740ae5208a8e996bf57e9fcd77cb48cc289dad5769f2e2ae0",
+          "2e53d2c2856f532c26630d55c76a2f36798c129dc869c717734bc6dcd66f42a7",
+          "2840c382ed82783e4307752a4fd6144126caaeec0932d60d4fefce009dcc51fb",
+          "936944bfcbb0433a62d895c416d61982853da6bfa43203d1927519440bcc6061",
+          "85b469d9c654f5461a868206cdadeda064d5da8473f83e6f5d080fd975a4ec07",
+          "b3e2d1518133e02df05d4b650a6dd8a2e1a835e435d21ed6cabc4cd4dc89635b",
+          "81dee5940c8e844be357a4fed59f7e45289fc77a4f171413ba654ac19669cd4b",
+          "06f4f555a4f9704ee7f02cc60a8725bf5aa6509509128d8150f36d126dcc9c76",
+          "f2c8d27f6fac718ef5c02921e114f386d0647475a75ce4f9e625ba4dd8f5f162",
+          "e85ea95fe171238aada3d2cf1ab95ddcee761b99772a3794ad5c55811fcfaa5c",
+          "1d0979d747bff72f30c741f2ce3cd423b37446ea48ad7c2a1b88bd5cf47dab42",
+          "2df1b3cc960c008df50e73ce06f2887482b4fce0b6bccc3dd341526bd67fd3aa",
+          "2ab6fc3261b39fe1ad3e8164594dcfca498f65aae7dc7b86619ac935159da664",
+          "09cf21de98a2a61fcc73f3aad3ac2a0e199e3e031a803adbfeed144b2f15f4f2",
+          "08ece61f6a1988ac17ca546b6eb48049200e40886d4c8f53cc14e6b015b4faef",
+          "4d91539abb2665958f7dfb9e17b99467a08e7118c4cfdfe88bfcb94cfc703f2e",
+          "a5e00f4ca9b304ba8aae9b8a49b8b58e5d90e624ed2c65ac6ed0622cf7ab4ef0",
+          "fb839b1d5b8c727708622b7294761ed716d50573f2a432c1b91a51f8edc27a7a",
+          "a0b0c22840ef8d16831fb8bbf2b5b681ebbf8dda669b2c95e5012b16b97a2858",
+          "74d9a123e52bf5476636d0bd07e3fcdd52f9914d0b3dd4676b78a8ee249d879f",
+          "8b080a4d71d1f9b310e0286bf9fee188e7e090d7e25e5eb8650cdc8e9243e6a7",
+          "0528f893798fc93b7f18cf85740ba06ca2f7ebd9c712796369e8ef2b2b00d7eb",
+          "d8e1c01845495b30e2a7ec570b37f69b6521989968714b470473d065fbf2fa37",
+          "439ffa4b033d1e80d820529c9d58f69c743eb888139571ca2cad328037952a4c",
+          "5f89b93b02e008e627da72b3543c16eb29460351bd440850180d5dd484fa56cd",
+          "b04b40a5e003d0734e9d063405c8dbb81015503eaeac821db87d181e5d9ea010",
+          "2332e5e8c0169ce7341d0027db3d871ccb25235ad4966a6451b36509dd1d6ce4",
+          "dc1c58d1a285a65ff9ca69c8c74f8938d307c4903b2e14157e8721f7a4e39e1f",
+          "86abd44c94e9f8a2a913b62ded63da97b273f2cd1256e15cdf1132d2fea724d9",
+          "2624e67b6079d95078f45c5443a0d1217fd92abed7fb81d96f2b0baf1b981656",
+          "9a5ebb7125bc9dc1b16c7503011220614cbe357a2dbac599f2e98859b5348628",
+          "231fab8f93f4676b9888889252e4e7be3dcfd11c7dda41deae440df5a41507e4",
+          "ca345a2da2de6f448db235a15e8b99d4c597c489f43e14ae966127f522261d06",
+          "4dd45ef81d5c4e9c6b5b72567d63fdbf85415cb2089af3ec1bb0ac89d3f24977",
+          "ea9c04acdc9c64e0ee8d94d655ab1af3374be5de0d1160149630b2468349d3a2",
+          "0e8a1ae4023c4787a9c9ee5e6477643d8bfd1b4311368cff395dd7a6de475849",
+          "ac277630ae95a407adbe18f8f22db37a0f1a54dc3719444b683d784a79b9e650",
+          "f6cba89332a6f3716497b3ae6e1b225b1c6ac344a0d596bf1ec636648ee23740",
+          "0dc4b5bf101e18c68890e969928eaf0bcf5e7d6f034c2e9fb5daac0de53c0efa",
+          "94b0d5c37ab55c0e9d6c8cfcf4922b3c20a46e8d3c3e27389b55839e2995d262",
+          "e48ff5b5ac8d89bc79ac945cfef6b4f42accc4475b47bb68b53cc8203284f6cc",
+          "682ec133016ae5aabb9e86f4915d202a4b1b9d1612a9b676b23cae848f865113",
+          "d64ca76cf7db565b5cef79ecea424f42196b90117a16dd280dcbd5b3797b6deb",
+          "4945eb8be6b7bc9d7e4b30e0a87bc0b0b1dc0e357432fff39595393657c36e25",
+          "32aa8cb2ac838acf178f7321e1543f2bf641c9147d206ec3eee469373b2143e8",
+          "1b7a1b70700ac50553592d6dd78f0941cee4d37bdbc3f220be1b72167325900b",
+          "de581fcc5aa1185dd2174c797273d9516ce4ed8ac74ab2d02ee3c358f0a0b62d",
+          "44e5e5262058903083729f4a07b42727749cd614cef018ece81686f45e45826b",
+          "3c58d4f01d0a1dd8d4d4a7cee3b6bda0e5b2df8f834abaecd477c575249d09ec",
+          "6836f4708cb776c492f5e3b704c28720f481897b327771880f7fd6fb44b37574",
+          "cb998725a90b4c0184ec37d58181ec7d4eb63aefd87fa8949bd35c1b5448fbd5",
+          "a7c7ab82715d14934aa8415f3d49abcd203c51caac92477b18bd285491cc1a4d",
+          "af48fc3e170b6d314bea0387bc1d39a5dd59982380c9776d46dad6430c4caf75",
+          "0564bcd53624f3c033e8ed190b0a42714c86895ad90a7e3ff09c0a60b5bce3be",
+          "7f2e3891d504144fcee0992ff7f7eb585b1c051944d7c2dc5cfa78483d745284",
+          "7d2d622609a278746fe0772362da0c86b16284ae9a33c86ae52aef97fda4d9d8",
+          "04d529e01ab4ddbbad1b136a4c50814cbc79b3dce70ec30316ba7436f0dcb00b",
+          "121f58840ebb3db60b3ed85bf07f7bec51684c9faf152f864be99068f1928d5a",
+          "2d6d1b869c91c4d44d0e4f82df230d1675a2f215fbf5937a66b3fdc47324e5ea"
+        ],
+        "sizes": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ],
+        "total": 5300
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 5300,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 5300,
+      "unavailableRows": 0
+    },
+    "span": {
+      "start": "2026-01-05",
+      "finish": "2027-02-13"
+    },
+    "plannedFinish": "2027-02-13",
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 0
+    }
+  },
+  "reportTerminalRows": [
+    {
+      "buffer": "No",
+      "dueDate": "2026-07-23",
+      "duration": 4,
+      "key": "LZPP-995",
+      "parentKey": null,
+      "startDate": "2026-07-18",
+      "statusCategory": "new",
+      "summary": "PERF-00995"
+    },
+    {
+      "buffer": "No",
+      "dueDate": "2026-07-20",
+      "duration": 1,
+      "key": "LZPP-996",
+      "parentKey": null,
+      "startDate": "2026-07-19",
+      "statusCategory": "new",
+      "summary": "PERF-00996"
+    },
+    {
+      "buffer": "No",
+      "dueDate": "2026-07-22",
+      "duration": 3,
+      "key": "LZPP-997",
+      "parentKey": null,
+      "startDate": "2026-07-20",
+      "statusCategory": "new",
+      "summary": "PERF-00997"
+    },
+    {
+      "buffer": "No",
+      "dueDate": "2026-07-24",
+      "duration": 4,
+      "key": "LZPP-998",
+      "parentKey": null,
+      "startDate": "2026-07-21",
+      "statusCategory": "new",
+      "summary": "PERF-00998"
+    },
+    {
+      "buffer": "No",
+      "dueDate": "2026-07-26",
+      "duration": 3,
+      "key": "LZPP-999",
+      "parentKey": null,
+      "startDate": "2026-07-22",
+      "statusCategory": "new",
+      "summary": "PERF-00999"
+    }
+  ],
+  "renderedTerminalRow": {
+    "key": "LZPP-5300",
+    "cells": [
+      "LZPP-5300",
+      "PERF-05300",
+      "2026-04-14",
+      "2026-04-19",
+      "4",
+      "new",
+      ""
+    ]
+  },
+  "allHtmlFieldsVerified": true,
+  "explicitDurationCapture": {
+    "key": "LZPP-2001",
+    "duration": 9,
+    "dueDate": "2026-01-15",
+    "submitted": [
+      {
+        "key": "LZPP-2001",
+        "startDate": "2026-01-05",
+        "dueDate": "2026-01-15",
+        "duration": 9,
+        "buffer": "No"
+      }
+    ],
+    "snapshotId": "874448e5-b381-4b34-897f-f9efcca12bfb"
+  },
+  "jiraPopulationUnchanged": true,
+  "ownedPlanCleaned": true
+}

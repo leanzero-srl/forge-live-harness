@@ -1,0 +1,3 @@
+{"event": "planId", "value": "plan-test-mtp5h61v-h2mwu2", "metrics": {"indexMs": 37187}, "observedAt": "2026-09-06T01:46:28.626364+00:00"}
+{"event": "pristineCapture", "value": {"changes": [], "workingChangeCount": 0}, "metrics": {"indexMs": 37187, "completeWorkingUiReadMs": 959, "captureAndReadMs": 8711, "snapshotBytes": 4085046}, "observedAt": "2026-09-06T01:47:16.422239+00:00"}
+{"event": "report-capture-before-click", "callId": "call@299", "approximateUtc": "2026-09-06T01:47:27.759597+00:00", "tracePath": "evidence/lz-campaign/tenth-report-source-diagnostic-live-20260906/large-history-report-live/attempt-001/tests-artifacts/.playwright-artifacts-0/traces/c4f45e8a68e6bf28e27483ebe43b4525-chunk1.trace", "observedAt": "2026-09-06T01:47:28.140128+00:00"}

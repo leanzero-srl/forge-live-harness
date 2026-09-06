@@ -1,0 +1,108 @@
+{
+  "planId": "plan-test-mtpzn218-4ref5x",
+  "job": {
+    "id": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+    "requestId": "c09c1776-0b8e-4198-8850-3f05fbe29511",
+    "name": "Bounded cancel report",
+    "createdAt": "2026-09-06T15:50:26.011Z",
+    "expiresAt": "2026-09-07T15:50:26.011Z",
+    "checkpoint": 2,
+    "state": "cancelled",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 2,
+    "totalUnits": 16,
+    "cleanupDone": true,
+    "reportId": "39ae3502-5676-4f38-a836-9f4a9bd9457d"
+  },
+  "report": null,
+  "error": null,
+  "begin": {
+    "requestId": "c09c1776-0b8e-4198-8850-3f05fbe29511",
+    "name": "Bounded cancel report",
+    "inputHash": "5bb493acd02abed78fc18daad992fd9e42c333762e87619d15b68faf020dddda",
+    "at": 1788709825101
+  },
+  "events": [
+    {
+      "type": "request",
+      "key": "captureSponsorReport",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788709825101
+    },
+    {
+      "type": "response",
+      "key": "captureSponsorReport",
+      "job": {
+        "id": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+        "requestId": "c09c1776-0b8e-4198-8850-3f05fbe29511",
+        "name": "Bounded cancel report",
+        "createdAt": "2026-09-06T15:50:26.011Z",
+        "expiresAt": "2026-09-07T15:50:26.011Z",
+        "checkpoint": 0,
+        "state": "active",
+        "stageLabel": "Checking the plan",
+        "completedUnits": 0,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "39ae3502-5676-4f38-a836-9f4a9bd9457d"
+      },
+      "at": 1788709826133,
+      "elapsedMs": 1032
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+      "expectedCheckpoint": 0,
+      "at": 1788709826133
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+        "requestId": "c09c1776-0b8e-4198-8850-3f05fbe29511",
+        "name": "Bounded cancel report",
+        "createdAt": "2026-09-06T15:50:26.011Z",
+        "expiresAt": "2026-09-07T15:50:26.011Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "39ae3502-5676-4f38-a836-9f4a9bd9457d"
+      },
+      "at": 1788709828490,
+      "elapsedMs": 2357
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+      "expectedCheckpoint": null,
+      "at": 1788709828491
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+        "requestId": "c09c1776-0b8e-4198-8850-3f05fbe29511",
+        "name": "Bounded cancel report",
+        "createdAt": "2026-09-06T15:50:26.011Z",
+        "expiresAt": "2026-09-07T15:50:26.011Z",
+        "checkpoint": 2,
+        "state": "cancelled",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 2,
+        "totalUnits": 16,
+        "cleanupDone": true,
+        "reportId": "39ae3502-5676-4f38-a836-9f4a9bd9457d"
+      },
+      "at": 1788709829610,
+      "elapsedMs": 1119
+    }
+  ]
+}

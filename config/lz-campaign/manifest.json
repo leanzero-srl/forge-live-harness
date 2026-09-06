@@ -1,0 +1,626 @@
+{
+  "schema": 1,
+  "campaign": "lz-ppm-2026-09",
+  "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
+  "features": [
+    {
+      "id": "baseline-core",
+      "status": "ready",
+      "acceptance": [
+        "CORE-1",
+        "CORE-2"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-dashboard-lzpt.spec.ts",
+        "scenarios/lz-ppm/journey-groupby-lzpt.spec.ts",
+        "scenarios/lz-ppm/journey-table-lzpt.spec.ts"
+      ],
+      "minTests": 3,
+      "timeoutSeconds": 900
+    },
+    {
+      "id": "forecast-contract",
+      "status": "ready",
+      "acceptance": [
+        "FC-1",
+        "FC-2",
+        "FC-3"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+        "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts"
+      ],
+      "grepInvert": "table: a background refresh",
+      "minTests": 4,
+      "timeoutSeconds": 1500
+    },
+    {
+      "id": "normalization",
+      "status": "ready",
+      "acceptance": [
+        "NORM-1"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts"
+      ],
+      "grep": "table: a background refresh",
+      "minTests": 1,
+      "timeoutSeconds": 600
+    },
+    {
+      "id": "normalization-companions",
+      "status": "ready",
+      "acceptance": [
+        "NORM-2",
+        "NORM-3",
+        "NORM-4",
+        "APPLY-1"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-normalization-owned.spec.ts"
+      ],
+      "minTests": 4,
+      "timeoutSeconds": 2700
+    },
+    {
+      "id": "assets-live-foundation",
+      "status": "ready",
+      "acceptance": [
+        "ASSET-LIVE-1"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-assets.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 900
+    },
+    {
+      "id": "planning-live-foundation",
+      "status": "ready",
+      "acceptance": [
+        "TGT-LIVE-1",
+        "HIST-LIVE-1"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-planning.spec.ts"
+      ],
+      "minTests": 2,
+      "timeoutSeconds": 1800
+    },
+    {
+      "id": "history-platform-transaction",
+      "status": "ready",
+      "acceptance": [
+        "HIST-ATOMIC-1"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/campaign-history-transaction.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "named-scenarios",
+      "status": "planned",
+      "acceptance": [
+        "SCN-1",
+        "SCN-2",
+        "SCN-3"
+      ],
+      "specs": [],
+      "minTests": 3,
+      "timeoutSeconds": 1800
+    },
+    {
+      "id": "scoped-targets",
+      "status": "planned",
+      "acceptance": [
+        "TGT-1",
+        "TGT-2",
+        "TGT-3"
+      ],
+      "specs": [],
+      "minTests": 3,
+      "timeoutSeconds": 1500
+    },
+    {
+      "id": "capacity",
+      "status": "planned",
+      "acceptance": [
+        "CAP-1",
+        "CAP-2",
+        "CAP-3",
+        "CAP-4"
+      ],
+      "specs": [],
+      "minTests": 4,
+      "timeoutSeconds": 1800
+    },
+    {
+      "id": "reports-history",
+      "status": "planned",
+      "acceptance": [
+        "REP-1",
+        "REP-2",
+        "HIST-1",
+        "HIST-2",
+        "AUTH-1"
+      ],
+      "specs": [],
+      "minTests": 5,
+      "timeoutSeconds": 2400
+    },
+    {
+      "id": "forecast-calibration",
+      "status": "planned",
+      "acceptance": [
+        "CAL-1",
+        "CAL-2"
+      ],
+      "specs": [],
+      "minTests": 2,
+      "timeoutSeconds": 1500
+    },
+    {
+      "id": "finish-sensitivity",
+      "status": "planned",
+      "acceptance": [
+        "SENS-1",
+        "SENS-2",
+        "SENS-3"
+      ],
+      "specs": [],
+      "minTests": 3,
+      "timeoutSeconds": 1500
+    },
+    {
+      "id": "assets",
+      "status": "planned",
+      "acceptance": [
+        "ASSET-1",
+        "ASSET-2",
+        "ASSET-3",
+        "ASSET-4"
+      ],
+      "specs": [],
+      "minTests": 4,
+      "timeoutSeconds": 1800
+    },
+    {
+      "id": "end-to-end-uat",
+      "status": "planned",
+      "acceptance": [
+        "UAT-1"
+      ],
+      "specs": [],
+      "minTests": 1,
+      "timeoutSeconds": 2400
+    },
+    {
+      "id": "persistence-durability",
+      "status": "ready",
+      "acceptance": [
+        "PERSIST-SAVE-STALE-DRAFT",
+        "PERSIST-SAVE-LATE-EDIT",
+        "PERSIST-PARTIAL-APPLY-DISCARD",
+        "PERSIST-DRAFT-403-RECOVERY",
+        "PERSIST-DRAFT-503-RECOVERY"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-persistence.spec.ts"
+      ],
+      "minTests": 5,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "capacity-live-numeric",
+      "status": "ready",
+      "acceptance": [
+        "CAP-REAL-SECONDS",
+        "CAP-DEDUP",
+        "CAP-PERSON-AVAILABILITY",
+        "CAP-ALTERNATIVE-REOPEN",
+        "CAP-PRIVATE-SETTINGS-RESTORE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-capacity.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "scenario-sensitivity-live",
+      "status": "ready",
+      "acceptance": [
+        "SCEN-CALENDAR-SAVE",
+        "SCEN-SCOPE-SAVE",
+        "SCEN-ORIGINAL-UNCHANGED",
+        "SCEN-FORECAST-COMPARE",
+        "SENS-CAUSAL-EARLY-VS-TERMINAL"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-analysis.spec.ts"
+      ],
+      "minTests": 2,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1500
+    },
+    {
+      "id": "forecast-outcomes-live",
+      "status": "ready",
+      "acceptance": [
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts"
+      ],
+      "grep": "forecast outcomes:",
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "private-observations-live",
+      "status": "ready",
+      "acceptance": [
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts"
+      ],
+      "grep": "private observations:",
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "baseline-visible-ghost",
+      "status": "ready",
+      "acceptance": [
+        "HIST-VISIBLE-EXPOSED-BASELINE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-baseline-visual.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 900
+    },
+    {
+      "id": "private-simulation-live",
+      "status": "ready",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-simulation.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "scenario-adoption-live",
+      "status": "ready",
+      "acceptance": [
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-adoption.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "target-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "capacity-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "private-completed-observation-live",
+      "status": "ready",
+      "acceptance": [
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "sensitivity-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts"
+      ],
+      "minTests": 2,
+      "timeoutSeconds": 1800
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "ready",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-large-history.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 2100
+    },
+    {
+      "id": "integrated-campaign-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE",
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD",
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE",
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE",
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES",
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED",
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION",
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY",
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE",
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-adoption.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts"
+      ],
+      "minTests": 11,
+      "timeoutSeconds": 7200,
+      "componentFeatures": [
+        "private-simulation-live",
+        "scenario-adoption-live",
+        "target-boundaries-live",
+        "capacity-boundaries-live",
+        "sponsor-report-numeric-live",
+        "private-completed-observation-live",
+        "sensitivity-boundaries-live",
+        "sponsor-report-live",
+        "private-observations-live",
+        "forecast-outcomes-live"
+      ],
+      "scopeNote": "Worker-scoped real browser batch; every configured spec must execute, every ordinary test must pass, and the complete batch has before/after identity. Per-test fixture cleanup and output remain unchanged. Broad planned acceptance stays open. Exact discovery is11 tests in9 files, including both session and private observation tests in their shared file; repeated session-outcome verification is not a new distinct acceptance."
+    },
+    {
+      "id": "native-assets-expanded-live",
+      "status": "ready",
+      "acceptance": [
+        "ASSET-NATIVE-MULTIPLE-ANY",
+        "ASSET-TWO-FIELD-AND",
+        "ASSET-EMPTY-NO-MATCH",
+        "ASSET-COMBINATION-GROUP-ONCE",
+        "ASSET-TEXT-FILTER-COMPOSITION",
+        "ASSET-RENAME-STABLE-ID",
+        "ASSET-GANTT-VISIBILITY",
+        "ASSET-HIDDEN-SUCCESSOR-APPLY-SECOND-REST"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts"
+      ],
+      "minTests": 2,
+      "timeoutSeconds": 2400
+    },
+    {
+      "id": "integrated-final-boundaries-live",
+      "status": "ready",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE",
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD",
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE",
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE",
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES",
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED",
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION",
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY",
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE",
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE",
+        "ASSET-NATIVE-MULTIPLE-ANY",
+        "ASSET-TWO-FIELD-AND",
+        "ASSET-EMPTY-NO-MATCH",
+        "ASSET-COMBINATION-GROUP-ONCE",
+        "ASSET-TEXT-FILTER-COMPOSITION",
+        "ASSET-RENAME-STABLE-ID",
+        "ASSET-GANTT-VISIBILITY",
+        "ASSET-HIDDEN-SUCCESSOR-APPLY-SECOND-REST",
+        "TGT-EPIC-EXTERNAL-PREDECESSOR",
+        "TGT-EDIT-DURING-ACTUAL-FORECAST"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-adoption.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+        "scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts"
+      ],
+      "minTests": 14,
+      "timeoutSeconds": 9000,
+      "componentFeatures": [
+        "private-simulation-live",
+        "scenario-adoption-live",
+        "target-boundaries-live",
+        "capacity-boundaries-live",
+        "sponsor-report-numeric-live",
+        "private-completed-observation-live",
+        "sensitivity-boundaries-live",
+        "sponsor-report-live",
+        "private-observations-live",
+        "forecast-outcomes-live",
+        "native-assets-expanded-live"
+      ],
+      "scopeNote": "Fourteen real tests in eleven files, single worker and full before/after identity, zero retries. Includes prepared corrected adoption/private/report/visual witnesses and native Assets. Original45 source after explicit foreign-fixture cleanup; report pagination above2000 is a separate large-history-report-live unit. No prepared capability counts as passed. Actual epic test independently reviewed e8a11c9; source data and old yielded callbacks remain real."
+    }
+  ]
+}

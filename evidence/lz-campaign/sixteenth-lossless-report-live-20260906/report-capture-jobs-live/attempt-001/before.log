@@ -1,0 +1,14 @@
+
+Running 1 test using 1 worker
+
+
+(node:8497) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:14:1 › campaign: actual UI version and preserved LZPT source
+[chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:14:1 › campaign: actual UI version and preserved LZPT source
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.585","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T06:27:03.947Z"}
+
+CAMPAIGN_IDENTITY {"time":"2026-09-06T06:27:08.842Z","phase":"before","uiVersion":"4.58.585","sourceFingerprint":"2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104","issueCount":45,"coordinatedSourceExtension":null,"drafts":0,"protectionEnabled":false,"planIds":["plan-msq9dg8l-gz6mz1","plan-mta3aw3t-6dyijd","plan-mtbrlh8n-7ghw8u"]}
+
+  1 passed (8.7s)

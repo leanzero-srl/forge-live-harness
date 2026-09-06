@@ -1,0 +1,63 @@
+{
+  "marker": "lz-norm-mtp2kesz",
+  "name": "[harness-test] lz-norm-mtp2kesz",
+  "time": "2026-09-06T00:24:23.795Z",
+  "issues": [
+    {
+      "key": "WFH-2853",
+      "seed": {
+        "label": "numeric report 20h",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "release": true
+      }
+    }
+  ],
+  "planId": "plan-test-mtp2kgyf-la1k8y",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp2kgyf-la1k8y",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2853",
+      "deleted": true
+    },
+    {
+      "version": "10290",
+      "deleted": true
+    }
+  ],
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10290",
+    "id": "10290",
+    "name": "[harness-test] lz-norm-mtp2kesz",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2853",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2853",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "bodyError": {
+    "name": "Error",
+    "message": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\u001b[22m\n"
+  },
+  "integrityPassed": true
+}

@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "stamp": "04060881cc2355dc733bb214952b30cc40a09575de6b9e08788d181a9cca6f8e",
+  "startedAt": "2026-09-05T18:24:35.652797+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/history-platform-transaction/attempt-001",
+  "uiVersion": "4.58.575",
+  "forgeVersion": "6.2.0",
+  "appCommit": "dd3fa3b2",
+  "instrumentHash": "c931c336456720311506cd5b5aae398d901824d8bb54c535f3fe8670c9c5489b",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "history platform: real entity fence rolls back both KVS mutations and preserves successor lease"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T18:25:09.600547+00:00",
+  "elapsedSeconds": 33.94738950001192
+}

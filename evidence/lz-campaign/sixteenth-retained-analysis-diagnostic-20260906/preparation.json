@@ -1,0 +1,29 @@
+{
+  "preparedAt": "2026-09-06T06:51:34.183946+00:00",
+  "status": "held-pending-actual-deployment",
+  "forgeVersion": null,
+  "appCommit": null,
+  "uiVersion": "4.58.585",
+  "harnessCommit": "98b80cb1cb9d22a07b97c979a38c9d86f1ce3f2e",
+  "instrumentHash": "bb7446169ad48fccad0a9cd5d449490338b4d03e9d0dd33afb5a95205cf68232",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "advance",
+  "scope": "exact retained large job checkpoint56, one advance only then root review; no cleanup",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "retained large advance:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-retained-analysis-diagnostic-20260906/artifacts"
+  ],
+  "retries": 0,
+  "originalJournalSha256": "dc878ad0ff5ac032b4e428d3e4a9d8425b8f7f6183a7e035aab00f866254a5f1",
+  "expectedPreferencesVersion": 62
+}

@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "stamp": "096611c9f69a4ac8ca4c6965e15faa0acaef964e42bf85749ab965f294ef97b8",
+  "startedAt": "2026-09-05T17:54:13.993750+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-002",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "appCommit": "8bc4dc07",
+  "instrumentHash": "f70ad9aa7ade4531e97188aae07f965141c39b23ff4e67a61b105f06bb1c320a",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "LZPT: milestone hit probabilities are computed, ordered and consistent",
+        "dashboard: schedule confidence computes ordered distributions and replaces presets honestly",
+        "dashboard: a background refresh cannot turn the card into false certainty",
+        "dashboard: invalid or missing source dates make the untouched LZPT forecast unavailable"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 4,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T17:55:33.245963+00:00",
+  "elapsedSeconds": 79.25205437498516
+}

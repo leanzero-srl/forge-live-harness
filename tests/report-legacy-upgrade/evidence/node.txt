@@ -1,0 +1,37 @@
+✔ actual cleanup retains exact manifest before and verifies two strong absence reads (1.532584ms)
+✔ foreign owner request cannot be adopted for cleanup (0.590834ms)
+✔ failed or ambiguous cancel is never retried and exact state survives (0.548458ms)
+✔ false cleanupDone while keys still present cannot pass (0.221ms)
+✔ missing manifest entries after cancellation is not proof of removal (0.16075ms)
+✔ cleanup after complete keeps all public report objects (0.322416ms)
+✔ zero-progress cleanup refused rather than infinite retry (0.143916ms)
+✔ failed physical proof is retained before assertion, without deleting or marking clean (0.19075ms)
+✔ shared observation callback retains exact response before caller validation throws (0.111292ms)
+✔ content cannot be excused by relabeling it as a deletion marker (0.166292ms)
+✔ real shape full lifecycle requires cleanup and preserves immutable report (1.369458ms)
+✔ progress alone is not completion and bounded timeout stays failure (6.565125ms)
+✔ begin request nonce mismatch refused (0.625917ms)
+✔ foreign plan ignored and different job cannot replace admitted job (0.177792ms)
+✔ overlapping mutations fail even if eventual outcomes look successful (0.147792ms)
+✔ wrong expected checkpoint refused before accepting later result (0.114375ms)
+✔ unchanged active checkpoint cannot be graded as progress (0.128959ms)
+✔ terminal cleanup cannot erase a completed report (0.152583ms)
+✔ wrong report hash/identity refused (0.165417ms)
+✔ unknown transport outcome preserves original error and last acknowledged job (0.1675ms)
+✔ failed terminal state retained for explicit refusal assertions, not coerced complete (0.1035ms)
+✔ second begin cannot silently replace first job after a lost result (0.281875ms)
+✔ actual compiled fixture retains report staging and original failure without deleting (52.044958ms)
+✔ actual compiled fixture retains report staging and both independent recovery causes without deleting (14.216625ms)
+✔ exact real old receipt allows resume; owner/plan/job/request/checkpoint changes refuse (1.672833ms)
+✔ old physical key/hash values remain unchanged and present alongside newly registered keys (0.2525ms)
+✔ existing status is explicit admission, never a fabricated begin (1.123084ms)
+✔ resume keeps foreign identity, stale checkpoint and overlap failures (0.62575ms)
+✔ malformed/non-active admission is rejected before observing writes (3.122459ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 356.78275

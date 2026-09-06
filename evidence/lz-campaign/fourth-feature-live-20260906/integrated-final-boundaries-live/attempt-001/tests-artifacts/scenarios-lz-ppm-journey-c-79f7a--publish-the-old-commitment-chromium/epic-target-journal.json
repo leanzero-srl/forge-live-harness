@@ -1,0 +1,126 @@
+{
+  "name": "[harness-test] lz-norm-mtowcjgi Epic target",
+  "summary": "[harness-test] lz-norm-mtowcjgi Epic target owned parent",
+  "source": [
+    {
+      "key": "WFH-2829",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2830",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2831",
+      "start": "2026-12-07",
+      "due": "2026-12-11",
+      "duration": 5
+    }
+  ],
+  "phase": "verified",
+  "epic": {
+    "id": "25032",
+    "key": "WFH-2832",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25032"
+  },
+  "planId": "plan-test-mtowcw1q-0zq9ep",
+  "createStatus": 201,
+  "createBody": "{\"id\":\"25032\",\"key\":\"WFH-2832\",\"self\":\"https://wolfaenpak.atlassian.net/rest/api/3/issue/25032\"}",
+  "indexedHierarchy": [
+    {
+      "key": "WFH-2829",
+      "id": "25029",
+      "parentKey": null,
+      "hierarchyLevel": 0,
+      "predecessors": []
+    },
+    {
+      "key": "WFH-2830",
+      "id": "25030",
+      "parentKey": "WFH-2832",
+      "hierarchyLevel": 0,
+      "predecessors": [
+        "WFH-2829"
+      ]
+    },
+    {
+      "key": "WFH-2831",
+      "id": "25031",
+      "parentKey": null,
+      "hierarchyLevel": 0,
+      "predecessors": []
+    },
+    {
+      "key": "WFH-2832",
+      "id": "25032",
+      "parentKey": null,
+      "hierarchyLevel": 1,
+      "predecessors": []
+    }
+  ],
+  "exactInfluence": true,
+  "forecastRemainedMounted": true,
+  "targetAfter": {
+    "date": "2026-03-01",
+    "id": "90109f1c-ecbc-46ae-bb68-c0fc9d85b799",
+    "name": "Epic commitment",
+    "scope": {
+      "id": "25032",
+      "memberKeys": [
+        "WFH-2830"
+      ],
+      "type": "epic"
+    },
+    "coverage": {
+      "available": true,
+      "reason": null,
+      "memberKeys": [
+        "WFH-2830"
+      ],
+      "memberCount": 1,
+      "scopeLabel": "WFH-2832 · [harness-test] lz-norm-mtowcjgi Epic target owned parent"
+    }
+  },
+  "sourceDatesUnchanged": true,
+  "cleanup": [
+    {
+      "label": "restore primary timer",
+      "ok": true
+    },
+    {
+      "label": "close owned editor",
+      "ok": true
+    },
+    {
+      "label": "leave primary UI",
+      "ok": true
+    },
+    {
+      "label": "identify owned plan",
+      "ok": true
+    },
+    {
+      "label": "clear owned plan draft",
+      "ok": true
+    },
+    {
+      "label": "delete owned plan",
+      "ok": true
+    },
+    {
+      "label": "detach owned child",
+      "ok": false,
+      "error": "TypeError: Cannot read properties of undefined (reading 'parent')"
+    },
+    {
+      "label": "delete owned epic",
+      "ok": true
+    }
+  ],
+  "planDeleted": true,
+  "epicDeleted": true
+}

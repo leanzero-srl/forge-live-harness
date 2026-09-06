@@ -1,0 +1,77 @@
+{
+  "marker": "lz-norm-mtouui5a",
+  "name": "[harness-test] lz-norm-mtouui5a",
+  "time": "2026-09-05T20:48:17.758Z",
+  "issues": [
+    {
+      "key": "WFH-2798",
+      "seed": {
+        "label": "adopt predecessor",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2799",
+      "seed": {
+        "label": "adopt successor",
+        "duration": 5,
+        "start": "2026-03-09",
+        "due": "2026-03-13"
+      }
+    }
+  ],
+  "planId": "plan-test-mtouulvj-y5w316",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtouulvj-y5w316",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2799",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2798",
+      "deleted": true
+    }
+  ],
+  "linkPairs": [
+    {
+      "from": "WFH-2798",
+      "to": "WFH-2799"
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2798",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2799",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2798",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2799",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

@@ -1,0 +1,149 @@
+{
+  "reportPath": "/Users/mihaiperdum/Library/Logs/DiagnosticReports/Google Chrome-2026-09-06-015940.ips",
+  "rawSha256": "0ab73b509c3340865a55fadc758680097e663d520f08c1f6788cbf8234844339",
+  "captureTime": "2026-09-06 01:59:39.9069 +0300",
+  "pid": 45552,
+  "parentPid": 45550,
+  "procName": "Google Chrome",
+  "exception": {
+    "codes": "0x0000000000000001, 0x8000000000000070",
+    "rawCodes": [
+      1,
+      -9223372036854775696
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x8000000000000070"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 11,
+    "namespace": "SIGNAL",
+    "indicator": "Segmentation fault: 11",
+    "byProc": "exc handler",
+    "byPid": 45552
+  },
+  "faultingThread": 0,
+  "faultingFrames": [
+    {
+      "imageOffset": 6432772,
+      "symbol": "ChromeMain",
+      "symbolLocation": 6413044,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 60742208,
+      "symbol": "ChromeMain",
+      "symbolLocation": 60722480,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 126370104,
+      "symbol": "ChromeMain",
+      "symbolLocation": 126350376,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 126379052,
+      "symbol": "ChromeMain",
+      "symbolLocation": 126359324,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 22069120,
+      "symbol": "ChromeMain",
+      "symbolLocation": 22049392,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 126367064,
+      "symbol": "ChromeMain",
+      "symbolLocation": 126347336,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 126369912,
+      "symbol": "ChromeMain",
+      "symbolLocation": 126350184,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 126376332,
+      "symbol": "ChromeMain",
+      "symbolLocation": 126356604,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 49831352,
+      "symbol": "ChromeMain",
+      "symbolLocation": 49811624,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 49829920,
+      "symbol": "ChromeMain",
+      "symbolLocation": 49810192,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 45551748,
+      "symbol": "ChromeMain",
+      "symbolLocation": 45532020,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 45551468,
+      "symbol": "ChromeMain",
+      "symbolLocation": 45531740,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 60935460,
+      "symbol": "ChromeMain",
+      "symbolLocation": 60915732,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 60974032,
+      "symbol": "ChromeMain",
+      "symbolLocation": 60954304,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 2761516,
+      "symbol": "ChromeMain",
+      "symbolLocation": 2741788,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 60972976,
+      "symbol": "ChromeMain",
+      "symbolLocation": 60953248,
+      "imageIndex": 1
+    },
+    {
+      "imageOffset": 515936,
+      "symbol": "__CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__",
+      "symbolLocation": 28,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 515828,
+      "symbol": "__CFRunLoopDoSource0",
+      "symbolLocation": 172,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 515168,
+      "symbol": "__CFRunLoopDoSources0",
+      "symbolLocation": 232,
+      "imageIndex": 6
+    },
+    {
+      "imageOffset": 510084,
+      "symbol": "__CFRunLoopRun",
+      "symbolLocation": 820,
+      "imageIndex": 6
+    }
+  ]
+}

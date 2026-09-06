@@ -1,0 +1,24 @@
+✔ positive exact retained fixture and every real-shape captured page accepted without writes (9.064625ms)
+✔ unsuccessful preferences response refuses additive admission (1.658ms)
+✔ future global guard refuses additive admission (0.733791ms)
+✔ invalid global guard time refuses additive admission (0.7465ms)
+✔ extra unowned plan refuses additive admission (2.34475ms)
+✔ changed issue duration refuses additive admission (2.259875ms)
+✔ wrong fixVersion refuses additive admission (1.662041ms)
+✔ foreign preferences refuses additive admission (1.7815ms)
+✔ retained unsaved draft refuses additive admission (1.790958ms)
+✔ nonempty active registry refuses additive admission (2.40825ms)
+✔ wrong array active registry shape refuses additive admission (1.827125ms)
+✔ changed report hash refuses additive admission (4.64875ms)
+✔ corrupt actual page content refuses additive admission (3.77025ms)
+✔ global original source guard wrong refuses additive admission (0.860583ms)
+✔ actual after phase accepts exact before evidence roundtrip (8.358333ms)
+✔ actual after phase rejects changed before evidence (5.022791ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 339.125333

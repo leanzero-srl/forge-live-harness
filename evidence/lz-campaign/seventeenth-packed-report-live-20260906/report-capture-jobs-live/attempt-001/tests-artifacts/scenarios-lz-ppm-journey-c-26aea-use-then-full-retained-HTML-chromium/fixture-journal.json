@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtpj21bx",
+  "name": "[harness-test] lz-norm-mtpj21bx",
+  "time": "2026-09-06T08:05:59.997Z",
+  "issues": [
+    {
+      "key": "WFH-2966",
+      "seed": {
+        "label": "report job resume",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    }
+  ],
+  "planId": "plan-test-mtpj25tm-2p9rds",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtpj25tm-2p9rds",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2966",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2966",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2966",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

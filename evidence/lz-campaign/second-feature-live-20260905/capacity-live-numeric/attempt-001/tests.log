@@ -1,0 +1,41 @@
+
+Running 1 test using 1 worker
+
+
+(node:41305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-capacity.spec.ts:17:1 › capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads
+[chromium] › scenarios/lz-ppm/journey-campaign-capacity.spec.ts:17:1 › capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads
+[jira !!] GET /rest/api/3/issue/WFH-2778 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2777 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2776 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtor9c77","name":"[harness-test] lz-norm-mtor9c77","time":"2026-09-05T19:07:51.427Z","issues":[{"key":"WFH-2776","seed":{"label":"shared20h","duration":10,"start":"2026-09-07","due":"2026-09-18"}},{"key":"WFH-2777","seed":{"label":"extra12h","duration":3,"start":"2026-09-09","due":"2026-09-11"}},{"key":"WFH-2778","seed":{"label":"other40h","duration":5,"start":"2026-09-07","due":"2026-09-11"}}],"planId":"plan-test-mtor9g7n-krs4ss","cleanup":[{"plan":"plan-test-mtor9g7n-krs4ss","deleted":true},{"issue":"WFH-2778","deleted":true},{"issue":"WFH-2777","deleted":true},{"issue":"WFH-2776","deleted":true}],"searchIndexVerified":[{"key":"WFH-2776","start":"2026-09-07","due":"2026-09-18","duration":10},{"key":"WFH-2777","start":"2026-09-09","due":"2026-09-11","duration":3}],"forgeIndexObservations":[[{"key":"WFH-2776","start":"2026-09-07","due":"2026-09-18","duration":10},{"key":"WFH-2777","start":"2026-09-09","due":"2026-09-11","duration":3}]],"integrityPassed":true}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-capacity.spec.ts:17:1 › capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 | function envelope(request:any){try{let raw=request.postDataBuffer();if(!raw)return null;if(raw[0]===31&&raw[1]===139)raw=gunzipSync(raw);return JSON.parse(raw.toString());}catch{return null;}}
+      13 | const rpcBody=async(r:any)=>(await r.json()).data?.invokeExtension?.response?.body;
+    > 14 | function response(page:any,name:string){return page.waitForResponse((r:any)=>envelope(r.request())?.variables?.input?.payload?.call?.functionKey===name,{timeout:120000}).then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const body=await rpcBody(r);expect(body.success).toBe(true);return body;});}
+         |                                                                                                                                                                                                                                                                                                ^
+      15 | async function date(frame:any,within:any,label:string,value:string){await within.getByRole('button',{name:label,exact:true}).click();const cal=frame.locator('.lz-datepicker');const[year,month]=value.split('-').map(Number);const months=['January','February','March','April','May','June','July','August','September','October','November','December'];for(let n=0;n<30;n++){const title=(await cal.locator('span').first().textContent()).trim();if(title===`${months[month-1]} ${year}`)break;const[m,y]=title.split(' ');await cal.getByRole('button',{name:Number(y)*12+months.indexOf(m)<year*12+month-1?'Next month':'Previous month',exact:true}).click();}await expect(cal.locator('span').first()).toHaveText(`${months[month-1]} ${year}`);await cal.getByRole('button',{name:value,exact:true}).click();}
+      16 |
+      17 | test('capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads',async({page},info)=>{
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:14:288
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:29:174
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:19:2
+
+    Error Context: evidence/lz-campaign/second-feature-live-20260905/capacity-live-numeric/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-97c70--produce-exact-weekly-loads-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-capacity.spec.ts:17:1 › capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads 

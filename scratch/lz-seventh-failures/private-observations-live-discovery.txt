@@ -1,0 +1,3 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:28:1 › private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact
+Total: 1 test in 1 file

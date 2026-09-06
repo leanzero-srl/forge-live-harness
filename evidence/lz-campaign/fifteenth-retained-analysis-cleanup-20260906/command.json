@@ -1,0 +1,28 @@
+{
+  "time": "2026-09-06T05:33:40.719637+00:00",
+  "forgeVersion": "6.13.0",
+  "uiVersion": "4.58.585",
+  "appCommit": "e8d46785d8cda3d2b3680b0e84e52dbd7c1a68ee",
+  "harnessCommit": "ee40c988116e020af403fb0bc865b099738241b1",
+  "instrumentHash": "ab2a342c15478b83007119e7c746547c506aa120805c749cbef5ac71e31d6532",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "cleanup",
+  "scope": "exact retained staging and owned plan cleanup after reviewed diagnostic; no Jira or preference writes",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-recover-fifteenth-large.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "retained large cleanup:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-retained-analysis-cleanup-20260906/artifacts"
+  ],
+  "retries": 0,
+  "diagnosticJournal": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-retained-analysis-diagnostic-20260906/artifacts/scenarios-lz-ppm-campaign--84c1b-pendent-integrity-preserved-chromium/fifteenth-advance.json",
+  "diagnosticSha": "03a89e156a4c7a3a11b459e8bce49572375ac28a6b2de5c14f041341155c9f15"
+}

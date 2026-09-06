@@ -1,0 +1,75 @@
+
+Running 1 test using 1 worker
+
+
+(node:95515) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:15:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+[chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:15:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.585","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T04:59:57.099Z"}
+
+[jira !!] GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 -> 404
+
+[jira !!] GET /rest/api/3/version/10325 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtpcesms","name":"[harness-test] lz-norm-mtpcesms","time":"2026-09-06T04:59:57.940Z","issues":[{"key":"WFH-2915","seed":{"label":"numeric report 20h","duration":5,"start":"2026-09-07","due":"2026-09-11","release":true}}],"planId":"plan-test-mtpceuhw-otzmgc","cleanup":[{"plan":"plan-test-mtpceuhw-otzmgc","deleted":true},{"version":"10325","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10325","id":"10325","name":"[harness-test] lz-norm-mtpcesms","archived":false,"released":false,"projectId":10001},"searchIndexVerified":[{"key":"WFH-2915","start":"2026-09-07","due":"2026-09-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2915","start":"2026-09-07","due":"2026-09-11","duration":5}]],"bodyError":{"name":"Error","message":"Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {\"errorMessages\":[\"Issue does not exist or you do not have permission to see it.\"],\"errors\":{}}"},"cleanupErrors":[{"stage":"delete-owned-issue:WFH-2915","name":"Error","message":"Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {\"errorMessages\":[\"Issue does not exist or you do not have permission to see it.\"],\"errors\":{}}"}],"integrityPassed":false}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:15:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 
+
+    AggregateError: Owned schedule body/cleanup failures; every independent cleanup attempted
+
+       at scenarios/lz-ppm/normalization-owned-fixture.ts:129
+
+      127 |     await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(before.issues));});
+      128 |     journal.integrityPassed=cleanupErrors.length===0;persist();console.log('OWNED_SCHEDULE_CLEANUP',JSON.stringify(journal));
+    > 129 |     if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Owned schedule body/cleanup failures; every independent cleanup attempted');
+          |                                   ^
+      130 |     if(bodyError)throw bodyError;
+      131 |   }
+      132 | }
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:129:35)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:17:2
+
+    Error: Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {"errorMessages":["Issue does not exist or you do not have permission to see it."],"errors":{}}
+
+       at data/jira.mjs:80
+
+      78 |
+      79 |     if (!res.ok) {
+    > 80 |       const err = new Error(`Jira ${method} ${path} failed ${res.status}: ${text.slice(0, 600)}`);
+         |                   ^
+      81 |       err.status = res.status;
+      82 |       err.body = json;
+      83 |       throw err;
+        at request (/Users/mihaiperdum/Projects/forge-live-harness/data/jira.mjs:80:19)
+        at Object.read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:23:19)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:68:94
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:17:2
+
+    Error: Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {"errorMessages":["Issue does not exist or you do not have permission to see it."],"errors":{}}
+
+       at data/jira.mjs:80
+
+      78 |
+      79 |     if (!res.ok) {
+    > 80 |       const err = new Error(`Jira ${method} ${path} failed ${res.status}: ${text.slice(0, 600)}`);
+         |                   ^
+      81 |       err.status = res.status;
+      82 |       err.body = json;
+      83 |       throw err;
+        at request (/Users/mihaiperdum/Projects/forge-live-harness/data/jira.mjs:80:19)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:23:19)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:115:7
+        at attempt (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:94:11)
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:114:54)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:17:2
+
+    Error Context: evidence/lz-campaign/fifteenth-staged-report-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:15:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 

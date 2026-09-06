@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtorbtgl",
+  "name": "[harness-test] lz-norm-mtorbtgl",
+  "time": "2026-09-05T19:09:47.109Z",
+  "issues": [
+    {
+      "key": "WFH-2781",
+      "seed": {
+        "label": "visible baseline span",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtorbwiw-sr4h61",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtorbwiw-sr4h61",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2781",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2781",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2781",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

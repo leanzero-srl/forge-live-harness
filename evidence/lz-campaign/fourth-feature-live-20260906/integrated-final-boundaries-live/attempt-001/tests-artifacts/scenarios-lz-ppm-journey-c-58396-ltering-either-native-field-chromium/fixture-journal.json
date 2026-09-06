@@ -1,0 +1,77 @@
+{
+  "marker": "lz-norm-mtowag1d",
+  "name": "[harness-test] lz-norm-mtowag1d",
+  "time": "2026-09-05T21:28:41.137Z",
+  "issues": [
+    {
+      "key": "WFH-2823",
+      "seed": {
+        "label": "Assets visible predecessor",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2824",
+      "seed": {
+        "label": "Assets hidden successor",
+        "duration": 5,
+        "start": "2026-03-09",
+        "due": "2026-03-13"
+      }
+    }
+  ],
+  "planId": "plan-test-mtowaj7i-te4lwf",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtowaj7i-te4lwf",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2824",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2823",
+      "deleted": true
+    }
+  ],
+  "linkPairs": [
+    {
+      "from": "WFH-2823",
+      "to": "WFH-2824"
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2823",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2824",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2823",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2824",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

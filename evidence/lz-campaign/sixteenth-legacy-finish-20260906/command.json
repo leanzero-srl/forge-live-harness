@@ -1,0 +1,31 @@
+{
+  "runId": "sixteenth-legacy-finish-20260906",
+  "createdAt": "2026-09-06T06:06:08.542610+00:00",
+  "harnessHead": "658ec44adfda6f4096444c7ff8fd351dcdee27c0",
+  "instrument": "c7d477e3dbaadc0e698d87a5122add036f596a6f8529bf692143dc364efeec0e",
+  "forgeVersion": "6.14.0",
+  "uiVersion": "4.58.585",
+  "appSource": "ec4ee64a8a345c9165891e86ec0ba6fc34cfa11d",
+  "mode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "finish",
+  "sourceExtension": null,
+  "expectedPreferencesVersion": 59,
+  "expectedTests": 1,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "legacy report finish:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-finish-20260906/artifacts"
+  ],
+  "runtimeSource": "497ddfd9360a682898c6265c19332311d1272e7d",
+  "prepareJournal": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-prepare-20260906/artifacts/scenarios-lz-ppm-campaign--1a7ae-report-across-codec-upgrade-chromium/legacy-prepare.json",
+  "prepareSha": "2be700183292667acdb21323bd8546c99b6b6e187681fd8662728d63d5d8eeaf"
+}

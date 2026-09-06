@@ -1,0 +1,14 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import ts from 'typescript';
+const source=fs.readFileSync(new URL('../../scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts',import.meta.url),'utf8');const start=source.indexOf('const stopUi=async()=>departOwnedPlan('),end=source.indexOf(' const acquire=',start);assert(start>0&&end>start);const block=ts.transpileModule(source.slice(start,end),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+const expectedAccount='owner';
+const expect=value=>({toHaveLength:n=>assert.equal(value.length,n),toBe:n=>assert.equal(value,n),toBeVisible:async()=>assert.equal(await value.isVisible(),true),toHaveCount:async n=>assert.equal(await value.count(),n)});
+function locator(count,visible=count>0){return {count:async()=>count,isVisible:async()=>visible,first(){return this;},getByRole(){return this;},click:async()=>{}};}
+async function ports(surface,beatPlan='owned'){
+ const selectors=[];const frame={locator:selector=>{selectors.push(selector);if(selector==='button[aria-label="Back to plans"][title="Back to plans"]')return locator(surface==='plan'?1:0);if(selector==='[data-testid="capacity-view"]')return locator(surface==='capacity'?1:0);throw new Error('Unexpected locator '+selector);},getByText:text=>locator(text==='Owned plan'&&surface==='plan'||text==='LZPT Scenarios'&&surface==='list'?1:0)};
+ const page={frames:()=>[frame],url:()=>surface==='blank'?'about:blank':'https://app.invalid',goto:async()=>{}};
+ const make=new Function('page','departOwnedPlan','drainUi','record','planId','name','journal','expectedCapacityWire','expect','armPresenceLeave','departureObservers',`let lastBlankRequestId=0,uiCount=1;${block};return stopUi;`);
+ const stop=make(page,async p=>p,async()=>{},()=>{},'owned','Owned plan',{uiRequests:[{requestId:1,key:'presenceBeat',planId:beatPlan,state:'finished',httpStatus:200,outerSuccess:true,body:{selfAccountId:expectedAccount}}]},{accountId:expectedAccount},expect,()=>{},new Set());return {p:await stop(),selectors};
+}
+test('actual compiled Capacity surface never masquerades as owned PlanView despite same Back copy',async()=>{const {p,selectors}=await ports('capacity');assert.equal(await p.findMounted(),null);await p.confirmNonPlan();assert(selectors.includes('[data-testid="capacity-view"]'));});
+test('actual compiled owned toolbar requires new exact owned successful presence identity',async()=>{const {p}=await ports('plan');assert(await p.findMounted());const bad=await ports('plan','foreign');await assert.rejects(bad.p.findMounted());});
+test('actual compiled blank/list are positively distinguished from unknown surface',async()=>{for(const surface of ['blank','list']){const {p}=await ports(surface);assert.equal(await p.findMounted(),null);await p.confirmNonPlan();}const {p}=await ports('unknown');await assert.rejects(p.confirmNonPlan());});

@@ -1,0 +1,298 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+      "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-002/tests-artifacts",
+      "--grep-invert",
+      "table: a background refresh"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-002/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-002/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+      "file": "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "LZPT: milestone hit probabilities are computed, ordered and consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27291,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "MILESTONE STEP names = [\"Gate A\",\"Go-live\"]\n"
+                    },
+                    {
+                      "text": "PLAN META milestones = [{\"date\":\"2026-10-05\",\"id\":\"ms-1788630881991-0\",\"name\":\"Gate A\"},{\"date\":\"2026-11-30\",\"id\":\"ms-1788630883141-1\",\"name\":\"Go-live\"}] issues = \u001b[33m5\u001b[39m\n"
+                    },
+                    {
+                      "text": "CARD p50= 2026-10-13 p90= 2026-10-14 milestones= [{\"name\":\"◆Gate AWhole plan · 3 tasksOct 50% unlikely\",\"prob\":0},{\"name\":\"◆Go-liveWhole plan · 3 tasksNov 30100% likely\",\"prob\":1}]\n"
+                    },
+                    {
+                      "text": "CREATED_PLAN_STILL_EXISTS= \u001b[33mfalse\u001b[39m\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:54:30.443Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "08b9477aeddc44add9b1-dfb5c575a5b722a698aa",
+          "file": "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+          "line": 33,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+      "file": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "dashboard: schedule confidence computes ordered distributions and replaces presets honestly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 420000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10623,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "FORECAST FIXTURE {\"planId\":\"plan-test-mtoonm3b-92h624\",\"name\":\"[harness-test] Forecast proof numbers mtoonlx4\",\"keys\":[\"LZPT-205\",\"LZPT-209\",\"LZPT-215\"]}\n"
+                    },
+                    {
+                      "text": "MEDIUM {\"p50\":\"2026-10-13\",\"p80\":\"2026-10-14\",\"p90\":\"2026-10-14\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.36,\"bars\":[274,26]}\n"
+                    },
+                    {
+                      "text": "HIGH {\"p50\":\"2026-10-14\",\"p80\":\"2026-10-15\",\"p90\":\"2026-10-16\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.22,\"bars\":[191,109]}\n"
+                    },
+                    {
+                      "text": "LOW AFTER RAPID REPLACEMENT {\"p50\":\"2026-10-12\",\"p80\":\"2026-10-13\",\"p90\":\"2026-10-13\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.7333333333333333,\"bars\":[300]} observed renders \u001b[33m45\u001b[39m\n"
+                    },
+                    {
+                      "text": "FORECAST CLEANUP {\"planId\":\"plan-test-mtoonm3b-92h624\",\"deleted\":true,\"sourceScheduleUnchanged\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:54:58.121Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preset-replacement-observations",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xMyIsCiAgICAicHJlc2V0IjogImxvdyIsCiAgICAibGFiZWwiOiAiTG93IOKIkjEwJSAvICsxNSUiCiAgfSwKICB7CiAgICAicDkwIjogIjIwMjYtMTAtMTMiLAogICAgInByZXNldCI6ICJsb3ciLAogICAgImxhYmVsIjogIkxvdyDiiJIxMCUgLyArMTUlIgogIH0sCiAgewogICAgInA5MCI6ICIyMDI2LTEwLTEzIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAiaGlnaCIsCiAgICAibGFiZWwiOiAiSGlnaCDiiJIyMCUgLyArNjAlIgogIH0sCiAgewogICAgInA5MCI6ICIiLAogICAgInByZXNldCI6ICJoaWdoIiwKICAgICJsYWJlbCI6ICJIaWdoIOKIkjIwJSAvICs2MCUiCiAgfSwKICB7CiAgICAicDkwIjogIiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAiaGlnaCIsCiAgICAibGFiZWwiOiAiSGlnaCDiiJIyMCUgLyArNjAlIgogIH0sCiAgewogICAgInA5MCI6ICIiLAogICAgInByZXNldCI6ICJoaWdoIiwKICAgICJsYWJlbCI6ICJIaWdoIOKIkjIwJSAvICs2MCUiCiAgfSwKICB7CiAgICAicDkwIjogIiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAiaGlnaCIsCiAgICAibGFiZWwiOiAiSGlnaCDiiJIyMCUgLyArNjAlIgogIH0sCiAgewogICAgInA5MCI6ICIiLAogICAgInByZXNldCI6ICJoaWdoIiwKICAgICJsYWJlbCI6ICJIaWdoIOKIkjIwJSAvICs2MCUiCiAgfSwKICB7CiAgICAicDkwIjogIiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAiaGlnaCIsCiAgICAibGFiZWwiOiAiSGlnaCDiiJIyMCUgLyArNjAlIgogIH0sCiAgewogICAgInA5MCI6ICIiLAogICAgInByZXNldCI6ICJoaWdoIiwKICAgICJsYWJlbCI6ICJIaWdoIOKIkjIwJSAvICs2MCUiCiAgfSwKICB7CiAgICAicDkwIjogIiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xMyIsCiAgICAicHJlc2V0IjogImxvdyIsCiAgICAibGFiZWwiOiAiTG93IOKIkjEwJSAvICsxNSUiCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eca6406881ec956467b2-bad57734a541a15321cc",
+          "file": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "dashboard: a background refresh cannot turn the card into false certainty",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 420000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11868,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "FORECAST FIXTURE {\"planId\":\"plan-test-mtoonua9-qlpj3w\",\"name\":\"[harness-test] Forecast proof refresh mtoonu42\",\"keys\":[\"LZPT-205\",\"LZPT-209\",\"LZPT-215\"]}\n"
+                    },
+                    {
+                      "text": "BEFORE / AFTER REFRESH {\"before\":{\"p50\":\"2026-10-13\",\"p80\":\"2026-10-14\",\"p90\":\"2026-10-14\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.36,\"bars\":[274,26]},\"after\":{\"p50\":\"2026-10-13\",\"p80\":\"2026-10-14\",\"p90\":\"2026-10-14\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.36,\"bars\":[274,26]}}\n"
+                    },
+                    {
+                      "text": "FORECAST CLEANUP {\"planId\":\"plan-test-mtoonua9-qlpj3w\",\"deleted\":true,\"sourceScheduleUnchanged\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:55:08.749Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eca6406881ec956467b2-ba78adf1078bd9df4376",
+          "file": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+          "line": 68,
+          "column": 1
+        },
+        {
+          "title": "dashboard: invalid or missing source dates make the untouched LZPT forecast unavailable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 420000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6270,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "INVALID COVERAGE Forecast unavailable — correct the schedule dates first.\n35 of 37 tasks have valid date pairs · 29 durations eligible for sampling. Not sampled: 6 complete · 0 buffers · 0 declared-zero milestones · 8 parent summaries.\nMissing start or due date (1): LZPT-212.\nDue date before start (1): LZPT-214.\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:55:20.622Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eca6406881ec956467b2-6a8e14d7aeeb8a675ef9",
+          "file": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+          "line": 90,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T17:54:30.122Z",
+    "duration": 56990.729,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

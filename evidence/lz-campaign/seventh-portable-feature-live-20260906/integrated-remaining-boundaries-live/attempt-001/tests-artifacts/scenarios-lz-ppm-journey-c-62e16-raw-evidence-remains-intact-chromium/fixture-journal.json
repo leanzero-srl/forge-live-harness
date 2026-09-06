@@ -1,0 +1,50 @@
+{
+  "marker": "lz-norm-mtp2vyxt",
+  "name": "[harness-test] lz-norm-mtp2vyxt",
+  "time": "2026-09-06T00:33:23.105Z",
+  "issues": [
+    {
+      "key": "WFH-2868",
+      "seed": {
+        "label": "forecast observed work",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp2w21s-fnmonn",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp2w21s-fnmonn",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2868",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2868",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2868",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "bodyError": {
+    "name": "AssertionError",
+    "message": "Screenshot subject became blocked before capture\n\nfalse !== true\n"
+  },
+  "integrityPassed": true
+}

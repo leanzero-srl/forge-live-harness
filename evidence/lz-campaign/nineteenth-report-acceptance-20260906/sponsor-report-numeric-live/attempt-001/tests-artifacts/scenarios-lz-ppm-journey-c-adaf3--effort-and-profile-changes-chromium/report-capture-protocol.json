@@ -1,0 +1,1778 @@
+{
+  "planId": "plan-test-mtq22psp-7ewb9e",
+  "job": {
+    "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+    "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+    "name": "Numeric commitment and overload",
+    "createdAt": "2026-09-06T16:58:43.905Z",
+    "expiresAt": "2026-09-07T16:58:43.905Z",
+    "checkpoint": 51,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 51,
+    "totalUnits": 51,
+    "cleanupDone": true,
+    "forecastRuns": {
+      "completed": 300,
+      "total": 300
+    },
+    "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+  },
+  "report": {
+    "baseline": null,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "capacity": {
+      "asOfDate": "2026-09-06",
+      "assumptions": "This captured plan only, not the selected portfolio. Remaining Jira effort is spread over its remaining working dates; personal leave reduces capacity, not demand. The author explicitly included these saved availability assumptions in this shared report. No tasks are moved.",
+      "coverage": {
+        "completedIssues": 0,
+        "conflictingIssues": 0,
+        "missingEffort": 0,
+        "selectedPlans": 1,
+        "sharedDuplicatesRemoved": 0,
+        "unallocatedIssues": 0,
+        "unassignedIssues": 0,
+        "unavailableAssignee": 0,
+        "unavailableIssueCount": 0,
+        "unavailableStatus": 0,
+        "uniqueIssues": 1
+      },
+      "endDate": "2026-09-13",
+      "inputHash": "797b87a6bbdbba6416272de03d9921c81a4e336b0d78982ded36847008fc6bc9",
+      "profileVersion": 66,
+      "readAt": "2026-09-06T16:59:24.635Z",
+      "readStartedAt": "2026-09-06T16:59:18.586Z",
+      "reason": null,
+      "scope": "captured-plan",
+      "sourceVersion": 5,
+      "startDate": "2026-09-07",
+      "state": "available",
+      "totals": {
+        "allocatedHours": 20,
+        "knownEffortHours": 20,
+        "outsideWindowHours": 0,
+        "unallocatedHours": 0
+      }
+    },
+    "changeCounts": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+    },
+    "consistency": {
+      "basisHash": "f34e7497a189149c89912096af1c5b908d2b02c9446dd01070a53fa829be800d",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T16:58:46.551Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T16:59:31.226Z"
+    },
+    "counts": {
+      "availability": 1,
+      "capacity": 1,
+      "changes": 0,
+      "targets": 2,
+      "timeline": 1,
+      "unallocated": 0
+    },
+    "coverage": {
+      "leafTasks": 1,
+      "unavailableRows": 0,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1
+    },
+    "document": {
+      "availability": {
+        "hashes": [
+          "b8b8a0aeda00622baffa642368f1f9c792fc56078d3df4077b76a2135d32bcfe"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "capacity": {
+        "hashes": [
+          "ccfeec3e049324dcdaa0971d364d542ffa0f36d913b99c2e850cbe7f599f11fc"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [
+          "c0fc486faedb8c7fc333c3e6c8522d4102f5d45a29098b520d1c0f5382d3cf89"
+        ],
+        "sizes": [
+          2
+        ],
+        "total": 2
+      },
+      "timeline": {
+        "hashes": [
+          "88ff5cb5bbc2525c36b8cc37297de9bece1c9eb36b2f8e27c31b5c3d427af7d6"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "unallocated": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      }
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "c74bd06813b6ccc7ca57d920695dd50261b5498d959a9dcb65816e5d198ede5c",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.48333333333333334,
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "high"
+    },
+    "hash": "a1791316fb7b0e4807bb89ce0687fd14d3f6550d9769534a5174dcc5b3a7bddf",
+    "id": "84d8dc20-0357-449d-8d01-84f63818f179",
+    "name": "Numeric commitment and overload",
+    "pageSize": 50,
+    "pages": {
+      "availability": 1,
+      "capacity": 1,
+      "changes": 0,
+      "targets": 1,
+      "timeline": 1,
+      "unallocated": 0
+    },
+    "planName": "[harness-test] lz-norm-mtq22not",
+    "plannedFinish": "2026-09-11",
+    "sourceVersion": 5,
+    "span": {
+      "finish": "2026-09-11",
+      "start": "2026-09-07"
+    },
+    "takenAt": "2026-09-06T16:58:43.628Z",
+    "uncertainty": "high",
+    "workingChangeCount": 0
+  },
+  "error": null,
+  "begin": {
+    "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+    "name": "Numeric commitment and overload",
+    "inputHash": "c4c35f3eca45bb9db354cdb94018e8fc432329ca12d8764f9b49ed13e54bd3e3",
+    "at": 1788713922993
+  },
+  "events": [
+    {
+      "type": "request",
+      "key": "captureSponsorReport",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788713922993
+    },
+    {
+      "type": "response",
+      "key": "captureSponsorReport",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 0,
+        "state": "active",
+        "stageLabel": "Checking the plan",
+        "completedUnits": 0,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713924055,
+      "elapsedMs": 1062
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 0,
+      "at": 1788713924055
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713925487,
+      "elapsedMs": 1432
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 1,
+      "at": 1788713925488
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 2,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 2,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713926711,
+      "elapsedMs": 1223
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 2,
+      "at": 1788713926712
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 3,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 3,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713927852,
+      "elapsedMs": 1140
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 3,
+      "at": 1788713927853
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 4,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713928841,
+      "elapsedMs": 988
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 4,
+      "at": 1788713928842
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 5,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 5,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713930104,
+      "elapsedMs": 1262
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 5,
+      "at": 1788713930104
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 6,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 6,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713931141,
+      "elapsedMs": 1037
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 6,
+      "at": 1788713931141
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 7,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 7,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 0,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713932287,
+      "elapsedMs": 1146
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 7,
+      "at": 1788713932288
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 8,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 8,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 25,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713933443,
+      "elapsedMs": 1155
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 8,
+      "at": 1788713933444
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 9,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 9,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 50,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713934617,
+      "elapsedMs": 1173
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 9,
+      "at": 1788713934618
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 10,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 10,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 75,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713935906,
+      "elapsedMs": 1288
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 10,
+      "at": 1788713935907
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 11,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 11,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 100,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713937198,
+      "elapsedMs": 1291
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 11,
+      "at": 1788713937199
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 12,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 12,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 125,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713938628,
+      "elapsedMs": 1429
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 12,
+      "at": 1788713938628
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 13,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 13,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 150,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713939813,
+      "elapsedMs": 1185
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 13,
+      "at": 1788713939813
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 14,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 14,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 175,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713940945,
+      "elapsedMs": 1132
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 14,
+      "at": 1788713940946
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 15,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 15,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 200,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713942253,
+      "elapsedMs": 1307
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 15,
+      "at": 1788713942254
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 16,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 16,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 225,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713943464,
+      "elapsedMs": 1210
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 16,
+      "at": 1788713943465
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 17,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 17,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 250,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713944833,
+      "elapsedMs": 1368
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 17,
+      "at": 1788713944834
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 18,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 18,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 275,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713946160,
+      "elapsedMs": 1326
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 18,
+      "at": 1788713946161
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 19,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 19,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713947530,
+      "elapsedMs": 1369
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 19,
+      "at": 1788713947531
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 20,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 20,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713948927,
+      "elapsedMs": 1396
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 20,
+      "at": 1788713948928
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 21,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 21,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713950457,
+      "elapsedMs": 1529
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 21,
+      "at": 1788713950457
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 22,
+        "state": "active",
+        "stageLabel": "Verifying forecast results",
+        "completedUnits": 22,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713951750,
+      "elapsedMs": 1293
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 22,
+      "at": 1788713951751
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 23,
+        "state": "active",
+        "stageLabel": "Preparing forecast results",
+        "completedUnits": 23,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713952939,
+      "elapsedMs": 1188
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 23,
+      "at": 1788713952940
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 24,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 24,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713954091,
+      "elapsedMs": 1151
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 24,
+      "at": 1788713954092
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 25,
+        "state": "active",
+        "stageLabel": "Preparing forecast results",
+        "completedUnits": 25,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713955244,
+      "elapsedMs": 1152
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 25,
+      "at": 1788713955245
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 26,
+        "state": "active",
+        "stageLabel": "Retaining the selected baseline",
+        "completedUnits": 26,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713956598,
+      "elapsedMs": 1353
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 26,
+      "at": 1788713956599
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 27,
+        "state": "active",
+        "stageLabel": "Reading availability assumptions",
+        "completedUnits": 27,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713957679,
+      "elapsedMs": 1080
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 27,
+      "at": 1788713957680
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 28,
+        "state": "active",
+        "stageLabel": "Reading current Jira effort",
+        "completedUnits": 28,
+        "totalUnits": 28,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713958777,
+      "elapsedMs": 1097
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 28,
+      "at": 1788713958778
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 29,
+        "state": "active",
+        "stageLabel": "Reading current Jira effort",
+        "completedUnits": 29,
+        "totalUnits": 29,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713960216,
+      "elapsedMs": 1438
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 29,
+      "at": 1788713960217
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 30,
+        "state": "active",
+        "stageLabel": "Calculating capacity",
+        "completedUnits": 30,
+        "totalUnits": 30,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713961357,
+      "elapsedMs": 1140
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 30,
+      "at": 1788713961358
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 31,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 31,
+        "totalUnits": 31,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713962382,
+      "elapsedMs": 1024
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 31,
+      "at": 1788713962383
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 32,
+        "state": "active",
+        "stageLabel": "Calculating capacity",
+        "completedUnits": 32,
+        "totalUnits": 32,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713963537,
+      "elapsedMs": 1154
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 32,
+      "at": 1788713963537
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 33,
+        "state": "active",
+        "stageLabel": "Preparing the report",
+        "completedUnits": 33,
+        "totalUnits": 33,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713964889,
+      "elapsedMs": 1352
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 33,
+      "at": 1788713964889
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 34,
+        "state": "active",
+        "stageLabel": "Retaining report pages",
+        "completedUnits": 34,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713966456,
+      "elapsedMs": 1567
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 34,
+      "at": 1788713966456
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 35,
+        "state": "active",
+        "stageLabel": "Retaining report pages",
+        "completedUnits": 35,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713967756,
+      "elapsedMs": 1300
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 35,
+      "at": 1788713967757
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 36,
+        "state": "active",
+        "stageLabel": "Checking for plan changes",
+        "completedUnits": 36,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713968938,
+      "elapsedMs": 1181
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 36,
+      "at": 1788713968939
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 37,
+        "state": "active",
+        "stageLabel": "Confirming the plan is unchanged",
+        "completedUnits": 37,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713970212,
+      "elapsedMs": 1273
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 37,
+      "at": 1788713970213
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 38,
+        "state": "active",
+        "stageLabel": "Recording capture provenance",
+        "completedUnits": 38,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713971398,
+      "elapsedMs": 1185
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 38,
+      "at": 1788713971399
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 39,
+        "state": "active",
+        "stageLabel": "Checking every report page",
+        "completedUnits": 39,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713972671,
+      "elapsedMs": 1272
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 39,
+      "at": 1788713972671
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 40,
+        "state": "active",
+        "stageLabel": "Checking the retained schedule",
+        "completedUnits": 40,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713974056,
+      "elapsedMs": 1385
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 40,
+      "at": 1788713974057
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 41,
+        "state": "active",
+        "stageLabel": "Publishing the verified report",
+        "completedUnits": 41,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713975221,
+      "elapsedMs": 1164
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": 41,
+      "at": 1788713975222
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 42,
+        "state": "complete",
+        "stageLabel": "Report ready",
+        "completedUnits": 42,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713976515,
+      "elapsedMs": 1293
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713976515
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 43,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 43,
+        "totalUnits": 43,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713977543,
+      "elapsedMs": 1028
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713977544
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 44,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 44,
+        "totalUnits": 44,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713978589,
+      "elapsedMs": 1045
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713978590
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 45,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 45,
+        "totalUnits": 45,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713979593,
+      "elapsedMs": 1003
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713979594
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 46,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 46,
+        "totalUnits": 46,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713980806,
+      "elapsedMs": 1212
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713980806
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 47,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 47,
+        "totalUnits": 47,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713981783,
+      "elapsedMs": 977
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713981784
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 48,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 48,
+        "totalUnits": 48,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713982980,
+      "elapsedMs": 1196
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713982981
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 49,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 49,
+        "totalUnits": 49,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713984163,
+      "elapsedMs": 1182
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713984163
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 50,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 50,
+        "totalUnits": 50,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713985116,
+      "elapsedMs": 953
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+      "expectedCheckpoint": null,
+      "at": 1788713985118
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9c79517e-da50-4edc-b6cb-93912fd744c7",
+        "requestId": "b6015807-5a90-4eaa-a89f-42e920f8daca",
+        "name": "Numeric commitment and overload",
+        "createdAt": "2026-09-06T16:58:43.905Z",
+        "expiresAt": "2026-09-07T16:58:43.905Z",
+        "checkpoint": 51,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 51,
+        "totalUnits": 51,
+        "cleanupDone": true,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "84d8dc20-0357-449d-8d01-84f63818f179"
+      },
+      "at": 1788713986220,
+      "elapsedMs": 1102
+    }
+  ]
+}

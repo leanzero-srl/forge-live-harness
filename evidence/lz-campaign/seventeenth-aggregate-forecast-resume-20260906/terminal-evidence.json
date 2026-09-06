@@ -1,0 +1,94 @@
+{
+  "recordedAt": "2026-09-06T13:25:50.078866+00:00",
+  "process": {
+    "pid": 76908,
+    "status": "terminal",
+    "exitCode": 1,
+    "time": "2026-09-06T13:22:26.588311+00:00"
+  },
+  "processChecks": [
+    {
+      "pid": 76907,
+      "psExit": 1,
+      "present": false
+    },
+    {
+      "pid": 76908,
+      "psExit": 1,
+      "present": false
+    },
+    {
+      "pid": 76926,
+      "psExit": 1,
+      "present": false
+    }
+  ],
+  "journal": {
+    "path": "artifacts/scenarios-lz-ppm-campaign--7ca7a-rt-and-HTML-without-cleanup-chromium/seventeenth-aggregate-resume.json",
+    "bytes": 60333484,
+    "sha256": "7be7311c7d5369ccdf70bd9f9144c4ae44111814a7100a9df3a5d72b80afdf67"
+  },
+  "attemptCount": 29,
+  "acknowledgedCount": 28,
+  "lastAcknowledgedCheckpoint": 155,
+  "lastStrongCheckpoint": 155,
+  "lastStrongAt": "2026-09-06T13:21:21.447Z",
+  "lastStrongJob": {
+    "id": "b9a0dc2b-53cd-4caf-8f20-dafbb066ac98",
+    "requestId": "2d8c3fef-b28e-45a5-b4bc-06755e609e03",
+    "name": "Every existing performance row",
+    "createdAt": "2026-09-06T08:15:32.097Z",
+    "expiresAt": "2026-09-07T08:15:32.097Z",
+    "checkpoint": 155,
+    "state": "active",
+    "stageLabel": "Retaining report pages",
+    "completedUnits": 155,
+    "totalUnits": 183,
+    "cleanupDone": false,
+    "forecastRuns": {
+      "completed": 40,
+      "total": 40
+    },
+    "reportId": "05526885-ecea-499a-ba38-9479d7ae8b16"
+  },
+  "lastStrongPrivateCount": 187,
+  "lastStrongRegisteredPublicCount": 114,
+  "lastStrongPublicPresent": 110,
+  "lastStrongPrivateHashValid": true,
+  "lastStrongPrivateManifestHash": "874846b0d1eb01c48bd6d5d85ebac0869db0aef2c1414824c7ae96d17d0c3429",
+  "lastStrongPublicManifestHash": "4308e488a22f7c2a69643466329ff9f09cbb37b5118c34c8e28fafb88a498489",
+  "refusedAttempt": {
+    "startedMs": 1788700881584,
+    "returnedMs": 1788700881747,
+    "elapsedMs": 163,
+    "httpStatus": 200,
+    "outerSuccess": false,
+    "body": null,
+    "errors": [
+      {
+        "message": "Token has expired: 1788700881 > 1788700835",
+        "extensions": {
+          "__typename": "GenericMutationErrorExtension",
+          "errorType": "FCT_VALIDATION_TOKEN_EXPIRED",
+          "statusCode": 400
+        }
+      }
+    ],
+    "traceId": "8881c71506d4483581f75b7d9f7668f8",
+    "responseBytes": 297,
+    "responseSha256": "52f5ec67cdae3b8561734c049ad04fdd788f9262448df597adca137620eee9cb"
+  },
+  "finalFailedAudits": [
+    "retained-job",
+    "pristine-snapshot",
+    "preferences",
+    "original-drafts",
+    "owned-baseline"
+  ],
+  "finalWholeStateVerified": false,
+  "sourceAndPreferencesPreserved": false,
+  "completed": false,
+  "publicationObserved": false,
+  "cleanupAttempted": false,
+  "browserInstrumentLaneReleased": true
+}

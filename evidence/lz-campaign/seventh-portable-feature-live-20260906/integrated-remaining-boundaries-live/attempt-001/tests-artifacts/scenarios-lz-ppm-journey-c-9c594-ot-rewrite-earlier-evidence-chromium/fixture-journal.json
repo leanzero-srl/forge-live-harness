@@ -1,0 +1,50 @@
+{
+  "marker": "lz-norm-mtp2s39x",
+  "name": "[harness-test] lz-norm-mtp2s39x",
+  "time": "2026-09-06T00:30:22.101Z",
+  "issues": [
+    {
+      "key": "WFH-2866",
+      "seed": {
+        "label": "retained completed outcome",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp2s6yk-isqt9v",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp2s6yk-isqt9v",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2866",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2866",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2866",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "bodyError": {
+    "name": "TimeoutError",
+    "message": "page.waitForResponse: Timeout 120000ms exceeded while waiting for event \"response\""
+  },
+  "integrityPassed": true
+}

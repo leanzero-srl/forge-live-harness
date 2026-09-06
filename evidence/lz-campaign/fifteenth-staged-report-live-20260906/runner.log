@@ -1,0 +1,59 @@
+2026-09-06T04:56:18.914509+00:00 NOW report-capture-jobs-live NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-06T04:56:18.916661+00:00 ACTIVE report-capture-jobs-live child 90615
+2026-09-06T04:56:27.537787+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:56:42.751346+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:56:57.959455+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:57:13.198747+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:57:28.433263+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:57:43.647623+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:57:58.658577+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:58:13.771308+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:58:28.905144+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:58:44.055641+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:58:59.196802+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:59:14.356744+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:59:29.505388+00:00 ACTIVE report-capture-jobs-live child 90793
+2026-09-06T04:59:36.943992+00:00 ACTIVE report-capture-jobs-live child 95213
+2026-09-06T04:59:45.407340+00:00 RESULT report-capture-jobs-live passed
+2026-09-06T04:59:45.416166+00:00 NOW sponsor-report-numeric-live NEXT estimated 2026-09-06T05:03:11.905622+00:00 SWEEP estimated 2026-09-06T05:10:04.884573+00:00
+2026-09-06T04:59:45.419042+00:00 ACTIVE sponsor-report-numeric-live child 95375
+2026-09-06T04:59:53.629863+00:00 ACTIVE sponsor-report-numeric-live child 95514
+2026-09-06T05:00:08.762725+00:00 ACTIVE sponsor-report-numeric-live child 95514
+2026-09-06T05:00:23.872221+00:00 ACTIVE sponsor-report-numeric-live child 95514
+2026-09-06T05:00:39.022978+00:00 ACTIVE sponsor-report-numeric-live child 95514
+2026-09-06T05:00:54.187164+00:00 ACTIVE sponsor-report-numeric-live child 95514
+2026-09-06T05:01:09.262197+00:00 ACTIVE sponsor-report-numeric-live child 95514
+2026-09-06T05:01:24.399251+00:00 ACTIVE sponsor-report-numeric-live child 95514
+2026-09-06T05:01:29.248424+00:00 ACTIVE sponsor-report-numeric-live child 98210
+2026-09-06T05:01:38.482846+00:00 RESULT sponsor-report-numeric-live failed
+2026-09-06T05:01:38.489349+00:00 NOW sponsor-report-live NEXT estimated 2026-09-06T05:04:18.266350+00:00 SWEEP estimated 2026-09-06T05:06:58.043366+00:00
+2026-09-06T05:01:38.491454+00:00 ACTIVE sponsor-report-live child 98301
+2026-09-06T05:01:47.447511+00:00 ACTIVE sponsor-report-live child 98781
+2026-09-06T05:02:02.578559+00:00 ACTIVE sponsor-report-live child 98781
+2026-09-06T05:02:17.681503+00:00 ACTIVE sponsor-report-live child 98781
+2026-09-06T05:02:32.822341+00:00 ACTIVE sponsor-report-live child 98781
+2026-09-06T05:02:47.930753+00:00 ACTIVE sponsor-report-live child 98781
+2026-09-06T05:03:03.048573+00:00 ACTIVE sponsor-report-live child 98781
+2026-09-06T05:03:12.263653+00:00 ACTIVE sponsor-report-live child 1606
+2026-09-06T05:03:21.243770+00:00 RESULT sponsor-report-live passed
+2026-09-06T05:03:21.249909+00:00 NOW large-history-report-live NEXT estimated 2026-09-06T05:05:42.018701+00:00 SWEEP estimated 2026-09-06T05:05:42.018707+00:00
+2026-09-06T05:03:21.251897+00:00 ACTIVE large-history-report-live child 1932
+2026-09-06T05:03:30.514157+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:03:45.626842+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:04:00.750612+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:04:15.886207+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:04:31.018637+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:04:46.120841+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:05:01.244366+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:05:16.337294+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:05:31.473107+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:05:46.653702+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:06:01.786005+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:06:16.900594+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:06:32.009488+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:06:47.165692+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:07:02.272691+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:07:17.392516+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:07:32.556094+00:00 ACTIVE large-history-report-live child 2306
+2026-09-06T05:07:42.031526+00:00 ACTIVE large-history-report-live child 9625
+2026-09-06T05:07:50.500279+00:00 RESULT large-history-report-live integrity_failed

@@ -1,0 +1,18 @@
+{
+  "time": "2026-09-05T22:02:20.156438+00:00",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-recover-numeric-capacity.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=list,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-numeric-settings-recovery-20260906/artifacts"
+  ],
+  "harnessCommit": "e11a3116afe21054a6811d2563e121e904846b00",
+  "sourceJournal": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/numeric-report-journal.json",
+  "originalJournal": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-4ccc2-r-show-false-spare-capacity-chromium/capacity-boundaries-journal.json",
+  "purpose": "Exact operator recovery only; not feature acceptance"
+}

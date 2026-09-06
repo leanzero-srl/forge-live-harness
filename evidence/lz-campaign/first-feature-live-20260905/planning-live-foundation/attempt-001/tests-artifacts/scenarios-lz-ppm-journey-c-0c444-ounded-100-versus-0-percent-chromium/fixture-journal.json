@@ -1,0 +1,54 @@
+{
+  "marker": "lz-norm-mtoopxrj",
+  "name": "[harness-test] lz-norm-mtoopxrj",
+  "time": "2026-09-05T17:56:47.023Z",
+  "issues": [
+    {
+      "key": "WFH-2711",
+      "seed": {
+        "label": "scoped early",
+        "duration": 2,
+        "start": "2026-10-05",
+        "due": "2026-10-06",
+        "release": true
+      }
+    },
+    {
+      "key": "WFH-2712",
+      "seed": {
+        "label": "outside long",
+        "duration": 41,
+        "start": "2026-10-05",
+        "due": "2026-11-30"
+      }
+    }
+  ],
+  "planId": "plan-test-mtooq0qg-q0z7zi",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtooq0qg-q0z7zi",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2712",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2711",
+      "deleted": true
+    },
+    {
+      "version": "10281",
+      "deleted": true
+    }
+  ],
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10281",
+    "id": "10281",
+    "name": "[harness-test] lz-norm-mtoopxrj",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "integrityPassed": true
+}

@@ -1,0 +1,198 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 91603,
+                  "error": {
+                    "message": "AggregateError: Owned schedule body/cleanup failures; every independent cleanup attempted",
+                    "stack": "AggregateError: Owned schedule body/cleanup failures; every independent cleanup attempted\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:129:35)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:17:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                      "column": 35,
+                      "line": 129
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/normalization-owned-fixture.ts:129\n\n  127 |     await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(before.issues));});\n  128 |     journal.integrityPassed=cleanupErrors.length===0;persist();console.log('OWNED_SCHEDULE_CLEANUP',JSON.stringify(journal));\n> 129 |     if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Owned schedule body/cleanup failures; every independent cleanup attempted');\n      |                                   ^\n  130 |     if(bodyError)throw bodyError;\n  131 |   }\n  132 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 35,
+                        "line": 129
+                      },
+                      "message": "AggregateError: Owned schedule body/cleanup failures; every independent cleanup attempted\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:129\n\n  127 |     await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(before.issues));});\n  128 |     journal.integrityPassed=cleanupErrors.length===0;persist();console.log('OWNED_SCHEDULE_CLEANUP',JSON.stringify(journal));\n> 129 |     if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Owned schedule body/cleanup failures; every independent cleanup attempted');\n      |                                   ^\n  130 |     if(bodyError)throw bodyError;\n  131 |   }\n  132 | }\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:129:35)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:17:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/data/jira.mjs",
+                        "column": 19,
+                        "line": 80
+                      },
+                      "message": "Error: Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {\"errorMessages\":[\"Issue does not exist or you do not have permission to see it.\"],\"errors\":{}}\n\n   at data/jira.mjs:80\n\n  78 |\n  79 |     if (!res.ok) {\n> 80 |       const err = new Error(`Jira ${method} ${path} failed ${res.status}: ${text.slice(0, 600)}`);\n     |                   ^\n  81 |       err.status = res.status;\n  82 |       err.body = json;\n  83 |       throw err;\n    at request (/Users/mihaiperdum/Projects/forge-live-harness/data/jira.mjs:80:19)\n    at Object.read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:23:19)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:68:94\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:17:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/data/jira.mjs",
+                        "column": 19,
+                        "line": 80
+                      },
+                      "message": "Error: Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {\"errorMessages\":[\"Issue does not exist or you do not have permission to see it.\"],\"errors\":{}}\n\n   at data/jira.mjs:80\n\n  78 |\n  79 |     if (!res.ok) {\n> 80 |       const err = new Error(`Jira ${method} ${path} failed ${res.status}: ${text.slice(0, 600)}`);\n     |                   ^\n  81 |       err.status = res.status;\n  82 |       err.body = json;\n  83 |       throw err;\n    at request (/Users/mihaiperdum/Projects/forge-live-harness/data/jira.mjs:80:19)\n    at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:23:19)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:115:7\n    at attempt (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:94:11)\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:114:54)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:17:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.585\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T04:59:57.099Z\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/version/10325 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtpcesms\",\"name\":\"[harness-test] lz-norm-mtpcesms\",\"time\":\"2026-09-06T04:59:57.940Z\",\"issues\":[{\"key\":\"WFH-2915\",\"seed\":{\"label\":\"numeric report 20h\",\"duration\":5,\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"release\":true}}],\"planId\":\"plan-test-mtpceuhw-otzmgc\",\"cleanup\":[{\"plan\":\"plan-test-mtpceuhw-otzmgc\",\"deleted\":true},{\"version\":\"10325\",\"deleted\":true}],\"version\":{\"self\":\"https://wolfaenpak.atlassian.net/rest/api/3/version/10325\",\"id\":\"10325\",\"name\":\"[harness-test] lz-norm-mtpcesms\",\"archived\":false,\"released\":false,\"projectId\":10001},\"searchIndexVerified\":[{\"key\":\"WFH-2915\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2915\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5}]],\"bodyError\":{\"name\":\"Error\",\"message\":\"Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {\\\"errorMessages\\\":[\\\"Issue does not exist or you do not have permission to see it.\\\"],\\\"errors\\\":{}}\"},\"cleanupErrors\":[{\"stage\":\"delete-owned-issue:WFH-2915\",\"name\":\"Error\",\"message\":\"Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {\\\"errorMessages\\\":[\\\"Issue does not exist or you do not have permission to see it.\\\"],\\\"errors\\\":{}}\"}],\"integrityPassed\":false}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T04:59:54.223Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                    "column": 35,
+                    "line": 129
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f9ddfa32995747f70449-d9b459f8a4b6d470d0ec",
+          "file": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+          "line": 15,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T04:59:53.875Z",
+    "duration": 95145.031,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "key": "WFH-2853",
+  "M": "2026-09-07",
+  "due": "2026-09-11",
+  "leave": "2026-09-10",
+  "p50": "2026-09-14",
+  "p90": "2026-09-15",
+  "expectedDemand": 20,
+  "expectedCapacity": 12,
+  "lifecycle": [
+    {
+      "name": "download-wait-started",
+      "time": "2026-09-06T00:24:59.506Z",
+      "suffix": "original"
+    },
+    {
+      "name": "download-button-clicked",
+      "time": "2026-09-06T00:24:59.540Z",
+      "suffix": "original"
+    },
+    {
+      "name": "download-event-observed",
+      "time": "2026-09-06T00:25:01.961Z",
+      "suffix": "original",
+      "filename": "sponsor-report-2c829e67-c9f1-4a9b-95ed-ffc502e0ab07.html"
+    },
+    {
+      "name": "download-saved",
+      "time": "2026-09-06T00:25:01.981Z",
+      "suffix": "original",
+      "bytes": 8635
+    },
+    {
+      "name": "report-document-page-opening",
+      "time": "2026-09-06T00:25:01.981Z"
+    },
+    {
+      "name": "report-document-page-opened",
+      "time": "2026-09-06T00:25:02.004Z"
+    },
+    {
+      "name": "report-document-navigation-started",
+      "time": "2026-09-06T00:25:02.005Z"
+    },
+    {
+      "name": "report-document-navigation-completed",
+      "time": "2026-09-06T00:25:02.018Z"
+    },
+    {
+      "name": "report-pdf-started",
+      "time": "2026-09-06T00:25:02.434Z"
+    },
+    {
+      "name": "report-pdf-saved",
+      "time": "2026-09-06T00:25:02.531Z"
+    },
+    {
+      "name": "report-document-close-started",
+      "time": "2026-09-06T00:25:02.531Z"
+    },
+    {
+      "name": "report-document-close-completed",
+      "time": "2026-09-06T00:25:02.538Z"
+    }
+  ],
+  "preferences": {
+    "initialized": true,
+    "original": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "lastOwned": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "version": 38,
+    "pending": null,
+    "restored": true,
+    "history": [
+      {
+        "name": "admitted",
+        "time": "2026-09-06T00:24:35.354Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T00:24:36.846Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T00:24:37.243Z"
+      },
+      {
+        "name": "restore-intent",
+        "time": "2026-09-06T00:25:23.659Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T00:25:24.164Z"
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-06T00:25:24.357Z",
+        "read": 1,
+        "version": 38
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-06T00:25:24.631Z",
+        "read": 2,
+        "version": 38
+      },
+      {
+        "name": "restored",
+        "time": "2026-09-06T00:25:24.631Z"
+      }
+    ]
+  },
+  "originalSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "summary": {
+    "id": "2c829e67-c9f1-4a9b-95ed-ffc502e0ab07",
+    "hash": "ea7ad0fe2973e361b2ddfa576cde00974f31f5e4086a2da32ab75b5560ab4a5e",
+    "name": "Numeric commitment and overload",
+    "planName": "[harness-test] lz-norm-mtp2kesz",
+    "takenAt": "2026-09-06T00:24:53.204Z",
+    "sourceVersion": 6,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "f766dec4d05196551a08e2fb03000451236fe8138c0256865a9cee0a8c4d4587",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.48333333333333334,
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "high"
+    },
+    "capacity": {
+      "asOfDate": "2026-09-06",
+      "assumptions": "This captured plan only, not the selected portfolio. Remaining Jira effort is spread over its remaining working dates; personal leave reduces capacity, not demand. The author explicitly included these saved availability assumptions in this shared report. No tasks are moved.",
+      "coverage": {
+        "completedIssues": 0,
+        "conflictingIssues": 0,
+        "missingEffort": 0,
+        "selectedPlans": 1,
+        "sharedDuplicatesRemoved": 0,
+        "unallocatedIssues": 0,
+        "unassignedIssues": 0,
+        "unavailableAssignee": 0,
+        "unavailableIssueCount": 0,
+        "unavailableStatus": 0,
+        "uniqueIssues": 1
+      },
+      "endDate": "2026-09-13",
+      "inputHash": "70160697df00da2e16f038d93d1dfb465734fe1ba02d93fa00612c3d26bcf261",
+      "profileVersion": 37,
+      "readAt": "2026-09-06T00:24:52.865Z",
+      "readStartedAt": "2026-09-06T00:24:52.605Z",
+      "reason": null,
+      "scope": "captured-plan",
+      "sourceVersion": 6,
+      "startDate": "2026-09-07",
+      "state": "available",
+      "totals": {
+        "allocatedHours": 20,
+        "knownEffortHours": 20,
+        "outsideWindowHours": 0,
+        "unallocatedHours": 0
+      }
+    },
+    "uncertainty": "high",
+    "consistency": {
+      "basisHash": "8b0ebd912b3f6a5b2bd06b8298789e4f548fd54161a32e0f55812b8c08df2cff",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T00:24:52.542Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T00:24:53.204Z"
+    },
+    "baseline": null,
+    "counts": {
+      "timeline": 1,
+      "targets": 2,
+      "changes": 0,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 1,
+      "changes": 0,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "document": {
+      "availability": {
+        "hashes": [
+          "b8b8a0aeda00622baffa642368f1f9c792fc56078d3df4077b76a2135d32bcfe"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "capacity": {
+        "hashes": [
+          "ccfeec3e049324dcdaa0971d364d542ffa0f36d913b99c2e850cbe7f599f11fc"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [
+          "c0eabfdc2c8221445bc2e34a82a1f7d265193ce5e27e72a85422b089e1ff6163"
+        ],
+        "sizes": [
+          2
+        ],
+        "total": 2
+      },
+      "timeline": {
+        "hashes": [
+          "976c18a239682727de7a72d310903357650d6325423bd78f39eaef9d912a6c6b"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "unallocated": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 1,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1,
+      "unavailableRows": 0
+    },
+    "span": {
+      "start": "2026-09-07",
+      "finish": "2026-09-11"
+    },
+    "plannedFinish": "2026-09-11",
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 0
+    }
+  },
+  "targetRows": [
+    {
+      "date": "2026-09-07",
+      "forecastReason": null,
+      "forecastState": "available",
+      "key": "02b90ad5-aef5-42e8-9d1a-19274837d2e8",
+      "memberCount": 1,
+      "name": "Scoped earliest",
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "plannedFinish": "2026-09-11",
+      "probability": 0,
+      "reason": null,
+      "scopeId": "10290",
+      "scopeLabel": "[harness-test] lz-norm-mtp2kesz",
+      "scopeType": "release",
+      "state": "After target"
+    },
+    {
+      "date": "2026-09-18",
+      "forecastReason": null,
+      "forecastState": "available",
+      "key": "2a933980-843c-4fa1-a998-ec5f27192af3",
+      "memberCount": 1,
+      "name": "Scoped later",
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "plannedFinish": "2026-09-11",
+      "probability": 1,
+      "reason": null,
+      "scopeId": "10290",
+      "scopeLabel": "[harness-test] lz-norm-mtp2kesz",
+      "scopeType": "release",
+      "state": "Within target"
+    }
+  ],
+  "capacityRows": [
+    {
+      "availableDays": 4,
+      "capacityHours": 12,
+      "demandHours": 20,
+      "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-09-07",
+      "name": "Mihai Perdum",
+      "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "status": "overloaded",
+      "unknownEffortCount": 0,
+      "utilizationPct": 166.66666666666669,
+      "week": "2026-09-07"
+    }
+  ],
+  "availabilityRows": [
+    {
+      "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "name": "Mihai Perdum",
+      "profile": {
+        "hoursPerDay": 8,
+        "leaveDates": [
+          "2026-09-10"
+        ],
+        "partTimePct": 50,
+        "reservePct": 25,
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    }
+  ],
+  "bodyError": {
+    "name": "Error",
+    "message": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\u001b[22m\n"
+  },
+  "originalPrivateSettingsRestored": true
+}

@@ -1,0 +1,107 @@
+{
+  "features": [
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200,
+      "scopeNote": "Only the corresponding failed seventh witness; original failure retained in seventh-portable-feature-live-20260906. Preparation only, not executed against the pending fixes."
+    },
+    {
+      "id": "private-completed-observation-live",
+      "status": "ready",
+      "acceptance": [
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200,
+      "scopeNote": "Only the corresponding failed seventh witness; original failure retained in seventh-portable-feature-live-20260906. Preparation only, not executed against the pending fixes."
+    },
+    {
+      "id": "private-observations-live",
+      "status": "ready",
+      "acceptance": [
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts"
+      ],
+      "grep": "private observations:",
+      "minTests": 1,
+      "timeoutSeconds": 1200,
+      "scopeNote": "Only the corresponding failed seventh witness; original failure retained in seventh-portable-feature-live-20260906. Preparation only, not executed against the pending fixes."
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1500,
+      "scopeNote": "Only the corresponding failed seventh witness; original failure retained in seventh-portable-feature-live-20260906. Preparation only, not executed against the pending fixes."
+    },
+    {
+      "id": "private-simulation-live",
+      "status": "ready",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-simulation.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200,
+      "scopeNote": "Only the corresponding failed seventh witness; original failure retained in seventh-portable-feature-live-20260906. Preparation only, not executed against the pending fixes."
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "ready",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-large-history.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 2100,
+      "scopeNote": "Only the corresponding failed seventh witness; original failure retained in seventh-portable-feature-live-20260906. Preparation only, not executed against the pending fixes."
+    }
+  ],
+  "instrumentHash": "1226d20e0769aec862c6ac7d6560feb9b5d422c70f9a62d9154d33cefba0f517",
+  "liveTestsExecuted": false
+}

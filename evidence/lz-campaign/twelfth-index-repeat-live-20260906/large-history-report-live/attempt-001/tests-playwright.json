@@ -1,0 +1,170 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/twelfth-index-repeat-live-20260906/large-history-report-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/twelfth-index-repeat-live-20260906/large-history-report-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/twelfth-index-repeat-live-20260906/large-history-report-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 1800000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 149737,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:14:106\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:53:421",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts",
+                      "column": 106,
+                      "line": 14
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/campaign-ui.ts:14\n\n  12 | export function observedResponse(page:any,functionKey:string,planId?:string) {\n  13 |  return page.waitForResponse((r:any)=>{const c=callOf(r.request());return c?.functionKey===functionKey&&(!planId||c.payload?.planId===planId);},{timeout:120000})\n> 14 |   .then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=await bodyOf(r);expect(b).toBeTruthy();return b;});\n     |                                                                                                          ^\n  15 | }\n  16 | export function actualResponse(page:any,functionKey:string,planId?:string) {\n  17 |  return observedResponse(page,functionKey,planId).then((b:any)=>{expect(b.success,`${functionKey}: ${b.error||'unspecified failure'}`).toBe(true);return b;});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts",
+                        "column": 106,
+                        "line": 14
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m\n\n   at scenarios/lz-ppm/campaign-ui.ts:14\n\n  12 | export function observedResponse(page:any,functionKey:string,planId?:string) {\n  13 |  return page.waitForResponse((r:any)=>{const c=callOf(r.request());return c?.functionKey===functionKey&&(!planId||c.payload?.planId===planId);},{timeout:120000})\n> 14 |   .then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=await bodyOf(r);expect(b).toBeTruthy();return b;});\n     |                                                                                                          ^\n  15 | }\n  16 | export function actualResponse(page:any,functionKey:string,planId?:string) {\n  17 |  return observedResponse(page,functionKey,planId).then((b:any)=>{expect(b.success,`${functionKey}: ${b.error||'unspecified failure'}`).toBe(true);return b;});\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:14:106\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:53:421"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.583\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T02:23:21.766Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T02:23:16.763Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/twelfth-index-repeat-live-20260906/large-history-report-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2f98e-without-mutating-the-source-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts",
+                    "column": 106,
+                    "line": 14
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b8946c56ac8f95bbb7d5-d72898f976270761d924",
+          "file": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+          "line": 13,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T02:23:16.451Z",
+    "duration": 155350.607,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

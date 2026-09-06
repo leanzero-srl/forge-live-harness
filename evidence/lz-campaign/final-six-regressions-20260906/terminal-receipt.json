@@ -1,0 +1,292 @@
+{
+  "schema": "final-six-terminal-receipt-v1",
+  "status": "closed",
+  "terminalAt": "2026-09-06T17:36:40.305297+00:00",
+  "pidCheckedAt": "2026-09-06T17:39:02.481943+00:00",
+  "checkedPids": [
+    26860,
+    27123,
+    27414,
+    29102,
+    29335,
+    29800,
+    36244
+  ],
+  "alivePids": [],
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/launch.json",
+    "sha256": "d3235e0be437814a5394af35855dd614ba5149a7657807625eea5c9c7af9e162",
+    "bytes": 360
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/command.json",
+    "sha256": "ba2ac8e827b998af7654ca85099ed241d0c1dab336cef56c4846a6027707447e",
+    "bytes": 1808
+  },
+  "state": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/state.json",
+    "sha256": "67c0c4bfa04227d09f4a51b62fb6a6b8aa7304efaf9f859736878670f599bafb",
+    "bytes": 137
+  },
+  "summary": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/summary.json",
+    "sha256": "be6fe72aea02a3ab4eab6f24ffc5559c3df640b2c3522792d12fbe2c157696f7",
+    "bytes": 15034
+  },
+  "selectedUnits": {
+    "normalization": {
+      "result": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/result.json",
+        "sha256": "0366a9a0ca4ad5646ab66e0b3076d3eabcab14b7723ae38835a3bc3361e40acf",
+        "bytes": 1473
+      },
+      "report": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/tests-playwright.json",
+        "sha256": "a48154a477066bd9d01b20da881da916bc6b7102156a2764f2f0959594f91586",
+        "bytes": 5299
+      },
+      "titles": [
+        "table: a background refresh must not un-normalize the durations"
+      ],
+      "allThreePhasesPassed": true
+    },
+    "persistence-durability": {
+      "result": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/result.json",
+        "sha256": "669288063e78c0a0966b3d33fb77e69deb7c3e67c111414f418036dfe95b98c0",
+        "bytes": 1907
+      },
+      "report": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-playwright.json",
+        "sha256": "8c65cd0690bb1bf07c38a57bcf0c2f14745f420a1cb0586d45b17ee695a52e34",
+        "bytes": 17054
+      },
+      "titles": [
+        "persistence: acknowledged Save7 replaces earlier autosaved6 before immediate reopen",
+        "persistence: an actual held Save response preserves a later local edit as unsaved",
+        "persistence: partial Apply discards a previously Saved sibling durably through completion reload",
+        "persistence: simulated draft-read HTTP403 gates edits and real Retry recovers unseen draft",
+        "persistence: simulated draft-read HTTP503 gates edits and real Retry recovers unseen draft"
+      ],
+      "allThreePhasesPassed": true
+    }
+  },
+  "selectedTestsPassed": 6,
+  "runnerStatePreserved": "incomplete",
+  "runnerSummaryCompletePreserved": false,
+  "reason": "Execution filters to config.features; summarize grades every manifest feature, including unselected not_run/not_implemented. No summary rewrite.",
+  "identities": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/before-identity.json",
+      "sha256": "d084e61a21c9ae630c2fbce894020fda09e70f67a90e1247be9c435dd03588a7",
+      "bytes": 386
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/before-identity.json",
+      "sha256": "3a93e9b48287027386c4a6de943119ca1c6d5ed0ad421de3736440272c955143",
+      "bytes": 386
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/after-identity.json",
+      "sha256": "3410ec80a9d2b745d0882ba667ec63d5b6eb4daf9fa054618509c623d7aa37c8",
+      "bytes": 385
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before-identity.json",
+      "sha256": "1aab71057057720281ef6b3ce324b0a29e27c6a8f887f8cdb17cb764827019b5",
+      "bytes": 386
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/after-identity.json",
+      "sha256": "fa2af47c8964b8d1ebd8f134e0d502abbf9b455c10716a09087fcdcc6ef58da3",
+      "bytes": 385
+    }
+  ],
+  "fixtures": [
+    {
+      "file": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-9afa7-ed6-before-immediate-reopen-chromium/fixture-journal.json",
+        "sha256": "78593efbc46929f7c356accb266875cc50d145794df2748159c2c3e40c0a6a7e",
+        "bytes": 858
+      },
+      "planId": "plan-test-mtq3brl5-hrrx5p",
+      "issues": [
+        "WFH-2987"
+      ],
+      "cleanup": [
+        {
+          "plan": "plan-test-mtq3brl5-hrrx5p",
+          "deleted": true
+        },
+        {
+          "issue": "WFH-2987",
+          "deleted": true
+        }
+      ]
+    },
+    {
+      "file": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-3e753-Retry-recovers-unseen-draft-chromium/fixture-journal.json",
+        "sha256": "f8d271d64fc12902aa08d17314210436cf4a2e159e2617a4d575abc6cfbe0da9",
+        "bytes": 1342
+      },
+      "planId": "plan-test-mtq3dyza-ai4tah",
+      "issues": [
+        "WFH-2991",
+        "WFH-2992"
+      ],
+      "cleanup": [
+        {
+          "plan": "plan-test-mtq3dyza-ai4tah",
+          "deleted": true
+        },
+        {
+          "issue": "WFH-2992",
+          "deleted": true
+        },
+        {
+          "issue": "WFH-2991",
+          "deleted": true
+        }
+      ]
+    },
+    {
+      "file": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-e7e97-y-through-completion-reload-chromium/fixture-journal.json",
+        "sha256": "fff8d62af1611d750ec960ee8057d2c8a7c7674fa58b5c78b34ccbf6214be4d4",
+        "bytes": 1346
+      },
+      "planId": "plan-test-mtq3d3pm-unm86o",
+      "issues": [
+        "WFH-2989",
+        "WFH-2990"
+      ],
+      "cleanup": [
+        {
+          "plan": "plan-test-mtq3d3pm-unm86o",
+          "deleted": true
+        },
+        {
+          "issue": "WFH-2990",
+          "deleted": true
+        },
+        {
+          "issue": "WFH-2989",
+          "deleted": true
+        }
+      ]
+    },
+    {
+      "file": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-8d9a3-Retry-recovers-unseen-draft-chromium/fixture-journal.json",
+        "sha256": "4886441fe41a9c142979fa67d7eb20dacd7bef8d84631d840635276a0f10c0f9",
+        "bytes": 1342
+      },
+      "planId": "plan-test-mtq3exnf-xt5ftl",
+      "issues": [
+        "WFH-2993",
+        "WFH-2994"
+      ],
+      "cleanup": [
+        {
+          "plan": "plan-test-mtq3exnf-xt5ftl",
+          "deleted": true
+        },
+        {
+          "issue": "WFH-2994",
+          "deleted": true
+        },
+        {
+          "issue": "WFH-2993",
+          "deleted": true
+        }
+      ]
+    },
+    {
+      "file": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-bceb3-later-local-edit-as-unsaved-chromium/fixture-journal.json",
+        "sha256": "0c6b1f16302dbd6f67849fc1be0bde651e0f37d08ea9df36a0f70cb1b0ac4e6a",
+        "bytes": 857
+      },
+      "planId": "plan-test-mtq3ceir-d1t8nm",
+      "issues": [
+        "WFH-2988"
+      ],
+      "cleanup": [
+        {
+          "plan": "plan-test-mtq3ceir-d1t8nm",
+          "deleted": true
+        },
+        {
+          "issue": "WFH-2988",
+          "deleted": true
+        }
+      ]
+    }
+  ],
+  "actualAttachments": [
+    {
+      "name": "transport-instrumentation",
+      "value": {
+        "method": "Real savePlanState request executed and returned success; only its unchanged response delivery was held while the user edited7.",
+        "functionKey": "savePlanState",
+        "planId": "plan-test-mtq3ceir-d1t8nm",
+        "submitted": [
+          {
+            "key": "WFH-2988",
+            "duration": 6,
+            "startDate": "2026-10-05",
+            "dueDate": "2026-10-12"
+          }
+        ],
+        "result": {
+          "success": true,
+          "saved": 1,
+          "notIndexed": [],
+          "version": 3
+        }
+      }
+    },
+    {
+      "name": "actual-jira-second-reads",
+      "value": {
+        "applied": {
+          "key": "WFH-2989",
+          "start": "2026-10-05",
+          "due": "2026-10-12",
+          "duration": 6
+        },
+        "discarded": {
+          "key": "WFH-2990",
+          "start": "2026-10-05",
+          "due": "2026-10-09",
+          "duration": 5
+        }
+      }
+    },
+    {
+      "name": "failure-instrumentation",
+      "value": {
+        "injectedHttpStatus": 403,
+        "request": "getDraft",
+        "planId": "plan-test-mtq3dyza-ai4tah",
+        "count": 1,
+        "realRetry": true,
+        "backendDraftNeverMutatedByFault": true
+      }
+    },
+    {
+      "name": "failure-instrumentation",
+      "value": {
+        "injectedHttpStatus": 503,
+        "request": "getDraft",
+        "planId": "plan-test-mtq3exnf-xt5ftl",
+        "count": 1,
+        "realRetry": true,
+        "backendDraftNeverMutatedByFault": true
+      }
+    }
+  ],
+  "extraLiveCalls": 0,
+  "independentAcceptance": "pending root selected-scope verification"
+}

@@ -1,0 +1,16 @@
+{
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "runId": "tenth-report-source-diagnostic-live-20260906",
+  "manifest": "/Users/mihaiperdum/Projects/forge-live-harness/config/lz-campaign/seventh-failures-manifest.json",
+  "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
+  "uiVersion": "4.58.581",
+  "forgeVersion": "6.7.0",
+  "appCommit": "b8eb225ca8a10ac49153eee700690ad9c44524a7",
+  "sourceExtension": null,
+  "features": [
+    "large-history-report-live"
+  ],
+  "maxMinutes": 45,
+  "sourceFingerprint": "2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104"
+}

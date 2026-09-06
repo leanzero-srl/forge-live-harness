@@ -1,0 +1,52 @@
+{
+  "status": "failed",
+  "stamp": "76af490acb69c314c06973fffd488fca89986bbe08552dc3a89071bdad3e4b12",
+  "startedAt": "2026-09-05T21:25:27.896921+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/large-history-report-live/attempt-001",
+  "uiVersion": "4.58.578",
+  "forgeVersion": "6.4.0",
+  "appCommit": "310aa121",
+  "instrumentHash": "61cb4dee353b866e011c98723d30878c5348a92036e5f8eafef8cd0b901c1864",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-large-history.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T21:27:00.241029+00:00",
+  "elapsedSeconds": 92.3432960420032
+}

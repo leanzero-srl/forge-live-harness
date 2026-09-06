@@ -1,0 +1,18 @@
+
+Running 1 test using 1 worker
+
+
+(node:75102) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+[chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.580","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T01:09:06.066Z"}
+
+[jira !!] GET /rest/api/3/issue/WFH-2882 -> 404
+
+[jira !!] GET /rest/api/3/version/10292 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtp45x7c","name":"[harness-test] lz-norm-mtp45x7c","time":"2026-09-06T01:09:07.032Z","issues":[{"key":"WFH-2882","seed":{"label":"numeric report 20h","duration":5,"start":"2026-09-07","due":"2026-09-11","release":true}}],"planId":"plan-test-mtp45zpv-1rjfaw","cleanup":[{"plan":"plan-test-mtp45zpv-1rjfaw","deleted":true},{"issue":"WFH-2882","deleted":true},{"version":"10292","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10292","id":"10292","name":"[harness-test] lz-norm-mtp45x7c","archived":false,"released":false,"projectId":10001},"searchIndexVerified":[{"key":"WFH-2882","start":"2026-09-07","due":"2026-09-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2882","start":"2026-09-07","due":"2026-09-11","duration":5}]],"integrityPassed":true}
+
+  1 passed (1.1m)

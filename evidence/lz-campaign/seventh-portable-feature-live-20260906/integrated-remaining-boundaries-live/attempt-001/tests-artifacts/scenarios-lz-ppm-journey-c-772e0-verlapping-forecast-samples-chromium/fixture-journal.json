@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtp2v8dk",
+  "name": "[harness-test] lz-norm-mtp2v8dk",
+  "time": "2026-09-06T00:32:48.680Z",
+  "issues": [
+    {
+      "key": "WFH-2867",
+      "seed": {
+        "label": "forecast observed work",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp2va60-02n2wn",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp2va60-02n2wn",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2867",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2867",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2867",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

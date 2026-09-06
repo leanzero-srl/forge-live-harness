@@ -1,0 +1,14 @@
+{
+  "status": "failed",
+  "ordinaryPasses": [],
+  "expectedDefectWitnesses": [],
+  "reasons": [
+    "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-identity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"campaign: actual UI version and preserved LZPT source\"}",
+    "Playwright exit 1",
+    "insufficient passing tests or explicitly allowed defect witnesses"
+  ],
+  "testCount": 1,
+  "process": {
+    "exit": 1
+  }
+}

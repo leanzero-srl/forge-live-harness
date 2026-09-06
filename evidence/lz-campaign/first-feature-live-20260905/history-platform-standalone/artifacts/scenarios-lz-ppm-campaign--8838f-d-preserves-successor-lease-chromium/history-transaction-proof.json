@@ -1,0 +1,32 @@
+{
+  "probeId": "00e4c2bb-75b4-4413-b73c-34cb2879599e",
+  "planId": "harness-history-00e4c2bb-75b4-4413-b73c-34cb2879599e",
+  "keys": [
+    "p:harness-history-00e4c2bb-75b4-4413-b73c-34cb2879599e:bl",
+    "p:harness-history-00e4c2bb-75b4-4413-b73c-34cb2879599e:history:deleted:probe"
+  ],
+  "checks": {
+    "acquiredRealEntityLease": true,
+    "guardedMixedCommitReadBack": true,
+    "replacementLeaseReadBack": false
+  },
+  "reads": {
+    "positive": {
+      "pointer": {
+        "snapshotId": "positive-control"
+      },
+      "tombstone": {
+        "deleted": false
+      }
+    }
+  },
+  "errors": [
+    "Probe assertion failed: replacementLeaseReadBack"
+  ],
+  "cleanup": {
+    "pointerAbsent": true,
+    "tombstoneAbsent": true,
+    "entityAbsent": true
+  },
+  "passed": false
+}

@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:90342) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › scenarios/lz-ppm/campaign-recover-numeric-capacity.spec.ts:9:1 › operator recovery: restore exact pre-numeric-report Capacity preferences after verified browser crash (13.9s)
+
+  1 passed (15.2s)

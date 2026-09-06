@@ -1,0 +1,173 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--grep",
+      "legacy report finish:",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-finish-20260906/artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-finish-20260906/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-finish-20260906/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+      "file": "scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "legacy report finish: real old paused raw job preserves identical report across codec upgrade",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 15890,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[33m@@ -77,12 +77,12 @@\u001b[39m\n\u001b[2m          \"type\": \"jql\",\u001b[22m\n\u001b[2m        },\u001b[22m\n\u001b[2m      ],\u001b[22m\n\u001b[2m      \"status\": \"indexed\",\u001b[22m\n\u001b[2m      \"statusMessage\": null,\u001b[22m\n\u001b[32m-     \"updatedAt\": \"2026-09-06T06:01:57.554Z\",\u001b[39m\n\u001b[32m-     \"version\": 2,\u001b[39m\n\u001b[31m+     \"updatedAt\": \"2026-09-06T06:02:51.817Z\",\u001b[39m\n\u001b[31m+     \"version\": 3,\u001b[39m\n\u001b[2m      \"writability\": Object {\u001b[22m\n\u001b[2m        \"blocked\": 0,\u001b[22m\n\u001b[2m        \"byReason\": Object {},\u001b[22m\n\u001b[2m        \"checks\": Object {\u001b[22m\n\u001b[2m          \"backfilled\": 0,\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[33m@@ -77,12 +77,12 @@\u001b[39m\n\u001b[2m          \"type\": \"jql\",\u001b[22m\n\u001b[2m        },\u001b[22m\n\u001b[2m      ],\u001b[22m\n\u001b[2m      \"status\": \"indexed\",\u001b[22m\n\u001b[2m      \"statusMessage\": null,\u001b[22m\n\u001b[32m-     \"updatedAt\": \"2026-09-06T06:01:57.554Z\",\u001b[39m\n\u001b[32m-     \"version\": 2,\u001b[39m\n\u001b[31m+     \"updatedAt\": \"2026-09-06T06:02:51.817Z\",\u001b[39m\n\u001b[31m+     \"version\": 3,\u001b[39m\n\u001b[2m      \"writability\": Object {\u001b[22m\n\u001b[2m        \"blocked\": 0,\u001b[22m\n\u001b[2m        \"byReason\": Object {},\u001b[22m\n\u001b[2m        \"checks\": Object {\u001b[22m\n\u001b[2m          \"backfilled\": 0,\u001b[22m\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts:36:82",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+                      "column": 82,
+                      "line": 36
+                    },
+                    "snippet": "  34 |    expect(await issue()).toEqual(journal.originalIssue);expect(await ownPlan()).toEqual(journal.originalPlan);journal.completed=true;record('prepared-retained-for-upgrade',{planId:journal.planId,issue:journal.issue,job:journal.pausedJob});\n  35 |   }else{\n> 36 |    expect(await issue()).toEqual(prepared.originalIssue);expect(await ownPlan()).toEqual(prepared.originalPlan);await drafts(journal.planId);expect(await read('getLockStatus',{planId:journal.planId})).toMatchObject({locked:false});const job=(await read('getSponsorReportCapture',{planId:journal.planId,jobId:prepared.pausedJob.id})).job;admitLegacyReceipt(prepared,job,journal.planId,receipt);const {success,...calendar}=await read('getPlanCalendar',{planId:journal.planId});expect(calendar).toEqual(prepared.calendar);expect(legacyForecastInput(prepared.originalPlan,calendar)).toEqual(prepared.expectedInput);expect(await probe(job)).toEqual(prepared.pausedProbe);\n     |                                                                                  ^\n  37 |    const frame=await table(page,name),work=await planning(frame);session=observeReportCapture(page,journal.planId,info,'legacy-finish',job);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();const report=work.locator('[data-testid=\"sponsor-reports\"]');await expect(report.getByRole('button',{name:'Resume capture',exact:true})).toBeVisible();await session.settle();expect(session.recorder.snapshot().events.some((e:any)=>e.type==='request'&&e.key==='advanceSponsorReportCapture')).toBe(false);\n  38 |    held=await holdFirstReportAdvance(page,journal.planId,(event:any)=>record('held-response',event),(b:any)=>b?.job?.state==='active'&&b.job.stageLabel==='Preparing the retained schedule');await report.getByRole('button',{name:'Resume capture',exact:true}).click();journal.conversionEntered=await pauseHeld(report);expect(journal.conversionEntered.checkpoint).toBe(job.checkpoint+1);const entering=await probe(journal.conversionEntered);expect(entering.privateArtifacts).toEqual(prepared.pausedProbe.privateArtifacts);expect(entering.publicArtifacts).toEqual([]);\n  39 |    held=await holdFirstReportAdvance(page,journal.planId,(event:any)=>record('held-response',event),(b:any)=>b?.job?.state==='active'&&b.job.stageLabel==='Calculating the forecast');await report.getByRole('button',{name:'Resume capture',exact:true}).click();journal.conversionCompleted=await pauseHeld(report);expect(journal.conversionCompleted.checkpoint).toBeGreaterThan(journal.conversionEntered.checkpoint);journal.encodedProbe=await probe(journal.conversionCompleted);assertLegacyExpansion(prepared.pausedProbe,journal.encodedProbe);await settledScreenshot(report.locator('[data-testid=\"report-capture-progress\"]'),{path:info.outputPath('legacy-converted-paused.png')});expect(await issue()).toEqual(prepared.originalIssue);expect(await ownPlan()).toEqual(prepared.originalPlan);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+                        "column": 82,
+                        "line": 36
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 2\u001b[39m\n\u001b[31m+ Received  + 2\u001b[39m\n\n\u001b[33m@@ -77,12 +77,12 @@\u001b[39m\n\u001b[2m          \"type\": \"jql\",\u001b[22m\n\u001b[2m        },\u001b[22m\n\u001b[2m      ],\u001b[22m\n\u001b[2m      \"status\": \"indexed\",\u001b[22m\n\u001b[2m      \"statusMessage\": null,\u001b[22m\n\u001b[32m-     \"updatedAt\": \"2026-09-06T06:01:57.554Z\",\u001b[39m\n\u001b[32m-     \"version\": 2,\u001b[39m\n\u001b[31m+     \"updatedAt\": \"2026-09-06T06:02:51.817Z\",\u001b[39m\n\u001b[31m+     \"version\": 3,\u001b[39m\n\u001b[2m      \"writability\": Object {\u001b[22m\n\u001b[2m        \"blocked\": 0,\u001b[22m\n\u001b[2m        \"byReason\": Object {},\u001b[22m\n\u001b[2m        \"checks\": Object {\u001b[22m\n\u001b[2m          \"backfilled\": 0,\u001b[22m\n\n  34 |    expect(await issue()).toEqual(journal.originalIssue);expect(await ownPlan()).toEqual(journal.originalPlan);journal.completed=true;record('prepared-retained-for-upgrade',{planId:journal.planId,issue:journal.issue,job:journal.pausedJob});\n  35 |   }else{\n> 36 |    expect(await issue()).toEqual(prepared.originalIssue);expect(await ownPlan()).toEqual(prepared.originalPlan);await drafts(journal.planId);expect(await read('getLockStatus',{planId:journal.planId})).toMatchObject({locked:false});const job=(await read('getSponsorReportCapture',{planId:journal.planId,jobId:prepared.pausedJob.id})).job;admitLegacyReceipt(prepared,job,journal.planId,receipt);const {success,...calendar}=await read('getPlanCalendar',{planId:journal.planId});expect(calendar).toEqual(prepared.calendar);expect(legacyForecastInput(prepared.originalPlan,calendar)).toEqual(prepared.expectedInput);expect(await probe(job)).toEqual(prepared.pausedProbe);\n     |                                                                                  ^\n  37 |    const frame=await table(page,name),work=await planning(frame);session=observeReportCapture(page,journal.planId,info,'legacy-finish',job);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();const report=work.locator('[data-testid=\"sponsor-reports\"]');await expect(report.getByRole('button',{name:'Resume capture',exact:true})).toBeVisible();await session.settle();expect(session.recorder.snapshot().events.some((e:any)=>e.type==='request'&&e.key==='advanceSponsorReportCapture')).toBe(false);\n  38 |    held=await holdFirstReportAdvance(page,journal.planId,(event:any)=>record('held-response',event),(b:any)=>b?.job?.state==='active'&&b.job.stageLabel==='Preparing the retained schedule');await report.getByRole('button',{name:'Resume capture',exact:true}).click();journal.conversionEntered=await pauseHeld(report);expect(journal.conversionEntered.checkpoint).toBe(job.checkpoint+1);const entering=await probe(journal.conversionEntered);expect(entering.privateArtifacts).toEqual(prepared.pausedProbe.privateArtifacts);expect(entering.publicArtifacts).toEqual([]);\n  39 |    held=await holdFirstReportAdvance(page,journal.planId,(event:any)=>record('held-response',event),(b:any)=>b?.job?.state==='active'&&b.job.stageLabel==='Calculating the forecast');await report.getByRole('button',{name:'Resume capture',exact:true}).click();journal.conversionCompleted=await pauseHeld(report);expect(journal.conversionCompleted.checkpoint).toBeGreaterThan(journal.conversionEntered.checkpoint);journal.encodedProbe=await probe(journal.conversionCompleted);assertLegacyExpansion(prepared.pausedProbe,journal.encodedProbe);await settledScreenshot(report.locator('[data-testid=\"report-capture-progress\"]'),{path:info.outputPath('legacy-converted-paused.png')});expect(await issue()).toEqual(prepared.originalIssue);expect(await ownPlan()).toEqual(prepared.originalPlan);\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts:36:82"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.585\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T06:06:16.949Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T06:06:09.259Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-finish-20260906/artifacts/scenarios-lz-ppm-campaign--dc1f4-report-across-codec-upgrade-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+                    "column": 82,
+                    "line": 36
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c898da4e15109b5d3205-f2a386c6929100f10556",
+          "file": "scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+          "line": 12,
+          "column": 49
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T06:06:08.919Z",
+    "duration": 69739.56899999999,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

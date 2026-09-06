@@ -1,0 +1,10 @@
+{
+  "classification": "resource-only pre-browser fixture admission failure",
+  "runnerStatus": "identity_failed",
+  "rootCause": "PROFILE_UNAVAILABLE: unclean reservation31453/31468",
+  "productTestsExecuted": 0,
+  "actualUiVersionObserved": false,
+  "noProfileMutation": true,
+  "entry": "entry-1788648503229854000",
+  "preservation": "Original failed entry remains immutable; any explicit recovery and later admission are separate evidence."
+}

@@ -1,0 +1,105 @@
+{
+  "status": "prepared-only-no-dispatch-or-transfer",
+  "observerCommit": "975a79a54e42d4fdddeed71785a88c484f22fb86",
+  "sourceHashes": [
+    {
+      "path": "scenarios/lz-ppm/campaign-ui.ts",
+      "sha256": "a3e1fc5dcd2eb6c9be160e72238ec1b4c736d83b8e50894adb39346cf05e73a0"
+    },
+    {
+      "path": "scenarios/lz-ppm/report-capture.ts",
+      "sha256": "1b7d9d35ebc49198af6ec3afd3e1f21f8c7c773282e7450cf2d326d136cbb8a8"
+    },
+    {
+      "path": "scenarios/lz-ppm/report-throughput-observer.mjs",
+      "sha256": "da3854919f046679e8e8e41b115126b4cf50ff46d81c03bba79a262fcee41aff"
+    },
+    {
+      "path": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "sha256": "896e2b207bfdac8a0ef2a58321afff1d064c242ea07a65062d1edefc8f921cdd"
+    },
+    {
+      "path": "testhook/client.ts",
+      "sha256": "23fc8b2f91b746cc37a76bd4c5e74ee2b60db55735a895a0b9fe3163a19bdab8"
+    },
+    {
+      "path": "scenarios/lz-ppm/forecast-fixture.ts",
+      "sha256": "9e17e5d81376bf3fecc361ffafaa91b3e281b60a1772f2282d0b11fcffb0f282"
+    },
+    {
+      "path": "scenarios/lz-ppm/normalization-owned-fixture.ts",
+      "sha256": "5958958de913dae3a3b09a3f769d0940cc2dc6ec23d97af8122fd5ee7c249e02"
+    },
+    {
+      "path": "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+      "sha256": "bd62797db5bf6e86ccb24107752e045f5aeb1e86ffccc4007858c555cc9cdfb4"
+    },
+    {
+      "path": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "sha256": "7bbda6a346fe161d084dabe8a4dfd8eeffc183382bb9c60220a01804906ea8b1"
+    },
+    {
+      "path": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+      "sha256": "d379a48ff11494735e56d6ab1335a42c2449f8dfa9f668fc4cf0d2a0f2a6c2f8"
+    },
+    {
+      "path": "config/lz-campaign/staged-report-manifest.json",
+      "sha256": "745eec0ad2c406f1855bf23c82272d9fe63aa5438106c6d007763c4e03a27b45"
+    },
+    {
+      "path": "fixtures/forge.ts",
+      "sha256": "7e066e4a16c6dc6d788ff2d6955a6285f4c13a14c128f2e014337b90c2f54787"
+    }
+  ],
+  "features": [
+    {
+      "id": "report-capture-jobs-live",
+      "tests": 4,
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts"
+      ],
+      "timeoutSeconds": 3900
+    },
+    {
+      "id": "sponsor-report-numeric-live",
+      "tests": 1,
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts"
+      ],
+      "timeoutSeconds": 1200
+    },
+    {
+      "id": "sponsor-report-live",
+      "tests": 1,
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report.spec.ts"
+      ],
+      "timeoutSeconds": 1500
+    },
+    {
+      "id": "large-history-report-live",
+      "tests": 1,
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-large-history.spec.ts"
+      ],
+      "timeoutSeconds": 2100
+    }
+  ],
+  "proposedRunId": "eighteenth-final-report-live-20260906",
+  "lastKnownDeployment": {
+    "forge": "6.25.0",
+    "ui": "4.58.587",
+    "appCommit": "c49bf682d01d83ab53bdf06a2edf56e6bef96c3f"
+  },
+  "gates": [
+    "Actual approved cleanup restores original3/45/0 and settings65",
+    "Resolve opt-in navigation departure companion and independent review",
+    "Exact7 discovery and observer local source controls after integration",
+    "Fresh actual deployed/instrument tuple and root dispatch authorization"
+  ],
+  "localOnly": [
+    "trace.zip",
+    "unreviewed raw errors/logs or response-containing artifacts"
+  ],
+  "delivery": "closed-file explicit safe inclusion only; old credential-bearing omissions unchanged"
+}

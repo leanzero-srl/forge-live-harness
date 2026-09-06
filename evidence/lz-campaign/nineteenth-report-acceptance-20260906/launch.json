@@ -1,0 +1,9 @@
+{
+  "status": "dispatched",
+  "dispatchedAt": "2026-09-06T16:53:18.595345+00:00",
+  "harnessCommit": "9cc43afbb42e3a24ab983729ad014bf4c5758178",
+  "instrumentHash": "fdda23667f010f1ae26151bae9c5a826b2f9a63a5e8e3d4407b4eb60d5fa626d",
+  "rootDispatchCommit": "16baeac5ed85cdb94d99c3acc818706c16bdf6b2",
+  "runnerPid": 69504,
+  "commandReceipt": "command.json"
+}

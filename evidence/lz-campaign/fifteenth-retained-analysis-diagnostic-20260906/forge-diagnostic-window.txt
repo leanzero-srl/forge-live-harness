@@ -1,0 +1,18 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+invocation: 81b17209-e165-447c-a4e9-9fbe3c0d9e1c
+ERROR   05:29:14.526Z Function timed out. Limit of 25.00 seconds
+
+invocation: 4e317f18-a4da-4c0c-ae0e-5229166a6821
+INFO    05:28:51.740Z [report-capture-diagnostic] {"phase":"source-context","event":"start","elapsedMs":1483}
+INFO    05:28:51.739Z [report-capture-diagnostic] {"phase":"load-source","event":"complete","elapsedMs":1483}
+INFO    05:28:51.681Z [report-capture-diagnostic] {"phase":"load-source","event":"progress","elapsedMs":1425,"completedChunks":53,"totalChunks":53}
+INFO    05:28:51.615Z [report-capture-diagnostic] {"phase":"load-source","event":"progress","elapsedMs":1359,"completedChunks":50,"totalChunks":53}
+INFO    05:28:51.362Z [report-capture-diagnostic] {"phase":"load-source","event":"progress","elapsedMs":1106,"completedChunks":40,"totalChunks":53}
+INFO    05:28:51.158Z [report-capture-diagnostic] {"phase":"load-source","event":"progress","elapsedMs":902,"completedChunks":30,"totalChunks":53}
+INFO    05:28:50.938Z [report-capture-diagnostic] {"phase":"load-source","event":"progress","elapsedMs":682,"completedChunks":20,"totalChunks":53}
+INFO    05:28:50.616Z [report-capture-diagnostic] {"phase":"load-source","event":"progress","elapsedMs":360,"completedChunks":10,"totalChunks":53}
+INFO    05:28:50.256Z [report-capture-diagnostic] {"phase":"load-source","event":"start","elapsedMs":0}
+INFO    05:28:50.255Z [sponsor-report-stage] {"stage":"analyze","event":"start","checkpoint":56,"elapsedMs":1}
+

@@ -1,0 +1,7 @@
+{
+  "pid": 43697,
+  "processStart": "Sat Sep  5 23:13:48 2026",
+  "time": "2026-09-05T20:18:48.429290+00:00",
+  "status": "runner_failed",
+  "error": "The shared browser profile is in use; no sibling process was killed"
+}

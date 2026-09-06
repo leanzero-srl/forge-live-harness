@@ -1,0 +1,6 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/journey-campaign-large-history.spec.ts:14:1 › large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source
+  [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:15:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+  [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:16:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy
+  [chromium] › scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts:21:1 › retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff
+Total: 4 tests in 4 files

@@ -1,0 +1,14 @@
+{
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "runId": "eighth-corrected-feature-live-20260906",
+  "manifest": "/Users/mihaiperdum/Projects/forge-live-harness/config/lz-campaign/seventh-failures-manifest.json",
+  "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
+  "uiVersion": "4.58.580",
+  "forgeVersion": "6.6.0",
+  "appCommit": "7f48d1e0af6c40f43c005db5f22a9964b5453d50",
+  "sourceExtension": null,
+  "features": null,
+  "maxMinutes": 120,
+  "sourceFingerprint": "2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104"
+}

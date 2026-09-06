@@ -1,0 +1,18 @@
+✔ exact owned state restores through versioned write and two independent reads (2.161667ms)
+✔ foreign settings before write refuse without any overwrite (0.890416ms)
+✔ foreign settings before restore refuse without any overwrite (0.271666ms)
+✔ unacknowledged response failure keeps pending and blocks restoration (0.184166ms)
+✔ unacknowledged response 90 keeps pending and blocks restoration (0.194083ms)
+✔ transport failure after possibly committed save does not license restoration (0.396167ms)
+✔ UI save acknowledgement is retained before a later report failure; known state safely restores (2.070042ms)
+✔ unknown restore outcome remains failed and cannot authorize fixture deletion (0.181041ms)
+✔ second read changed by another user never reports successful restoration (0.283375ms)
+✔ actual compiled fixture retains all exact recovery resources and original failure, checks guards, never deletes (50.371334ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 303.348375

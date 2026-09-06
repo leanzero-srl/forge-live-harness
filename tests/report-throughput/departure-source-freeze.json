@@ -1,0 +1,76 @@
+{
+  "sourceCommit": "30df8302aedab36f6f8607ea74abdad1fbab999f",
+  "sourceHashes": [
+    {
+      "path": "scenarios/lz-ppm/forecast-fixture.ts",
+      "sha256": "d2ede1e3e6ecfae69877733a19f024d25210c8ce017fa28b760c066613075bc7"
+    },
+    {
+      "path": "scenarios/lz-ppm/forge-response-record.mjs",
+      "sha256": "63e13399937871c513a5e851d130a0e31a36a32a19c40c208dff959a791940fe"
+    },
+    {
+      "path": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "sha256": "4af4d080c79b080e58c9e0aec5a3150d291f6810025a037dce8a77b938ba4e90"
+    },
+    {
+      "path": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+      "sha256": "b703ae13bcca9ddd3873abee6f37a5ccfd7830adec3b9285e5a48b6947333f2d"
+    },
+    {
+      "path": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "sha256": "da92f59bd58e2e3a89074a514986f84cd78b228bfdb1fe29e3d438896977bc9b"
+    },
+    {
+      "path": "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+      "sha256": "5f74c035227befd09fb46fff29710510b9514335f14fcdb4d2349831490aaa07"
+    },
+    {
+      "path": "scenarios/lz-ppm/normalization-owned-fixture.ts",
+      "sha256": "5b6e2a9ec780d52fad5c2b7da39e26af3b4acea8adad5688fae5ccbfafcc298d"
+    },
+    {
+      "path": "scenarios/lz-ppm/owned-plan-departure.mjs",
+      "sha256": "d472d91fea6e40c9bde6a7e84be44623adfe7f077424a51befd1f0389147fd95"
+    },
+    {
+      "path": "scenarios/lz-ppm/report-capture.ts",
+      "sha256": "d401301f42511f8da393cfb03bdfd6f4a79bd68a58a12009313cb0bcd9d0a725"
+    },
+    {
+      "path": "scenarios/lz-ppm/report-departure.ts",
+      "sha256": "a9836e0bbe28adb8d6f74e129acd2fe6669d2e91e4fadee49ba46b9b4069bb9a"
+    },
+    {
+      "path": "tests/report-capture/retention.test.mjs",
+      "sha256": "cc2f54c10cc6b51a9d5bd9d439796f10d8f21e69daf4bc1693752958aa9e9c2f"
+    },
+    {
+      "path": "tests/report-throughput/departure-retention.test.mjs",
+      "sha256": "6060b92b74e6e8275a496fab0e8413831897980c5387382d8b0b97d8c8c9c030"
+    },
+    {
+      "path": "tests/report-throughput/departure.test.mjs",
+      "sha256": "89a9254415189fe61b8d3ba4890254d1b75bd561467c28b2473dbe6a97660ff9"
+    }
+  ],
+  "upstreamObserver": "975a79a54e42d4fdddeed71785a88c484f22fb86",
+  "actualUsePresence": {
+    "path": "/Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/hooks/usePresence.js",
+    "sha256": "ad429d9a40b01fc1c4d138e3e37e33376cbb9a3bb9a14346ac640cd0d87252ad"
+  },
+  "controls": {
+    "combinedTests": 56,
+    "passed": 56,
+    "exitCode": 0
+  },
+  "discovery": {
+    "tests": 7,
+    "files": 4,
+    "exitCode": 0
+  },
+  "historicalFailurePreserved": true,
+  "intentionalPageReloadUnchanged": true,
+  "sharedInstrumentChanged": false,
+  "browserLaunched": false
+}

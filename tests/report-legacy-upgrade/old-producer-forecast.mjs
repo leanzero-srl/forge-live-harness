@@ -1,0 +1,16 @@
+// Local only: validate the independent fixture input/hash against the exact deployed old producer graph.
+import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {execFileSync} from 'node:child_process';import {createRequire} from 'node:module';import {fileURLToPath} from 'node:url';
+import {legacyForecastInput} from '../../scenarios/lz-ppm/report-legacy-upgrade-contract.mjs';
+const here=path.dirname(fileURLToPath(import.meta.url)),app=path.resolve(here,'../../../lz-ppm-forge'),old='e8d46785d8cda3d2b3680b0e84e52dbd7c1a68ee';const require=createRequire(import.meta.url),{build}=require('esbuild');
+const entry=`export {reportForecast} from './src/services/sponsor-report-analytics.mjs';export {snapshotCaptureData} from './src/services/plan-snapshot-data.mjs';export {reportHydratedIssues} from './static/ppm-ui/src/utils/sponsor-report.js';`;
+const bundle=await build({stdin:{contents:entry,resolveDir:app,sourcefile:'old-producer-entry.mjs'},bundle:true,platform:'node',format:'cjs',write:false,metafile:true,packages:'external'});
+const files=Object.keys(bundle.metafile.inputs).filter(v=>!v.endsWith('old-producer-entry.mjs')).map(v=>path.resolve(v));
+for(const file of files){assert.ok(file.startsWith(app+'/'));assert.deepEqual(fs.readFileSync(file),execFileSync('git',['show',`${old}:${path.relative(app,file)}`],{cwd:app}),`Old producer drift: ${file}`);}
+const module={exports:{}};new Function('module','exports','require',bundle.outputFiles[0].text)(module,module.exports,createRequire(path.join(app,'package.json')));const {reportForecast,snapshotCaptureData,reportHydratedIssues}=module.exports;
+const calendar={workingDays:[1,2,3,4,5],holidays:[],calendarName:'Standard (Mon-Fri)'},row={key:'WFH-CONTROL',id:'123',summary:'Control',startDate:'2026-10-05',dueDate:'2026-10-09',duration:5,buffer:'No',statusCategory:'new',parentKey:null,predecessors:[],successors:[],_original:{startDate:'2026-10-05',dueDate:'2026-10-09',duration:5},fieldAvail:{duration:true},customSentinel:{preserve:'every source field'}};
+const meta={issueCount:1,milestones:[],version:1},input={kind:'report',name:'Unchanged legacy upgrade report',uncertainty:'medium',changes:[]};
+const captured=snapshotCaptureData(meta,reportHydratedIssues([row],calendar),input,calendar),forecast=reportForecast(captured).forecast;
+assert.equal(forecast.inputHash,legacyForecastInput({meta,issues:[row]},calendar).inputHash);
+const {inputHash,...actual}=forecast;const expected={state:'available',reason:null,modelVersion:'duration-triangular-fs-v1',runs:300,seed:42,uncertainty:'medium',p50:'2026-10-09',p80:'2026-10-12',p90:'2026-10-12',onPlannedFinish:197/300,coverage:{totalLeaves:1,datedLeaves:1,sampledLeaves:1,missingDates:0,invalidDates:0,invertedDates:0,invalidBaselines:0}};assert.deepEqual(actual,expected);
+for(const change of [{customSentinel:{preserve:'changed'}},{summary:'Changed'},{id:'456'}])assert.notEqual(legacyForecastInput({meta,issues:[{...row,...change}]},calendar).inputHash,inputHash);
+console.log(JSON.stringify({oldSource:old,verifiedProducerFiles:files.map(v=>path.relative(app,v)).sort(),forecast,fullInputHashPreserved:true,changedUnprojectedFieldRejected:true},null,2));

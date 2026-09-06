@@ -8,7 +8,7 @@ import { BASE_URL, LOGIN_PROBE, LOGIN_URL_RE } from "../config/env";
 
 setup("interactive login (one-time) → persistent profile", async () => {
   setup.setTimeout(6 * 60_000);
-  const context = await launchHarnessContext({ headed: true });
+  const context = await launchHarnessContext({ headed: true, authFlow: true });
   const page = context.pages()[0] ?? (await context.newPage());
 
   await page.goto(`${BASE_URL}/jira/your-work`, { waitUntil: "domcontentloaded" }).catch(() => {});

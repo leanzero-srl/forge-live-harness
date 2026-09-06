@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-portable-retained-download.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/portable-retained-report-diagnostic-20260906-attempt002/artifacts"
+  ],
+  "mode": "portable-chrome152",
+  "appFreeze": "dce1d154f89a4684b3332508cf9de26fa3a1c746",
+  "harnessCorrection": "13fbfd4",
+  "uiVersion": "4.58.579",
+  "forgeVersion": "6.5.0",
+  "startedAt": 1788653355.926211,
+  "exitCode": 0,
+  "finishedAt": 1788653403.010337
+}

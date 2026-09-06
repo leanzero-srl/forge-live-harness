@@ -1,0 +1,30 @@
+{
+  "runId": "seventeenth-packed-prepare-20260906",
+  "createdAt": "2026-09-06T07:18:17.683107+00:00",
+  "harnessHead": "fbc12014b885a31b30af835d1f3da1cf7d155849",
+  "instrument": "964ca1e3323365227ebd63c3e00f1c113b302b7be267a7ffb0155ad7e47d3397",
+  "forgeVersion": "6.17.0",
+  "uiVersion": "4.58.585",
+  "appSource": "34372ae3f9cb12b1ff94a58dbda313a6deab6f03",
+  "mode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "prepare",
+  "sourceExtension": null,
+  "expectedPreferencesVersion": 62,
+  "expectedTests": 1,
+  "sharedReadOnlyIssue": {
+    "key": "WFH-2820",
+    "id": "25020"
+  },
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-report-packed-prepare.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-prepare-20260906/artifacts"
+  ]
+}

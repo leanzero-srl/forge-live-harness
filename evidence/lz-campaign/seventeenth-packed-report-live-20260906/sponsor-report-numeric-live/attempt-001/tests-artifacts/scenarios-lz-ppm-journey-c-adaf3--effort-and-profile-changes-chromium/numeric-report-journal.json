@@ -1,0 +1,394 @@
+{
+  "key": "WFH-2970",
+  "M": "2026-09-07",
+  "due": "2026-09-11",
+  "leave": "2026-09-10",
+  "p50": "2026-09-14",
+  "p90": "2026-09-15",
+  "expectedDemand": 20,
+  "expectedCapacity": 12,
+  "lifecycle": [
+    {
+      "name": "download-wait-started",
+      "time": "2026-09-06T08:10:54.117Z",
+      "suffix": "original"
+    },
+    {
+      "name": "download-button-clicked",
+      "time": "2026-09-06T08:10:54.153Z",
+      "suffix": "original"
+    },
+    {
+      "name": "download-event-observed",
+      "time": "2026-09-06T08:10:56.215Z",
+      "suffix": "original",
+      "filename": "sponsor-report-918a7dbc-873e-4da6-85ef-0254daaef158.html"
+    },
+    {
+      "name": "download-saved",
+      "time": "2026-09-06T08:10:56.226Z",
+      "suffix": "original",
+      "bytes": 8635
+    },
+    {
+      "name": "report-document-page-opening",
+      "time": "2026-09-06T08:10:56.226Z"
+    },
+    {
+      "name": "report-document-page-opened",
+      "time": "2026-09-06T08:10:56.266Z"
+    },
+    {
+      "name": "report-document-navigation-started",
+      "time": "2026-09-06T08:10:56.266Z"
+    },
+    {
+      "name": "report-document-navigation-completed",
+      "time": "2026-09-06T08:10:56.279Z"
+    },
+    {
+      "name": "report-pdf-started",
+      "time": "2026-09-06T08:10:56.698Z"
+    },
+    {
+      "name": "report-pdf-saved",
+      "time": "2026-09-06T08:10:56.802Z"
+    },
+    {
+      "name": "report-document-close-started",
+      "time": "2026-09-06T08:10:56.802Z"
+    },
+    {
+      "name": "report-document-close-completed",
+      "time": "2026-09-06T08:10:56.813Z"
+    },
+    {
+      "name": "download-wait-started",
+      "time": "2026-09-06T08:11:15.501Z",
+      "suffix": "after-live-changes"
+    },
+    {
+      "name": "download-button-clicked",
+      "time": "2026-09-06T08:11:15.537Z",
+      "suffix": "after-live-changes"
+    },
+    {
+      "name": "download-event-observed",
+      "time": "2026-09-06T08:11:17.567Z",
+      "suffix": "after-live-changes",
+      "filename": "sponsor-report-918a7dbc-873e-4da6-85ef-0254daaef158.html"
+    },
+    {
+      "name": "download-saved",
+      "time": "2026-09-06T08:11:17.576Z",
+      "suffix": "after-live-changes",
+      "bytes": 8635
+    }
+  ],
+  "preferences": {
+    "initialized": true,
+    "original": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "lastOwned": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "version": 65,
+    "pending": null,
+    "restored": true,
+    "history": [
+      {
+        "name": "admitted",
+        "time": "2026-09-06T08:10:02.234Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T08:10:02.511Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T08:10:02.919Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T08:11:05.792Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T08:11:06.240Z"
+      },
+      {
+        "name": "restore-intent",
+        "time": "2026-09-06T08:11:24.794Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T08:11:25.140Z"
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-06T08:11:25.488Z",
+        "read": 1,
+        "version": 65
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-06T08:11:25.794Z",
+        "read": 2,
+        "version": 65
+      },
+      {
+        "name": "restored",
+        "time": "2026-09-06T08:11:25.794Z"
+      }
+    ]
+  },
+  "originalSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "summary": {
+    "id": "918a7dbc-873e-4da6-85ef-0254daaef158",
+    "hash": "d1318444823ffe3a887a5b3e899821324937dad0e73bc7fae98c58d04f3b28bf",
+    "name": "Numeric commitment and overload",
+    "planName": "[harness-test] lz-norm-mtpj6yt5",
+    "takenAt": "2026-09-06T08:10:15.180Z",
+    "sourceVersion": 5,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "a39cfbfdad96212b5d2c74dcbcf42f2ca96370b6f6873a5cf101946790e8bb02",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.48333333333333334,
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "high"
+    },
+    "capacity": {
+      "asOfDate": "2026-09-06",
+      "assumptions": "This captured plan only, not the selected portfolio. Remaining Jira effort is spread over its remaining working dates; personal leave reduces capacity, not demand. The author explicitly included these saved availability assumptions in this shared report. No tasks are moved.",
+      "coverage": {
+        "completedIssues": 0,
+        "conflictingIssues": 0,
+        "missingEffort": 0,
+        "selectedPlans": 1,
+        "sharedDuplicatesRemoved": 0,
+        "unallocatedIssues": 0,
+        "unassignedIssues": 0,
+        "unavailableAssignee": 0,
+        "unavailableIssueCount": 0,
+        "unavailableStatus": 0,
+        "uniqueIssues": 1
+      },
+      "endDate": "2026-09-13",
+      "inputHash": "4476f0dc7e523cf270de5a563d187241d59982fbb1edf17ec33e60f1b906afe3",
+      "profileVersion": 63,
+      "readAt": "2026-09-06T08:10:32.991Z",
+      "readStartedAt": "2026-09-06T08:10:26.854Z",
+      "reason": null,
+      "scope": "captured-plan",
+      "sourceVersion": 5,
+      "startDate": "2026-09-07",
+      "state": "available",
+      "totals": {
+        "allocatedHours": 20,
+        "knownEffortHours": 20,
+        "outsideWindowHours": 0,
+        "unallocatedHours": 0
+      }
+    },
+    "uncertainty": "high",
+    "consistency": {
+      "basisHash": "5ecdf7aa1fd73e8083f51aca08f4b0e36a4e11adb018d2c7d07f1ab337f2a4ca",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T08:10:18.289Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T08:10:39.927Z"
+    },
+    "baseline": null,
+    "counts": {
+      "timeline": 1,
+      "targets": 2,
+      "changes": 0,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 1,
+      "changes": 0,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "document": {
+      "availability": {
+        "hashes": [
+          "b8b8a0aeda00622baffa642368f1f9c792fc56078d3df4077b76a2135d32bcfe"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "capacity": {
+        "hashes": [
+          "ccfeec3e049324dcdaa0971d364d542ffa0f36d913b99c2e850cbe7f599f11fc"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [
+          "45ed216a35ac56ebaab2b2749d8c448658433ba27c5f7e166e25babddf8c7568"
+        ],
+        "sizes": [
+          2
+        ],
+        "total": 2
+      },
+      "timeline": {
+        "hashes": [
+          "444cbc49997afd70dda35d2f60835ac6f50382b63c9e268550d709d04c1f8601"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "unallocated": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 1,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1,
+      "unavailableRows": 0
+    },
+    "span": {
+      "start": "2026-09-07",
+      "finish": "2026-09-11"
+    },
+    "plannedFinish": "2026-09-11",
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 0
+    }
+  },
+  "targetRows": [
+    {
+      "date": "2026-09-07",
+      "forecastReason": null,
+      "forecastState": "available",
+      "key": "dda3f6c7-3f92-45ec-954c-93bfb83a16f1",
+      "memberCount": 1,
+      "name": "Scoped earliest",
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "plannedFinish": "2026-09-11",
+      "probability": 0,
+      "reason": null,
+      "scopeId": "10359",
+      "scopeLabel": "[harness-test] lz-norm-mtpj6yt5",
+      "scopeType": "release",
+      "state": "After target"
+    },
+    {
+      "date": "2026-09-18",
+      "forecastReason": null,
+      "forecastState": "available",
+      "key": "490d4bb4-5bfc-49d4-ba2e-e7872c3fbe67",
+      "memberCount": 1,
+      "name": "Scoped later",
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "plannedFinish": "2026-09-11",
+      "probability": 1,
+      "reason": null,
+      "scopeId": "10359",
+      "scopeLabel": "[harness-test] lz-norm-mtpj6yt5",
+      "scopeType": "release",
+      "state": "Within target"
+    }
+  ],
+  "capacityRows": [
+    {
+      "availableDays": 4,
+      "capacityHours": 12,
+      "demandHours": 20,
+      "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-09-07",
+      "name": "Mihai Perdum",
+      "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "status": "overloaded",
+      "unknownEffortCount": 0,
+      "utilizationPct": 166.66666666666669,
+      "week": "2026-09-07"
+    }
+  ],
+  "availabilityRows": [
+    {
+      "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "name": "Mihai Perdum",
+      "profile": {
+        "hoursPerDay": 8,
+        "leaveDates": [
+          "2026-09-10"
+        ],
+        "partTimePct": 50,
+        "reservePct": 25,
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    }
+  ],
+  "immutableAfterScheduleEffortProfileChanges": true,
+  "originalPrivateSettingsRestored": true
+}

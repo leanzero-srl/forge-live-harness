@@ -1,0 +1,1461 @@
+{
+  "planId": "plan-test-mtq1ws6u-8e4muf",
+  "job": {
+    "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+    "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+    "name": "Bounded resume report",
+    "createdAt": "2026-09-06T16:53:58.543Z",
+    "expiresAt": "2026-09-07T16:53:58.543Z",
+    "checkpoint": 41,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 41,
+    "totalUnits": 41,
+    "cleanupDone": true,
+    "forecastRuns": {
+      "completed": 300,
+      "total": 300
+    },
+    "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+  },
+  "report": {
+    "baseline": null,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "capacity": {
+      "reason": "Capacity was not included at capture. No availability is assumed.",
+      "scope": "captured-plan",
+      "state": "not-included"
+    },
+    "changeCounts": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+    },
+    "consistency": {
+      "basisHash": "a068df841065ac09d85f31d30a6b9fca80f80aeb42148cb8cb3ac56a3bc80bc6",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T16:54:15.202Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T16:54:50.086Z"
+    },
+    "counts": {
+      "changes": 0,
+      "targets": 0,
+      "timeline": 1
+    },
+    "coverage": {
+      "leafTasks": 1,
+      "unavailableRows": 0,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1
+    },
+    "document": {
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "timeline": {
+        "hashes": [
+          "31ee7d8f61bdd00216d506f702cd4eca7701b1d5e8f4316f11c3f3c84230c1d1"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      }
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "76ac7beb27a1c5ebd6c01f1c74651b7e3d24463a5d86cee15496f45b4292ce92",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.6566666666666666,
+      "p50": "2026-10-09",
+      "p80": "2026-10-12",
+      "p90": "2026-10-12",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "medium"
+    },
+    "hash": "383671cd7f20bcf6e4674895e0f3a0e4f03c79134973aaa5a499f7fcc5bc0fc1",
+    "id": "78532563-49e6-4cdc-b8e4-bf39bea7abd2",
+    "name": "Bounded resume report",
+    "pageSize": 50,
+    "pages": {
+      "changes": 0,
+      "targets": 0,
+      "timeline": 1
+    },
+    "planName": "[harness-test] lz-norm-mtq1wpld",
+    "plannedFinish": "2026-10-09",
+    "sourceVersion": 2,
+    "span": {
+      "finish": "2026-10-09",
+      "start": "2026-10-05"
+    },
+    "takenAt": "2026-09-06T16:53:58.238Z",
+    "uncertainty": "medium",
+    "workingChangeCount": 0
+  },
+  "error": null,
+  "begin": {
+    "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+    "name": "Bounded resume report",
+    "inputHash": "7c061ce4647f93ad852b3ec2446b7e2421dc3f498fd9f282ff4d7d164d1936b3",
+    "at": 1788713637663
+  },
+  "events": [
+    {
+      "type": "request",
+      "key": "captureSponsorReport",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788713637663
+    },
+    {
+      "type": "response",
+      "key": "captureSponsorReport",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 0,
+        "state": "active",
+        "stageLabel": "Checking the plan",
+        "completedUnits": 0,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713638729,
+      "elapsedMs": 1066
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 0,
+      "at": 1788713638729
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713641229,
+      "elapsedMs": 2500
+    },
+    {
+      "type": "request",
+      "key": "getSponsorReportCapture",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788713651647
+    },
+    {
+      "type": "response",
+      "key": "getSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713652504,
+      "elapsedMs": 857
+    },
+    {
+      "type": "request",
+      "key": "getSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": null,
+      "at": 1788713653192
+    },
+    {
+      "type": "response",
+      "key": "getSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713653967,
+      "elapsedMs": 775
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 1,
+      "at": 1788713653968
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 2,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 2,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713655430,
+      "elapsedMs": 1462
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 2,
+      "at": 1788713655431
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 3,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 3,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713656663,
+      "elapsedMs": 1232
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 3,
+      "at": 1788713656665
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 4,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713657721,
+      "elapsedMs": 1056
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 4,
+      "at": 1788713657721
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 5,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 5,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713659003,
+      "elapsedMs": 1282
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 5,
+      "at": 1788713659004
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 6,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 6,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713660157,
+      "elapsedMs": 1153
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 6,
+      "at": 1788713660158
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 7,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 7,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 0,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713661333,
+      "elapsedMs": 1175
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 7,
+      "at": 1788713661334
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 8,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 8,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 25,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713662520,
+      "elapsedMs": 1186
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 8,
+      "at": 1788713662520
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 9,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 9,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 50,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713663711,
+      "elapsedMs": 1191
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 9,
+      "at": 1788713663712
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 10,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 10,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 75,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713665009,
+      "elapsedMs": 1297
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 10,
+      "at": 1788713665009
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 11,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 11,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 100,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713666188,
+      "elapsedMs": 1179
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 11,
+      "at": 1788713666189
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 12,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 12,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 125,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713667350,
+      "elapsedMs": 1161
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 12,
+      "at": 1788713667352
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 13,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 13,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 150,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713668445,
+      "elapsedMs": 1093
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 13,
+      "at": 1788713668446
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 14,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 14,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 175,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713669707,
+      "elapsedMs": 1261
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 14,
+      "at": 1788713669709
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 15,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 15,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 200,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713670912,
+      "elapsedMs": 1203
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 15,
+      "at": 1788713670913
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 16,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 16,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 225,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713672116,
+      "elapsedMs": 1203
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 16,
+      "at": 1788713672117
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 17,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 17,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 250,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713673346,
+      "elapsedMs": 1229
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 17,
+      "at": 1788713673347
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 18,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 18,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 275,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713674544,
+      "elapsedMs": 1197
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 18,
+      "at": 1788713674545
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 19,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 19,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713675643,
+      "elapsedMs": 1098
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 19,
+      "at": 1788713675644
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 20,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 20,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713676967,
+      "elapsedMs": 1323
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 20,
+      "at": 1788713676967
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 21,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 21,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713678291,
+      "elapsedMs": 1324
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 21,
+      "at": 1788713678292
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 22,
+        "state": "active",
+        "stageLabel": "Verifying forecast results",
+        "completedUnits": 22,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713679446,
+      "elapsedMs": 1154
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 22,
+      "at": 1788713679447
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 23,
+        "state": "active",
+        "stageLabel": "Preparing forecast results",
+        "completedUnits": 23,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713680639,
+      "elapsedMs": 1192
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 23,
+      "at": 1788713680639
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 24,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 24,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713681687,
+      "elapsedMs": 1048
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 24,
+      "at": 1788713681688
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 25,
+        "state": "active",
+        "stageLabel": "Preparing forecast results",
+        "completedUnits": 25,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713682797,
+      "elapsedMs": 1109
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 25,
+      "at": 1788713682798
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 26,
+        "state": "active",
+        "stageLabel": "Retaining the selected baseline",
+        "completedUnits": 26,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713684113,
+      "elapsedMs": 1315
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 26,
+      "at": 1788713684114
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 27,
+        "state": "active",
+        "stageLabel": "Preparing the report",
+        "completedUnits": 27,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713685310,
+      "elapsedMs": 1196
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 27,
+      "at": 1788713685311
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 28,
+        "state": "active",
+        "stageLabel": "Retaining report pages",
+        "completedUnits": 28,
+        "totalUnits": 35,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713686573,
+      "elapsedMs": 1262
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 28,
+      "at": 1788713686574
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 29,
+        "state": "active",
+        "stageLabel": "Checking for plan changes",
+        "completedUnits": 29,
+        "totalUnits": 35,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713687786,
+      "elapsedMs": 1212
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 29,
+      "at": 1788713687787
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 30,
+        "state": "active",
+        "stageLabel": "Confirming the plan is unchanged",
+        "completedUnits": 30,
+        "totalUnits": 35,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713689051,
+      "elapsedMs": 1264
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 30,
+      "at": 1788713689051
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 31,
+        "state": "active",
+        "stageLabel": "Recording capture provenance",
+        "completedUnits": 31,
+        "totalUnits": 35,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713690251,
+      "elapsedMs": 1200
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 31,
+      "at": 1788713690252
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 32,
+        "state": "active",
+        "stageLabel": "Checking every report page",
+        "completedUnits": 32,
+        "totalUnits": 35,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713691669,
+      "elapsedMs": 1417
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 32,
+      "at": 1788713691670
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 33,
+        "state": "active",
+        "stageLabel": "Checking the retained schedule",
+        "completedUnits": 33,
+        "totalUnits": 35,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713692890,
+      "elapsedMs": 1220
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 33,
+      "at": 1788713692891
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 34,
+        "state": "active",
+        "stageLabel": "Publishing the verified report",
+        "completedUnits": 34,
+        "totalUnits": 35,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713694240,
+      "elapsedMs": 1349
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": 34,
+      "at": 1788713694241
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 35,
+        "state": "complete",
+        "stageLabel": "Report ready",
+        "completedUnits": 35,
+        "totalUnits": 35,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713695731,
+      "elapsedMs": 1490
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": null,
+      "at": 1788713699274
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 36,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 36,
+        "totalUnits": 36,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713700398,
+      "elapsedMs": 1124
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": null,
+      "at": 1788713700399
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 37,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 37,
+        "totalUnits": 37,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713701466,
+      "elapsedMs": 1067
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": null,
+      "at": 1788713701466
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 38,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 38,
+        "totalUnits": 38,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713702611,
+      "elapsedMs": 1145
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": null,
+      "at": 1788713702612
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 39,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 39,
+        "totalUnits": 39,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713703968,
+      "elapsedMs": 1356
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": null,
+      "at": 1788713703968
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 40,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 40,
+        "totalUnits": 40,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713704956,
+      "elapsedMs": 988
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+      "expectedCheckpoint": null,
+      "at": 1788713704956
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "9ab2cf0c-9579-41f7-a9e8-870c329db3aa",
+        "requestId": "9759ae5c-4c33-4c6e-8405-ed48924c21f0",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T16:53:58.543Z",
+        "expiresAt": "2026-09-07T16:53:58.543Z",
+        "checkpoint": 41,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 41,
+        "totalUnits": 41,
+        "cleanupDone": true,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "78532563-49e6-4cdc-b8e4-bf39bea7abd2"
+      },
+      "at": 1788713706020,
+      "elapsedMs": 1064
+    }
+  ]
+}

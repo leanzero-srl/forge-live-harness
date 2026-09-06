@@ -1,0 +1,41 @@
+{
+  "marker": "lz-norm-mtooi1hu",
+  "name": "[harness-test] lz-norm-mtooi1hu",
+  "time": "2026-09-05T17:50:38.610Z",
+  "issues": [
+    {
+      "key": "WFH-2705",
+      "seed": {
+        "label": "predecessor",
+        "start": "2026-10-05",
+        "due": "2026-10-06",
+        "duration": 2
+      }
+    },
+    {
+      "key": "WFH-2706",
+      "seed": {
+        "label": "declared zero",
+        "start": "2026-10-07",
+        "due": "2026-10-07",
+        "duration": 0
+      }
+    }
+  ],
+  "planId": "plan-test-mtooi4yd-ta7afs",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtooi4yd-ta7afs",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2706",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2705",
+      "deleted": true
+    }
+  ],
+  "integrityPassed": true
+}

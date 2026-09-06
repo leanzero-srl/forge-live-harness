@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtp49a9j",
+  "name": "[harness-test] lz-norm-mtp49a9j",
+  "time": "2026-09-06T01:11:43.927Z",
+  "issues": [
+    {
+      "key": "WFH-2884",
+      "seed": {
+        "label": "forecast observed work",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp49cok-amq1yu",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp49cok-amq1yu",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2884",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2884",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2884",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

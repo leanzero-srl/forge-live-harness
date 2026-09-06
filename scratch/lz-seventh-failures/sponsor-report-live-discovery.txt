@@ -1,0 +1,3 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:15:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy
+Total: 1 test in 1 file

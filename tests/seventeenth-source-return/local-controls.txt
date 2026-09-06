@@ -1,0 +1,18 @@
+✔ latest actual readonly receipt and full previous chain admit same exact source (1.583125ms)
+✔ latest digest, write, incomplete preservation or changed manifest fail (2.270958ms)
+✔ exact retained all5300 independent raw/captured/fullforecastinput hashes (0.312084ms)
+✔ persisted fieldAvail affects raw and basis but intentionally not captured hashes (119.335792ms)
+✔ different fields, duration semantics, calendar or payload cannot hide under expected hashes (241.533667ms)
+✔ independent arithmetic equals actual production hydration and capture every field (107.04275ms)
+✔ exact complete source summary accepted with14 phase events (0.783833ms)
+✔ any hash/count/identity/phase/commit disagreement fails (1.903625ms)
+✔ only source mode GET once, body0 and no retry (11.172125ms)
+✔ unknown transport and oversized body each fail once with preserved evidence (0.480791ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 741.040083

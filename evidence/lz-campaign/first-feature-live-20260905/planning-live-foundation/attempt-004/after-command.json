@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-identity.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-004/after-artifacts"
+  ],
+  "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+  "phase": "after",
+  "uiVersion": "4.58.572"
+}

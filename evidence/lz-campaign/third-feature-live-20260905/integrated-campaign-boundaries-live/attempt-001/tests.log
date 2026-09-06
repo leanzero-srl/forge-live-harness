@@ -1,0 +1,271 @@
+
+Running 11 tests using 1 worker
+
+
+(node:95342) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/11] [chromium] › scenarios/lz-ppm/journey-campaign-adoption.spec.ts:8:1 › adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original
+[chromium] › scenarios/lz-ppm/journey-campaign-adoption.spec.ts:8:1 › adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original
+[jira !!] GET /rest/api/3/issue/WFH-2799 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2798 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtouui5a","name":"[harness-test] lz-norm-mtouui5a","time":"2026-09-05T20:48:17.758Z","issues":[{"key":"WFH-2798","seed":{"label":"adopt predecessor","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2799","seed":{"label":"adopt successor","duration":5,"start":"2026-03-09","due":"2026-03-13"}}],"planId":"plan-test-mtouulvj-y5w316","cleanup":[{"plan":"plan-test-mtouulvj-y5w316","deleted":true},{"issue":"WFH-2799","deleted":true},{"issue":"WFH-2798","deleted":true}],"linkPairs":[{"from":"WFH-2798","to":"WFH-2799"}],"searchIndexVerified":[{"key":"WFH-2798","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2799","start":"2026-03-09","due":"2026-03-13","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2798","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2799","start":"2026-03-09","due":"2026-03-13","duration":5}]],"integrityPassed":true}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-adoption.spec.ts:8:1 › adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 4
+
+      Array [
+        Object {
+          "key": "WFH-2798",
+    -     "predecessorLags": undefined,
+    +     "predecessorLags": Object {},
+          "predecessors": Array [],
+        },
+        Object {
+          "key": "WFH-2799",
+    -     "predecessorLags": undefined,
+    +     "predecessorLags": Object {
+    +       "WFH-2798": 0,
+    +     },
+          "predecessors": Array [
+            "WFH-2798",
+          ],
+        },
+      ]
+
+      20 |     const variantRead=actualResponse(page,'getSnapshot',f.planId);await editor.getByRole('button',{name:'Save new scenario',exact:true}).click();const variant=(await variantRead).snapshot;
+      21 |     expect(variant.calendar.workingDays).toEqual(base.calendar.workingDays);expect(variant.calendar.holidays).toEqual(base.calendar.holidays);
+    > 22 |     expect(variant.issues.map((i:any)=>({key:i.key,predecessors:i.predecessors,predecessorLags:i.predecessorLags}))).toEqual(base.issues.map((i:any)=>({key:i.key,predecessors:i.predecessors,predecessorLags:i.predecessorLags})));
+         |                                                                                                                      ^
+      23 |     await work.getByRole('button',{name:'Adopt schedule…',exact:true}).click();let dialog=frame.getByRole('dialog',{name:'Adopt scenario',exact:true});
+      24 |     await expect(dialog).toContainText('Compatible six days');await dialog.getByRole('button',{name:'Cancel',exact:true}).click();
+      25 |     expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:f.planId})).issues)).toEqual(source);expect(await Promise.all(f.keys.map((key:string)=>f.read(key)))).toEqual(original);
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-adoption.spec.ts:22:118
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:82:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-adoption.spec.ts:9:3
+
+    Error Context: evidence/lz-campaign/third-feature-live-20260905/integrated-campaign-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-578ce-rd-retains-applied-original-chromium/error-context.md
+
+
+
+(node:96700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[2/11] [chromium] › scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:11:1 › capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity
+[chromium] › scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:11:1 › capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity
+[jira !!] GET /rest/api/3/issue/WFH-2803 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2802 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2801 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2800 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtouvj7w","name":"[harness-test] lz-norm-mtouvj7w","time":"2026-09-05T20:49:05.804Z","issues":[{"key":"WFH-2800","seed":{"label":"24h demand","duration":5,"start":"2026-09-07","due":"2026-09-11"}},{"key":"WFH-2801","seed":{"label":"missing effort","duration":5,"start":"2026-09-07","due":"2026-09-11"}},{"key":"WFH-2802","seed":{"label":"zero effort","duration":5,"start":"2026-09-07","due":"2026-09-11"}},{"key":"WFH-2803","seed":{"label":"unassigned effort","duration":5,"start":"2026-09-07","due":"2026-09-11"}}],"planId":"plan-test-mtouvoau-f8ah86","cleanup":[{"plan":"plan-test-mtouvoau-f8ah86","deleted":true},{"issue":"WFH-2803","deleted":true},{"issue":"WFH-2802","deleted":true},{"issue":"WFH-2801","deleted":true},{"issue":"WFH-2800","deleted":true}],"searchIndexVerified":[{"key":"WFH-2800","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2801","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2802","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2803","start":"2026-09-07","due":"2026-09-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2800","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2801","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2802","start":"2026-09-07","due":"2026-09-11","duration":5},{"key":"WFH-2803","start":"2026-09-07","due":"2026-09-11","duration":5}]],"integrityPassed":true}
+
+[3/11] [chromium] › scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:11:1 › completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence
+[chromium] › scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:11:1 › completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence
+[jira !!] GET /rest/api/3/issue/WFH-2804 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtouwser","name":"[harness-test] lz-norm-mtouwser","time":"2026-09-05T20:50:04.371Z","issues":[{"key":"WFH-2804","seed":{"label":"retained completed outcome","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtouwu9q-vn8cch","cleanup":[{"plan":"plan-test-mtouwu9q-vn8cch","deleted":true},{"issue":"WFH-2804","deleted":true}],"searchIndexVerified":[{"key":"WFH-2804","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2804","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[4/11] [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+[chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+[jira !!] GET /rest/api/3/issue/WFH-2805 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtouxss3","name":"[harness-test] lz-norm-mtouxss3","time":"2026-09-05T20:50:51.507Z","issues":[{"key":"WFH-2805","seed":{"label":"forecast observed work","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtouxw78-h1ddz2","cleanup":[{"plan":"plan-test-mtouxw78-h1ddz2","deleted":true},{"issue":"WFH-2805","deleted":true}],"searchIndexVerified":[{"key":"WFH-2805","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2805","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[5/11] [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:27:1 › private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact
+[chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:27:1 › private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact
+[jira !!] GET /rest/api/3/issue/WFH-2806 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtouyku7","name":"[harness-test] lz-norm-mtouyku7","time":"2026-09-05T20:51:27.871Z","issues":[{"key":"WFH-2806","seed":{"label":"forecast observed work","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtouymhj-pya9ao","cleanup":[{"plan":"plan-test-mtouymhj-pya9ao","deleted":true},{"issue":"WFH-2806","deleted":true}],"searchIndexVerified":[{"key":"WFH-2806","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[],[{"key":"WFH-2806","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[6/11] [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:12:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+[chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:12:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+[jira !!] GET /rest/api/3/issue/WFH-2807 -> 404
+
+[jira !!] GET /rest/api/3/version/10286 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtouzba2","name":"[harness-test] lz-norm-mtouzba2","time":"2026-09-05T20:52:02.138Z","issues":[{"key":"WFH-2807","seed":{"label":"numeric report 20h","duration":5,"start":"2026-09-07","due":"2026-09-11","release":true}}],"planId":"plan-test-mtouzev3-61ousc","cleanup":[{"plan":"plan-test-mtouzev3-61ousc","deleted":true},{"issue":"WFH-2807","deleted":true},{"version":"10286","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10286","id":"10286","name":"[harness-test] lz-norm-mtouzba2","archived":false,"released":false,"projectId":10001},"searchIndexVerified":[{"key":"WFH-2807","start":"2026-09-07","due":"2026-09-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2807","start":"2026-09-07","due":"2026-09-11","duration":5}]],"integrityPassed":true}
+
+  2) [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:12:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="table-row"][data-row-key="WFH-2807"]').locator('input[inputmode="numeric"]')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 15000ms
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="table-row"][data-row-key="WFH-2807"]').locator('input[inputmode="numeric"]')
+
+
+       at scenarios/lz-ppm/normalization-owned-fixture.ts:126
+
+      124 |   await row(frame, key).locator(':scope > div').nth(5).click();
+      125 |   const input = row(frame, key).locator('input[inputmode="numeric"]');
+    > 126 |   await expect(input).toBeVisible(); await input.fill(value); await input.press('Enter');
+          |                       ^
+      127 | }
+      128 | export async function save(frame: any) {
+      129 |   const button = frame.locator('[data-testid="plan-save-btn"]');
+        at editDuration (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:126:23)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:55:69
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:82:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:2
+
+    Error Context: evidence/lz-campaign/third-feature-live-20260905/integrated-campaign-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/error-context.md
+
+
+
+(node:3703) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[7/11] [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:13:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy
+  3) [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:13:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 6
+    + Received  + 0
+
+    @@ -42,12 +42,6 @@
+        "LZPT-226",
+        "LZPT-227",
+        "LZPT-228",
+        "LZPT-229",
+        "LZPT-230",
+    -   "LZPT-284",
+    -   "LZPT-285",
+    -   "LZPT-286",
+    -   "LZPT-287",
+    -   "LZPT-288",
+    -   "LZPT-289",
+      ]
+
+      16 |  const journal:any={name,sourceKeys:keys,sourceCount:keys.length};fs.mkdirSync(info.outputDir,{recursive:true});const persist=()=>fs.writeFileSync(info.outputPath('report-journal.json'),JSON.stringify(journal,null,2));persist();
+      17 |  try{
+    > 18 |   const created=await getTestState('lz-ppm',{what:'createFixture',name,jql:`key in (${keys.join(',')}) ORDER BY key`});planId=created.planId;if(typeof planId!=='string'||!planId)throw new Error('Report fixture creation returned no plan ID');journal.planId=planId;persist();expect(created.issues.map((i:any)=>i.key).sort()).toEqual(keys);
+         |                                                                                                                                                                                                                                                                                                                                    ^
+      19 |   let frame=await openPlan(page,name),work=await planning(frame);
+      20 |   const capture=async(label:string)=>{await work.getByLabel('Capture name').fill(label);await work.locator('form').getByRole('combobox').first().click();await frame.getByRole('option',{name:'Baseline',exact:true}).click();const response=result(page,'getSnapshot',planId!);await work.getByRole('button',{name:'Capture working plan',exact:true}).click();await expect(work.locator('[data-testid="snapshot-detail"] h3').first()).toHaveText(label);const snapshot=(await response).snapshot;await work.getByRole('button',{name:'Use as baseline',exact:true}).click();await expect(work).toContainText(`Baseline set to ${label}`);return snapshot;};
+      21 |   const original=await capture('Report original baseline');expect(original.issues).toHaveLength(keys.length);journal.originalBaseline={id:original.id,hash:original.hash};persist();
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts:18:324
+
+    Error Context: evidence/lz-campaign/third-feature-live-20260905/integrated-campaign-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-d3bf0-ndent-deleted-baseline-copy-chromium/error-context.md
+
+
+
+(node:3799) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[8/11] [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:17:1 › sensitivity: tied branches have no solo-shortening benefit; actual yielded cancellation and scope change never publish old or partial rankings
+[chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:17:1 › sensitivity: tied branches have no solo-shortening benefit; actual yielded cancellation and scope change never publish old or partial rankings
+[jira !!] GET /rest/api/3/issue/WFH-2809 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2808 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtov0ly9","name":"[harness-test] lz-norm-mtov0ly9","time":"2026-09-05T20:53:02.625Z","issues":[{"key":"WFH-2808","seed":{"label":"tie one","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2809","seed":{"label":"tie two","duration":5,"start":"2026-03-02","due":"2026-03-06"}}],"planId":"plan-test-mtov0q8n-8fipoc","cleanup":[{"plan":"plan-test-mtov0q8n-8fipoc","deleted":true},{"issue":"WFH-2809","deleted":true},{"issue":"WFH-2808","deleted":true}],"searchIndexVerified":[{"key":"WFH-2808","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2809","start":"2026-03-02","due":"2026-03-06","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2808","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2809","start":"2026-03-02","due":"2026-03-06","duration":5}]],"integrityPassed":true}
+
+[9/11] [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:37:1 › sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed
+[chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:37:1 › sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed
+[jira !!] GET /rest/api/3/issue/WFH-2813 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2812 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2811 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2810 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtov165m","name":"[harness-test] lz-norm-mtov165m","time":"2026-09-05T20:53:28.810Z","issues":[{"key":"WFH-2810","seed":{"label":"buffer predecessor","duration":8,"start":"2026-06-01","due":"2026-06-10"}},{"key":"WFH-2811","seed":{"label":"fixed buffer","duration":7,"start":"2026-06-11","due":"2026-06-19"}},{"key":"WFH-2812","seed":{"label":"declared milestone","duration":0,"start":"2026-06-01","due":"2026-06-01"}},{"key":"WFH-2813","seed":{"label":"completed work","duration":2,"start":"2026-05-04","due":"2026-05-05"}}],"planId":"plan-test-mtov1bc2-z1xokw","cleanup":[{"plan":"plan-test-mtov1bc2-z1xokw","deleted":true},{"issue":"WFH-2813","deleted":true},{"issue":"WFH-2812","deleted":true},{"issue":"WFH-2811","deleted":true},{"issue":"WFH-2810","deleted":true}],"linkPairs":[{"from":"WFH-2810","to":"WFH-2811"}],"searchIndexVerified":[{"key":"WFH-2810","start":"2026-06-01","due":"2026-06-10","duration":8},{"key":"WFH-2811","start":"2026-06-11","due":"2026-06-19","duration":7},{"key":"WFH-2812","start":"2026-06-01","due":"2026-06-01","duration":0},{"key":"WFH-2813","start":"2026-05-04","due":"2026-05-05","duration":2}],"forgeIndexObservations":[[{"key":"WFH-2810","start":"2026-06-01","due":"2026-06-10","duration":8},{"key":"WFH-2811","start":"2026-06-11","due":"2026-06-19","duration":7},{"key":"WFH-2812","start":"2026-06-01","due":"2026-06-01","duration":0},{"key":"WFH-2813","start":"2026-05-04","due":"2026-05-05","duration":2}]],"integrityPassed":true}
+
+  4) [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:37:1 › sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed 
+
+    Error: page.setViewportSize: Target page, context or browser has been closed
+
+       at scenarios/lz-ppm/forecast-fixture.ts:19
+
+      17 |
+      18 | export async function openPlans(page: any) {
+    > 19 |   await page.setViewportSize({ width: 1600, height: 1100 });
+         |              ^
+      20 |   await assertLoggedIn(page);
+      21 |   await page.goto(target.deepLink(target.envId)!, { waitUntil: 'domcontentloaded' });
+      22 |   await page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]').first()
+        at openPlans (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:19:14)
+        at openPlan (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:31:23)
+        at table (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:117:23)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:45:85
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:82:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:38:2
+
+    Error Context: evidence/lz-campaign/third-feature-live-20260905/integrated-campaign-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-1d0f2--are-not-directly-perturbed-chromium/error-context.md
+
+
+
+(node:5008) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[10/11] [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:41:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture
+[chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:41:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture
+[jira !!] GET /rest/api/3/issue/WFH-2816 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2815 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2814 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtov1m9n","name":"[harness-test] lz-norm-mtov1m9n","time":"2026-09-05T20:53:49.691Z","issues":[{"key":"WFH-2814","seed":{"label":"simulation predecessor","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2815","seed":{"label":"simulation successor","duration":5,"start":"2026-03-09","due":"2026-03-13"}},{"key":"WFH-2816","seed":{"label":"simulation independent December","duration":5,"start":"2026-12-07","due":"2026-12-11"}}],"planId":"plan-test-mtov1qkg-3ihz2t","cleanup":[{"plan":"plan-test-mtov1qkg-3ihz2t","deleted":true},{"issue":"WFH-2816","deleted":true},{"issue":"WFH-2815","deleted":true},{"issue":"WFH-2814","deleted":true}],"linkPairs":[{"from":"WFH-2814","to":"WFH-2815"}],"searchIndexVerified":[{"key":"WFH-2814","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2815","start":"2026-03-09","due":"2026-03-13","duration":5},{"key":"WFH-2816","start":"2026-12-07","due":"2026-12-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2814","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2815","start":"2026-03-09","due":"2026-03-13","duration":5},{"key":"WFH-2816","start":"2026-12-07","due":"2026-12-11","duration":5}]],"integrityPassed":true}
+
+  5) [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:41:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture 
+
+    TimeoutError: locator.fill: Timeout 20000ms exceeded.
+    Call log:
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="planning-workspace"]').locator('[data-testid="scenario-editor"]').getByLabel('Holiday dates, one YYYY-MM-DD per line', { exact: true })
+
+
+      124 |       await editor.getByRole('checkbox',{name:`Include ${late}`,exact:true}).click();
+      125 |       await editor.getByLabel(`${pred} duration`,{exact:true}).fill('6');
+    > 126 |       await editor.getByLabel('Holiday dates, one YYYY-MM-DD per line',{exact:true}).fill('2026-03-04');
+          |                                                                                      ^
+      127 |       await editor.locator('summary').filter({hasText:'Edit finish-to-start dependencies'}).click();
+      128 |       const details=editor.locator('details');
+      129 |       await details.locator('label').filter({hasText:'Predecessor'}).getByRole('combobox').click();
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-simulation.spec.ts:126:86
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:82:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:3
+
+    Error Context: evidence/lz-campaign/third-feature-live-20260905/integrated-campaign-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-656c4-ut-changing-Jira-or-capture-chromium/error-context.md
+
+
+
+(node:6387) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[11/11] [chromium] › scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts:9:1 › targets: outside-release predecessor constrains finish; rename keeps identity, drift requires explicit refresh, empty scope and invalid date never yield success
+[chromium] › scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts:9:1 › targets: outside-release predecessor constrains finish; rename keeps identity, drift requires explicit refresh, empty scope and invalid date never yield success
+[jira !!] GET /rest/api/3/issue/WFH-2819 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2818 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2817 -> 404
+
+[jira !!] GET /rest/api/3/version/10287 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtov2upi","name":"[harness-test] lz-norm-mtov2upi","time":"2026-09-05T20:54:47.286Z","issues":[{"key":"WFH-2817","seed":{"label":"external predecessor","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2818","seed":{"label":"release member","duration":5,"start":"2026-03-09","due":"2026-03-13","release":true}},{"key":"WFH-2819","seed":{"label":"unrelated late branch","duration":5,"start":"2026-12-07","due":"2026-12-11"}}],"planId":"plan-test-mtov2z80-5y9w65","cleanup":[{"plan":"plan-test-mtov2z80-5y9w65","deleted":true},{"issue":"WFH-2819","deleted":true},{"issue":"WFH-2818","deleted":true},{"issue":"WFH-2817","deleted":true},{"version":"10287","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10287","id":"10287","name":"[harness-test] lz-norm-mtov2upi","archived":false,"released":false,"projectId":10001},"linkPairs":[{"from":"WFH-2817","to":"WFH-2818"}],"searchIndexVerified":[{"key":"WFH-2817","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2818","start":"2026-03-09","due":"2026-03-13","duration":5},{"key":"WFH-2819","start":"2026-12-07","due":"2026-12-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2817","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2818","start":"2026-03-09","due":"2026-03-13","duration":5},{"key":"WFH-2819","start":"2026-12-07","due":"2026-12-11","duration":5}]],"integrityPassed":true}
+
+  5 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-adoption.spec.ts:8:1 › adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original 
+    [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:12:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 
+    [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:13:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy 
+    [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:37:1 › sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed 
+    [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:41:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture 
+  6 passed (7.8m)

@@ -1,0 +1,181 @@
+{
+  "kind": "baseline-drift",
+  "events": [
+    {
+      "stage": "holding-real-advance-response",
+      "time": "2026-09-06T08:08:54.244Z",
+      "request": {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "expectedCheckpoint": 0
+      }
+    },
+    {
+      "stage": "real-advance-response-ready",
+      "time": "2026-09-06T08:08:54.244Z",
+      "httpStatus": 200,
+      "body": {
+        "success": true,
+        "job": {
+          "id": "619f9675-717e-433e-83f1-b24944eb1685",
+          "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+          "name": "Bounded baseline-drift report",
+          "createdAt": "2026-09-06T08:08:52.606Z",
+          "expiresAt": "2026-09-07T08:08:52.606Z",
+          "checkpoint": 1,
+          "state": "active",
+          "stageLabel": "Confirming the complete plan",
+          "completedUnits": 1,
+          "totalUnits": 16,
+          "cleanupDone": false,
+          "reportId": "677103c5-7bab-4185-bd40-0af19cad4b0b"
+        }
+      },
+      "errors": null
+    },
+    {
+      "stage": "real-advance-response-delivered",
+      "time": "2026-09-06T08:08:55.152Z"
+    }
+  ],
+  "originalJira": {
+    "key": "WFH-2969",
+    "start": "2026-10-05",
+    "due": "2026-10-09",
+    "duration": 5
+  },
+  "baseline": {
+    "assets": null,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "chunkCount": 1,
+    "chunkHashes": [
+      "4ce042527c1a3fde501fcd046bcf42127f8153eed54e4a97b103b0ac96233207"
+    ],
+    "consistency": {
+      "basisHash": "035251624f85899a86fdba46970d73a8c75853d7629197b797eb500d9831ae75",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T08:08:48.879Z"
+    },
+    "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "fieldOverrides": {},
+    "hash": "ba1fb6c6c27164b8dbe151c5c60aa1e97d6b3c348040529f79636afe668fbab8",
+    "id": "97a0c735-6db2-4149-99fb-38342e3c11e3",
+    "issueCount": 1,
+    "kind": "baseline",
+    "milestones": [],
+    "name": "Pinned job baseline",
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "schemaVersion": 1,
+    "sourceVersion": 2,
+    "sources": [
+      {
+        "boardId": null,
+        "id": "src-0",
+        "label": "harness",
+        "projectKey": null,
+        "query": "key in (WFH-2969) ORDER BY Rank ASC",
+        "type": "jql"
+      }
+    ],
+    "state": "complete",
+    "takenAt": "2026-09-06T08:08:48.879Z",
+    "uncertainty": "medium",
+    "workingChangeCount": 0,
+    "issues": [
+      {
+        "_original": {
+          "buffer": "No",
+          "dueDate": "2026-10-09",
+          "duration": 5,
+          "predecessors": [],
+          "startDate": "2026-10-05",
+          "successors": []
+        },
+        "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "assigneeName": "Mihai Perdum",
+        "assigneeState": "assigned",
+        "buffer": "No",
+        "children": [],
+        "created": "2026-09-06",
+        "dueDate": "2026-10-09",
+        "duration": 5,
+        "fixVersions": [],
+        "hierarchyLevel": 0,
+        "id": "25201",
+        "key": "WFH-2969",
+        "labels": [
+          "lz-norm-mtpj5dl1"
+        ],
+        "orphanParentKey": null,
+        "parentKey": null,
+        "predecessors": [],
+        "priority": "Medium",
+        "rank": "0|i01k27:",
+        "remainingEstimateSeconds": null,
+        "reporter": "Mihai Perdum",
+        "resolution": null,
+        "startDate": "2026-10-05",
+        "status": "New",
+        "statusCategory": "new",
+        "storyPoints": null,
+        "successors": [],
+        "summary": "[harness-test] lz-norm-mtpj5dl1 report job baseline-drift",
+        "type": "Work package",
+        "updated": "2026-09-06"
+      }
+    ],
+    "assetsReadState": "requires-current-user-read"
+  },
+  "probeObservations": [
+    {
+      "planId": "plan-test-mtpj5g7p-1uu0li",
+      "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 1,
+      "cleanupDone": false,
+      "privateManifestHash": "3b1a7d8793cbae38b097d2818438e983bb71458d9d421076d11afc40369f8b73",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+          "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+          "present": true,
+          "actualHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5"
+        }
+      ],
+      "publicArtifacts": []
+    }
+  ],
+  "beforeCleanup": {
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+    "registryMember": true,
+    "state": "active",
+    "checkpoint": 1,
+    "cleanupDone": false,
+    "privateManifestHash": "3b1a7d8793cbae38b097d2818438e983bb71458d9d421076d11afc40369f8b73",
+    "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privateArtifacts": [
+      {
+        "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+        "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+        "present": true,
+        "actualHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5"
+      }
+    ],
+    "publicArtifacts": []
+  },
+  "refusal": "advanceSponsorReportCapture: The active baseline changed during report capture.",
+  "captureCleanupVerified": true
+}

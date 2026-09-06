@@ -1,0 +1,133 @@
+{
+  "key": "WFH-2835",
+  "forecastId": "7fe84609-8905-42f8-b1e6-1923b0576085",
+  "before": {
+    "id": "25035",
+    "statusCategory": "new",
+    "resolutionId": null,
+    "resolutionDate": null,
+    "statusCategoryChangedDate": "2026-09-06T00:32:52.133+0300"
+  },
+  "receipt": {
+    "success": true,
+    "observation": {
+      "id": "72a55a3b-9b40-46bf-a5d2-2a1ee4cc84c0",
+      "snapshotId": "7fe84609-8905-42f8-b1e6-1923b0576085",
+      "scopeId": "plan",
+      "modelVersion": "duration-triangular-fs-v1",
+      "memberCount": 1,
+      "checkedFrom": "2026-09-05T21:33:04.679Z",
+      "checkedTo": "2026-09-05T21:33:04.863Z"
+    },
+    "result": {
+      "state": "insufficient",
+      "reason": "Some captured work is still open or has been reopened.",
+      "actualFinish": null,
+      "hits": null
+    }
+  },
+  "unchanged": {
+    "success": true,
+    "state": "unchanged",
+    "reviewId": "26b5ff6a-a3ae-43cc-a532-6eacf47e1abe",
+    "saved": {
+      "observation": {
+        "id": "72a55a3b-9b40-46bf-a5d2-2a1ee4cc84c0",
+        "snapshotId": "7fe84609-8905-42f8-b1e6-1923b0576085",
+        "scopeId": "plan",
+        "modelVersion": "duration-triangular-fs-v1",
+        "memberCount": 1,
+        "checkedFrom": "2026-09-05T21:33:04.679Z",
+        "checkedTo": "2026-09-05T21:33:04.863Z"
+      },
+      "result": {
+        "actualFinish": null,
+        "hits": null,
+        "reason": "Some captured work is still open or has been reopened.",
+        "state": "insufficient"
+      }
+    },
+    "checked": {
+      "checkedFrom": "2026-09-05T21:33:13.719Z",
+      "checkedTo": "2026-09-05T21:33:13.872Z",
+      "result": {
+        "state": "insufficient",
+        "reason": "Some captured work is still open or has been reopened.",
+        "actualFinish": null,
+        "hits": null
+      }
+    }
+  },
+  "transition": {
+    "id": "221",
+    "name": "UAT"
+  },
+  "after": {
+    "id": "25035",
+    "statusCategory": "indeterminate",
+    "resolutionId": null,
+    "resolutionDate": null,
+    "statusCategoryChangedDate": "2026-09-06T00:33:15.085+0300"
+  },
+  "superseded": {
+    "success": true,
+    "state": "superseded",
+    "reviewId": "14f97c7e-347c-49df-9815-283e047e41bd",
+    "saved": {
+      "observation": {
+        "id": "72a55a3b-9b40-46bf-a5d2-2a1ee4cc84c0",
+        "snapshotId": "7fe84609-8905-42f8-b1e6-1923b0576085",
+        "scopeId": "plan",
+        "modelVersion": "duration-triangular-fs-v1",
+        "memberCount": 1,
+        "checkedFrom": "2026-09-05T21:33:04.679Z",
+        "checkedTo": "2026-09-05T21:33:04.863Z"
+      },
+      "result": {
+        "actualFinish": null,
+        "hits": null,
+        "reason": "Some captured work is still open or has been reopened.",
+        "state": "insufficient"
+      }
+    },
+    "checked": {
+      "checkedFrom": "2026-09-05T21:33:16.608Z",
+      "checkedTo": "2026-09-05T21:33:16.775Z",
+      "result": {
+        "state": "insufficient",
+        "reason": "Some captured work is still open or has been reopened.",
+        "actualFinish": null,
+        "hits": null
+      }
+    }
+  },
+  "evidence": {
+    "success": true,
+    "state": "read",
+    "checkedFrom": "2026-09-05T21:33:18.306Z",
+    "checkedTo": "2026-09-05T21:33:18.470Z",
+    "rows": [
+      {
+        "saved": {
+          "id": "25035",
+          "readable": true,
+          "resolutionDate": null,
+          "resolutionId": null,
+          "statusCategory": "new",
+          "statusCategoryChangedDate": "2026-09-06T00:32:52.133+0300"
+        },
+        "checked": {
+          "id": "25035",
+          "readable": true,
+          "statusCategory": "indeterminate",
+          "resolutionId": null,
+          "resolutionDate": null,
+          "statusCategoryChangedDate": "2026-09-06T00:33:15.085+0300"
+        },
+        "checkedFrom": "2026-09-05T21:33:18.306Z",
+        "checkedTo": "2026-09-05T21:33:18.470Z"
+      }
+    ],
+    "nextPage": null
+  }
+}

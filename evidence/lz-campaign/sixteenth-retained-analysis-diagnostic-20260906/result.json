@@ -1,0 +1,173 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--grep",
+      "retained large advance:",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-retained-analysis-diagnostic-20260906/artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-retained-analysis-diagnostic-20260906/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-retained-analysis-diagnostic-20260906/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+      "file": "scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "sixteenth retained large advance: exact owned state and independent integrity preserved",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 64677,
+                  "error": {
+                    "message": "Error: Diagnostic advance outcome unknown; exact original response retained",
+                    "stack": "Error: Diagnostic advance outcome unknown; exact original response retained\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts:53:99",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+                      "column": 99,
+                      "line": 53
+                    },
+                    "snippet": "  51 |    for(let n=0;n<2;n++){job=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);record('post-advance-status',job);}\n  52 |    journal.finalJob=job;journal.finalProbe=await probe();verifyCaptureProbe(journal.finalProbe,{planId,jobId,...job});await readPublication(job);await snapshot();await baseline();expect(await owned()).toEqual(originalOwned);journal.reviewRequired=true;record('stopped-for-root-review',{outcome:journal.outcome,state:job.state,checkpoint:job.checkpoint});\n> 53 |    if(bodyError)throw bodyError;if(['unknown','refused','failed'].includes(journal.outcome))throw new Error(`Diagnostic advance outcome ${journal.outcome}; exact original response retained`);journal.completed=true;save();\n     |                                                                                                   ^\n  54 |   }else{\n  55 |    const inputPath=process.env.LZ_SIXTEENTH_ADVANCE_JOURNAL;expect(inputPath).toBeTruthy();const bytes=fs.readFileSync(path.resolve(inputPath!)),diagnostic=JSON.parse(bytes.toString());const admitted=admitCleanup(diagnostic,sha(bytes),process.env.LZ_SIXTEENTH_ADVANCE_SHA,Date.now());expect(job).toEqual(admitted);expect(before).toEqual(diagnostic.finalProbe);journal.admittedDiagnostic={path:path.resolve(inputPath!),sha256:sha(bytes)};save();\n  56 |    expect(before.publicArtifacts).toEqual([]);expect((await read('listSponsorReports',{planId})).entries).toEqual([]);await page.goto('about:blank');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+                        "column": 99,
+                        "line": 53
+                      },
+                      "message": "Error: Diagnostic advance outcome unknown; exact original response retained\n\n  51 |    for(let n=0;n<2;n++){job=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);record('post-advance-status',job);}\n  52 |    journal.finalJob=job;journal.finalProbe=await probe();verifyCaptureProbe(journal.finalProbe,{planId,jobId,...job});await readPublication(job);await snapshot();await baseline();expect(await owned()).toEqual(originalOwned);journal.reviewRequired=true;record('stopped-for-root-review',{outcome:journal.outcome,state:job.state,checkpoint:job.checkpoint});\n> 53 |    if(bodyError)throw bodyError;if(['unknown','refused','failed'].includes(journal.outcome))throw new Error(`Diagnostic advance outcome ${journal.outcome}; exact original response retained`);journal.completed=true;save();\n     |                                                                                                   ^\n  54 |   }else{\n  55 |    const inputPath=process.env.LZ_SIXTEENTH_ADVANCE_JOURNAL;expect(inputPath).toBeTruthy();const bytes=fs.readFileSync(path.resolve(inputPath!)),diagnostic=JSON.parse(bytes.toString());const admitted=admitCleanup(diagnostic,sha(bytes),process.env.LZ_SIXTEENTH_ADVANCE_SHA,Date.now());expect(job).toEqual(admitted);expect(before).toEqual(diagnostic.finalProbe);journal.admittedDiagnostic={path:path.resolve(inputPath!),sha256:sha(bytes)};save();\n  56 |    expect(before.publicArtifacts).toEqual([]);expect((await read('listSponsorReports',{planId})).entries).toEqual([]);await page.goto('about:blank');\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts:53:99"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.585\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T06:53:06.897Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T06:52:59.503Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-retained-analysis-diagnostic-20260906/artifacts/scenarios-lz-ppm-campaign--23212-pendent-integrity-preserved-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+                    "column": 99,
+                    "line": 53
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c0df7fb27c5d947c64fb-17b8ba583b641e462860",
+          "file": "scenarios/lz-ppm/campaign-recover-sixteenth-large.spec.ts",
+          "line": 14,
+          "column": 50
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T06:52:59.150Z",
+    "duration": 72675.63900000001,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

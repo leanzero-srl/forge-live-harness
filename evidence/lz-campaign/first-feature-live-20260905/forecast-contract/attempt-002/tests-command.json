@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+    "test",
+    "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+    "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-002/tests-artifacts",
+    "--grep-invert",
+    "table: a background refresh"
+  ],
+  "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+  "phase": "tests",
+  "uiVersion": "4.58.572"
+}

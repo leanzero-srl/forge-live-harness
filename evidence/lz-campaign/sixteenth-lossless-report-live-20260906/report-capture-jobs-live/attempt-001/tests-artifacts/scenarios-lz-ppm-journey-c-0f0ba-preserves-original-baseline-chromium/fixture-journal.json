@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtpfm2va",
+  "name": "[harness-test] lz-norm-mtpfm2va",
+  "time": "2026-09-06T06:29:36.646Z",
+  "issues": [
+    {
+      "key": "WFH-2948",
+      "seed": {
+        "label": "report job baseline-drift",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    }
+  ],
+  "planId": "plan-test-mtpfm4nf-82dfel",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtpfm4nf-82dfel",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2948",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2948",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2948",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

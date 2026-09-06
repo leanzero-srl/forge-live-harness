@@ -1,0 +1,149 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-baseline-visual.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/baseline-visible-ghost/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/baseline-visible-ghost/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/baseline-visible-ghost/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-baseline-visual.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-baseline-visual.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "baseline: shortened live task visibly exposes retained original ghost span after reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28522,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2781 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtorbtgl\",\"name\":\"[harness-test] lz-norm-mtorbtgl\",\"time\":\"2026-09-05T19:09:47.109Z\",\"issues\":[{\"key\":\"WFH-2781\",\"seed\":{\"label\":\"visible baseline span\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtorbwiw-sr4h61\",\"cleanup\":[{\"plan\":\"plan-test-mtorbwiw-sr4h61\",\"deleted\":true},{\"issue\":\"WFH-2781\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2781\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2781\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T19:09:46.031Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "real-rendered-bounds",
+                      "contentType": "application/json",
+                      "body": "eyJrZXkiOiJXRkgtMjc4MSIsImJhc2VsaW5lIjp7InN0YXJ0IjoiMjAyNi0xMC0wNSIsImR1ZSI6IjIwMjYtMTAtMDkiLCJkdXJhdGlvbiI6NSwiYm91bmRzIjp7IngiOjc0NS41NzY4MTI3NDQxNDA2LCJ5IjozMTMuNDgzMzk4NDM3NSwid2lkdGgiOjY5LjgxMjIyNTM0MTc5Njg4LCJoZWlnaHQiOjE3Ljk1MTY5MDY3MzgyODEyNX19LCJ3b3JraW5nIjp7InN0YXJ0IjoiMjAyNi0xMC0wNSIsImR1ZSI6IjIwMjYtMTAtMDciLCJkdXJhdGlvbiI6MywiYm91bmRzIjp7IngiOjc0NS40MDE1MTk3NzUzOTA2LCJ5IjozMTAuNTgwNTA1MzcxMDkzNzUsIndpZHRoIjo0MS45MjE1Njk4MjQyMTg3NSwiaGVpZ2h0IjoyMS45NTg5MjMzMzk4NDM3NX19fQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a7ec3b9890c3de11ce38-bf371959bd7f07dce019",
+          "file": "scenarios/lz-ppm/journey-campaign-baseline-visual.spec.ts",
+          "line": 5,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T19:09:45.722Z",
+    "duration": 47678.785,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

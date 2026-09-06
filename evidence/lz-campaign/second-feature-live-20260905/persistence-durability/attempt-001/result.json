@@ -1,0 +1,59 @@
+{
+  "status": "integrity_failed",
+  "stamp": "7190131a8ebaab1e95b10421817d6293d953f5c48830c6b7efe4e01649b3e25b",
+  "startedAt": "2026-09-05T18:25:09.605742+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-001",
+  "uiVersion": "4.58.575",
+  "forgeVersion": "6.2.0",
+  "appCommit": "dd3fa3b2",
+  "instrumentHash": "c931c336456720311506cd5b5aae398d901824d8bb54c535f3fe8670c9c5489b",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [
+        "persistence: acknowledged Save7 replaces earlier autosaved6 before immediate reopen",
+        "persistence: partial Apply discards a previously Saved sibling durably through completion reload"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-persistence.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"persistence: an actual held Save response preserves a later local edit as unsaved\"}",
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-persistence.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"persistence: simulated draft-read HTTP403 gates edits and real Retry recovers unseen draft\"}",
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-persistence.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"persistence: simulated draft-read HTTP503 gates edits and real Retry recovers unseen draft\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 5,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-identity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"campaign: actual UI version and preserved LZPT source\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T18:28:17.930757+00:00",
+  "elapsedSeconds": 188.32301479199668
+}

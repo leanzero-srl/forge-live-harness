@@ -1,0 +1,24 @@
+{
+  "time": "2026-09-05T21:05:22.590Z",
+  "planId": "plan-msq9dg8l-gz6mz1",
+  "beforeCachedCount": 51,
+  "actualJiraBeforeCount": 45,
+  "afterCachedCount": 45,
+  "sourceFingerprint": "2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104",
+  "original45ExactlyPreserved": true,
+  "jiraBeforeAfterExactlyUnchanged": true,
+  "removedCachedForeignKeys": [
+    "LZPT-284",
+    "LZPT-285",
+    "LZPT-286",
+    "LZPT-287",
+    "LZPT-288",
+    "LZPT-289"
+  ],
+  "refresh": {
+    "refreshed": "plan-msq9dg8l-gz6mz1",
+    "ok": true,
+    "issueCount": 45,
+    "shardCount": 1
+  }
+}

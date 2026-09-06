@@ -1,0 +1,13 @@
+✔ actual usePresence original unload abort is reproduced; held real leave must finish before navigation (4.542416ms)
+✔ actual usePresence wrong/missing/failed/HTTP/body/errors/duplicate leaves poison session without repeated Back or blank (106.85675ms)
+✔ actual adapter identifies Capacity/list/blank without PlanView leave and refuses unknown surface (0.662584ms)
+✔ no opt-in keeps exact default calls/results/errors and disposal removes listeners (0.280417ms)
+✔ literal intentional mounted lifecycle reload and all preexisting seven expectations remain unchanged (49.948375ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 525.132208

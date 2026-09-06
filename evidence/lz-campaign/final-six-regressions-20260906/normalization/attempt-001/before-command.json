@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-identity.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before-artifacts"
+  ],
+  "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+  "phase": "before",
+  "uiVersion": "4.58.588",
+  "browserMode": "portable-chrome152"
+}

@@ -1,0 +1,72 @@
+{
+  "features": [
+    {
+      "id": "report-capture-jobs-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-JOB-RELOAD-RESUME",
+        "REP-JOB-FINAL-PUBLICATION-PAUSE",
+        "REP-JOB-CANCEL-STALE-ADVANCE",
+        "REP-JOB-SOURCE-DRIFT-REFUSAL",
+        "REP-JOB-BASELINE-DRIFT-REFUSAL",
+        "REP-JOB-STRONG-MANIFEST-CLEANUP"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts"
+      ],
+      "minTests": 4,
+      "timeoutSeconds": 3900,
+      "scopeNote": "Exactly four owned protocol companions; response delivery is held without changing actual backend responses. No live proof until executed."
+    },
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1200,
+      "scopeNote": "Original full report business assertions through staged capture; prepared only, requires fresh reviewed app/deployment/instrument binding."
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "ready",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-report.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 1500,
+      "scopeNote": "Original full report business assertions through staged capture; prepared only, requires fresh reviewed app/deployment/instrument binding."
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "ready",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-large-history.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 2100,
+      "scopeNote": "Original full report business assertions through staged capture; prepared only, requires fresh reviewed app/deployment/instrument binding."
+    }
+  ],
+  "instrumentHash": "6a922c545c2f44f25d738cdc6a327ab2ef22b98e3140b98f088589451ba06e7d",
+  "liveTestsExecuted": false
+}

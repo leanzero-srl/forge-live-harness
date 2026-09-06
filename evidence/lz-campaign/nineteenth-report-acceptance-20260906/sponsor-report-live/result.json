@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "stamp": "7448886f7c7d8fdaa02c93d3477048fc2f9217adf5835bab2079b57be8ad7d42",
+  "startedAt": "2026-09-06T17:00:49.388071+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/sponsor-report-live/attempt-001",
+  "uiVersion": "4.58.588",
+  "forgeVersion": "6.26.0",
+  "appCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "instrumentHash": "fdda23667f010f1ae26151bae9c5a826b2f9a63a5e8e3d4407b4eb60d5fa626d",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T17:02:35.409731+00:00",
+  "elapsedSeconds": 106.02117104094941
+}

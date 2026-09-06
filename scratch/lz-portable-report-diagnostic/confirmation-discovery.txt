@@ -1,0 +1,4 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:14:1 › campaign: actual UI version and preserved LZPT source
+  [chromium] › scenarios/lz-ppm/campaign-confirm-sixth-cleanup.spec.ts:7:1 › confirm cleanup: exact three original plans, original45 and empty version36 preferences remain; deleted diagnostic issue/release/plan are absent on second reads
+Total: 2 tests in 2 files

@@ -1,0 +1,139 @@
+{
+  "kind": "source-drift",
+  "events": [
+    {
+      "stage": "holding-real-advance-response",
+      "time": "2026-09-06T16:56:19.031Z",
+      "request": {
+        "planId": "plan-test-mtq1zqiv-24iszq",
+        "jobId": "803f6ad3-48e8-443a-9625-2504c7fbd3aa",
+        "expectedCheckpoint": 0
+      }
+    },
+    {
+      "stage": "real-advance-response-ready",
+      "time": "2026-09-06T16:56:19.032Z",
+      "httpStatus": 200,
+      "body": {
+        "success": true,
+        "job": {
+          "id": "803f6ad3-48e8-443a-9625-2504c7fbd3aa",
+          "requestId": "ba0a2929-9d5c-4490-a41c-2243d0455e41",
+          "name": "Bounded source-drift report",
+          "createdAt": "2026-09-06T16:56:17.524Z",
+          "expiresAt": "2026-09-07T16:56:17.524Z",
+          "checkpoint": 1,
+          "state": "active",
+          "stageLabel": "Confirming the complete plan",
+          "completedUnits": 1,
+          "totalUnits": 16,
+          "cleanupDone": false,
+          "reportId": "facddccc-c4a4-4f64-9a3e-26ed521927c9"
+        }
+      },
+      "errors": null
+    },
+    {
+      "stage": "real-advance-response-delivered",
+      "time": "2026-09-06T16:56:19.878Z"
+    }
+  ],
+  "originalJira": {
+    "key": "WFH-2984",
+    "start": "2026-10-05",
+    "due": "2026-10-09",
+    "duration": 5
+  },
+  "probeObservations": [
+    {
+      "planId": "plan-test-mtq1zqiv-24iszq",
+      "jobId": "803f6ad3-48e8-443a-9625-2504c7fbd3aa",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 1,
+      "cleanupDone": false,
+      "privateManifestHash": "4fc0bc581542fa4d86f02c6d65c243edcb3ff0a5afe66f5890a3189c228d09e3",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "05694ff4409ce265a16098f84aea12dc14d88bd7b23c1ae2b609854adcab6121",
+          "expectedHash": "b67a3742dc10076da595ee5a3e754f793e682ad40b149d2f38a2750d0a5b2569",
+          "present": true,
+          "actualHash": "b67a3742dc10076da595ee5a3e754f793e682ad40b149d2f38a2750d0a5b2569"
+        }
+      ],
+      "publicArtifacts": []
+    }
+  ],
+  "beforeCleanup": {
+    "planId": "plan-test-mtq1zqiv-24iszq",
+    "jobId": "803f6ad3-48e8-443a-9625-2504c7fbd3aa",
+    "registryMember": true,
+    "state": "active",
+    "checkpoint": 1,
+    "cleanupDone": false,
+    "privateManifestHash": "4fc0bc581542fa4d86f02c6d65c243edcb3ff0a5afe66f5890a3189c228d09e3",
+    "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privateArtifacts": [
+      {
+        "keyHash": "05694ff4409ce265a16098f84aea12dc14d88bd7b23c1ae2b609854adcab6121",
+        "expectedHash": "b67a3742dc10076da595ee5a3e754f793e682ad40b149d2f38a2750d0a5b2569",
+        "present": true,
+        "actualHash": "b67a3742dc10076da595ee5a3e754f793e682ad40b149d2f38a2750d0a5b2569"
+      }
+    ],
+    "publicArtifacts": []
+  },
+  "changedOwnedSource": [
+    {
+      "_original": {
+        "buffer": "No",
+        "dueDate": "2026-10-09",
+        "duration": 5,
+        "predecessors": [],
+        "startDate": "2026-10-05",
+        "successors": []
+      },
+      "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "assigneeName": "Mihai Perdum",
+      "assigneeState": "assigned",
+      "buffer": "No",
+      "children": [],
+      "created": "2026-09-06",
+      "dueDate": "2026-10-13",
+      "duration": 7,
+      "durationExplicitlyCleared": false,
+      "fieldAvail": {
+        "buffer": true,
+        "dueDate": true,
+        "duration": true,
+        "startDate": true
+      },
+      "fixVersions": [],
+      "hierarchyLevel": 0,
+      "id": "25216",
+      "key": "WFH-2984",
+      "labels": [
+        "lz-norm-mtq1zo6l"
+      ],
+      "orphanParentKey": null,
+      "parentKey": null,
+      "predecessors": [],
+      "priority": "Medium",
+      "rank": "0|i01k27:",
+      "remainingEstimateSeconds": null,
+      "reporter": "Mihai Perdum",
+      "resolution": null,
+      "startDate": "2026-10-05",
+      "status": "New",
+      "statusCategory": "new",
+      "storyPoints": null,
+      "successors": [],
+      "summary": "[harness-test] lz-norm-mtq1zo6l report job source-drift",
+      "type": "Work package",
+      "updated": "2026-09-06"
+    }
+  ],
+  "refusal": "advanceSponsorReportCapture: The plan changed; refresh before capturing a snapshot",
+  "captureCleanupVerified": true
+}

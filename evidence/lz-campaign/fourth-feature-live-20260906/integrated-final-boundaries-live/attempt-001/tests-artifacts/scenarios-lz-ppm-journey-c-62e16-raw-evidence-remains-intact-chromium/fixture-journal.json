@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtowfsxt",
+  "name": "[harness-test] lz-norm-mtowfsxt",
+  "time": "2026-09-05T21:32:51.137Z",
+  "issues": [
+    {
+      "key": "WFH-2835",
+      "seed": {
+        "label": "forecast observed work",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtowfukx-tbg1q2",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtowfukx-tbg1q2",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2835",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2835",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2835",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

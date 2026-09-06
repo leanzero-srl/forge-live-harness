@@ -1,0 +1,3 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/campaign-portable-retained-download.spec.ts:14:1 › diagnostic: portable current Chrome downloads the exact retained sixth sponsor report without creating or changing captured data
+Total: 1 test in 1 file

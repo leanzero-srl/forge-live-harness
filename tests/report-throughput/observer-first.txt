@@ -1,0 +1,16 @@
+✔ held body never serializes later dispatch/header/terminal timestamps (1.391459ms)
+✔ all exact-app keys including no-plan reads are observed; foreign extension excluded (0.51975ms)
+✔ HTTP, outer and body refusals retain exact raw/hash and phase without interrupting other calls (0.372291ms)
+✔ malformed JSON, body rejection and requestfailed remain distinct failures (0.256291ms)
+✔ finish retains unresolved work and detaches; it never claims timeout completion (10.692459ms)
+✔ throwing/rejected/terminal sinks fail final grade but cannot block dispatch or replace falsy errors (0.557125ms)
+✔ nonmonotonic clocks and malformed same-app calls cannot silently disappear (0.165541ms)
+✔ hook clone and API body are independent observed terminal surfaces, never extra transports (7.848333ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58.815125

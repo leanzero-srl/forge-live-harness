@@ -1,0 +1,63 @@
+{
+  "schema": "nineteenth-terminal-receipt-v1",
+  "status": "closed",
+  "terminalAt": "2026-09-06T17:18:48.129670+00:00",
+  "pidCheckedAt": "2026-09-06T17:21:28.830932+00:00",
+  "checkedPids": [
+    69504,
+    78584,
+    78585,
+    92221
+  ],
+  "alivePids": [],
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/launch.json",
+    "sha256": "58fc49cba43202d0956dff491359766d9f3fcf81def5a9724aa45a6da0ba1b08",
+    "bytes": 360
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/command.json",
+    "sha256": "f05304546c70de5fbd53197bf95438bd867572bb6ea1e9c7f117e96913c16825",
+    "bytes": 1543
+  },
+  "state": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/state.json",
+    "sha256": "5d141a61c5f8e9ae864e8dcc66fca80ae3f1f8e0a46bc0e484d0c0fa1ee25bd9",
+    "bytes": 135
+  },
+  "summary": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/summary.json",
+    "sha256": "82f01f4a13215d8ab05b5612c0e3ddb969315b0d976e6d95e91fbd4f4195fc53",
+    "bytes": 2138
+  },
+  "largeJournal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/large-history-report-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2f98e-without-mutating-the-source-chromium/large-history-journal.json",
+    "sha256": "6abfe3886be413ec5f15d15c2d68a44abac88d84188261200f347b0661dafd06",
+    "bytes": 40232
+  },
+  "passiveObserver": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/large-history-report-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2f98e-without-mutating-the-source-chromium/large-throughput-final.json",
+    "sha256": "8fb142cb04a1f3647d73565280d2e0da3ddb239d5b083fb80cdee9bafcb157f7",
+    "bytes": 1749265
+  },
+  "tests": {
+    "passed": 7,
+    "failed": 0,
+    "notRun": 0
+  },
+  "reportCaptureMs": 591399,
+  "unchangedCaptureWaitMs": 600000,
+  "captureMarginMs": 8601,
+  "reportPageCount": 106,
+  "fullHtmlFlag": true,
+  "passiveWriterFlags": {
+    "closed": true,
+    "complete": true,
+    "productPassed": false,
+    "recordCount": 2876,
+    "errors": 0
+  },
+  "independentAcceptance": "pending separate root/independent verification",
+  "extraSiteCallsAfterTerminal": 0,
+  "rawTraceArchivesLocalOnly": true
+}

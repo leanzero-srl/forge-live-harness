@@ -1,0 +1,166 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-identity.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/after-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/after-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/after-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/campaign-identity.spec.ts",
+      "file": "scenarios/lz-ppm/campaign-identity.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "campaign: actual UI version and preserved LZPT source",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 22757,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('.lz-card').filter({ hasText: 'LZPT Scenarios' }).first()\nExpected pattern: \u001b[32m/45\\s*ISSUES/i\u001b[39m\nReceived string:  \u001b[31m\"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('.lz-card').filter({ hasText: 'LZPT Scenarios' }).first()\u001b[22m\n\u001b[2m    5 × locator resolved to <div class=\"lz-card lz-card--interactive animate-slide-up\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[22m\n\u001b[2m    29 × locator resolved to <div class=\"lz-card lz-card--interactive\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('.lz-card').filter({ hasText: 'LZPT Scenarios' }).first()\nExpected pattern: \u001b[32m/45\\s*ISSUES/i\u001b[39m\nReceived string:  \u001b[31m\"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('.lz-card').filter({ hasText: 'LZPT Scenarios' }).first()\u001b[22m\n\u001b[2m    5 × locator resolved to <div class=\"lz-card lz-card--interactive animate-slide-up\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[22m\n\u001b[2m    29 × locator resolved to <div class=\"lz-card lz-card--interactive\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[22m\n\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts:23:22",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts",
+                      "column": 22,
+                      "line": 23
+                    },
+                    "snippet": "  21 |   expect(actual, 'read the actual revision from the rendered app').toBe(expected);\n  22 |   const card = frame.locator('.lz-card', { hasText: 'LZPT Scenarios' }).first();\n> 23 |   await expect(card).toContainText(/45\\s*ISSUES/i);\n     |                      ^\n  24 |   await expect(card).toContainText(/0\\s*DRAFTS/i);\n  25 |   const detail = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });\n  26 |   expect(detail.issues.length, 'the same protected bed is positively visible').toBe(45);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts",
+                        "column": 22,
+                        "line": 23
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('.lz-card').filter({ hasText: 'LZPT Scenarios' }).first()\nExpected pattern: \u001b[32m/45\\s*ISSUES/i\u001b[39m\nReceived string:  \u001b[31m\"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('.lz-card').filter({ hasText: 'LZPT Scenarios' }).first()\u001b[22m\n\u001b[2m    5 × locator resolved to <div class=\"lz-card lz-card--interactive animate-slide-up\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[22m\n\u001b[2m    29 × locator resolved to <div class=\"lz-card lz-card--interactive\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"LZPT ScenariosReady51Issues1Sources0DraftsJQL?Updated 1m agoIndexed 1m agoOpen plan →\"\u001b[22m\n\n\n  21 |   expect(actual, 'read the actual revision from the rendered app').toBe(expected);\n  22 |   const card = frame.locator('.lz-card', { hasText: 'LZPT Scenarios' }).first();\n> 23 |   await expect(card).toContainText(/45\\s*ISSUES/i);\n     |                      ^\n  24 |   await expect(card).toContainText(/0\\s*DRAFTS/i);\n  25 |   const detail = await getTestState('lz-ppm', { what: 'plan', planId: LZPT_PLAN });\n  26 |   expect(detail.issues.length, 'the same protected bed is positively visible').toBe(45);\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts:23:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:57:50.310Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts",
+                    "column": 22,
+                    "line": 23
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1a21fc320c9d1e087f8e-dbc5adc0ea77de296154",
+          "file": "scenarios/lz-ppm/campaign-identity.spec.ts",
+          "line": 11,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T17:57:49.987Z",
+    "duration": 46249.212999999996,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,5419 @@
+{
+  "phase": "finish",
+  "marker": "lz-legacy-mtpem3qp",
+  "name": "[harness-test] lz-legacy-mtpem3qp",
+  "receipt": {
+    "mode": "portable-chrome152",
+    "browserVersion": "152.0.7977.76",
+    "principalSha256": "b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769",
+    "uiVersion": "4.58.585",
+    "appUrl": "https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77",
+    "executableSha256": "755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee",
+    "frameworkSha256": "bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6",
+    "admittedAt": "2026-09-06T06:22:36.976Z"
+  },
+  "deployedForge": "6.16.0",
+  "deployedApp": "689574d4eb068111e75f93b8449b421642fd0ad1",
+  "events": [
+    {
+      "stage": "original-source",
+      "time": "2026-09-06T06:22:39.201Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "45:fc601b9b",
+          "createdAt": "2026-08-12T15:43:00.213Z",
+          "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "createdByName": "Mihai Perdum",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-msq9dg8l-gz6mz1",
+          "issueCount": 45,
+          "lastIndexedAt": "2026-09-05T21:05:21.196Z",
+          "lastWriterName": "Mihai Perdum",
+          "members": [],
+          "milestones": [],
+          "name": "LZPT Scenarios",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "Source 1",
+              "projectKey": null,
+              "query": "project = LZPT",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-05T21:05:21.196Z",
+          "version": 1044,
+          "writability": {
+            "blocked": 0,
+            "byReason": {
+              "field-missing": 90
+            },
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 3
+            },
+            "computedAt": "2026-09-05T21:05:20.945Z",
+            "partial": 45,
+            "refusedByProject": null,
+            "sample": [
+              {
+                "key": "LZPT-230",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-229",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-228",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-227",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-226",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-225",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-224",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-223",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-222",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-221",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-220",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-219",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-218",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-217",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-216",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-215",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-214",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-213",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-212",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-211",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              }
+            ],
+            "total": 45
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-06-17",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-14",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-06-17",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21778",
+            "key": "LZPT-186",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01han:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-14",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E1 · Linear Chain",
+            "type": "Epic",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21779",
+            "key": "LZPT-187",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hav:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E2 · Diamond",
+            "type": "Epic",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-12",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-04-27",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21780",
+            "key": "LZPT-188",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hb3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-04-27",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E3 · Cross-links & Cycle",
+            "type": "Epic",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21781",
+            "key": "LZPT-189",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hbb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E4 · Rollup & Subtasks",
+            "type": "Epic",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21782",
+            "key": "LZPT-190",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hbj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E5 · Edge Dates",
+            "type": "Epic",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-06-08",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-06-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21783",
+            "key": "LZPT-191",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hbr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E6 · Wide Parent",
+            "type": "Epic",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-08",
+              "duration": null,
+              "predecessors": [
+                "LZPT-201"
+              ],
+              "startDate": "2026-05-04",
+              "successors": [
+                "LZPT-193"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21784",
+            "key": "LZPT-192",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-201"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hbz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-04",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-193"
+            ],
+            "summary": "CHAIN-1 kickoff",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-15",
+              "duration": null,
+              "predecessors": [
+                "LZPT-192"
+              ],
+              "startDate": "2026-05-11",
+              "successors": [
+                "LZPT-194"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-15",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21785",
+            "key": "LZPT-193",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-192"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hc7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-11",
+            "status": "In Progress",
+            "statusCategory": "indeterminate",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-194"
+            ],
+            "summary": "CHAIN-2 build",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-22",
+              "duration": null,
+              "predecessors": [
+                "LZPT-193"
+              ],
+              "startDate": "2026-05-18",
+              "successors": [
+                "LZPT-195"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-22",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21786",
+            "key": "LZPT-194",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-193"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hcf:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-18",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-195"
+            ],
+            "summary": "CHAIN-3 test",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-29",
+              "duration": null,
+              "predecessors": [
+                "LZPT-194"
+              ],
+              "startDate": "2026-05-25",
+              "successors": [
+                "LZPT-196"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-29",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21787",
+            "key": "LZPT-195",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-194"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hcn:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-25",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-196"
+            ],
+            "summary": "CHAIN-4 review",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-06-05",
+              "duration": null,
+              "predecessors": [
+                "LZPT-195"
+              ],
+              "startDate": "2026-06-01",
+              "successors": [
+                "LZPT-217"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-06-05",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21788",
+            "key": "LZPT-196",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-195"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hcv:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-06-01",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-217"
+            ],
+            "summary": "CHAIN-5 release",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-06",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-04",
+              "successors": [
+                "LZPT-198",
+                "LZPT-199"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-06",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21789",
+            "key": "LZPT-197",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-187",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hd3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-04",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-198",
+              "LZPT-199"
+            ],
+            "summary": "DIAMOND-A source",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-12",
+              "duration": null,
+              "predecessors": [
+                "LZPT-197"
+              ],
+              "startDate": "2026-05-07",
+              "successors": [
+                "LZPT-200"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21790",
+            "key": "LZPT-198",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-187",
+            "predecessors": [
+              "LZPT-197"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hdb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-200"
+            ],
+            "summary": "DIAMOND-B1 left",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-14",
+              "duration": null,
+              "predecessors": [
+                "LZPT-197"
+              ],
+              "startDate": "2026-05-07",
+              "successors": [
+                "LZPT-200"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-14",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21791",
+            "key": "LZPT-199",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-187",
+            "predecessors": [
+              "LZPT-197"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hdj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-200"
+            ],
+            "summary": "DIAMOND-B2 right (longer)",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-19",
+              "duration": null,
+              "predecessors": [
+                "LZPT-198",
+                "LZPT-199"
+              ],
+              "startDate": "2026-05-15",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-19",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21792",
+            "key": "LZPT-200",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-187",
+            "predecessors": [
+              "LZPT-198",
+              "LZPT-199"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hdr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-15",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "DIAMOND-C sink",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-01",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-04-27",
+              "successors": [
+                "LZPT-192"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-01",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21793",
+            "key": "LZPT-201",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hdz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-04-27",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-192"
+            ],
+            "summary": "CROSS-A gate",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-06",
+              "duration": null,
+              "predecessors": [
+                "LZPT-204"
+              ],
+              "startDate": "2026-05-04",
+              "successors": [
+                "LZPT-203"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-06",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21794",
+            "key": "LZPT-202",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-204"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01he7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-04",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-203"
+            ],
+            "summary": "CYCLE-X",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-11",
+              "duration": null,
+              "predecessors": [
+                "LZPT-202"
+              ],
+              "startDate": "2026-05-07",
+              "successors": [
+                "LZPT-204"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-11",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21795",
+            "key": "LZPT-203",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-202"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hef:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-204"
+            ],
+            "summary": "CYCLE-Y",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-14",
+              "duration": null,
+              "predecessors": [
+                "LZPT-203"
+              ],
+              "startDate": "2026-05-12",
+              "successors": [
+                "LZPT-202"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-14",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21796",
+            "key": "LZPT-204",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-203"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hen:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-12",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-202"
+            ],
+            "summary": "CYCLE-Z",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-02",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-09-23",
+              "successors": [
+                "LZPT-206",
+                "LZPT-207",
+                "LZPT-208",
+                "LZPT-209"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-02",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21797",
+            "key": "LZPT-205",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hev:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-09-23",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-206",
+              "LZPT-207",
+              "LZPT-208",
+              "LZPT-209"
+            ],
+            "summary": "FANOUT-src",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-07",
+              "duration": null,
+              "predecessors": [
+                "LZPT-205"
+              ],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-07",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21798",
+            "key": "LZPT-206",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-205"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hf3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "FANOUT-1",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-08",
+              "duration": null,
+              "predecessors": [
+                "LZPT-205"
+              ],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21799",
+            "key": "LZPT-207",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-205"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hfb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "FANOUT-2",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": null,
+              "predecessors": [
+                "LZPT-205"
+              ],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-09",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21800",
+            "key": "LZPT-208",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-205"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hfj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "FANOUT-3",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-12",
+              "duration": null,
+              "predecessors": [
+                "LZPT-205"
+              ],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21801",
+            "key": "LZPT-209",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-205"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hfr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "FANOUT-4",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [
+              "LZPT-227",
+              "LZPT-228"
+            ],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21802",
+            "key": "LZPT-210",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-189",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hfz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP story-1",
+            "type": "Story",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [
+              "LZPT-229",
+              "LZPT-230"
+            ],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21803",
+            "key": "LZPT-211",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-189",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hg7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP story-2",
+            "type": "Story",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21804",
+            "key": "LZPT-212",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hgf:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE unscheduled (no dates)",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-15",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-15",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-15",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21805",
+            "key": "LZPT-213",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hgn:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-15",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE milestone (0-day)",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-12",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-20",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21806",
+            "key": "LZPT-214",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hgv:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-20",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE invalid start-after-due",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-06-30",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-04",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-06-30",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21807",
+            "key": "LZPT-215",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hh3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-04",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE long-run",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-12",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-08",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21808",
+            "key": "LZPT-216",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hhb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-08",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE weekend-span",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-04",
+              "duration": null,
+              "predecessors": [
+                "LZPT-196"
+              ],
+              "startDate": "2026-05-04",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-04",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21809",
+            "key": "LZPT-217",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [
+              "LZPT-196"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hhj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-04",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-01",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-05",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-05",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21810",
+            "key": "LZPT-218",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hhr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-05",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-02",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-06",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-06",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-06",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21811",
+            "key": "LZPT-219",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hhz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-06",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-03",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-07",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-07",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-07",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21812",
+            "key": "LZPT-220",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hi7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "In Progress",
+            "statusCategory": "indeterminate",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-04",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-08",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-08",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21813",
+            "key": "LZPT-221",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hif:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-08",
+            "status": "In Progress",
+            "statusCategory": "indeterminate",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-05",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-11",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-11",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-11",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21814",
+            "key": "LZPT-222",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hin:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-11",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-06",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-12",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-12",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21815",
+            "key": "LZPT-223",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hiv:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-12",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-07",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-13",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-13",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-13",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21816",
+            "key": "LZPT-224",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hj3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-13",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-08",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-14",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-14",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-14",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21817",
+            "key": "LZPT-225",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hjb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-14",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-09",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-15",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-15",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-15",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21818",
+            "key": "LZPT-226",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hjj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-15",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-10",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-06",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-04",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-06",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": -1,
+            "id": "21819",
+            "key": "LZPT-227",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-210",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hjr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-04",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP sub-1a",
+            "type": "Subtask",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-11",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-07",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-11",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": -1,
+            "id": "21820",
+            "key": "LZPT-228",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-210",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hjz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "In Progress",
+            "statusCategory": "indeterminate",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP sub-1b",
+            "type": "Subtask",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-08",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": -1,
+            "id": "21821",
+            "key": "LZPT-229",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-211",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hk7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP sub-2a",
+            "type": "Subtask",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-15",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-11",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-15",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": -1,
+            "id": "21822",
+            "key": "LZPT-230",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-211",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hkf:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-11",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP sub-2b",
+            "type": "Subtask",
+            "updated": "2026-08-13"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "registry",
+      "time": "2026-09-06T06:22:39.409Z",
+      "value": [
+        {
+          "id": "plan-msq9dg8l-gz6mz1",
+          "name": "LZPT Scenarios"
+        },
+        {
+          "id": "plan-mta3aw3t-6dyijd",
+          "name": "test"
+        },
+        {
+          "id": "plan-mtbrlh8n-7ghw8u",
+          "name": "LZPP Perf"
+        },
+        {
+          "id": "plan-test-mtpf98u5-jel0qu",
+          "name": "[harness-test] lz-legacy-mtpem3qp"
+        }
+      ]
+    },
+    {
+      "stage": "getCapacitySettings",
+      "time": "2026-09-06T06:22:45.476Z",
+      "value": {
+        "success": true,
+        "version": 59,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T06:22:45.763Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T06:22:46.059Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T06:22:46.339Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T06:22:46.624Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T06:22:46.982Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T06:22:47.291Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "owned-issue-positive",
+      "time": "2026-09-06T06:22:47.542Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id": "25167",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25167",
+        "key": "WFH-2935",
+        "fields": {
+          "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "duedate": "2026-10-09",
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "labels": [
+            "lz-legacy-mtpem3qp"
+          ]
+        }
+      }
+    },
+    {
+      "stage": "owned-plan",
+      "time": "2026-09-06T06:22:48.069Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "1:7a728270",
+          "createdAt": "2026-09-06T06:19:37.851Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtpf98u5-jel0qu",
+          "issueCount": 1,
+          "lastIndexedAt": "2026-09-06T06:19:39.157Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] lz-legacy-mtpem3qp",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key = WFH-2935",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T06:19:39.157Z",
+          "version": 2,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T06:19:38.930Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 1
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-06",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "fieldAvail": {
+              "buffer": true,
+              "dueDate": true,
+              "duration": true,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25167",
+            "key": "WFH-2935",
+            "labels": [
+              "lz-legacy-mtpem3qp"
+            ],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k27:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T06:22:48.424Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T06:22:48.769Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getLockStatus",
+      "time": "2026-09-06T06:22:49.129Z",
+      "value": {
+        "success": true,
+        "locked": false,
+        "expired": false
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T06:22:49.900Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 4,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 4,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        }
+      }
+    },
+    {
+      "stage": "getPlanCalendar",
+      "time": "2026-09-06T06:22:50.307Z",
+      "value": {
+        "success": true,
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calendarName": "Standard (Mon-Fri)",
+        "holidays": []
+      }
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T06:23:03.405Z",
+      "value": {
+        "stage": "holding-real-advance-response",
+        "time": "2026-09-06T06:23:03.405Z",
+        "request": {
+          "planId": "plan-test-mtpf98u5-jel0qu",
+          "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "expectedCheckpoint": 4
+        }
+      }
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T06:23:03.406Z",
+      "value": {
+        "stage": "real-advance-response-ready",
+        "time": "2026-09-06T06:23:03.406Z",
+        "httpStatus": 200,
+        "body": {
+          "success": true,
+          "job": {
+            "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+            "name": "Unchanged legacy upgrade report",
+            "createdAt": "2026-09-06T06:19:51.264Z",
+            "expiresAt": "2026-09-07T06:19:51.264Z",
+            "checkpoint": 5,
+            "state": "active",
+            "stageLabel": "Preparing the retained schedule",
+            "completedUnits": 5,
+            "totalUnits": 17,
+            "cleanupDone": false,
+            "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+          }
+        },
+        "errors": null
+      }
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T06:23:03.469Z",
+      "value": {
+        "stage": "real-advance-response-delivered",
+        "time": "2026-09-06T06:23:03.469Z"
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T06:23:04.210Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 5,
+          "state": "active",
+          "stageLabel": "Preparing the retained schedule",
+          "completedUnits": 5,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        }
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T06:23:04.916Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 5,
+          "state": "active",
+          "stageLabel": "Preparing the retained schedule",
+          "completedUnits": 5,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        }
+      }
+    },
+    {
+      "stage": "paused-no-extra-advance",
+      "time": "2026-09-06T06:23:04.918Z",
+      "value": {
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 5,
+          "state": "active",
+          "stageLabel": "Preparing the retained schedule",
+          "completedUnits": 5,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        },
+        "advanceCount": 1
+      }
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T06:23:07.737Z",
+      "value": {
+        "stage": "holding-real-advance-response",
+        "time": "2026-09-06T06:23:07.737Z",
+        "request": {
+          "planId": "plan-test-mtpf98u5-jel0qu",
+          "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "expectedCheckpoint": 5
+        }
+      }
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T06:23:07.737Z",
+      "value": {
+        "stage": "real-advance-response-ready",
+        "time": "2026-09-06T06:23:07.737Z",
+        "httpStatus": 200,
+        "body": {
+          "success": true,
+          "job": {
+            "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+            "name": "Unchanged legacy upgrade report",
+            "createdAt": "2026-09-06T06:19:51.264Z",
+            "expiresAt": "2026-09-07T06:19:51.264Z",
+            "checkpoint": 6,
+            "state": "active",
+            "stageLabel": "Calculating the forecast",
+            "completedUnits": 6,
+            "totalUnits": 17,
+            "cleanupDone": false,
+            "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+          }
+        },
+        "errors": null
+      }
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T06:23:07.786Z",
+      "value": {
+        "stage": "real-advance-response-delivered",
+        "time": "2026-09-06T06:23:07.786Z"
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T06:23:08.500Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 6,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 6,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        }
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T06:23:09.388Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 6,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 6,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        }
+      }
+    },
+    {
+      "stage": "paused-no-extra-advance",
+      "time": "2026-09-06T06:23:09.389Z",
+      "value": {
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 6,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 6,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        },
+        "advanceCount": 2
+      }
+    },
+    {
+      "stage": "owned-issue-positive",
+      "time": "2026-09-06T06:23:10.569Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id": "25167",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25167",
+        "key": "WFH-2935",
+        "fields": {
+          "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "duedate": "2026-10-09",
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "labels": [
+            "lz-legacy-mtpem3qp"
+          ]
+        }
+      }
+    },
+    {
+      "stage": "owned-plan",
+      "time": "2026-09-06T06:23:10.812Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "1:7a728270",
+          "createdAt": "2026-09-06T06:19:37.851Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtpf98u5-jel0qu",
+          "issueCount": 1,
+          "lastIndexedAt": "2026-09-06T06:19:39.157Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] lz-legacy-mtpem3qp",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key = WFH-2935",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T06:19:39.157Z",
+          "version": 2,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T06:19:38.930Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 1
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-06",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "fieldAvail": {
+              "buffer": true,
+              "dueDate": true,
+              "duration": true,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25167",
+            "key": "WFH-2935",
+            "labels": [
+              "lz-legacy-mtpem3qp"
+            ],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k27:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "getSponsorReport",
+      "time": "2026-09-06T06:23:27.610Z",
+      "value": {
+        "success": true,
+        "report": {
+          "id": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2",
+          "hash": "707a7a13546247fee3b704a6d4513a26150047b6de7f561b81f19238dbe4e838",
+          "name": "Unchanged legacy upgrade report",
+          "planName": "[harness-test] lz-legacy-mtpem3qp",
+          "takenAt": "2026-09-06T06:19:50.969Z",
+          "sourceVersion": 2,
+          "workingChangeCount": 0,
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "forecast": {
+            "coverage": {
+              "datedLeaves": 1,
+              "invalidBaselines": 0,
+              "invalidDates": 0,
+              "invertedDates": 0,
+              "missingDates": 0,
+              "sampledLeaves": 1,
+              "totalLeaves": 1
+            },
+            "inputHash": "f78fca36aff74d615ddcaa07121b9b189bbb6a40c85ce2d06e6bb77fc7ce78bc",
+            "modelVersion": "duration-triangular-fs-v1",
+            "onPlannedFinish": 0.6566666666666666,
+            "p50": "2026-10-09",
+            "p80": "2026-10-12",
+            "p90": "2026-10-12",
+            "reason": null,
+            "runs": 300,
+            "seed": 42,
+            "state": "available",
+            "uncertainty": "medium"
+          },
+          "capacity": {
+            "reason": "Capacity was not included at capture. No availability is assumed.",
+            "scope": "captured-plan",
+            "state": "not-included"
+          },
+          "uncertainty": "medium",
+          "consistency": {
+            "basisHash": "c5a3ac7ad682eef4666ad696748bdf9b7fb11790c86e95c309e7a4d2b61f0f84",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T06:19:53.902Z",
+            "verifiedAfterAnalysisAt": "2026-09-06T06:23:18.773Z"
+          },
+          "baseline": null,
+          "counts": {
+            "timeline": 1,
+            "targets": 0,
+            "changes": 0
+          },
+          "pages": {
+            "timeline": 1,
+            "targets": 0,
+            "changes": 0
+          },
+          "document": {
+            "changes": {
+              "hashes": [],
+              "sizes": [],
+              "total": 0
+            },
+            "targets": {
+              "hashes": [],
+              "sizes": [],
+              "total": 0
+            },
+            "timeline": {
+              "hashes": [
+                "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+              ],
+              "sizes": [
+                1
+              ],
+              "total": 1
+            }
+          },
+          "pageSize": 50,
+          "coverage": {
+            "leafTasks": 1,
+            "unscheduledOrInvalidLeaves": 0,
+            "validRows": 1,
+            "unavailableRows": 0
+          },
+          "span": {
+            "start": "2026-10-05",
+            "finish": "2026-10-09"
+          },
+          "plannedFinish": "2026-10-09",
+          "changeCounts": {
+            "added": 0,
+            "removed": 0,
+            "changed": 0
+          }
+        }
+      }
+    },
+    {
+      "stage": "getSponsorReportPage",
+      "time": "2026-09-06T06:23:28.094Z",
+      "value": {
+        "success": true,
+        "page": {
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2",
+          "hash": "707a7a13546247fee3b704a6d4513a26150047b6de7f561b81f19238dbe4e838",
+          "section": "timeline",
+          "page": 0,
+          "pageCount": 1,
+          "total": 1,
+          "pageHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+          "rows": [
+            {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "key": "WFH-2935",
+              "parentKey": null,
+              "startDate": "2026-10-05",
+              "statusCategory": "new",
+              "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "stage": "open-captured-report-intent",
+      "time": "2026-09-06T06:23:28.096Z",
+      "value": {}
+    },
+    {
+      "stage": "download-listener-before-click",
+      "time": "2026-09-06T06:23:28.135Z",
+      "value": {}
+    },
+    {
+      "stage": "download-click-returned",
+      "time": "2026-09-06T06:23:29.192Z",
+      "value": {}
+    },
+    {
+      "stage": "download-event",
+      "time": "2026-09-06T06:23:29.658Z",
+      "value": {
+        "filename": "sponsor-report-bb42c05c-f6e6-4655-b2ea-f5f710b26fa2.html"
+      }
+    },
+    {
+      "stage": "download-save-start",
+      "time": "2026-09-06T06:23:29.665Z",
+      "value": {
+        "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-finish2-20260906/artifacts/scenarios-lz-ppm-campaign--dc1f4-report-across-codec-upgrade-chromium/legacy-upgraded-actual-report.html"
+      }
+    },
+    {
+      "stage": "actual-html-saved",
+      "time": "2026-09-06T06:23:29.685Z",
+      "value": {
+        "sha256": "ed2270e0924903b8a34d49b6cd151153ea5831b91393ee56e9bc0540da90c514"
+      }
+    },
+    {
+      "stage": "local-document-new-page-start",
+      "time": "2026-09-06T06:23:29.685Z",
+      "value": {}
+    },
+    {
+      "stage": "local-document-new-page-complete",
+      "time": "2026-09-06T06:23:29.759Z",
+      "value": {}
+    },
+    {
+      "stage": "local-document-navigation-start",
+      "time": "2026-09-06T06:23:29.759Z",
+      "value": {}
+    },
+    {
+      "stage": "local-document-navigation-complete",
+      "time": "2026-09-06T06:23:29.771Z",
+      "value": {}
+    },
+    {
+      "stage": "getSponsorReport",
+      "time": "2026-09-06T06:23:30.595Z",
+      "value": {
+        "success": true,
+        "report": {
+          "id": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2",
+          "hash": "707a7a13546247fee3b704a6d4513a26150047b6de7f561b81f19238dbe4e838",
+          "name": "Unchanged legacy upgrade report",
+          "planName": "[harness-test] lz-legacy-mtpem3qp",
+          "takenAt": "2026-09-06T06:19:50.969Z",
+          "sourceVersion": 2,
+          "workingChangeCount": 0,
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "forecast": {
+            "coverage": {
+              "datedLeaves": 1,
+              "invalidBaselines": 0,
+              "invalidDates": 0,
+              "invertedDates": 0,
+              "missingDates": 0,
+              "sampledLeaves": 1,
+              "totalLeaves": 1
+            },
+            "inputHash": "f78fca36aff74d615ddcaa07121b9b189bbb6a40c85ce2d06e6bb77fc7ce78bc",
+            "modelVersion": "duration-triangular-fs-v1",
+            "onPlannedFinish": 0.6566666666666666,
+            "p50": "2026-10-09",
+            "p80": "2026-10-12",
+            "p90": "2026-10-12",
+            "reason": null,
+            "runs": 300,
+            "seed": 42,
+            "state": "available",
+            "uncertainty": "medium"
+          },
+          "capacity": {
+            "reason": "Capacity was not included at capture. No availability is assumed.",
+            "scope": "captured-plan",
+            "state": "not-included"
+          },
+          "uncertainty": "medium",
+          "consistency": {
+            "basisHash": "c5a3ac7ad682eef4666ad696748bdf9b7fb11790c86e95c309e7a4d2b61f0f84",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T06:19:53.902Z",
+            "verifiedAfterAnalysisAt": "2026-09-06T06:23:18.773Z"
+          },
+          "baseline": null,
+          "counts": {
+            "timeline": 1,
+            "targets": 0,
+            "changes": 0
+          },
+          "pages": {
+            "timeline": 1,
+            "targets": 0,
+            "changes": 0
+          },
+          "document": {
+            "changes": {
+              "hashes": [],
+              "sizes": [],
+              "total": 0
+            },
+            "targets": {
+              "hashes": [],
+              "sizes": [],
+              "total": 0
+            },
+            "timeline": {
+              "hashes": [
+                "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+              ],
+              "sizes": [
+                1
+              ],
+              "total": 1
+            }
+          },
+          "pageSize": 50,
+          "coverage": {
+            "leafTasks": 1,
+            "unscheduledOrInvalidLeaves": 0,
+            "validRows": 1,
+            "unavailableRows": 0
+          },
+          "span": {
+            "start": "2026-10-05",
+            "finish": "2026-10-09"
+          },
+          "plannedFinish": "2026-10-09",
+          "changeCounts": {
+            "added": 0,
+            "removed": 0,
+            "changed": 0
+          }
+        }
+      }
+    },
+    {
+      "stage": "owned-issue-positive",
+      "time": "2026-09-06T06:23:30.848Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id": "25167",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25167",
+        "key": "WFH-2935",
+        "fields": {
+          "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "duedate": "2026-10-09",
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "labels": [
+            "lz-legacy-mtpem3qp"
+          ]
+        }
+      }
+    },
+    {
+      "stage": "owned-plan",
+      "time": "2026-09-06T06:23:31.106Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "1:7a728270",
+          "createdAt": "2026-09-06T06:19:37.851Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtpf98u5-jel0qu",
+          "issueCount": 1,
+          "lastIndexedAt": "2026-09-06T06:19:39.157Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] lz-legacy-mtpem3qp",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key = WFH-2935",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T06:19:39.157Z",
+          "version": 2,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T06:19:38.930Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 1
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-06",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "fieldAvail": {
+              "buffer": true,
+              "dueDate": true,
+              "duration": true,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25167",
+            "key": "WFH-2935",
+            "labels": [
+              "lz-legacy-mtpem3qp"
+            ],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k27:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "getCapacitySettings",
+      "time": "2026-09-06T06:23:31.338Z",
+      "value": {
+        "success": true,
+        "version": 59,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "stage": "delete-owned-report-intent",
+      "time": "2026-09-06T06:23:31.340Z",
+      "value": {
+        "id": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      }
+    },
+    {
+      "stage": "deleteSponsorReport",
+      "time": "2026-09-06T06:23:32.602Z",
+      "value": {
+        "success": true,
+        "deleted": true
+      }
+    },
+    {
+      "stage": "cleanup-state",
+      "time": "2026-09-06T06:23:32.605Z",
+      "value": {
+        "planId": "plan-test-mtpf98u5-jel0qu",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "steps": [],
+        "probes": [],
+        "startedAt": 1788675812605,
+        "cleaned": false
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T06:23:33.339Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 19,
+          "state": "cancelled",
+          "stageLabel": "Cleaning up temporary data",
+          "completedUnits": 19,
+          "totalUnits": 19,
+          "cleanupDone": false,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        }
+      }
+    },
+    {
+      "stage": "cleanup-state",
+      "time": "2026-09-06T06:23:34.080Z",
+      "value": {
+        "planId": "plan-test-mtpf98u5-jel0qu",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "steps": [],
+        "probes": [
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 19,
+            "cleanupDone": false,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "c64426353f50c02eeec66f910c68dae8cf6a9e437252bc5be09cc3d0e3fd70fe"
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "1b70b1c98c544d975c39049311ab1d24ed1d87aedc2874bdc946d39bd421b4b8"
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          }
+        ],
+        "startedAt": 1788675812605,
+        "cleaned": false
+      }
+    },
+    {
+      "stage": "cancelSponsorReportCapture",
+      "time": "2026-09-06T06:23:35.190Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 20,
+          "state": "cancelled",
+          "stageLabel": "Cleaning up temporary data",
+          "completedUnits": 20,
+          "totalUnits": 20,
+          "cleanupDone": true,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        }
+      }
+    },
+    {
+      "stage": "cleanup-state",
+      "time": "2026-09-06T06:23:35.192Z",
+      "value": {
+        "planId": "plan-test-mtpf98u5-jel0qu",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "steps": [
+          {
+            "before": 19,
+            "after": 20,
+            "state": "cancelled",
+            "cleanupDone": true
+          }
+        ],
+        "probes": [
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 19,
+            "cleanupDone": false,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "c64426353f50c02eeec66f910c68dae8cf6a9e437252bc5be09cc3d0e3fd70fe"
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "1b70b1c98c544d975c39049311ab1d24ed1d87aedc2874bdc946d39bd421b4b8"
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          }
+        ],
+        "startedAt": 1788675812605,
+        "cleaned": false
+      }
+    },
+    {
+      "stage": "cleanup-state",
+      "time": "2026-09-06T06:23:35.961Z",
+      "value": {
+        "planId": "plan-test-mtpf98u5-jel0qu",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "steps": [
+          {
+            "before": 19,
+            "after": 20,
+            "state": "cancelled",
+            "cleanupDone": true
+          }
+        ],
+        "probes": [
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 19,
+            "cleanupDone": false,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "c64426353f50c02eeec66f910c68dae8cf6a9e437252bc5be09cc3d0e3fd70fe"
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "1b70b1c98c544d975c39049311ab1d24ed1d87aedc2874bdc946d39bd421b4b8"
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          },
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 20,
+            "cleanupDone": true,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          }
+        ],
+        "startedAt": 1788675812605,
+        "cleaned": false
+      }
+    },
+    {
+      "stage": "cleanup-state",
+      "time": "2026-09-06T06:23:36.935Z",
+      "value": {
+        "planId": "plan-test-mtpf98u5-jel0qu",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "steps": [
+          {
+            "before": 19,
+            "after": 20,
+            "state": "cancelled",
+            "cleanupDone": true
+          }
+        ],
+        "probes": [
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 19,
+            "cleanupDone": false,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "c64426353f50c02eeec66f910c68dae8cf6a9e437252bc5be09cc3d0e3fd70fe"
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "1b70b1c98c544d975c39049311ab1d24ed1d87aedc2874bdc946d39bd421b4b8"
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          },
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 20,
+            "cleanupDone": true,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          },
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 20,
+            "cleanupDone": true,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          }
+        ],
+        "startedAt": 1788675812605,
+        "cleaned": false
+      }
+    },
+    {
+      "stage": "cleanup-state",
+      "time": "2026-09-06T06:23:36.935Z",
+      "value": {
+        "planId": "plan-test-mtpf98u5-jel0qu",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "steps": [
+          {
+            "before": 19,
+            "after": 20,
+            "state": "cancelled",
+            "cleanupDone": true
+          }
+        ],
+        "probes": [
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 19,
+            "cleanupDone": false,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "c64426353f50c02eeec66f910c68dae8cf6a9e437252bc5be09cc3d0e3fd70fe"
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": null,
+                "present": true,
+                "actualHash": "1b70b1c98c544d975c39049311ab1d24ed1d87aedc2874bdc946d39bd421b4b8"
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": null,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          },
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 20,
+            "cleanupDone": true,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          },
+          {
+            "planId": "plan-test-mtpf98u5-jel0qu",
+            "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+            "registryMember": true,
+            "state": "cancelled",
+            "checkpoint": 20,
+            "cleanupDone": true,
+            "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+            "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+            "privateArtifacts": [
+              {
+                "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+                "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+                "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+                "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+                "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+                "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+                "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+                "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+                "present": false,
+                "actualHash": null
+              }
+            ],
+            "publicArtifacts": [
+              {
+                "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+                "role": "descriptor",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+                "role": "chunk",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+                "role": "page",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+                "role": "deletion-marker",
+                "collection": "current",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              },
+              {
+                "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+                "role": "deletion-marker",
+                "collection": "baseline",
+                "expectedPresent": false,
+                "present": false,
+                "actualHash": null
+              }
+            ]
+          }
+        ],
+        "startedAt": 1788675812605,
+        "cleaned": true,
+        "job": {
+          "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+          "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+          "name": "Unchanged legacy upgrade report",
+          "createdAt": "2026-09-06T06:19:51.264Z",
+          "expiresAt": "2026-09-07T06:19:51.264Z",
+          "checkpoint": 20,
+          "state": "cancelled",
+          "stageLabel": "Cleaning up temporary data",
+          "completedUnits": 20,
+          "totalUnits": 20,
+          "cleanupDone": true,
+          "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+        }
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T06:23:37.314Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T06:23:37.753Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "owned-plan",
+      "time": "2026-09-06T06:23:38.015Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "1:7a728270",
+          "createdAt": "2026-09-06T06:19:37.851Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtpf98u5-jel0qu",
+          "issueCount": 1,
+          "lastIndexedAt": "2026-09-06T06:19:39.157Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] lz-legacy-mtpem3qp",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key = WFH-2935",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T06:19:39.157Z",
+          "version": 2,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T06:19:38.930Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 1
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-06",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "fieldAvail": {
+              "buffer": true,
+              "dueDate": true,
+              "duration": true,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25167",
+            "key": "WFH-2935",
+            "labels": [
+              "lz-legacy-mtpem3qp"
+            ],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k27:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "delete-owned-plan-intent",
+      "time": "2026-09-06T06:23:38.018Z",
+      "value": {
+        "id": "plan-test-mtpf98u5-jel0qu"
+      }
+    },
+    {
+      "stage": "deletePlan",
+      "time": "2026-09-06T06:23:40.551Z",
+      "value": {
+        "success": true
+      }
+    },
+    {
+      "stage": "plan-absence",
+      "time": "2026-09-06T06:23:40.786Z",
+      "value": {
+        "issues": []
+      }
+    },
+    {
+      "stage": "registry",
+      "time": "2026-09-06T06:23:41.009Z",
+      "value": [
+        {
+          "id": "plan-msq9dg8l-gz6mz1",
+          "name": "LZPT Scenarios"
+        },
+        {
+          "id": "plan-mta3aw3t-6dyijd",
+          "name": "test"
+        },
+        {
+          "id": "plan-mtbrlh8n-7ghw8u",
+          "name": "LZPP Perf"
+        }
+      ]
+    },
+    {
+      "stage": "plan-absence",
+      "time": "2026-09-06T06:23:41.203Z",
+      "value": {
+        "issues": []
+      }
+    },
+    {
+      "stage": "registry",
+      "time": "2026-09-06T06:23:41.389Z",
+      "value": [
+        {
+          "id": "plan-msq9dg8l-gz6mz1",
+          "name": "LZPT Scenarios"
+        },
+        {
+          "id": "plan-mta3aw3t-6dyijd",
+          "name": "test"
+        },
+        {
+          "id": "plan-mtbrlh8n-7ghw8u",
+          "name": "LZPP Perf"
+        }
+      ]
+    },
+    {
+      "stage": "owned-issue-positive",
+      "time": "2026-09-06T06:23:41.626Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id": "25167",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25167",
+        "key": "WFH-2935",
+        "fields": {
+          "summary": "[harness-test] lz-legacy-mtpem3qp unchanged legacy report",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "duedate": "2026-10-09",
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "labels": [
+            "lz-legacy-mtpem3qp"
+          ]
+        }
+      }
+    },
+    {
+      "stage": "delete-owned-issue-intent",
+      "time": "2026-09-06T06:23:41.627Z",
+      "value": {
+        "id": "25167",
+        "key": "WFH-2935"
+      }
+    },
+    {
+      "stage": "issue-absence",
+      "time": "2026-09-06T06:23:42.772Z",
+      "value": {
+        "status": 404
+      }
+    },
+    {
+      "stage": "issue-absence",
+      "time": "2026-09-06T06:23:42.969Z",
+      "value": {
+        "status": 404
+      }
+    },
+    {
+      "stage": "registry",
+      "time": "2026-09-06T06:23:48.051Z",
+      "value": [
+        {
+          "id": "plan-msq9dg8l-gz6mz1",
+          "name": "LZPT Scenarios"
+        },
+        {
+          "id": "plan-mta3aw3t-6dyijd",
+          "name": "test"
+        },
+        {
+          "id": "plan-mtbrlh8n-7ghw8u",
+          "name": "LZPP Perf"
+        }
+      ]
+    },
+    {
+      "stage": "getCapacitySettings",
+      "time": "2026-09-06T06:23:48.313Z",
+      "value": {
+        "success": true,
+        "version": 59,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "stage": "getCapacitySettings",
+      "time": "2026-09-06T06:23:48.525Z",
+      "value": {
+        "success": true,
+        "version": 59,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T06:23:48.856Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T06:23:49.123Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T06:23:49.453Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T06:23:49.720Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T06:23:50.046Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T06:23:50.315Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    }
+  ],
+  "probes": [
+    {
+      "planId": "plan-test-mtpf98u5-jel0qu",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 4,
+      "cleanupDone": false,
+      "privateManifestHash": "420a4cf7826002b903f159891907e38801a3ad436e640d546535f56cfff902c0",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+          "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+          "present": true,
+          "actualHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+        },
+        {
+          "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+          "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+          "present": true,
+          "actualHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be"
+        },
+        {
+          "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+          "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+          "present": true,
+          "actualHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48"
+        }
+      ],
+      "publicArtifacts": []
+    },
+    {
+      "planId": "plan-test-mtpf98u5-jel0qu",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 5,
+      "cleanupDone": false,
+      "privateManifestHash": "420a4cf7826002b903f159891907e38801a3ad436e640d546535f56cfff902c0",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+          "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+          "present": true,
+          "actualHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+        },
+        {
+          "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+          "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+          "present": true,
+          "actualHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be"
+        },
+        {
+          "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+          "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+          "present": true,
+          "actualHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48"
+        }
+      ],
+      "publicArtifacts": []
+    },
+    {
+      "planId": "plan-test-mtpf98u5-jel0qu",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 6,
+      "cleanupDone": false,
+      "privateManifestHash": "52e3d9f63bc931c28fb383cd5802182926795ae4e85ec46851a04a033eca30d5",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+          "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+          "present": true,
+          "actualHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+        },
+        {
+          "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+          "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+          "present": true,
+          "actualHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41"
+        },
+        {
+          "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+          "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+          "present": true,
+          "actualHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be"
+        },
+        {
+          "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+          "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+          "present": true,
+          "actualHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48"
+        }
+      ],
+      "publicArtifacts": []
+    },
+    {
+      "planId": "plan-test-mtpf98u5-jel0qu",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "registryMember": true,
+      "state": "complete",
+      "checkpoint": 18,
+      "cleanupDone": true,
+      "privateManifestHash": "76d010618504a0109a27249a3d8edeace103638fa441cfdcffdd9735dde17e8f",
+      "publicManifestHash": "4171d93f41ff399763140e16868be5d6b2d3bd3cf1f273e72dc9c655f3282c71",
+      "privateArtifacts": [
+        {
+          "keyHash": "b6ae1fa38c5b09b0b205e9b62c6e8632e3195bae647b2db5305916a4a03d4662",
+          "expectedHash": "82e22ab952a0b4c747a3ceca59968860e525a09bdedc06e4206d65bb114c1692",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+          "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+          "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "5fb3f149ac8cdc3ba0762819fd65066aafb4585912ecfb2ed07bf1287bbb47a9",
+          "expectedHash": "efd1d201a275ead6c0e11e843be0173dacbe1f8c02c698cbee37aad867231133",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "9c8748840178c1f2147fe9727378d75d2ff922025ebe0de0501f91b31e6f263c",
+          "expectedHash": "050c73076fffc611b73a74b0393a7e6a2efa8c52e5a93f82b9578464aed7033e",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+          "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+          "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+          "present": false,
+          "actualHash": null
+        }
+      ],
+      "publicArtifacts": [
+        {
+          "keyHash": "e1a8f0cbc15c44a7ef1985e24a5673f27898f26226d20999498133880f8c946a",
+          "role": "descriptor",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "e5639eefbd17ff5b1fef29863f7130072f422d83c27c7017e541adea88ac2632"
+        },
+        {
+          "keyHash": "c151b8276dbefa539c9c05cf20ca691ca79e0fe8998cb9e7aa77faaa8ea31269",
+          "role": "chunk",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+        },
+        {
+          "keyHash": "c5b2e44c91ed4a82839a2ad35baa09b7be80a682ad4cddba976726359e756808",
+          "role": "page",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+        },
+        {
+          "keyHash": "e25ce3392469749f950c2381390867a19d20e33747d5ce621753e117881d5f97",
+          "role": "deletion-marker",
+          "collection": "current",
+          "expectedPresent": false,
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "da67fe8122f72962412a742923481f51bb059dfd0c8d96672ac5295f6a028922",
+          "role": "deletion-marker",
+          "collection": "baseline",
+          "expectedPresent": false,
+          "present": false,
+          "actualHash": null
+        }
+      ]
+    }
+  ],
+  "planId": "plan-test-mtpf98u5-jel0qu",
+  "issue": {
+    "id": "25167",
+    "key": "WFH-2935"
+  },
+  "reuseReceiptSha": null,
+  "completed": true,
+  "integrityPreserved": true,
+  "expectedForecast": {
+    "state": "available",
+    "reason": null,
+    "modelVersion": "duration-triangular-fs-v1",
+    "runs": 300,
+    "seed": 42,
+    "uncertainty": "medium",
+    "p50": "2026-10-09",
+    "p80": "2026-10-12",
+    "p90": "2026-10-12",
+    "onPlannedFinish": 0.6566666666666666,
+    "coverage": {
+      "totalLeaves": 1,
+      "datedLeaves": 1,
+      "sampledLeaves": 1,
+      "missingDates": 0,
+      "invalidDates": 0,
+      "invertedDates": 0,
+      "invalidBaselines": 0
+    }
+  },
+  "conversionEntered": {
+    "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+    "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+    "name": "Unchanged legacy upgrade report",
+    "createdAt": "2026-09-06T06:19:51.264Z",
+    "expiresAt": "2026-09-07T06:19:51.264Z",
+    "checkpoint": 5,
+    "state": "active",
+    "stageLabel": "Preparing the retained schedule",
+    "completedUnits": 5,
+    "totalUnits": 17,
+    "cleanupDone": false,
+    "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+  },
+  "conversionCompleted": {
+    "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+    "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+    "name": "Unchanged legacy upgrade report",
+    "createdAt": "2026-09-06T06:19:51.264Z",
+    "expiresAt": "2026-09-07T06:19:51.264Z",
+    "checkpoint": 6,
+    "state": "active",
+    "stageLabel": "Calculating the forecast",
+    "completedUnits": 6,
+    "totalUnits": 17,
+    "cleanupDone": false,
+    "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+  },
+  "encodedProbe": {
+    "planId": "plan-test-mtpf98u5-jel0qu",
+    "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+    "registryMember": true,
+    "state": "active",
+    "checkpoint": 6,
+    "cleanupDone": false,
+    "privateManifestHash": "52e3d9f63bc931c28fb383cd5802182926795ae4e85ec46851a04a033eca30d5",
+    "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privateArtifacts": [
+      {
+        "keyHash": "9eaf42e183c7f065b4066c8215928ddb004c4c1d3e07e086a7672e5983dbf106",
+        "expectedHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5",
+        "present": true,
+        "actualHash": "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+      },
+      {
+        "keyHash": "ef7447089f51ed6372f550a3528e1339dd2087faa484d23f88e221f12cd096c6",
+        "expectedHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41",
+        "present": true,
+        "actualHash": "244c9c2ee49f1bab78584d724cd98ec28fa9ae91aca2fb66dd6ba536fe120d41"
+      },
+      {
+        "keyHash": "7af221f5094c629c5b49442885cb3b180d051d7d23932f7e06e238cc89f1b0e7",
+        "expectedHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be",
+        "present": true,
+        "actualHash": "3b3318df5a2cf6de2bac794915c048b550b7d8a2feafb1de4df4ace03bd044be"
+      },
+      {
+        "keyHash": "fe42240edc3ae139891e594eb19913b69d03bd3bb90c8526bcaf38c5b7366f4f",
+        "expectedHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48",
+        "present": true,
+        "actualHash": "aa125b752de84980d5f2c7db4ccde19bd4349891d68363b1c50fab35a89b4d48"
+      }
+    ],
+    "publicArtifacts": []
+  },
+  "completedJob": {
+    "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+    "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+    "name": "Unchanged legacy upgrade report",
+    "createdAt": "2026-09-06T06:19:51.264Z",
+    "expiresAt": "2026-09-07T06:19:51.264Z",
+    "checkpoint": 18,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 18,
+    "totalUnits": 18,
+    "cleanupDone": true,
+    "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+  },
+  "report": {
+    "id": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2",
+    "hash": "707a7a13546247fee3b704a6d4513a26150047b6de7f561b81f19238dbe4e838",
+    "name": "Unchanged legacy upgrade report",
+    "planName": "[harness-test] lz-legacy-mtpem3qp",
+    "takenAt": "2026-09-06T06:19:50.969Z",
+    "sourceVersion": 2,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "f78fca36aff74d615ddcaa07121b9b189bbb6a40c85ce2d06e6bb77fc7ce78bc",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.6566666666666666,
+      "p50": "2026-10-09",
+      "p80": "2026-10-12",
+      "p90": "2026-10-12",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "medium"
+    },
+    "capacity": {
+      "reason": "Capacity was not included at capture. No availability is assumed.",
+      "scope": "captured-plan",
+      "state": "not-included"
+    },
+    "uncertainty": "medium",
+    "consistency": {
+      "basisHash": "c5a3ac7ad682eef4666ad696748bdf9b7fb11790c86e95c309e7a4d2b61f0f84",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T06:19:53.902Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T06:23:18.773Z"
+    },
+    "baseline": null,
+    "counts": {
+      "timeline": 1,
+      "targets": 0,
+      "changes": 0
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 0,
+      "changes": 0
+    },
+    "document": {
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "timeline": {
+        "hashes": [
+          "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 1,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1,
+      "unavailableRows": 0
+    },
+    "span": {
+      "start": "2026-10-05",
+      "finish": "2026-10-09"
+    },
+    "plannedFinish": "2026-10-09",
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 0
+    }
+  },
+  "actualHtmlVerified": true,
+  "allLegacyAndEncodedArtifactsAbsent": true,
+  "resources": {
+    "planRetained": false,
+    "issueRetained": false
+  }
+}

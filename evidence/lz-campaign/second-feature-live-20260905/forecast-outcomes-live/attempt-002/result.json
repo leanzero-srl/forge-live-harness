@@ -1,0 +1,52 @@
+{
+  "status": "failed",
+  "stamp": "a0fb18c269f1893c13fcc1dc80eaef6b54e091052f5eef66a506b96a28cc484e",
+  "startedAt": "2026-09-05T19:13:08.842423+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/forecast-outcomes-live/attempt-002",
+  "uiVersion": "4.58.575",
+  "forgeVersion": "6.2.0",
+  "appCommit": "dd3fa3b2",
+  "instrumentHash": "e3dcde7dbdc7a4026ec348890a131b5230feb718d8c127a4be8632d7e1123b8b",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-observations.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T19:14:06.599076+00:00",
+  "elapsedSeconds": 57.75566125000478
+}

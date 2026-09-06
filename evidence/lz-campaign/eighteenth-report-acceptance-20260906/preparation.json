@@ -1,0 +1,38 @@
+{
+  "status": "prepared-no-dispatch",
+  "preparedAt": "2026-09-06T15:43:25.624571+00:00",
+  "runId": "eighteenth-report-acceptance-20260906",
+  "manifest": "/Users/mihaiperdum/Projects/forge-live-harness/config/lz-campaign/staged-report-manifest.json",
+  "manifestSha256": "745eec0ad2c406f1855bf23c82272d9fe63aa5438106c6d007763c4e03a27b45",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "browserMode": "portable-chrome152",
+  "expectedUiVersion": "4.58.588",
+  "appBuildCommit": "f4d87d05",
+  "forgeVersion": null,
+  "finalHarnessCommit": null,
+  "finalInstrumentHash": null,
+  "sourceExtension": null,
+  "maxMinutes": 240,
+  "featureIds": [
+    "report-capture-jobs-live",
+    "sponsor-report-numeric-live",
+    "sponsor-report-live",
+    "large-history-report-live"
+  ],
+  "testsRequired": 7,
+  "featureTimeoutSeconds": {
+    "report-capture-jobs-live": 3900,
+    "sponsor-report-numeric-live": 1200,
+    "sponsor-report-live": 1500,
+    "large-history-report-live": 2100
+  },
+  "retryPolicy": "No retries; no auto-resume after actual failure; existing runner performs its after-audit and may continue next feature when integrity passes. Root final dispatch binds policy.",
+  "browserStarted": false,
+  "pending": [
+    "Actual successful Forge deployment receipt/version",
+    "Independent departure/observer review closure",
+    "Root-approved exact transfer and final instrument/source freeze",
+    "Root final sole-browser dispatch"
+  ],
+  "evidencePolicy": "Raw trace ZIP archives stay local only, excluded from delivery. Do not remove local diagnostic artifacts or change business assertions. Retain sanitized observer response bodies plus original digests, actual timestamps/errors and original phase classifications."
+}

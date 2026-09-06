@@ -1,0 +1,106 @@
+{
+  "marker": "lz-norm-mtp4bztd",
+  "name": "[harness-test] lz-norm-mtp4bztd",
+  "time": "2026-09-06T01:13:50.353Z",
+  "issues": [
+    {
+      "key": "WFH-2887",
+      "seed": {
+        "label": "simulation predecessor",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2888",
+      "seed": {
+        "label": "simulation successor",
+        "duration": 5,
+        "start": "2026-03-09",
+        "due": "2026-03-13"
+      }
+    },
+    {
+      "key": "WFH-2889",
+      "seed": {
+        "label": "simulation independent December",
+        "duration": 5,
+        "start": "2026-12-07",
+        "due": "2026-12-11"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp4c55o-9jemmx",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp4c55o-9jemmx",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2889",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2888",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2887",
+      "deleted": true
+    }
+  ],
+  "linkPairs": [
+    {
+      "from": "WFH-2887",
+      "to": "WFH-2888"
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2887",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2888",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2889",
+      "start": "2026-12-07",
+      "due": "2026-12-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2887",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2888",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2889",
+        "start": "2026-12-07",
+        "due": "2026-12-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "bodyError": {
+    "name": "Error",
+    "message": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"private simulation\"\u001b[39m\nReceived string:    \u001b[31m\"The simulation changed or its version is missing. Reload before saving.\"\u001b[39m"
+  },
+  "integrityPassed": true
+}

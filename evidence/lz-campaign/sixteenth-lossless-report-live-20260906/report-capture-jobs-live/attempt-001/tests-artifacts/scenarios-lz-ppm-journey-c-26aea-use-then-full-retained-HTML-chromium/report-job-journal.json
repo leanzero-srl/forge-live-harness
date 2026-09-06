@@ -1,0 +1,600 @@
+{
+  "kind": "resume",
+  "events": [
+    {
+      "stage": "holding-real-advance-response",
+      "time": "2026-09-06T06:27:29.639Z",
+      "request": {
+        "planId": "plan-test-mtpfj2jp-8sdpzb",
+        "jobId": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+        "expectedCheckpoint": 0
+      }
+    },
+    {
+      "stage": "real-advance-response-ready",
+      "time": "2026-09-06T06:27:29.639Z",
+      "httpStatus": 200,
+      "body": {
+        "success": true,
+        "job": {
+          "id": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+          "requestId": "77bf5f2d-08cb-4302-8626-9ad737d522fc",
+          "name": "Bounded resume report",
+          "createdAt": "2026-09-06T06:27:28.073Z",
+          "expiresAt": "2026-09-07T06:27:28.073Z",
+          "checkpoint": 1,
+          "state": "active",
+          "stageLabel": "Confirming the complete plan",
+          "completedUnits": 1,
+          "totalUnits": 16,
+          "cleanupDone": false,
+          "reportId": "e4b10602-0e7c-4a1b-a591-c6e90457a419"
+        }
+      },
+      "errors": null
+    },
+    {
+      "stage": "real-advance-response-delivered",
+      "time": "2026-09-06T06:27:30.648Z"
+    },
+    {
+      "stage": "holding-real-advance-response",
+      "time": "2026-09-06T06:27:58.602Z",
+      "request": {
+        "planId": "plan-test-mtpfj2jp-8sdpzb",
+        "jobId": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+        "expectedCheckpoint": 13
+      }
+    },
+    {
+      "stage": "real-advance-response-ready",
+      "time": "2026-09-06T06:27:58.603Z",
+      "httpStatus": 200,
+      "body": {
+        "success": true,
+        "job": {
+          "id": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+          "requestId": "77bf5f2d-08cb-4302-8626-9ad737d522fc",
+          "name": "Bounded resume report",
+          "createdAt": "2026-09-06T06:27:28.073Z",
+          "expiresAt": "2026-09-07T06:27:28.073Z",
+          "checkpoint": 14,
+          "state": "complete",
+          "stageLabel": "Report ready",
+          "completedUnits": 14,
+          "totalUnits": 14,
+          "cleanupDone": false,
+          "reportId": "e4b10602-0e7c-4a1b-a591-c6e90457a419"
+        },
+        "report": {
+          "baseline": null,
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "capacity": {
+            "reason": "Capacity was not included at capture. No availability is assumed.",
+            "scope": "captured-plan",
+            "state": "not-included"
+          },
+          "changeCounts": {
+            "added": 0,
+            "changed": 0,
+            "removed": 0
+          },
+          "consistency": {
+            "basisHash": "37f957b2af235a7f498ee9d5866b21dde5a2d964c00372041e2d6dbfb834908f",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T06:27:43.179Z",
+            "verifiedAfterAnalysisAt": "2026-09-06T06:27:53.068Z"
+          },
+          "counts": {
+            "changes": 0,
+            "targets": 0,
+            "timeline": 1
+          },
+          "coverage": {
+            "leafTasks": 1,
+            "unavailableRows": 0,
+            "unscheduledOrInvalidLeaves": 0,
+            "validRows": 1
+          },
+          "document": {
+            "changes": {
+              "hashes": [],
+              "sizes": [],
+              "total": 0
+            },
+            "targets": {
+              "hashes": [],
+              "sizes": [],
+              "total": 0
+            },
+            "timeline": {
+              "hashes": [
+                "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+              ],
+              "sizes": [
+                1
+              ],
+              "total": 1
+            }
+          },
+          "forecast": {
+            "coverage": {
+              "datedLeaves": 1,
+              "invalidBaselines": 0,
+              "invalidDates": 0,
+              "invertedDates": 0,
+              "missingDates": 0,
+              "sampledLeaves": 1,
+              "totalLeaves": 1
+            },
+            "inputHash": "3ca2af704eab740fd50d9aa25b28db5580a010194f6b6d5144e59ae97d1227b1",
+            "modelVersion": "duration-triangular-fs-v1",
+            "onPlannedFinish": 0.6566666666666666,
+            "p50": "2026-10-09",
+            "p80": "2026-10-12",
+            "p90": "2026-10-12",
+            "reason": null,
+            "runs": 300,
+            "seed": 42,
+            "state": "available",
+            "uncertainty": "medium"
+          },
+          "hash": "dd802457a034cd675b13aa8fb5ffa44d14d21d5a828d32478389c639efe9f3fc",
+          "id": "e4b10602-0e7c-4a1b-a591-c6e90457a419",
+          "name": "Bounded resume report",
+          "pageSize": 50,
+          "pages": {
+            "changes": 0,
+            "targets": 0,
+            "timeline": 1
+          },
+          "planName": "[harness-test] lz-norm-mtpfj0na",
+          "plannedFinish": "2026-10-09",
+          "sourceVersion": 3,
+          "span": {
+            "finish": "2026-10-09",
+            "start": "2026-10-05"
+          },
+          "takenAt": "2026-09-06T06:27:27.756Z",
+          "uncertainty": "medium",
+          "workingChangeCount": 0
+        }
+      },
+      "errors": null
+    },
+    {
+      "stage": "real-advance-response-delivered",
+      "time": "2026-09-06T06:27:58.660Z"
+    }
+  ],
+  "originalJira": {
+    "key": "WFH-2945",
+    "start": "2026-10-05",
+    "due": "2026-10-09",
+    "duration": 5
+  },
+  "probeObservations": [
+    {
+      "planId": "plan-test-mtpfj2jp-8sdpzb",
+      "jobId": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 1,
+      "cleanupDone": false,
+      "privateManifestHash": "bc7b23848adfffe6888c540991206c7beb7084feef76651088fb35f7f9f45bdb",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "476cf81002fdf343ecdc87dfaeb07ad9758300f4f52b184b5f876a411fcc8a29",
+          "expectedHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543",
+          "present": true,
+          "actualHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543"
+        }
+      ],
+      "publicArtifacts": []
+    },
+    {
+      "planId": "plan-test-mtpfj2jp-8sdpzb",
+      "jobId": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+      "registryMember": true,
+      "state": "complete",
+      "checkpoint": 14,
+      "cleanupDone": false,
+      "privateManifestHash": "7043b26855ca97f695a540510e0b8d6f6a9df48c8bd3c7a05f7b47af7ab29df8",
+      "publicManifestHash": "b819262ee744d218affb355f23b4affafe8e874946b1b7a88c3dc2966c71fce5",
+      "privateArtifacts": [
+        {
+          "keyHash": "922cee012fd7f5a0c385c8213e83e02f3ee4d1c9aab162205ad0a9b1b0963294",
+          "expectedHash": "0f5a730c8dfcda5594206fb87d33c8d6652ada2cdf7e01dfff6a028939b4b50d",
+          "present": true,
+          "actualHash": "0f5a730c8dfcda5594206fb87d33c8d6652ada2cdf7e01dfff6a028939b4b50d"
+        },
+        {
+          "keyHash": "ffaf98d68e321c05b5c9692623177e9d6ac6b5a07594ca2d2b6b00a2d5232983",
+          "expectedHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08",
+          "present": true,
+          "actualHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+        },
+        {
+          "keyHash": "fad0e7631446b54ef9eb395f50882e1a5f5d2db62c287ab42c8a231b8e94ce02",
+          "expectedHash": "2d77995a48fa2fd818cbeecfeb1bdc45178176bf4319006ee9a15331bf328ed3",
+          "present": true,
+          "actualHash": "2d77995a48fa2fd818cbeecfeb1bdc45178176bf4319006ee9a15331bf328ed3"
+        },
+        {
+          "keyHash": "9897278bf367f19dfdf51482877f1a2c93d4cd8314b0ae5a2233d89883c5a71e",
+          "expectedHash": "9c44a5752c51b514fc4230f16323ccdc9c0dc41406fdf947186397ed5a8da36d",
+          "present": true,
+          "actualHash": "9c44a5752c51b514fc4230f16323ccdc9c0dc41406fdf947186397ed5a8da36d"
+        },
+        {
+          "keyHash": "237e0c68689ec7e3a6dcbb6cf2b764df6140b9cf2643a6dac8384a0eea6f2b13",
+          "expectedHash": "6853a987f5552e3ae7debd4323200a3defb70f4cbcc05cc047178c47b123cd77",
+          "present": true,
+          "actualHash": "6853a987f5552e3ae7debd4323200a3defb70f4cbcc05cc047178c47b123cd77"
+        },
+        {
+          "keyHash": "476cf81002fdf343ecdc87dfaeb07ad9758300f4f52b184b5f876a411fcc8a29",
+          "expectedHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543",
+          "present": true,
+          "actualHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543"
+        }
+      ],
+      "publicArtifacts": [
+        {
+          "keyHash": "313f2e6514e0940ec452d97c4687b1abc838099515ef8cbc1f3e4aceba28b94e",
+          "role": "descriptor",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "e39937acfb76af631405e71ca4de6f8b587706f5f1429aa1268a12ca01ba909d"
+        },
+        {
+          "keyHash": "b9b52f3f2f1c77ad61bdff9c020415c290dd01d4b73b0d312e6de012998b79d0",
+          "role": "chunk",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+        },
+        {
+          "keyHash": "3dbaeb5caabf032e0c774e65ad20e85110803b61c7df8b0720f86fafc4a15e5a",
+          "role": "page",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+        },
+        {
+          "keyHash": "da924f7b208ddf7b276d1e04bd59bf57ffeea16f3519942b5425c616017c9829",
+          "role": "deletion-marker",
+          "collection": "current",
+          "expectedPresent": false,
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "b993f444b45c2478f62530b6654598070378bd1a9fa9cd751f62687c326c753f",
+          "role": "deletion-marker",
+          "collection": "baseline",
+          "expectedPresent": false,
+          "present": false,
+          "actualHash": null
+        }
+      ]
+    },
+    {
+      "planId": "plan-test-mtpfj2jp-8sdpzb",
+      "jobId": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+      "registryMember": true,
+      "state": "complete",
+      "checkpoint": 16,
+      "cleanupDone": true,
+      "privateManifestHash": "7043b26855ca97f695a540510e0b8d6f6a9df48c8bd3c7a05f7b47af7ab29df8",
+      "publicManifestHash": "b819262ee744d218affb355f23b4affafe8e874946b1b7a88c3dc2966c71fce5",
+      "privateArtifacts": [
+        {
+          "keyHash": "922cee012fd7f5a0c385c8213e83e02f3ee4d1c9aab162205ad0a9b1b0963294",
+          "expectedHash": "0f5a730c8dfcda5594206fb87d33c8d6652ada2cdf7e01dfff6a028939b4b50d",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "ffaf98d68e321c05b5c9692623177e9d6ac6b5a07594ca2d2b6b00a2d5232983",
+          "expectedHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "fad0e7631446b54ef9eb395f50882e1a5f5d2db62c287ab42c8a231b8e94ce02",
+          "expectedHash": "2d77995a48fa2fd818cbeecfeb1bdc45178176bf4319006ee9a15331bf328ed3",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "9897278bf367f19dfdf51482877f1a2c93d4cd8314b0ae5a2233d89883c5a71e",
+          "expectedHash": "9c44a5752c51b514fc4230f16323ccdc9c0dc41406fdf947186397ed5a8da36d",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "237e0c68689ec7e3a6dcbb6cf2b764df6140b9cf2643a6dac8384a0eea6f2b13",
+          "expectedHash": "6853a987f5552e3ae7debd4323200a3defb70f4cbcc05cc047178c47b123cd77",
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "476cf81002fdf343ecdc87dfaeb07ad9758300f4f52b184b5f876a411fcc8a29",
+          "expectedHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543",
+          "present": false,
+          "actualHash": null
+        }
+      ],
+      "publicArtifacts": [
+        {
+          "keyHash": "313f2e6514e0940ec452d97c4687b1abc838099515ef8cbc1f3e4aceba28b94e",
+          "role": "descriptor",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "e39937acfb76af631405e71ca4de6f8b587706f5f1429aa1268a12ca01ba909d"
+        },
+        {
+          "keyHash": "b9b52f3f2f1c77ad61bdff9c020415c290dd01d4b73b0d312e6de012998b79d0",
+          "role": "chunk",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+        },
+        {
+          "keyHash": "3dbaeb5caabf032e0c774e65ad20e85110803b61c7df8b0720f86fafc4a15e5a",
+          "role": "page",
+          "collection": "current",
+          "expectedPresent": true,
+          "present": true,
+          "actualHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+        },
+        {
+          "keyHash": "da924f7b208ddf7b276d1e04bd59bf57ffeea16f3519942b5425c616017c9829",
+          "role": "deletion-marker",
+          "collection": "current",
+          "expectedPresent": false,
+          "present": false,
+          "actualHash": null
+        },
+        {
+          "keyHash": "b993f444b45c2478f62530b6654598070378bd1a9fa9cd751f62687c326c753f",
+          "role": "deletion-marker",
+          "collection": "baseline",
+          "expectedPresent": false,
+          "present": false,
+          "actualHash": null
+        }
+      ]
+    }
+  ],
+  "beforeCleanup": {
+    "planId": "plan-test-mtpfj2jp-8sdpzb",
+    "jobId": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+    "registryMember": true,
+    "state": "active",
+    "checkpoint": 1,
+    "cleanupDone": false,
+    "privateManifestHash": "bc7b23848adfffe6888c540991206c7beb7084feef76651088fb35f7f9f45bdb",
+    "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privateArtifacts": [
+      {
+        "keyHash": "476cf81002fdf343ecdc87dfaeb07ad9758300f4f52b184b5f876a411fcc8a29",
+        "expectedHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543",
+        "present": true,
+        "actualHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543"
+      }
+    ],
+    "publicArtifacts": []
+  },
+  "publicationPaused": {
+    "planId": "plan-test-mtpfj2jp-8sdpzb",
+    "jobId": "c45e7dcc-a446-47aa-a288-9ec0fa2bd36f",
+    "registryMember": true,
+    "state": "complete",
+    "checkpoint": 14,
+    "cleanupDone": false,
+    "privateManifestHash": "7043b26855ca97f695a540510e0b8d6f6a9df48c8bd3c7a05f7b47af7ab29df8",
+    "publicManifestHash": "b819262ee744d218affb355f23b4affafe8e874946b1b7a88c3dc2966c71fce5",
+    "privateArtifacts": [
+      {
+        "keyHash": "922cee012fd7f5a0c385c8213e83e02f3ee4d1c9aab162205ad0a9b1b0963294",
+        "expectedHash": "0f5a730c8dfcda5594206fb87d33c8d6652ada2cdf7e01dfff6a028939b4b50d",
+        "present": true,
+        "actualHash": "0f5a730c8dfcda5594206fb87d33c8d6652ada2cdf7e01dfff6a028939b4b50d"
+      },
+      {
+        "keyHash": "ffaf98d68e321c05b5c9692623177e9d6ac6b5a07594ca2d2b6b00a2d5232983",
+        "expectedHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08",
+        "present": true,
+        "actualHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+      },
+      {
+        "keyHash": "fad0e7631446b54ef9eb395f50882e1a5f5d2db62c287ab42c8a231b8e94ce02",
+        "expectedHash": "2d77995a48fa2fd818cbeecfeb1bdc45178176bf4319006ee9a15331bf328ed3",
+        "present": true,
+        "actualHash": "2d77995a48fa2fd818cbeecfeb1bdc45178176bf4319006ee9a15331bf328ed3"
+      },
+      {
+        "keyHash": "9897278bf367f19dfdf51482877f1a2c93d4cd8314b0ae5a2233d89883c5a71e",
+        "expectedHash": "9c44a5752c51b514fc4230f16323ccdc9c0dc41406fdf947186397ed5a8da36d",
+        "present": true,
+        "actualHash": "9c44a5752c51b514fc4230f16323ccdc9c0dc41406fdf947186397ed5a8da36d"
+      },
+      {
+        "keyHash": "237e0c68689ec7e3a6dcbb6cf2b764df6140b9cf2643a6dac8384a0eea6f2b13",
+        "expectedHash": "6853a987f5552e3ae7debd4323200a3defb70f4cbcc05cc047178c47b123cd77",
+        "present": true,
+        "actualHash": "6853a987f5552e3ae7debd4323200a3defb70f4cbcc05cc047178c47b123cd77"
+      },
+      {
+        "keyHash": "476cf81002fdf343ecdc87dfaeb07ad9758300f4f52b184b5f876a411fcc8a29",
+        "expectedHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543",
+        "present": true,
+        "actualHash": "0637704da3168ea5b487dec0384119459d950b37327dede62e3c080ba6c11543"
+      }
+    ],
+    "publicArtifacts": [
+      {
+        "keyHash": "313f2e6514e0940ec452d97c4687b1abc838099515ef8cbc1f3e4aceba28b94e",
+        "role": "descriptor",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "e39937acfb76af631405e71ca4de6f8b587706f5f1429aa1268a12ca01ba909d"
+      },
+      {
+        "keyHash": "b9b52f3f2f1c77ad61bdff9c020415c290dd01d4b73b0d312e6de012998b79d0",
+        "role": "chunk",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+      },
+      {
+        "keyHash": "3dbaeb5caabf032e0c774e65ad20e85110803b61c7df8b0720f86fafc4a15e5a",
+        "role": "page",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+      },
+      {
+        "keyHash": "da924f7b208ddf7b276d1e04bd59bf57ffeea16f3519942b5425c616017c9829",
+        "role": "deletion-marker",
+        "collection": "current",
+        "expectedPresent": false,
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "b993f444b45c2478f62530b6654598070378bd1a9fa9cd751f62687c326c753f",
+        "role": "deletion-marker",
+        "collection": "baseline",
+        "expectedPresent": false,
+        "present": false,
+        "actualHash": null
+      }
+    ]
+  },
+  "report": {
+    "id": "e4b10602-0e7c-4a1b-a591-c6e90457a419",
+    "hash": "dd802457a034cd675b13aa8fb5ffa44d14d21d5a828d32478389c639efe9f3fc",
+    "name": "Bounded resume report",
+    "planName": "[harness-test] lz-norm-mtpfj0na",
+    "takenAt": "2026-09-06T06:27:27.756Z",
+    "sourceVersion": 3,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "3ca2af704eab740fd50d9aa25b28db5580a010194f6b6d5144e59ae97d1227b1",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.6566666666666666,
+      "p50": "2026-10-09",
+      "p80": "2026-10-12",
+      "p90": "2026-10-12",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "medium"
+    },
+    "capacity": {
+      "reason": "Capacity was not included at capture. No availability is assumed.",
+      "scope": "captured-plan",
+      "state": "not-included"
+    },
+    "uncertainty": "medium",
+    "consistency": {
+      "basisHash": "37f957b2af235a7f498ee9d5866b21dde5a2d964c00372041e2d6dbfb834908f",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T06:27:43.179Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T06:27:53.068Z"
+    },
+    "baseline": null,
+    "counts": {
+      "timeline": 1,
+      "targets": 0,
+      "changes": 0
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 0,
+      "changes": 0
+    },
+    "document": {
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "timeline": {
+        "hashes": [
+          "31408827785ded8ee7e708b7b548c92731bfd0703bdc2d80472248b380c75b08"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 1,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1,
+      "unavailableRows": 0
+    },
+    "span": {
+      "start": "2026-10-05",
+      "finish": "2026-10-09"
+    },
+    "plannedFinish": "2026-10-09",
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 0
+    }
+  },
+  "captureCleanupVerified": true
+}

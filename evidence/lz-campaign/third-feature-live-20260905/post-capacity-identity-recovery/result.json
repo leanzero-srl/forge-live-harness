@@ -1,0 +1,19 @@
+{
+  "phase": "standalone post-Capacity closure",
+  "appCommit": "c0de4ed2",
+  "uiVersion": "4.58.577",
+  "forgeVersion": "6.3.0",
+  "instrumentHash": "050a4e2aa146021c8583c8c467b62bcc1ad2a0568730da0c807cd68c45d45b36",
+  "result": {
+    "status": "passed",
+    "ordinaryPasses": [
+      "campaign: actual UI version and preserved LZPT source"
+    ],
+    "expectedDefectWitnesses": [],
+    "reasons": [],
+    "testCount": 1,
+    "process": {
+      "exit": 0
+    }
+  }
+}

@@ -1,0 +1,16 @@
+
+Running 1 test using 1 worker
+
+
+(node:47379) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-capacity-limit.spec.ts:18:1 › capacity size limit: actual 5300-issue selection refuses a partial report, clears prior 8h/40h totals and recovers on a supported selection
+[chromium] › scenarios/lz-ppm/journey-campaign-capacity-limit.spec.ts:18:1 › capacity size limit: actual 5300-issue selection refuses a partial report, clears prior 8h/40h totals and recovers on a supported selection
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.579","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T00:40:50.082Z"}
+
+[jira !!] GET /rest/api/3/issue/WFH-2881 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtp35mtu","name":"[harness-test] lz-norm-mtp35mtu","time":"2026-09-06T00:40:53.970Z","issues":[{"key":"WFH-2881","seed":{"label":"capacity limit positive 8h","duration":5,"start":"2026-09-07","due":"2026-09-11"}}],"planId":"plan-test-mtp35qg3-fhhr3e","cleanup":[{"plan":"plan-test-mtp35qg3-fhhr3e","deleted":true},{"issue":"WFH-2881","deleted":true}],"searchIndexVerified":[{"key":"WFH-2881","start":"2026-09-07","due":"2026-09-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2881","start":"2026-09-07","due":"2026-09-11","duration":5}]],"integrityPassed":true}
+
+  1 passed (46.7s)

@@ -1,0 +1,31 @@
+{
+  "status": "authorized",
+  "time": "2026-09-06T14:58:28.135309+00:00",
+  "rootDispatchCommit": "9594f387",
+  "appCommit": "c49bf682d01d83ab53bdf06a2edf56e6bef96c3f",
+  "forgeVersion": "6.25.0",
+  "uiVersion": "4.58.587",
+  "harnessCommit": "5f1111bf4e64c3bef695fc4c2c30ba131a06368d",
+  "instrumentHash": "616a8df8558f7a0da7d370bc9caaaa0e5e2abdace0062b01c842cb99d28536f2",
+  "sourceSha256": {
+    "campaign-seventeenth-readonly-reopen.spec.ts": "1725f1601be2866dfd70f1d55225b0a8ae5305c4295906751fddf0aad0c72b6b",
+    "owned-plan-departure.mjs": "d472d91fea6e40c9bde6a7e84be44623adfe7f077424a51befd1f0389147fd95",
+    "seventeenth-readonly-reopen-contract.mjs": "c696c451641338ea9704f7b3c159ed1770e931fd934889e3f53d3d079f885e84"
+  },
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "readonly-reopen183",
+  "scope": "Retained complete183 read-only admission/full212 pages/HTML/reopen/final audits; zero advances, no cleanup",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-readonly-reopen.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "readonly reopen:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-readonly-reopen-20260906/artifacts"
+  ]
+}

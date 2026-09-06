@@ -1,0 +1,4050 @@
+{
+  "phase": "prepare",
+  "marker": "lz-packed-mtphcs0f",
+  "name": "[harness-test] lz-packed-mtphcs0f",
+  "receipt": {
+    "mode": "portable-chrome152",
+    "browserVersion": "152.0.7977.76",
+    "principalSha256": "b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769",
+    "uiVersion": "4.58.585",
+    "appUrl": "https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77",
+    "executableSha256": "755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee",
+    "frameworkSha256": "bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6",
+    "admittedAt": "2026-09-06T07:18:21.757Z"
+  },
+  "deployedForge": "6.17.0",
+  "deployedApp": "34372ae3f9cb12b1ff94a58dbda313a6deab6f03",
+  "events": [
+    {
+      "stage": "original-source",
+      "time": "2026-09-06T07:18:24.159Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "45:fc601b9b",
+          "createdAt": "2026-08-12T15:43:00.213Z",
+          "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "createdByName": "Mihai Perdum",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-msq9dg8l-gz6mz1",
+          "issueCount": 45,
+          "lastIndexedAt": "2026-09-05T21:05:21.196Z",
+          "lastWriterName": "Mihai Perdum",
+          "members": [],
+          "milestones": [],
+          "name": "LZPT Scenarios",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "Source 1",
+              "projectKey": null,
+              "query": "project = LZPT",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-05T21:05:21.196Z",
+          "version": 1044,
+          "writability": {
+            "blocked": 0,
+            "byReason": {
+              "field-missing": 90
+            },
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 3
+            },
+            "computedAt": "2026-09-05T21:05:20.945Z",
+            "partial": 45,
+            "refusedByProject": null,
+            "sample": [
+              {
+                "key": "LZPT-230",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-229",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-228",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-227",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-226",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-225",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-224",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-223",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-222",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-221",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-220",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-219",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-218",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-217",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-216",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-215",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-214",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-213",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-212",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              },
+              {
+                "key": "LZPT-211",
+                "level": "partial",
+                "reasons": [
+                  "Duration isn't available on LZPT for this issue type",
+                  "Buffer isn't available on LZPT for this issue type"
+                ]
+              }
+            ],
+            "total": 45
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-06-17",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-14",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-06-17",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21778",
+            "key": "LZPT-186",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01han:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-14",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E1 · Linear Chain",
+            "type": "Epic",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21779",
+            "key": "LZPT-187",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hav:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E2 · Diamond",
+            "type": "Epic",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-12",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-04-27",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21780",
+            "key": "LZPT-188",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hb3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-04-27",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E3 · Cross-links & Cycle",
+            "type": "Epic",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21781",
+            "key": "LZPT-189",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hbb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E4 · Rollup & Subtasks",
+            "type": "Epic",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21782",
+            "key": "LZPT-190",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hbj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E5 · Edge Dates",
+            "type": "Epic",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-06-08",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-06-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "21783",
+            "key": "LZPT-191",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hbr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "E6 · Wide Parent",
+            "type": "Epic",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-08",
+              "duration": null,
+              "predecessors": [
+                "LZPT-201"
+              ],
+              "startDate": "2026-05-04",
+              "successors": [
+                "LZPT-193"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21784",
+            "key": "LZPT-192",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-201"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hbz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-04",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-193"
+            ],
+            "summary": "CHAIN-1 kickoff",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-15",
+              "duration": null,
+              "predecessors": [
+                "LZPT-192"
+              ],
+              "startDate": "2026-05-11",
+              "successors": [
+                "LZPT-194"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-15",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21785",
+            "key": "LZPT-193",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-192"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hc7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-11",
+            "status": "In Progress",
+            "statusCategory": "indeterminate",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-194"
+            ],
+            "summary": "CHAIN-2 build",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-22",
+              "duration": null,
+              "predecessors": [
+                "LZPT-193"
+              ],
+              "startDate": "2026-05-18",
+              "successors": [
+                "LZPT-195"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-22",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21786",
+            "key": "LZPT-194",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-193"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hcf:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-18",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-195"
+            ],
+            "summary": "CHAIN-3 test",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-29",
+              "duration": null,
+              "predecessors": [
+                "LZPT-194"
+              ],
+              "startDate": "2026-05-25",
+              "successors": [
+                "LZPT-196"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-29",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21787",
+            "key": "LZPT-195",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-194"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hcn:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-25",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-196"
+            ],
+            "summary": "CHAIN-4 review",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-06-05",
+              "duration": null,
+              "predecessors": [
+                "LZPT-195"
+              ],
+              "startDate": "2026-06-01",
+              "successors": [
+                "LZPT-217"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-06-05",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21788",
+            "key": "LZPT-196",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-186",
+            "predecessors": [
+              "LZPT-195"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hcv:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-06-01",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-217"
+            ],
+            "summary": "CHAIN-5 release",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-06",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-04",
+              "successors": [
+                "LZPT-198",
+                "LZPT-199"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-06",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21789",
+            "key": "LZPT-197",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-187",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hd3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-04",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-198",
+              "LZPT-199"
+            ],
+            "summary": "DIAMOND-A source",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-12",
+              "duration": null,
+              "predecessors": [
+                "LZPT-197"
+              ],
+              "startDate": "2026-05-07",
+              "successors": [
+                "LZPT-200"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21790",
+            "key": "LZPT-198",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-187",
+            "predecessors": [
+              "LZPT-197"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hdb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-200"
+            ],
+            "summary": "DIAMOND-B1 left",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-14",
+              "duration": null,
+              "predecessors": [
+                "LZPT-197"
+              ],
+              "startDate": "2026-05-07",
+              "successors": [
+                "LZPT-200"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-14",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21791",
+            "key": "LZPT-199",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-187",
+            "predecessors": [
+              "LZPT-197"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hdj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-200"
+            ],
+            "summary": "DIAMOND-B2 right (longer)",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-19",
+              "duration": null,
+              "predecessors": [
+                "LZPT-198",
+                "LZPT-199"
+              ],
+              "startDate": "2026-05-15",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-19",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21792",
+            "key": "LZPT-200",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-187",
+            "predecessors": [
+              "LZPT-198",
+              "LZPT-199"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hdr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-15",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "DIAMOND-C sink",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-01",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-04-27",
+              "successors": [
+                "LZPT-192"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-01",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21793",
+            "key": "LZPT-201",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hdz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-04-27",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-192"
+            ],
+            "summary": "CROSS-A gate",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-06",
+              "duration": null,
+              "predecessors": [
+                "LZPT-204"
+              ],
+              "startDate": "2026-05-04",
+              "successors": [
+                "LZPT-203"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-06",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21794",
+            "key": "LZPT-202",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-204"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01he7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-04",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-203"
+            ],
+            "summary": "CYCLE-X",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-11",
+              "duration": null,
+              "predecessors": [
+                "LZPT-202"
+              ],
+              "startDate": "2026-05-07",
+              "successors": [
+                "LZPT-204"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-11",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21795",
+            "key": "LZPT-203",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-202"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hef:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-204"
+            ],
+            "summary": "CYCLE-Y",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-14",
+              "duration": null,
+              "predecessors": [
+                "LZPT-203"
+              ],
+              "startDate": "2026-05-12",
+              "successors": [
+                "LZPT-202"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-14",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21796",
+            "key": "LZPT-204",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-203"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hen:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-12",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-202"
+            ],
+            "summary": "CYCLE-Z",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-02",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-09-23",
+              "successors": [
+                "LZPT-206",
+                "LZPT-207",
+                "LZPT-208",
+                "LZPT-209"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-02",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21797",
+            "key": "LZPT-205",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hev:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-09-23",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "LZPT-206",
+              "LZPT-207",
+              "LZPT-208",
+              "LZPT-209"
+            ],
+            "summary": "FANOUT-src",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-07",
+              "duration": null,
+              "predecessors": [
+                "LZPT-205"
+              ],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-07",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21798",
+            "key": "LZPT-206",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-205"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hf3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "FANOUT-1",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-08",
+              "duration": null,
+              "predecessors": [
+                "LZPT-205"
+              ],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21799",
+            "key": "LZPT-207",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-205"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hfb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "FANOUT-2",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": null,
+              "predecessors": [
+                "LZPT-205"
+              ],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-09",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21800",
+            "key": "LZPT-208",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-205"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hfj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "FANOUT-3",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-12",
+              "duration": null,
+              "predecessors": [
+                "LZPT-205"
+              ],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-10-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21801",
+            "key": "LZPT-209",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-188",
+            "predecessors": [
+              "LZPT-205"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hfr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "FANOUT-4",
+            "type": "Task",
+            "updated": "2026-09-03"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [
+              "LZPT-227",
+              "LZPT-228"
+            ],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21802",
+            "key": "LZPT-210",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-189",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hfz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP story-1",
+            "type": "Story",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [
+              "LZPT-229",
+              "LZPT-230"
+            ],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21803",
+            "key": "LZPT-211",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-189",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hg7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP story-2",
+            "type": "Story",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": null,
+              "duration": null,
+              "predecessors": [],
+              "startDate": null,
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": null,
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21804",
+            "key": "LZPT-212",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hgf:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": null,
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE unscheduled (no dates)",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-15",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-15",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-15",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21805",
+            "key": "LZPT-213",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hgn:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-15",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE milestone (0-day)",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-12",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-20",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21806",
+            "key": "LZPT-214",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hgv:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-20",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE invalid start-after-due",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-06-30",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-04",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-06-30",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21807",
+            "key": "LZPT-215",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hh3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-04",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE long-run",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-12",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-08",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21808",
+            "key": "LZPT-216",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-190",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hhb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-08",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "EDGE weekend-span",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-04",
+              "duration": null,
+              "predecessors": [
+                "LZPT-196"
+              ],
+              "startDate": "2026-05-04",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-04",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21809",
+            "key": "LZPT-217",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [
+              "LZPT-196"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01hhj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-04",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-01",
+            "type": "Task",
+            "updated": "2026-09-02"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-05",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-05",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21810",
+            "key": "LZPT-218",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hhr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-05",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-02",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-06",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-06",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-06",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21811",
+            "key": "LZPT-219",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hhz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-06",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-03",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-07",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-07",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-07",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21812",
+            "key": "LZPT-220",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hi7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "In Progress",
+            "statusCategory": "indeterminate",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-04",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-08",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-08",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21813",
+            "key": "LZPT-221",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hif:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-08",
+            "status": "In Progress",
+            "statusCategory": "indeterminate",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-05",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-11",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-11",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-11",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21814",
+            "key": "LZPT-222",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hin:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-11",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-06",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-12",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-12",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-12",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21815",
+            "key": "LZPT-223",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hiv:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-12",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-07",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-13",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-13",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-13",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21816",
+            "key": "LZPT-224",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hj3:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-13",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-08",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-14",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-14",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-14",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21817",
+            "key": "LZPT-225",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hjb:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-14",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-09",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-15",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-15",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-15",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "21818",
+            "key": "LZPT-226",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-191",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hjj:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-15",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "WIDE-10",
+            "type": "Task",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-06",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-04",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-06",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": -1,
+            "id": "21819",
+            "key": "LZPT-227",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-210",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hjr:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-04",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP sub-1a",
+            "type": "Subtask",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-11",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-07",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-11",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": -1,
+            "id": "21820",
+            "key": "LZPT-228",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-210",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hjz:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-07",
+            "status": "In Progress",
+            "statusCategory": "indeterminate",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP sub-1b",
+            "type": "Subtask",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-08",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-08",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": -1,
+            "id": "21821",
+            "key": "LZPT-229",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-211",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hk7:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-05-05",
+            "status": "To Do",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP sub-2a",
+            "type": "Subtask",
+            "updated": "2026-08-13"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-05-15",
+              "duration": null,
+              "predecessors": [],
+              "startDate": "2026-05-11",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-08-13",
+            "dueDate": "2026-05-15",
+            "duration": null,
+            "fieldAvail": {
+              "buffer": false,
+              "dueDate": true,
+              "duration": false,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": -1,
+            "id": "21822",
+            "key": "LZPT-230",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": "LZPT-211",
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01hkf:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": "Done",
+            "startDate": "2026-05-11",
+            "status": "Done",
+            "statusCategory": "done",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "ROLLUP sub-2b",
+            "type": "Subtask",
+            "updated": "2026-08-13"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "registry",
+      "time": "2026-09-06T07:18:24.453Z",
+      "value": [
+        {
+          "id": "plan-msq9dg8l-gz6mz1",
+          "name": "LZPT Scenarios"
+        },
+        {
+          "id": "plan-mta3aw3t-6dyijd",
+          "name": "test"
+        },
+        {
+          "id": "plan-mtbrlh8n-7ghw8u",
+          "name": "LZPP Perf"
+        }
+      ]
+    },
+    {
+      "stage": "getCapacitySettings",
+      "time": "2026-09-06T07:18:32.114Z",
+      "value": {
+        "success": true,
+        "version": 62,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T07:18:32.411Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T07:18:32.809Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T07:18:33.183Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T07:18:33.545Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T07:18:33.922Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T07:18:34.207Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "retained-issue-readonly",
+      "time": "2026-09-06T07:18:34.976Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_11148.cmdb.label,customfield_11148.cmdb.objectKey,customfield_11148.cmdb.attributes,customfield_11149.cmdb.label,customfield_11149.cmdb.objectKey,customfield_11149.cmdb.attributes",
+        "id": "25020",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25020",
+        "key": "WFH-2820",
+        "fields": {
+          "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "customfield_10181": null,
+          "description": {
+            "type": "doc",
+            "version": 1,
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "lz-assets-owned-20260905-wfh"
+                  }
+                ]
+              }
+            ]
+          },
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "labels": [],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ],
+          "duedate": "2026-10-09",
+          "issuelinks": [],
+          "updated": "2026-09-06T00:02:58.048+0300",
+          "status": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+            "description": "",
+            "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+            "name": "New",
+            "id": "10006",
+            "statusCategory": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+              "id": 2,
+              "key": "new",
+              "colorName": "blue-gray",
+              "name": "To Do"
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": "retained-issue-readonly",
+      "time": "2026-09-06T07:18:35.161Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_11148.cmdb.label,customfield_11148.cmdb.objectKey,customfield_11148.cmdb.attributes,customfield_11149.cmdb.label,customfield_11149.cmdb.objectKey,customfield_11149.cmdb.attributes",
+        "id": "25020",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25020",
+        "key": "WFH-2820",
+        "fields": {
+          "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "customfield_10181": null,
+          "description": {
+            "type": "doc",
+            "version": 1,
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "lz-assets-owned-20260905-wfh"
+                  }
+                ]
+              }
+            ]
+          },
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "labels": [],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ],
+          "duedate": "2026-10-09",
+          "issuelinks": [],
+          "updated": "2026-09-06T00:02:58.048+0300",
+          "status": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+            "description": "",
+            "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+            "name": "New",
+            "id": "10006",
+            "statusCategory": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+              "id": 2,
+              "key": "new",
+              "colorName": "blue-gray",
+              "name": "To Do"
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": "stable-input-no-jira-writes",
+      "time": "2026-09-06T07:18:35.162Z",
+      "value": {
+        "id": "25020",
+        "key": "WFH-2820"
+      }
+    },
+    {
+      "stage": "create-owned-plan-intent",
+      "time": "2026-09-06T07:18:35.163Z",
+      "value": {
+        "name": "[harness-test] lz-packed-mtphcs0f",
+        "jql": "key = WFH-2820"
+      }
+    },
+    {
+      "stage": "owned-plan",
+      "time": "2026-09-06T07:18:37.694Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "1:48dce438",
+          "createdAt": "2026-09-06T07:18:35.408Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtphd2fl-gl9ixj",
+          "issueCount": 1,
+          "lastIndexedAt": "2026-09-06T07:18:37.063Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] lz-packed-mtphcs0f",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key = WFH-2820",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T07:18:37.063Z",
+          "version": 2,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T07:18:36.815Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 1
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-05",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "fieldAvail": {
+              "buffer": true,
+              "dueDate": true,
+              "duration": true,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25020",
+            "key": "WFH-2820",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k1r:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "getPlanCalendar",
+      "time": "2026-09-06T07:18:38.101Z",
+      "value": {
+        "success": true,
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calendarName": "Standard (Mon-Fri)",
+        "holidays": []
+      }
+    },
+    {
+      "stage": "getBaseline",
+      "time": "2026-09-06T07:18:38.549Z",
+      "value": {
+        "baseline": null
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T07:18:39.026Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T07:18:39.574Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "registry",
+      "time": "2026-09-06T07:18:39.760Z",
+      "value": [
+        {
+          "id": "plan-msq9dg8l-gz6mz1",
+          "name": "LZPT Scenarios"
+        },
+        {
+          "id": "plan-mta3aw3t-6dyijd",
+          "name": "test"
+        },
+        {
+          "id": "plan-mtbrlh8n-7ghw8u",
+          "name": "LZPP Perf"
+        },
+        {
+          "id": "plan-test-mtphd2fl-gl9ixj",
+          "name": "[harness-test] lz-packed-mtphcs0f"
+        }
+      ]
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T07:18:55.200Z",
+      "value": {
+        "stage": "holding-real-advance-response",
+        "time": "2026-09-06T07:18:55.200Z",
+        "request": {
+          "planId": "plan-test-mtphd2fl-gl9ixj",
+          "jobId": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+          "expectedCheckpoint": 3
+        }
+      }
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T07:18:55.201Z",
+      "value": {
+        "stage": "real-advance-response-ready",
+        "time": "2026-09-06T07:18:55.201Z",
+        "httpStatus": 200,
+        "body": {
+          "success": true,
+          "job": {
+            "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+            "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+            "name": "Unchanged packed upgrade report",
+            "createdAt": "2026-09-06T07:18:49.724Z",
+            "expiresAt": "2026-09-07T07:18:49.724Z",
+            "checkpoint": 4,
+            "state": "active",
+            "stageLabel": "Calculating the forecast",
+            "completedUnits": 4,
+            "totalUnits": 17,
+            "cleanupDone": false,
+            "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+          }
+        },
+        "errors": null
+      }
+    },
+    {
+      "stage": "held-response",
+      "time": "2026-09-06T07:18:55.252Z",
+      "value": {
+        "stage": "real-advance-response-delivered",
+        "time": "2026-09-06T07:18:55.252Z"
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T07:18:56.054Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+          "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+          "name": "Unchanged packed upgrade report",
+          "createdAt": "2026-09-06T07:18:49.724Z",
+          "expiresAt": "2026-09-07T07:18:49.724Z",
+          "checkpoint": 4,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 4,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+        }
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T07:18:56.843Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+          "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+          "name": "Unchanged packed upgrade report",
+          "createdAt": "2026-09-06T07:18:49.724Z",
+          "expiresAt": "2026-09-07T07:18:49.724Z",
+          "checkpoint": 4,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 4,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+        }
+      }
+    },
+    {
+      "stage": "paused-no-extra-advance",
+      "time": "2026-09-06T07:18:56.845Z",
+      "value": {
+        "job": {
+          "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+          "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+          "name": "Unchanged packed upgrade report",
+          "createdAt": "2026-09-06T07:18:49.724Z",
+          "expiresAt": "2026-09-07T07:18:49.724Z",
+          "checkpoint": 4,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 4,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+        },
+        "advanceCount": 4
+      }
+    },
+    {
+      "stage": "listSponsorReports",
+      "time": "2026-09-06T07:18:58.144Z",
+      "value": {
+        "success": true,
+        "entries": [],
+        "nextCursor": null
+      }
+    },
+    {
+      "stage": "retained-issue-readonly",
+      "time": "2026-09-06T07:18:58.565Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_11148.cmdb.label,customfield_11148.cmdb.objectKey,customfield_11148.cmdb.attributes,customfield_11149.cmdb.label,customfield_11149.cmdb.objectKey,customfield_11149.cmdb.attributes",
+        "id": "25020",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25020",
+        "key": "WFH-2820",
+        "fields": {
+          "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "customfield_10181": null,
+          "description": {
+            "type": "doc",
+            "version": 1,
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "lz-assets-owned-20260905-wfh"
+                  }
+                ]
+              }
+            ]
+          },
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "labels": [],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ],
+          "duedate": "2026-10-09",
+          "issuelinks": [],
+          "updated": "2026-09-06T00:02:58.048+0300",
+          "status": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+            "description": "",
+            "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+            "name": "New",
+            "id": "10006",
+            "statusCategory": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+              "id": 2,
+              "key": "new",
+              "colorName": "blue-gray",
+              "name": "To Do"
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": "owned-plan",
+      "time": "2026-09-06T07:18:58.874Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "1:48dce438",
+          "createdAt": "2026-09-06T07:18:35.408Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtphd2fl-gl9ixj",
+          "issueCount": 1,
+          "lastIndexedAt": "2026-09-06T07:18:37.063Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] lz-packed-mtphcs0f",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key = WFH-2820",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T07:18:37.063Z",
+          "version": 2,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T07:18:36.815Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 1
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-05",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "fieldAvail": {
+              "buffer": true,
+              "dueDate": true,
+              "duration": true,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25020",
+            "key": "WFH-2820",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k1r:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "getBaseline",
+      "time": "2026-09-06T07:18:59.279Z",
+      "value": {
+        "baseline": null
+      }
+    },
+    {
+      "stage": "prepared-retained-for-upgrade",
+      "time": "2026-09-06T07:18:59.280Z",
+      "value": {
+        "planId": "plan-test-mtphd2fl-gl9ixj",
+        "issue": {
+          "id": "25020",
+          "key": "WFH-2820"
+        },
+        "job": {
+          "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+          "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+          "name": "Unchanged packed upgrade report",
+          "createdAt": "2026-09-06T07:18:49.724Z",
+          "expiresAt": "2026-09-07T07:18:49.724Z",
+          "checkpoint": 4,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 4,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+        }
+      }
+    },
+    {
+      "stage": "registry",
+      "time": "2026-09-06T07:18:59.805Z",
+      "value": [
+        {
+          "id": "plan-msq9dg8l-gz6mz1",
+          "name": "LZPT Scenarios"
+        },
+        {
+          "id": "plan-mta3aw3t-6dyijd",
+          "name": "test"
+        },
+        {
+          "id": "plan-mtbrlh8n-7ghw8u",
+          "name": "LZPP Perf"
+        },
+        {
+          "id": "plan-test-mtphd2fl-gl9ixj",
+          "name": "[harness-test] lz-packed-mtphcs0f"
+        }
+      ]
+    },
+    {
+      "stage": "retained-issue-readonly",
+      "time": "2026-09-06T07:19:00.014Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_11148.cmdb.label,customfield_11148.cmdb.objectKey,customfield_11148.cmdb.attributes,customfield_11149.cmdb.label,customfield_11149.cmdb.objectKey,customfield_11149.cmdb.attributes",
+        "id": "25020",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25020",
+        "key": "WFH-2820",
+        "fields": {
+          "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "customfield_10181": null,
+          "description": {
+            "type": "doc",
+            "version": 1,
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "lz-assets-owned-20260905-wfh"
+                  }
+                ]
+              }
+            ]
+          },
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "labels": [],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ],
+          "duedate": "2026-10-09",
+          "issuelinks": [],
+          "updated": "2026-09-06T00:02:58.048+0300",
+          "status": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+            "description": "",
+            "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+            "name": "New",
+            "id": "10006",
+            "statusCategory": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+              "id": 2,
+              "key": "new",
+              "colorName": "blue-gray",
+              "name": "To Do"
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": "retained-issue-readonly",
+      "time": "2026-09-06T07:19:00.187Z",
+      "value": {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_11148.cmdb.label,customfield_11148.cmdb.objectKey,customfield_11148.cmdb.attributes,customfield_11149.cmdb.label,customfield_11149.cmdb.objectKey,customfield_11149.cmdb.attributes",
+        "id": "25020",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25020",
+        "key": "WFH-2820",
+        "fields": {
+          "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+          "issuetype": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+            "id": "10004",
+            "description": "Functionality or a feature expressed as a user goal.",
+            "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+            "name": "Work package",
+            "subtask": false,
+            "avatarId": 10552,
+            "hierarchyLevel": 0
+          },
+          "customfield_10180": 5,
+          "customfield_10181": null,
+          "description": {
+            "type": "doc",
+            "version": 1,
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "lz-assets-owned-20260905-wfh"
+                  }
+                ]
+              }
+            ]
+          },
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          },
+          "customfield_10015": "2026-10-05",
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "labels": [],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ],
+          "duedate": "2026-10-09",
+          "issuelinks": [],
+          "updated": "2026-09-06T00:02:58.048+0300",
+          "status": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+            "description": "",
+            "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+            "name": "New",
+            "id": "10006",
+            "statusCategory": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+              "id": 2,
+              "key": "new",
+              "colorName": "blue-gray",
+              "name": "To Do"
+            }
+          }
+        }
+      }
+    },
+    {
+      "stage": "getCapacitySettings",
+      "time": "2026-09-06T07:19:00.497Z",
+      "value": {
+        "success": true,
+        "version": 62,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "stage": "getCapacitySettings",
+      "time": "2026-09-06T07:19:00.713Z",
+      "value": {
+        "success": true,
+        "version": 62,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T07:19:00.963Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T07:19:01.332Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T07:19:01.655Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T07:19:02.048Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "getDraft",
+      "time": "2026-09-06T07:19:02.406Z",
+      "value": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "stage": "getActiveDrafts",
+      "time": "2026-09-06T07:19:02.761Z",
+      "value": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "stage": "owned-plan",
+      "time": "2026-09-06T07:19:03.034Z",
+      "value": {
+        "meta": {
+          "calendarKey": "standard",
+          "contentHash": "1:48dce438",
+          "createdAt": "2026-09-06T07:18:35.408Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtphd2fl-gl9ixj",
+          "issueCount": 1,
+          "lastIndexedAt": "2026-09-06T07:18:37.063Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] lz-packed-mtphcs0f",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key = WFH-2820",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T07:18:37.063Z",
+          "version": 2,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T07:18:36.815Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 1
+          }
+        },
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-05",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "fieldAvail": {
+              "buffer": true,
+              "dueDate": true,
+              "duration": true,
+              "startDate": true
+            },
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25020",
+            "key": "WFH-2820",
+            "labels": [],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k1r:",
+            "remainingEstimateSeconds": null,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T07:19:03.859Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+          "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+          "name": "Unchanged packed upgrade report",
+          "createdAt": "2026-09-06T07:18:49.724Z",
+          "expiresAt": "2026-09-07T07:18:49.724Z",
+          "checkpoint": 4,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 4,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+        }
+      }
+    },
+    {
+      "stage": "getSponsorReportCapture",
+      "time": "2026-09-06T07:19:04.563Z",
+      "value": {
+        "success": true,
+        "job": {
+          "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+          "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+          "name": "Unchanged packed upgrade report",
+          "createdAt": "2026-09-06T07:18:49.724Z",
+          "expiresAt": "2026-09-07T07:18:49.724Z",
+          "checkpoint": 4,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 4,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+        }
+      }
+    },
+    {
+      "stage": "paused-receipt-after-ui-stop",
+      "time": "2026-09-06T07:19:05.279Z",
+      "value": {
+        "job": {
+          "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+          "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+          "name": "Unchanged packed upgrade report",
+          "createdAt": "2026-09-06T07:18:49.724Z",
+          "expiresAt": "2026-09-07T07:18:49.724Z",
+          "checkpoint": 4,
+          "state": "active",
+          "stageLabel": "Calculating the forecast",
+          "completedUnits": 4,
+          "totalUnits": 17,
+          "cleanupDone": false,
+          "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+        }
+      }
+    }
+  ],
+  "probes": [
+    {
+      "planId": "plan-test-mtphd2fl-gl9ixj",
+      "jobId": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 4,
+      "cleanupDone": false,
+      "privateManifestHash": "9d87c0823dba596970cc20f5d3a4fd00de2cf5efcf7d233a1b61a646a95595b9",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "ded7a791af7cac3e9e32bd4086992b35ba6b81efe223b323278b42a5e0a9e49c",
+          "expectedHash": "e1a9f421124bf58b28e4a0bfc9a237253eaefddd90b9b42d6152c298d5c5f559",
+          "present": true,
+          "actualHash": "e1a9f421124bf58b28e4a0bfc9a237253eaefddd90b9b42d6152c298d5c5f559"
+        },
+        {
+          "keyHash": "d46418f5ac82fc46bfb73f91a7cd753e63557adf906177d0ba6617ba776a1dc8",
+          "expectedHash": "e9b61d840b3b005066254364f880462f851d7ead8016c41999914312f4484936",
+          "present": true,
+          "actualHash": "e9b61d840b3b005066254364f880462f851d7ead8016c41999914312f4484936"
+        },
+        {
+          "keyHash": "9ec3c6f40b1d128d8dfa55dfe7f3b12f8bf4b1da458935be2ec8b1b6b095bffd",
+          "expectedHash": "6bb1afd2c8d814bb9466b3ef68deb46c2788cab8b26ff72efdcbfcf3f3999f3f",
+          "present": true,
+          "actualHash": "6bb1afd2c8d814bb9466b3ef68deb46c2788cab8b26ff72efdcbfcf3f3999f3f"
+        }
+      ],
+      "publicArtifacts": []
+    },
+    {
+      "planId": "plan-test-mtphd2fl-gl9ixj",
+      "jobId": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 4,
+      "cleanupDone": false,
+      "privateManifestHash": "9d87c0823dba596970cc20f5d3a4fd00de2cf5efcf7d233a1b61a646a95595b9",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "ded7a791af7cac3e9e32bd4086992b35ba6b81efe223b323278b42a5e0a9e49c",
+          "expectedHash": "e1a9f421124bf58b28e4a0bfc9a237253eaefddd90b9b42d6152c298d5c5f559",
+          "present": true,
+          "actualHash": "e1a9f421124bf58b28e4a0bfc9a237253eaefddd90b9b42d6152c298d5c5f559"
+        },
+        {
+          "keyHash": "d46418f5ac82fc46bfb73f91a7cd753e63557adf906177d0ba6617ba776a1dc8",
+          "expectedHash": "e9b61d840b3b005066254364f880462f851d7ead8016c41999914312f4484936",
+          "present": true,
+          "actualHash": "e9b61d840b3b005066254364f880462f851d7ead8016c41999914312f4484936"
+        },
+        {
+          "keyHash": "9ec3c6f40b1d128d8dfa55dfe7f3b12f8bf4b1da458935be2ec8b1b6b095bffd",
+          "expectedHash": "6bb1afd2c8d814bb9466b3ef68deb46c2788cab8b26ff72efdcbfcf3f3999f3f",
+          "present": true,
+          "actualHash": "6bb1afd2c8d814bb9466b3ef68deb46c2788cab8b26ff72efdcbfcf3f3999f3f"
+        }
+      ],
+      "publicArtifacts": []
+    }
+  ],
+  "planId": "plan-test-mtphd2fl-gl9ixj",
+  "issue": {
+    "id": "25020",
+    "key": "WFH-2820"
+  },
+  "jiraWrites": 0,
+  "completed": true,
+  "integrityPreserved": true,
+  "expectedForecast": {
+    "state": "available",
+    "reason": null,
+    "modelVersion": "duration-triangular-fs-v1",
+    "runs": 300,
+    "seed": 42,
+    "uncertainty": "medium",
+    "p50": "2026-10-09",
+    "p80": "2026-10-12",
+    "p90": "2026-10-12",
+    "onPlannedFinish": 0.6566666666666666,
+    "coverage": {
+      "totalLeaves": 1,
+      "datedLeaves": 1,
+      "sampledLeaves": 1,
+      "missingDates": 0,
+      "invalidDates": 0,
+      "invertedDates": 0,
+      "invalidBaselines": 0
+    }
+  },
+  "originalIssue": {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_11148.cmdb.label,customfield_11148.cmdb.objectKey,customfield_11148.cmdb.attributes,customfield_11149.cmdb.label,customfield_11149.cmdb.objectKey,customfield_11149.cmdb.attributes",
+    "id": "25020",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25020",
+    "key": "WFH-2820",
+    "fields": {
+      "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+      "issuetype": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+        "id": "10004",
+        "description": "Functionality or a feature expressed as a user goal.",
+        "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+        "name": "Work package",
+        "subtask": false,
+        "avatarId": 10552,
+        "hierarchyLevel": 0
+      },
+      "customfield_10180": 5,
+      "customfield_10181": null,
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "lz-assets-owned-20260905-wfh"
+              }
+            ]
+          }
+        ]
+      },
+      "project": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+        "id": "10001",
+        "key": "WFH",
+        "name": "WORK FOR HIRE",
+        "projectTypeKey": "software",
+        "simplified": false,
+        "avatarUrls": {
+          "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+          "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+          "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+          "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+        }
+      },
+      "customfield_10015": "2026-10-05",
+      "customfield_11148": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        },
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+          "objectId": "412"
+        }
+      ],
+      "labels": [],
+      "customfield_11149": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        }
+      ],
+      "duedate": "2026-10-09",
+      "issuelinks": [],
+      "updated": "2026-09-06T00:02:58.048+0300",
+      "status": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+        "description": "",
+        "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+        "name": "New",
+        "id": "10006",
+        "statusCategory": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  },
+  "originalPlan": {
+    "meta": {
+      "calendarKey": "standard",
+      "contentHash": "1:48dce438",
+      "createdAt": "2026-09-06T07:18:35.408Z",
+      "createdBy": "harness",
+      "createdByName": "harness",
+      "defaultAccess": "none",
+      "holidayYears": [
+        2026,
+        2027
+      ],
+      "id": "plan-test-mtphd2fl-gl9ixj",
+      "issueCount": 1,
+      "lastIndexedAt": "2026-09-06T07:18:37.063Z",
+      "members": [],
+      "milestones": [],
+      "name": "[harness-test] lz-packed-mtphcs0f",
+      "protectionEnabled": false,
+      "shardCount": 1,
+      "sources": [
+        {
+          "boardId": null,
+          "id": "src-0",
+          "label": "harness",
+          "projectKey": null,
+          "query": "key = WFH-2820",
+          "type": "jql"
+        }
+      ],
+      "status": "indexed",
+      "statusMessage": null,
+      "updatedAt": "2026-09-06T07:18:37.063Z",
+      "version": 2,
+      "writability": {
+        "blocked": 0,
+        "byReason": {},
+        "checks": {
+          "backfilled": 0,
+          "permissionsChecked": true,
+          "statusChecked": true,
+          "statusGroups": 1
+        },
+        "computedAt": "2026-09-06T07:18:36.815Z",
+        "partial": 0,
+        "refusedByProject": null,
+        "sample": [],
+        "total": 1
+      }
+    },
+    "issues": [
+      {
+        "_original": {
+          "buffer": "No",
+          "dueDate": "2026-10-09",
+          "duration": 5,
+          "predecessors": [],
+          "startDate": "2026-10-05",
+          "successors": []
+        },
+        "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "assigneeName": "Mihai Perdum",
+        "assigneeState": "assigned",
+        "buffer": "No",
+        "children": [],
+        "created": "2026-09-05",
+        "dueDate": "2026-10-09",
+        "duration": 5,
+        "fieldAvail": {
+          "buffer": true,
+          "dueDate": true,
+          "duration": true,
+          "startDate": true
+        },
+        "fixVersions": [],
+        "hierarchyLevel": 0,
+        "id": "25020",
+        "key": "WFH-2820",
+        "labels": [],
+        "orphanParentKey": null,
+        "parentKey": null,
+        "predecessors": [],
+        "priority": "Medium",
+        "rank": "0|i01k1r:",
+        "remainingEstimateSeconds": null,
+        "reporter": "Mihai Perdum",
+        "resolution": null,
+        "startDate": "2026-10-05",
+        "status": "New",
+        "statusCategory": "new",
+        "storyPoints": null,
+        "successors": [],
+        "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+        "type": "Work package",
+        "updated": "2026-09-06"
+      }
+    ]
+  },
+  "calendar": {
+    "workingDays": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "calendarName": "Standard (Mon-Fri)",
+    "holidays": []
+  },
+  "expectedInput": {
+    "input": {
+      "issues": [
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "predecessors": [],
+            "startDate": "2026-10-05",
+            "successors": []
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-05",
+          "dueDate": "2026-10-09",
+          "duration": 5,
+          "fixVersions": [],
+          "hierarchyLevel": 0,
+          "id": "25020",
+          "key": "WFH-2820",
+          "labels": [],
+          "orphanParentKey": null,
+          "parentKey": null,
+          "predecessors": [],
+          "priority": "Medium",
+          "rank": "0|i01k1r:",
+          "remainingEstimateSeconds": null,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-05",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [],
+          "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+          "type": "Work package",
+          "updated": "2026-09-06"
+        }
+      ],
+      "calendar": {
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "calendarName": "Standard (Mon-Fri)",
+        "holidays": []
+      },
+      "targets": [],
+      "uncertainty": "medium"
+    },
+    "inputHash": "4075f0172e6dc8ef0d2940949981d2af352df4384f2855038c78f7e24f217155"
+  },
+  "oldProducerForecast": {
+    "state": "available",
+    "reason": null,
+    "modelVersion": "duration-triangular-fs-v1",
+    "runs": 300,
+    "seed": 42,
+    "uncertainty": "medium",
+    "inputHash": "4075f0172e6dc8ef0d2940949981d2af352df4384f2855038c78f7e24f217155",
+    "p50": "2026-10-09",
+    "p80": "2026-10-12",
+    "p90": "2026-10-12",
+    "onPlannedFinish": 0.6566666666666666,
+    "coverage": {
+      "totalLeaves": 1,
+      "datedLeaves": 1,
+      "sampledLeaves": 1,
+      "missingDates": 0,
+      "invalidDates": 0,
+      "invertedDates": 0,
+      "invalidBaselines": 0
+    }
+  },
+  "pausedJob": {
+    "id": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+    "requestId": "34689643-36b5-40f3-b6ae-e13e325be125",
+    "name": "Unchanged packed upgrade report",
+    "createdAt": "2026-09-06T07:18:49.724Z",
+    "expiresAt": "2026-09-07T07:18:49.724Z",
+    "checkpoint": 4,
+    "state": "active",
+    "stageLabel": "Calculating the forecast",
+    "completedUnits": 4,
+    "totalUnits": 17,
+    "cleanupDone": false,
+    "reportId": "5a071018-84d3-43d0-a547-f716de62c474"
+  },
+  "pausedProbe": {
+    "planId": "plan-test-mtphd2fl-gl9ixj",
+    "jobId": "d5d5ee48-7083-4758-ad9d-e25a6de721f7",
+    "registryMember": true,
+    "state": "active",
+    "checkpoint": 4,
+    "cleanupDone": false,
+    "privateManifestHash": "9d87c0823dba596970cc20f5d3a4fd00de2cf5efcf7d233a1b61a646a95595b9",
+    "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privateArtifacts": [
+      {
+        "keyHash": "ded7a791af7cac3e9e32bd4086992b35ba6b81efe223b323278b42a5e0a9e49c",
+        "expectedHash": "e1a9f421124bf58b28e4a0bfc9a237253eaefddd90b9b42d6152c298d5c5f559",
+        "present": true,
+        "actualHash": "e1a9f421124bf58b28e4a0bfc9a237253eaefddd90b9b42d6152c298d5c5f559"
+      },
+      {
+        "keyHash": "d46418f5ac82fc46bfb73f91a7cd753e63557adf906177d0ba6617ba776a1dc8",
+        "expectedHash": "e9b61d840b3b005066254364f880462f851d7ead8016c41999914312f4484936",
+        "present": true,
+        "actualHash": "e9b61d840b3b005066254364f880462f851d7ead8016c41999914312f4484936"
+      },
+      {
+        "keyHash": "9ec3c6f40b1d128d8dfa55dfe7f3b12f8bf4b1da458935be2ec8b1b6b095bffd",
+        "expectedHash": "6bb1afd2c8d814bb9466b3ef68deb46c2788cab8b26ff72efdcbfcf3f3999f3f",
+        "present": true,
+        "actualHash": "6bb1afd2c8d814bb9466b3ef68deb46c2788cab8b26ff72efdcbfcf3f3999f3f"
+      }
+    ],
+    "publicArtifacts": []
+  },
+  "noAdvanceWhilePaused": true,
+  "resources": {
+    "planRetained": true,
+    "issueRetained": true
+  }
+}

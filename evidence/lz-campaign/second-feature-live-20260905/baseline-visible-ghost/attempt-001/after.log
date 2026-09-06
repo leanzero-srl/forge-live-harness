@@ -1,0 +1,12 @@
+
+Running 1 test using 1 worker
+
+
+(node:43874) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source
+[chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source
+CAMPAIGN_IDENTITY {"time":"2026-09-05T19:10:38.650Z","phase":"after","uiVersion":"4.58.575","sourceFingerprint":"01d914b4827e068ce660ac7cc488292b014c6ba401ab3b3aa84fe8657f5ce1b2","issueCount":51,"coordinatedSourceExtension":{"reason":"Root verified task Review listeners and jobs UX (01a070d5-6ac8-7f11-8788-dbfa8ad0b6ee) owns campaignmtoo1tnz. Preserve all six Jira fixtures; original 45 schedules must remain exact.","keys":["LZPT-284","LZPT-285","LZPT-286","LZPT-287","LZPT-288","LZPT-289"],"originalFingerprint":"2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104"},"drafts":0,"protectionEnabled":false,"planIds":["plan-msq9dg8l-gz6mz1","plan-mta3aw3t-6dyijd","plan-mtbrlh8n-7ghw8u"]}
+
+  1 passed (5.4s)

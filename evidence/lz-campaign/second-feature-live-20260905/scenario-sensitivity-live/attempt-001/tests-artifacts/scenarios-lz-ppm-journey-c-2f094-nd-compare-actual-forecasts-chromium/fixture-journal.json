@@ -1,0 +1,71 @@
+{
+  "marker": "lz-norm-mtoratyt",
+  "name": "[harness-test] lz-norm-mtoratyt",
+  "time": "2026-09-05T19:09:01.109Z",
+  "issues": [
+    {
+      "key": "WFH-2779",
+      "seed": {
+        "label": "scenario predecessor",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2780",
+      "seed": {
+        "label": "scenario successor",
+        "duration": 5,
+        "start": "2026-03-09",
+        "due": "2026-03-13"
+      }
+    }
+  ],
+  "planId": "plan-test-mtoraxd9-f00m5r",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtoraxd9-f00m5r",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2780",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2779",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2779",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2780",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2779",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2780",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

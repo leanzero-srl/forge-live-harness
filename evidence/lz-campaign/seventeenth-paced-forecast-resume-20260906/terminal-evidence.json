@@ -1,0 +1,110 @@
+{
+  "recordedAt": "2026-09-06T12:48:55.749710+00:00",
+  "process": {
+    "pid": 98952,
+    "status": "terminal",
+    "exitCode": 1,
+    "time": "2026-09-06T12:05:52.000649+00:00"
+  },
+  "processChecks": [
+    {
+      "pid": 98951,
+      "psExit": 1,
+      "present": false
+    },
+    {
+      "pid": 98952,
+      "psExit": 1,
+      "present": false
+    },
+    {
+      "pid": 98971,
+      "psExit": 1,
+      "present": false
+    }
+  ],
+  "journal": {
+    "path": "artifacts/scenarios-lz-ppm-campaign--6c70d-rt-and-HTML-without-cleanup-chromium/seventeenth-paced-resume.json",
+    "bytes": 61271322,
+    "sha256": "4a7b7bba5d81bed6d83cf6c2b91ca669786313e591757aca259c4e478fd460d0"
+  },
+  "advanceCalls": 2,
+  "advanceResponses": [
+    {
+      "startedMs": 1788696220248,
+      "returnedMs": 1788696221856,
+      "elapsedMs": 1608,
+      "httpStatus": 200,
+      "outerSuccess": true,
+      "body": {
+        "success": true,
+        "job": {
+          "id": "b9a0dc2b-53cd-4caf-8f20-dafbb066ac98",
+          "requestId": "2d8c3fef-b28e-45a5-b4bc-06755e609e03",
+          "name": "Every existing performance row",
+          "createdAt": "2026-09-06T08:15:32.097Z",
+          "expiresAt": "2026-09-07T08:15:32.097Z",
+          "checkpoint": 127,
+          "state": "active",
+          "stageLabel": "Verifying forecast results",
+          "completedUnits": 127,
+          "totalUnits": 127,
+          "cleanupDone": false,
+          "forecastRuns": {
+            "completed": 40,
+            "total": 40
+          },
+          "reportId": "05526885-ecea-499a-ba38-9479d7ae8b16"
+        }
+      },
+      "responseBytes": 2684,
+      "responseSha256": "ecdb17cbe28d576972e321e5b0e1e5e168ebe597194e8ba2642afa489d78fc46",
+      "traceId": "cdb8948283194a74bfc4bb06552c93b3"
+    },
+    {
+      "startedMs": 1788696230761,
+      "returnedMs": 1788696235372,
+      "elapsedMs": 4611,
+      "httpStatus": 200,
+      "outerSuccess": true,
+      "body": {
+        "success": false,
+        "error": "The report capture could not complete this step. Reload its status and retry, or finish cleanup before creating a fresh report."
+      },
+      "responseBytes": 2375,
+      "responseSha256": "67b66c8fbb0da125071cc142065015528938a996a41113ff3e0ce1a2da9528a8",
+      "traceId": "ae05cc9c0c724ac9b051251d8a3bd6e7"
+    }
+  ],
+  "lastAcknowledgedCheckpoint": 127,
+  "lastStrongCheckpoint": 127,
+  "finalJob": {
+    "id": "b9a0dc2b-53cd-4caf-8f20-dafbb066ac98",
+    "requestId": "2d8c3fef-b28e-45a5-b4bc-06755e609e03",
+    "name": "Every existing performance row",
+    "createdAt": "2026-09-06T08:15:32.097Z",
+    "expiresAt": "2026-09-07T08:15:32.097Z",
+    "checkpoint": 127,
+    "state": "active",
+    "stageLabel": "Verifying forecast results",
+    "completedUnits": 127,
+    "totalUnits": 127,
+    "cleanupDone": false,
+    "forecastRuns": {
+      "completed": 40,
+      "total": 40
+    },
+    "reportId": "05526885-ecea-499a-ba38-9479d7ae8b16"
+  },
+  "privateArtifacts": 183,
+  "publicArtifacts": 0,
+  "privateManifestHash": "4fdeb186ee8a18383585f524ef855ad184eb75cd2260805bde5d161fe5154246",
+  "allPrivateHashValid": true,
+  "sourceAndPreferencesPreserved": true,
+  "settingsVersion": 65,
+  "completed": false,
+  "publicationObserved": false,
+  "cleanupAttempted": false,
+  "budgetIndependentReview": "app c5b32b05",
+  "browserInstrumentLaneReleased": true
+}

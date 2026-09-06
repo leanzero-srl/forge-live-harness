@@ -1,0 +1,32 @@
+{
+  "status": "closed",
+  "testExitCode": 0,
+  "testCount": 1,
+  "passed": 1,
+  "terminalAt": "2026-09-06T16:45:59.314950+00:00",
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-exact-three-recovery-20260906/artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/eighteenth-recovery.json",
+    "sha256": "d38dd677f84f42b9b83c705b40c8a80f568af503491ef035a716f38ba99c874b"
+  },
+  "journalBytes": 58429210,
+  "terminalBinding": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-exact-three-recovery-20260906/terminal-binding.json",
+    "sha256": "85afbdf0a3cc51ffeac5ff4206e85b565c18ea84811ba67786bbce5674d87011"
+  },
+  "mutations": {
+    "ownerCancel": 2,
+    "uiPlanDelete": 3,
+    "jiraDelete": 3
+  },
+  "physicalAbsencePairs": 6,
+  "errorEvents": [],
+  "independentVerdict": "pending root verifier",
+  "visualLimit": "PNG captured after exact delete acknowledgement during loading; full registry restoration requires terminal raw registry/source evidence",
+  "nextInvocationStarted": false,
+  "personallyViewedPngs": [
+    "artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/after-cancel-plan-delete.png",
+    "artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/after-resume-plan-delete.png",
+    "artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/after-source-drift-plan-delete.png"
+  ],
+  "visualObservations": "All three exact fixture names have successful deletion toasts; LZPT45/0drafts remains visible but cards are blurred/loading. These screenshots alone do not show all restored original cards."
+}

@@ -1,0 +1,12 @@
+✔ actual direct RPC seam dispatches once and preserves values/default body consumption (6.630875ms)
+✔ actual direct RPC rejection identity and falsy exception survive observation (1.187458ms)
+✔ actual hook optional seam consumes same result and raw HTTP failure without extra fetch (2.219083ms)
+✔ observer callback exception is isolated from original helper success and recorded (0.368958ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 403.522375

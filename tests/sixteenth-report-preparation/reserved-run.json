@@ -1,0 +1,26 @@
+{
+  "runId": "sixteenth-lossless-report-live-20260906",
+  "status": "prepared-not-launched",
+  "manifest": "config/lz-campaign/staged-report-manifest.json",
+  "expectedTests": 7,
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "sourceExtension": null,
+  "originalRegistry": [
+    "plan-msq9dg8l-gz6mz1",
+    "plan-mta3aw3t-6dyijd",
+    "plan-mtbrlh8n-7ghw8u"
+  ],
+  "sourceCount": 45,
+  "drafts": 0,
+  "lastVerifiedPreferencesVersion": 59,
+  "candidateBinding": {
+    "forgeVersion": null,
+    "uiVersion": null,
+    "appCommit": null
+  },
+  "instrumentHashAtPreparation": "ab2a342c15478b83007119e7c746547c506aa120805c749cbef5ac71e31d6532",
+  "requiresActualDeploymentBinding": true,
+  "noAssertionChanges": true,
+  "liveTestsExecuted": false
+}

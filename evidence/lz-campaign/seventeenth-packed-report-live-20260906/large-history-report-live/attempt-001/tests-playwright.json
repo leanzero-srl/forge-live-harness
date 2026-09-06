@@ -1,0 +1,210 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-report-live-20260906/large-history-report-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-report-live-20260906/large-history-report-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-report-live-20260906/large-history-report-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 1800000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 262889,
+                  "error": {
+                    "message": "AggregateError: Large history body/cleanup failures",
+                    "stack": "AggregateError: Large history body/cleanup failures\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:97:164",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+                      "column": 164,
+                      "line": 97
+                    },
+                    "snippet": "   95 |   await attempt('registry-integrity',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(reportRecovery?[...registry,planId].sort():registry);});\n   96 |   await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(standing.issues));});\n>  97 |   if(reportRecovery){journal.retainedForRecovery={planId,reason:reportRecovery.message};cleanupErrors.push(reportRecovery);}retain();if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Large history body/cleanup failures');\n      |                                                                                                                                                                    ^\n   98 |  }\n   99 | });\n  100 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+                        "column": 164,
+                        "line": 97
+                      },
+                      "message": "AggregateError: Large history body/cleanup failures\n\n   95 |   await attempt('registry-integrity',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(reportRecovery?[...registry,planId].sort():registry);});\n   96 |   await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(standing.issues));});\n>  97 |   if(reportRecovery){journal.retainedForRecovery={planId,reason:reportRecovery.message};cleanupErrors.push(reportRecovery);}retain();if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Large history body/cleanup failures');\n      |                                                                                                                                                                    ^\n   98 |  }\n   99 | });\n  100 |\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:97:164"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts",
+                        "column": 55,
+                        "line": 43
+                      },
+                      "message": "AggregateError: Report capture and cleanup failed; exact owned resources retained\n\n   at scenarios/lz-ppm/report-capture.ts:43\n\n  41 |   const observed=session.recorder.snapshot();\n  42 |   if(observed.begin){try{await cleanReportCapture({planId,requestId:observed.begin.requestId,jobId:observed.job?.id,invoke:session.invoke,probe:(planId:string,jobId:string)=>getTestState('lz-ppm',{what:'reportCaptureState',planId,jobId}),stopUi:async()=>{if(!page.isClosed())await page.goto('about:blank');await session.settle();},onState:(state:any)=>fs.writeFileSync(info.outputPath(`${label}-cleanup.json`),JSON.stringify(state,null,2))});}\n> 43 |    catch(cleanupError){onRecovery(cleanupError);throw new AggregateError([error,cleanupError],'Report capture and cleanup failed; exact owned resources retained');}}\n     |                                                       ^\n  44 |   throw error;\n  45 |  }finally{session.stop();}\n  46 | }\n    at captureReport (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:43:55)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:54:273"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts",
+                        "column": 54,
+                        "line": 18
+                      },
+                      "message": "Error: advanceSponsorReportCapture: [{\"message\":\"There was an error invoking the function - RequestId: 1a353396-1d0e-49da-bfc6-e53b580b7aec Error: Task timed out after 25.00 seconds\",\"extensions\":{\"__typename\":\"GenericMutationErrorExtension\",\"errorType\":\"FUNCTION_TIME_OUT\",\"statusCode\":400}}]\n\n   at scenarios/lz-ppm/report-capture.ts:18\n\n  16 |  const response=(res:any)=>{const req=res.request();if(!requests.has(req))return;enqueue(async()=>{\n  17 |   try{expect(res.status()).toBe(200);await res.finished();const outer=await res.json(),result=outer?.data?.invokeExtension;\n> 18 |    if(!result?.success||!result.response?.body)throw new Error(`${callOf(req)?.functionKey}: ${JSON.stringify(result?.errors||outer?.errors||'Missing resolver body')}`);\n     |                                                      ^\n  19 |    recorder.response(req,result.response.body);\n  20 |   }catch(error){recorder.transportFailure(req,error);}\n  21 |  });};\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:18:54"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs",
+                        "column": 58,
+                        "line": 3
+                      },
+                      "message": "Error: Report capture cleanup is unverified; exact owned resources must be retained.\n\n   at scenarios/lz-ppm/report-capture-cleanup.mjs:3\n\n  1 | import assert from 'node:assert/strict';\n  2 | import {createHash} from 'node:crypto';\n> 3 | export function reportRecovery(error,state){const result=new Error('Report capture cleanup is unverified; exact owned resources must be retained.',{cause:error});result.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';result.reportState=state;return result;}\n    |                                                          ^\n  4 | export async function observeCaptureProbe(read,onObserved){const observed=await read();await onObserved(observed);return observed;}\n  5 | export function verifyCaptureProbe(probe,{planId,jobId,state,checkpoint,cleanupDone,reportId},before=null){\n  6 |  assert.equal(probe.planId,planId);assert.equal(probe.jobId,jobId);assert.equal(probe.registryMember,true);assert.equal(probe.state,state);assert.equal(probe.checkpoint,checkpoint);assert.equal(probe.cleanupDone,cleanupDone);\n    at reportRecovery (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:3:58)\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:43:83)\n    at captureReport (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:42:26)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:54:273\n[cause]: AssertionError: Report capture cleanup is unavailable. Reload its status and retry.\n\nfalse !== true\n\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:37:89)\n    at captureReport (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:42:26)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:54:273"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs",
+                        "column": 58,
+                        "line": 3
+                      },
+                      "message": "Error: Report capture cleanup is unverified; exact owned resources must be retained.\n\n   at scenarios/lz-ppm/report-capture-cleanup.mjs:3\n\n  1 | import assert from 'node:assert/strict';\n  2 | import {createHash} from 'node:crypto';\n> 3 | export function reportRecovery(error,state){const result=new Error('Report capture cleanup is unverified; exact owned resources must be retained.',{cause:error});result.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';result.reportState=state;return result;}\n    |                                                          ^\n  4 | export async function observeCaptureProbe(read,onObserved){const observed=await read();await onObserved(observed);return observed;}\n  5 | export function verifyCaptureProbe(probe,{planId,jobId,state,checkpoint,cleanupDone,reportId},before=null){\n  6 |  assert.equal(probe.planId,planId);assert.equal(probe.jobId,jobId);assert.equal(probe.registryMember,true);assert.equal(probe.state,state);assert.equal(probe.checkpoint,checkpoint);assert.equal(probe.cleanupDone,cleanupDone);\n    at reportRecovery (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:3:58)\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:43:83)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:57:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:93:58\n    at attempt (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:90:106)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:93:13\n[cause]: AssertionError: Report capture cleanup is unavailable. Reload its status and retry.\n\nfalse !== true\n\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:37:89)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:57:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:93:58\n    at attempt (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:90:106)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:93:13"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs",
+                        "column": 58,
+                        "line": 3
+                      },
+                      "message": "Error: Report capture cleanup is unverified; exact owned resources must be retained.\n\n   at scenarios/lz-ppm/report-capture-cleanup.mjs:3\n\n  1 | import assert from 'node:assert/strict';\n  2 | import {createHash} from 'node:crypto';\n> 3 | export function reportRecovery(error,state){const result=new Error('Report capture cleanup is unverified; exact owned resources must be retained.',{cause:error});result.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';result.reportState=state;return result;}\n    |                                                          ^\n  4 | export async function observeCaptureProbe(read,onObserved){const observed=await read();await onObserved(observed);return observed;}\n  5 | export function verifyCaptureProbe(probe,{planId,jobId,state,checkpoint,cleanupDone,reportId},before=null){\n  6 |  assert.equal(probe.planId,planId);assert.equal(probe.jobId,jobId);assert.equal(probe.registryMember,true);assert.equal(probe.state,state);assert.equal(probe.checkpoint,checkpoint);assert.equal(probe.cleanupDone,cleanupDone);\n    at reportRecovery (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:3:58)\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:43:83)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:57:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:93:58\n    at attempt (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:90:106)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:93:13\n[cause]: AssertionError: Report capture cleanup is unavailable. Reload its status and retry.\n\nfalse !== true\n\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:37:89)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:57:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:93:58\n    at attempt (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:90:106)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:93:13"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.585\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T08:13:36.599Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T08:13:33.492Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-report-live-20260906/large-history-report-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2f98e-without-mutating-the-source-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+                    "column": 164,
+                    "line": 97
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b8946c56ac8f95bbb7d5-d72898f976270761d924",
+          "file": "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+          "line": 14,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T08:13:33.128Z",
+    "duration": 266791.56299999997,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

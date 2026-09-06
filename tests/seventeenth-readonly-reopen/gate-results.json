@@ -1,0 +1,63 @@
+[
+  {
+    "name": "new-controls",
+    "command": [
+      "node",
+      "--test",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-readonly-reopen/contracts.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-readonly-reopen/departure.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-readonly-reopen/surface.test.mjs"
+    ],
+    "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "exitCode": 0,
+    "sourceCommit": "6e6e5bee95e6c0d2c46de3429f098a7073de26bc",
+    "tests": 16
+  },
+  {
+    "name": "prior-controls",
+    "command": [
+      "node",
+      "--test",
+      "/private/tmp/lz-retained183-20260906/tests/capacity-wire-lifecycle/lifecycle.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/capacity-wire-lifecycle/response-record.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-refreshed-resume/acquisition.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-refreshed-resume/contracts.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-paced-resume/budget.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-paced-resume/cadence.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-paced-resume/contract.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-paced-resume/transport.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-forecast-resume/contracts.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-forecast-resume/oracle.test.mjs",
+      "/private/tmp/lz-retained183-20260906/tests/seventeenth-aggregate-resume/contracts.test.mjs"
+    ],
+    "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "exitCode": 0,
+    "sourceCommit": "6e6e5bee95e6c0d2c46de3429f098a7073de26bc",
+    "tests": 84
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "npx",
+      "tsc",
+      "--noEmit"
+    ],
+    "cwd": "/private/tmp/lz-retained183-20260906",
+    "exitCode": 2,
+    "sourceCommit": "6e6e5bee95e6c0d2c46de3429f098a7073de26bc"
+  },
+  {
+    "name": "discovery",
+    "command": [
+      "npx",
+      "playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-seventeenth-readonly-reopen.spec.ts",
+      "--project=chromium",
+      "--list"
+    ],
+    "cwd": "/private/tmp/lz-retained183-20260906",
+    "exitCode": 0,
+    "sourceCommit": "6e6e5bee95e6c0d2c46de3429f098a7073de26bc"
+  }
+]

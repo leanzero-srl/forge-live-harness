@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "stamp": "b0a45be8c97b3fd59050845f3145aa7c8c644b47c43c21e33d0c7fccf9edc390",
+  "startedAt": "2026-09-05T18:13:28.342653+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-003",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "appCommit": "8bc4dc07",
+  "instrumentHash": "2340bd21a66e40a02ac84c5084842e44090a8a726567ffcb5eab42f28b0e33ae",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent",
+        "history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 2,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T18:15:36.685469+00:00",
+  "elapsedSeconds": 128.34030700000585
+}

@@ -1,0 +1,115 @@
+{
+  "marker": "lz-norm-mtov2upi",
+  "name": "[harness-test] lz-norm-mtov2upi",
+  "time": "2026-09-05T20:54:47.286Z",
+  "issues": [
+    {
+      "key": "WFH-2817",
+      "seed": {
+        "label": "external predecessor",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2818",
+      "seed": {
+        "label": "release member",
+        "duration": 5,
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "release": true
+      }
+    },
+    {
+      "key": "WFH-2819",
+      "seed": {
+        "label": "unrelated late branch",
+        "duration": 5,
+        "start": "2026-12-07",
+        "due": "2026-12-11"
+      }
+    }
+  ],
+  "planId": "plan-test-mtov2z80-5y9w65",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtov2z80-5y9w65",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2819",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2818",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2817",
+      "deleted": true
+    },
+    {
+      "version": "10287",
+      "deleted": true
+    }
+  ],
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10287",
+    "id": "10287",
+    "name": "[harness-test] lz-norm-mtov2upi",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "linkPairs": [
+    {
+      "from": "WFH-2817",
+      "to": "WFH-2818"
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2817",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2818",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2819",
+      "start": "2026-12-07",
+      "due": "2026-12-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2817",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2818",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2819",
+        "start": "2026-12-07",
+        "due": "2026-12-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

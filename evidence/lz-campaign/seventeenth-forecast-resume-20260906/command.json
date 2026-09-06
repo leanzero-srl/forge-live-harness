@@ -1,0 +1,29 @@
+{
+  "time": "2026-09-06T11:13:43.401741+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.24.0",
+  "appCommit": "abfeca90f3da74fa213db2a010e7bcba78f7aef3",
+  "uiVersion": "4.58.586",
+  "harnessCommit": "7632c2973cc90ec58fa3e6fb7abb2bf65be47190",
+  "instrumentHash": "391e2f655406128d2b9edb46bc56d91f255728650251c07668d7b20118baf921",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "resume",
+  "scope": "same retained active78 job only; forty full seeded runs to full published report and HTML/reopen; no cleanup/newcapture/retry",
+  "expectedPreferencesVersion": 65,
+  "previousDiagnosticSha256": "7226d8e907632eaf8c2d464b50c3a48ba701bd639f9a4ac0af92bf9078eecba5",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "forecast resume:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-forecast-resume-20260906/artifacts"
+  ],
+  "reviewedHarnessCommit": "d4e1321a81ca211c01565f9844bc2ab75e9a3b99"
+}

@@ -1,0 +1,66 @@
+{
+  "marker": "lz-norm-mtpcesms",
+  "name": "[harness-test] lz-norm-mtpcesms",
+  "time": "2026-09-06T04:59:57.940Z",
+  "issues": [
+    {
+      "key": "WFH-2915",
+      "seed": {
+        "label": "numeric report 20h",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "release": true
+      }
+    }
+  ],
+  "planId": "plan-test-mtpceuhw-otzmgc",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtpceuhw-otzmgc",
+      "deleted": true
+    },
+    {
+      "version": "10325",
+      "deleted": true
+    }
+  ],
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10325",
+    "id": "10325",
+    "name": "[harness-test] lz-norm-mtpcesms",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2915",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2915",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "bodyError": {
+    "name": "Error",
+    "message": "Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {\"errorMessages\":[\"Issue does not exist or you do not have permission to see it.\"],\"errors\":{}}"
+  },
+  "cleanupErrors": [
+    {
+      "stage": "delete-owned-issue:WFH-2915",
+      "name": "Error",
+      "message": "Jira GET /rest/api/3/issue/WFH-2915?fields=project,labels,summary,customfield_10015,duedate,customfield_10180 failed 404: {\"errorMessages\":[\"Issue does not exist or you do not have permission to see it.\"],\"errors\":{}}"
+    }
+  ],
+  "integrityPassed": false
+}

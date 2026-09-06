@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "stamp": "8e260ca8b96197d62bacaa82ecdb51c37a9df1af595f6c69be6ba415e53f05d9",
+  "startedAt": "2026-09-05T22:58:28.604041+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/capacity-concurrent-save-live/attempt-001",
+  "uiVersion": "4.58.579",
+  "forgeVersion": "6.5.0",
+  "appCommit": "dce1d154f89a4684b3332508cf9de26fa3a1c746",
+  "instrumentHash": "00bb8b99eabed45d0b8966eb253c9a710e9a55e48e00e36fa86ba6391cdf8ba9",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "same-account simultaneous Capacity saves admit one winner and reject the stale writer, then restore exact preferences"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T22:58:59.102003+00:00",
+  "elapsedSeconds": 30.497778625023784
+}

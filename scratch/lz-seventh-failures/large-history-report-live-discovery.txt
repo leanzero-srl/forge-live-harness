@@ -1,0 +1,3 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/journey-campaign-large-history.spec.ts:13:1 › large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source
+Total: 1 test in 1 file

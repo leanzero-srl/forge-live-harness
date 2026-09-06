@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "stamp": "c5a4c35666b6d3693180a0c0fed63087d6382b08cb8a433fd37f4c29a78c43f7",
+  "startedAt": "2026-09-05T20:29:32.090408+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/third-feature-live-20260905/forecast-outcomes-live/attempt-001",
+  "uiVersion": "4.58.577",
+  "forgeVersion": "6.3.0",
+  "appCommit": "c0de4ed2",
+  "instrumentHash": "ef8e0ce7a6b31bd30984e759212810a77edcb81366e28b173faa147711209775",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T20:31:13.033807+00:00",
+  "elapsedSeconds": 100.94353495902033
+}

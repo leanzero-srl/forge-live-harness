@@ -1,0 +1,29 @@
+
+Running 1 test using 1 worker
+
+
+(node:2774) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-seventeenth-context-first.spec.ts:16:40 › seventeenth context-first retained large advance: exact owned state and independent integrity preserved
+[chromium] › scenarios/lz-ppm/campaign-seventeenth-context-first.spec.ts:16:40 › seventeenth context-first retained large advance: exact owned state and independent integrity preserved
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.585","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T08:59:27.104Z"}
+
+  1) [chromium] › scenarios/lz-ppm/campaign-seventeenth-context-first.spec.ts:16:40 › seventeenth context-first retained large advance: exact owned state and independent integrity preserved 
+
+    Error: Diagnostic advance outcome unknown; exact original response retained
+
+      57 |    for(let n=0;n<2;n++){job=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);record('post-advance-status',job);}
+      58 |    journal.finalJob=job;journal.finalProbe=await probe();verifyCaptureProbe(journal.finalProbe,{planId,jobId,...job});await readPublication(job);await snapshot();await baseline();expect(await owned()).toEqual(originalOwned);journal.reviewRequired=true;record('stopped-for-root-review',{outcome:journal.outcome,state:job.state,checkpoint:job.checkpoint});
+    > 59 |    if(bodyError)throw bodyError;if(['unknown','refused','failed'].includes(journal.outcome))throw new Error(`Diagnostic advance outcome ${journal.outcome}; exact original response retained`);journal.completed=true;save();
+         |                                                                                                   ^
+      60 |
+      61 |   }
+      62 |  }catch(error){bodyError=error;record('body-error',String(error));throw error;}
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-context-first.spec.ts:59:99
+
+    Error Context: evidence/lz-campaign/seventeenth-context-first-diagnostic-20260906/artifacts/scenarios-lz-ppm-campaign--bc021-pendent-integrity-preserved-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-seventeenth-context-first.spec.ts:16:40 › seventeenth context-first retained large advance: exact owned state and independent integrity preserved 

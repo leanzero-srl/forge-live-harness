@@ -1,0 +1,87 @@
+{
+  "marker": "lz-norm-mtpbakob",
+  "name": "[harness-test] lz-norm-mtpbakob",
+  "time": "2026-09-06T04:28:41.387Z",
+  "issues": [
+    {
+      "key": "WFH-2904",
+      "seed": {
+        "label": "report job resume",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    }
+  ],
+  "planId": "plan-test-mtpbanj1-vfroj0",
+  "cleanup": [],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2904",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2904",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "recoveryRetention": {
+    "reason": "Report capture cleanup is unverified; exact owned resources must be retained.",
+    "code": "LZ_REPORT_CAPTURE_RECOVERY_REQUIRED",
+    "reportState": {
+      "planId": "plan-test-mtpbanj1-vfroj0",
+      "requestId": "0d36562d-592c-4702-b77a-ad259ec0f1fb",
+      "jobId": "ee2cdc5f-28e5-441b-b902-6d236f8560fd",
+      "steps": [],
+      "probes": [],
+      "startedAt": 1788668972385,
+      "cleaned": false,
+      "error": {
+        "name": "AssertionError",
+        "message": "Terminal cleanup left wrong physical key state\n\nfalse !== true\n"
+      }
+    },
+    "additionalPlans": [],
+    "causes": [
+      {
+        "code": "LZ_REPORT_CAPTURE_RECOVERY_REQUIRED",
+        "reason": "Report capture cleanup is unverified; exact owned resources must be retained."
+      }
+    ],
+    "time": "2026-09-06T04:29:34.122Z"
+  },
+  "bodyError": {
+    "name": "AggregateError",
+    "message": "Report job body/cleanup failure; exact recovery state retained"
+  },
+  "retainedForRecovery": {
+    "plans": [
+      {
+        "id": "plan-test-mtpbanj1-vfroj0",
+        "name": "[harness-test] lz-norm-mtpbakob"
+      }
+    ],
+    "issues": [
+      {
+        "key": "WFH-2904",
+        "seed": {
+          "label": "report job resume",
+          "start": "2026-10-05",
+          "due": "2026-10-09",
+          "duration": 5
+        }
+      }
+    ],
+    "version": null,
+    "reason": "Report capture cleanup is unverified; exact owned resources must be retained."
+  },
+  "integrityPassed": false
+}

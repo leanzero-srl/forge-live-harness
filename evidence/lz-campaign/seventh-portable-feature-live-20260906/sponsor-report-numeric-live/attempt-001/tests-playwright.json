@@ -1,0 +1,179 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 66946,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\u001b[22m\n\n    at editDuration (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:147:23)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:67:35\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                      "column": 23,
+                      "line": 147
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/normalization-owned-fixture.ts:147\n\n  145 |   await row(frame, key).locator(':scope > div').nth(5).click();\n  146 |   const input = row(frame, key).locator('input[inputmode=\"numeric\"]');\n> 147 |   await expect(input).toBeVisible(); await input.fill(value); await input.press('Enter');\n      |                       ^\n  148 | }\n  149 | export async function save(frame: any) {\n  150 |   const button = frame.locator('[data-testid=\"plan-save-btn\"]');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 23,
+                        "line": 147
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\u001b[22m\n\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:147\n\n  145 |   await row(frame, key).locator(':scope > div').nth(5).click();\n  146 |   const input = row(frame, key).locator('input[inputmode=\"numeric\"]');\n> 147 |   await expect(input).toBeVisible(); await input.fill(value); await input.press('Enter');\n      |                       ^\n  148 | }\n  149 | export async function save(frame: any) {\n  150 |   const button = frame.locator('[data-testid=\"plan-save-btn\"]');\n    at editDuration (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:147:23)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:67:35\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.579\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T00:24:22.914Z\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2853 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/version/10290 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2kesz\",\"name\":\"[harness-test] lz-norm-mtp2kesz\",\"time\":\"2026-09-06T00:24:23.795Z\",\"issues\":[{\"key\":\"WFH-2853\",\"seed\":{\"label\":\"numeric report 20h\",\"duration\":5,\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"release\":true}}],\"planId\":\"plan-test-mtp2kgyf-la1k8y\",\"cleanup\":[{\"plan\":\"plan-test-mtp2kgyf-la1k8y\",\"deleted\":true},{\"issue\":\"WFH-2853\",\"deleted\":true},{\"version\":\"10290\",\"deleted\":true}],\"version\":{\"self\":\"https://wolfaenpak.atlassian.net/rest/api/3/version/10290\",\"id\":\"10290\",\"name\":\"[harness-test] lz-norm-mtp2kesz\",\"archived\":false,\"released\":false,\"projectId\":10001},\"searchIndexVerified\":[{\"key\":\"WFH-2853\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2853\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5}]],\"bodyError\":{\"name\":\"Error\",\"message\":\"\\u001b[2mexpect(\\u001b[22m\\u001b[31mlocator\\u001b[39m\\u001b[2m).\\u001b[22mtoBeVisible\\u001b[2m(\\u001b[22m\\u001b[2m)\\u001b[22m failed\\n\\nLocator: locator('iframe[data-testid=\\\"hosted-resources-iframe\\\"]').first().contentFrame().locator('[data-testid=\\\"table-row\\\"][data-row-key=\\\"WFH-2853\\\"]').locator('input[inputmode=\\\"numeric\\\"]')\\nExpected: visible\\nTimeout: 15000ms\\nError: element(s) not found\\n\\nCall log:\\n\\u001b[2m  - Expect \\\"toBeVisible\\\" with timeout 15000ms\\u001b[22m\\n\\u001b[2m  - waiting for locator('iframe[data-testid=\\\"hosted-resources-iframe\\\"]').first().contentFrame().locator('[data-testid=\\\"table-row\\\"][data-row-key=\\\"WFH-2853\\\"]').locator('input[inputmode=\\\"numeric\\\"]')\\u001b[22m\\n\"},\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:24:19.866Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                    "column": 23,
+                    "line": 147
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f9ddfa32995747f70449-d9b459f8a4b6d470d0ec",
+          "file": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+          "line": 14,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T00:24:19.551Z",
+    "duration": 70597.58,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

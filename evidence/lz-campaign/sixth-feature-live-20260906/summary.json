@@ -1,0 +1,544 @@
+{
+  "time": "2026-09-05T22:59:53.245696+00:00",
+  "runId": "sixth-feature-live-20260906",
+  "uiVersion": "4.58.579",
+  "forgeVersion": "6.5.0",
+  "instrumentHash": "00bb8b99eabed45d0b8966eb253c9a710e9a55e48e00e36fa86ba6391cdf8ba9",
+  "complete": false,
+  "blocker": "integrity_failed",
+  "features": [
+    {
+      "id": "capacity-concurrent-save-live",
+      "status": "passed",
+      "acceptance": [
+        "CAP-SAME-ACCOUNT-CONCURRENT-SAVE-SINGLE-WINNER",
+        "CAP-EXPLICIT-STALE-OR-BUSY-REFUSAL",
+        "CAP-FRESH-WINNER-UI",
+        "CAP-GUARDED-ORIGINAL-TWO-READ-RESTORE"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/capacity-concurrent-save-live/result.json"
+    },
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "integrity_failed",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/result.json"
+    },
+    {
+      "id": "integrated-remaining-boundaries-live",
+      "status": "not_run",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE",
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD",
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE",
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE",
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED",
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION",
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY",
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE",
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE",
+        "ASSET-NATIVE-MULTIPLE-ANY",
+        "ASSET-TWO-FIELD-AND",
+        "ASSET-EMPTY-NO-MATCH",
+        "ASSET-COMBINATION-GROUP-ONCE",
+        "ASSET-TEXT-FILTER-COMPOSITION",
+        "ASSET-RENAME-STABLE-ID",
+        "ASSET-GANTT-VISIBILITY",
+        "ASSET-HIDDEN-SUCCESSOR-APPLY-SECOND-REST",
+        "TGT-EPIC-EXTERNAL-PREDECESSOR",
+        "TGT-EDIT-DURING-ACTUAL-FORECAST"
+      ],
+      "result": null
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "not_run",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "result": null
+    },
+    {
+      "id": "capacity-size-limit-live",
+      "status": "not_run",
+      "acceptance": [
+        "CAP-ACTUAL-5300-REFUSAL",
+        "CAP-5000-NO-PARTIAL-METRICS",
+        "CAP-SUPPORTED-SELECTION-REAL-RECOVERY",
+        "CAP-LIMIT-PRIVATE-SETTINGS-RESTORED"
+      ],
+      "result": null
+    },
+    {
+      "id": "baseline-core",
+      "status": "not_run",
+      "acceptance": [
+        "CORE-1",
+        "CORE-2"
+      ],
+      "result": null
+    },
+    {
+      "id": "forecast-contract",
+      "status": "not_run",
+      "acceptance": [
+        "FC-1",
+        "FC-2",
+        "FC-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "normalization",
+      "status": "not_run",
+      "acceptance": [
+        "NORM-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "normalization-companions",
+      "status": "not_run",
+      "acceptance": [
+        "NORM-2",
+        "NORM-3",
+        "NORM-4",
+        "APPLY-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "assets-live-foundation",
+      "status": "not_run",
+      "acceptance": [
+        "ASSET-LIVE-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "planning-live-foundation",
+      "status": "not_run",
+      "acceptance": [
+        "TGT-LIVE-1",
+        "HIST-LIVE-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "history-platform-transaction",
+      "status": "not_run",
+      "acceptance": [
+        "HIST-ATOMIC-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "named-scenarios",
+      "status": "not_implemented",
+      "acceptance": [
+        "SCN-1",
+        "SCN-2",
+        "SCN-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "scoped-targets",
+      "status": "not_implemented",
+      "acceptance": [
+        "TGT-1",
+        "TGT-2",
+        "TGT-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "capacity",
+      "status": "not_implemented",
+      "acceptance": [
+        "CAP-1",
+        "CAP-2",
+        "CAP-3",
+        "CAP-4"
+      ],
+      "result": null
+    },
+    {
+      "id": "reports-history",
+      "status": "not_implemented",
+      "acceptance": [
+        "REP-1",
+        "REP-2",
+        "HIST-1",
+        "HIST-2",
+        "AUTH-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "forecast-calibration",
+      "status": "not_implemented",
+      "acceptance": [
+        "CAL-1",
+        "CAL-2"
+      ],
+      "result": null
+    },
+    {
+      "id": "finish-sensitivity",
+      "status": "not_implemented",
+      "acceptance": [
+        "SENS-1",
+        "SENS-2",
+        "SENS-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "assets",
+      "status": "not_implemented",
+      "acceptance": [
+        "ASSET-1",
+        "ASSET-2",
+        "ASSET-3",
+        "ASSET-4"
+      ],
+      "result": null
+    },
+    {
+      "id": "end-to-end-uat",
+      "status": "not_implemented",
+      "acceptance": [
+        "UAT-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "persistence-durability",
+      "status": "not_run",
+      "acceptance": [
+        "PERSIST-SAVE-STALE-DRAFT",
+        "PERSIST-SAVE-LATE-EDIT",
+        "PERSIST-PARTIAL-APPLY-DISCARD",
+        "PERSIST-DRAFT-403-RECOVERY",
+        "PERSIST-DRAFT-503-RECOVERY"
+      ],
+      "result": null
+    },
+    {
+      "id": "capacity-live-numeric",
+      "status": "not_run",
+      "acceptance": [
+        "CAP-REAL-SECONDS",
+        "CAP-DEDUP",
+        "CAP-PERSON-AVAILABILITY",
+        "CAP-ALTERNATIVE-REOPEN",
+        "CAP-PRIVATE-SETTINGS-RESTORE"
+      ],
+      "result": null
+    },
+    {
+      "id": "scenario-sensitivity-live",
+      "status": "not_run",
+      "acceptance": [
+        "SCEN-CALENDAR-SAVE",
+        "SCEN-SCOPE-SAVE",
+        "SCEN-ORIGINAL-UNCHANGED",
+        "SCEN-FORECAST-COMPARE",
+        "SENS-CAUSAL-EARLY-VS-TERMINAL"
+      ],
+      "result": null
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "not_run",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "result": null
+    },
+    {
+      "id": "forecast-outcomes-live",
+      "status": "not_run",
+      "acceptance": [
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE"
+      ],
+      "result": null
+    },
+    {
+      "id": "private-observations-live",
+      "status": "not_run",
+      "acceptance": [
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE"
+      ],
+      "result": null
+    },
+    {
+      "id": "baseline-visible-ghost",
+      "status": "not_run",
+      "acceptance": [
+        "HIST-VISIBLE-EXPOSED-BASELINE"
+      ],
+      "result": null
+    },
+    {
+      "id": "private-simulation-live",
+      "status": "not_run",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE"
+      ],
+      "result": null
+    },
+    {
+      "id": "scenario-adoption-live",
+      "status": "not_run",
+      "acceptance": [
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD"
+      ],
+      "result": null
+    },
+    {
+      "id": "target-boundaries-live",
+      "status": "not_run",
+      "acceptance": [
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE"
+      ],
+      "result": null
+    },
+    {
+      "id": "capacity-boundaries-live",
+      "status": "not_run",
+      "acceptance": [
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE"
+      ],
+      "result": null
+    },
+    {
+      "id": "private-completed-observation-live",
+      "status": "not_run",
+      "acceptance": [
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED"
+      ],
+      "result": null
+    },
+    {
+      "id": "sensitivity-boundaries-live",
+      "status": "not_run",
+      "acceptance": [
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION"
+      ],
+      "result": null
+    },
+    {
+      "id": "integrated-campaign-boundaries-live",
+      "status": "not_run",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE",
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD",
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE",
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE",
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES",
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED",
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION",
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY",
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE",
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE"
+      ],
+      "result": null
+    },
+    {
+      "id": "native-assets-expanded-live",
+      "status": "not_run",
+      "acceptance": [
+        "ASSET-NATIVE-MULTIPLE-ANY",
+        "ASSET-TWO-FIELD-AND",
+        "ASSET-EMPTY-NO-MATCH",
+        "ASSET-COMBINATION-GROUP-ONCE",
+        "ASSET-TEXT-FILTER-COMPOSITION",
+        "ASSET-RENAME-STABLE-ID",
+        "ASSET-GANTT-VISIBILITY",
+        "ASSET-HIDDEN-SUCCESSOR-APPLY-SECOND-REST"
+      ],
+      "result": null
+    },
+    {
+      "id": "integrated-final-boundaries-live",
+      "status": "not_run",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE",
+        "SCN-3-COMPATIBLE-CANCEL",
+        "SCN-3-DRAFT-REOPEN",
+        "SCN-3-APPLY-SECOND-REST",
+        "HIST-2-POST-APPLY-DISCARD",
+        "TGT-1-INVALID-DATE",
+        "TGT-2-EXTERNAL-RELEASE-PREDECESSOR",
+        "TGT-2-RENAME-STABLE-ID",
+        "TGT-3-DRIFT-REFRESH",
+        "TGT-3-EMPTY-UNAVAILABLE",
+        "CAP-1-MISSING-ZERO-UNASSIGNED",
+        "CAP-2-CUSTOM-CALENDAR-PARTIAL-WEEK",
+        "CAP-3-UNKNOWN-ZERO-CAPACITY",
+        "CAP-4-FAILURE-CLEARS-TOTALS",
+        "CAP-4-REAL-RETRY-RESTORE",
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES",
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED",
+        "SENS-1-PARALLEL-TIE",
+        "SENS-2-BUFFER-ABSORPTION",
+        "SENS-2-DONE-ZERO-EXCLUSION",
+        "SENS-3-ACTUAL-YIELD-CANCEL",
+        "SENS-3-SCOPE-STALE-REJECTION",
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY",
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE",
+        "CAL-REAL-PROSPECTIVE-CAPTURE",
+        "CAL-REAL-LATER-RESOLUTION",
+        "CAL-OVERLAP-EXCLUSION",
+        "CAL-SESSION-DISCLOSURE",
+        "ASSET-NATIVE-MULTIPLE-ANY",
+        "ASSET-TWO-FIELD-AND",
+        "ASSET-EMPTY-NO-MATCH",
+        "ASSET-COMBINATION-GROUP-ONCE",
+        "ASSET-TEXT-FILTER-COMPOSITION",
+        "ASSET-RENAME-STABLE-ID",
+        "ASSET-GANTT-VISIBILITY",
+        "ASSET-HIDDEN-SUCCESSOR-APPLY-SECOND-REST",
+        "TGT-EPIC-EXTERNAL-PREDECESSOR",
+        "TGT-EDIT-DURING-ACTUAL-FORECAST"
+      ],
+      "result": null
+    }
+  ]
+}

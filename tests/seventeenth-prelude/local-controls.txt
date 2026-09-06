@@ -1,0 +1,21 @@
+✔ actual immutable diagnostic permits only exact retained next experiment (0.950542ms)
+✔ wrong digest, identity, previous outcome or preservation cannot admit (1.082167ms)
+✔ exact returned timestamp and finite elapsed lease are mandatory (0.195ms)
+✔ missing, foreign, changed or newly public artifact cannot admit (4.9545ms)
+✔ two exact actual immutable receipts admit only same retained job and full manifest (1.188875ms)
+✔ either receipt digest or chained previous digest mismatch refuses (0.765541ms)
+✔ latest exact return plus finite lease boundary and unknown preserved outcome mandatory (0.614458ms)
+✔ a manifest internally coherent but changed from older receipt cannot admit (1.514792ms)
+✔ missing, extra, unknown job or public artifact refuses without weakening old controls (3.163166ms)
+✔ only one exact next checkpoint succeeds (1.141208ms)
+✔ published outcome is distinct and cannot enter staging cleanup (0.271084ms)
+✔ timeouts and malformed bodies remain unknown, named refusal remains refusal (0.1405ms)
+✔ cleanup requires exact audited receipt and elapsed lease with no public data (3.058791ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 207.799542

@@ -1,0 +1,167 @@
+{
+  "time": "2026-09-05T18:22:07.392449+00:00",
+  "runId": "first-feature-live-20260905",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "instrumentHash": "c931c336456720311506cd5b5aae398d901824d8bb54c535f3fe8670c9c5489b",
+  "complete": false,
+  "blocker": null,
+  "features": [
+    {
+      "id": "baseline-core",
+      "status": "stale",
+      "acceptance": [
+        "CORE-1",
+        "CORE-2"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/baseline-core/result.json"
+    },
+    {
+      "id": "forecast-contract",
+      "status": "stale",
+      "acceptance": [
+        "FC-1",
+        "FC-2",
+        "FC-3"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/result.json"
+    },
+    {
+      "id": "normalization",
+      "status": "not_run",
+      "acceptance": [
+        "NORM-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "normalization-companions",
+      "status": "stale",
+      "acceptance": [
+        "NORM-2",
+        "NORM-3",
+        "NORM-4",
+        "APPLY-1"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/normalization-companions/result.json"
+    },
+    {
+      "id": "assets-live-foundation",
+      "status": "stale",
+      "acceptance": [
+        "ASSET-LIVE-1"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/assets-live-foundation/result.json"
+    },
+    {
+      "id": "planning-live-foundation",
+      "status": "passed",
+      "acceptance": [
+        "TGT-LIVE-1",
+        "HIST-LIVE-1"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/result.json"
+    },
+    {
+      "id": "history-platform-transaction",
+      "status": "not_run",
+      "acceptance": [
+        "HIST-ATOMIC-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "named-scenarios",
+      "status": "not_implemented",
+      "acceptance": [
+        "SCN-1",
+        "SCN-2",
+        "SCN-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "scoped-targets",
+      "status": "not_implemented",
+      "acceptance": [
+        "TGT-1",
+        "TGT-2",
+        "TGT-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "capacity",
+      "status": "not_implemented",
+      "acceptance": [
+        "CAP-1",
+        "CAP-2",
+        "CAP-3",
+        "CAP-4"
+      ],
+      "result": null
+    },
+    {
+      "id": "reports-history",
+      "status": "not_implemented",
+      "acceptance": [
+        "REP-1",
+        "REP-2",
+        "HIST-1",
+        "HIST-2",
+        "AUTH-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "forecast-calibration",
+      "status": "not_implemented",
+      "acceptance": [
+        "CAL-1",
+        "CAL-2"
+      ],
+      "result": null
+    },
+    {
+      "id": "finish-sensitivity",
+      "status": "not_implemented",
+      "acceptance": [
+        "SENS-1",
+        "SENS-2",
+        "SENS-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "assets",
+      "status": "not_implemented",
+      "acceptance": [
+        "ASSET-1",
+        "ASSET-2",
+        "ASSET-3",
+        "ASSET-4"
+      ],
+      "result": null
+    },
+    {
+      "id": "end-to-end-uat",
+      "status": "not_implemented",
+      "acceptance": [
+        "UAT-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "persistence-durability",
+      "status": "not_run",
+      "acceptance": [
+        "PERSIST-SAVE-STALE-DRAFT",
+        "PERSIST-SAVE-LATE-EDIT",
+        "PERSIST-PARTIAL-APPLY-DISCARD",
+        "PERSIST-DRAFT-403-RECOVERY",
+        "PERSIST-DRAFT-503-RECOVERY"
+      ],
+      "result": null
+    }
+  ]
+}

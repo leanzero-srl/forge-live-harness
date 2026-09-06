@@ -1,0 +1,14 @@
+✔ real in-app Back precedes observed leave, unmount/drain and final blank (0.735875ms)
+✔ abort HTTP403/503 unknown/bodyfalse/wrongplan/wrongkey/oldreceipt all refuse before blank (2.702084ms)
+✔ duplicate terminal leaves cannot pass even when both succeeded (0.227708ms)
+✔ missing leave and disposed observation reject without accepting old receipts (6.590958ms)
+✔ observer ignores unrelated reads but retains every future leave through drain (0.119625ms)
+✔ non-Plan surface requires positive identification before blank (0.072917ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.861

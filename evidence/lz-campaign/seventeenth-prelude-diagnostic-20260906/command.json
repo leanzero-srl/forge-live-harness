@@ -1,0 +1,29 @@
+{
+  "time": "2026-09-06T09:23:13.127123+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.21.0",
+  "appCommit": "5d162d4e73ddd481a95b0b5b04237e6ba41e44d9",
+  "uiVersion": "4.58.585",
+  "harnessCommit": "e558174e6aa7e1179a4296d505f63564e08ec336",
+  "instrumentHash": "99571b73abeb8845786dc7fa9030e2a6c14c6da0aacea9f58b749ad599bcf1af",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "advance",
+  "scope": "exact retained seventeenth prelude one advance78 only then stop; no cleanup",
+  "expectedPreferencesVersion": 65,
+  "previousDiagnosticSha256": "4b67206915f2579a7c15b1e5b8c3018244cdae5a5c4a72689faa3848ab48d188",
+  "olderDiagnosticSha256": "da1e5ad18b88f7bbaa80896671270c46148c8103f429fe3c24b0323521bbd4c0",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-prelude.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "prelude retained large advance:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-prelude-diagnostic-20260906/artifacts"
+  ]
+}

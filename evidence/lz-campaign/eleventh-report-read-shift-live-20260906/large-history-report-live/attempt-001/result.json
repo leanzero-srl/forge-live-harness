@@ -1,0 +1,53 @@
+{
+  "status": "failed",
+  "stamp": "484f9d97d45f0e761a45027c53589b8ddf071c56fb7bf15d8a5bf6ed2616ee5e",
+  "startedAt": "2026-09-06T02:07:28.790039+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eleventh-report-read-shift-live-20260906/large-history-report-live/attempt-001",
+  "uiVersion": "4.58.582",
+  "forgeVersion": "6.8.0",
+  "appCommit": "e76ea06bff6f4425c80665472a9c4376e5f8bbbc",
+  "instrumentHash": "d06bc939353d9c9a865c4c75af7be743e352ccf262cc84be28240ca79453b501",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-large-history.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T02:10:23.229359+00:00",
+  "elapsedSeconds": 174.43833320800331
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "name": "local-controls",
+    "command": [
+      "node",
+      "--test",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/capacity-wire-lifecycle/lifecycle.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/capacity-wire-lifecycle/response-record.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-refreshed-resume/acquisition.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-refreshed-resume/contracts.test.mjs"
+    ],
+    "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "exitCode": 0
+  },
+  {
+    "name": "prior-controls",
+    "command": [
+      "node",
+      "--test",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-paced-resume/budget.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-paced-resume/cadence.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-paced-resume/contract.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-paced-resume/transport.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-forecast-resume/contracts.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-forecast-resume/oracle.test.mjs",
+      "/private/tmp/lz-harness-auth-refresh-20260906/tests/seventeenth-aggregate-resume/contracts.test.mjs"
+    ],
+    "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "exitCode": 0
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "npx",
+      "tsc",
+      "--noEmit"
+    ],
+    "cwd": "/private/tmp/lz-harness-auth-refresh-20260906",
+    "exitCode": 2
+  },
+  {
+    "name": "discovery",
+    "command": [
+      "npx",
+      "playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+      "--project=chromium",
+      "--list"
+    ],
+    "cwd": "/private/tmp/lz-harness-auth-refresh-20260906",
+    "exitCode": 0
+  },
+  {
+    "name": "typecheck-corrected",
+    "command": [
+      "npx",
+      "tsc",
+      "--noEmit"
+    ],
+    "cwd": "/private/tmp/lz-harness-auth-refresh-20260906",
+    "exitCode": 2
+  },
+  {
+    "name": "acquisition-final",
+    "exitCode": 0,
+    "command": [
+      "node",
+      "--test",
+      "tests/seventeenth-refreshed-resume/acquisition.test.mjs"
+    ],
+    "cwd": "/private/tmp/lz-harness-auth-refresh-20260906"
+  }
+]

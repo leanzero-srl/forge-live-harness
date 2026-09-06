@@ -1,0 +1,24 @@
+[
+  {
+    "planId": "plan-test-mtpzo368-x4846f",
+    "requestId": "cb556d3b-3270-49ef-a7fa-f656982fcc1b",
+    "jobId": "0f0a4f1b-a6ed-4eee-a881-ba676a7247b8",
+    "steps": [],
+    "probes": [],
+    "startedAt": 1788709878573,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpzo368-x4846f",
+    "requestId": "cb556d3b-3270-49ef-a7fa-f656982fcc1b",
+    "jobId": "0f0a4f1b-a6ed-4eee-a881-ba676a7247b8",
+    "steps": [],
+    "probes": [],
+    "startedAt": 1788709878573,
+    "cleaned": false,
+    "error": {
+      "name": "Error",
+      "message": "Owned report departure failed; exact fixture retained"
+    }
+  }
+]

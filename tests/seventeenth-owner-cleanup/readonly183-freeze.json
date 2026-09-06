@@ -1,0 +1,33 @@
+{
+  "baseCommit": "77b02100c206393ae419d286c1b0e0008a296e26",
+  "files": [
+    {
+      "path": "scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts",
+      "sha256": "1eceed12bcc7c4b78e71e0d34b3db036d297b1abc8b9ba75f055997a38bc645d"
+    },
+    {
+      "path": "scenarios/lz-ppm/seventeenth-owner-cleanup-contract.mjs",
+      "sha256": "91e30f9ad250506a441454ba83cf3e439ed62a4feb31c6ccb5198452d824ed22"
+    },
+    {
+      "path": "scenarios/lz-ppm/owned-plan-departure.mjs",
+      "sha256": "d472d91fea6e40c9bde6a7e84be44623adfe7f077424a51befd1f0389147fd95"
+    }
+  ],
+  "departureSourceCommit": "6e6e5be",
+  "controls": {
+    "tests": 66,
+    "passed": 66,
+    "exitCode": 0
+  },
+  "typecheck": {
+    "exitCode": 2,
+    "limit": "Two inherited Sentinel errors only."
+  },
+  "withoutApprovalDiscovery": {
+    "exitCode": 1,
+    "registeredTests": 0
+  },
+  "liveAuthorized": false,
+  "liveDispatched": false
+}

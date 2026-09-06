@@ -1,0 +1,190 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-003/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-003/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-003/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 31540,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2727 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2726 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/version/10283 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtopbry5\",\"name\":\"[harness-test] lz-norm-mtopbry5\",\"time\":\"2026-09-05T18:13:45.917Z\",\"issues\":[{\"key\":\"WFH-2726\",\"seed\":{\"label\":\"scoped early\",\"duration\":2,\"start\":\"2026-10-05\",\"due\":\"2026-10-06\",\"release\":true}},{\"key\":\"WFH-2727\",\"seed\":{\"label\":\"outside long\",\"duration\":41,\"start\":\"2026-10-05\",\"due\":\"2026-11-30\"}}],\"planId\":\"plan-test-mtopbvdg-gmmh0i\",\"cleanup\":[{\"plan\":\"plan-test-mtopbvdg-gmmh0i\",\"deleted\":true},{\"issue\":\"WFH-2727\",\"deleted\":true},{\"issue\":\"WFH-2726\",\"deleted\":true},{\"version\":\"10283\",\"deleted\":true}],\"version\":{\"self\":\"https://wolfaenpak.atlassian.net/rest/api/3/version/10283\",\"id\":\"10283\",\"name\":\"[harness-test] lz-norm-mtopbry5\",\"archived\":false,\"released\":false,\"projectId\":10001},\"searchIndexVerified\":[{\"key\":\"WFH-2726\",\"start\":\"2026-10-05\",\"due\":\"2026-10-06\",\"duration\":2},{\"key\":\"WFH-2727\",\"start\":\"2026-10-05\",\"due\":\"2026-11-30\",\"duration\":41}],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T18:13:44.844Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "507a219f41a25860a990-33cfedd37ed61de8fb1c",
+          "file": "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 33705,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2728 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtopcg8k\",\"name\":\"[harness-test] lz-norm-mtopcg8k\",\"time\":\"2026-09-05T18:14:17.396Z\",\"issues\":[{\"key\":\"WFH-2728\",\"seed\":{\"label\":\"history\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtopcic6-fxvk8k\",\"cleanup\":[{\"plan\":\"plan-test-mtopcic6-fxvk8k\",\"deleted\":true},{\"issue\":\"WFH-2728\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2728\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T18:14:16.705Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "507a219f41a25860a990-579cf27b703b48997d88",
+          "file": "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+          "line": 49,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T18:13:44.511Z",
+    "duration": 96000.892,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

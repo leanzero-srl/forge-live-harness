@@ -1,0 +1,50 @@
+
+Running 1 test using 1 worker
+
+
+(node:31365) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+[chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.579","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T00:24:22.914Z"}
+
+[jira !!] GET /rest/api/3/issue/WFH-2853 -> 404
+
+[jira !!] GET /rest/api/3/version/10290 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtp2kesz","name":"[harness-test] lz-norm-mtp2kesz","time":"2026-09-06T00:24:23.795Z","issues":[{"key":"WFH-2853","seed":{"label":"numeric report 20h","duration":5,"start":"2026-09-07","due":"2026-09-11","release":true}}],"planId":"plan-test-mtp2kgyf-la1k8y","cleanup":[{"plan":"plan-test-mtp2kgyf-la1k8y","deleted":true},{"issue":"WFH-2853","deleted":true},{"version":"10290","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10290","id":"10290","name":"[harness-test] lz-norm-mtp2kesz","archived":false,"released":false,"projectId":10001},"searchIndexVerified":[{"key":"WFH-2853","start":"2026-09-07","due":"2026-09-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2853","start":"2026-09-07","due":"2026-09-11","duration":5}]],"bodyError":{"name":"Error","message":"\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2853\"]').locator('input[inputmode=\"numeric\"]')\u001b[22m\n"},"integrityPassed":true}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="table-row"][data-row-key="WFH-2853"]').locator('input[inputmode="numeric"]')
+    Expected: visible
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 15000ms
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="table-row"][data-row-key="WFH-2853"]').locator('input[inputmode="numeric"]')
+
+
+       at scenarios/lz-ppm/normalization-owned-fixture.ts:147
+
+      145 |   await row(frame, key).locator(':scope > div').nth(5).click();
+      146 |   const input = row(frame, key).locator('input[inputmode="numeric"]');
+    > 147 |   await expect(input).toBeVisible(); await input.fill(value); await input.press('Enter');
+          |                       ^
+      148 | }
+      149 | export async function save(frame: any) {
+      150 |   const button = frame.locator('[data-testid="plan-save-btn"]');
+        at editDuration (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:147:23)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:67:35
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2
+
+    Error Context: evidence/lz-campaign/seventh-portable-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 

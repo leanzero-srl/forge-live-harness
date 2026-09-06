@@ -1,0 +1,55 @@
+{
+  "status": "integrity_failed",
+  "stamp": "a8212cea29a87367ca776d6bf7352de3fa49678977f8100667ef477e8eed7d25",
+  "startedAt": "2026-09-06T05:03:21.249894+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fifteenth-staged-report-live-20260906/large-history-report-live/attempt-001",
+  "uiVersion": "4.58.585",
+  "forgeVersion": "6.12.0",
+  "appCommit": "da699034bceacc4fd9b08512dd834a8debe4eb2b",
+  "instrumentHash": "d234d8b714a97e8c415acbd0d9453241fcd14a51df3721d189e1ecb5b342195e",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-large-history.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-identity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"campaign: actual UI version and preserved LZPT source\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T05:07:50.499262+00:00",
+  "elapsedSeconds": 269.246624041989
+}

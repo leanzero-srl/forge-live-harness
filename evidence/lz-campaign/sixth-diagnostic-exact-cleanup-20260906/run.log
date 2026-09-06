@@ -1,0 +1,47 @@
+
+Running 4 tests using 1 worker
+
+
+(node:26620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/4] [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:14:1 › campaign: actual UI version and preserved LZPT source
+[chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:14:1 › campaign: actual UI version and preserved LZPT source
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.579","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T00:19:52.751Z"}
+
+CAMPAIGN_IDENTITY {"time":"2026-09-06T00:19:58.829Z","phase":"before","uiVersion":"4.58.579","sourceFingerprint":"2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104","issueCount":45,"coordinatedSourceExtension":null,"drafts":0,"protectionEnabled":false,"planIds":["plan-msq9dg8l-gz6mz1","plan-mta3aw3t-6dyijd","plan-mtbrlh8n-7ghw8u","plan-test-mtozislw-v816ze"]}
+
+[2/4] [chromium] › scenarios/lz-ppm/campaign-diagnostic-identity.spec.ts:19:1 › campaign: exact retained numeric diagnostic provenance and restored private preferences are unchanged
+[3/4] [chromium] › scenarios/lz-ppm/campaign-portable-diagnostic-identity.spec.ts:7:1 › admission: installed portable Chrome152 receipt agrees with actual runtime after original45 and retained diagnostic reads
+[4/4] [chromium] › scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts:12:1 › cleanup: accepted sixth report removes only exact owned report, plan, issue and release; original45 and private preferences remain untouched
+  1) [chromium] › scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts:12:1 › cleanup: accepted sixth report removes only exact owned report, plan, issue and release; original45 and private preferences remain untouched 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('body')
+    Expected pattern: /V4\.58\.579/
+    Received string:  "LeanZero ManagementLeanZero ManagementPlansCapacityPortfolio control  ·  rev v4.58.579PortfolioPlansManage your project portfolio timelinesImport a Jira plan+ New PlanNew planIndex issues from JQL, a board, or a projectImport a Jira planBring a Jira Premium plan in: its sources, exclusion rules and date fieldsLZPT ScenariosReady45Issues1Sources0DraftsJQL?Updated 3h agoIndexed 3h agoOpen plan →testReady54Issues1Sources0DraftsJQL?Updated 6h agoIndexed 6h agoOpen plan →LZPP PerfReady5,300Issues1Sources0DraftsJQL?Updated 6h agoIndexed 6h agoOpen plan →"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toContainText" with timeout 15000ms
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('body')
+        33 × locator resolved to <body>…</body>
+           - unexpected value "LeanZero ManagementLeanZero ManagementPlansCapacityPortfolio control  ·  rev v4.58.579PortfolioPlansManage your project portfolio timelinesImport a Jira plan+ New PlanNew planIndex issues from JQL, a board, or a projectImport a Jira planBring a Jira Premium plan in: its sources, exclusion rules and date fieldsLZPT ScenariosReady45Issues1Sources0DraftsJQL?Updated 3h agoIndexed 3h agoOpen plan →testReady54Issues1Sources0DraftsJQL?Updated 6h agoIndexed 6h agoOpen plan →LZPP PerfReady5,300Issues1Sources0DraftsJQL?Updated 6h agoIndexed 6h agoOpen plan →"
+
+
+      33 |   const ownedIssue=await rest('GET',issueUrl);expect(ownedIssue.status).toBe(200);expect(ownedIssue.data).toEqual(admission.issue);intent('delete-issue');const deletedIssue=await rest('DELETE',`/rest/api/3/issue/${issueKey}`);expect(deletedIssue.status).toBe(204);ack('delete-issue',deletedIssue);for(let n=0;n<2;n++){const absent=await rest('GET',issueUrl);expect(absent.status).toBe(404);record('issue-absent',absent);}
+      34 |   const ownedVersion=await rest('GET',`/rest/api/3/version/${versionId}`);expect(ownedVersion.status).toBe(200);expect(ownedVersion.data).toEqual(admission.version);const zeroCounts=await rest('GET',`/rest/api/3/version/${versionId}/relatedIssueCounts`);expect(zeroCounts.status).toBe(200);expectCounts(zeroCounts.data,0);record('same-object-zero-usage',zeroCounts);intent('delete-release');const deletedVersion=await rest('DELETE',`/rest/api/3/version/${versionId}`);expect(deletedVersion.status).toBe(204);ack('delete-release',deletedVersion);for(let n=0;n<2;n++){const absent=await rest('GET',`/rest/api/3/version/${versionId}`);expect(absent.status).toBe(404);record('release-absent',absent);}
+    > 35 |   const finalFrame=await openPlans(page);await expect(finalFrame.locator('body')).toContainText(/V4\.58\.579/);await expect(finalFrame.locator('.lz-card',{hasText:'LZPT Scenarios'})).toContainText(/45\s*ISSUES/i);await expect(finalFrame.locator('.lz-card',{hasText:'LZPT Scenarios'})).toContainText(/0\s*DRAFTS/i);await expect(finalFrame.getByRole('button',{name:/Open plan/})).toHaveCount(3);await settledScreenshot(page,{subject:finalFrame.locator('.lz-card',{hasText:'LZPT Scenarios'}),path:info.outputPath('original-three-plans-restored.png'),fullPage:true});
+         |                                                                                   ^
+      36 |   const finalReading=actualResponse(page,'getCapacitySettings');await finalFrame.getByRole('button',{name:'Capacity',exact:true}).click();expect(await finalReading).toEqual(settings);await expect(finalFrame.locator('[data-testid="capacity-view"]').getByRole('status')).toHaveCount(0,{timeout:120000});await expect(finalFrame.locator('[data-testid="capacity-cell"]')).toHaveCount(0);await expect(finalFrame.locator('[role="checkbox"][aria-checked="true"]')).toHaveCount(0);await settledScreenshot(page,{subject:finalFrame.getByRole('heading',{name:'Portfolio capacity',exact:true}),path:info.outputPath('private-settings-still-empty.png'),fullPage:true});journal.complete=true;
+      37 |  }catch(error){bodyError=error;journal.error=String(error);throw error;}
+      38 |  finally{
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts:35:83
+
+    Error Context: evidence/lz-campaign/sixth-diagnostic-exact-cleanup-20260906/artifacts/scenarios-lz-ppm-campaign--76f99-references-remain-untouched-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts:12:1 › cleanup: accepted sixth report removes only exact owned report, plan, issue and release; original45 and private preferences remain untouched 
+  3 passed (59.9s)

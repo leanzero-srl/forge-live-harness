@@ -1,0 +1,18 @@
+✔ exact matched terminal Capacity observation produces candidate without changing wire (0.835ms)
+✔ unknown/failed transport and missing or changed request evidence cannot promote (0.920042ms)
+✔ wrong actual call payload rejected (0.42375ms)
+✔ route freshness checked when continuation occurs, after any queue (0.351375ms)
+✔ route retains exact actual wire and records gate immediately before dispatch (0.146458ms)
+✔ foreign app/module and endpoint never dispatch (0.242458ms)
+✔ dispatch journal failure waits for exact actual request before releasing ownership (0.128917ms)
+✔ simultaneous journal and actual transport failures both preserved without retry (0.083958ms)
+✔ transport error retains digest but never header call log or original cause (0.342583ms)
+✔ browser principal uses same request context once with no retry and safe failure (0.215375ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47.887625

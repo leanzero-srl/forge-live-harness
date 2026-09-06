@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtpj3rtq",
+  "name": "[harness-test] lz-norm-mtpj3rtq",
+  "time": "2026-09-06T08:07:20.990Z",
+  "issues": [
+    {
+      "key": "WFH-2967",
+      "seed": {
+        "label": "report job cancel",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    }
+  ],
+  "planId": "plan-test-mtpj3ugw-4u1bm0",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtpj3ugw-4u1bm0",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2967",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2967",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2967",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

@@ -1,0 +1,89 @@
+✔ actual adapter serializes response parsing before following request validation (9.202292ms)
+✔ actual outer Forge timeout is retained rather than undefined-body success (0.917208ms)
+✔ requestfailed is an error, not permission to repeat begin (0.495417ms)
+✔ unrelated owner-discovery before click does not admit a foreign prior job (0.324208ms)
+✔ actual cleanup retains exact manifest before and verifies two strong absence reads (1.482458ms)
+✔ foreign owner request cannot be adopted for cleanup (0.700292ms)
+✔ failed or ambiguous cancel is never retried and exact state survives (0.193334ms)
+✔ false cleanupDone while keys still present cannot pass (0.178917ms)
+✔ missing manifest entries after cancellation is not proof of removal (0.154625ms)
+✔ cleanup after complete keeps all public report objects (0.321791ms)
+✔ zero-progress cleanup refused rather than infinite retry (0.140375ms)
+✔ failed physical proof is retained before assertion, without deleting or marking clean (0.199708ms)
+✔ shared observation callback retains exact response before caller validation throws (0.121833ms)
+✔ content cannot be excused by relabeling it as a deletion marker (0.1795ms)
+✔ held step executes backend once and delivers the identical response only after release (3.764625ms)
+✔ unrelated plan cannot be held by fixture control (0.244125ms)
+✔ real shape full lifecycle requires cleanup and preserves immutable report (1.484958ms)
+✔ progress alone is not completion and bounded timeout stays failure (5.304584ms)
+✔ begin request nonce mismatch refused (0.711ms)
+✔ foreign plan ignored and different job cannot replace admitted job (0.162042ms)
+✔ overlapping mutations fail even if eventual outcomes look successful (0.166959ms)
+✔ wrong expected checkpoint refused before accepting later result (0.136416ms)
+✔ unchanged active checkpoint cannot be graded as progress (0.415375ms)
+✔ terminal cleanup cannot erase a completed report (0.224875ms)
+✔ wrong report hash/identity refused (0.247542ms)
+✔ unknown transport outcome preserves original error and last acknowledged job (0.224416ms)
+✔ failed terminal state retained for explicit refusal assertions, not coerced complete (0.127584ms)
+✔ second begin cannot silently replace first job after a lost result (0.365834ms)
+✖ actual compiled fixture retains report staging and original failure without deleting (47.379708ms)
+✖ actual compiled fixture retains report staging and both independent recovery causes without deleting (13.323291ms)
+✔ actual shared fixture finally retains owned plan/issues on departure failure and still reads registry/source (28.412208ms)
+✔ actual full45 and large custom finalizers poison-dependent deletion but preserve independent audits (6.707208ms)
+✔ both actual shared report cleanup stop callbacks use adapter and settle before existing RPC continuation (0.250792ms)
+✔ actual usePresence original unload abort is reproduced; held real leave must finish before navigation (4.453625ms)
+✔ actual usePresence wrong/missing/failed/HTTP/body/errors/duplicate leaves poison session without repeated Back or blank (105.597ms)
+✔ actual adapter identifies Capacity/list/blank without PlanView leave and refuses unknown surface (0.462167ms)
+✔ no opt-in keeps exact default calls/results/errors and disposal removes listeners (0.185541ms)
+✔ literal intentional mounted lifecycle reload and all preexisting seven expectations remain unchanged (44.0745ms)
+✔ actual direct RPC seam dispatches once and preserves values/default body consumption (9.625458ms)
+✔ actual direct RPC rejection identity and falsy exception survive observation (1.014166ms)
+✔ actual hook optional seam consumes same result and raw HTTP failure without extra fetch (2.810584ms)
+✔ observer callback exception is isolated from original helper success and recorded (0.715417ms)
+✔ held body never serializes later dispatch/header/terminal timestamps (1.611709ms)
+✔ all exact-app keys including no-plan reads are observed; foreign extension excluded (0.632041ms)
+✔ HTTP, outer and body refusals retain exact raw/hash and phase without interrupting other calls (0.6675ms)
+✔ malformed JSON, body rejection and requestfailed remain distinct failures (0.33725ms)
+✔ finish retains unresolved work and detaches; it never claims timeout completion (12.916083ms)
+✔ throwing/rejected/terminal sinks fail final grade but cannot block dispatch or replace falsy errors (0.78175ms)
+✔ nonmonotonic clocks and malformed same-app calls cannot silently disappear (0.203833ms)
+✔ hook clone and API body are independent observed terminal surfaces, never extra transports (8.908792ms)
+✔ wrong app filter or only direct audit success cannot pass large capture coverage (0.316542ms)
+✔ real-shaped outer-success/body-failure cannot persist response credentials or echoed header values (0.280458ms)
+✔ nonarray outer/top-level errors are failures even when success and body are true (0.21425ms)
+✔ actual persisted-query URL observes exact-extension capture and background traffic (0.22ms)
+✔ every preexisting large-unit and shared-capture expectation is unchanged (33.420458ms)
+ℹ tests 55
+ℹ suites 0
+ℹ pass 53
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 656.747916
+
+✖ failing tests:
+
+test at tests/report-capture/retention.test.mjs:10:36
+✖ actual compiled fixture retains report staging and original failure without deleting (47.379708ms)
+  TypeError [ERR_INVALID_ARG_TYPE]: The "message" argument must be one of type string or function. Received undefined
+      at innerFail (node:internal/assert/utils:135:11)
+      at innerOk (node:internal/assert/utils:169:5)
+      at strict.ok (node:assert:197:3)
+      at TestContext.<anonymous> (file:///private/tmp/lz-report-product-throughput-20260906/tests/report-capture/retention.test.mjs:23:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'ERR_INVALID_ARG_TYPE'
+  }
+
+test at tests/report-capture/retention.test.mjs:10:36
+✖ actual compiled fixture retains report staging and both independent recovery causes without deleting (13.323291ms)
+  TypeError [ERR_INVALID_ARG_TYPE]: The "message" argument must be one of type string or function. Received undefined
+      at innerFail (node:internal/assert/utils:135:11)
+      at innerOk (node:internal/assert/utils:169:5)
+      at strict.ok (node:assert:197:3)
+      at TestContext.<anonymous> (file:///private/tmp/lz-report-product-throughput-20260906/tests/report-capture/retention.test.mjs:23:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'ERR_INVALID_ARG_TYPE'
+  }

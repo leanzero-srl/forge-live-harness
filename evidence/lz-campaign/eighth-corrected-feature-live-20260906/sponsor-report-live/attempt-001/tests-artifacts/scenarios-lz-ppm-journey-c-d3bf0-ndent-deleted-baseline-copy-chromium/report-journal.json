@@ -1,0 +1,1258 @@
+{
+  "name": "[harness-test] Report proof mtp4am2e",
+  "sourceKeys": [
+    "LZPT-186",
+    "LZPT-187",
+    "LZPT-188",
+    "LZPT-189",
+    "LZPT-190",
+    "LZPT-191",
+    "LZPT-192",
+    "LZPT-193",
+    "LZPT-194",
+    "LZPT-195",
+    "LZPT-196",
+    "LZPT-197",
+    "LZPT-198",
+    "LZPT-199",
+    "LZPT-200",
+    "LZPT-201",
+    "LZPT-202",
+    "LZPT-203",
+    "LZPT-204",
+    "LZPT-205",
+    "LZPT-206",
+    "LZPT-207",
+    "LZPT-208",
+    "LZPT-209",
+    "LZPT-210",
+    "LZPT-211",
+    "LZPT-212",
+    "LZPT-213",
+    "LZPT-214",
+    "LZPT-215",
+    "LZPT-216",
+    "LZPT-217",
+    "LZPT-218",
+    "LZPT-219",
+    "LZPT-220",
+    "LZPT-221",
+    "LZPT-222",
+    "LZPT-223",
+    "LZPT-224",
+    "LZPT-225",
+    "LZPT-226",
+    "LZPT-227",
+    "LZPT-228",
+    "LZPT-229",
+    "LZPT-230"
+  ],
+  "sourceCount": 45,
+  "planId": "plan-test-mtp4am5u-besj2a",
+  "originalBaseline": {
+    "id": "437a8e2a-652a-4309-b6d1-3059d811cec9",
+    "hash": "f0fcda0c4b4f6776c374bd905ad47fd45323e0a135940ff7a370ae028d6af562"
+  },
+  "initialWorkingRows": [
+    {
+      "key": "LZPT-186",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-06-17",
+      "duration": 25
+    },
+    {
+      "key": "LZPT-187",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-188",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-10-12",
+      "duration": 121
+    },
+    {
+      "key": "LZPT-189",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-190",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-191",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-06-08",
+      "duration": 25
+    },
+    {
+      "key": "LZPT-192",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-08",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-193",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-194",
+      "startDate": "2026-05-18",
+      "dueDate": "2026-05-22",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-195",
+      "startDate": "2026-05-25",
+      "dueDate": "2026-05-29",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-196",
+      "startDate": "2026-06-01",
+      "dueDate": "2026-06-05",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-197",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-198",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-12",
+      "duration": 4
+    },
+    {
+      "key": "LZPT-199",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-14",
+      "duration": 6
+    },
+    {
+      "key": "LZPT-200",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-19",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-201",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-05-01",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-202",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-203",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-204",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-14",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-205",
+      "startDate": "2026-09-23",
+      "dueDate": "2026-10-02",
+      "duration": 8
+    },
+    {
+      "key": "LZPT-206",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-07",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-207",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-08",
+      "duration": 4
+    },
+    {
+      "key": "LZPT-208",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-09",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-209",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-12",
+      "duration": 6
+    },
+    {
+      "key": "LZPT-210",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-211",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-212",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-213",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-214",
+      "startDate": "2026-05-20",
+      "dueDate": "2026-05-12",
+      "duration": null
+    },
+    {
+      "key": "LZPT-215",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-06-30",
+      "duration": 42
+    },
+    {
+      "key": "LZPT-216",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-12",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-217",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-04",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-218",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-05",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-219",
+      "startDate": "2026-05-06",
+      "dueDate": "2026-05-06",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-220",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-07",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-221",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-08",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-222",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-11",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-223",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-12",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-224",
+      "startDate": "2026-05-13",
+      "dueDate": "2026-05-13",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-225",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-05-14",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-226",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-227",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-228",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-229",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-08",
+      "duration": 4
+    },
+    {
+      "key": "LZPT-230",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": 5
+    }
+  ],
+  "savedRawSchedule": [
+    {
+      "key": "LZPT-186",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-06-17",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-187",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-188",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-10-13",
+      "duration": 122,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-189",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-190",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-191",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-06-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-192",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-201"
+      ],
+      "successors": [
+        "LZPT-193"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-193",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-192"
+      ],
+      "successors": [
+        "LZPT-194"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-194",
+      "startDate": "2026-05-18",
+      "dueDate": "2026-05-22",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-193"
+      ],
+      "successors": [
+        "LZPT-195"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-195",
+      "startDate": "2026-05-25",
+      "dueDate": "2026-05-29",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-194"
+      ],
+      "successors": [
+        "LZPT-196"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-196",
+      "startDate": "2026-06-01",
+      "dueDate": "2026-06-05",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-195"
+      ],
+      "successors": [
+        "LZPT-217"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-197",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-198",
+        "LZPT-199"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-198",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-197"
+      ],
+      "successors": [
+        "LZPT-200"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-199",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-197"
+      ],
+      "successors": [
+        "LZPT-200"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-200",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-19",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-198",
+        "LZPT-199"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-201",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-05-01",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-192"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-202",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-204"
+      ],
+      "successors": [
+        "LZPT-203"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-203",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-202"
+      ],
+      "successors": [
+        "LZPT-204"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-204",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-203"
+      ],
+      "successors": [
+        "LZPT-202"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-205",
+      "startDate": "2026-09-23",
+      "dueDate": "2026-10-02",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-206",
+        "LZPT-207",
+        "LZPT-208",
+        "LZPT-209"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-206",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-07",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-207",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-208",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-09",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-209",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-13",
+      "duration": 7,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-210",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-189"
+    },
+    {
+      "key": "LZPT-211",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-189"
+    },
+    {
+      "key": "LZPT-212",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-213",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-214",
+      "startDate": "2026-05-20",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-215",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-06-30",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-216",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-217",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-04",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-196"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-218",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-05",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-219",
+      "startDate": "2026-05-06",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-220",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-07",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-221",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-222",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-223",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-224",
+      "startDate": "2026-05-13",
+      "dueDate": "2026-05-13",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-225",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-226",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-227",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-210"
+    },
+    {
+      "key": "LZPT-228",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-210"
+    },
+    {
+      "key": "LZPT-229",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-211"
+    },
+    {
+      "key": "LZPT-230",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-211"
+    }
+  ],
+  "capturedWorkingRows": [
+    {
+      "key": "LZPT-186",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-06-17",
+      "duration": 25
+    },
+    {
+      "key": "LZPT-187",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-188",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-10-13",
+      "duration": 122
+    },
+    {
+      "key": "LZPT-189",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-190",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-191",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-06-08",
+      "duration": 25
+    },
+    {
+      "key": "LZPT-192",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-08",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-193",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-194",
+      "startDate": "2026-05-18",
+      "dueDate": "2026-05-22",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-195",
+      "startDate": "2026-05-25",
+      "dueDate": "2026-05-29",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-196",
+      "startDate": "2026-06-01",
+      "dueDate": "2026-06-05",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-197",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-198",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-12",
+      "duration": 4
+    },
+    {
+      "key": "LZPT-199",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-14",
+      "duration": 6
+    },
+    {
+      "key": "LZPT-200",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-19",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-201",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-05-01",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-202",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-203",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-204",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-14",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-205",
+      "startDate": "2026-09-23",
+      "dueDate": "2026-10-02",
+      "duration": 8
+    },
+    {
+      "key": "LZPT-206",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-07",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-207",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-08",
+      "duration": 4
+    },
+    {
+      "key": "LZPT-208",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-09",
+      "duration": 5
+    },
+    {
+      "key": "LZPT-209",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-13",
+      "duration": 7
+    },
+    {
+      "key": "LZPT-210",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-211",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-212",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null
+    },
+    {
+      "key": "LZPT-213",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-214",
+      "startDate": "2026-05-20",
+      "dueDate": "2026-05-12",
+      "duration": null
+    },
+    {
+      "key": "LZPT-215",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-06-30",
+      "duration": 42
+    },
+    {
+      "key": "LZPT-216",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-12",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-217",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-04",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-218",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-05",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-219",
+      "startDate": "2026-05-06",
+      "dueDate": "2026-05-06",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-220",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-07",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-221",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-08",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-222",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-11",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-223",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-12",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-224",
+      "startDate": "2026-05-13",
+      "dueDate": "2026-05-13",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-225",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-05-14",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-226",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": 1
+    },
+    {
+      "key": "LZPT-227",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-228",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": 3
+    },
+    {
+      "key": "LZPT-229",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-08",
+      "duration": 4
+    },
+    {
+      "key": "LZPT-230",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": 5
+    }
+  ],
+  "report": {
+    "id": "07928ef9-0363-4e1b-b01e-56c9ffed778b",
+    "hash": "4296cc8c08af20d322958c0a47f96c3072c57afdb7ca355770532cdc83832d03",
+    "name": "All rows and retained baseline",
+    "planName": "[harness-test] Report proof mtp4am2e",
+    "takenAt": "2026-09-06T01:13:04.658Z",
+    "sourceVersion": 3,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 35,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 1,
+        "missingDates": 1,
+        "sampledLeaves": 0,
+        "totalLeaves": 37
+      },
+      "inputHash": "0f6269eabc4402b6dea3499fd8e45a92baa6871da976e7417f05ce54218e4982",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": null,
+      "p50": null,
+      "p80": null,
+      "p90": null,
+      "reason": "The full captured network has missing, invalid or inverted dates, including required baseline dates.",
+      "runs": 0,
+      "seed": 42,
+      "state": "unavailable",
+      "uncertainty": "medium"
+    },
+    "capacity": {
+      "reason": "Capacity was not included at capture. No availability is assumed.",
+      "scope": "captured-plan",
+      "state": "not-included"
+    },
+    "uncertainty": "medium",
+    "consistency": {
+      "basisHash": "40394637ddf11aad216fef783c78f70abfccb0164a05798dca0c4e34d75f8794",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T01:13:04.150Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T01:13:04.657Z"
+    },
+    "baseline": {
+      "coverageNote": null,
+      "hash": "8481c2e6b4940ffe9c74160bd0d386873949f1a291515712f5ec6b5c5abf788d",
+      "id": "07928ef9-0363-4e1b-b01e-56c9ffed778b",
+      "issueCount": 45,
+      "name": "Report original baseline",
+      "sourceSnapshotId": "437a8e2a-652a-4309-b6d1-3059d811cec9",
+      "takenAt": "2026-09-06T01:12:55.647Z"
+    },
+    "counts": {
+      "timeline": 45,
+      "targets": 0,
+      "changes": 2
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 0,
+      "changes": 1
+    },
+    "document": {
+      "changes": {
+        "hashes": [
+          "046ce941625c78c9f4000faec267b21de27c6c8e67ee411673d6b6809a5a350e"
+        ],
+        "sizes": [
+          2
+        ],
+        "total": 2
+      },
+      "targets": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "timeline": {
+        "hashes": [
+          "f1e0696e21d258fbba57bd58ee35c71864c12af281786855433b0f3c9b3ca251"
+        ],
+        "sizes": [
+          45
+        ],
+        "total": 45
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 37,
+      "unscheduledOrInvalidLeaves": 2,
+      "validRows": 38,
+      "unavailableRows": 7
+    },
+    "span": {
+      "start": "2026-04-27",
+      "finish": "2026-10-13"
+    },
+    "plannedFinish": null,
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 2
+    }
+  },
+  "independentBaselineCopyVerified": true,
+  "cleanup": [
+    {
+      "label": "stop owned UI",
+      "ok": true
+    },
+    {
+      "label": "identify owned plan",
+      "ok": true
+    },
+    {
+      "label": "clear owned drafts",
+      "ok": true
+    },
+    {
+      "label": "delete owned plan",
+      "ok": true
+    },
+    {
+      "label": "registry restored",
+      "ok": true
+    },
+    {
+      "label": "source unchanged",
+      "ok": true
+    }
+  ],
+  "cleanupVerified": true
+}

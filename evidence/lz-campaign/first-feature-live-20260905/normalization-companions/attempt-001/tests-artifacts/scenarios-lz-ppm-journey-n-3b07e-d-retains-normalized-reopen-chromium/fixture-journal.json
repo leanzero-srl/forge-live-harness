@@ -1,0 +1,28 @@
+{
+  "marker": "lz-norm-mtoojryu",
+  "name": "[harness-test] lz-norm-mtoojryu",
+  "time": "2026-09-05T17:51:59.574Z",
+  "issues": [
+    {
+      "key": "WFH-2710",
+      "seed": {
+        "label": "apply owned",
+        "start": "2026-10-05",
+        "due": "2026-10-07",
+        "duration": 3
+      }
+    }
+  ],
+  "planId": "plan-test-mtoojtpt-084h5y",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtoojtpt-084h5y",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2710",
+      "deleted": true
+    }
+  ],
+  "integrityPassed": true
+}

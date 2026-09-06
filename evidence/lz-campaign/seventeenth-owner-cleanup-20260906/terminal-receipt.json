@@ -1,0 +1,27 @@
+{
+  "testProcess": {
+    "pid": 15310,
+    "status": "terminal",
+    "exitCode": 0,
+    "time": "2026-09-06T15:36:54.814388+00:00"
+  },
+  "journalPath": "evidence/lz-campaign/seventeenth-owner-cleanup-20260906/artifacts/scenarios-lz-ppm-campaign--fda99-act-normal-UI-plan-deletion-chromium/seventeenth-owner-cleanup.json",
+  "journalBytes": 72100720,
+  "journalSha256": "c28022b08883715b8e55f1bd81af45a3207d0d30db3590fd2911e3c8a17e7e5c",
+  "recordedCompleted": true,
+  "recordedSourceAndPreferencesPreserved": true,
+  "recordedPlanDeleted": true,
+  "directMutationCalls": 40,
+  "uiPlanDeleteDispatches": 1,
+  "ownerCancelReplies": 39,
+  "physicalProbes": 5,
+  "noTraceArchives": true,
+  "jwtLikeCredentialCount": 0,
+  "ownedPidsAbsent": [
+    15309,
+    15310,
+    15328
+  ],
+  "independentFinalAcceptance": "Root/Erdos grade pending; this is tester terminal evidence, not self-grade",
+  "personallyViewed": "original-three-after-owner-cleanup.png; original plans45/54/5300 with0drafts and owned deletion toast"
+}

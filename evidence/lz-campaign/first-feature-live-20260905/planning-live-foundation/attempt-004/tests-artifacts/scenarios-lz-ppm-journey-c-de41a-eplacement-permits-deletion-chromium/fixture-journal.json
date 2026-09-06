@@ -1,0 +1,36 @@
+{
+  "marker": "lz-norm-mtoph3jh",
+  "name": "[harness-test] lz-norm-mtoph3jh",
+  "time": "2026-09-05T18:17:54.221Z",
+  "issues": [
+    {
+      "key": "WFH-2731",
+      "seed": {
+        "label": "history",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtoph5si-aycfrl",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtoph5si-aycfrl",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2731",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2731",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "integrityPassed": true
+}

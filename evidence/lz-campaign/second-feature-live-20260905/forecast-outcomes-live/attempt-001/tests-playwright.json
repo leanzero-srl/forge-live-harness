@@ -1,0 +1,175 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/forecast-outcomes-live/attempt-001/tests-artifacts",
+      "--grep",
+      "forecast outcomes:"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/forecast-outcomes-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/forecast-outcomes-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 16080,
+                  "error": {
+                    "message": "TypeError: Cannot read properties of undefined (reading 'map')",
+                    "stack": "TypeError: Cannot read properties of undefined (reading 'map')\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:18:418\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:16:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+                      "column": 418,
+                      "line": 18
+                    },
+                    "snippet": "  16 |  await withOwnedSchedule(page,info,[seed],async(f)=>{\n  17 |   const key=f.keys[0],jiraBefore=await f.read(key);let frame=await table(page,f.name),panel=await outcomes(frame);const journal:any={key,observations:[],predictions:[]};const persist=()=>fs.writeFileSync(info.outputPath('forecast-outcome-journal.json'),JSON.stringify(journal,null,2));\n> 18 |   for(const label of ['Prospective forecast one','Overlapping forecast two']){await panel.getByLabel('Forecast name').fill(label);const pending=result(page,'captureForecast',f.planId);await panel.getByRole('button',{name:'Record working forecast',exact:true}).click();const snapshot=(await pending).snapshot;journal.predictions.push(snapshot);persist();expect(snapshot.forecast.runs).toBe(300);expect(snapshot.issues.map((r:any)=>r.key)).toEqual([key]);const predicted=snapshot.forecast.scopes.find((s:any)=>s.id==='plan');for(const p of ['p50','p80','p90'])expect(predicted[p]).toMatch(/^2026-10-\\d{2}$/);await expect(panel.locator('article').filter({has:panel.getByRole('heading',{name:label,exact:true})})).toContainText(`Recorded P50 ${predicted.p50} · P80 ${predicted.p80} · P90 ${predicted.p90}`);}\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                  ^\n  19 |   const first=panel.locator('article').filter({has:panel.getByRole('heading',{name:'Prospective forecast one',exact:true})});await first.getByRole('button',{name:'Check outcome',exact:true}).click();await expect(first.locator('[data-testid=\"forecast-outcome\"]')).toContainText('still open or has been reopened');await expect(panel.locator('[data-testid=\"forecast-hit-rate\"]')).toContainText('Insufficient observed outcomes');\n  20 |   const initial=await read(key);expect(initial.statusCategory).not.toBe('done');journal.observations.push(initial);const transitions=await get(`/rest/api/3/issue/${key}/transitions?expand=transitions.fields`);const done=transitions.transitions.find((t:any)=>t.to.statusCategory.key==='done');expect(done,'real fixture workflow must expose a Done transition').toBeTruthy();journal.transition={id:done.id,name:done.name,to:done.to.name};persist();await post(`/rest/api/3/issue/${key}/transitions`,{transition:{id:done.id}});const resolved=await read(key);journal.observations.push(resolved);persist();expect(resolved.statusCategory).toBe('done');expect(resolved.resolutionId,'positive completion fixture requires a real Jira resolution, never inferred Done').toBeTruthy();expect(Date.parse(resolved.resolutionDate)).toBeGreaterThan(Math.max(...journal.predictions.map((s:any)=>Date.parse(s.takenAt))));\n  21 |   const actualDate=new Date(resolved.resolutionDate).toISOString().slice(0,10);for(const label of ['Prospective forecast one','Overlapping forecast two']){const item=panel.locator('article').filter({has:panel.getByRole('heading',{name:label,exact:true})});await item.getByRole('button',{name:'Check outcome',exact:true}).click();await expect(item.locator('[data-testid=\"forecast-outcome\"]')).toContainText(`Observed Jira resolution completion ${actualDate} for 1 captured tasks. P80 hit.`);}"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+                        "column": 418,
+                        "line": 18
+                      },
+                      "message": "TypeError: Cannot read properties of undefined (reading 'map')\n\n  16 |  await withOwnedSchedule(page,info,[seed],async(f)=>{\n  17 |   const key=f.keys[0],jiraBefore=await f.read(key);let frame=await table(page,f.name),panel=await outcomes(frame);const journal:any={key,observations:[],predictions:[]};const persist=()=>fs.writeFileSync(info.outputPath('forecast-outcome-journal.json'),JSON.stringify(journal,null,2));\n> 18 |   for(const label of ['Prospective forecast one','Overlapping forecast two']){await panel.getByLabel('Forecast name').fill(label);const pending=result(page,'captureForecast',f.planId);await panel.getByRole('button',{name:'Record working forecast',exact:true}).click();const snapshot=(await pending).snapshot;journal.predictions.push(snapshot);persist();expect(snapshot.forecast.runs).toBe(300);expect(snapshot.issues.map((r:any)=>r.key)).toEqual([key]);const predicted=snapshot.forecast.scopes.find((s:any)=>s.id==='plan');for(const p of ['p50','p80','p90'])expect(predicted[p]).toMatch(/^2026-10-\\d{2}$/);await expect(panel.locator('article').filter({has:panel.getByRole('heading',{name:label,exact:true})})).toContainText(`Recorded P50 ${predicted.p50} · P80 ${predicted.p80} · P90 ${predicted.p90}`);}\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                  ^\n  19 |   const first=panel.locator('article').filter({has:panel.getByRole('heading',{name:'Prospective forecast one',exact:true})});await first.getByRole('button',{name:'Check outcome',exact:true}).click();await expect(first.locator('[data-testid=\"forecast-outcome\"]')).toContainText('still open or has been reopened');await expect(panel.locator('[data-testid=\"forecast-hit-rate\"]')).toContainText('Insufficient observed outcomes');\n  20 |   const initial=await read(key);expect(initial.statusCategory).not.toBe('done');journal.observations.push(initial);const transitions=await get(`/rest/api/3/issue/${key}/transitions?expand=transitions.fields`);const done=transitions.transitions.find((t:any)=>t.to.statusCategory.key==='done');expect(done,'real fixture workflow must expose a Done transition').toBeTruthy();journal.transition={id:done.id,name:done.name,to:done.to.name};persist();await post(`/rest/api/3/issue/${key}/transitions`,{transition:{id:done.id}});const resolved=await read(key);journal.observations.push(resolved);persist();expect(resolved.statusCategory).toBe('done');expect(resolved.resolutionId,'positive completion fixture requires a real Jira resolution, never inferred Done').toBeTruthy();expect(Date.parse(resolved.resolutionDate)).toBeGreaterThan(Math.max(...journal.predictions.map((s:any)=>Date.parse(s.takenAt))));\n  21 |   const actualDate=new Date(resolved.resolutionDate).toISOString().slice(0,10);for(const label of ['Prospective forecast one','Overlapping forecast two']){const item=panel.locator('article').filter({has:panel.getByRole('heading',{name:label,exact:true})});await item.getByRole('button',{name:'Check outcome',exact:true}).click();await expect(item.locator('[data-testid=\"forecast-outcome\"]')).toContainText(`Observed Jira resolution completion ${actualDate} for 1 captured tasks. P80 hit.`);}\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:18:418\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:16:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2782 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtore2ez\",\"name\":\"[harness-test] lz-norm-mtore2ez\",\"time\":\"2026-09-05T19:11:32.027Z\",\"issues\":[{\"key\":\"WFH-2782\",\"seed\":{\"label\":\"forecast observed work\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtore46v-wg7t2d\",\"cleanup\":[{\"plan\":\"plan-test-mtore46v-wg7t2d\",\"deleted\":true},{\"issue\":\"WFH-2782\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2782\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2782\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T19:11:30.950Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/forecast-outcomes-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-772e0-verlapping-forecast-samples-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+                    "column": 418,
+                    "line": 18
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1c46f194d8e38e7275dc-ebade6d23c3a413a6196",
+          "file": "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+          "line": 15,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T19:11:30.651Z",
+    "duration": 16890.268,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

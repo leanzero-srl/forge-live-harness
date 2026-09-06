@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "ordinaryPasses": [
+    "campaign: actual UI version and preserved LZPT source"
+  ],
+  "expectedDefectWitnesses": [],
+  "reasons": [],
+  "testCount": 1,
+  "process": {
+    "exit": 0
+  }
+}

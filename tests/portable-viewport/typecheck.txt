@@ -1,0 +1,7 @@
+
+> forge-live-harness@0.1.0 typecheck
+> tsc --noEmit
+
+scenarios/sentinel-vault/my-work-page.spec.ts(80,27): error TS7006: Parameter 't' implicitly has an 'any' type.
+scenarios/sentinel-vault/steward-console-deep.spec.ts(31,140): error TS2339: Property 'replace' does not exist on type 'string | number'.
+  Property 'replace' does not exist on type 'number'.

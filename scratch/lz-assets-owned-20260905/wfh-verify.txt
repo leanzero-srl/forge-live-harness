@@ -1,0 +1,97 @@
+{
+  "command": "verify",
+  "fields": {
+    "multiple": {
+      "id": "customfield_11148",
+      "contextId": "11761",
+      "projects": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11761",
+            "projectId": "10001"
+          }
+        ]
+      },
+      "types": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11761",
+            "issueTypeId": "10004"
+          }
+        ]
+      },
+      "configured": true,
+      "config": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      }
+    },
+    "gate": {
+      "id": "customfield_11149",
+      "contextId": "11762",
+      "projects": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11762",
+            "projectId": "10001"
+          }
+        ]
+      },
+      "types": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11762",
+            "issueTypeId": "10004"
+          }
+        ]
+      },
+      "configured": true,
+      "config": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      }
+    }
+  },
+  "issue": "WFH-2820",
+  "ready": true
+}

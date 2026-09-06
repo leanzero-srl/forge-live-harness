@@ -1,0 +1,15 @@
+{
+  "runId": "fourth-feature-live-20260906",
+  "manifest": "/Users/mihaiperdum/Projects/forge-live-harness/config/lz-campaign/manifest.json",
+  "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
+  "uiVersion": "4.58.578",
+  "forgeVersion": "6.4.0",
+  "appCommit": "310aa121",
+  "sourceExtension": null,
+  "features": [
+    "integrated-final-boundaries-live",
+    "large-history-report-live"
+  ],
+  "maxMinutes": 240,
+  "sourceFingerprint": "2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104"
+}

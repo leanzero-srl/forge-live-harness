@@ -1,0 +1,46 @@
+✔ actual successful source-return receipt admits exact active78/full134 baseline (34.044333ms)
+✔ wrong receipt, unknown prior call, mutation, failed integrity or changed manifest refuse (2284.838084ms)
+✔ acknowledgement rejects changed owner identities, names, checkpoint skips and failed states (0.557916ms)
+✔ original full physical history must remain exactly present as new immutable artifacts appear (1.145417ms)
+✔ serial continuation requires each fresh status and physical probe before next RPC and reaches publication (1.251583ms)
+✔ unknown/timeout/refused/malformed/failed response stops after one actual call without retry (0.391834ms)
+✔ fresh saved-state mismatch or physical corruption stops before second advance (0.236792ms)
+✔ finite checkpoint budget stops acknowledged active job without manufactured publication (0.235583ms)
+✔ UI route allows only exact-owned presence bookkeeping alongside real reads (0.104ms)
+✔ every exact UI read is an actual registered resolver; lookalike prefixes never authorize mutation (3.402667ms)
+✔ forecast progress refuses counter skips, duplicated run acknowledgements, premature fold and altered run budget (0.454959ms)
+✔ physical immutable run headers exactly match acknowledged run count, with no future header (0.949083ms)
+✔ all18 pure producer blobs equal exact old6.23 source fence (212.933958ms)
+✔ complete old40 seeded runs reproduce exact full retained input and every forecast field (5711.352084ms)
+✔ full published summary/hash and all106 every-field pages use original producer and independent source (64.751417ms)
+✔ any full forecast/provenance/manifest/row mutation or stale source verification fails (246.59ms)
+✔ combined calls never exceed budget at boundary; every cost held61s after response (8.104791ms)
+✔ parallel callers cannot both spend unavailable units and wait for active response (7.551666ms)
+✔ failed/unknown call is charged and never repeated (1.137542ms)
+✔ cancelled pending wait sends no operation and does not change active outcome (5.835458ms)
+✔ unknown/unbounded costs refuse before send; cancellation does not poison queue release (1.563584ms)
+✔ receipt failure preserves original operation error (0.183209ms)
+✔ falsy thrown values remain failures rather than successful undefined returns (0.198208ms)
+✔ close during held start receipt prevents operation dispatch (0.524083ms)
+✔ close cancels finite budget timer promptly (2.948375ms)
+✔ default monotonic pacing does not release costs when wall clock jumps (0.207708ms)
+✔ invalid response or regressing snapshot clock closes admission without releasing activecost (0.268917ms)
+{"mode":"clock-injected fullremaining model","remainingAdvances":57,"allPageReads":318,"elapsedMs":2375600,"maxReservedUnits":3000,"windowMs":61000,"guaranteesUnpacedProductThroughput":false}
+✔ complete remaining57 modeled cycles plus full admission/106pages/export/reopen/finalaudits stay within shared3000/61s (27.925291ms)
+✔ actual48 immutable responses plus47 saved statuses/probes and laterstrong126 admit all40 priorruns (22.586375ms)
+✔ wrong receipt digest, missing real ack, forged40 counter and erased saved proof refuse (470.059333ms)
+✔ wrong checkpoint/publication/changed original header or unknown read response cannot seed recovery (167.502375ms)
+✔ seeded continuation completes required remaining stages without rerunning anyforecast (63.013041ms)
+✔ unknown/refused/mismatched savedstatus or physical failure sends no second advance (57.201209ms)
+✔ exact measured stage lookup uses previousack, sourcechecks conservative768 and unknownfallback768 (7.593417ms)
+✔ UI charge remains active after route.continue until matching realrequestfinished (10.693958ms)
+✔ requestfailed is recorded as failed terminal; unknown timeout errors without retry (0.827208ms)
+✔ bounded hook transport sends exactlyonce without redirect/retry; preserves raw refusal and malformedbody (11.547083ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7082.500958

@@ -1,0 +1,179 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-capacity.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/capacity-live-numeric/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/capacity-live-numeric/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/capacity-live-numeric/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-capacity.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-capacity.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 24109,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:14:288\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:29:174\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:19:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts",
+                      "column": 288,
+                      "line": 14
+                    },
+                    "snippet": "  12 | function envelope(request:any){try{let raw=request.postDataBuffer();if(!raw)return null;if(raw[0]===31&&raw[1]===139)raw=gunzipSync(raw);return JSON.parse(raw.toString());}catch{return null;}}\n  13 | const rpcBody=async(r:any)=>(await r.json()).data?.invokeExtension?.response?.body;\n> 14 | function response(page:any,name:string){return page.waitForResponse((r:any)=>envelope(r.request())?.variables?.input?.payload?.call?.functionKey===name,{timeout:120000}).then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const body=await rpcBody(r);expect(body.success).toBe(true);return body;});}\n     |                                                                                                                                                                                                                                                                                                ^\n  15 | async function date(frame:any,within:any,label:string,value:string){await within.getByRole('button',{name:label,exact:true}).click();const cal=frame.locator('.lz-datepicker');const[year,month]=value.split('-').map(Number);const months=['January','February','March','April','May','June','July','August','September','October','November','December'];for(let n=0;n<30;n++){const title=(await cal.locator('span').first().textContent()).trim();if(title===`${months[month-1]} ${year}`)break;const[m,y]=title.split(' ');await cal.getByRole('button',{name:Number(y)*12+months.indexOf(m)<year*12+month-1?'Next month':'Previous month',exact:true}).click();}await expect(cal.locator('span').first()).toHaveText(`${months[month-1]} ${year}`);await cal.getByRole('button',{name:value,exact:true}).click();}\n  16 |\n  17 | test('capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads',async({page},info)=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts",
+                        "column": 288,
+                        "line": 14
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  12 | function envelope(request:any){try{let raw=request.postDataBuffer();if(!raw)return null;if(raw[0]===31&&raw[1]===139)raw=gunzipSync(raw);return JSON.parse(raw.toString());}catch{return null;}}\n  13 | const rpcBody=async(r:any)=>(await r.json()).data?.invokeExtension?.response?.body;\n> 14 | function response(page:any,name:string){return page.waitForResponse((r:any)=>envelope(r.request())?.variables?.input?.payload?.call?.functionKey===name,{timeout:120000}).then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const body=await rpcBody(r);expect(body.success).toBe(true);return body;});}\n     |                                                                                                                                                                                                                                                                                                ^\n  15 | async function date(frame:any,within:any,label:string,value:string){await within.getByRole('button',{name:label,exact:true}).click();const cal=frame.locator('.lz-datepicker');const[year,month]=value.split('-').map(Number);const months=['January','February','March','April','May','June','July','August','September','October','November','December'];for(let n=0;n<30;n++){const title=(await cal.locator('span').first().textContent()).trim();if(title===`${months[month-1]} ${year}`)break;const[m,y]=title.split(' ');await cal.getByRole('button',{name:Number(y)*12+months.indexOf(m)<year*12+month-1?'Next month':'Previous month',exact:true}).click();}await expect(cal.locator('span').first()).toHaveText(`${months[month-1]} ${year}`);await cal.getByRole('button',{name:value,exact:true}).click();}\n  16 |\n  17 | test('capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads',async({page},info)=>{\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:14:288\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:29:174\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts:19:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2778 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2777 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2776 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtor9c77\",\"name\":\"[harness-test] lz-norm-mtor9c77\",\"time\":\"2026-09-05T19:07:51.427Z\",\"issues\":[{\"key\":\"WFH-2776\",\"seed\":{\"label\":\"shared20h\",\"duration\":10,\"start\":\"2026-09-07\",\"due\":\"2026-09-18\"}},{\"key\":\"WFH-2777\",\"seed\":{\"label\":\"extra12h\",\"duration\":3,\"start\":\"2026-09-09\",\"due\":\"2026-09-11\"}},{\"key\":\"WFH-2778\",\"seed\":{\"label\":\"other40h\",\"duration\":5,\"start\":\"2026-09-07\",\"due\":\"2026-09-11\"}}],\"planId\":\"plan-test-mtor9g7n-krs4ss\",\"cleanup\":[{\"plan\":\"plan-test-mtor9g7n-krs4ss\",\"deleted\":true},{\"issue\":\"WFH-2778\",\"deleted\":true},{\"issue\":\"WFH-2777\",\"deleted\":true},{\"issue\":\"WFH-2776\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2776\",\"start\":\"2026-09-07\",\"due\":\"2026-09-18\",\"duration\":10},{\"key\":\"WFH-2777\",\"start\":\"2026-09-09\",\"due\":\"2026-09-11\",\"duration\":3}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2776\",\"start\":\"2026-09-07\",\"due\":\"2026-09-18\",\"duration\":10},{\"key\":\"WFH-2777\",\"start\":\"2026-09-09\",\"due\":\"2026-09-11\",\"duration\":3}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T19:07:50.263Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/capacity-live-numeric/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-97c70--produce-exact-weekly-loads-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-capacity.spec.ts",
+                    "column": 288,
+                    "line": 14
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c3897cc63e62763431ba-d0361f35bbecbc6b1309",
+          "file": "scenarios/lz-ppm/journey-campaign-capacity.spec.ts",
+          "line": 17,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T19:07:49.966Z",
+    "duration": 46958.949,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

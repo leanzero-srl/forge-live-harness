@@ -1,0 +1,14 @@
+2026-09-05T22:58:28.604062+00:00 NOW capacity-concurrent-save-live NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T22:58:28.606960+00:00 ACTIVE capacity-concurrent-save-live child 44785
+2026-09-05T22:58:37.068900+00:00 ACTIVE capacity-concurrent-save-live child 44988
+2026-09-05T22:58:52.134352+00:00 ACTIVE capacity-concurrent-save-live child 44988
+2026-09-05T22:58:53.427403+00:00 ACTIVE capacity-concurrent-save-live child 45374
+2026-09-05T22:58:59.103739+00:00 RESULT capacity-concurrent-save-live passed
+2026-09-05T22:58:59.109989+00:00 NOW sponsor-report-numeric-live NEXT estimated 2026-09-05T22:59:29.607757+00:00 SWEEP estimated 2026-09-05T23:01:01.101102+00:00
+2026-09-05T22:58:59.112033+00:00 ACTIVE sponsor-report-numeric-live child 45414
+2026-09-05T22:59:05.036106+00:00 ACTIVE sponsor-report-numeric-live child 45549
+2026-09-05T22:59:20.186563+00:00 ACTIVE sponsor-report-numeric-live child 45549
+2026-09-05T22:59:35.292209+00:00 ACTIVE sponsor-report-numeric-live child 45549
+2026-09-05T22:59:50.408351+00:00 ACTIVE sponsor-report-numeric-live child 45549
+2026-09-05T22:59:52.456155+00:00 ACTIVE sponsor-report-numeric-live child 46241
+2026-09-05T22:59:53.232591+00:00 RESULT sponsor-report-numeric-live integrity_failed

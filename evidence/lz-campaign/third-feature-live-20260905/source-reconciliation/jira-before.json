@@ -1,0 +1,497 @@
+[
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21778",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21778",
+    "key": "LZPT-186",
+    "fields": {
+      "summary": "E1 · Linear Chain",
+      "duedate": "2026-06-17",
+      "customfield_10015": "2026-05-14"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21779",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21779",
+    "key": "LZPT-187",
+    "fields": {
+      "summary": "E2 · Diamond",
+      "duedate": null,
+      "customfield_10015": null
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21780",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21780",
+    "key": "LZPT-188",
+    "fields": {
+      "summary": "E3 · Cross-links & Cycle",
+      "duedate": "2026-10-12",
+      "customfield_10015": "2026-04-27"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21781",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21781",
+    "key": "LZPT-189",
+    "fields": {
+      "summary": "E4 · Rollup & Subtasks",
+      "duedate": null,
+      "customfield_10015": null
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21782",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21782",
+    "key": "LZPT-190",
+    "fields": {
+      "summary": "E5 · Edge Dates",
+      "duedate": null,
+      "customfield_10015": null
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21783",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21783",
+    "key": "LZPT-191",
+    "fields": {
+      "summary": "E6 · Wide Parent",
+      "duedate": "2026-06-08",
+      "customfield_10015": "2026-05-05"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21784",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21784",
+    "key": "LZPT-192",
+    "fields": {
+      "summary": "CHAIN-1 kickoff",
+      "duedate": "2026-05-08",
+      "customfield_10015": "2026-05-04"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21785",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21785",
+    "key": "LZPT-193",
+    "fields": {
+      "summary": "CHAIN-2 build",
+      "duedate": "2026-05-15",
+      "customfield_10015": "2026-05-11"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21786",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21786",
+    "key": "LZPT-194",
+    "fields": {
+      "summary": "CHAIN-3 test",
+      "duedate": "2026-05-22",
+      "customfield_10015": "2026-05-18"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21787",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21787",
+    "key": "LZPT-195",
+    "fields": {
+      "summary": "CHAIN-4 review",
+      "duedate": "2026-05-29",
+      "customfield_10015": "2026-05-25"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21788",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21788",
+    "key": "LZPT-196",
+    "fields": {
+      "summary": "CHAIN-5 release",
+      "duedate": "2026-06-05",
+      "customfield_10015": "2026-06-01"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21789",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21789",
+    "key": "LZPT-197",
+    "fields": {
+      "summary": "DIAMOND-A source",
+      "duedate": "2026-05-06",
+      "customfield_10015": "2026-05-04"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21790",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21790",
+    "key": "LZPT-198",
+    "fields": {
+      "summary": "DIAMOND-B1 left",
+      "duedate": "2026-05-12",
+      "customfield_10015": "2026-05-07"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21791",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21791",
+    "key": "LZPT-199",
+    "fields": {
+      "summary": "DIAMOND-B2 right (longer)",
+      "duedate": "2026-05-14",
+      "customfield_10015": "2026-05-07"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21792",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21792",
+    "key": "LZPT-200",
+    "fields": {
+      "summary": "DIAMOND-C sink",
+      "duedate": "2026-05-19",
+      "customfield_10015": "2026-05-15"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21793",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21793",
+    "key": "LZPT-201",
+    "fields": {
+      "summary": "CROSS-A gate",
+      "duedate": "2026-05-01",
+      "customfield_10015": "2026-04-27"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21794",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21794",
+    "key": "LZPT-202",
+    "fields": {
+      "summary": "CYCLE-X",
+      "duedate": "2026-05-06",
+      "customfield_10015": "2026-05-04"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21795",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21795",
+    "key": "LZPT-203",
+    "fields": {
+      "summary": "CYCLE-Y",
+      "duedate": "2026-05-11",
+      "customfield_10015": "2026-05-07"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21796",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21796",
+    "key": "LZPT-204",
+    "fields": {
+      "summary": "CYCLE-Z",
+      "duedate": "2026-05-14",
+      "customfield_10015": "2026-05-12"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21797",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21797",
+    "key": "LZPT-205",
+    "fields": {
+      "summary": "FANOUT-src",
+      "duedate": "2026-10-02",
+      "customfield_10015": "2026-09-23"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21798",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21798",
+    "key": "LZPT-206",
+    "fields": {
+      "summary": "FANOUT-1",
+      "duedate": "2026-10-07",
+      "customfield_10015": "2026-10-05"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21799",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21799",
+    "key": "LZPT-207",
+    "fields": {
+      "summary": "FANOUT-2",
+      "duedate": "2026-10-08",
+      "customfield_10015": "2026-10-05"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21800",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21800",
+    "key": "LZPT-208",
+    "fields": {
+      "summary": "FANOUT-3",
+      "duedate": "2026-10-09",
+      "customfield_10015": "2026-10-05"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21801",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21801",
+    "key": "LZPT-209",
+    "fields": {
+      "summary": "FANOUT-4",
+      "duedate": "2026-10-12",
+      "customfield_10015": "2026-10-05"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21802",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21802",
+    "key": "LZPT-210",
+    "fields": {
+      "summary": "ROLLUP story-1",
+      "duedate": null,
+      "customfield_10015": null
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21803",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21803",
+    "key": "LZPT-211",
+    "fields": {
+      "summary": "ROLLUP story-2",
+      "duedate": null,
+      "customfield_10015": null
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21804",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21804",
+    "key": "LZPT-212",
+    "fields": {
+      "summary": "EDGE unscheduled (no dates)",
+      "duedate": null,
+      "customfield_10015": null
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21805",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21805",
+    "key": "LZPT-213",
+    "fields": {
+      "summary": "EDGE milestone (0-day)",
+      "duedate": "2026-05-15",
+      "customfield_10015": "2026-05-15"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21806",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21806",
+    "key": "LZPT-214",
+    "fields": {
+      "summary": "EDGE invalid start-after-due",
+      "duedate": "2026-05-12",
+      "customfield_10015": "2026-05-20"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21807",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21807",
+    "key": "LZPT-215",
+    "fields": {
+      "summary": "EDGE long-run",
+      "duedate": "2026-06-30",
+      "customfield_10015": "2026-05-04"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21808",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21808",
+    "key": "LZPT-216",
+    "fields": {
+      "summary": "EDGE weekend-span",
+      "duedate": "2026-05-12",
+      "customfield_10015": "2026-05-08"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21809",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21809",
+    "key": "LZPT-217",
+    "fields": {
+      "summary": "WIDE-01",
+      "duedate": "2026-05-04",
+      "customfield_10015": "2026-05-04"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21810",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21810",
+    "key": "LZPT-218",
+    "fields": {
+      "summary": "WIDE-02",
+      "duedate": "2026-05-05",
+      "customfield_10015": "2026-05-05"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21811",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21811",
+    "key": "LZPT-219",
+    "fields": {
+      "summary": "WIDE-03",
+      "duedate": "2026-05-06",
+      "customfield_10015": "2026-05-06"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21812",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21812",
+    "key": "LZPT-220",
+    "fields": {
+      "summary": "WIDE-04",
+      "duedate": "2026-05-07",
+      "customfield_10015": "2026-05-07"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21813",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21813",
+    "key": "LZPT-221",
+    "fields": {
+      "summary": "WIDE-05",
+      "duedate": "2026-05-08",
+      "customfield_10015": "2026-05-08"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21814",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21814",
+    "key": "LZPT-222",
+    "fields": {
+      "summary": "WIDE-06",
+      "duedate": "2026-05-11",
+      "customfield_10015": "2026-05-11"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21815",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21815",
+    "key": "LZPT-223",
+    "fields": {
+      "summary": "WIDE-07",
+      "duedate": "2026-05-12",
+      "customfield_10015": "2026-05-12"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21816",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21816",
+    "key": "LZPT-224",
+    "fields": {
+      "summary": "WIDE-08",
+      "duedate": "2026-05-13",
+      "customfield_10015": "2026-05-13"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21817",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21817",
+    "key": "LZPT-225",
+    "fields": {
+      "summary": "WIDE-09",
+      "duedate": "2026-05-14",
+      "customfield_10015": "2026-05-14"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21818",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21818",
+    "key": "LZPT-226",
+    "fields": {
+      "summary": "WIDE-10",
+      "duedate": "2026-05-15",
+      "customfield_10015": "2026-05-15"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21819",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21819",
+    "key": "LZPT-227",
+    "fields": {
+      "summary": "ROLLUP sub-1a",
+      "duedate": "2026-05-06",
+      "customfield_10015": "2026-05-04"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21820",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21820",
+    "key": "LZPT-228",
+    "fields": {
+      "summary": "ROLLUP sub-1b",
+      "duedate": "2026-05-11",
+      "customfield_10015": "2026-05-07"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21821",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21821",
+    "key": "LZPT-229",
+    "fields": {
+      "summary": "ROLLUP sub-2a",
+      "duedate": "2026-05-08",
+      "customfield_10015": "2026-05-05"
+    }
+  },
+  {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "21822",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/21822",
+    "key": "LZPT-230",
+    "fields": {
+      "summary": "ROLLUP sub-2b",
+      "duedate": "2026-05-15",
+      "customfield_10015": "2026-05-11"
+    }
+  }
+]

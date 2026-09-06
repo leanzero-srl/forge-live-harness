@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "stamp": "2ebb90449a1c0c0c006c595714fdc3253584522d6d15af1867cf501f8d69a485",
+  "startedAt": "2026-09-05T19:09:40.121121+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/baseline-visible-ghost/attempt-001",
+  "uiVersion": "4.58.575",
+  "forgeVersion": "6.2.0",
+  "appCommit": "dd3fa3b2",
+  "instrumentHash": "66eeb39bf148297a5017e39164d907d085cbbf7773dfb2936d46834c7e2213fb",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "baseline: shortened live task visibly exposes retained original ghost span after reopen"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T19:10:39.385347+00:00",
+  "elapsedSeconds": 59.26322108297609
+}

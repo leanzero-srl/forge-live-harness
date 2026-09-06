@@ -1,0 +1,55 @@
+{
+  "marker": "lz-norm-mtop8f43",
+  "name": "[harness-test] lz-norm-mtop8f43",
+  "time": "2026-09-05T18:11:09.315Z",
+  "issues": [
+    {
+      "key": "WFH-2720",
+      "seed": {
+        "label": "predecessor",
+        "start": "2026-10-05",
+        "due": "2026-10-06",
+        "duration": 2
+      }
+    },
+    {
+      "key": "WFH-2721",
+      "seed": {
+        "label": "declared zero",
+        "start": "2026-10-07",
+        "due": "2026-10-07",
+        "duration": 0
+      }
+    }
+  ],
+  "planId": "plan-test-mtop8k1x-sj0hox",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtop8k1x-sj0hox",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2721",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2720",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2720",
+      "start": "2026-10-05",
+      "due": "2026-10-06",
+      "duration": 2
+    },
+    {
+      "key": "WFH-2721",
+      "start": "2026-10-07",
+      "due": "2026-10-07",
+      "duration": 0
+    }
+  ],
+  "integrityPassed": true
+}

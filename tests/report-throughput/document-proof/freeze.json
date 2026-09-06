@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "sourceCommit": "e7868f20ae0a7262b424a12d3d29c78ec515a2c0",
+  "sourceFiles": [
+    {
+      "path": "scenarios/lz-ppm/report-document-identity.mjs",
+      "sha256": "2cd060408e45ce59b67237ce0b7788d0f9e34a5cebc8030449b1d76e0d248857"
+    },
+    {
+      "path": "scenarios/lz-ppm/report-departure.ts",
+      "sha256": "ceda5140e8d62110e9690cbecbace10287f1895ed35ba07280653556bf1dfc8c"
+    },
+    {
+      "path": "tests/report-throughput/departure.test.mjs",
+      "sha256": "7ac312e221a64048d718b20f790d1ba7a1c5e5698c75a4de605fc4ba3d2ab8da"
+    },
+    {
+      "path": "tests/report-throughput/document-identity.test.mjs",
+      "sha256": "8f55e39ac79df7a01905959432cf30851fc89a85ea0529173747b37c0bffef82"
+    }
+  ],
+  "controls": {
+    "tests": 64,
+    "passed": 64,
+    "failed": 0,
+    "exit": 0
+  },
+  "discovery": {
+    "tests": 7,
+    "files": 4,
+    "exit": 0,
+    "dummyEnvironmentOnly": true
+  },
+  "typecheck": {
+    "exit": 2,
+    "knownUnchangedSentinelErrors": 2,
+    "newAuthoredErrors": 0
+  },
+  "localBrowser": {
+    "actualChrome": true,
+    "ephemeralHeadlessContext": true,
+    "everyRequestLocallyFulfilled": true,
+    "siteCalls": 0,
+    "authenticationUsed": false
+  },
+  "evidence": [
+    {
+      "path": "tests/report-throughput/document-proof/controlled-reload-original-red.txt",
+      "sha256": "3eb5399b51b0c1eb68d3c044f81e3ef936ad6f2e2875401ebee426d8e7f3b0f0"
+    },
+    {
+      "path": "tests/report-throughput/document-proof/controls-green.txt",
+      "sha256": "3eee47580300a345a7fab3056ecd4b601c708c7bc94f64d205efa41d6509d4ac"
+    },
+    {
+      "path": "tests/report-throughput/document-proof/discovery-green.txt",
+      "sha256": "8331d0b806392aaed28e3f46083560a4481d1858669f6ddb5b9cbaabee2b5f0f"
+    },
+    {
+      "path": "tests/report-throughput/document-proof/discovery-missing-env-red.txt",
+      "sha256": "80cdada44bbed733078eace1964e4ee27ddfe6e42b1dd00acd0742bbc7473dfb"
+    },
+    {
+      "path": "tests/report-throughput/document-proof/host-history-original-red.txt",
+      "sha256": "07ad5e5d9c67715c484f46f8352a248ea0c584d72a5c37a59d3b4fc7b6040a48"
+    },
+    {
+      "path": "tests/report-throughput/document-proof/real-reload-original-red.txt",
+      "sha256": "d1cd9af8ca5cc2615fcef7c472cafeb468e4cf857069fab5f2e724a1f44f7003"
+    },
+    {
+      "path": "tests/report-throughput/document-proof/typecheck.txt",
+      "sha256": "04acf2ef48f378b69b58c1a971ff8ba5a6b43e766b0a22bf632ebd5d5165c316"
+    }
+  ],
+  "limits": [
+    "Live eighteenth original event timing is not reconstructed: adapter did not persist lastBlank/framenavigated.",
+    "Actual local browser proves same-document host history emits framenavigated and reproduces archived handler refusal.",
+    "Actual local browser proves post-load delayed iframe mount reproduces archived immediate nonplan refusal.",
+    "No shared transfer, app/runtime change, deployment or tenant validation was performed."
+  ]
+}

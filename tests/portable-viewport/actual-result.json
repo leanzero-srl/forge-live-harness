@@ -1,0 +1,852 @@
+{
+  "version": "152.0.7977.76",
+  "out": "/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-portable-viewport-green-HWs9wI",
+  "cases": [
+    {
+      "name": "1100-trace",
+      "stages": [
+        {
+          "name": "before",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 730,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1100,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539087,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1100,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-default-document-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 730,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1100,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539087,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1100,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-matching-editor-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 730,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1100,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539087,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1100,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-concurrent-resize-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 730,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1100,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539087,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1100,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1440-trace",
+      "stages": [
+        {
+          "name": "before",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1070,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1440,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539092,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1440,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-default-document-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1070,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1440,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539092,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1440,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-matching-editor-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1070,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1440,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539092,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1440,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-concurrent-resize-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1070,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1440,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539092,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1440,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1600-trace",
+      "stages": [
+        {
+          "name": "before",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1230,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1600,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539097,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1600,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-default-document-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1230,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1600,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539097,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1600,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-matching-editor-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1230,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1600,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539097,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1600,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-concurrent-resize-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1230,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1600,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539097,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1600,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1100-video",
+      "stages": [
+        {
+          "name": "before",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 730,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1100,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539102,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1100,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-default-document-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 730,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1100,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539102,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1100,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-matching-editor-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 730,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1100,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539102,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1100,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-concurrent-resize-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 730,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1100,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539102,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1100,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1440-video",
+      "stages": [
+        {
+          "name": "before",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1070,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1440,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539107,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1440,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-default-document-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1070,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1440,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539107,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1440,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-matching-editor-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1070,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1440,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539107,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1440,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-concurrent-resize-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1070,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1440,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539107,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1440,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1600-video",
+      "stages": [
+        {
+          "name": "before",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1230,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1600,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539112,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1600,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-default-document-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1230,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1600,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539112,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1600,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-matching-editor-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1230,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1600,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539112,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1600,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        },
+        {
+          "name": "after-concurrent-resize-close",
+          "clicks": [
+            {
+              "id": "left",
+              "x": 60,
+              "y": 288
+            },
+            {
+              "id": "right",
+              "x": 1230,
+              "y": 288
+            },
+            {
+              "id": "bottom",
+              "x": 260,
+              "y": 989
+            }
+          ],
+          "inner": {
+            "width": 1600,
+            "height": 1100
+          },
+          "bounds": {
+            "windowId": 635539112,
+            "bounds": {
+              "left": 22,
+              "top": 22,
+              "width": 1600,
+              "height": 1187,
+              "windowState": "normal"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

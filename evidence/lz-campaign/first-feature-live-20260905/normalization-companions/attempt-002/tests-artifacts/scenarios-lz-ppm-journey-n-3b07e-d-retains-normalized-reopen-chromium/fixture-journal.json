@@ -1,0 +1,36 @@
+{
+  "marker": "lz-norm-mtopac8t",
+  "name": "[harness-test] lz-norm-mtopac8t",
+  "time": "2026-09-05T18:12:38.909Z",
+  "issues": [
+    {
+      "key": "WFH-2725",
+      "seed": {
+        "label": "apply owned",
+        "start": "2026-10-05",
+        "due": "2026-10-07",
+        "duration": 3
+      }
+    }
+  ],
+  "planId": "plan-test-mtopae6h-wthb2n",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtopae6h-wthb2n",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2725",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2725",
+      "start": "2026-10-05",
+      "due": "2026-10-07",
+      "duration": 3
+    }
+  ],
+  "integrityPassed": true
+}

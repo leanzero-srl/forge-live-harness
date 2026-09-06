@@ -1,0 +1,23 @@
+{
+  "accepted": true,
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-06T00:53:52.601Z",
+      "state": "rejected-before-capture"
+    },
+    {
+      "number": 2,
+      "startedAt": "2026-09-06T00:53:52.681Z",
+      "state": "accepted",
+      "content": {
+        "width": 640,
+        "height": 480,
+        "colors": 363,
+        "differentPixels": 54185,
+        "nonblank": true
+      }
+    }
+  ],
+  "previousImage": "/Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-pre.png.previous-5731fbea-c9bf-463f-88f6-4bea3bdc45ce.png"
+}

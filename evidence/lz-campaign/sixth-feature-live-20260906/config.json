@@ -1,0 +1,18 @@
+{
+  "runId": "sixth-feature-live-20260906",
+  "manifest": "/Users/mihaiperdum/Projects/forge-live-harness/config/lz-campaign/final-ordinary-manifest.json",
+  "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
+  "uiVersion": "4.58.579",
+  "forgeVersion": "6.5.0",
+  "appCommit": "dce1d154f89a4684b3332508cf9de26fa3a1c746",
+  "sourceExtension": null,
+  "features": [
+    "capacity-concurrent-save-live",
+    "sponsor-report-numeric-live",
+    "integrated-remaining-boundaries-live",
+    "large-history-report-live",
+    "capacity-size-limit-live"
+  ],
+  "maxMinutes": 180,
+  "sourceFingerprint": "2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104"
+}

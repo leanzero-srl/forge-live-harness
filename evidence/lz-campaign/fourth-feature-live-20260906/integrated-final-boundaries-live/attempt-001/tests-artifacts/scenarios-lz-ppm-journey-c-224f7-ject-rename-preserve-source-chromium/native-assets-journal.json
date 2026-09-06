@@ -1,0 +1,19 @@
+{
+  "name": "[harness-test] Native Assets mtow9u89",
+  "fixtureKeys": [
+    "JT-74",
+    "JT-75",
+    "JT-76"
+  ],
+  "original": {
+    "id": "411",
+    "key": "CRT-411",
+    "label": "[harness-test] LZ Assets owned 20260905 A",
+    "type": "43"
+  },
+  "renameRequested": true,
+  "planId": "plan-test-mtow9ubn-xshgxc",
+  "renameRefreshVerified": true,
+  "originalLabelRestored": true,
+  "cleanup": true
+}

@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "stamp": "05345f84846a232c7c6b7d479aeee85f2d68ee94252fca1057876e584e90a8c2",
+  "startedAt": "2026-09-06T01:28:08.860138+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/ninth-simulation-contract-live-20260906/private-simulation-live/attempt-001",
+  "uiVersion": "4.58.580",
+  "forgeVersion": "6.6.0",
+  "appCommit": "7f48d1e0af6c40f43c005db5f22a9964b5453d50",
+  "instrumentHash": "d06bc939353d9c9a865c4c75af7be743e352ccf262cc84be28240ca79453b501",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T01:29:42.201172+00:00",
+  "elapsedSeconds": 93.34482012499939
+}

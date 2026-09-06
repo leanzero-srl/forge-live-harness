@@ -1,0 +1,28 @@
+{
+  "time": "2026-09-06T08:47:22.134203+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.19.0",
+  "appCommit": "85c9971d58cc19aa62c7d388ad4303718f2d4ecf",
+  "uiVersion": "4.58.585",
+  "harnessCommit": "547667a11023554c37721df45684e1cff8a26205",
+  "instrumentHash": "b9a120e0c32407c16ac3c8c7a4321d629f71370fd1bad3f321ec377ff68512b9",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "advance",
+  "scope": "exact retained seventeenth job checkpoint78 one advance only then stop; no cleanup",
+  "expectedPreferencesVersion": 65,
+  "originalJournalSha256": "3b47f1e7f32779ebf2ad9671d09aaded34e6052e2236e875e43166bcbb296617",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-recover-seventeenth-large.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "retained large advance:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-retained-analysis-diagnostic-20260906/artifacts"
+  ]
+}

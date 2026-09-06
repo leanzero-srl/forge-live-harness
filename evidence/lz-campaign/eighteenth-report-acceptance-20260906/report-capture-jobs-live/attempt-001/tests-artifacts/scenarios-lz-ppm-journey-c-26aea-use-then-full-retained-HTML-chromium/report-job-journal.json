@@ -1,0 +1,88 @@
+{
+  "kind": "resume",
+  "events": [
+    {
+      "stage": "holding-real-advance-response",
+      "time": "2026-09-06T15:49:44.736Z",
+      "request": {
+        "planId": "plan-test-mtpzm3tg-kkqxi5",
+        "jobId": "c7d819cd-6617-4fd7-8300-306dbb8f53c2",
+        "expectedCheckpoint": 0
+      }
+    },
+    {
+      "stage": "real-advance-response-ready",
+      "time": "2026-09-06T15:49:44.736Z",
+      "httpStatus": 200,
+      "body": {
+        "success": true,
+        "job": {
+          "id": "c7d819cd-6617-4fd7-8300-306dbb8f53c2",
+          "requestId": "1abcab40-62e9-40f8-877a-5fa8dee86108",
+          "name": "Bounded resume report",
+          "createdAt": "2026-09-06T15:49:43.184Z",
+          "expiresAt": "2026-09-07T15:49:43.184Z",
+          "checkpoint": 1,
+          "state": "active",
+          "stageLabel": "Confirming the complete plan",
+          "completedUnits": 1,
+          "totalUnits": 16,
+          "cleanupDone": false,
+          "reportId": "ce793979-81a8-4e89-890e-5ada9d8cbce7"
+        }
+      },
+      "errors": null
+    },
+    {
+      "stage": "real-advance-response-delivered",
+      "time": "2026-09-06T15:49:45.647Z"
+    }
+  ],
+  "originalJira": {
+    "key": "WFH-2978",
+    "start": "2026-10-05",
+    "due": "2026-10-09",
+    "duration": 5
+  },
+  "probeObservations": [
+    {
+      "planId": "plan-test-mtpzm3tg-kkqxi5",
+      "jobId": "c7d819cd-6617-4fd7-8300-306dbb8f53c2",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 1,
+      "cleanupDone": false,
+      "privateManifestHash": "5ac1e88cf8080674e6b0e33285b9b7fd5343a72e2cc5ac7c99c5ebbe7fbe3831",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "7f1277878bd63eb9a2b0543781337409c3953298180cf7672422176c5cb8d3f1",
+          "expectedHash": "0c1a9674dabeeccd2a76dfe90ecdc8d928823a8ecf03c2abe4a83692dd8e4ee2",
+          "present": true,
+          "actualHash": "0c1a9674dabeeccd2a76dfe90ecdc8d928823a8ecf03c2abe4a83692dd8e4ee2"
+        }
+      ],
+      "publicArtifacts": []
+    }
+  ],
+  "beforeCleanup": {
+    "planId": "plan-test-mtpzm3tg-kkqxi5",
+    "jobId": "c7d819cd-6617-4fd7-8300-306dbb8f53c2",
+    "registryMember": true,
+    "state": "active",
+    "checkpoint": 1,
+    "cleanupDone": false,
+    "privateManifestHash": "5ac1e88cf8080674e6b0e33285b9b7fd5343a72e2cc5ac7c99c5ebbe7fbe3831",
+    "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privateArtifacts": [
+      {
+        "keyHash": "7f1277878bd63eb9a2b0543781337409c3953298180cf7672422176c5cb8d3f1",
+        "expectedHash": "0c1a9674dabeeccd2a76dfe90ecdc8d928823a8ecf03c2abe4a83692dd8e4ee2",
+        "present": true,
+        "actualHash": "0c1a9674dabeeccd2a76dfe90ecdc8d928823a8ecf03c2abe4a83692dd8e4ee2"
+      }
+    ],
+    "publicArtifacts": []
+  },
+  "bodyError": "Error: Owned report departure failed; exact fixture retained"
+}

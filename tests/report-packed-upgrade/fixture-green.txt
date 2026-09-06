@@ -1,0 +1,13 @@
+✔ two measured complete native fixture responses admit exact read-only source (0.660209ms)
+✔ changed native value, field omission, dates, status, parent, issue identity or ownership refuses (2.920417ms)
+✔ exact6.17 encoded artifact identities admit with physical hash equality (0.191333ms)
+✔ legacy raw, missing, extra pack, foreign job and changed physical content cannot masquerade as old encoded layout (0.40125ms)
+✔ frozen actual6.17 producer grades complete supplied indexed row hash and every forecast field (5.899292ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.935209

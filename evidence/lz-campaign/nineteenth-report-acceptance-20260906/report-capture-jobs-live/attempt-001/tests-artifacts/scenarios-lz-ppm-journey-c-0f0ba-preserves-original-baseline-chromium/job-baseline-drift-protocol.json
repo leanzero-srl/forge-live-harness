@@ -1,0 +1,877 @@
+{
+  "planId": "plan-test-mtq20ph7-mawd1b",
+  "job": {
+    "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+    "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+    "name": "Bounded baseline-drift report",
+    "createdAt": "2026-09-06T16:57:03.640Z",
+    "expiresAt": "2026-09-07T16:57:03.640Z",
+    "checkpoint": 26,
+    "state": "active",
+    "stageLabel": "Retaining the selected baseline",
+    "completedUnits": 26,
+    "totalUnits": 27,
+    "cleanupDone": false,
+    "forecastRuns": {
+      "completed": 300,
+      "total": 300
+    },
+    "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+  },
+  "report": null,
+  "error": {
+    "name": "AssertionError",
+    "message": "advanceSponsorReportCapture: The active baseline changed during report capture."
+  },
+  "begin": {
+    "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+    "name": "Bounded baseline-drift report",
+    "inputHash": "e2debc1a22ffe6a647a02bd01af049b86002bc486ff9280d1e960e564dcd44db",
+    "at": 1788713822522
+  },
+  "events": [
+    {
+      "type": "request",
+      "key": "captureSponsorReport",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788713822522
+    },
+    {
+      "type": "response",
+      "key": "captureSponsorReport",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 0,
+        "state": "active",
+        "stageLabel": "Checking the plan",
+        "completedUnits": 0,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713823779,
+      "elapsedMs": 1257
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 0,
+      "at": 1788713823780
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713826008,
+      "elapsedMs": 2228
+    },
+    {
+      "type": "request",
+      "key": "getSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": null,
+      "at": 1788713829072
+    },
+    {
+      "type": "response",
+      "key": "getSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713829775,
+      "elapsedMs": 703
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 1,
+      "at": 1788713829776
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 2,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 2,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713831184,
+      "elapsedMs": 1408
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 2,
+      "at": 1788713831184
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 3,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 3,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713832564,
+      "elapsedMs": 1380
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 3,
+      "at": 1788713832564
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 4,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713833603,
+      "elapsedMs": 1039
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 4,
+      "at": 1788713833604
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 5,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 5,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713834747,
+      "elapsedMs": 1143
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 5,
+      "at": 1788713834747
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 6,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 6,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713835914,
+      "elapsedMs": 1167
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 6,
+      "at": 1788713835915
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 7,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 7,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 0,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713837120,
+      "elapsedMs": 1205
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 7,
+      "at": 1788713837121
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 8,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 8,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 25,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713838567,
+      "elapsedMs": 1446
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 8,
+      "at": 1788713838567
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 9,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 9,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 50,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713839754,
+      "elapsedMs": 1187
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 9,
+      "at": 1788713839754
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 10,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 10,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 75,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713840962,
+      "elapsedMs": 1208
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 10,
+      "at": 1788713840963
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 11,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 11,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 100,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713842165,
+      "elapsedMs": 1202
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 11,
+      "at": 1788713842167
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 12,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 12,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 125,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713843367,
+      "elapsedMs": 1200
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 12,
+      "at": 1788713843367
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 13,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 13,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 150,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713844590,
+      "elapsedMs": 1223
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 13,
+      "at": 1788713844591
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 14,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 14,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 175,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713845891,
+      "elapsedMs": 1300
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 14,
+      "at": 1788713845893
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 15,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 15,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 200,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713847167,
+      "elapsedMs": 1274
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 15,
+      "at": 1788713847169
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 16,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 16,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 225,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713848400,
+      "elapsedMs": 1231
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 16,
+      "at": 1788713848400
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 17,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 17,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 250,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713849564,
+      "elapsedMs": 1164
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 17,
+      "at": 1788713849565
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 18,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 18,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 275,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713850759,
+      "elapsedMs": 1194
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 18,
+      "at": 1788713850760
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 19,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 19,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713852022,
+      "elapsedMs": 1262
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 19,
+      "at": 1788713852022
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 20,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 20,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713853218,
+      "elapsedMs": 1196
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 20,
+      "at": 1788713853218
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 21,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 21,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713854470,
+      "elapsedMs": 1252
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 21,
+      "at": 1788713854470
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 22,
+        "state": "active",
+        "stageLabel": "Verifying forecast results",
+        "completedUnits": 22,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713855900,
+      "elapsedMs": 1430
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 22,
+      "at": 1788713855901
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 23,
+        "state": "active",
+        "stageLabel": "Preparing forecast results",
+        "completedUnits": 23,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713857062,
+      "elapsedMs": 1161
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 23,
+      "at": 1788713857063
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 24,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 24,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713858133,
+      "elapsedMs": 1070
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 24,
+      "at": 1788713858134
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 25,
+        "state": "active",
+        "stageLabel": "Preparing forecast results",
+        "completedUnits": 25,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713859281,
+      "elapsedMs": 1147
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 25,
+      "at": 1788713859282
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+        "requestId": "a58daa23-d889-4415-b491-b0f229b6b8a5",
+        "name": "Bounded baseline-drift report",
+        "createdAt": "2026-09-06T16:57:03.640Z",
+        "expiresAt": "2026-09-07T16:57:03.640Z",
+        "checkpoint": 26,
+        "state": "active",
+        "stageLabel": "Retaining the selected baseline",
+        "completedUnits": 26,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "c1970fdf-6cb6-444b-be12-34c6040ede2b"
+      },
+      "at": 1788713860567,
+      "elapsedMs": 1285
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "ce9d4837-c508-4973-bcb0-3d5658c8ddd4",
+      "expectedCheckpoint": 26,
+      "at": 1788713860568
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+
+Running 1 test using 1 worker
+
+
+(node:57916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source
+  1) [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source 
+
+    ProfileReservationError: PROFILE_UNAVAILABLE: Unclean or unknown prior reservation; explicit recovery required
+
+       at forge/profile-reservation.ts:117
+
+      115 |   if (acquired.kind !== "acquired" || !acquired.lockFile || !acquired.holderPid || acquired.profile !== profile) {
+      116 |     intentional = true; holder.stdin.end();
+    > 117 |     throw new ProfileReservationError(acquired.kind === "busy" ? "PROFILE_BUSY" : "PROFILE_UNAVAILABLE", acquired.reason ?? "Unknown reservation response");
+          |           ^
+      118 |   }
+      119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError("HOLDER_LOST", "Reservation is no longer held"); };
+      120 |   const finish = async (command: "clean-close" | "cancel-unlaunched") => {
+        at reserveProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:117:11)
+        at launchReservedProfile (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:149:23)
+        at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:50:23)
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source 

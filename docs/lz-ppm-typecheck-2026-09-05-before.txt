@@ -1,0 +1,24 @@
+
+> forge-live-harness@0.1.0 typecheck
+> tsc --noEmit
+
+expected/lz-ppm-cascade.ts(13,35): error TS7006: Parameter 'issues' implicitly has an 'any' type.
+expected/lz-ppm-cascade.ts(13,43): error TS7006: Parameter 'editKey' implicitly has an 'any' type.
+expected/lz-ppm-cascade.ts(13,52): error TS7006: Parameter 'changes' implicitly has an 'any' type.
+expected/lz-ppm-cascade.ts(16,19): error TS18047: 'fe' is possibly 'null'.
+expected/lz-ppm-cascade.ts(17,5): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{}'.
+expected/lz-ppm-cascade.ts(23,36): error TS7006: Parameter 'fx' implicitly has an 'any' type.
+scenarios/_support/oracle.spec.ts(9,14): error TS2339: Property 'A' does not exist on type '{}'.
+scenarios/_support/oracle.spec.ts(10,14): error TS2339: Property 'B' does not exist on type '{}'.
+scenarios/lz-ppm/journey-campaign-capacity.spec.ts(38,119): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+scenarios/lz-ppm/journey-campaign-capacity.spec.ts(38,223): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+scenarios/lz-ppm/journey-campaign-capacity.spec.ts(38,327): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+scenarios/lz-ppm/journey-campaign-report.spec.ts(22,207): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+scenarios/lz-ppm/journey-perf-render-lzpp.spec.ts(39,13): error TS18047: 'frame' is possibly 'null'.
+scenarios/sentinel-vault/my-work-page.spec.ts(71,27): error TS7006: Parameter 't' implicitly has an 'any' type.
+scenarios/sentinel-vault/steward-console-deep.spec.ts(31,140): error TS2339: Property 'replace' does not exist on type 'string | number'.
+  Property 'replace' does not exist on type 'number'.

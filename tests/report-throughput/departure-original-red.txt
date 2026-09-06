@@ -1,0 +1,33 @@
+✖ actual usePresence original unload abort is reproduced; held real leave must finish before navigation (6.858958ms)
+✔ actual usePresence wrong/missing/failed/HTTP/body/errors/duplicate leaves poison session without repeated Back or blank (138.321958ms)
+✔ actual adapter identifies Capacity/list/blank without PlanView leave and refuses unknown surface (0.550833ms)
+✔ no opt-in keeps exact default calls/results/errors and disposal removes listeners (0.198042ms)
+✔ literal intentional mounted lifecycle reload and all preexisting seven expectations remain unchanged (58.751291ms)
+✔ observed intentional document reload cannot reuse a previous mount presence beat (1.229792ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 651.649917
+
+✖ failing tests:
+
+test at tests/report-throughput/departure.test.mjs:33:1
+✖ actual usePresence original unload abort is reproduced; held real leave must finish before navigation (6.858958ms)
+  AssertionError [ERR_ASSERTION]: Navigation must not happen while owned leave remains held
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///private/tmp/lz-report-product-throughput-20260906/tests/report-throughput/departure.test.mjs:35:173)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

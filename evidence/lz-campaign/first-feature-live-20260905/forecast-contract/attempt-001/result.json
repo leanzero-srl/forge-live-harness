@@ -1,0 +1,56 @@
+{
+  "status": "failed",
+  "stamp": "245810f82ebbea65bc6355ca2e1b79a0c619a85b55e3d24bb9802c99fd5a20b8",
+  "startedAt": "2026-09-05T17:48:19.655487+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-001",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "appCommit": "8bc4dc07",
+  "instrumentHash": "eb4ca16013430d3eeaef37ecd9d2717cfc21f0c851085e04f4fc696dbd17b817",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [
+        "dashboard: schedule confidence computes ordered distributions and replaces presets honestly",
+        "dashboard: a background refresh cannot turn the card into false certainty",
+        "dashboard: invalid or missing source dates make the untouched LZPT forecast unavailable"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"LZPT: milestone hit probabilities are computed, ordered and consistent\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 4,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T17:50:20.891910+00:00",
+  "elapsedSeconds": 121.23616366699571
+}

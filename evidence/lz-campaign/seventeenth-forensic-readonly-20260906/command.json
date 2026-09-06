@@ -1,0 +1,28 @@
+{
+  "time": "2026-09-06T09:56:05.190481+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.22.0",
+  "appCommit": "29b35bfc1554bd56a74626fa0c40653f2e540382",
+  "uiVersion": "4.58.585",
+  "harnessCommit": "22826c7f5c229fafaa4594752dc6f61f4a156719",
+  "instrumentHash": "35f0021d4519443f07d5b92122e25628d13b36a5ae0ca4ba7e950a65f154b047",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "readonly",
+  "scope": "fixed context then analyze GET only; no advance, lease acquisition, cleanup, publication or retry",
+  "expectedPreferencesVersion": 65,
+  "previousDiagnosticSha256": "ccca27e6370abbc8fc784b31e5561e0c72464c79c64b59bd574ecaa768846752",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-forensic.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "forensic readonly:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-forensic-readonly-20260906/artifacts"
+  ]
+}

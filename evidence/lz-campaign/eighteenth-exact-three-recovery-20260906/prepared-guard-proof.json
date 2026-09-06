@@ -1,0 +1,15 @@
+{
+  "verifiedAt": "2026-09-06T16:20:37.056488+00:00",
+  "expectedRefusalExitCode": 1,
+  "reason": "Dispatch is not authorized",
+  "startedMarkerAbsent": true,
+  "process": {
+    "status": "prepared",
+    "pid": null,
+    "supervisorPid": null,
+    "startedAt": null,
+    "exitCode": null
+  },
+  "browserStarted": false,
+  "supervisorSha256": "ec8c50686e355a2fa792f4a0c7ffbf2f06d0bdd7201821201871051aab9c5e81"
+}

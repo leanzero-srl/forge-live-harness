@@ -1,0 +1,106 @@
+{
+  "marker": "lz-norm-mtp2z8gd",
+  "name": "[harness-test] lz-norm-mtp2z8gd",
+  "time": "2026-09-06T00:35:55.406Z",
+  "issues": [
+    {
+      "key": "WFH-2875",
+      "seed": {
+        "label": "simulation predecessor",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2876",
+      "seed": {
+        "label": "simulation successor",
+        "duration": 5,
+        "start": "2026-03-09",
+        "due": "2026-03-13"
+      }
+    },
+    {
+      "key": "WFH-2877",
+      "seed": {
+        "label": "simulation independent December",
+        "duration": 5,
+        "start": "2026-12-07",
+        "due": "2026-12-11"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp2zdca-1rwdp7",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp2zdca-1rwdp7",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2877",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2876",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2875",
+      "deleted": true
+    }
+  ],
+  "linkPairs": [
+    {
+      "from": "WFH-2875",
+      "to": "WFH-2876"
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2875",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2876",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2877",
+      "start": "2026-12-07",
+      "due": "2026-12-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2875",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2876",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2877",
+        "start": "2026-12-07",
+        "due": "2026-12-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "bodyError": {
+    "name": "AssertionError",
+    "message": "Screenshot subject became blocked before capture\n\nfalse !== true\n"
+  },
+  "integrityPassed": true
+}

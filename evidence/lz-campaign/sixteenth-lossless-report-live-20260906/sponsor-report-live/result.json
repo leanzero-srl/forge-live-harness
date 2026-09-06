@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "stamp": "08c44cd5f85ff686a38ffd30ca131b56fc3dbd1ffc1f27699cca6004808f1f68",
+  "startedAt": "2026-09-06T06:32:25.102988+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-lossless-report-live-20260906/sponsor-report-live/attempt-001",
+  "uiVersion": "4.58.585",
+  "forgeVersion": "6.16.0",
+  "appCommit": "689574d4eb068111e75f93b8449b421642fd0ad1",
+  "instrumentHash": "73f4d83215147a1f029bc0ad245ee5c4fdff082c66259d3a333f76e116e11332",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T06:33:58.744376+00:00",
+  "elapsedSeconds": 93.64138329101843
+}

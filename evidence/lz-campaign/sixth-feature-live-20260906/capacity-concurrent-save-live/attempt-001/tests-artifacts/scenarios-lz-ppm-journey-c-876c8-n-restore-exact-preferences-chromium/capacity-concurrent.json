@@ -1,0 +1,134 @@
+{
+  "startedAt": "2026-09-05T22:58:37.940Z",
+  "limitation": "Two concurrent real resolver requests from the same authenticated user; this does not prove a second identity or force server scheduling.",
+  "steps": [
+    {
+      "name": "fresh-winner-read",
+      "read": 1,
+      "response": {
+        "success": true,
+        "version": 33,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "name": "fresh-winner-read",
+      "read": 2,
+      "response": {
+        "success": true,
+        "version": 33,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    }
+  ],
+  "preferences": {
+    "initialized": true,
+    "original": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "lastOwned": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "version": 34,
+    "pending": null,
+    "restored": true,
+    "history": [
+      {
+        "name": "admitted",
+        "time": "2026-09-05T22:58:43.356Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-05T22:58:43.707Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-05T22:58:44.291Z"
+      },
+      {
+        "name": "restore-intent",
+        "time": "2026-09-05T22:58:51.870Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-05T22:58:52.266Z"
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-05T22:58:52.464Z",
+        "read": 1,
+        "version": 34
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-05T22:58:52.683Z",
+        "read": 2,
+        "version": 34
+      },
+      {
+        "name": "restored",
+        "time": "2026-09-05T22:58:52.683Z"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    {
+      "selectedPlanIds": [
+        "plan-msq9dg8l-gz6mz1"
+      ],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  ],
+  "outcomes": [
+    {
+      "index": 0,
+      "status": "fulfilled",
+      "response": {
+        "success": true,
+        "version": 33,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      }
+    },
+    {
+      "index": 1,
+      "status": "fulfilled",
+      "response": {
+        "success": false,
+        "error": "Capacity settings changed in another view. Reload before saving."
+      }
+    }
+  ],
+  "reopened": {
+    "success": true,
+    "version": 33,
+    "settings": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  },
+  "singleWinnerVerified": true,
+  "exactOriginalRestored": true
+}

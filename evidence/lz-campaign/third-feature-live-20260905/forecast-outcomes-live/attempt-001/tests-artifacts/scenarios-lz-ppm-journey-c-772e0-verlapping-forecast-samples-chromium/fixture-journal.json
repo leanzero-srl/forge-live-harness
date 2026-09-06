@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtou6u60",
+  "name": "[harness-test] lz-norm-mtou6u60",
+  "time": "2026-09-05T20:29:53.592Z",
+  "issues": [
+    {
+      "key": "WFH-2791",
+      "seed": {
+        "label": "forecast observed work",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtou6w65-st4zxh",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtou6w65-st4zxh",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2791",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2791",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2791",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

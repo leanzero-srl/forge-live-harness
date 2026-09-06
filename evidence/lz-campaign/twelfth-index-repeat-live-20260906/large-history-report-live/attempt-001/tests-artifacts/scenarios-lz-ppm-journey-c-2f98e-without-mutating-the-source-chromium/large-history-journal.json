@@ -1,0 +1,670 @@
+{
+  "name": "[harness-test] Large retained capture mtp6trou",
+  "population": {
+    "count": 5300,
+    "sha256": "9c737a31682ae8b23b1ce14cba71397ebd8bcaff0400893f7b62a633fc02b078",
+    "first": {
+      "id": "15413",
+      "key": "LZPP-1",
+      "summary": "PERF-00001",
+      "labels": [],
+      "start": "2026-01-05",
+      "due": "2026-01-06",
+      "duration": null
+    },
+    "last": {
+      "id": "20712",
+      "key": "LZPP-5300",
+      "summary": "PERF-05300",
+      "labels": [],
+      "start": "2026-04-14",
+      "due": "2026-04-19",
+      "duration": null
+    },
+    "pages": [
+      {
+        "number": 1,
+        "count": 100,
+        "first": "LZPP-1",
+        "last": "LZPP-100",
+        "elapsedMs": 400,
+        "returnedIsLast": false
+      },
+      {
+        "number": 2,
+        "count": 100,
+        "first": "LZPP-101",
+        "last": "LZPP-200",
+        "elapsedMs": 270,
+        "returnedIsLast": false
+      },
+      {
+        "number": 3,
+        "count": 100,
+        "first": "LZPP-201",
+        "last": "LZPP-300",
+        "elapsedMs": 251,
+        "returnedIsLast": false
+      },
+      {
+        "number": 4,
+        "count": 100,
+        "first": "LZPP-301",
+        "last": "LZPP-400",
+        "elapsedMs": 275,
+        "returnedIsLast": false
+      },
+      {
+        "number": 5,
+        "count": 100,
+        "first": "LZPP-401",
+        "last": "LZPP-500",
+        "elapsedMs": 353,
+        "returnedIsLast": false
+      },
+      {
+        "number": 6,
+        "count": 100,
+        "first": "LZPP-501",
+        "last": "LZPP-600",
+        "elapsedMs": 266,
+        "returnedIsLast": false
+      },
+      {
+        "number": 7,
+        "count": 100,
+        "first": "LZPP-601",
+        "last": "LZPP-700",
+        "elapsedMs": 430,
+        "returnedIsLast": false
+      },
+      {
+        "number": 8,
+        "count": 100,
+        "first": "LZPP-701",
+        "last": "LZPP-800",
+        "elapsedMs": 361,
+        "returnedIsLast": false
+      },
+      {
+        "number": 9,
+        "count": 100,
+        "first": "LZPP-801",
+        "last": "LZPP-900",
+        "elapsedMs": 352,
+        "returnedIsLast": false
+      },
+      {
+        "number": 10,
+        "count": 100,
+        "first": "LZPP-901",
+        "last": "LZPP-1000",
+        "elapsedMs": 337,
+        "returnedIsLast": false
+      },
+      {
+        "number": 11,
+        "count": 100,
+        "first": "LZPP-1001",
+        "last": "LZPP-1100",
+        "elapsedMs": 349,
+        "returnedIsLast": false
+      },
+      {
+        "number": 12,
+        "count": 100,
+        "first": "LZPP-1101",
+        "last": "LZPP-1200",
+        "elapsedMs": 274,
+        "returnedIsLast": false
+      },
+      {
+        "number": 13,
+        "count": 100,
+        "first": "LZPP-1201",
+        "last": "LZPP-1300",
+        "elapsedMs": 454,
+        "returnedIsLast": false
+      },
+      {
+        "number": 14,
+        "count": 100,
+        "first": "LZPP-1301",
+        "last": "LZPP-1400",
+        "elapsedMs": 233,
+        "returnedIsLast": false
+      },
+      {
+        "number": 15,
+        "count": 100,
+        "first": "LZPP-1401",
+        "last": "LZPP-1500",
+        "elapsedMs": 259,
+        "returnedIsLast": false
+      },
+      {
+        "number": 16,
+        "count": 100,
+        "first": "LZPP-1501",
+        "last": "LZPP-1600",
+        "elapsedMs": 234,
+        "returnedIsLast": false
+      },
+      {
+        "number": 17,
+        "count": 100,
+        "first": "LZPP-1601",
+        "last": "LZPP-1700",
+        "elapsedMs": 289,
+        "returnedIsLast": false
+      },
+      {
+        "number": 18,
+        "count": 100,
+        "first": "LZPP-1701",
+        "last": "LZPP-1800",
+        "elapsedMs": 267,
+        "returnedIsLast": false
+      },
+      {
+        "number": 19,
+        "count": 100,
+        "first": "LZPP-1801",
+        "last": "LZPP-1900",
+        "elapsedMs": 257,
+        "returnedIsLast": false
+      },
+      {
+        "number": 20,
+        "count": 100,
+        "first": "LZPP-1901",
+        "last": "LZPP-2000",
+        "elapsedMs": 312,
+        "returnedIsLast": false
+      },
+      {
+        "number": 21,
+        "count": 100,
+        "first": "LZPP-2001",
+        "last": "LZPP-2100",
+        "elapsedMs": 405,
+        "returnedIsLast": false
+      },
+      {
+        "number": 22,
+        "count": 100,
+        "first": "LZPP-2101",
+        "last": "LZPP-2200",
+        "elapsedMs": 240,
+        "returnedIsLast": false
+      },
+      {
+        "number": 23,
+        "count": 100,
+        "first": "LZPP-2201",
+        "last": "LZPP-2300",
+        "elapsedMs": 350,
+        "returnedIsLast": false
+      },
+      {
+        "number": 24,
+        "count": 100,
+        "first": "LZPP-2301",
+        "last": "LZPP-2400",
+        "elapsedMs": 367,
+        "returnedIsLast": false
+      },
+      {
+        "number": 25,
+        "count": 100,
+        "first": "LZPP-2401",
+        "last": "LZPP-2500",
+        "elapsedMs": 426,
+        "returnedIsLast": false
+      },
+      {
+        "number": 26,
+        "count": 100,
+        "first": "LZPP-2501",
+        "last": "LZPP-2600",
+        "elapsedMs": 357,
+        "returnedIsLast": false
+      },
+      {
+        "number": 27,
+        "count": 100,
+        "first": "LZPP-2601",
+        "last": "LZPP-2700",
+        "elapsedMs": 246,
+        "returnedIsLast": false
+      },
+      {
+        "number": 28,
+        "count": 100,
+        "first": "LZPP-2701",
+        "last": "LZPP-2800",
+        "elapsedMs": 274,
+        "returnedIsLast": false
+      },
+      {
+        "number": 29,
+        "count": 100,
+        "first": "LZPP-2801",
+        "last": "LZPP-2900",
+        "elapsedMs": 361,
+        "returnedIsLast": false
+      },
+      {
+        "number": 30,
+        "count": 100,
+        "first": "LZPP-2901",
+        "last": "LZPP-3000",
+        "elapsedMs": 349,
+        "returnedIsLast": false
+      },
+      {
+        "number": 31,
+        "count": 100,
+        "first": "LZPP-3001",
+        "last": "LZPP-3100",
+        "elapsedMs": 255,
+        "returnedIsLast": false
+      },
+      {
+        "number": 32,
+        "count": 100,
+        "first": "LZPP-3101",
+        "last": "LZPP-3200",
+        "elapsedMs": 275,
+        "returnedIsLast": false
+      },
+      {
+        "number": 33,
+        "count": 100,
+        "first": "LZPP-3201",
+        "last": "LZPP-3300",
+        "elapsedMs": 261,
+        "returnedIsLast": false
+      },
+      {
+        "number": 34,
+        "count": 100,
+        "first": "LZPP-3301",
+        "last": "LZPP-3400",
+        "elapsedMs": 270,
+        "returnedIsLast": false
+      },
+      {
+        "number": 35,
+        "count": 100,
+        "first": "LZPP-3401",
+        "last": "LZPP-3500",
+        "elapsedMs": 338,
+        "returnedIsLast": false
+      },
+      {
+        "number": 36,
+        "count": 100,
+        "first": "LZPP-3501",
+        "last": "LZPP-3600",
+        "elapsedMs": 394,
+        "returnedIsLast": false
+      },
+      {
+        "number": 37,
+        "count": 100,
+        "first": "LZPP-3601",
+        "last": "LZPP-3700",
+        "elapsedMs": 340,
+        "returnedIsLast": false
+      },
+      {
+        "number": 38,
+        "count": 100,
+        "first": "LZPP-3701",
+        "last": "LZPP-3800",
+        "elapsedMs": 348,
+        "returnedIsLast": false
+      },
+      {
+        "number": 39,
+        "count": 100,
+        "first": "LZPP-3801",
+        "last": "LZPP-3900",
+        "elapsedMs": 246,
+        "returnedIsLast": false
+      },
+      {
+        "number": 40,
+        "count": 100,
+        "first": "LZPP-3901",
+        "last": "LZPP-4000",
+        "elapsedMs": 403,
+        "returnedIsLast": false
+      },
+      {
+        "number": 41,
+        "count": 100,
+        "first": "LZPP-4001",
+        "last": "LZPP-4100",
+        "elapsedMs": 353,
+        "returnedIsLast": false
+      },
+      {
+        "number": 42,
+        "count": 100,
+        "first": "LZPP-4101",
+        "last": "LZPP-4200",
+        "elapsedMs": 337,
+        "returnedIsLast": false
+      },
+      {
+        "number": 43,
+        "count": 100,
+        "first": "LZPP-4201",
+        "last": "LZPP-4300",
+        "elapsedMs": 239,
+        "returnedIsLast": false
+      },
+      {
+        "number": 44,
+        "count": 100,
+        "first": "LZPP-4301",
+        "last": "LZPP-4400",
+        "elapsedMs": 246,
+        "returnedIsLast": false
+      },
+      {
+        "number": 45,
+        "count": 100,
+        "first": "LZPP-4401",
+        "last": "LZPP-4500",
+        "elapsedMs": 224,
+        "returnedIsLast": false
+      },
+      {
+        "number": 46,
+        "count": 100,
+        "first": "LZPP-4501",
+        "last": "LZPP-4600",
+        "elapsedMs": 218,
+        "returnedIsLast": false
+      },
+      {
+        "number": 47,
+        "count": 100,
+        "first": "LZPP-4601",
+        "last": "LZPP-4700",
+        "elapsedMs": 276,
+        "returnedIsLast": false
+      },
+      {
+        "number": 48,
+        "count": 100,
+        "first": "LZPP-4701",
+        "last": "LZPP-4800",
+        "elapsedMs": 252,
+        "returnedIsLast": false
+      },
+      {
+        "number": 49,
+        "count": 100,
+        "first": "LZPP-4801",
+        "last": "LZPP-4900",
+        "elapsedMs": 328,
+        "returnedIsLast": false
+      },
+      {
+        "number": 50,
+        "count": 100,
+        "first": "LZPP-4901",
+        "last": "LZPP-5000",
+        "elapsedMs": 238,
+        "returnedIsLast": false
+      },
+      {
+        "number": 51,
+        "count": 100,
+        "first": "LZPP-5001",
+        "last": "LZPP-5100",
+        "elapsedMs": 242,
+        "returnedIsLast": false
+      },
+      {
+        "number": 52,
+        "count": 100,
+        "first": "LZPP-5101",
+        "last": "LZPP-5200",
+        "elapsedMs": 324,
+        "returnedIsLast": false
+      },
+      {
+        "number": 53,
+        "count": 100,
+        "first": "LZPP-5201",
+        "last": "LZPP-5300",
+        "elapsedMs": 272,
+        "returnedIsLast": true
+      }
+    ],
+    "elapsedMs": 16989
+  },
+  "metrics": {
+    "indexMs": 34517,
+    "completeWorkingUiReadMs": 952,
+    "captureAndReadMs": 9186,
+    "snapshotBytes": 4085046
+  },
+  "planId": "plan-test-mtp6tsd5-ce5ar5",
+  "workingDurationCounts": {
+    "1": 597,
+    "2": 1363,
+    "3": 1352,
+    "4": 1379,
+    "5": 450,
+    "null": 159
+  },
+  "pristineCapture": {
+    "changes": [],
+    "workingChangeCount": 0
+  },
+  "snapshot": {
+    "id": "722a2791-2dbd-4d25-b88f-0113383d910e",
+    "hash": "4e787d05f5049c287636bf2fd4602c81fe5c8d724aa63390d0e5985b1bc73f40",
+    "count": 5300,
+    "terminalExpected": {
+      "key": "LZPP-5300",
+      "id": "20712",
+      "summary": "PERF-05300",
+      "statusCategory": "new",
+      "startDate": "2026-04-14",
+      "dueDate": "2026-04-19",
+      "duration": null,
+      "buffer": "No",
+      "parentKey": null,
+      "predecessors": [],
+      "successors": []
+    },
+    "lastExpected": [
+      {
+        "key": "LZPP-995",
+        "id": "16407",
+        "summary": "PERF-00995",
+        "statusCategory": "new",
+        "startDate": "2026-07-18",
+        "dueDate": "2026-07-23",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-996"
+        ],
+        "successors": [
+          "LZPP-595",
+          "LZPP-994"
+        ]
+      },
+      {
+        "key": "LZPP-996",
+        "id": "16408",
+        "summary": "PERF-00996",
+        "statusCategory": "new",
+        "startDate": "2026-07-19",
+        "dueDate": "2026-07-20",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-997"
+        ],
+        "successors": [
+          "LZPP-995"
+        ]
+      },
+      {
+        "key": "LZPP-997",
+        "id": "16409",
+        "summary": "PERF-00997",
+        "statusCategory": "new",
+        "startDate": "2026-07-20",
+        "dueDate": "2026-07-22",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-998"
+        ],
+        "successors": [
+          "LZPP-996"
+        ]
+      },
+      {
+        "key": "LZPP-998",
+        "id": "16410",
+        "summary": "PERF-00998",
+        "statusCategory": "new",
+        "startDate": "2026-07-21",
+        "dueDate": "2026-07-24",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-999"
+        ],
+        "successors": [
+          "LZPP-997"
+        ]
+      },
+      {
+        "key": "LZPP-999",
+        "id": "16411",
+        "summary": "PERF-00999",
+        "statusCategory": "new",
+        "startDate": "2026-07-22",
+        "dueDate": "2026-07-26",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-1000"
+        ],
+        "successors": [
+          "LZPP-998"
+        ]
+      }
+    ],
+    "lastSnapshot": [
+      {
+        "key": "LZPP-995",
+        "id": "16407",
+        "summary": "PERF-00995",
+        "statusCategory": "new",
+        "startDate": "2026-07-18",
+        "dueDate": "2026-07-23",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-996"
+        ],
+        "successors": [
+          "LZPP-595",
+          "LZPP-994"
+        ]
+      },
+      {
+        "key": "LZPP-996",
+        "id": "16408",
+        "summary": "PERF-00996",
+        "statusCategory": "new",
+        "startDate": "2026-07-19",
+        "dueDate": "2026-07-20",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-997"
+        ],
+        "successors": [
+          "LZPP-995"
+        ]
+      },
+      {
+        "key": "LZPP-997",
+        "id": "16409",
+        "summary": "PERF-00997",
+        "statusCategory": "new",
+        "startDate": "2026-07-20",
+        "dueDate": "2026-07-22",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-998"
+        ],
+        "successors": [
+          "LZPP-996"
+        ]
+      },
+      {
+        "key": "LZPP-998",
+        "id": "16410",
+        "summary": "PERF-00998",
+        "statusCategory": "new",
+        "startDate": "2026-07-21",
+        "dueDate": "2026-07-24",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-999"
+        ],
+        "successors": [
+          "LZPP-997"
+        ]
+      },
+      {
+        "key": "LZPP-999",
+        "id": "16411",
+        "summary": "PERF-00999",
+        "statusCategory": "new",
+        "startDate": "2026-07-22",
+        "dueDate": "2026-07-26",
+        "duration": null,
+        "buffer": "No",
+        "parentKey": null,
+        "predecessors": [
+          "LZPP-1000"
+        ],
+        "successors": [
+          "LZPP-998"
+        ]
+      }
+    ]
+  },
+  "bodyError": {
+    "name": "Error",
+    "message": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mundefined\u001b[39m"
+  },
+  "ownedPlanCleaned": true
+}

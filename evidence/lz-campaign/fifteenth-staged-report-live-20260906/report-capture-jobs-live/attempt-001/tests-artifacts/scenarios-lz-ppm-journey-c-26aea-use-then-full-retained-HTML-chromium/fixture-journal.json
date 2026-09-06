@@ -1,0 +1,47 @@
+{
+  "marker": "lz-norm-mtpcadr3",
+  "name": "[harness-test] lz-norm-mtpcadr3",
+  "time": "2026-09-06T04:56:32.031Z",
+  "issues": [
+    {
+      "key": "WFH-2908",
+      "seed": {
+        "label": "report job resume",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    }
+  ],
+  "planId": "plan-test-mtpcafiz-7euy3j",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtpcafiz-7euy3j",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2908",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2908",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [],
+    [
+      {
+        "key": "WFH-2908",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

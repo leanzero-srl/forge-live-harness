@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-exact-three-recovery-20260906/supervise.py", line 6, in <module>
+    assert binding['status']=='authorized', 'Dispatch is not authorized'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Dispatch is not authorized

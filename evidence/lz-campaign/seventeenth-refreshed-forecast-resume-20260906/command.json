@@ -1,0 +1,32 @@
+{
+  "time": "2026-09-06T13:57:37.486883+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.25.0",
+  "appCommit": "c49bf682d01d83ab53bdf06a2edf56e6bef96c3f",
+  "uiVersion": "4.58.587",
+  "harnessCommit": "37896442032853e565d5742288fa6ad66c1c0e2f",
+  "reviewedIsolatedCommit": "84dd2b5",
+  "instrumentHash": "1c0c111c6fd2913f0ef49d2ea7ed0c2372e0908999bd93260c4c9004fcb6d569",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "resume155",
+  "scope": "Same retained active155 job only; exactly28 remaining checkpoints and full106-page report/5300 fields/HTML/reopen; genuine current-user UI credential refresh; no cleanup/new capture/actual failure retry",
+  "expectedPreferencesVersion": 65,
+  "aggregateFailureJournalSha256": "7be7311c7d5369ccdf70bd9f9144c4ae44111814a7100a9df3a5d72b80afdf67",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "refreshed resume:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-refreshed-forecast-resume-20260906/artifacts"
+  ],
+  "authorizedAt": "2026-09-06T14:00:56.510329+00:00",
+  "rootReview": "84 owner/prior controls +19 independent ledger controls; a418eaca; actual source tuple unchanged",
+  "reviewedHarnessCommit": "37896442032853e565d5742288fa6ad66c1c0e2f"
+}

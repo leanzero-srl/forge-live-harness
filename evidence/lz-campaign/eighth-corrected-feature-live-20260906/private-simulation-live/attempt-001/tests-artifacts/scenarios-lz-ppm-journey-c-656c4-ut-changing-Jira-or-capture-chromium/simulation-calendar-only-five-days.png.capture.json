@@ -1,0 +1,22 @@
+{
+  "accepted": true,
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-06T01:14:12.899Z",
+      "state": "rejected-before-capture"
+    },
+    {
+      "number": 2,
+      "startedAt": "2026-09-06T01:14:12.980Z",
+      "state": "accepted",
+      "content": {
+        "width": 1190,
+        "height": 193,
+        "colors": 278,
+        "differentPixels": 12782,
+        "nonblank": true
+      }
+    }
+  ]
+}

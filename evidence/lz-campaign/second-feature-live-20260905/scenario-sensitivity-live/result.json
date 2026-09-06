@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "stamp": "b0dbdcb583ca3e52d08648a0a0c3d9f7334985f7d2a305332e54aef8712c7752",
+  "startedAt": "2026-09-05T19:08:42.772634+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/scenario-sensitivity-live/attempt-001",
+  "uiVersion": "4.58.575",
+  "forgeVersion": "6.2.0",
+  "appCommit": "dd3fa3b2",
+  "instrumentHash": "66eeb39bf148297a5017e39164d907d085cbbf7773dfb2936d46834c7e2213fb",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "sensitivity: real full-network counterfactual distinguishes early variability from causal finish movement",
+        "scenario: saved calendar and scope alternatives preserve original and working schedules and compare actual forecasts"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 2,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T19:09:40.113609+00:00",
+  "elapsedSeconds": 57.34000399999786
+}

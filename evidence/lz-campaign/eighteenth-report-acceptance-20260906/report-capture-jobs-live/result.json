@@ -1,0 +1,59 @@
+{
+  "status": "integrity_failed",
+  "stamp": "9f37b942d53fe37cfca4702c88843edc88289218eba258a4b5bcf318db2bcec1",
+  "startedAt": "2026-09-06T15:49:12.420290+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001",
+  "uiVersion": "4.58.588",
+  "forgeVersion": "6.26.0",
+  "appCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "instrumentHash": "c3585358703e57417324982e77b77fb3ce723616814abe979b76e811884aac73",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [
+        "report jobs: changed active baseline during pause refuses publication and preserves original baseline"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML\"}",
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"report jobs: cancellation during held real advance removes staged keys and refuses stale advance\"}",
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"report jobs: changed owned source during pause refuses publication and cleans exact staging\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 4,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-identity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"campaign: actual UI version and preserved LZPT source\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T15:53:07.378519+00:00",
+  "elapsedSeconds": 234.95830604201183
+}

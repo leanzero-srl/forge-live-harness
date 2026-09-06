@@ -1,0 +1,54 @@
+{
+  "probeId": "b94e406a-d526-40b2-943b-9c05ff20050a",
+  "planId": "harness-history-b94e406a-d526-40b2-943b-9c05ff20050a",
+  "keys": [
+    "p:harness-history-b94e406a-d526-40b2-943b-9c05ff20050a:bl",
+    "p:harness-history-b94e406a-d526-40b2-943b-9c05ff20050a:history:deleted:probe"
+  ],
+  "checks": {
+    "acquiredRealEntityLease": true,
+    "guardedMixedCommitReadBack": true,
+    "replacementLeaseReadBack": true,
+    "staleCommitRejected": true,
+    "pointerUnchanged": true,
+    "tombstoneUnchanged": true,
+    "staleFinallyPreservedSuccessor": true
+  },
+  "reads": {
+    "positive": {
+      "pointer": {
+        "snapshotId": "positive-control"
+      },
+      "tombstone": {
+        "deleted": false
+      }
+    },
+    "replacement": {
+      "expiresAt": 1788632813067,
+      "token": "11f5d29d-38c2-445c-a2ba-71ed8b683c16"
+    },
+    "afterRejected": {
+      "pointer": {
+        "snapshotId": "positive-control"
+      },
+      "tombstone": {
+        "deleted": false
+      }
+    },
+    "afterStaleRelease": {
+      "expiresAt": 1788632813067,
+      "token": "11f5d29d-38c2-445c-a2ba-71ed8b683c16"
+    }
+  },
+  "errors": [],
+  "cleanup": {
+    "pointerAbsent": true,
+    "tombstoneAbsent": true,
+    "entityAbsent": true
+  },
+  "rejectedCommit": {
+    "name": "ForgeKvsError",
+    "message": "Request failed due to conditional check specified or optimistic locking"
+  },
+  "passed": true
+}

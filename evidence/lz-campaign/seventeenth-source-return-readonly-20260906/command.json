@@ -1,0 +1,28 @@
+{
+  "time": "2026-09-06T10:21:03.623061+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.23.0",
+  "appCommit": "e6c9e5854ee27b8943c76a463703ac8a6e5e9a69",
+  "uiVersion": "4.58.585",
+  "harnessCommit": "3a447d2d4281b4b3f741132b62171606c4e9c5b0",
+  "instrumentHash": "ec359df3f92958ae55d995746e4d3ec741b29305a3ce0f428128c0a398d68671",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "readonly",
+  "scope": "exactly one fixed source GET only; no advance, lease acquisition, cleanup, publication or retry",
+  "expectedPreferencesVersion": 65,
+  "previousDiagnosticSha256": "e34de3b28b3ea07ed53f0b78e93abdf19cd9c5ffb9565d0c4980d79f0bf7a669",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-source.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "source readonly:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-source-return-readonly-20260906/artifacts"
+  ]
+}

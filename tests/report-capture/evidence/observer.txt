@@ -1,0 +1,20 @@
+✔ real shape full lifecycle requires cleanup and preserves immutable report (1.1315ms)
+✔ progress alone is not completion and bounded timeout stays failure (5.645167ms)
+✔ begin request nonce mismatch refused (0.512166ms)
+✔ foreign plan ignored and different job cannot replace admitted job (0.137375ms)
+✔ overlapping mutations fail even if eventual outcomes look successful (0.117334ms)
+✔ wrong expected checkpoint refused before accepting later result (0.101875ms)
+✔ unchanged active checkpoint cannot be graded as progress (0.118ms)
+✔ terminal cleanup cannot erase a completed report (0.1465ms)
+✔ wrong report hash/identity refused (0.127708ms)
+✔ unknown transport outcome preserves original error and last acknowledged job (0.139208ms)
+✔ failed terminal state retained for explicit refusal assertions, not coerced complete (0.082958ms)
+✔ second begin cannot silently replace first job after a lost result (0.228375ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45.047

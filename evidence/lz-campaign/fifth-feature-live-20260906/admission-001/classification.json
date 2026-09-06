@@ -1,0 +1,5 @@
+{
+  "outcome": "shared-profile timeout before entry guard",
+  "productTestsExecuted": 0,
+  "retryBoundary": "Only resume after actual external release; no product result can be reused"
+}

@@ -1,0 +1,13 @@
+✔ actual default and empty-phase discovery registers only a skipped cleanup, without reading dangling approval paths (523.503709ms)
+✔ actual explicit approved-cleanup discovery refuses each of the six missing inputs before registration (1691.559083ms)
+✔ actual explicit approved-cleanup still rejects invalid complete inputs and wrong nonempty phases (1090.331833ms)
+✔ actual broad discovery no longer contains owner-cleanup approval failure; inherited cross-test imports remain explicit (1012.901542ms)
+✔ phase adapter is inert only when absent/empty; explicit phase cannot bypass mandatory approval (0.829875ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4358.077625

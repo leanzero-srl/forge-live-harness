@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+    "test",
+    "scenarios/lz-ppm/journey-campaign-capacity-limit.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/capacity-size-limit-live/attempt-001/tests-artifacts"
+  ],
+  "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+  "phase": "tests",
+  "uiVersion": "4.58.579",
+  "browserMode": "portable-chrome152"
+}

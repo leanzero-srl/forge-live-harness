@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "stamp": "9027cb97b308734638753d5376890e0e1e95393dd6d4a81b67a4213d78a59ace",
+  "startedAt": "2026-09-05T17:50:20.897366+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/normalization-companions/attempt-001",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "appCommit": "8bc4dc07",
+  "instrumentHash": "eb4ca16013430d3eeaef37ecd9d2717cfc21f0c851085e04f4fc696dbd17b817",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "normalization: declared zero survives dependency movement, Save/reopen, refresh and Discard",
+        "normalization: intentional duration clear on date-backed import survives Save and reopen",
+        "normalization: hydration uses custom working days and leaves inverted range unavailable",
+        "apply: owned edit Cancel writes nothing, confirmation writes exact dates and retains normalized reopen"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 4,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T17:53:08.632780+00:00",
+  "elapsedSeconds": 167.7350593339943
+}

@@ -1,0 +1,54 @@
+{
+  "status": "failed",
+  "stamp": "997d36de4da731f1e08e6b49b9075e5f725fb98531f45de9623ecb80855d81c4",
+  "startedAt": "2026-09-05T18:17:23.769652+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-004",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "appCommit": "8bc4dc07",
+  "instrumentHash": "1d23f8dc7ef79691796bda2f26e324cf02d794f21d385097991ac420c4fa199a",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [
+        "history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-planning.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 2,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T18:18:52.542523+00:00",
+  "elapsedSeconds": 88.78598641700228
+}

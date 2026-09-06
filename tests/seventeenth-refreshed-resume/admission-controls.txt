@@ -1,0 +1,15 @@
+✔ exact28 real acknowledgements and proofs plus expired29th admit laststrong155 only (20.534541ms)
+✔ wrong receipt, missing expiredrequest or falsely successful finalaudits refuse (458.496459ms)
+✔ expiry is not an acknowledgement and no other errorclass or checkpoint can replaceit (489.0185ms)
+✔ missing priorrunheader, altered status or physicalproof and erased finalfailedaudit refuse (463.47375ms)
+✔ exact28 remaining transitions155→183 use all40 savedruns and every status/probe (17.13325ms)
+✔ actual expired/unknown/refused/status/proof/counter failure is terminal withno secondattempt (78.293042ms)
+✔ premature publication cannot replace complete28-step protocol (13.0125ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1908.516

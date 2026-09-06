@@ -1,0 +1,56 @@
+{
+  "status": "integrity_failed",
+  "stamp": "bf42fe80448122f1db9565113a1e01930eae6c4b99b12cca5789e5e7924da110",
+  "startedAt": "2026-09-05T17:56:39.217551+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "appCommit": "8bc4dc07",
+  "instrumentHash": "f70ad9aa7ade4531e97188aae07f965141c39b23ff4e67a61b105f06bb1c320a",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [
+        "targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-planning.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 2,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-identity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"campaign: actual UI version and preserved LZPT source\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T17:58:36.452588+00:00",
+  "elapsedSeconds": 117.2327406249824
+}

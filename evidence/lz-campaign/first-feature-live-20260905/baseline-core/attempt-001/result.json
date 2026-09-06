@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "stamp": "ac7eb7458d5e0b3b32f4e92467ad68d675d646ba5e5a38940a02b70c9442cbbf",
+  "startedAt": "2026-09-05T17:46:51.156448+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/baseline-core/attempt-001",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "appCommit": "8bc4dc07",
+  "instrumentHash": "eb4ca16013430d3eeaef37ecd9d2717cfc21f0c851085e04f4fc696dbd17b817",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "LZPT dashboard: task count excludes parents, % complete reflects status mix",
+        "LZPT Table group-by Status: seeded status counts",
+        "LZPT Table: select-all=leaves, working-day duration, filter empty"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 3,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T17:48:19.646191+00:00",
+  "elapsedSeconds": 88.48955312499311
+}

@@ -1,0 +1,130 @@
+{
+  "kind": "cancel",
+  "events": [
+    {
+      "stage": "holding-real-advance-response",
+      "time": "2026-09-06T16:55:47.140Z",
+      "request": {
+        "planId": "plan-test-mtq1z236-inmlwe",
+        "jobId": "5af712a6-0133-48f1-a9b9-6c726c6bc9fe",
+        "expectedCheckpoint": 0
+      }
+    },
+    {
+      "stage": "real-advance-response-ready",
+      "time": "2026-09-06T16:55:47.140Z",
+      "httpStatus": 200,
+      "body": {
+        "success": true,
+        "job": {
+          "id": "5af712a6-0133-48f1-a9b9-6c726c6bc9fe",
+          "requestId": "349be52f-eac0-4688-8b5e-c75d0171e4b7",
+          "name": "Bounded cancel report",
+          "createdAt": "2026-09-06T16:55:45.614Z",
+          "expiresAt": "2026-09-07T16:55:45.614Z",
+          "checkpoint": 1,
+          "state": "active",
+          "stageLabel": "Confirming the complete plan",
+          "completedUnits": 1,
+          "totalUnits": 16,
+          "cleanupDone": false,
+          "reportId": "391339d4-2431-4340-83e0-65e52a74a64d"
+        }
+      },
+      "errors": null
+    },
+    {
+      "stage": "real-advance-response-delivered",
+      "time": "2026-09-06T16:55:48.120Z"
+    }
+  ],
+  "originalJira": {
+    "key": "WFH-2983",
+    "start": "2026-10-05",
+    "due": "2026-10-09",
+    "duration": 5
+  },
+  "probeObservations": [
+    {
+      "planId": "plan-test-mtq1z236-inmlwe",
+      "jobId": "5af712a6-0133-48f1-a9b9-6c726c6bc9fe",
+      "registryMember": true,
+      "state": "active",
+      "checkpoint": 1,
+      "cleanupDone": false,
+      "privateManifestHash": "e6bd1df778c5db03879309d45673a5dc3d6b45e8082a2ebe41d515afd0433372",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "047b1e131df73f3e4cebecd52de37839d90ce8d1988af7a069362a86b2483a68",
+          "expectedHash": "5a30a9c4b6ed10267c64bbe769f04552a8c7a0199353117d19c85c15407fda0d",
+          "present": true,
+          "actualHash": "5a30a9c4b6ed10267c64bbe769f04552a8c7a0199353117d19c85c15407fda0d"
+        }
+      ],
+      "publicArtifacts": []
+    },
+    {
+      "planId": "plan-test-mtq1z236-inmlwe",
+      "jobId": "5af712a6-0133-48f1-a9b9-6c726c6bc9fe",
+      "registryMember": true,
+      "state": "cancelled",
+      "checkpoint": 2,
+      "cleanupDone": true,
+      "privateManifestHash": "e6bd1df778c5db03879309d45673a5dc3d6b45e8082a2ebe41d515afd0433372",
+      "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "privateArtifacts": [
+        {
+          "keyHash": "047b1e131df73f3e4cebecd52de37839d90ce8d1988af7a069362a86b2483a68",
+          "expectedHash": "5a30a9c4b6ed10267c64bbe769f04552a8c7a0199353117d19c85c15407fda0d",
+          "present": false,
+          "actualHash": null
+        }
+      ],
+      "publicArtifacts": []
+    }
+  ],
+  "beforeCleanup": {
+    "planId": "plan-test-mtq1z236-inmlwe",
+    "jobId": "5af712a6-0133-48f1-a9b9-6c726c6bc9fe",
+    "registryMember": true,
+    "state": "active",
+    "checkpoint": 1,
+    "cleanupDone": false,
+    "privateManifestHash": "e6bd1df778c5db03879309d45673a5dc3d6b45e8082a2ebe41d515afd0433372",
+    "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privateArtifacts": [
+      {
+        "keyHash": "047b1e131df73f3e4cebecd52de37839d90ce8d1988af7a069362a86b2483a68",
+        "expectedHash": "5a30a9c4b6ed10267c64bbe769f04552a8c7a0199353117d19c85c15407fda0d",
+        "present": true,
+        "actualHash": "5a30a9c4b6ed10267c64bbe769f04552a8c7a0199353117d19c85c15407fda0d"
+      }
+    ],
+    "publicArtifacts": []
+  },
+  "cancelled": {
+    "planId": "plan-test-mtq1z236-inmlwe",
+    "jobId": "5af712a6-0133-48f1-a9b9-6c726c6bc9fe",
+    "registryMember": true,
+    "state": "cancelled",
+    "checkpoint": 2,
+    "cleanupDone": true,
+    "privateManifestHash": "e6bd1df778c5db03879309d45673a5dc3d6b45e8082a2ebe41d515afd0433372",
+    "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "privateArtifacts": [
+      {
+        "keyHash": "047b1e131df73f3e4cebecd52de37839d90ce8d1988af7a069362a86b2483a68",
+        "expectedHash": "5a30a9c4b6ed10267c64bbe769f04552a8c7a0199353117d19c85c15407fda0d",
+        "present": false,
+        "actualHash": null
+      }
+    ],
+    "publicArtifacts": []
+  },
+  "staleRefusal": {
+    "success": false,
+    "error": "This report checkpoint changed. Reload capture status before resuming."
+  },
+  "captureCleanupVerified": true
+}

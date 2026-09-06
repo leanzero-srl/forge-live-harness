@@ -1,0 +1,63 @@
+{
+  "status": "failed",
+  "stamp": "bcb300a47dbec4cccac835cae86a4d3ff87664a269bdeb22ef591f390564172d",
+  "startedAt": "2026-09-05T20:47:55.897867+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/third-feature-live-20260905/integrated-campaign-boundaries-live/attempt-001",
+  "uiVersion": "4.58.577",
+  "forgeVersion": "6.3.0",
+  "appCommit": "c0de4ed2",
+  "instrumentHash": "050a4e2aa146021c8583c8c467b62bcc1ad2a0568730da0c807cd68c45d45b36",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [
+        "capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity",
+        "completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence",
+        "forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples",
+        "private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact",
+        "sensitivity: tied branches have no solo-shortening benefit; actual yielded cancellation and scope change never publish old or partial rankings",
+        "targets: outside-release predecessor constrains finish; rename keeps identity, drift requires explicit refresh, empty scope and invalid date never yield success"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-adoption.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original\"}",
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes\"}",
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-report.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy\"}",
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed\"}",
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-simulation.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 11,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T20:59:48.005937+00:00",
+  "elapsedSeconds": 712.1052050839935
+}

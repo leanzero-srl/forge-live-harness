@@ -1,0 +1,93 @@
+{
+  "sourcePlanId": "plan-test-mtov1qkg-3ihz2t",
+  "simName": "[harness-test] lz-norm-mtov1m9n private simulation",
+  "keys": [
+    "WFH-2814",
+    "WFH-2815",
+    "WFH-2816"
+  ],
+  "steps": [
+    {
+      "name": "calendar-only-preserves-five-days",
+      "version": 2,
+      "rows": [
+        {
+          "key": "WFH-2814",
+          "start": "2026-03-02",
+          "due": "2026-03-09",
+          "duration": 5,
+          "predecessors": [],
+          "predecessorLags": {}
+        },
+        {
+          "key": "WFH-2815",
+          "start": "2026-03-10",
+          "due": "2026-03-16",
+          "duration": 5,
+          "predecessors": [
+            "WFH-2814"
+          ],
+          "predecessorLags": {
+            "WFH-2814": 0
+          }
+        },
+        {
+          "key": "WFH-2816",
+          "start": "2026-12-07",
+          "due": "2026-12-11",
+          "duration": 5,
+          "predecessors": [],
+          "predecessorLags": {}
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "fallbackRealResolverDelete": true,
+    "simulationRegistryAbsent": true
+  },
+  "base": {
+    "id": "dc5728d4-980f-4065-8975-76d0e3c7a46b",
+    "hash": "acb8622a39f7dd9d5886a80582bf7e680070fe3b74f44b930b8ecf95c2765e14",
+    "rows": [
+      {
+        "key": "WFH-2814",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5,
+        "predecessors": [],
+        "predecessorLags": {}
+      },
+      {
+        "key": "WFH-2815",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5,
+        "predecessors": [
+          "WFH-2814"
+        ],
+        "predecessorLags": {}
+      },
+      {
+        "key": "WFH-2816",
+        "start": "2026-12-07",
+        "due": "2026-12-11",
+        "duration": 5,
+        "predecessors": [],
+        "predecessorLags": {}
+      }
+    ],
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "simId": "sim-c0a6140c-be7d-4a57-b6ce-85c1d82640cc"
+}

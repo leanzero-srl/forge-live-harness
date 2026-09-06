@@ -1,0 +1,78 @@
+{
+  "source": "e6c9e5854ee27b8943c76a463703ac8a6e5e9a69",
+  "outputSha256": "5b2eec2cf8257fac1d03da9fa41a23b5a501994400c93914c5c82db8e1f6c307",
+  "sources": [
+    {
+      "path": "src/services/capacity-fields.mjs",
+      "sha256": "5af5d4f706250365d15239e50bfc35f5d454fb38df8049121a96944d67a3bf17"
+    },
+    {
+      "path": "src/services/immutable-io.mjs",
+      "sha256": "fd382efbedd57a4a63a8a0acbb7b6a63e3dd5ec97963602626b9ffd21231ac46"
+    },
+    {
+      "path": "src/services/plan-snapshot-store.mjs",
+      "sha256": "712e51f074b3f0e2d9c1627264c341c8e5df1910df3a53101e82a73a7acf2d9f"
+    },
+    {
+      "path": "src/services/report-preparation.mjs",
+      "sha256": "03187b14f51f8cd3c917ac48b1a1e5e760e5d4074411726563ff6acda5e58222"
+    },
+    {
+      "path": "src/services/sponsor-report-analytics.mjs",
+      "sha256": "674c7e24577dddcfe181757acc325d3b8d101ce0340f6c6302c74ee932034a69"
+    },
+    {
+      "path": "static/ppm-ui/src/hooks/cascade-core.js",
+      "sha256": "e9f8cbe4518ff42102a7a509505f86b96553cbfa9e4839a9a9482ffdb9c2047c"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/capacity-model.js",
+      "sha256": "746bd8225591bcb6a42fc66f136e87dd54a31801dee5049da21cb6ec6f2701a1"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/cascade-provenance.js",
+      "sha256": "b3cbba20bd93a4838a1a35077e8dbd0d6447f1db19725820396bedc16bd74734"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/date-utils.js",
+      "sha256": "b56c4d042e7dcd8ea9689fc8711f6087c775faadee3a5187e8e586436777ebf9"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/duration-normalize.js",
+      "sha256": "611eb5b363fbff5fd89428f96e369ac308023119564d78a14cad122cfe8aaa8b"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/forecast-model-config.js",
+      "sha256": "53bc579dd484227ea9d46cedcd2b7e143db237ac0b96966c7efe2e8be8091d70"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/issue-utils.js",
+      "sha256": "449667b81951b565ab34fd2963857a9f92d14e943cf1fc2f20e9a14837d383cc"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/milestone.js",
+      "sha256": "77ee0ab42539ff542b171b9a54d4fa457398e55b5f03476f86cd54e144f65080"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/schedule-forecast-inputs.js",
+      "sha256": "6f3dc5b5c90697036cda6d6295ae12b637e74119dc59e4fcee209131eaa2b516"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/schedule-simulation.js",
+      "sha256": "8ad27114f201a44084eebe85df7396d4594ccde611ed918107ade8f3a424670b"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/snapshot-comparison.js",
+      "sha256": "de081cedc021ab0149bad772c9964800572164ac5c1a2f734cb0fe8415321cfe"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/sponsor-report.js",
+      "sha256": "23548c1ad852e858a097b6700f946fa98885acf4b356376d9f721750edd41691"
+    },
+    {
+      "path": "static/ppm-ui/src/utils/target-scope.js",
+      "sha256": "84284a415d608e4c154d83542baa33011407a8db368deb134075e38a493b545a"
+    }
+  ]
+}

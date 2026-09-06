@@ -1,0 +1,247 @@
+{
+  "status": "terminal",
+  "runnerState": {
+    "pid": 56425,
+    "processStart": "Sun Sep  6 18:48:57 2026",
+    "time": "2026-09-06T15:53:07.392659+00:00",
+    "status": "integrity_failed"
+  },
+  "summarySha256": "aa5f0caf7c05aa5c48e39b7f730c6c5a9857ef5caa40158348aaf3d7c0cb4a86",
+  "businessCases": {
+    "passed": 1,
+    "failed": 3,
+    "notRun": 3
+  },
+  "rootDispatch": "5c8e8264",
+  "laterFeaturesNotStarted": true,
+  "runtime": "6.26.0/UI4.58.588",
+  "source": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "instrumentHash": "c3585358703e57417324982e77b77fb3ce723616814abe979b76e811884aac73",
+  "gracefulStopNote": "Written after runner already terminated integrity_failed; it did not cause terminal outcome.",
+  "retries": 0,
+  "manualContinuationOrRecovery": false,
+  "productThroughputMeasured": false,
+  "fixtures": [
+    {
+      "kind": "baseline-drift",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "issues": [
+        {
+          "key": "WFH-2981",
+          "seed": {
+            "label": "report job baseline-drift",
+            "start": "2026-10-05",
+            "due": "2026-10-09",
+            "duration": 5
+          }
+        }
+      ],
+      "retainedForRecovery": null,
+      "integrityPassed": true,
+      "fixtureJournal": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-0f0ba-preserves-original-baseline-chromium/fixture-journal.json",
+      "fixtureJournalSha256": "57f5ecf55c120572ebcd7a827b8939f3bb302b03aa881847482b2064711fca16",
+      "reportJournal": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-0f0ba-preserves-original-baseline-chromium/report-job-journal.json",
+      "reportJournalSha256": "4d9d8bad7f3cf4f6b5d3ed376bfdb04abd42b51cd390d11baf535baea623cd9b",
+      "recordedProbes": [
+        {
+          "planId": "plan-test-mtpzp1h1-e2krm3",
+          "jobId": "db9dbe5c-556d-406a-8938-aa1641bd78c8",
+          "state": "active",
+          "checkpoint": 1,
+          "cleanupDone": false,
+          "privateManifestHash": "c48f28c671640ff5289c21e275c0c5e0c103dd64a5da6b179757b82d152a7a90",
+          "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "privateCount": 1,
+          "privatePresent": 1,
+          "publicCount": 0,
+          "publicPresent": 0
+        }
+      ],
+      "freshTerminalProbePerformed": false
+    },
+    {
+      "kind": "resume",
+      "planId": "plan-test-mtpzm3tg-kkqxi5",
+      "issues": [
+        {
+          "key": "WFH-2978",
+          "seed": {
+            "label": "report job resume",
+            "start": "2026-10-05",
+            "due": "2026-10-09",
+            "duration": 5
+          }
+        }
+      ],
+      "retainedForRecovery": {
+        "plans": [
+          {
+            "id": "plan-test-mtpzm3tg-kkqxi5",
+            "name": "[harness-test] lz-norm-mtpzm0tl"
+          }
+        ],
+        "issues": [
+          {
+            "key": "WFH-2978",
+            "seed": {
+              "label": "report job resume",
+              "start": "2026-10-05",
+              "due": "2026-10-09",
+              "duration": 5
+            }
+          }
+        ],
+        "version": null,
+        "reason": "Owned report departure failed; exact fixture retained"
+      },
+      "integrityPassed": false,
+      "fixtureJournal": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-26aea-use-then-full-retained-HTML-chromium/fixture-journal.json",
+      "fixtureJournalSha256": "f016760ab1491c3740be83da82d31d1b0404b7aaaf0157930507b05ab12771f0",
+      "reportJournal": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-26aea-use-then-full-retained-HTML-chromium/report-job-journal.json",
+      "reportJournalSha256": "fbaf26b0559a0fc3543ccc3dda64350906227ccb3f76c4ea14f9c2911e50fb46",
+      "recordedProbes": [
+        {
+          "planId": "plan-test-mtpzm3tg-kkqxi5",
+          "jobId": "c7d819cd-6617-4fd7-8300-306dbb8f53c2",
+          "state": "active",
+          "checkpoint": 1,
+          "cleanupDone": false,
+          "privateManifestHash": "5ac1e88cf8080674e6b0e33285b9b7fd5343a72e2cc5ac7c99c5ebbe7fbe3831",
+          "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "privateCount": 1,
+          "privatePresent": 1,
+          "publicCount": 0,
+          "publicPresent": 0
+        }
+      ],
+      "freshTerminalProbePerformed": false
+    },
+    {
+      "kind": "cancel",
+      "planId": "plan-test-mtpzn218-4ref5x",
+      "issues": [
+        {
+          "key": "WFH-2979",
+          "seed": {
+            "label": "report job cancel",
+            "start": "2026-10-05",
+            "due": "2026-10-09",
+            "duration": 5
+          }
+        }
+      ],
+      "retainedForRecovery": {
+        "plans": [
+          {
+            "id": "plan-test-mtpzn218-4ref5x",
+            "name": "[harness-test] lz-norm-mtpzn01w"
+          }
+        ],
+        "issues": [
+          {
+            "key": "WFH-2979",
+            "seed": {
+              "label": "report job cancel",
+              "start": "2026-10-05",
+              "due": "2026-10-09",
+              "duration": 5
+            }
+          }
+        ],
+        "version": null,
+        "reason": "Owned report departure failed; exact fixture retained"
+      },
+      "integrityPassed": false,
+      "fixtureJournal": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2ca7a-s-and-refuses-stale-advance-chromium/fixture-journal.json",
+      "fixtureJournalSha256": "177f611d3fa14024d0bdf1c056cc79034d4f406a137de9b8410bb8f7e072fafd",
+      "reportJournal": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2ca7a-s-and-refuses-stale-advance-chromium/report-job-journal.json",
+      "reportJournalSha256": "1abad17c0b4d56a59d022989b3c7e98c042e681586298fada5b85bfd168093ed",
+      "recordedProbes": [
+        {
+          "planId": "plan-test-mtpzn218-4ref5x",
+          "jobId": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+          "state": "active",
+          "checkpoint": 1,
+          "cleanupDone": false,
+          "privateManifestHash": "136927317181cf2f5d978ad9191da7176f58117c41a1dad1d2b0fabaea5d09ce",
+          "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "privateCount": 1,
+          "privatePresent": 1,
+          "publicCount": 0,
+          "publicPresent": 0
+        },
+        {
+          "planId": "plan-test-mtpzn218-4ref5x",
+          "jobId": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+          "state": "cancelled",
+          "checkpoint": 2,
+          "cleanupDone": true,
+          "privateManifestHash": "136927317181cf2f5d978ad9191da7176f58117c41a1dad1d2b0fabaea5d09ce",
+          "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "privateCount": 1,
+          "privatePresent": 0,
+          "publicCount": 0,
+          "publicPresent": 0
+        }
+      ],
+      "freshTerminalProbePerformed": false
+    },
+    {
+      "kind": "source-drift",
+      "planId": "plan-test-mtpzo368-x4846f",
+      "issues": [
+        {
+          "key": "WFH-2980",
+          "seed": {
+            "label": "report job source-drift",
+            "start": "2026-10-05",
+            "due": "2026-10-09",
+            "duration": 5
+          }
+        }
+      ],
+      "retainedForRecovery": {
+        "plans": [
+          {
+            "id": "plan-test-mtpzo368-x4846f",
+            "name": "[harness-test] lz-norm-mtpzo0q6"
+          }
+        ],
+        "issues": [
+          {
+            "key": "WFH-2980",
+            "seed": {
+              "label": "report job source-drift",
+              "start": "2026-10-05",
+              "due": "2026-10-09",
+              "duration": 5
+            }
+          }
+        ],
+        "version": null,
+        "reason": "Owned report departure failed; exact fixture retained"
+      },
+      "integrityPassed": false,
+      "fixtureJournal": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-fd1f8-on-and-cleans-exact-staging-chromium/fixture-journal.json",
+      "fixtureJournalSha256": "7ffc0441d5ed3343d55c1834571bed35e9afaa5d22bf54a5ca62dd8f00c2bc3e",
+      "reportJournal": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-fd1f8-on-and-cleans-exact-staging-chromium/report-job-journal.json",
+      "reportJournalSha256": "028fcd94bfba2d7da0d3b98af7dc01b6c34ad495ea2f0fed034b9b9dbcb2ce5c",
+      "recordedProbes": [
+        {
+          "planId": "plan-test-mtpzo368-x4846f",
+          "jobId": "0f0a4f1b-a6ed-4eee-a881-ba676a7247b8",
+          "state": "active",
+          "checkpoint": 1,
+          "cleanupDone": false,
+          "privateManifestHash": "542c42c7ce6aa4549fabc94000ee7cb2e9e6e858cf15b62791249e4fe70edd7e",
+          "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "privateCount": 1,
+          "privatePresent": 1,
+          "publicCount": 0,
+          "publicPresent": 0
+        }
+      ],
+      "freshTerminalProbePerformed": false
+    }
+  ]
+}

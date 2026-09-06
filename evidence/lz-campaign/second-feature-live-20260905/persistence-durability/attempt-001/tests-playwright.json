@@ -1,0 +1,414 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "persistence: acknowledged Save7 replaces earlier autosaved6 before immediate reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 26063,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2735 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtopqrh1\",\"name\":\"[harness-test] lz-norm-mtopqrh1\",\"time\":\"2026-09-05T18:25:25.141Z\",\"issues\":[{\"key\":\"WFH-2735\",\"seed\":{\"label\":\"older autosave\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtopqtc6-yq2gla\",\"cleanup\":[{\"plan\":\"plan-test-mtopqtc6-yq2gla\",\"deleted\":true},{\"issue\":\"WFH-2735\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2735\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2735\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T18:25:23.994Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-751f75d11b6c247eb03b",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "persistence: an actual held Save response preserves a later local edit as unsaved",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 13874,
+                  "error": {
+                    "message": "Error: route.fulfill: Route is already handled!",
+                    "stack": "Error: route.fulfill: Route is already handled!\n    at handler (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:32:533)",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                      "column": 533,
+                      "line": 32
+                    },
+                    "snippet": "  30 |   const key=f.keys[0];let frame=await table(page,f.name);const original=await f.read(key);await editDuration(frame,key,'6');\n  31 |   let release!:()=>void,arrived!:()=>void;const held=new Promise<void>(resolve=>release=resolve),received=new Promise<void>(resolve=>arrived=resolve);let captured:any;\n> 32 |   const handler=async(route:any)=>{const c=callOf(route.request());if(c?.functionKey!=='savePlanState'||c.payload?.planId!==f.planId)return route.continue();await page.unroute('**/gateway/api/graphql**',handler);const response=await route.fetch();const body=await responseBody(response);expect(body.success).toBe(true);captured={functionKey:c.functionKey,planId:f.planId,submitted:c.payload.issues.map((i:any)=>({key:i.key,duration:i.duration,startDate:i.startDate,dueDate:i.dueDate})),result:body};arrived();await held;await route.fulfill({response});};\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^\n  33 |   await page.route('**/gateway/api/graphql**',handler);\n  34 |   try{\n  35 |    await frame.locator('[data-testid=\"plan-save-btn\"]').click();await expect.poll(()=>Boolean(captured),{timeout:60000,message:'real Save response reached the controlled hold'}).toBe(true);await received;"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                        "column": 533,
+                        "line": 32
+                      },
+                      "message": "Error: route.fulfill: Route is already handled!\n\n  30 |   const key=f.keys[0];let frame=await table(page,f.name);const original=await f.read(key);await editDuration(frame,key,'6');\n  31 |   let release!:()=>void,arrived!:()=>void;const held=new Promise<void>(resolve=>release=resolve),received=new Promise<void>(resolve=>arrived=resolve);let captured:any;\n> 32 |   const handler=async(route:any)=>{const c=callOf(route.request());if(c?.functionKey!=='savePlanState'||c.payload?.planId!==f.planId)return route.continue();await page.unroute('**/gateway/api/graphql**',handler);const response=await route.fetch();const body=await responseBody(response);expect(body.success).toBe(true);captured={functionKey:c.functionKey,planId:f.planId,submitted:c.payload.issues.map((i:any)=>({key:i.key,duration:i.duration,startDate:i.startDate,dueDate:i.dueDate})),result:body};arrived();await held;await route.fulfill({response});};\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^\n  33 |   await page.route('**/gateway/api/graphql**',handler);\n  34 |   try{\n  35 |    await frame.locator('[data-testid=\"plan-save-btn\"]').click();await expect.poll(()=>Boolean(captured),{timeout:60000,message:'real Save response reached the controlled hold'}).toBe(true);await received;\n    at handler (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:32:533)"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 16,
+                        "line": 76
+                      },
+                      "message": "Error: page.goto: Target page, context or browser has been closed\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:76\n\n  74 |     await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });\n  75 |   } finally {\n> 76 |     await page.goto('about:blank');\n     |                ^\n  77 |     if (!journal.planId) journal.planId = (await getTestState('lz-ppm', { what: 'plans' })).plans.find((p: any) => p.name === name)?.id;\n  78 |     if (journal.planId) {\n  79 |       await getTestState('lz-ppm', { what: 'clearDrafts', planId: journal.planId });\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:16)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:29:2"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T18:25:50.383Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "transport-instrumentation",
+                      "contentType": "application/json",
+                      "body": "eyJtZXRob2QiOiJSZWFsIHNhdmVQbGFuU3RhdGUgcmVxdWVzdCBleGVjdXRlZCBhbmQgcmV0dXJuZWQgc3VjY2Vzczsgb25seSBpdHMgdW5jaGFuZ2VkIHJlc3BvbnNlIGRlbGl2ZXJ5IHdhcyBoZWxkIHdoaWxlIHRoZSB1c2VyIGVkaXRlZDcuIiwiZnVuY3Rpb25LZXkiOiJzYXZlUGxhblN0YXRlIiwicGxhbklkIjoicGxhbi10ZXN0LW10b3ByZHE3LXNmY3FjbCIsInN1Ym1pdHRlZCI6W3sia2V5IjoiV0ZILTI3MzYiLCJkdXJhdGlvbiI6Niwic3RhcnREYXRlIjoiMjAyNi0xMC0wNSIsImR1ZURhdGUiOiIyMDI2LTEwLTEyIn1dLCJyZXN1bHQiOnsic3VjY2VzcyI6dHJ1ZSwic2F2ZWQiOjEsIm5vdEluZGV4ZWQiOltdLCJ2ZXJzaW9uIjo0fX0="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-bceb3-later-local-edit-as-unsaved-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                    "column": 533,
+                    "line": 32
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-bc67bacac5b9767558eb",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "persistence: partial Apply discards a previously Saved sibling durably through completion reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 33013,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2738 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2737 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtoprxqm\",\"name\":\"[harness-test] lz-norm-mtoprxqm\",\"time\":\"2026-09-05T18:26:19.918Z\",\"issues\":[{\"key\":\"WFH-2737\",\"seed\":{\"label\":\"apply selected\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}},{\"key\":\"WFH-2738\",\"seed\":{\"label\":\"discard saved sibling\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtops0ss-zrpaf8\",\"cleanup\":[{\"plan\":\"plan-test-mtops0ss-zrpaf8\",\"deleted\":true},{\"issue\":\"WFH-2738\",\"deleted\":true},{\"issue\":\"WFH-2737\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2737\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5},{\"key\":\"WFH-2738\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2737\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5},{\"key\":\"WFH-2738\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T18:26:18.746Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "actual-jira-second-reads",
+                      "contentType": "application/json",
+                      "body": "eyJhcHBsaWVkIjp7ImtleSI6IldGSC0yNzM3Iiwic3RhcnQiOiIyMDI2LTEwLTA1IiwiZHVlIjoiMjAyNi0xMC0xMiIsImR1cmF0aW9uIjo2fSwiZGlzY2FyZGVkIjp7ImtleSI6IldGSC0yNzM4Iiwic3RhcnQiOiIyMDI2LTEwLTA1IiwiZHVlIjoiMjAyNi0xMC0wOSIsImR1cmF0aW9uIjo1fX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-547e8d7ca1307c037461",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "persistence: simulated draft-read HTTP403 gates edits and real Retry recovers unseen draft",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 19845,
+                  "error": {
+                    "message": "Error: route.fulfill: Route is already handled!",
+                    "stack": "Error: route.fulfill: Route is already handled!\n    at handler (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:61:231)",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                      "column": 231,
+                      "line": 61
+                    },
+                    "snippet": "  59 |  await withOwnedSchedule(page,info,[seed('edit after recovery'),seed('unseen draft')],async(f)=>{\n  60 |   const[a,b]=f.keys;let frame=await table(page,f.name);const drafted=actualResponse(page,'saveDraft',f.planId);await editDuration(frame,b,'9');await drafted;await page.goto('about:blank');let injected=0;\n> 61 |   const handler=async(route:any)=>{const c=callOf(route.request());if(c?.functionKey!=='getDraft'||c.payload?.planId!==f.planId)return route.continue();injected++;await page.unroute('**/gateway/api/graphql**',handler);await route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated draft transport ${status}`})});};\n     |                                                                                                                                                                                                                                       ^\n  62 |   await page.route('**/gateway/api/graphql**',handler);\n  63 |   try{\n  64 |    frame=await openPlan(page,f.name);const alert=frame.getByRole('alert').filter({hasText:'Your saved draft could not be loaded'});await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(frame.locator('[inert] [data-testid=\"plan-save-btn\"]')).toHaveCount(1);await alert.screenshot({path:info.outputPath(`draft-${status}-blocked.png`)});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                        "column": 231,
+                        "line": 61
+                      },
+                      "message": "Error: route.fulfill: Route is already handled!\n\n  59 |  await withOwnedSchedule(page,info,[seed('edit after recovery'),seed('unseen draft')],async(f)=>{\n  60 |   const[a,b]=f.keys;let frame=await table(page,f.name);const drafted=actualResponse(page,'saveDraft',f.planId);await editDuration(frame,b,'9');await drafted;await page.goto('about:blank');let injected=0;\n> 61 |   const handler=async(route:any)=>{const c=callOf(route.request());if(c?.functionKey!=='getDraft'||c.payload?.planId!==f.planId)return route.continue();injected++;await page.unroute('**/gateway/api/graphql**',handler);await route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated draft transport ${status}`})});};\n     |                                                                                                                                                                                                                                       ^\n  62 |   await page.route('**/gateway/api/graphql**',handler);\n  63 |   try{\n  64 |    frame=await openPlan(page,f.name);const alert=frame.getByRole('alert').filter({hasText:'Your saved draft could not be loaded'});await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(frame.locator('[inert] [data-testid=\"plan-save-btn\"]')).toHaveCount(1);await alert.screenshot({path:info.outputPath(`draft-${status}-blocked.png`)});\n    at handler (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:61:231)"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 16,
+                        "line": 76
+                      },
+                      "message": "Error: page.goto: Target page, context or browser has been closed\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:76\n\n  74 |     await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });\n  75 |   } finally {\n> 76 |     await page.goto('about:blank');\n     |                ^\n  77 |     if (!journal.planId) journal.planId = (await getTestState('lz-ppm', { what: 'plans' })).plans.find((p: any) => p.name === name)?.id;\n  78 |     if (journal.planId) {\n  79 |       await getTestState('lz-ppm', { what: 'clearDrafts', planId: journal.planId });\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:16)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:59:2"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T18:26:52.134Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-3e753-Retry-recovers-unseen-draft-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                    "column": 231,
+                    "line": 61
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-1f60af677340252c49bc",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 58,
+          "column": 30
+        },
+        {
+          "title": "persistence: simulated draft-read HTTP503 gates edits and real Retry recovers unseen draft",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 23725,
+                  "error": {
+                    "message": "Error: route.fulfill: Route is already handled!",
+                    "stack": "Error: route.fulfill: Route is already handled!\n    at handler (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:61:231)",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                      "column": 231,
+                      "line": 61
+                    },
+                    "snippet": "  59 |  await withOwnedSchedule(page,info,[seed('edit after recovery'),seed('unseen draft')],async(f)=>{\n  60 |   const[a,b]=f.keys;let frame=await table(page,f.name);const drafted=actualResponse(page,'saveDraft',f.planId);await editDuration(frame,b,'9');await drafted;await page.goto('about:blank');let injected=0;\n> 61 |   const handler=async(route:any)=>{const c=callOf(route.request());if(c?.functionKey!=='getDraft'||c.payload?.planId!==f.planId)return route.continue();injected++;await page.unroute('**/gateway/api/graphql**',handler);await route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated draft transport ${status}`})});};\n     |                                                                                                                                                                                                                                       ^\n  62 |   await page.route('**/gateway/api/graphql**',handler);\n  63 |   try{\n  64 |    frame=await openPlan(page,f.name);const alert=frame.getByRole('alert').filter({hasText:'Your saved draft could not be loaded'});await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(frame.locator('[inert] [data-testid=\"plan-save-btn\"]')).toHaveCount(1);await alert.screenshot({path:info.outputPath(`draft-${status}-blocked.png`)});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                        "column": 231,
+                        "line": 61
+                      },
+                      "message": "Error: route.fulfill: Route is already handled!\n\n  59 |  await withOwnedSchedule(page,info,[seed('edit after recovery'),seed('unseen draft')],async(f)=>{\n  60 |   const[a,b]=f.keys;let frame=await table(page,f.name);const drafted=actualResponse(page,'saveDraft',f.planId);await editDuration(frame,b,'9');await drafted;await page.goto('about:blank');let injected=0;\n> 61 |   const handler=async(route:any)=>{const c=callOf(route.request());if(c?.functionKey!=='getDraft'||c.payload?.planId!==f.planId)return route.continue();injected++;await page.unroute('**/gateway/api/graphql**',handler);await route.fulfill({status,contentType:'application/json',body:JSON.stringify({error:`Harness simulated draft transport ${status}`})});};\n     |                                                                                                                                                                                                                                       ^\n  62 |   await page.route('**/gateway/api/graphql**',handler);\n  63 |   try{\n  64 |    frame=await openPlan(page,f.name);const alert=frame.getByRole('alert').filter({hasText:'Your saved draft could not be loaded'});await expect(alert).toBeVisible();expect(injected).toBe(1);await expect(frame.locator('[inert] [data-testid=\"plan-save-btn\"]')).toHaveCount(1);await alert.screenshot({path:info.outputPath(`draft-${status}-blocked.png`)});\n    at handler (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:61:231)"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 16,
+                        "line": 76
+                      },
+                      "message": "Error: page.goto: Target page, context or browser has been closed\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:76\n\n  74 |     await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });\n  75 |   } finally {\n> 76 |     await page.goto('about:blank');\n     |                ^\n  77 |     if (!journal.planId) journal.planId = (await getTestState('lz-ppm', { what: 'plans' })).plans.find((p: any) => p.name === name)?.id;\n  78 |     if (journal.planId) {\n  79 |       await getTestState('lz-ppm', { what: 'clearDrafts', planId: journal.planId });\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:16)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts:59:2"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T18:27:17.060Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-8d9a3-Retry-recovers-unseen-draft-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+                    "column": 231,
+                    "line": 61
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "21c66bc771fa3a98e199-c23147f9de9f25493f0b",
+          "file": "scenarios/lz-ppm/journey-campaign-persistence.spec.ts",
+          "line": 58,
+          "column": 30
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T18:25:23.698Z",
+    "duration": 158061.34600000002,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

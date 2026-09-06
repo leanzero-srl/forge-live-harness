@@ -1,0 +1,438 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 24434,
+                  "error": {
+                    "message": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed",
+                    "stack": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:108:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                      "column": 13,
+                      "line": 108
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/normalization-owned-fixture.ts:108\n\n  106 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();\n  107 |       // Retention is a failed recovery boundary, never successful fixture cleanup.\n> 108 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], recoveryRetention.reportState?'Report capture recovery required; exact owned fixtures retained, cleanup not passed':'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');\n      |             ^\n  109 |     }\n  110 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});\n  111 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 13,
+                        "line": 108
+                      },
+                      "message": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:108\n\n  106 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();\n  107 |       // Retention is a failed recovery boundary, never successful fixture cleanup.\n> 108 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], recoveryRetention.reportState?'Report capture recovery required; exact owned fixtures retained, cleanup not passed':'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');\n      |             ^\n  109 |     }\n  110 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});\n  111 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:108:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+                        "column": 36,
+                        "line": 60
+                      },
+                      "message": "AggregateError: Report job body/cleanup failure; exact recovery state retained\n\n  58 |    const errors:any[]=[];for(const h of [held,finalHeld])if(h)try{await h.stop();}catch(e){errors.push(e);}\n  59 |    if(session)try{await cleanupOwnedReportCaptures(page,f.planId,info,{onRecovery:f.retainForRecovery});journal.captureCleanupVerified=true;}catch(e){errors.push(e);}\n> 60 |    retain();if(errors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...errors],'Report job body/cleanup failure; exact recovery state retained');\n     |                                    ^\n  61 |   }\n  62 |  });\n  63 |  });\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:60:36\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts",
+                        "column": 38,
+                        "line": 41
+                      },
+                      "message": "Error: Owned report departure failed; exact fixture retained\n\n   at scenarios/lz-ppm/report-departure.ts:41\n\n  39 |    confirmNonPlan:async()=>{if(page.url()==='about:blank')return;let known=false;for(const frame of page.frames()){const capacity=frame.locator('[data-testid=\"capacity-view\"]');if(await capacity.count()&&await capacity.isVisible()){await expect(capacity.getByRole('heading',{name:'Portfolio capacity',exact:true})).toBeVisible();known=true;continue;}const card=frame.getByText('LZPT Scenarios',{exact:true}).first();if(await card.count()&&await card.isVisible())known=true;}expect(known,'Positive Plan list or Capacity surface required').toBe(true);},\n  40 |    armLeave:()=>armPresenceLeave(leaves,{timeoutMs}),clickBack:async(mounted:any)=>mounted.back.click(),confirmUnmounted:async(mounted:any)=>{await expect(mounted.back).toHaveCount(0);await expect(mounted.frame.getByText('LZPT Scenarios',{exact:true}).first()).toBeVisible();},blank:async()=>{await page.goto('about:blank');lastBlank=nextId;}\n> 41 |   });}catch(error){const failure:any=new Error('Owned report departure failed; exact fixture retained');failure.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';failure.reportState={planId:owner?.planId??null,owner,departureFailed:true};departureFailure=failure;emit('report-departure-failed-retained',{...failure.reportState,errorType:(error as any)?.name??typeof error});throw failure;}finally{departing=false;}\n     |                                      ^\n  42 |  };\n  43 |  const session={\n  44 |   own(planId:string,name:string){if(typeof planId!=='string'||!planId.startsWith('plan-test-')||typeof name!=='string'||!name.startsWith('[harness-test]'))throw new Error('Exact owned report fixture required');if(owner&&(owner.planId!==planId||owner.name!==name))throw new Error('Report owner cannot change during a journey');owner={planId,name};emit('report-departure-owner',owner);},\n    at Object.stop (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:41:38)\n    at beforeReportNavigation (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:54:118)\n    at openPlans (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:20:3)\n    at openPlan (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:33:17)\n    at table (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:138:17)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:41:32\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs",
+                        "column": 58,
+                        "line": 3
+                      },
+                      "message": "Error: Report capture cleanup is unverified; exact owned resources must be retained.\n\n   at scenarios/lz-ppm/report-capture-cleanup.mjs:3\n\n  1 | import assert from 'node:assert/strict';\n  2 | import {createHash} from 'node:crypto';\n> 3 | export function reportRecovery(error,state){const result=new Error('Report capture cleanup is unverified; exact owned resources must be retained.',{cause:error});result.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';result.reportState=state;return result;}\n    |                                                          ^\n  4 | export async function observeCaptureProbe(read,onObserved){const observed=await read();await onObserved(observed);return observed;}\n  5 | export function verifyCaptureProbe(probe,{planId,jobId,state,checkpoint,cleanupDone,reportId},before=null){\n  6 |  assert.equal(probe.planId,planId);assert.equal(probe.jobId,jobId);assert.equal(probe.registryMember,true);assert.equal(probe.state,state);assert.equal(probe.checkpoint,checkpoint);assert.equal(probe.cleanupDone,cleanupDone);\n    at reportRecovery (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:3:58)\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:43:83)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:61:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:59:19\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2\n[cause]: Error: Owned report departure failed; exact fixture retained\n    at Object.stop (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:41:38)\n    at beforeReportNavigation (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:54:118)\n    at openPlans (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:20:3)\n    at openPlan (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:33:17)\n    at table (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:138:17)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:41:32\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts",
+                        "column": 38,
+                        "line": 41
+                      },
+                      "message": "Error: Owned report departure failed; exact fixture retained\n\n   at scenarios/lz-ppm/report-departure.ts:41\n\n  39 |    confirmNonPlan:async()=>{if(page.url()==='about:blank')return;let known=false;for(const frame of page.frames()){const capacity=frame.locator('[data-testid=\"capacity-view\"]');if(await capacity.count()&&await capacity.isVisible()){await expect(capacity.getByRole('heading',{name:'Portfolio capacity',exact:true})).toBeVisible();known=true;continue;}const card=frame.getByText('LZPT Scenarios',{exact:true}).first();if(await card.count()&&await card.isVisible())known=true;}expect(known,'Positive Plan list or Capacity surface required').toBe(true);},\n  40 |    armLeave:()=>armPresenceLeave(leaves,{timeoutMs}),clickBack:async(mounted:any)=>mounted.back.click(),confirmUnmounted:async(mounted:any)=>{await expect(mounted.back).toHaveCount(0);await expect(mounted.frame.getByText('LZPT Scenarios',{exact:true}).first()).toBeVisible();},blank:async()=>{await page.goto('about:blank');lastBlank=nextId;}\n> 41 |   });}catch(error){const failure:any=new Error('Owned report departure failed; exact fixture retained');failure.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';failure.reportState={planId:owner?.planId??null,owner,departureFailed:true};departureFailure=failure;emit('report-departure-failed-retained',{...failure.reportState,errorType:(error as any)?.name??typeof error});throw failure;}finally{departing=false;}\n     |                                      ^\n  42 |  };\n  43 |  const session={\n  44 |   own(planId:string,name:string){if(typeof planId!=='string'||!planId.startsWith('plan-test-')||typeof name!=='string'||!name.startsWith('[harness-test]'))throw new Error('Exact owned report fixture required');if(owner&&(owner.planId!==planId||owner.name!==name))throw new Error('Report owner cannot change during a journey');owner={planId,name};emit('report-departure-owner',owner);},\n    at Object.stop (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:41:38)\n    at beforeReportNavigation (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:54:118)\n    at openPlans (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:20:3)\n    at openPlan (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:33:17)\n    at table (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:138:17)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:41:32\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.588\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T15:49:25.101Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T15:49:22.023Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-26aea-use-then-full-retained-HTML-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                    "column": 13,
+                    "line": 108
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a5a852e460e54fd2fc7a-428d466decf2b15343ee",
+          "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+          "line": 14,
+          "column": 32
+        },
+        {
+          "title": "report jobs: cancellation during held real advance removes staged keys and refuses stale advance",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 23295,
+                  "error": {
+                    "message": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed",
+                    "stack": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:108:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                      "column": 13,
+                      "line": 108
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/normalization-owned-fixture.ts:108\n\n  106 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();\n  107 |       // Retention is a failed recovery boundary, never successful fixture cleanup.\n> 108 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], recoveryRetention.reportState?'Report capture recovery required; exact owned fixtures retained, cleanup not passed':'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');\n      |             ^\n  109 |     }\n  110 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});\n  111 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 13,
+                        "line": 108
+                      },
+                      "message": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:108\n\n  106 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();\n  107 |       // Retention is a failed recovery boundary, never successful fixture cleanup.\n> 108 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], recoveryRetention.reportState?'Report capture recovery required; exact owned fixtures retained, cleanup not passed':'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');\n      |             ^\n  109 |     }\n  110 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});\n  111 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:108:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+                        "column": 36,
+                        "line": 60
+                      },
+                      "message": "AggregateError: Report job body/cleanup failure; exact recovery state retained\n\n  58 |    const errors:any[]=[];for(const h of [held,finalHeld])if(h)try{await h.stop();}catch(e){errors.push(e);}\n  59 |    if(session)try{await cleanupOwnedReportCaptures(page,f.planId,info,{onRecovery:f.retainForRecovery});journal.captureCleanupVerified=true;}catch(e){errors.push(e);}\n> 60 |    retain();if(errors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...errors],'Report job body/cleanup failure; exact recovery state retained');\n     |                                    ^\n  61 |   }\n  62 |  });\n  63 |  });\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:60:36\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs",
+                        "column": 58,
+                        "line": 3
+                      },
+                      "message": "Error: Report capture cleanup is unverified; exact owned resources must be retained.\n\n   at scenarios/lz-ppm/report-capture-cleanup.mjs:3\n\n  1 | import assert from 'node:assert/strict';\n  2 | import {createHash} from 'node:crypto';\n> 3 | export function reportRecovery(error,state){const result=new Error('Report capture cleanup is unverified; exact owned resources must be retained.',{cause:error});result.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';result.reportState=state;return result;}\n    |                                                          ^\n  4 | export async function observeCaptureProbe(read,onObserved){const observed=await read();await onObserved(observed);return observed;}\n  5 | export function verifyCaptureProbe(probe,{planId,jobId,state,checkpoint,cleanupDone,reportId},before=null){\n  6 |  assert.equal(probe.planId,planId);assert.equal(probe.jobId,jobId);assert.equal(probe.registryMember,true);assert.equal(probe.state,state);assert.equal(probe.checkpoint,checkpoint);assert.equal(probe.cleanupDone,cleanupDone);\n    at reportRecovery (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:3:58)\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:43:83)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:61:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:59:19\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2\n[cause]: Error: Owned report departure failed; exact fixture retained\n    at Object.stop (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:41:38)\n    at stopReportUi (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:55:171)\n    at stopUi (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:60:129)\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:30:3)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:61:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:59:19\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts",
+                        "column": 38,
+                        "line": 41
+                      },
+                      "message": "Error: Owned report departure failed; exact fixture retained\n\n   at scenarios/lz-ppm/report-departure.ts:41\n\n  39 |    confirmNonPlan:async()=>{if(page.url()==='about:blank')return;let known=false;for(const frame of page.frames()){const capacity=frame.locator('[data-testid=\"capacity-view\"]');if(await capacity.count()&&await capacity.isVisible()){await expect(capacity.getByRole('heading',{name:'Portfolio capacity',exact:true})).toBeVisible();known=true;continue;}const card=frame.getByText('LZPT Scenarios',{exact:true}).first();if(await card.count()&&await card.isVisible())known=true;}expect(known,'Positive Plan list or Capacity surface required').toBe(true);},\n  40 |    armLeave:()=>armPresenceLeave(leaves,{timeoutMs}),clickBack:async(mounted:any)=>mounted.back.click(),confirmUnmounted:async(mounted:any)=>{await expect(mounted.back).toHaveCount(0);await expect(mounted.frame.getByText('LZPT Scenarios',{exact:true}).first()).toBeVisible();},blank:async()=>{await page.goto('about:blank');lastBlank=nextId;}\n> 41 |   });}catch(error){const failure:any=new Error('Owned report departure failed; exact fixture retained');failure.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';failure.reportState={planId:owner?.planId??null,owner,departureFailed:true};departureFailure=failure;emit('report-departure-failed-retained',{...failure.reportState,errorType:(error as any)?.name??typeof error});throw failure;}finally{departing=false;}\n     |                                      ^\n  42 |  };\n  43 |  const session={\n  44 |   own(planId:string,name:string){if(typeof planId!=='string'||!planId.startsWith('plan-test-')||typeof name!=='string'||!name.startsWith('[harness-test]'))throw new Error('Exact owned report fixture required');if(owner&&(owner.planId!==planId||owner.name!==name))throw new Error('Report owner cannot change during a journey');owner={planId,name};emit('report-departure-owner',owner);},\n    at Object.stop (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:41:38)\n    at stopReportUi (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:55:171)\n    at stopUi (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:60:129)\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:30:3)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:61:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:59:19\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.588\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T15:50:10.947Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T15:50:07.709Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2ca7a-s-and-refuses-stale-advance-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                    "column": 13,
+                    "line": 108
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a5a852e460e54fd2fc7a-d0eb5452b5c901c692cc",
+          "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+          "line": 14,
+          "column": 32
+        },
+        {
+          "title": "report jobs: changed owned source during pause refuses publication and cleans exact staging",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 21478,
+                  "error": {
+                    "message": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed",
+                    "stack": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:108:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                      "column": 13,
+                      "line": 108
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/normalization-owned-fixture.ts:108\n\n  106 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();\n  107 |       // Retention is a failed recovery boundary, never successful fixture cleanup.\n> 108 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], recoveryRetention.reportState?'Report capture recovery required; exact owned fixtures retained, cleanup not passed':'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');\n      |             ^\n  109 |     }\n  110 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});\n  111 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 13,
+                        "line": 108
+                      },
+                      "message": "AggregateError: Report capture recovery required; exact owned fixtures retained, cleanup not passed\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:108\n\n  106 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();\n  107 |       // Retention is a failed recovery boundary, never successful fixture cleanup.\n> 108 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], recoveryRetention.reportState?'Report capture recovery required; exact owned fixtures retained, cleanup not passed':'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');\n      |             ^\n  109 |     }\n  110 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});\n  111 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:108:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+                        "column": 36,
+                        "line": 60
+                      },
+                      "message": "AggregateError: Report job body/cleanup failure; exact recovery state retained\n\n  58 |    const errors:any[]=[];for(const h of [held,finalHeld])if(h)try{await h.stop();}catch(e){errors.push(e);}\n  59 |    if(session)try{await cleanupOwnedReportCaptures(page,f.planId,info,{onRecovery:f.retainForRecovery});journal.captureCleanupVerified=true;}catch(e){errors.push(e);}\n> 60 |    retain();if(errors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...errors],'Report job body/cleanup failure; exact recovery state retained');\n     |                                    ^\n  61 |   }\n  62 |  });\n  63 |  });\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:60:36\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts",
+                        "column": 38,
+                        "line": 41
+                      },
+                      "message": "Error: Owned report departure failed; exact fixture retained\n\n   at scenarios/lz-ppm/report-departure.ts:41\n\n  39 |    confirmNonPlan:async()=>{if(page.url()==='about:blank')return;let known=false;for(const frame of page.frames()){const capacity=frame.locator('[data-testid=\"capacity-view\"]');if(await capacity.count()&&await capacity.isVisible()){await expect(capacity.getByRole('heading',{name:'Portfolio capacity',exact:true})).toBeVisible();known=true;continue;}const card=frame.getByText('LZPT Scenarios',{exact:true}).first();if(await card.count()&&await card.isVisible())known=true;}expect(known,'Positive Plan list or Capacity surface required').toBe(true);},\n  40 |    armLeave:()=>armPresenceLeave(leaves,{timeoutMs}),clickBack:async(mounted:any)=>mounted.back.click(),confirmUnmounted:async(mounted:any)=>{await expect(mounted.back).toHaveCount(0);await expect(mounted.frame.getByText('LZPT Scenarios',{exact:true}).first()).toBeVisible();},blank:async()=>{await page.goto('about:blank');lastBlank=nextId;}\n> 41 |   });}catch(error){const failure:any=new Error('Owned report departure failed; exact fixture retained');failure.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';failure.reportState={planId:owner?.planId??null,owner,departureFailed:true};departureFailure=failure;emit('report-departure-failed-retained',{...failure.reportState,errorType:(error as any)?.name??typeof error});throw failure;}finally{departing=false;}\n     |                                      ^\n  42 |  };\n  43 |  const session={\n  44 |   own(planId:string,name:string){if(typeof planId!=='string'||!planId.startsWith('plan-test-')||typeof name!=='string'||!name.startsWith('[harness-test]'))throw new Error('Exact owned report fixture required');if(owner&&(owner.planId!==planId||owner.name!==name))throw new Error('Report owner cannot change during a journey');owner={planId,name};emit('report-departure-owner',owner);},\n    at Object.stop (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:41:38)\n    at beforeReportNavigation (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:54:118)\n    at openPlans (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:20:3)\n    at openPlan (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:33:17)\n    at table (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:138:17)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:50:38\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs",
+                        "column": 58,
+                        "line": 3
+                      },
+                      "message": "Error: Report capture cleanup is unverified; exact owned resources must be retained.\n\n   at scenarios/lz-ppm/report-capture-cleanup.mjs:3\n\n  1 | import assert from 'node:assert/strict';\n  2 | import {createHash} from 'node:crypto';\n> 3 | export function reportRecovery(error,state){const result=new Error('Report capture cleanup is unverified; exact owned resources must be retained.',{cause:error});result.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';result.reportState=state;return result;}\n    |                                                          ^\n  4 | export async function observeCaptureProbe(read,onObserved){const observed=await read();await onObserved(observed);return observed;}\n  5 | export function verifyCaptureProbe(probe,{planId,jobId,state,checkpoint,cleanupDone,reportId},before=null){\n  6 |  assert.equal(probe.planId,planId);assert.equal(probe.jobId,jobId);assert.equal(probe.registryMember,true);assert.equal(probe.state,state);assert.equal(probe.checkpoint,checkpoint);assert.equal(probe.cleanupDone,cleanupDone);\n    at reportRecovery (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:3:58)\n    at cleanReportCapture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture-cleanup.mjs:43:83)\n    at cleanupOwnedReportCaptures (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-capture.ts:61:22)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:59:19\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2\n[cause]: Error: Owned report departure failed; exact fixture retained\n    at Object.stop (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:41:38)\n    at beforeReportNavigation (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:54:118)\n    at openPlans (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:20:3)\n    at openPlan (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:33:17)\n    at table (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:138:17)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:50:38\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts",
+                        "column": 38,
+                        "line": 41
+                      },
+                      "message": "Error: Owned report departure failed; exact fixture retained\n\n   at scenarios/lz-ppm/report-departure.ts:41\n\n  39 |    confirmNonPlan:async()=>{if(page.url()==='about:blank')return;let known=false;for(const frame of page.frames()){const capacity=frame.locator('[data-testid=\"capacity-view\"]');if(await capacity.count()&&await capacity.isVisible()){await expect(capacity.getByRole('heading',{name:'Portfolio capacity',exact:true})).toBeVisible();known=true;continue;}const card=frame.getByText('LZPT Scenarios',{exact:true}).first();if(await card.count()&&await card.isVisible())known=true;}expect(known,'Positive Plan list or Capacity surface required').toBe(true);},\n  40 |    armLeave:()=>armPresenceLeave(leaves,{timeoutMs}),clickBack:async(mounted:any)=>mounted.back.click(),confirmUnmounted:async(mounted:any)=>{await expect(mounted.back).toHaveCount(0);await expect(mounted.frame.getByText('LZPT Scenarios',{exact:true}).first()).toBeVisible();},blank:async()=>{await page.goto('about:blank');lastBlank=nextId;}\n> 41 |   });}catch(error){const failure:any=new Error('Owned report departure failed; exact fixture retained');failure.code='LZ_REPORT_CAPTURE_RECOVERY_REQUIRED';failure.reportState={planId:owner?.planId??null,owner,departureFailed:true};departureFailure=failure;emit('report-departure-failed-retained',{...failure.reportState,errorType:(error as any)?.name??typeof error});throw failure;}finally{departing=false;}\n     |                                      ^\n  42 |  };\n  43 |  const session={\n  44 |   own(planId:string,name:string){if(typeof planId!=='string'||!planId.startsWith('plan-test-')||typeof name!=='string'||!name.startsWith('[harness-test]'))throw new Error('Exact owned report fixture required');if(owner&&(owner.planId!==planId||owner.name!==name))throw new Error('Report owner cannot change during a journey');owner={planId,name};emit('report-departure-owner',owner);},\n    at Object.stop (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:41:38)\n    at beforeReportNavigation (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:54:118)\n    at openPlans (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:20:3)\n    at openPlan (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:33:17)\n    at table (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:138:17)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:50:38\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:85:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:16:2\n    at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:59:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:15:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.588\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T15:50:58.325Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T15:50:55.369Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-fd1f8-on-and-cleans-exact-staging-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                    "column": 13,
+                    "line": 108
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a5a852e460e54fd2fc7a-8d4efdd6366eee289aeb",
+          "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+          "line": 14,
+          "column": 32
+        },
+        {
+          "title": "report jobs: changed active baseline during pause refuses publication and preserves original baseline",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 73990,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.588\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T15:51:43.806Z\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2981 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtpzozmh\",\"name\":\"[harness-test] lz-norm-mtpzozmh\",\"time\":\"2026-09-06T15:51:44.729Z\",\"issues\":[{\"key\":\"WFH-2981\",\"seed\":{\"label\":\"report job baseline-drift\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}}],\"planId\":\"plan-test-mtpzp1h1-e2krm3\",\"cleanup\":[{\"plan\":\"plan-test-mtpzp1h1-e2krm3\",\"deleted\":true},{\"issue\":\"WFH-2981\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2981\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2981\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T15:51:40.754Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5a852e460e54fd2fc7a-9914b4023ec60e531faf",
+          "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+          "line": 14,
+          "column": 32
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T15:49:21.661Z",
+    "duration": 216457.369,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

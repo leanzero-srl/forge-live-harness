@@ -1,0 +1,33 @@
+{
+  "status": "prepared-no-dispatch",
+  "runId": "nineteenth-report-acceptance-20260906",
+  "preparedAt": "2026-09-06T16:51:47.998335+00:00",
+  "knownPreviousOwnedPids": [
+    9440,
+    9447,
+    9459
+  ],
+  "recheckPidsBeforeDispatch": true,
+  "durableRunner": "scripts/lz-campaign.py start: detached session, per-unit state and cleanup audits",
+  "maxMinutes": 240,
+  "requiredCases": 7,
+  "features": [
+    "report-capture-jobs-live",
+    "sponsor-report-numeric-live",
+    "sponsor-report-live",
+    "large-history-report-live"
+  ],
+  "featureTimeoutSeconds": {
+    "report-capture-jobs-live": 3900,
+    "sponsor-report-numeric-live": 1200,
+    "sponsor-report-live": 1500,
+    "large-history-report-live": 2100
+  },
+  "pending": [
+    "root final dispatch after offline grader closure"
+  ],
+  "browserStarted": false,
+  "noAutomaticFailureRetry": true,
+  "noManualResume": true,
+  "rawTraces": "local-only excluded from delivery; preserve failed evidence without publishing credentials"
+}

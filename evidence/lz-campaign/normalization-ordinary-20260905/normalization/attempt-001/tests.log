@@ -1,0 +1,16 @@
+
+Running 1 test using 1 worker
+
+
+(node:79361) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:122:1 › table: a background refresh must not un-normalize the durations
+[chromium] › scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts:122:1 › table: a background refresh must not un-normalize the durations
+FORECAST FIXTURE {"planId":"plan-test-mtooboq3-95fozh","name":"[harness-test] Forecast proof normalization mtoobojs","keys":["LZPT-205","LZPT-209","LZPT-215"]}
+
+NORMALIZATION DURATIONS {"before":{"LZPT-215":"42","LZPT-209":"6"},"after":{"LZPT-215":"42","LZPT-209":"6"}}
+
+FORECAST CLEANUP {"planId":"plan-test-mtooboq3-95fozh","deleted":true,"sourceScheduleUnchanged":true}
+
+  1 passed (17.9s)

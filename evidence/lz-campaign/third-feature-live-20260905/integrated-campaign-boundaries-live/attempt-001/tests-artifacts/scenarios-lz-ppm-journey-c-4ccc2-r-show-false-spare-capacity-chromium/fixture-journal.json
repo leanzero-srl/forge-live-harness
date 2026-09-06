@@ -1,0 +1,121 @@
+{
+  "marker": "lz-norm-mtouvj7w",
+  "name": "[harness-test] lz-norm-mtouvj7w",
+  "time": "2026-09-05T20:49:05.804Z",
+  "issues": [
+    {
+      "key": "WFH-2800",
+      "seed": {
+        "label": "24h demand",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11"
+      }
+    },
+    {
+      "key": "WFH-2801",
+      "seed": {
+        "label": "missing effort",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11"
+      }
+    },
+    {
+      "key": "WFH-2802",
+      "seed": {
+        "label": "zero effort",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11"
+      }
+    },
+    {
+      "key": "WFH-2803",
+      "seed": {
+        "label": "unassigned effort",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11"
+      }
+    }
+  ],
+  "planId": "plan-test-mtouvoau-f8ah86",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtouvoau-f8ah86",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2803",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2802",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2801",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2800",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2800",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2801",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2802",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2803",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2800",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2801",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2802",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2803",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

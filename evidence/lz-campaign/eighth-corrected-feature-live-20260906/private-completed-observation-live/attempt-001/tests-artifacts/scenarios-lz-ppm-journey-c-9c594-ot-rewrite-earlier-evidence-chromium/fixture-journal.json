@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtp47pxr",
+  "name": "[harness-test] lz-norm-mtp47pxr",
+  "time": "2026-09-06T01:10:30.927Z",
+  "issues": [
+    {
+      "key": "WFH-2883",
+      "seed": {
+        "label": "retained completed outcome",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp47sko-vnansr",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp47sko-vnansr",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2883",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2883",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2883",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

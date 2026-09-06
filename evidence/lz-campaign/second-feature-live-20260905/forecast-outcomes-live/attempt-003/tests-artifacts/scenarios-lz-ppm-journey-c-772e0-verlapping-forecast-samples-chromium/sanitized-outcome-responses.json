@@ -1,0 +1,149 @@
+[
+  {
+    "function": "getPlan",
+    "when": "2026-09-05T19:15:52.103Z",
+    "body": {
+      "success": true,
+      "error": null,
+      "snapshotId": null
+    }
+  },
+  {
+    "function": "getAllIssues",
+    "when": "2026-09-05T19:15:52.521Z",
+    "body": {
+      "success": true,
+      "error": null,
+      "snapshotId": null
+    }
+  },
+  {
+    "function": "getSnapshot",
+    "when": "2026-09-05T19:15:56.344Z",
+    "body": {
+      "success": true,
+      "error": null,
+      "snapshotId": "1af47dff-8be0-42db-8def-6885e73890df"
+    }
+  },
+  {
+    "function": "getForecastOutcome",
+    "when": "2026-09-05T19:15:56.830Z",
+    "body": {
+      "success": true,
+      "state": "read",
+      "observations": [
+        {
+          "id": "24981",
+          "readable": true,
+          "statusCategory": "new",
+          "resolutionDate": null,
+          "resolutionId": null,
+          "statusCategoryChangedDate": "2026-09-05T22:15:45.352+0300"
+        }
+      ],
+      "memberCount": 1,
+      "observedAt": "2026-09-05T19:15:57.375Z",
+      "nextOffset": null
+    }
+  },
+  {
+    "function": "getSnapshot",
+    "when": "2026-09-05T19:15:58.309Z",
+    "body": {
+      "success": true,
+      "error": null,
+      "snapshotId": "94cd3390-9ee9-4206-83c0-f93965f19347"
+    }
+  },
+  {
+    "function": "getForecastOutcome",
+    "when": "2026-09-05T19:15:58.753Z",
+    "body": {
+      "success": true,
+      "state": "read",
+      "observations": [
+        {
+          "id": "24981",
+          "readable": true,
+          "statusCategory": "new",
+          "resolutionDate": null,
+          "resolutionId": null,
+          "statusCategoryChangedDate": "2026-09-05T22:15:45.352+0300"
+        }
+      ],
+      "memberCount": 1,
+      "observedAt": "2026-09-05T19:15:59.322Z",
+      "nextOffset": null
+    }
+  },
+  {
+    "function": "getSnapshot",
+    "when": "2026-09-05T19:15:59.606Z",
+    "body": {
+      "success": true,
+      "error": null,
+      "snapshotId": "1af47dff-8be0-42db-8def-6885e73890df"
+    }
+  },
+  {
+    "function": "getForecastOutcome",
+    "when": "2026-09-05T19:16:00.165Z",
+    "body": {
+      "success": true,
+      "state": "read",
+      "observations": [
+        {
+          "id": "24981",
+          "readable": true,
+          "statusCategory": "new",
+          "resolutionDate": null,
+          "resolutionId": null,
+          "statusCategoryChangedDate": "2026-09-05T22:15:45.352+0300"
+        }
+      ],
+      "memberCount": 1,
+      "observedAt": "2026-09-05T19:16:00.888Z",
+      "nextOffset": null
+    }
+  },
+  {
+    "function": "getSnapshot",
+    "when": "2026-09-05T19:16:02.690Z",
+    "body": {
+      "success": true,
+      "error": null,
+      "snapshotId": "1af47dff-8be0-42db-8def-6885e73890df"
+    }
+  },
+  {
+    "function": "getForecastOutcome",
+    "when": "2026-09-05T19:16:03.159Z",
+    "body": {
+      "success": true,
+      "state": "read",
+      "observations": [
+        {
+          "id": "24981",
+          "readable": true,
+          "statusCategory": "done",
+          "resolutionDate": "2026-09-05T22:16:02.140+0300",
+          "resolutionId": "10001",
+          "statusCategoryChangedDate": "2026-09-05T22:16:02.159+0300"
+        }
+      ],
+      "memberCount": 1,
+      "observedAt": "2026-09-05T19:16:03.796Z",
+      "nextOffset": null
+    }
+  },
+  {
+    "function": "getAllIssues",
+    "when": "2026-09-05T19:16:03.682Z",
+    "body": {
+      "success": true,
+      "error": null,
+      "snapshotId": null
+    }
+  }
+]

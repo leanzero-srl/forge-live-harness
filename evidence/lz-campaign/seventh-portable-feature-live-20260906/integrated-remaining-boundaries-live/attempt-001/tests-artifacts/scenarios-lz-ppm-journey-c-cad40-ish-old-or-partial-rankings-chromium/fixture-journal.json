@@ -1,0 +1,71 @@
+{
+  "marker": "lz-norm-mtp2xt5v",
+  "name": "[harness-test] lz-norm-mtp2xt5v",
+  "time": "2026-09-06T00:34:48.931Z",
+  "issues": [
+    {
+      "key": "WFH-2869",
+      "seed": {
+        "label": "tie one",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2870",
+      "seed": {
+        "label": "tie two",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp2xwc8-ra57ti",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp2xwc8-ra57ti",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2870",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2869",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2869",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2870",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2869",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2870",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

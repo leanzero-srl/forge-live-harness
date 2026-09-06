@@ -1,0 +1,22 @@
+
+Running 2 tests using 1 worker
+
+
+(node:42273) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/2] [chromium] › scenarios/lz-ppm/journey-campaign-analysis.spec.ts:12:1 › sensitivity: real full-network counterfactual distinguishes early variability from causal finish movement
+[chromium] › scenarios/lz-ppm/journey-campaign-analysis.spec.ts:12:1 › sensitivity: real full-network counterfactual distinguishes early variability from causal finish movement
+FORECAST FIXTURE {"planId":"plan-test-mtoralhl-upmlbn","name":"[harness-test] Forecast proof sensitivity mtoraldy","keys":["LZPT-205","LZPT-209","LZPT-215"]}
+
+FORECAST CLEANUP {"planId":"plan-test-mtoralhl-upmlbn","deleted":true,"sourceScheduleUnchanged":true}
+
+[2/2] [chromium] › scenarios/lz-ppm/journey-campaign-analysis.spec.ts:20:1 › scenario: saved calendar and scope alternatives preserve original and working schedules and compare actual forecasts
+[chromium] › scenarios/lz-ppm/journey-campaign-analysis.spec.ts:20:1 › scenario: saved calendar and scope alternatives preserve original and working schedules and compare actual forecasts
+[jira !!] GET /rest/api/3/issue/WFH-2780 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2779 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtoratyt","name":"[harness-test] lz-norm-mtoratyt","time":"2026-09-05T19:09:01.109Z","issues":[{"key":"WFH-2779","seed":{"label":"scenario predecessor","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2780","seed":{"label":"scenario successor","duration":5,"start":"2026-03-09","due":"2026-03-13"}}],"planId":"plan-test-mtoraxd9-f00m5r","cleanup":[{"plan":"plan-test-mtoraxd9-f00m5r","deleted":true},{"issue":"WFH-2780","deleted":true},{"issue":"WFH-2779","deleted":true}],"searchIndexVerified":[{"key":"WFH-2779","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2780","start":"2026-03-09","due":"2026-03-13","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2779","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2780","start":"2026-03-09","due":"2026-03-13","duration":5}]],"integrityPassed":true}
+
+  2 passed (45.4s)

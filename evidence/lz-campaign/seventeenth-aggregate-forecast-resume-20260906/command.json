@@ -1,0 +1,29 @@
+{
+  "time": "2026-09-06T13:03:15.744875+00:00",
+  "status": "authorized",
+  "forgeVersion": "6.25.0",
+  "appCommit": "c49bf682d01d83ab53bdf06a2edf56e6bef96c3f",
+  "uiVersion": "4.58.587",
+  "harnessCommit": "b596575c959bad1bf6cfae5dd39d3dea9eca4729",
+  "reviewedHarnessCommit": "b596575c959bad1bf6cfae5dd39d3dea9eca4729",
+  "instrumentHash": "8a1cb277df1d8f78f22b27c41e3b002a361af70a9bf103e9315a02e3d55f8350",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "resume127",
+  "scope": "same retained active127 job; all40 savedruns remain; exact56 remainingcheckpoints/full106page report/HTML/reopen; no cleanup/newcapture/retry",
+  "expectedPreferencesVersion": 65,
+  "pacedFailureJournalSha256": "4a7b7bba5d81bed6d83cf6c2b91ca669786313e591757aca259c4e478fd460d0",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "aggregate resume:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-aggregate-forecast-resume-20260906/artifacts"
+  ]
+}

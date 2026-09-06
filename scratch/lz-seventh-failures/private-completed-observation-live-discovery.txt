@@ -1,0 +1,3 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:12:1 › completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence
+Total: 1 test in 1 file

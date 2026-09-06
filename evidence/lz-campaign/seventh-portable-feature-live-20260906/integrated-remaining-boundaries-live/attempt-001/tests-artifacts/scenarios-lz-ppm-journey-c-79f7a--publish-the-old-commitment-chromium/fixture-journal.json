@@ -1,0 +1,102 @@
+{
+  "marker": "lz-norm-mtp2qmn2",
+  "name": "[harness-test] lz-norm-mtp2qmn2",
+  "time": "2026-09-06T00:29:13.886Z",
+  "issues": [
+    {
+      "key": "WFH-2862",
+      "seed": {
+        "label": "outside epic predecessor",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2863",
+      "seed": {
+        "label": "epic child",
+        "duration": 5,
+        "start": "2026-03-09",
+        "due": "2026-03-13"
+      }
+    },
+    {
+      "key": "WFH-2864",
+      "seed": {
+        "label": "unrelated December work",
+        "duration": 5,
+        "start": "2026-12-07",
+        "due": "2026-12-11"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp2qr4q-g7rega",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp2qr4q-g7rega",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2864",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2863",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2862",
+      "deleted": true
+    }
+  ],
+  "linkPairs": [
+    {
+      "from": "WFH-2862",
+      "to": "WFH-2863"
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2862",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2863",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2864",
+      "start": "2026-12-07",
+      "due": "2026-12-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2862",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2863",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2864",
+        "start": "2026-12-07",
+        "due": "2026-12-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

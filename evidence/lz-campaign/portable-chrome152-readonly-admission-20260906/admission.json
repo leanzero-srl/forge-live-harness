@@ -1,0 +1,81 @@
+{
+  "mode": "portable-chrome152",
+  "sourceFreeze": "dce1d154f89a4684b3332508cf9de26fa3a1c746",
+  "forgeVersion": "6.5.0",
+  "uiVersion": "4.58.579",
+  "attempts": [
+    {
+      "phase": "before",
+      "argv": [
+        "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+        "test",
+        "scenarios/lz-ppm/campaign-portable-diagnostic-identity.spec.ts",
+        "--project=chromium",
+        "--workers=1",
+        "--reporter=line,json",
+        "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/portable-chrome152-readonly-admission-20260906/before"
+      ],
+      "startedAt": 1788653119.574487,
+      "exitCode": 0,
+      "finishedAt": 1788653165.7081118,
+      "tests": [
+        {
+          "expectedStatus": "passed",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "expectedStatus": "passed",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "expectedStatus": "passed",
+          "results": [
+            "passed"
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "phase": "after",
+      "argv": [
+        "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+        "test",
+        "scenarios/lz-ppm/campaign-portable-diagnostic-identity.spec.ts",
+        "--project=chromium",
+        "--workers=1",
+        "--reporter=line,json",
+        "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/portable-chrome152-readonly-admission-20260906/after"
+      ],
+      "startedAt": 1788653165.709541,
+      "exitCode": 0,
+      "finishedAt": 1788653212.952111,
+      "tests": [
+        {
+          "expectedStatus": "passed",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "expectedStatus": "passed",
+          "results": [
+            "passed"
+          ]
+        },
+        {
+          "expectedStatus": "passed",
+          "results": [
+            "passed"
+          ]
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "complete": true
+}

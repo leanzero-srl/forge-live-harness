@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "stamp": "ef51f4f522cc159a3584f318b466229951e07176400c5788612de2e7cbbe35a5",
+  "startedAt": "2026-09-06T01:10:18.095750+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighth-corrected-feature-live-20260906/private-completed-observation-live/attempt-001",
+  "uiVersion": "4.58.580",
+  "forgeVersion": "6.6.0",
+  "appCommit": "7f48d1e0af6c40f43c005db5f22a9964b5453d50",
+  "instrumentHash": "eb157d35d1e84d85f93e59a76e4c9b68b0a5792e21b25538aab2d32007e5ab94",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T01:11:29.811249+00:00",
+  "elapsedSeconds": 71.71488108299673
+}

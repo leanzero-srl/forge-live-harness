@@ -1,0 +1,198 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 35235,
+                  "error": {
+                    "message": "AggregateError: Capacity settings recovery required; exact owned fixtures retained, cleanup not passed",
+                    "stack": "AggregateError: Capacity settings recovery required; exact owned fixtures retained, cleanup not passed\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:106:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                      "column": 13,
+                      "line": 106
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/normalization-owned-fixture.ts:106\n\n  104 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();\n  105 |       // Retention is a failed recovery boundary, never successful fixture cleanup.\n> 106 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], 'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');\n      |             ^\n  107 |     }\n  108 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});\n  109 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                        "column": 13,
+                        "line": 106
+                      },
+                      "message": "AggregateError: Capacity settings recovery required; exact owned fixtures retained, cleanup not passed\n\n   at scenarios/lz-ppm/normalization-owned-fixture.ts:106\n\n  104 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();\n  105 |       // Retention is a failed recovery boundary, never successful fixture cleanup.\n> 106 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], 'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');\n      |             ^\n  107 |     }\n  108 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});\n  109 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:106:13)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+                        "column": 163,
+                        "line": 76
+                      },
+                      "message": "AggregateError: Numeric report body and private settings cleanup failures\n\n  74 |   }catch(error){bodyError=error;journal.bodyError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw error;}finally{\n  75 |    try{const state=await preferences.restore();restored=!state.initialized||state.restored;}\n> 76 |    catch(error){f.retainForRecovery(error);journal.settingsCleanupError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw new AggregateError([...(bodyError?[bodyError]:[]),error],'Numeric report body and private settings cleanup failures');}\n     |                                                                                                                                                                   ^\n  77 |    finally{rpc.stop();journal.originalPrivateSettingsRestored=restored;retain();page.off('crash',crashed);page.off('close',closed);page.context().off('close',contextClosed);}\n  78 |   }\n  79 |  });\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:76:163\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+                        "column": 76,
+                        "line": 58
+                      },
+                      "message": "Error: download.saveAs: Target page, context or browser has been closed\n\n  56 |     await report.getByRole('button',{name:'Download complete HTML report',exact:true}).click();stage('download-button-clicked',{suffix});\n  57 |     const file=await event;stage('download-event-observed',{suffix,filename:file.suggestedFilename()});expect(file.suggestedFilename()).toBe(`sponsor-report-${summary.id}.html`);\n> 58 |     const path=info.outputPath(`numeric-report-${suffix}.html`);await file.saveAs(path);stage('download-saved',{suffix,bytes:fs.statSync(path).size});return path;\n     |                                                                            ^\n  59 |    };\n  60 |    const first=await download('original');stage('report-document-page-opening');const doc=await page.context().newPage(),external:string[]=[];stage('report-document-page-opened');doc.on('request',(r:any)=>{if(/^https?:/.test(r.url()))external.push(r.url());});\n  61 |    let documentError:any;\n    at download (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:58:76)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:60:16\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs",
+                        "column": 80,
+                        "line": 20
+                      },
+                      "message": "CapacitySettingsRecoveryRequired: Capacity preferences could not be proven restored; retain the exact owned fixtures\n\n   at scenarios/lz-ppm/capacity-preferences.mjs:20\n\n  18 |  const persist=()=>onState(copy(state));\n  19 |  const record=(name,details={})=>{state.history.push({name,time:new Date().toISOString(),...copy(details)});persist();};\n> 20 |  const recovery=(message,cause)=>{record('recovery-required',{message});return new CapacitySettingsRecoveryRequired(message,state,cause);};\n     |                                                                                ^\n  21 |  const admit=response=>{assert.equal(state.initialized,false,'Settings admission is once per journey');const r=checked(response);state.initialized=true;state.original=copy(r.settings);state.lastOwned=copy(r.settings);state.version=r.version;record('admitted');};\n  22 |  const current=async()=>{\n  23 |   assert.equal(state.initialized,true,'Actual original settings must be admitted before writes');\n    at recovery (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs:20:80)\n    at Object.restore (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs:55:88)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:75:20\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2\n[cause]: Error: apiRequestContext.post: Target page, context or browser has been closed\n    at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:30:36)\n    at current (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs:25:19)\n    at Object.restore (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs:51:12)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:75:20\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts",
+                        "column": 87,
+                        "line": 119
+                      },
+                      "message": "ProfileReservationError: HOLDER_LOST: Reservation is no longer held\n\n   at forge/profile-reservation.ts:119\n\n  117 |     throw new ProfileReservationError(acquired.kind === \"busy\" ? \"PROFILE_BUSY\" : \"PROFILE_UNAVAILABLE\", acquired.reason ?? \"Unknown reservation response\");\n  118 |   }\n> 119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError(\"HOLDER_LOST\", \"Reservation is no longer held\"); };\n      |                                                                                       ^\n  120 |   const finish = async (command: \"clean-close\" | \"cancel-unlaunched\") => {\n  121 |     if (released) return;\n  122 |     assertHeld();\n    at assertHeld (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:119:87)\n    at finish (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:122:5)\n    at Object.cleanClose (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:133:27)\n    at /Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:179:68\n    at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:62:7)"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T22:59:05.577Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts",
+                    "column": 13,
+                    "line": 106
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f9ddfa32995747f70449-d9b459f8a4b6d470d0ec",
+          "file": "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+          "line": 14,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T22:59:05.260Z",
+    "duration": 46985.53,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

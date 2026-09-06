@@ -1,0 +1,340 @@
+{
+  "key": "WFH-2847",
+  "M": "2026-09-07",
+  "due": "2026-09-11",
+  "leave": "2026-09-10",
+  "p50": "2026-09-14",
+  "p90": "2026-09-15",
+  "expectedDemand": 20,
+  "expectedCapacity": 12,
+  "lifecycle": [
+    {
+      "name": "download-wait-started",
+      "time": "2026-09-05T22:59:37.419Z",
+      "suffix": "original"
+    },
+    {
+      "name": "download-button-clicked",
+      "time": "2026-09-05T22:59:37.460Z",
+      "suffix": "original"
+    },
+    {
+      "name": "download-event-observed",
+      "time": "2026-09-05T22:59:39.669Z",
+      "suffix": "original",
+      "filename": "sponsor-report-4fbb1943-7064-4dc1-8faa-e06816c188f6.html"
+    },
+    {
+      "name": "app-page-closed",
+      "time": "2026-09-05T22:59:39.895Z"
+    },
+    {
+      "name": "browser-context-closed",
+      "time": "2026-09-05T22:59:39.896Z"
+    }
+  ],
+  "preferences": {
+    "initialized": true,
+    "original": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "lastOwned": {
+      "selectedPlanIds": [
+        "plan-msq9dg8l-gz6mz1"
+      ],
+      "profiles": {
+        "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+          "hoursPerDay": 8,
+          "partTimePct": 50,
+          "reservePct": 25,
+          "workingDays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "leaveDates": [
+            "2026-09-10"
+          ]
+        }
+      },
+      "issueChoices": {}
+    },
+    "version": 35,
+    "pending": null,
+    "restored": false,
+    "history": [
+      {
+        "name": "admitted",
+        "time": "2026-09-05T22:59:17.193Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-05T22:59:17.430Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-05T22:59:17.880Z"
+      },
+      {
+        "name": "recovery-required",
+        "time": "2026-09-05T22:59:39.899Z",
+        "message": "Capacity preferences could not be proven restored; retain the exact owned fixtures"
+      }
+    ]
+  },
+  "originalSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "summary": {
+    "id": "4fbb1943-7064-4dc1-8faa-e06816c188f6",
+    "hash": "4c29c2fe0671145b7f329dc96ddcdba3843e295dcedf9020fa570c6666f9b80b",
+    "name": "Numeric commitment and overload",
+    "planName": "[harness-test] lz-norm-mtoziqi3",
+    "takenAt": "2026-09-05T22:59:32.673Z",
+    "sourceVersion": 6,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "79530050d91c6abad432e378a27c4f777c3412090a18e556bb184521b7202212",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.48333333333333334,
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "high"
+    },
+    "capacity": {
+      "asOfDate": "2026-09-05",
+      "assumptions": "This captured plan only, not the selected portfolio. Remaining Jira effort is spread over its remaining working dates; personal leave reduces capacity, not demand. The author explicitly included these saved availability assumptions in this shared report. No tasks are moved.",
+      "coverage": {
+        "completedIssues": 0,
+        "conflictingIssues": 0,
+        "missingEffort": 0,
+        "selectedPlans": 1,
+        "sharedDuplicatesRemoved": 0,
+        "unallocatedIssues": 0,
+        "unassignedIssues": 0,
+        "unavailableAssignee": 0,
+        "unavailableIssueCount": 0,
+        "unavailableStatus": 0,
+        "uniqueIssues": 1
+      },
+      "endDate": "2026-09-13",
+      "inputHash": "e75582bdc3f604dabae3bf97a8c9dec13cde2ccc4b2796c55ab6d41a5dd8e26a",
+      "profileVersion": 35,
+      "readAt": "2026-09-05T22:59:32.360Z",
+      "readStartedAt": "2026-09-05T22:59:32.094Z",
+      "reason": null,
+      "scope": "captured-plan",
+      "sourceVersion": 6,
+      "startDate": "2026-09-07",
+      "state": "available",
+      "totals": {
+        "allocatedHours": 20,
+        "knownEffortHours": 20,
+        "outsideWindowHours": 0,
+        "unallocatedHours": 0
+      }
+    },
+    "uncertainty": "high",
+    "consistency": {
+      "basisHash": "ecf510fc2c512c456c1fba1b42fb4bf4124c67c03670bcf80e8071b15ec8201d",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-05T22:59:32.056Z",
+      "verifiedAfterAnalysisAt": "2026-09-05T22:59:32.673Z"
+    },
+    "baseline": null,
+    "counts": {
+      "timeline": 1,
+      "targets": 2,
+      "changes": 0,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 1,
+      "changes": 0,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "document": {
+      "availability": {
+        "hashes": [
+          "b8b8a0aeda00622baffa642368f1f9c792fc56078d3df4077b76a2135d32bcfe"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "capacity": {
+        "hashes": [
+          "ccfeec3e049324dcdaa0971d364d542ffa0f36d913b99c2e850cbe7f599f11fc"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [
+          "cf1ca192172f32e9384c44e0d402f2befdce837d31887a130750f3e6c39be5fa"
+        ],
+        "sizes": [
+          2
+        ],
+        "total": 2
+      },
+      "timeline": {
+        "hashes": [
+          "8f25b51ec166e6f32e3d649621f7afd98fb4721c6aef5ce9a1fed6f592016e48"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "unallocated": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 1,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1,
+      "unavailableRows": 0
+    },
+    "span": {
+      "start": "2026-09-07",
+      "finish": "2026-09-11"
+    },
+    "plannedFinish": "2026-09-11",
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 0
+    }
+  },
+  "targetRows": [
+    {
+      "date": "2026-09-07",
+      "forecastReason": null,
+      "forecastState": "available",
+      "key": "cc9ee018-ce6f-4a0f-8e73-9db696215f66",
+      "memberCount": 1,
+      "name": "Scoped earliest",
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "plannedFinish": "2026-09-11",
+      "probability": 0,
+      "reason": null,
+      "scopeId": "10289",
+      "scopeLabel": "[harness-test] lz-norm-mtoziqi3",
+      "scopeType": "release",
+      "state": "After target"
+    },
+    {
+      "date": "2026-09-18",
+      "forecastReason": null,
+      "forecastState": "available",
+      "key": "d0e4c6b6-bc18-4b73-8c76-d6ba3be3899f",
+      "memberCount": 1,
+      "name": "Scoped later",
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "plannedFinish": "2026-09-11",
+      "probability": 1,
+      "reason": null,
+      "scopeId": "10289",
+      "scopeLabel": "[harness-test] lz-norm-mtoziqi3",
+      "scopeType": "release",
+      "state": "Within target"
+    }
+  ],
+  "capacityRows": [
+    {
+      "availableDays": 4,
+      "capacityHours": 12,
+      "demandHours": 20,
+      "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-09-07",
+      "name": "Mihai Perdum",
+      "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "status": "overloaded",
+      "unknownEffortCount": 0,
+      "utilizationPct": 166.66666666666669,
+      "week": "2026-09-07"
+    }
+  ],
+  "availabilityRows": [
+    {
+      "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "name": "Mihai Perdum",
+      "profile": {
+        "hoursPerDay": 8,
+        "leaveDates": [
+          "2026-09-10"
+        ],
+        "partTimePct": 50,
+        "reservePct": 25,
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    }
+  ],
+  "bodyError": {
+    "name": "Error",
+    "message": "download.saveAs: Target page, context or browser has been closed"
+  },
+  "settingsCleanupError": {
+    "name": "CapacitySettingsRecoveryRequired",
+    "message": "Capacity preferences could not be proven restored; retain the exact owned fixtures"
+  },
+  "originalPrivateSettingsRestored": false
+}

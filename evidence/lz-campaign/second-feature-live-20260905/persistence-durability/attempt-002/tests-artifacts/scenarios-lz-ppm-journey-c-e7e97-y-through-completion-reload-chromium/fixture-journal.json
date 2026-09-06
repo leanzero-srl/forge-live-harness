@@ -1,0 +1,71 @@
+{
+  "marker": "lz-norm-mtor6svc",
+  "name": "[harness-test] lz-norm-mtor6svc",
+  "time": "2026-09-05T19:05:53.064Z",
+  "issues": [
+    {
+      "key": "WFH-2770",
+      "seed": {
+        "label": "apply selected",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    },
+    {
+      "key": "WFH-2771",
+      "seed": {
+        "label": "discard saved sibling",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtor6wl9-v9ultb",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtor6wl9-v9ultb",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2771",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2770",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2770",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2771",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2770",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2771",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

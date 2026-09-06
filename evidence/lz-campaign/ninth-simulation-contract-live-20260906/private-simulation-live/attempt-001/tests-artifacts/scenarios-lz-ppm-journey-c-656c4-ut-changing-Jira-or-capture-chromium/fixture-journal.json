@@ -1,0 +1,102 @@
+{
+  "marker": "lz-norm-mtp4uopa",
+  "name": "[harness-test] lz-norm-mtp4uopa",
+  "time": "2026-09-06T01:28:22.414Z",
+  "issues": [
+    {
+      "key": "WFH-2894",
+      "seed": {
+        "label": "simulation predecessor",
+        "duration": 5,
+        "start": "2026-03-02",
+        "due": "2026-03-06"
+      }
+    },
+    {
+      "key": "WFH-2895",
+      "seed": {
+        "label": "simulation successor",
+        "duration": 5,
+        "start": "2026-03-09",
+        "due": "2026-03-13"
+      }
+    },
+    {
+      "key": "WFH-2896",
+      "seed": {
+        "label": "simulation independent December",
+        "duration": 5,
+        "start": "2026-12-07",
+        "due": "2026-12-11"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp4ut3m-9370na",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp4ut3m-9370na",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2896",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2895",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2894",
+      "deleted": true
+    }
+  ],
+  "linkPairs": [
+    {
+      "from": "WFH-2894",
+      "to": "WFH-2895"
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2894",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2895",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2896",
+      "start": "2026-12-07",
+      "due": "2026-12-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2894",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2895",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2896",
+        "start": "2026-12-07",
+        "due": "2026-12-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

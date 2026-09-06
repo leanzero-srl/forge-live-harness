@@ -1,0 +1,220 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30150,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2712 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2711 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/version/10281 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtoopxrj\",\"name\":\"[harness-test] lz-norm-mtoopxrj\",\"time\":\"2026-09-05T17:56:47.023Z\",\"issues\":[{\"key\":\"WFH-2711\",\"seed\":{\"label\":\"scoped early\",\"duration\":2,\"start\":\"2026-10-05\",\"due\":\"2026-10-06\",\"release\":true}},{\"key\":\"WFH-2712\",\"seed\":{\"label\":\"outside long\",\"duration\":41,\"start\":\"2026-10-05\",\"due\":\"2026-11-30\"}}],\"planId\":\"plan-test-mtooq0qg-q0z7zi\",\"cleanup\":[{\"plan\":\"plan-test-mtooq0qg-q0z7zi\",\"deleted\":true},{\"issue\":\"WFH-2712\",\"deleted\":true},{\"issue\":\"WFH-2711\",\"deleted\":true},{\"version\":\"10281\",\"deleted\":true}],\"version\":{\"self\":\"https://wolfaenpak.atlassian.net/rest/api/3/version/10281\",\"id\":\"10281\",\"name\":\"[harness-test] lz-norm-mtoopxrj\",\"archived\":false,\"released\":false,\"projectId\":10001},\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:56:45.914Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "507a219f41a25860a990-33cfedd37ed61de8fb1c",
+          "file": "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 32940,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"gantt-baseline-ghost\"]')\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"gantt-baseline-ghost\"]')\u001b[22m\n\u001b[2m    34 × locator resolved to 0 elements\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"gantt-baseline-ghost\"]')\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"gantt-baseline-ghost\"]')\u001b[22m\n\u001b[2m    34 × locator resolved to 0 elements\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-planning.spec.ts:54:233\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:54:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-planning.spec.ts:50:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+                      "column": 233,
+                      "line": 54
+                    },
+                    "snippet": "  52 |   const capture=async(name:string)=>{await workspace.getByLabel('Capture name').fill(name);await workspace.locator('form').getByRole('combobox').first().click();await frame.getByRole('option',{name:'Baseline',exact:true}).click();await workspace.getByRole('button',{name:'Capture working plan',exact:true}).click();await expect(workspace.locator('[data-testid=\"snapshot-detail\"] h3')).toHaveText(name);};\n  53 |   await capture('Commitment one');await workspace.getByRole('button',{name:'Use as baseline',exact:true}).click();await expect(workspace).toContainText('Baseline set to Commitment one');\n> 54 |   await frame.getByRole('button',{name:/^Gantt/i}).first().click();const show=frame.getByTitle('Show baseline ghost bars');if(await show.count())await show.click();await expect(frame.locator('[data-testid=\"gantt-baseline-ghost\"]')).toHaveCount(1);await page.screenshot({path:info.outputPath('active-baseline-ghost.png'),fullPage:true,animations:'disabled'});\n     |                                                                                                                                                                                                                                         ^\n  55 |   await frame.getByRole('button',{name:/^Table/i}).first().click();await editDuration(frame,f.keys[0],'6');workspace=await planning(frame);await workspace.getByRole('button',{name:/baseline\\s*Commitment one/}).click();\n  56 |   await expect(workspace.locator('[data-testid=\"snapshot-detail\"]')).toContainText('1 changed schedules');await expect(workspace.locator('tbody tr')).toHaveCount(1);await expect(workspace.locator('tbody tr')).toContainText(f.keys[0]);\n  57 |   const cells=workspace.locator('tbody tr').locator('td');await expect(cells.nth(1)).toHaveText('2026-10-05→ 2026-10-05');await expect(cells.nth(2)).toHaveText('2026-10-09→ 2026-10-12');await expect(cells.nth(3)).toHaveText('5→ 6');await expect(cells.nth(4)).toHaveText('No→ No');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+                        "column": 233,
+                        "line": 54
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"gantt-baseline-ghost\"]')\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"gantt-baseline-ghost\"]')\u001b[22m\n\u001b[2m    34 × locator resolved to 0 elements\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n\n  52 |   const capture=async(name:string)=>{await workspace.getByLabel('Capture name').fill(name);await workspace.locator('form').getByRole('combobox').first().click();await frame.getByRole('option',{name:'Baseline',exact:true}).click();await workspace.getByRole('button',{name:'Capture working plan',exact:true}).click();await expect(workspace.locator('[data-testid=\"snapshot-detail\"] h3')).toHaveText(name);};\n  53 |   await capture('Commitment one');await workspace.getByRole('button',{name:'Use as baseline',exact:true}).click();await expect(workspace).toContainText('Baseline set to Commitment one');\n> 54 |   await frame.getByRole('button',{name:/^Gantt/i}).first().click();const show=frame.getByTitle('Show baseline ghost bars');if(await show.count())await show.click();await expect(frame.locator('[data-testid=\"gantt-baseline-ghost\"]')).toHaveCount(1);await page.screenshot({path:info.outputPath('active-baseline-ghost.png'),fullPage:true,animations:'disabled'});\n     |                                                                                                                                                                                                                                         ^\n  55 |   await frame.getByRole('button',{name:/^Table/i}).first().click();await editDuration(frame,f.keys[0],'6');workspace=await planning(frame);await workspace.getByRole('button',{name:/baseline\\s*Commitment one/}).click();\n  56 |   await expect(workspace.locator('[data-testid=\"snapshot-detail\"]')).toContainText('1 changed schedules');await expect(workspace.locator('tbody tr')).toHaveCount(1);await expect(workspace.locator('tbody tr')).toContainText(f.keys[0]);\n  57 |   const cells=workspace.locator('tbody tr').locator('td');await expect(cells.nth(1)).toHaveText('2026-10-05→ 2026-10-05');await expect(cells.nth(2)).toHaveText('2026-10-09→ 2026-10-12');await expect(cells.nth(3)).toHaveText('5→ 6');await expect(cells.nth(4)).toHaveText('No→ No');\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-planning.spec.ts:54:233\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:54:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-planning.spec.ts:50:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2713 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtooqkyo\",\"name\":\"[harness-test] lz-norm-mtooqkyo\",\"time\":\"2026-09-05T17:57:17.088Z\",\"issues\":[{\"key\":\"WFH-2713\",\"seed\":{\"label\":\"history\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtooqmly-2v7xjg\",\"cleanup\":[{\"plan\":\"plan-test-mtooqmly-2v7xjg\",\"deleted\":true},{\"issue\":\"WFH-2713\",\"deleted\":true}],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:57:16.441Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-de41a-eplacement-permits-deletion-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+                    "column": 233,
+                    "line": 54
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "507a219f41a25860a990-579cf27b703b48997d88",
+          "file": "scenarios/lz-ppm/journey-campaign-planning.spec.ts",
+          "line": 49,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T17:56:45.587Z",
+    "duration": 64059.015,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "time": "2026-09-06T08:05:32.602071+00:00",
+  "harnessCommit": "52b659189bd3d94f957f5d5802f98a6231f90945",
+  "instrumentHash": "f94e4e69016f83cbf58668a04c88383afb9fc5850147bb6b955b47a7e9ab0aa0",
+  "command": [
+    "python3",
+    "scripts/lz-campaign.py",
+    "start",
+    "--run-id",
+    "seventeenth-packed-report-live-20260906",
+    "--manifest",
+    "config/lz-campaign/staged-report-manifest.json",
+    "--ui-version",
+    "4.58.585",
+    "--forge-version",
+    "6.18.0",
+    "--app-commit",
+    "598b621b6d56b2939fb682a60f4f261119fdbcf8",
+    "--browser-mode",
+    "portable-chrome152",
+    "--expected-account-id",
+    "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+  ],
+  "expectedTests": 7,
+  "sourceExtension": null,
+  "lastVerifiedPreferencesVersion": 62,
+  "lastVerifiedPreferencesReceipt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-finish-20260906/artifacts/scenarios-lz-ppm-campaign--44d15-cross-packed-layout-upgrade-chromium/packed-finish.json",
+  "lastVerifiedPreferencesReceiptSha256": "284fd9cc8d70a74af10149221ca0ed9598c5d722452f9c94af9171cbbc371e23"
+}

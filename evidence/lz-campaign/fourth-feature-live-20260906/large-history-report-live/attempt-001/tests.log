@@ -1,0 +1,29 @@
+
+Running 1 test using 1 worker
+
+
+(node:48312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-large-history.spec.ts:12:1 › large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-large-history.spec.ts:12:1 › large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: null
+
+      29 |   // Jira stores no declared duration in this bed, so hydration must count its dates.
+      30 |   const weekdays=(start:string,due:string)=>{let n=0;for(let t=Date.parse(start+'T12:00:00Z');t<=Date.parse(due+'T12:00:00Z');t+=86400000){const day=new Date(t).getUTCDay();if(day>=1&&day<=5)n++;}return n;};
+    > 31 |   for(const row of basis){const raw:any=originalByKey.get(row.key);expect(row.startDate).toBe(raw.start);expect(row.dueDate).toBe(raw.due);expect(row.duration).toBe(raw.duration??weekdays(raw.start,raw.due));}
+         |                                                                                                                                                                 ^
+      32 |   const expected=rowFields(basis);fs.writeFileSync(info.outputPath('large-capture-expected.json'),JSON.stringify(expected));
+      33 |   await work.getByLabel('Capture name',{exact:true}).fill('Complete large decision');const captureStart=Date.now();const captured=actualResponse(page,'getSnapshot',planId!);await work.getByRole('button',{name:'Capture working plan',exact:true}).click();const snapshot=(await captured).snapshot;journal.metrics.captureAndReadMs=Date.now()-captureStart;journal.metrics.snapshotBytes=Buffer.byteLength(JSON.stringify(snapshot));
+      34 |   expect(snapshot.calendar.workingDays).toEqual([1,2,3,4,5]);expect(snapshot.calendar.holidays).toEqual([]);expect(snapshot.issueCount).toBe(population.count);expect(snapshot.issues.map((i:any)=>i.key).sort()).toEqual(keys);expect(rowFields(snapshot.issues)).toEqual(expected);journal.snapshot={id:snapshot.id,hash:snapshot.hash,count:snapshot.issueCount,lastExpected:expected.slice(-5),lastSnapshot:rowFields(snapshot.issues).slice(-5)};retain();
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-large-history.spec.ts:31:161
+
+    Error Context: evidence/lz-campaign/fourth-feature-live-20260906/large-history-report-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2f98e-without-mutating-the-source-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-large-history.spec.ts:12:1 › large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source 

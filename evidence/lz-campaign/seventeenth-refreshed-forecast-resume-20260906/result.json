@@ -1,0 +1,281 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--grep",
+      "refreshed resume:",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-refreshed-forecast-resume-20260906/artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-refreshed-forecast-resume-20260906/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-refreshed-forecast-resume-20260906/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+      "file": "scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "seventeenth refreshed resume: same retained5300 job completes exact40-run report and HTML without cleanup",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 10800000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1402350,
+                  "error": {
+                    "message": "AggregateError: Retained diagnostic/recovery and independent audit errors",
+                    "stack": "AggregateError: Retained diagnostic/recovery and independent audit errors\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts:120:686",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+                      "column": 686,
+                      "line": 120
+                    },
+                    "snippet": "  118 |   ['no-unexpected-ui-writes',async()=>{expect(forbiddenUi).toEqual([]);expect(uiRouteErrors).toEqual([]);}],['stop-owned-ui',async()=>{if(!page.isClosed())await stopUi();}],['retained-job',async()=>{if(ready){const final=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);journal.finalJob=final;journal.publicationObserved=final.state==='complete';save();const physical=await probe();journal.finalProbe=physical;save();verifyCaptureProbe(physical,{planId,jobId,...final});if(latestVerifiedProbe)preservedArtifacts(physical,final,latestVerifiedProbe);else if(admittedProbe)preservedArtifacts(physical,final,admittedProbe);if(publishedProbe)expect(physical).toEqual(publishedProbe);}}],['pristine-snapshot',async()=>{if(ready)await snapshot();}],['shared-issue',async()=>{for(let n=0;n<2;n++)await sharedIssue();}],['original-source',async()=>{if(originalSource)expect(await source()).toEqual(originalSource);}],['registry',async()=>await registry(planDeleted?originals:ownedRegistry)],\n  119 |   ['source-plan',async()=>{if(originalOwned&&!planDeleted)expect(await owned()).toEqual(originalOwned);}],['preferences',async()=>{if(ready)for(let n=0;n<2;n++)expect(await read('getCapacitySettings')).toEqual(expectedPrefs);}],['original-drafts',async()=>{if(ready)for(const id of originals)await drafts(id);}],['owned-baseline',async()=>{if(ready&&!planDeleted){await drafts(planId);await baseline();}}]\n> 120 |  ]as const){try{await audit();}catch(error){errors.push(error);record('independent-audit-error',{label,error:String(error)});}}try{await drainUi();expect(uiRouteErrors).toEqual([]);expect(forbiddenUi).toEqual([]);}catch(error){errors.push(error);record('independent-audit-error',{label:'final-ui-transport-drain',error:String(error)});}budget.close();try{journal.finalBudget=budget.snapshot();}catch(error){errors.push(error);record('independent-audit-error',{label:'final-budget-clock',error:String(error)});}journal.sourceAndPreferencesPreserved=ready&&errors.length===0;if(errors.length)journal.completed=false;await page.unroute('**/*',blockUiWrites);save();if(errors.length)throw new AggregateError([...(bodyFailed?[bodyError]:[]),...errors],'Retained diagnostic/recovery and independent audit errors');}\n      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^\n  121 | });\n  122 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+                        "column": 686,
+                        "line": 120
+                      },
+                      "message": "AggregateError: Retained diagnostic/recovery and independent audit errors\n\n  118 |   ['no-unexpected-ui-writes',async()=>{expect(forbiddenUi).toEqual([]);expect(uiRouteErrors).toEqual([]);}],['stop-owned-ui',async()=>{if(!page.isClosed())await stopUi();}],['retained-job',async()=>{if(ready){const final=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);journal.finalJob=final;journal.publicationObserved=final.state==='complete';save();const physical=await probe();journal.finalProbe=physical;save();verifyCaptureProbe(physical,{planId,jobId,...final});if(latestVerifiedProbe)preservedArtifacts(physical,final,latestVerifiedProbe);else if(admittedProbe)preservedArtifacts(physical,final,admittedProbe);if(publishedProbe)expect(physical).toEqual(publishedProbe);}}],['pristine-snapshot',async()=>{if(ready)await snapshot();}],['shared-issue',async()=>{for(let n=0;n<2;n++)await sharedIssue();}],['original-source',async()=>{if(originalSource)expect(await source()).toEqual(originalSource);}],['registry',async()=>await registry(planDeleted?originals:ownedRegistry)],\n  119 |   ['source-plan',async()=>{if(originalOwned&&!planDeleted)expect(await owned()).toEqual(originalOwned);}],['preferences',async()=>{if(ready)for(let n=0;n<2;n++)expect(await read('getCapacitySettings')).toEqual(expectedPrefs);}],['original-drafts',async()=>{if(ready)for(const id of originals)await drafts(id);}],['owned-baseline',async()=>{if(ready&&!planDeleted){await drafts(planId);await baseline();}}]\n> 120 |  ]as const){try{await audit();}catch(error){errors.push(error);record('independent-audit-error',{label,error:String(error)});}}try{await drainUi();expect(uiRouteErrors).toEqual([]);expect(forbiddenUi).toEqual([]);}catch(error){errors.push(error);record('independent-audit-error',{label:'final-ui-transport-drain',error:String(error)});}budget.close();try{journal.finalBudget=budget.snapshot();}catch(error){errors.push(error);record('independent-audit-error',{label:'final-budget-clock',error:String(error)});}journal.sourceAndPreferencesPreserved=ready&&errors.length===0;if(errors.length)journal.completed=false;await page.unroute('**/*',blockUiWrites);save();if(errors.length)throw new AggregateError([...(bodyFailed?[bodyError]:[]),...errors],'Retained diagnostic/recovery and independent audit errors');}\n      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^\n  121 | });\n  122 |\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts:120:686"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+                        "column": 40,
+                        "line": 60
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"presenceLeave: net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  58 |  const stopUi=async()=>{await drainUi();await page.goto('about:blank');await drainUi();};\n  59 |  const acquire=async()=>{try{\n> 60 |   await stopUi();expect(uiRouteErrors).toEqual([]);expect(forbiddenUi).toEqual([]);\n     |                                        ^\n  61 |   const principal=await browserPrincipal(page,BASE);expect(principal.httpStatus).toBe(200);expect(principal.accountId).toBe(expectedCapacityWire.accountId);record('wire-browser-principal',principal);\n  62 |   const frame=await openPlans(page);const pending=page.waitForResponse((response:any)=>callEnvelope(response.request())?.variables?.input?.payload?.call?.functionKey==='getCapacitySettings',{timeout:600000});pending.catch(()=>{});await frame.getByRole('button',{name:'Capacity',exact:true}).click();const response=await pending;await response.finished();await drainUi();const request=response.request(),timing=uiObservations.get(request);expect(uiRouteErrors).toEqual([]);const principalAfter=await browserPrincipal(page,BASE);expect(principalAfter.httpStatus).toBe(200);expect(principalAfter.accountId).toBe(principal.accountId);record('wire-browser-principal-after',principalAfter);\n  63 |   const candidate=verifiedAcquisition({wire:{url:request.url(),data:callEnvelope(request),headers:await request.allHeaders()},accountId:principal.accountId,timing});\n    at acquire (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts:60:40)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-wire-lifecycle.mjs:75:25\n    at fresh (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-wire-lifecycle.mjs:106:18)\n    at Object.withExport (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-wire-lifecycle.mjs:138:7)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts:113:3"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+                        "column": 94,
+                        "line": 118
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"presenceLeave: net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  116 |  }catch(error){bodyFailed=true;bodyError=error;record('body-error',String(error));throw error;}\n  117 |  finally{const errors:any[]=[];for(const[label,audit]of[\n> 118 |   ['no-unexpected-ui-writes',async()=>{expect(forbiddenUi).toEqual([]);expect(uiRouteErrors).toEqual([]);}],['stop-owned-ui',async()=>{if(!page.isClosed())await stopUi();}],['retained-job',async()=>{if(ready){const final=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);journal.finalJob=final;journal.publicationObserved=final.state==='complete';save();const physical=await probe();journal.finalProbe=physical;save();verifyCaptureProbe(physical,{planId,jobId,...final});if(latestVerifiedProbe)preservedArtifacts(physical,final,latestVerifiedProbe);else if(admittedProbe)preservedArtifacts(physical,final,admittedProbe);if(publishedProbe)expect(physical).toEqual(publishedProbe);}}],['pristine-snapshot',async()=>{if(ready)await snapshot();}],['shared-issue',async()=>{for(let n=0;n<2;n++)await sharedIssue();}],['original-source',async()=>{if(originalSource)expect(await source()).toEqual(originalSource);}],['registry',async()=>await registry(planDeleted?originals:ownedRegistry)],\n      |                                                                                              ^\n  119 |   ['source-plan',async()=>{if(originalOwned&&!planDeleted)expect(await owned()).toEqual(originalOwned);}],['preferences',async()=>{if(ready)for(let n=0;n<2;n++)expect(await read('getCapacitySettings')).toEqual(expectedPrefs);}],['original-drafts',async()=>{if(ready)for(const id of originals)await drafts(id);}],['owned-baseline',async()=>{if(ready&&!planDeleted){await drafts(planId);await baseline();}}]\n  120 |  ]as const){try{await audit();}catch(error){errors.push(error);record('independent-audit-error',{label,error:String(error)});}}try{await drainUi();expect(uiRouteErrors).toEqual([]);expect(forbiddenUi).toEqual([]);}catch(error){errors.push(error);record('independent-audit-error',{label:'final-ui-transport-drain',error:String(error)});}budget.close();try{journal.finalBudget=budget.snapshot();}catch(error){errors.push(error);record('independent-audit-error',{label:'final-budget-clock',error:String(error)});}journal.sourceAndPreferencesPreserved=ready&&errors.length===0;if(errors.length)journal.completed=false;await page.unroute('**/*',blockUiWrites);save();if(errors.length)throw new AggregateError([...(bodyFailed?[bodyError]:[]),...errors],'Retained diagnostic/recovery and independent audit errors');}\n  121 | });\n    at audit (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts:118:94)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts:120:23"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+                        "column": 170,
+                        "line": 120
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"presenceLeave: net::ERR_ABORTED\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  118 |   ['no-unexpected-ui-writes',async()=>{expect(forbiddenUi).toEqual([]);expect(uiRouteErrors).toEqual([]);}],['stop-owned-ui',async()=>{if(!page.isClosed())await stopUi();}],['retained-job',async()=>{if(ready){const final=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);journal.finalJob=final;journal.publicationObserved=final.state==='complete';save();const physical=await probe();journal.finalProbe=physical;save();verifyCaptureProbe(physical,{planId,jobId,...final});if(latestVerifiedProbe)preservedArtifacts(physical,final,latestVerifiedProbe);else if(admittedProbe)preservedArtifacts(physical,final,admittedProbe);if(publishedProbe)expect(physical).toEqual(publishedProbe);}}],['pristine-snapshot',async()=>{if(ready)await snapshot();}],['shared-issue',async()=>{for(let n=0;n<2;n++)await sharedIssue();}],['original-source',async()=>{if(originalSource)expect(await source()).toEqual(originalSource);}],['registry',async()=>await registry(planDeleted?originals:ownedRegistry)],\n  119 |   ['source-plan',async()=>{if(originalOwned&&!planDeleted)expect(await owned()).toEqual(originalOwned);}],['preferences',async()=>{if(ready)for(let n=0;n<2;n++)expect(await read('getCapacitySettings')).toEqual(expectedPrefs);}],['original-drafts',async()=>{if(ready)for(const id of originals)await drafts(id);}],['owned-baseline',async()=>{if(ready&&!planDeleted){await drafts(planId);await baseline();}}]\n> 120 |  ]as const){try{await audit();}catch(error){errors.push(error);record('independent-audit-error',{label,error:String(error)});}}try{await drainUi();expect(uiRouteErrors).toEqual([]);expect(forbiddenUi).toEqual([]);}catch(error){errors.push(error);record('independent-audit-error',{label:'final-ui-transport-drain',error:String(error)});}budget.close();try{journal.finalBudget=budget.snapshot();}catch(error){errors.push(error);record('independent-audit-error',{label:'final-budget-clock',error:String(error)});}journal.sourceAndPreferencesPreserved=ready&&errors.length===0;if(errors.length)journal.completed=false;await page.unroute('**/*',blockUiWrites);save();if(errors.length)throw new AggregateError([...(bodyFailed?[bodyError]:[]),...errors],'Retained diagnostic/recovery and independent audit errors');}\n      |                                                                                                                                                                          ^\n  121 | });\n  122 |\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts:120:170"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.587\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T14:01:22.167Z\"}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":155,\"startedAt\":\"2026-09-06T14:04:07.647Z\",\"reservedUnits\":192}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":156,\"startedAt\":\"2026-09-06T14:05:07.288Z\",\"reservedUnits\":768}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":157,\"startedAt\":\"2026-09-06T14:05:20.805Z\",\"reservedUnits\":768}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":158,\"startedAt\":\"2026-09-06T14:06:19.209Z\",\"reservedUnits\":192}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":159,\"startedAt\":\"2026-09-06T14:06:30.902Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":160,\"startedAt\":\"2026-09-06T14:07:23.349Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":161,\"startedAt\":\"2026-09-06T14:07:36.085Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":162,\"startedAt\":\"2026-09-06T14:08:29.253Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":163,\"startedAt\":\"2026-09-06T14:08:41.311Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":164,\"startedAt\":\"2026-09-06T14:09:34.621Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":165,\"startedAt\":\"2026-09-06T14:09:46.374Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":166,\"startedAt\":\"2026-09-06T14:10:39.999Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":167,\"startedAt\":\"2026-09-06T14:10:51.594Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":168,\"startedAt\":\"2026-09-06T14:11:45.252Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":169,\"startedAt\":\"2026-09-06T14:11:57.066Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":170,\"startedAt\":\"2026-09-06T14:12:50.954Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":171,\"startedAt\":\"2026-09-06T14:13:02.494Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":172,\"startedAt\":\"2026-09-06T14:13:56.330Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":173,\"startedAt\":\"2026-09-06T14:14:07.339Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":174,\"startedAt\":\"2026-09-06T14:15:01.834Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":175,\"startedAt\":\"2026-09-06T14:15:12.398Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":176,\"startedAt\":\"2026-09-06T14:16:13.294Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":177,\"startedAt\":\"2026-09-06T14:16:21.202Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":178,\"startedAt\":\"2026-09-06T14:17:12.628Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":179,\"startedAt\":\"2026-09-06T14:17:25.885Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":180,\"startedAt\":\"2026-09-06T14:18:17.727Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":181,\"startedAt\":\"2026-09-06T14:18:31.364Z\",\"reservedUnits\":192}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":182,\"startedAt\":\"2026-09-06T14:19:22.995Z\",\"reservedUnits\":96}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T14:01:18.358Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-refreshed-forecast-resume-20260906/artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+                    "column": 686,
+                    "line": 120
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "0bc1750acaf27b6fbe86-5164f269d14f1f85c703",
+          "file": "scenarios/lz-ppm/campaign-seventeenth-refreshed-resume.spec.ts",
+          "line": 39,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T14:01:17.655Z",
+    "duration": 1407158.9840000002,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

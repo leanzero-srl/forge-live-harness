@@ -1,0 +1,654 @@
+{
+  "planId": "plan-test-mtpch8kq-xzd548",
+  "job": {
+    "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+    "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+    "name": "All rows and retained baseline",
+    "createdAt": "2026-09-06T05:02:11.094Z",
+    "expiresAt": "2026-09-07T05:02:11.094Z",
+    "checkpoint": 18,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 18,
+    "totalUnits": 18,
+    "cleanupDone": true,
+    "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+  },
+  "report": {
+    "baseline": {
+      "coverageNote": null,
+      "hash": "27710f2de2dca18358ac53d35b83122420c954dde7e7ab8b2e692cd72c4a4ff6",
+      "id": "800497f6-2aa8-4648-b5c0-2947c19f3b2d",
+      "issueCount": 45,
+      "name": "Report original baseline",
+      "sourceSnapshotId": "bc687561-cf93-4772-9a58-eb19caa1796f",
+      "takenAt": "2026-09-06T05:02:01.655Z"
+    },
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "capacity": {
+      "reason": "Capacity was not included at capture. No availability is assumed.",
+      "scope": "captured-plan",
+      "state": "not-included"
+    },
+    "changeCounts": {
+      "added": 0,
+      "changed": 2,
+      "removed": 0
+    },
+    "consistency": {
+      "basisHash": "812c73c946ec77e1dfae0f9a8e7d9357e9ce84c77a19711eaf69294b5892ae47",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T05:02:14.579Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T05:02:30.038Z"
+    },
+    "counts": {
+      "changes": 2,
+      "targets": 0,
+      "timeline": 45
+    },
+    "coverage": {
+      "leafTasks": 37,
+      "unavailableRows": 7,
+      "unscheduledOrInvalidLeaves": 2,
+      "validRows": 38
+    },
+    "document": {
+      "changes": {
+        "hashes": [
+          "046ce941625c78c9f4000faec267b21de27c6c8e67ee411673d6b6809a5a350e"
+        ],
+        "sizes": [
+          2
+        ],
+        "total": 2
+      },
+      "targets": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "timeline": {
+        "hashes": [
+          "f1e0696e21d258fbba57bd58ee35c71864c12af281786855433b0f3c9b3ca251"
+        ],
+        "sizes": [
+          45
+        ],
+        "total": 45
+      }
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 35,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 1,
+        "missingDates": 1,
+        "sampledLeaves": 0,
+        "totalLeaves": 37
+      },
+      "inputHash": "0f6269eabc4402b6dea3499fd8e45a92baa6871da976e7417f05ce54218e4982",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": null,
+      "p50": null,
+      "p80": null,
+      "p90": null,
+      "reason": "The full captured network has missing, invalid or inverted dates, including required baseline dates.",
+      "runs": 0,
+      "seed": 42,
+      "state": "unavailable",
+      "uncertainty": "medium"
+    },
+    "hash": "d9973f9fb8b3bc0a50f4aaef74685db76411bda2f6143054c3bea8b1fc423a82",
+    "id": "800497f6-2aa8-4648-b5c0-2947c19f3b2d",
+    "name": "All rows and retained baseline",
+    "pageSize": 50,
+    "pages": {
+      "changes": 1,
+      "targets": 0,
+      "timeline": 1
+    },
+    "planName": "[harness-test] Report proof mtpch8gm",
+    "plannedFinish": null,
+    "sourceVersion": 3,
+    "span": {
+      "finish": "2026-10-13",
+      "start": "2026-04-27"
+    },
+    "takenAt": "2026-09-06T05:02:10.763Z",
+    "uncertainty": "medium",
+    "workingChangeCount": 0
+  },
+  "error": null,
+  "begin": {
+    "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+    "name": "All rows and retained baseline",
+    "inputHash": "678238d5df6907c696f20b65953c8fa258a7237ea515e171d2a29b73291f331f",
+    "at": 1788670930062
+  },
+  "events": [
+    {
+      "type": "request",
+      "key": "captureSponsorReport",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788670930062
+    },
+    {
+      "type": "response",
+      "key": "captureSponsorReport",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 0,
+        "state": "active",
+        "stageLabel": "Checking the plan",
+        "completedUnits": 0,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670931288,
+      "elapsedMs": 1226
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 0,
+      "at": 1788670931288
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670933192,
+      "elapsedMs": 1904
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 1,
+      "at": 1788670933194
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 2,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 2,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670934864,
+      "elapsedMs": 1670
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 2,
+      "at": 1788670934864
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 3,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 3,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670936953,
+      "elapsedMs": 2089
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 3,
+      "at": 1788670936954
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 4,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670938560,
+      "elapsedMs": 1606
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 4,
+      "at": 1788670938560
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 5,
+        "state": "active",
+        "stageLabel": "Retaining the selected baseline",
+        "completedUnits": 5,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670939960,
+      "elapsedMs": 1400
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 5,
+      "at": 1788670939960
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 6,
+        "state": "active",
+        "stageLabel": "Preparing the report",
+        "completedUnits": 6,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670941765,
+      "elapsedMs": 1805
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 6,
+      "at": 1788670941766
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 7,
+        "state": "active",
+        "stageLabel": "Retaining report pages",
+        "completedUnits": 7,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670943901,
+      "elapsedMs": 2135
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 7,
+      "at": 1788670943902
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 8,
+        "state": "active",
+        "stageLabel": "Retaining report pages",
+        "completedUnits": 8,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670945804,
+      "elapsedMs": 1902
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 8,
+      "at": 1788670945805
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 9,
+        "state": "active",
+        "stageLabel": "Checking for plan changes",
+        "completedUnits": 9,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670947245,
+      "elapsedMs": 1440
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 9,
+      "at": 1788670947245
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 10,
+        "state": "active",
+        "stageLabel": "Confirming the plan is unchanged",
+        "completedUnits": 10,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670948803,
+      "elapsedMs": 1558
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 10,
+      "at": 1788670948803
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 11,
+        "state": "active",
+        "stageLabel": "Recording capture provenance",
+        "completedUnits": 11,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670950220,
+      "elapsedMs": 1417
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 11,
+      "at": 1788670950221
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 12,
+        "state": "active",
+        "stageLabel": "Checking every report page",
+        "completedUnits": 12,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670951587,
+      "elapsedMs": 1366
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 12,
+      "at": 1788670951587
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 13,
+        "state": "active",
+        "stageLabel": "Checking the retained schedule",
+        "completedUnits": 13,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670953016,
+      "elapsedMs": 1429
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 13,
+      "at": 1788670953016
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 14,
+        "state": "active",
+        "stageLabel": "Checking the retained baseline",
+        "completedUnits": 14,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670954348,
+      "elapsedMs": 1332
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 14,
+      "at": 1788670954348
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 15,
+        "state": "active",
+        "stageLabel": "Publishing the verified report",
+        "completedUnits": 15,
+        "totalUnits": 15,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670955552,
+      "elapsedMs": 1204
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": 15,
+      "at": 1788670955553
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 16,
+        "state": "complete",
+        "stageLabel": "Report ready",
+        "completedUnits": 16,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670957041,
+      "elapsedMs": 1488
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": null,
+      "at": 1788670957042
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 17,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 17,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670958402,
+      "elapsedMs": 1360
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+      "expectedCheckpoint": null,
+      "at": 1788670958402
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+        "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+        "name": "All rows and retained baseline",
+        "createdAt": "2026-09-06T05:02:11.094Z",
+        "expiresAt": "2026-09-07T05:02:11.094Z",
+        "checkpoint": 18,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 18,
+        "totalUnits": 18,
+        "cleanupDone": true,
+        "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+      },
+      "at": 1788670959461,
+      "elapsedMs": 1059
+    }
+  ]
+}

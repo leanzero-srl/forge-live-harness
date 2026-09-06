@@ -1,0 +1,12 @@
+✔ actual adapter serializes response parsing before following request validation (8.324625ms)
+✔ actual outer Forge timeout is retained rather than undefined-body success (0.793375ms)
+✔ requestfailed is an error, not permission to repeat begin (0.635708ms)
+✔ unrelated owner-discovery before click does not admit a foreign prior job (0.310709ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 355.653167

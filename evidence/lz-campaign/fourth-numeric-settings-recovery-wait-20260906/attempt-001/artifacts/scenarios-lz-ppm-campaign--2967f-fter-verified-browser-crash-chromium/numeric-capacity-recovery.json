@@ -1,0 +1,78 @@
+{
+  "numericPath": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/numeric-report-journal.json",
+  "originalPath": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-4ccc2-r-show-false-spare-capacity-chromium/capacity-boundaries-journal.json",
+  "expectedOwnedResidue": {
+    "selectedPlanIds": [
+      "plan-msq9dg8l-gz6mz1"
+    ],
+    "profiles": {
+      "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+        "hoursPerDay": 8,
+        "leaveDates": [
+          "2026-09-10"
+        ],
+        "partTimePct": 50,
+        "reservePct": 25,
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "issueChoices": {}
+  },
+  "originalSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "before": {
+    "success": true,
+    "version": 31,
+    "settings": {
+      "selectedPlanIds": [
+        "plan-msq9dg8l-gz6mz1"
+      ],
+      "profiles": {
+        "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+          "hoursPerDay": 8,
+          "partTimePct": 50,
+          "reservePct": 25,
+          "workingDays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "leaveDates": [
+            "2026-09-10"
+          ]
+        }
+      },
+      "issueChoices": {}
+    }
+  },
+  "after": {
+    "success": true,
+    "version": 32,
+    "settings": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  },
+  "reopened": {
+    "success": true,
+    "version": 32,
+    "settings": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  },
+  "restored": true
+}

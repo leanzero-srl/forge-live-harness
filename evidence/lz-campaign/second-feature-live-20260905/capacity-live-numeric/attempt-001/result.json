@@ -1,0 +1,52 @@
+{
+  "status": "failed",
+  "stamp": "5a6d327979d2c92b7c805d10d899ce4609750157123f3323e72b2324daba67ad",
+  "startedAt": "2026-09-05T19:07:44.059653+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/capacity-live-numeric/attempt-001",
+  "uiVersion": "4.58.575",
+  "forgeVersion": "6.2.0",
+  "appCommit": "dd3fa3b2",
+  "instrumentHash": "66eeb39bf148297a5017e39164d907d085cbbf7773dfb2936d46834c7e2213fb",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-capacity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads\"}",
+        "Playwright exit 1",
+        "insufficient executed tests"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T19:08:42.767553+00:00",
+  "elapsedSeconds": 58.70689158298774
+}

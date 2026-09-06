@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:72873) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › scenarios/lz-ppm/campaign-recover-capacity.spec.ts:7:1 › operator recovery: restore exact captured Capacity preferences after owned harness cleanup failure (14.7s)
+
+  1 passed (15.4s)

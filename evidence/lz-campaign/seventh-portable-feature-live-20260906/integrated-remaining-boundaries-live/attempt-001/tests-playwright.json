@@ -1,0 +1,921 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-adoption.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+      "scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/integrated-remaining-boundaries-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/integrated-remaining-boundaries-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/integrated-remaining-boundaries-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-adoption.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-adoption.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 63450,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.579\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T00:25:50.442Z\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2855 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2854 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2maaj\",\"name\":\"[harness-test] lz-norm-mtp2maaj\",\"time\":\"2026-09-06T00:25:51.259Z\",\"issues\":[{\"key\":\"WFH-2854\",\"seed\":{\"label\":\"adopt predecessor\",\"duration\":5,\"start\":\"2026-03-02\",\"due\":\"2026-03-06\"}},{\"key\":\"WFH-2855\",\"seed\":{\"label\":\"adopt successor\",\"duration\":5,\"start\":\"2026-03-09\",\"due\":\"2026-03-13\"}}],\"planId\":\"plan-test-mtp2mdfh-ev7kg2\",\"cleanup\":[{\"plan\":\"plan-test-mtp2mdfh-ev7kg2\",\"deleted\":true},{\"issue\":\"WFH-2855\",\"deleted\":true},{\"issue\":\"WFH-2854\",\"deleted\":true}],\"linkPairs\":[{\"from\":\"WFH-2854\",\"to\":\"WFH-2855\"}],\"searchIndexVerified\":[{\"key\":\"WFH-2854\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2855\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2854\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2855\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:25:47.614Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "actual-adoption-jira-second-reads",
+                      "contentType": "application/json",
+                      "body": "eyJvcmlnaW5hbCI6W3sia2V5IjoiV0ZILTI4NTQiLCJzdGFydCI6IjIwMjYtMDMtMDIiLCJkdWUiOiIyMDI2LTAzLTA2IiwiZHVyYXRpb24iOjV9LHsia2V5IjoiV0ZILTI4NTUiLCJzdGFydCI6IjIwMjYtMDMtMDkiLCJkdWUiOiIyMDI2LTAzLTEzIiwiZHVyYXRpb24iOjV9XSwiZXhwZWN0ZWQiOlt7ImtleSI6IldGSC0yODU0Iiwic3RhcnQiOiIyMDI2LTAzLTAyIiwiZHVlIjoiMjAyNi0wMy0wOSIsImR1cmF0aW9uIjo2fSx7ImtleSI6IldGSC0yODU1Iiwic3RhcnQiOiIyMDI2LTAzLTEwIiwiZHVlIjoiMjAyNi0wMy0xNiIsImR1cmF0aW9uIjo1fV0sInNlY29uZFJlYWQiOlt7ImtleSI6IldGSC0yODU0Iiwic3RhcnQiOiIyMDI2LTAzLTAyIiwiZHVlIjoiMjAyNi0wMy0wOSIsImR1cmF0aW9uIjo2fSx7ImtleSI6IldGSC0yODU1Iiwic3RhcnQiOiIyMDI2LTAzLTEwIiwiZHVlIjoiMjAyNi0wMy0xNiIsImR1cmF0aW9uIjo1fV0sImFmdGVyRGlzY2FyZCI6W3sia2V5IjoiV0ZILTI4NTQiLCJzdGFydCI6IjIwMjYtMDMtMDIiLCJkdWUiOiIyMDI2LTAzLTA5IiwiZHVyYXRpb24iOjZ9LHsia2V5IjoiV0ZILTI4NTUiLCJzdGFydCI6IjIwMjYtMDMtMTAiLCJkdWUiOiIyMDI2LTAzLTE2IiwiZHVyYXRpb24iOjV9XSwiYmFzZUhhc2giOiJmNzA5ZTUyMjc3YzlhNWVjOWE2NGQ2Y2IxYjI5NWI5ZmZkMjlmOTllZjJhYzgwNTNhYzI1ZjI3NzE0ZDIxYTEyIn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "740a75ee9d2013ab12e0-8602e4918bb27f979356",
+          "file": "scenarios/lz-ppm/journey-campaign-adoption.spec.ts",
+          "line": 9,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "native Assets: actual multi-object ANY, second-field AND, empty and no-match, complete combination grouping, saved filters and object rename preserve source",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 38041,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:26:53.992Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "157265fab42ececae91f-3e9a06b348d06525c45b",
+          "file": "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "native Assets: filtered-out successor still cascades and explicit Apply writes both actual Jira schedules without altering either native field",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 42662,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2857 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2856 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2ogiw\",\"name\":\"[harness-test] lz-norm-mtp2ogiw\",\"time\":\"2026-09-06T00:27:32.648Z\",\"issues\":[{\"key\":\"WFH-2856\",\"seed\":{\"label\":\"Assets visible predecessor\",\"duration\":5,\"start\":\"2026-03-02\",\"due\":\"2026-03-06\"}},{\"key\":\"WFH-2857\",\"seed\":{\"label\":\"Assets hidden successor\",\"duration\":5,\"start\":\"2026-03-09\",\"due\":\"2026-03-13\"}}],\"planId\":\"plan-test-mtp2ojuh-esidf8\",\"cleanup\":[{\"plan\":\"plan-test-mtp2ojuh-esidf8\",\"deleted\":true},{\"issue\":\"WFH-2857\",\"deleted\":true},{\"issue\":\"WFH-2856\",\"deleted\":true}],\"linkPairs\":[{\"from\":\"WFH-2856\",\"to\":\"WFH-2857\"}],\"searchIndexVerified\":[{\"key\":\"WFH-2856\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2857\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2856\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2857\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:27:32.039Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "actual-hidden-successor-second-reads",
+                      "contentType": "application/json",
+                      "body": "eyJleHBlY3RlZCI6W3sia2V5IjoiV0ZILTI4NTYiLCJzdGFydCI6IjIwMjYtMDMtMDIiLCJkdWUiOiIyMDI2LTAzLTA5IiwiZHVyYXRpb24iOjZ9LHsia2V5IjoiV0ZILTI4NTciLCJzdGFydCI6IjIwMjYtMDMtMTAiLCJkdWUiOiIyMDI2LTAzLTE2IiwiZHVyYXRpb24iOjV9XSwiYWN0dWFsIjpbeyJrZXkiOiJXRkgtMjg1NiIsInN0YXJ0IjoiMjAyNi0wMy0wMiIsImR1ZSI6IjIwMjYtMDMtMDkiLCJkdXJhdGlvbiI6Nn0seyJrZXkiOiJXRkgtMjg1NyIsInN0YXJ0IjoiMjAyNi0wMy0xMCIsImR1ZSI6IjIwMjYtMDMtMTYiLCJkdXJhdGlvbiI6NX1dLCJhc3NldHMiOlt7ImtleSI6IldGSC0yODU2IiwiZmllbGRzIjp7ImN1c3RvbWZpZWxkXzExMTQ5IjpbeyJ3b3Jrc3BhY2VJZCI6ImJlOWNjYTJmLTVmNDEtNDQ2Zi04ZjVjLTc2Y2RhMGJlODQxNyIsImlkIjoiYmU5Y2NhMmYtNWY0MS00NDZmLThmNWMtNzZjZGEwYmU4NDE3OjQxMSIsIm9iamVjdElkIjoiNDExIn1dLCJjdXN0b21maWVsZF8xMTE0OCI6W3sid29ya3NwYWNlSWQiOiJiZTljY2EyZi01ZjQxLTQ0NmYtOGY1Yy03NmNkYTBiZTg0MTciLCJpZCI6ImJlOWNjYTJmLTVmNDEtNDQ2Zi04ZjVjLTc2Y2RhMGJlODQxNzo0MTEiLCJvYmplY3RJZCI6IjQxMSJ9LHsid29ya3NwYWNlSWQiOiJiZTljY2EyZi01ZjQxLTQ0NmYtOGY1Yy03NmNkYTBiZTg0MTciLCJpZCI6ImJlOWNjYTJmLTVmNDEtNDQ2Zi04ZjVjLTc2Y2RhMGJlODQxNzo0MTIiLCJvYmplY3RJZCI6IjQxMiJ9XX19LHsia2V5IjoiV0ZILTI4NTciLCJmaWVsZHMiOnsiY3VzdG9tZmllbGRfMTExNDkiOlt7IndvcmtzcGFjZUlkIjoiYmU5Y2NhMmYtNWY0MS00NDZmLThmNWMtNzZjZGEwYmU4NDE3IiwiaWQiOiJiZTljY2EyZi01ZjQxLTQ0NmYtOGY1Yy03NmNkYTBiZTg0MTc6NDEzIiwib2JqZWN0SWQiOiI0MTMifV0sImN1c3RvbWZpZWxkXzExMTQ4IjpbeyJ3b3Jrc3BhY2VJZCI6ImJlOWNjYTJmLTVmNDEtNDQ2Zi04ZjVjLTc2Y2RhMGJlODQxNyIsImlkIjoiYmU5Y2NhMmYtNWY0MS00NDZmLThmNWMtNzZjZGEwYmU4NDE3OjQxMiIsIm9iamVjdElkIjoiNDEyIn1dfX1dfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "157265fab42ececae91f-6c95cdd40bc94b3e5f3b",
+          "file": "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+          "line": 66,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 58536,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2861 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2860 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2859 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2858 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2pdha\",\"name\":\"[harness-test] lz-norm-mtp2pdha\",\"time\":\"2026-09-06T00:28:15.358Z\",\"issues\":[{\"key\":\"WFH-2858\",\"seed\":{\"label\":\"24h demand\",\"duration\":5,\"start\":\"2026-09-07\",\"due\":\"2026-09-11\"}},{\"key\":\"WFH-2859\",\"seed\":{\"label\":\"missing effort\",\"duration\":5,\"start\":\"2026-09-07\",\"due\":\"2026-09-11\"}},{\"key\":\"WFH-2860\",\"seed\":{\"label\":\"zero effort\",\"duration\":5,\"start\":\"2026-09-07\",\"due\":\"2026-09-11\"}},{\"key\":\"WFH-2861\",\"seed\":{\"label\":\"unassigned effort\",\"duration\":5,\"start\":\"2026-09-07\",\"due\":\"2026-09-11\"}}],\"planId\":\"plan-test-mtp2pkly-uhndrl\",\"cleanup\":[{\"plan\":\"plan-test-mtp2pkly-uhndrl\",\"deleted\":true},{\"issue\":\"WFH-2861\",\"deleted\":true},{\"issue\":\"WFH-2860\",\"deleted\":true},{\"issue\":\"WFH-2859\",\"deleted\":true},{\"issue\":\"WFH-2858\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2858\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5},{\"key\":\"WFH-2859\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5},{\"key\":\"WFH-2860\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5},{\"key\":\"WFH-2861\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2858\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5},{\"key\":\"WFH-2859\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5},{\"key\":\"WFH-2860\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5},{\"key\":\"WFH-2861\",\"start\":\"2026-09-07\",\"due\":\"2026-09-11\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:28:14.711Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37f911f90910e4d1bc60-1462689af383cb4e9dac",
+          "file": "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts",
+          "line": 13,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "epic targets: actual hierarchy retains outside predecessor influence; target edit during a yielded forecast cannot publish the old commitment",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 68121,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2865 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2864 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2863 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2862 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2qmn2\",\"name\":\"[harness-test] lz-norm-mtp2qmn2\",\"time\":\"2026-09-06T00:29:13.886Z\",\"issues\":[{\"key\":\"WFH-2862\",\"seed\":{\"label\":\"outside epic predecessor\",\"duration\":5,\"start\":\"2026-03-02\",\"due\":\"2026-03-06\"}},{\"key\":\"WFH-2863\",\"seed\":{\"label\":\"epic child\",\"duration\":5,\"start\":\"2026-03-09\",\"due\":\"2026-03-13\"}},{\"key\":\"WFH-2864\",\"seed\":{\"label\":\"unrelated December work\",\"duration\":5,\"start\":\"2026-12-07\",\"due\":\"2026-12-11\"}}],\"planId\":\"plan-test-mtp2qr4q-g7rega\",\"cleanup\":[{\"plan\":\"plan-test-mtp2qr4q-g7rega\",\"deleted\":true},{\"issue\":\"WFH-2864\",\"deleted\":true},{\"issue\":\"WFH-2863\",\"deleted\":true},{\"issue\":\"WFH-2862\",\"deleted\":true}],\"linkPairs\":[{\"from\":\"WFH-2862\",\"to\":\"WFH-2863\"}],\"searchIndexVerified\":[{\"key\":\"WFH-2862\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2863\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5},{\"key\":\"WFH-2864\",\"start\":\"2026-12-07\",\"due\":\"2026-12-11\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2862\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2863\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5},{\"key\":\"WFH-2864\",\"start\":\"2026-12-07\",\"due\":\"2026-12-11\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:29:13.258Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a0a14b0dcb53529513d9-75094fa5d4def5fcc65c",
+          "file": "scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts",
+          "line": 19,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 142630,
+                  "error": {
+                    "message": "TimeoutError: page.waitForResponse: Timeout 120000ms exceeded while waiting for event \"response\"",
+                    "stack": "TimeoutError: page.waitForResponse: Timeout 120000ms exceeded while waiting for event \"response\"\n    at observedResponse (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:13:14)\n    at actualResponse (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:17:9)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:20:240\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:13:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts",
+                      "column": 14,
+                      "line": 13
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/campaign-ui.ts:13\n\n  11 |  * one named expected refusal. This does not retry or modify backend responses. */\n  12 | export function observedResponse(page:any,functionKey:string,planId?:string) {\n> 13 |  return page.waitForResponse((r:any)=>{const c=callOf(r.request());return c?.functionKey===functionKey&&(!planId||c.payload?.planId===planId);},{timeout:120000})\n     |              ^\n  14 |   .then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=await bodyOf(r);expect(b).toBeTruthy();return b;});\n  15 | }\n  16 | export function actualResponse(page:any,functionKey:string,planId?:string) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts",
+                        "column": 14,
+                        "line": 13
+                      },
+                      "message": "TimeoutError: page.waitForResponse: Timeout 120000ms exceeded while waiting for event \"response\"\n\n   at scenarios/lz-ppm/campaign-ui.ts:13\n\n  11 |  * one named expected refusal. This does not retry or modify backend responses. */\n  12 | export function observedResponse(page:any,functionKey:string,planId?:string) {\n> 13 |  return page.waitForResponse((r:any)=>{const c=callOf(r.request());return c?.functionKey===functionKey&&(!planId||c.payload?.planId===planId);},{timeout:120000})\n     |              ^\n  14 |   .then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=await bodyOf(r);expect(b).toBeTruthy();return b;});\n  15 | }\n  16 | export function actualResponse(page:any,functionKey:string,planId?:string) {\n    at observedResponse (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:13:14)\n    at actualResponse (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:17:9)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:20:240\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:13:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2866 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2s39x\",\"name\":\"[harness-test] lz-norm-mtp2s39x\",\"time\":\"2026-09-06T00:30:22.101Z\",\"issues\":[{\"key\":\"WFH-2866\",\"seed\":{\"label\":\"retained completed outcome\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtp2s6yk-isqt9v\",\"cleanup\":[{\"plan\":\"plan-test-mtp2s6yk-isqt9v\",\"deleted\":true},{\"issue\":\"WFH-2866\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2866\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2866\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"bodyError\":{\"name\":\"TimeoutError\",\"message\":\"page.waitForResponse: Timeout 120000ms exceeded while waiting for event \\\"response\\\"\"},\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:30:21.388Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/integrated-remaining-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-9c594-ot-rewrite-earlier-evidence-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts",
+                    "column": 14,
+                    "line": 13
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "df291a0383c11bd98711-dd8907af62b91344e180",
+          "file": "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+          "line": 12,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 34391,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.579\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T00:32:47.772Z\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2867 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2v8dk\",\"name\":\"[harness-test] lz-norm-mtp2v8dk\",\"time\":\"2026-09-06T00:32:48.680Z\",\"issues\":[{\"key\":\"WFH-2867\",\"seed\":{\"label\":\"forecast observed work\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtp2va60-02n2wn\",\"cleanup\":[{\"plan\":\"plan-test-mtp2va60-02n2wn\",\"deleted\":true},{\"issue\":\"WFH-2867\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2867\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2867\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:32:44.627Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1c46f194d8e38e7275dc-ebade6d23c3a413a6196",
+          "file": "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 34443,
+                  "error": {
+                    "message": "AssertionError: Screenshot subject became blocked before capture\n\nfalse !== true\n",
+                    "stack": "AssertionError: Screenshot subject became blocked before capture\n\nfalse !== true\n\n    at settledScreenshot (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs:42:9)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:35:783\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:29:2",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs",
+                      "column": 9,
+                      "line": 42
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/settled-screenshot.mjs:42\n\n  40 |  await waitForAppReady(subject);await subject.scrollIntoViewIfNeeded();\n  41 |  await subject.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve))));\n> 42 |  assert.equal(await painted(subject),true,'Screenshot subject became blocked before capture');\n     |         ^\n  43 |  const buffer=await target.screenshot({...shotOptions,animations:'disabled'}),content=pngContent(buffer);\n  44 |  assert.equal(await painted(subject),true,`Screenshot subject became blocked during capture: ${options.path}`);\n  45 |  assert.equal(content.nonblank,true,`Blank screenshot rejected: ${options.path} ${JSON.stringify(content)}`);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs",
+                        "column": 9,
+                        "line": 42
+                      },
+                      "message": "AssertionError: Screenshot subject became blocked before capture\n\nfalse !== true\n\n\n   at scenarios/lz-ppm/settled-screenshot.mjs:42\n\n  40 |  await waitForAppReady(subject);await subject.scrollIntoViewIfNeeded();\n  41 |  await subject.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve))));\n> 42 |  assert.equal(await painted(subject),true,'Screenshot subject became blocked before capture');\n     |         ^\n  43 |  const buffer=await target.screenshot({...shotOptions,animations:'disabled'}),content=pngContent(buffer);\n  44 |  assert.equal(await painted(subject),true,`Screenshot subject became blocked during capture: ${options.path}`);\n  45 |  assert.equal(content.nonblank,true,`Blank screenshot rejected: ${options.path} ${JSON.stringify(content)}`);\n    at settledScreenshot (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs:42:9)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:35:783\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:29:2"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2868 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2vyxt\",\"name\":\"[harness-test] lz-norm-mtp2vyxt\",\"time\":\"2026-09-06T00:33:23.105Z\",\"issues\":[{\"key\":\"WFH-2868\",\"seed\":{\"label\":\"forecast observed work\",\"duration\":5,\"start\":\"2026-10-05\",\"due\":\"2026-10-09\"}}],\"planId\":\"plan-test-mtp2w21s-fnmonn\",\"cleanup\":[{\"plan\":\"plan-test-mtp2w21s-fnmonn\",\"deleted\":true},{\"issue\":\"WFH-2868\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2868\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2868\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"bodyError\":{\"name\":\"AssertionError\",\"message\":\"Screenshot subject became blocked before capture\\n\\nfalse !== true\\n\"},\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:33:22.244Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/integrated-remaining-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-62e16-raw-evidence-remains-intact-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs",
+                    "column": 9,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1c46f194d8e38e7275dc-84b85a2f6f46d93f981a",
+          "file": "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+          "line": 28,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 40195,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"planning-workspace\"]').locator('[data-testid=\"snapshot-detail\"] h3').first()\nExpected: \u001b[32m\"Replacement baseline\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"planning-workspace\"]').locator('[data-testid=\"snapshot-detail\"] h3').first()\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"planning-workspace\"]').locator('[data-testid=\"snapshot-detail\"] h3').first()\nExpected: \u001b[32m\"Replacement baseline\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"planning-workspace\"]').locator('[data-testid=\"snapshot-detail\"] h3').first()\u001b[22m\n\n    at capture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts:22:426)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts:47:82",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts",
+                      "column": 426,
+                      "line": 22
+                    },
+                    "snippet": "  20 |   const created=await getTestState('lz-ppm',{what:'createFixture',name,jql:`key in (${keys.join(',')}) ORDER BY key`});planId=created.planId;if(typeof planId!=='string'||!planId)throw new Error('Report fixture creation returned no plan ID');journal.planId=planId;persist();expect(created.issues.map((i:any)=>i.key).sort()).toEqual(keys);\n  21 |   let frame=await openPlan(page,name),work=await planning(frame);\n> 22 |   const capture=async(label:string)=>{await work.getByLabel('Capture name').fill(label);await work.locator('form').getByRole('combobox').first().click();await frame.getByRole('option',{name:'Baseline',exact:true}).click();const response=result(page,'getSnapshot',planId!);await work.getByRole('button',{name:'Capture working plan',exact:true}).click();await expect(work.locator('[data-testid=\"snapshot-detail\"] h3').first()).toHaveText(label);const snapshot=(await response).snapshot;await work.getByRole('button',{name:'Use as baseline',exact:true}).click();await expect(work).toContainText(`Baseline set to ${label}`);return snapshot;};\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                          ^\n  23 |   const original=await capture('Report original baseline');expect(original.issues).toHaveLength(keys.length);expect(original.mode).not.toBe('simulation');expect(original.workingChangeCount).toBe(0);expect(scheduleFields(original.issues)).toEqual(scheduleFields(created.issues));journal.originalBaseline={id:original.id,hash:original.hash};persist();\n  24 |   const assertTable=async(expected:any[])=>{\n  25 |    const rows=frame.locator('[data-testid=\"table-row\"]');await expect(rows).toHaveCount(keys.length);await waitForAppReady(rows.first());"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts",
+                        "column": 426,
+                        "line": 22
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"planning-workspace\"]').locator('[data-testid=\"snapshot-detail\"] h3').first()\nExpected: \u001b[32m\"Replacement baseline\"\u001b[39m\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"planning-workspace\"]').locator('[data-testid=\"snapshot-detail\"] h3').first()\u001b[22m\n\n\n  20 |   const created=await getTestState('lz-ppm',{what:'createFixture',name,jql:`key in (${keys.join(',')}) ORDER BY key`});planId=created.planId;if(typeof planId!=='string'||!planId)throw new Error('Report fixture creation returned no plan ID');journal.planId=planId;persist();expect(created.issues.map((i:any)=>i.key).sort()).toEqual(keys);\n  21 |   let frame=await openPlan(page,name),work=await planning(frame);\n> 22 |   const capture=async(label:string)=>{await work.getByLabel('Capture name').fill(label);await work.locator('form').getByRole('combobox').first().click();await frame.getByRole('option',{name:'Baseline',exact:true}).click();const response=result(page,'getSnapshot',planId!);await work.getByRole('button',{name:'Capture working plan',exact:true}).click();await expect(work.locator('[data-testid=\"snapshot-detail\"] h3').first()).toHaveText(label);const snapshot=(await response).snapshot;await work.getByRole('button',{name:'Use as baseline',exact:true}).click();await expect(work).toContainText(`Baseline set to ${label}`);return snapshot;};\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                          ^\n  23 |   const original=await capture('Report original baseline');expect(original.issues).toHaveLength(keys.length);expect(original.mode).not.toBe('simulation');expect(original.workingChangeCount).toBe(0);expect(scheduleFields(original.issues)).toEqual(scheduleFields(created.issues));journal.originalBaseline={id:original.id,hash:original.hash};persist();\n  24 |   const assertTable=async(expected:any[])=>{\n  25 |    const rows=frame.locator('[data-testid=\"table-row\"]');await expect(rows).toHaveCount(keys.length);await waitForAppReady(rows.first());\n    at capture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts:22:426)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts:47:82"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts",
+                        "column": 57,
+                        "line": 12
+                      },
+                      "message": "Error: page.waitForResponse: Target page, context or browser has been closed\n\n  10 | test.describe.configure({retries:0,timeout:900000});\n  11 | const call=(req:any)=>{try{let raw=req.postDataBuffer();if(raw?.[0]===31&&raw?.[1]===139)raw=gunzipSync(raw);return JSON.parse(raw.toString()).variables?.input?.payload?.call;}catch{return null;}};\n> 12 | const result=(page:any,name:string,planId:string)=>page.waitForResponse((r:any)=>{const c=call(r.request());return c?.functionKey===name&&c.payload?.planId===planId;},{timeout:90000}).then(async(r:any)=>{expect(r.status()).toBe(200);await r.finished();const b=(await r.json()).data.invokeExtension.response.body;expect(b.success).toBe(true);return b;});\n     |                                                         ^\n  13 | const planning=async(frame:any)=>{await frame.getByRole('button',{name:/^Planning/i}).first().click();await expect(frame.locator('[data-testid=\"tab-loading-overlay\"]')).toHaveCount(0);return frame.locator('[data-testid=\"planning-workspace\"]');};\n  14 |\n  15 | test('reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy',async({page},info)=>{\n    at result (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts:12:57)\n    at capture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts:22:238)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts:47:82"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.579\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T00:34:00.320Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:33:57.129Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/integrated-remaining-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-d3bf0-ndent-deleted-baseline-copy-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report.spec.ts",
+                    "column": 426,
+                    "line": 22
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "90ea6c443d892b64c77c-17de49fbf1e9d71d7b81",
+          "file": "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+          "line": 15,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "sensitivity: tied branches have no solo-shortening benefit; actual yielded cancellation and scope change never publish old or partial rankings",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 26683,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.579\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T00:34:48.017Z\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2870 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2869 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2xt5v\",\"name\":\"[harness-test] lz-norm-mtp2xt5v\",\"time\":\"2026-09-06T00:34:48.931Z\",\"issues\":[{\"key\":\"WFH-2869\",\"seed\":{\"label\":\"tie one\",\"duration\":5,\"start\":\"2026-03-02\",\"due\":\"2026-03-06\"}},{\"key\":\"WFH-2870\",\"seed\":{\"label\":\"tie two\",\"duration\":5,\"start\":\"2026-03-02\",\"due\":\"2026-03-06\"}}],\"planId\":\"plan-test-mtp2xwc8-ra57ti\",\"cleanup\":[{\"plan\":\"plan-test-mtp2xwc8-ra57ti\",\"deleted\":true},{\"issue\":\"WFH-2870\",\"deleted\":true},{\"issue\":\"WFH-2869\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2869\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2870\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2869\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2870\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:34:45.189Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "sensitivity-race-instrumentation",
+                      "contentType": "application/json",
+                      "body": "eyJpbnN0cnVtZW50IjoiSGVsZCBhY3R1YWwgaWZyYW1lIHNldFRpbWVvdXQoZm4sMCkgY2FsbGJhY2tzIGFmdGVyIGEgcmVhbCBhbGdvcml0aG0geWllbGQ7IHJlc3RvcmVkIHRpbWVycyBhbmQgZGVsaXZlcmVkIG9yaWdpbmFsIGNhbGxiYWNrcyB1bmNoYW5nZWQuIE5vIG1vZGVsIGRhdGEsIHJlc3VsdCwgY2xvY2sgZGF0ZSwgb3IgcmVzb2x2ZXIgcmVzcG9uc2Ugd2FzIHJlcGxhY2VkLiIsImFjdGlvbnMiOlsiY2FuY2VsIiwic2NvcGUtY2hhbmdlIl0sInBvc3RSZWxlYXNlRnVsbFJlcnVucyI6Mn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a1195ade2ce243be53d5-46418a39606031224bad",
+          "file": "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 39978,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2874 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2873 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2872 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2871 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2ydsd\",\"name\":\"[harness-test] lz-norm-mtp2ydsd\",\"time\":\"2026-09-06T00:35:15.661Z\",\"issues\":[{\"key\":\"WFH-2871\",\"seed\":{\"label\":\"buffer predecessor\",\"duration\":8,\"start\":\"2026-06-01\",\"due\":\"2026-06-10\"}},{\"key\":\"WFH-2872\",\"seed\":{\"label\":\"fixed buffer\",\"duration\":7,\"start\":\"2026-06-11\",\"due\":\"2026-06-19\"}},{\"key\":\"WFH-2873\",\"seed\":{\"label\":\"declared milestone\",\"duration\":0,\"start\":\"2026-06-01\",\"due\":\"2026-06-01\"}},{\"key\":\"WFH-2874\",\"seed\":{\"label\":\"completed work\",\"duration\":2,\"start\":\"2026-05-04\",\"due\":\"2026-05-05\"}}],\"planId\":\"plan-test-mtp2yjxt-pgqugw\",\"cleanup\":[{\"plan\":\"plan-test-mtp2yjxt-pgqugw\",\"deleted\":true},{\"issue\":\"WFH-2874\",\"deleted\":true},{\"issue\":\"WFH-2873\",\"deleted\":true},{\"issue\":\"WFH-2872\",\"deleted\":true},{\"issue\":\"WFH-2871\",\"deleted\":true}],\"linkPairs\":[{\"from\":\"WFH-2871\",\"to\":\"WFH-2872\"}],\"searchIndexVerified\":[{\"key\":\"WFH-2871\",\"start\":\"2026-06-01\",\"due\":\"2026-06-10\",\"duration\":8},{\"key\":\"WFH-2872\",\"start\":\"2026-06-11\",\"due\":\"2026-06-19\",\"duration\":7},{\"key\":\"WFH-2873\",\"start\":\"2026-06-01\",\"due\":\"2026-06-01\",\"duration\":0},{\"key\":\"WFH-2874\",\"start\":\"2026-05-04\",\"due\":\"2026-05-05\",\"duration\":2}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2871\",\"start\":\"2026-06-01\",\"due\":\"2026-06-10\",\"duration\":8},{\"key\":\"WFH-2872\",\"start\":\"2026-06-11\",\"due\":\"2026-06-19\",\"duration\":7},{\"key\":\"WFH-2873\",\"start\":\"2026-06-01\",\"due\":\"2026-06-01\",\"duration\":0},{\"key\":\"WFH-2874\",\"start\":\"2026-05-04\",\"due\":\"2026-05-05\",\"duration\":2}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:35:14.793Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a1195ade2ce243be53d5-23268fcf32c6a871d981",
+          "file": "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+          "line": 38,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 31259,
+                  "error": {
+                    "message": "AssertionError: Screenshot subject became blocked before capture\n\nfalse !== true\n",
+                    "stack": "AssertionError: Screenshot subject became blocked before capture\n\nfalse !== true\n\n    at settledScreenshot (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs:42:9)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-simulation.spec.ts:115:7\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-simulation.spec.ts:43:3",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs",
+                      "column": 9,
+                      "line": 42
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/settled-screenshot.mjs:42\n\n  40 |  await waitForAppReady(subject);await subject.scrollIntoViewIfNeeded();\n  41 |  await subject.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve))));\n> 42 |  assert.equal(await painted(subject),true,'Screenshot subject became blocked before capture');\n     |         ^\n  43 |  const buffer=await target.screenshot({...shotOptions,animations:'disabled'}),content=pngContent(buffer);\n  44 |  assert.equal(await painted(subject),true,`Screenshot subject became blocked during capture: ${options.path}`);\n  45 |  assert.equal(content.nonblank,true,`Blank screenshot rejected: ${options.path} ${JSON.stringify(content)}`);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs",
+                        "column": 9,
+                        "line": 42
+                      },
+                      "message": "AssertionError: Screenshot subject became blocked before capture\n\nfalse !== true\n\n\n   at scenarios/lz-ppm/settled-screenshot.mjs:42\n\n  40 |  await waitForAppReady(subject);await subject.scrollIntoViewIfNeeded();\n  41 |  await subject.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve))));\n> 42 |  assert.equal(await painted(subject),true,'Screenshot subject became blocked before capture');\n     |         ^\n  43 |  const buffer=await target.screenshot({...shotOptions,animations:'disabled'}),content=pngContent(buffer);\n  44 |  assert.equal(await painted(subject),true,`Screenshot subject became blocked during capture: ${options.path}`);\n  45 |  assert.equal(content.nonblank,true,`Blank screenshot rejected: ${options.path} ${JSON.stringify(content)}`);\n    at settledScreenshot (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs:42:9)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-simulation.spec.ts:115:7\n    at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-simulation.spec.ts:43:3"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2877 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2876 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2875 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2z8gd\",\"name\":\"[harness-test] lz-norm-mtp2z8gd\",\"time\":\"2026-09-06T00:35:55.406Z\",\"issues\":[{\"key\":\"WFH-2875\",\"seed\":{\"label\":\"simulation predecessor\",\"duration\":5,\"start\":\"2026-03-02\",\"due\":\"2026-03-06\"}},{\"key\":\"WFH-2876\",\"seed\":{\"label\":\"simulation successor\",\"duration\":5,\"start\":\"2026-03-09\",\"due\":\"2026-03-13\"}},{\"key\":\"WFH-2877\",\"seed\":{\"label\":\"simulation independent December\",\"duration\":5,\"start\":\"2026-12-07\",\"due\":\"2026-12-11\"}}],\"planId\":\"plan-test-mtp2zdca-1rwdp7\",\"cleanup\":[{\"plan\":\"plan-test-mtp2zdca-1rwdp7\",\"deleted\":true},{\"issue\":\"WFH-2877\",\"deleted\":true},{\"issue\":\"WFH-2876\",\"deleted\":true},{\"issue\":\"WFH-2875\",\"deleted\":true}],\"linkPairs\":[{\"from\":\"WFH-2875\",\"to\":\"WFH-2876\"}],\"searchIndexVerified\":[{\"key\":\"WFH-2875\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2876\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5},{\"key\":\"WFH-2877\",\"start\":\"2026-12-07\",\"due\":\"2026-12-11\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2875\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2876\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5},{\"key\":\"WFH-2877\",\"start\":\"2026-12-07\",\"due\":\"2026-12-11\",\"duration\":5}]],\"bodyError\":{\"name\":\"AssertionError\",\"message\":\"Screenshot subject became blocked before capture\\n\\nfalse !== true\\n\"},\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:35:54.783Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventh-portable-feature-live-20260906/integrated-remaining-boundaries-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-656c4-ut-changing-Jira-or-capture-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/settled-screenshot.mjs",
+                    "column": 9,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "697d55dcaeb925eaf85b-ce0fb8946deaadc91963",
+          "file": "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+          "line": 42,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "targets: outside-release predecessor constrains finish; rename keeps identity, drift requires explicit refresh, empty scope and invalid date never yield success",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 66561,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.579\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T00:36:29.575Z\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2880 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2879 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2878 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/version/10291 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtp2zzgg\",\"name\":\"[harness-test] lz-norm-mtp2zzgg\",\"time\":\"2026-09-06T00:36:30.400Z\",\"issues\":[{\"key\":\"WFH-2878\",\"seed\":{\"label\":\"external predecessor\",\"duration\":5,\"start\":\"2026-03-02\",\"due\":\"2026-03-06\"}},{\"key\":\"WFH-2879\",\"seed\":{\"label\":\"release member\",\"duration\":5,\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"release\":true}},{\"key\":\"WFH-2880\",\"seed\":{\"label\":\"unrelated late branch\",\"duration\":5,\"start\":\"2026-12-07\",\"due\":\"2026-12-11\"}}],\"planId\":\"plan-test-mtp304po-aij6wh\",\"cleanup\":[{\"plan\":\"plan-test-mtp304po-aij6wh\",\"deleted\":true},{\"issue\":\"WFH-2880\",\"deleted\":true},{\"issue\":\"WFH-2879\",\"deleted\":true},{\"issue\":\"WFH-2878\",\"deleted\":true},{\"version\":\"10291\",\"deleted\":true}],\"version\":{\"self\":\"https://wolfaenpak.atlassian.net/rest/api/3/version/10291\",\"id\":\"10291\",\"name\":\"[harness-test] lz-norm-mtp2zzgg\",\"archived\":false,\"released\":false,\"projectId\":10001},\"linkPairs\":[{\"from\":\"WFH-2878\",\"to\":\"WFH-2879\"}],\"searchIndexVerified\":[{\"key\":\"WFH-2878\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2879\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5},{\"key\":\"WFH-2880\",\"start\":\"2026-12-07\",\"due\":\"2026-12-11\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2878\",\"start\":\"2026-03-02\",\"due\":\"2026-03-06\",\"duration\":5},{\"key\":\"WFH-2879\",\"start\":\"2026-03-09\",\"due\":\"2026-03-13\",\"duration\":5},{\"key\":\"WFH-2880\",\"start\":\"2026-12-07\",\"due\":\"2026-12-11\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T00:36:26.469Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "scope-boundary-oracles",
+                      "contentType": "application/json",
+                      "body": "eyJ0YXJnZXQiOnsiZGF0ZSI6IjIwMjYtMDMtMjAiLCJpZCI6ImMwZmE4OTg3LWFlZjctNGI3My05NDRjLTU4NThjMjhkYTA5NCIsIm5hbWUiOiJVcHN0cmVhbSBjb25zdHJhaW5lZCByZWxlYXNlIiwic2NvcGUiOnsiaWQiOiIxMDI5MSIsIm1lbWJlcktleXMiOlsiV0ZILTI4NzkiXSwidHlwZSI6InJlbGVhc2UifSwiY292ZXJhZ2UiOnsiYXZhaWxhYmxlIjp0cnVlLCJyZWFzb24iOm51bGwsIm1lbWJlcktleXMiOlsiV0ZILTI4NzkiXSwibWVtYmVyQ291bnQiOjEsInNjb3BlTGFiZWwiOiJbaGFybmVzcy10ZXN0XSBsei1ub3JtLW10cDJ6emdnIn19LCJleHRlcm5hbFByZWRlY2Vzc29yIjoiV0ZILTI4NzgiLCJ1bnJlbGF0ZWQiOiJXRkgtMjg4MCIsInJlZnJlc2hlZE1lbWJlcnMiOlsiV0ZILTI4NzgiLCJXRkgtMjg3OSJdLCJzb3VyY2VEYXRlc1VuY2hhbmdlZCI6dHJ1ZX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dc48c0834de0330e613c-5449260c9b932b96722d",
+          "file": "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts",
+          "line": 10,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T00:25:47.261Z",
+    "duration": 709177.835,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}

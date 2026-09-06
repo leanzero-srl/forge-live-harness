@@ -6,7 +6,8 @@
 // `sc-milestone` count 0 and the whole feature half went unexercised (the visual
 // suite covers only its RENDERING, against a mock plan).
 //
-// This creates a throwaway plan over the LZPT bed with two milestones chosen to sit
+// This creates a throwaway plan over three valid LZPT leaves (the persistent
+// bed intentionally has invalid/missing dates, which now blocks forecasts) with two milestones chosen to sit
 // on opposite sides of the simulated finish distribution, and asserts the
 // probabilities are not just present but CORRECT:
 //   - "Gate A"  2026-10-05 — before every simulated finish  → ~0%
@@ -19,9 +20,10 @@ import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";
 import { enterForgeSurface } from "../../forge/frame";
 import { getTestState } from "../../testhook/client";
+import { FORECAST_JQL, FORECAST_KEYS } from "./forecast-fixture";
 
 const T = getTarget("lz-ppm-dashboard");
-const NAME = `MS confidence ${Date.now().toString(36)}`;
+const NAME = `[harness-test] MS confidence ${Date.now().toString(36)}`;
 const EARLY = { name: "Gate A", year: 2026, month: "October", day: 5, iso: "2026-10-05" };
 const LATE = { name: "Go-live", year: 2026, month: "November", day: 30, iso: "2026-11-30" };
 
@@ -45,21 +47,19 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
   const pickDate = async (rowIndex: number, want: { year: number; month: string; day: number }) => {
     // The milestone row has no testid; its date control is the custom DatePicker,
     // whose unset trigger reads "Select date...".
-    const triggers = frame.locator('div').filter({ hasText: /^Select date\.\.\.$/ });
+    const triggers = frame.getByRole('button', { name: 'Choose date', exact: true }).filter({ hasText: 'Select date...' });
     await triggers.nth(rowIndex).click();
     const cal = frame.locator('.lz-datepicker').first();
     await cal.waitFor({ state: "visible", timeout: 10_000 });
     for (let i = 0; i < 24; i++) {
       const title = ((await cal.locator('span').first().textContent()) || "").trim();
       if (title === `${want.month} ${want.year}`) break;
-      await cal.getByRole("button", { name: "›" }).click().catch(async () => {
-        await cal.locator('button').nth(1).click();
-      });
+      await cal.getByRole("button", { name: "Next month", exact: true }).click();
       await page.waitForTimeout(150);
     }
     const title = ((await cal.locator('span').first().textContent()) || "").trim();
     expect(title, "the calendar reached the target month").toBe(`${want.month} ${want.year}`);
-    await cal.locator('div').filter({ hasText: new RegExp(`^${want.day}$`) }).last().click();
+    await cal.getByRole('button', { name: `${want.year}-${String(['January','February','March','April','May','June','July','August','September','October','November','December'].indexOf(want.month)+1).padStart(2,'0')}-${String(want.day).padStart(2,'0')}`, exact: true }).click();
     await page.waitForTimeout(400);
   };
 
@@ -73,7 +73,7 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
     const cont = () => frame.getByRole("button", { name: /Continue/i }).first();
     await cont().click();
     await page.waitForTimeout(1000);
-    await frame.getByPlaceholder(/project = PROJ/i).first().fill("project = LZPT");
+    await frame.getByPlaceholder(/project = PROJ/i).first().fill(FORECAST_JQL);
     await frame.getByText(/✓ Valid/i).first().waitFor({ state: "visible", timeout: 20_000 }).catch(() => {});
     await cont().click(); await page.waitForTimeout(900);   // -> Schedule
     await cont().click(); await page.waitForTimeout(900);   // -> Milestones
@@ -102,9 +102,13 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
     }
     expect(opened, "the new plan opened").toBe(true);
     const plans = (await getTestState("lz-ppm", { what: "plans" })).plans as any[];
-    createdId = (plans.find((p) => !idsBefore.has(p.id)) || {}).id || null;
+    createdId = (plans.find((p) => p.name === NAME && !idsBefore.has(p.id)) || {}).id || null;
     expect(createdId, "the plan exists in KVS").toBeTruthy();
-    const meta = (await getTestState("lz-ppm", { what: "plan", planId: createdId! })).meta || {};
+    const detail = await getTestState("lz-ppm", { what: "plan", planId: createdId! });
+    const meta = detail.meta || {};
+    const parents = new Set(detail.issues.map((i: any) => i.parentKey).filter(Boolean));
+    expect(detail.issues.filter((i: any) => !parents.has(i.key)).map((i: any) => i.key).sort(), "only valid forecast leaves were indexed")
+      .toEqual([...FORECAST_KEYS].sort());
     console.log("PLAN META milestones =", JSON.stringify(meta.milestones), "issues =", meta.issueCount);
     expect((meta.milestones || []).length, "both milestones were stored on the plan").toBe(2);
     expect((meta.milestones || []).map((m: any) => m.date).sort()).toEqual([EARLY.iso, LATE.iso]);
@@ -127,7 +131,7 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
       read.push({ name: txt, prob: Number(await rows.nth(i).getAttribute("data-probability")) });
     }
     console.log("CARD p50=", p50, "p90=", p90, "milestones=", JSON.stringify(read));
-    await card.screenshot({ path: "evidence/milestone-confidence.png" }).catch(() => {});
+    await card.screenshot({ animations: 'disabled', path: "evidence/milestone-confidence.png" }).catch(() => {});
 
     expect(n, "both milestones are listed on the card").toBe(2);
     const early = read.find((r) => r.name.includes(EARLY.name))!;
@@ -141,6 +145,12 @@ test("LZPT: milestone hit probabilities are computed, ordered and consistent", a
     // definition, so any milestone on or after P90 must also be >= 0.9.
     if (p90 && LATE.iso >= p90) expect(late.prob).toBeGreaterThanOrEqual(0.9);
   } finally {
+    await page.goto("about:blank"); // stop autosave before deleting this test's plan
+    if (!createdId) {
+      const ownPlan = ((await getTestState("lz-ppm", { what: "plans" })).plans as any[])
+        .find((p) => p.name === NAME && !idsBefore.has(p.id));
+      createdId = ownPlan?.id || null;
+    }
     if (createdId) {
       await getTestState("lz-ppm", { what: "clearDrafts", planId: createdId }).catch(() => {});
       await getTestState("lz-ppm", { what: "deleteFixture", planId: createdId }).catch(() => {});

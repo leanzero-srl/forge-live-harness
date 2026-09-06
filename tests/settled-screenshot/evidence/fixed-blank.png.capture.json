@@ -1,0 +1,18 @@
+{
+  "accepted": false,
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-06T00:53:54.624Z",
+      "state": "waiting",
+      "content": {
+        "width": 640,
+        "height": 480,
+        "colors": 1,
+        "differentPixels": 0,
+        "nonblank": false
+      }
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: Blank screenshot rejected: /Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-blank.png {\"width\":640,\"height\":480,\"colors\":1,\"differentPixels\":0,\"nonblank\":false}\n\nfalse !== true\n"
+}

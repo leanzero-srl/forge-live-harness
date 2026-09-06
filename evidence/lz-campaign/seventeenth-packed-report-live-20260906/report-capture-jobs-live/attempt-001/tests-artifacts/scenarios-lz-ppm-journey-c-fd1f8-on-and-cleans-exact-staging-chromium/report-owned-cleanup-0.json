@@ -1,0 +1,293 @@
+[
+  {
+    "planId": "plan-test-mtpj4ip7-ntlqwi",
+    "requestId": "78ee57b1-521c-4440-8915-40dc35450e94",
+    "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+    "steps": [],
+    "probes": [],
+    "startedAt": 1788682105101,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj4ip7-ntlqwi",
+    "requestId": "78ee57b1-521c-4440-8915-40dc35450e94",
+    "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+    "steps": [],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 1,
+        "cleanupDone": false,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": true,
+            "actualHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f"
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682105101,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj4ip7-ntlqwi",
+    "requestId": "78ee57b1-521c-4440-8915-40dc35450e94",
+    "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+    "steps": [
+      {
+        "before": 1,
+        "after": 2,
+        "state": "cancelled",
+        "cleanupDone": true
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 1,
+        "cleanupDone": false,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": true,
+            "actualHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f"
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682105101,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj4ip7-ntlqwi",
+    "requestId": "78ee57b1-521c-4440-8915-40dc35450e94",
+    "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+    "steps": [
+      {
+        "before": 1,
+        "after": 2,
+        "state": "cancelled",
+        "cleanupDone": true
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 1,
+        "cleanupDone": false,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": true,
+            "actualHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f"
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 2,
+        "cleanupDone": true,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682105101,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj4ip7-ntlqwi",
+    "requestId": "78ee57b1-521c-4440-8915-40dc35450e94",
+    "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+    "steps": [
+      {
+        "before": 1,
+        "after": 2,
+        "state": "cancelled",
+        "cleanupDone": true
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 1,
+        "cleanupDone": false,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": true,
+            "actualHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f"
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 2,
+        "cleanupDone": true,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 2,
+        "cleanupDone": true,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682105101,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj4ip7-ntlqwi",
+    "requestId": "78ee57b1-521c-4440-8915-40dc35450e94",
+    "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+    "steps": [
+      {
+        "before": 1,
+        "after": 2,
+        "state": "cancelled",
+        "cleanupDone": true
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 1,
+        "cleanupDone": false,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": true,
+            "actualHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f"
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 2,
+        "cleanupDone": true,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj4ip7-ntlqwi",
+        "jobId": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 2,
+        "cleanupDone": true,
+        "privateManifestHash": "a10e0877e3a54bf38d0c2d603fa5fa095072e9e0b1dd1c9186ccfdb761d2383a",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "ffe68656e745847b881d13bda228495ccae06bdf7f2701c95ac29659f8c0259d",
+            "expectedHash": "6e8655dada8decb657955ec0ca386cee4669632bca4f3c46290ab4d8ada3d81f",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682105101,
+    "cleaned": true,
+    "job": {
+      "id": "8f18339c-8ff6-4632-84c7-da0a68df7cac",
+      "requestId": "78ee57b1-521c-4440-8915-40dc35450e94",
+      "name": "Bounded source-drift report",
+      "createdAt": "2026-09-06T08:08:07.283Z",
+      "expiresAt": "2026-09-07T08:08:07.283Z",
+      "checkpoint": 2,
+      "state": "cancelled",
+      "stageLabel": "Cleaning up temporary data",
+      "completedUnits": 2,
+      "totalUnits": 16,
+      "cleanupDone": true,
+      "reportId": "1c1b02e6-b6cf-4b83-924b-5bbd40ff2379"
+    }
+  }
+]

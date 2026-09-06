@@ -1,0 +1,10 @@
+[
+  {
+    "function": "getCapacitySettings",
+    "status": 200,
+    "body": {
+      "success": false,
+      "error": "Field 'key' must match pattern \"^(?!\\s+$)[a-zA-Z0-9:._\\s-#]+$\""
+    }
+  }
+]

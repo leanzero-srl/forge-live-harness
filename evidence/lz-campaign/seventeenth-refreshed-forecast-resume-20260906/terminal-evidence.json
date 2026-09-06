@@ -1,0 +1,135 @@
+{
+  "terminalAt": "2026-09-06T14:24:44.848377+00:00",
+  "exitCode": 1,
+  "supervisorPid": 76846,
+  "childPid": 76847,
+  "processAbsence": {
+    "exitCode": 1,
+    "output": ""
+  },
+  "journal": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/seventeenth-refreshed-resume.json",
+  "journalSha256": "e56194a5b9f292be2bbace1709f443c15970963a182f258f78961548270c37c6",
+  "journalBytes": 100139229,
+  "actualAdvances": 28,
+  "successfulAdvances": 28,
+  "finalJob": {
+    "id": "b9a0dc2b-53cd-4caf-8f20-dafbb066ac98",
+    "requestId": "2d8c3fef-b28e-45a5-b4bc-06755e609e03",
+    "name": "Every existing performance row",
+    "createdAt": "2026-09-06T08:15:32.097Z",
+    "expiresAt": "2026-09-07T08:15:32.097Z",
+    "checkpoint": 183,
+    "state": "complete",
+    "stageLabel": "Report ready",
+    "completedUnits": 183,
+    "totalUnits": 183,
+    "cleanupDone": false,
+    "forecastRuns": {
+      "completed": 40,
+      "total": 40
+    },
+    "reportId": "05526885-ecea-499a-ba38-9479d7ae8b16"
+  },
+  "physical": {
+    "checkpoint": 183,
+    "privateCount": 188,
+    "privatePresent": 188,
+    "publicCount": 114,
+    "publicPresent": 112,
+    "privateManifestHash": "eae6d06ba75c0387b0cb3d2a36b0a4fa5452c18af5031371a216343d9b591dd7",
+    "publicManifestHash": "4308e488a22f7c2a69643466329ff9f09cbb37b5118c34c8e28fafb88a498489"
+  },
+  "reportHash": "663d050951d564b30c1fc683ae24ba44c301f1bb13790fc6d3de4d03c7ed9a48",
+  "all5300ReportFieldsVerified": true,
+  "all5300HtmlFieldsVerified": true,
+  "reopenedAllPagesImmutable": null,
+  "completed": false,
+  "publicationObserved": true,
+  "sourceAndPreferencesPreserved": false,
+  "finalPreferences": [
+    {
+      "success": true,
+      "version": 65,
+      "settings": {
+        "selectedPlanIds": [],
+        "profiles": {},
+        "issueChoices": {}
+      }
+    },
+    {
+      "success": true,
+      "version": 65,
+      "settings": {
+        "selectedPlanIds": [],
+        "profiles": {},
+        "issueChoices": {}
+      }
+    }
+  ],
+  "auditErrorLabels": [
+    "no-unexpected-ui-writes",
+    "final-ui-transport-drain"
+  ],
+  "wireEvents": [
+    {
+      "stage": "wire-promoted",
+      "generation": 1,
+      "requestedAtMs": 1788703387329,
+      "dispatchedAtMs": 1788703387372,
+      "completedAtMs": 1788703387612,
+      "issuedAtMs": 1788703383000,
+      "expiresAtMs": 1788704283000,
+      "checkedAtMs": 1788703388042,
+      "remainingMs": 894958,
+      "recordedAt": "2026-09-06T14:03:08.042Z"
+    },
+    {
+      "stage": "wire-promoted",
+      "generation": 2,
+      "requestedAtMs": 1788704172436,
+      "dispatchedAtMs": 1788704172560,
+      "completedAtMs": 1788704172753,
+      "issuedAtMs": 1788704170000,
+      "expiresAtMs": 1788705070000,
+      "checkedAtMs": 1788704173154,
+      "remainingMs": 896846,
+      "recordedAt": "2026-09-06T14:16:13.154Z"
+    },
+    {
+      "stage": "wire-promoted",
+      "generation": 3,
+      "requestedAtMs": 1788704480998,
+      "dispatchedAtMs": 1788704481076,
+      "completedAtMs": 1788704481271,
+      "issuedAtMs": 1788704479000,
+      "expiresAtMs": 1788705379000,
+      "checkedAtMs": 1788704481673,
+      "remainingMs": 897327,
+      "recordedAt": "2026-09-06T14:21:21.673Z"
+    }
+  ],
+  "uiFailed": [
+    {
+      "requestId": 144,
+      "key": "presenceLeave",
+      "requestedAtMs": 1788704607620,
+      "freshness": {
+        "issuedAtMs": 1788704479000,
+        "expiresAtMs": 1788705379000,
+        "checkedAtMs": 1788704607749,
+        "remainingMs": 771251
+      },
+      "dispatchedAtMs": 1788704607749,
+      "completedAtMs": 1788704607750,
+      "state": "failed",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "traceDiscarded": true,
+  "credentialScan": {
+    "files": 14,
+    "jwtLikeHits": [],
+    "traceZipAbsent": true
+  },
+  "limitations": "Test failed on owned presenceLeave net::ERR_ABORTED during planned departure after actual HTML verification. UI reopen/all106 immutable rereads not run; completed and aggregate sourceAndPreferencesPreserved remain false. Independent data audits did finish without data errors. No cleanup or retry."
+}

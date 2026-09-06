@@ -1,0 +1,9 @@
+
+Running 1 test using 1 worker
+
+
+(node:44989) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-capacity-concurrent.spec.ts:10:1 › same-account simultaneous Capacity saves admit one winner and reject the stale writer, then restore exact preferences
+  1 passed (16.0s)

@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtq3ccfy",
+  "name": "[harness-test] lz-norm-mtq3ccfy",
+  "time": "2026-09-06T17:33:53.278Z",
+  "issues": [
+    {
+      "key": "WFH-2988",
+      "seed": {
+        "label": "inflight save",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtq3ceir-d1t8nm",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtq3ceir-d1t8nm",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2988",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2988",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2988",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

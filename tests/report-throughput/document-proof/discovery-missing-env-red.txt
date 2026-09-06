@@ -1,0 +1,62 @@
+
+Error: Required env var JIRA_BASE_URL is not set (.env or environment).
+
+   at data/env.mjs:49
+
+  47 |   const env = loadEnv();
+  48 |   const v = env[name];
+> 49 |   if (!v) throw new Error(`Required env var ${name} is not set (.env or environment).`);
+     |                 ^
+  50 |   return v;
+  51 | }
+  52 |
+    at requireEnv (/private/tmp/lz-report-product-throughput-20260906/data/env.mjs:49:17)
+    at /private/tmp/lz-report-product-throughput-20260906/data/jira.mjs:9:14
+Listing tests:
+
+Error: Required env var JIRA_BASE_URL is not set (.env or environment).
+
+   at data/env.mjs:49
+
+  47 |   const env = loadEnv();
+  48 |   const v = env[name];
+> 49 |   if (!v) throw new Error(`Required env var ${name} is not set (.env or environment).`);
+     |                 ^
+  50 |   return v;
+  51 | }
+  52 |
+    at requireEnv (/private/tmp/lz-report-product-throughput-20260906/data/env.mjs:49:17)
+    at /private/tmp/lz-report-product-throughput-20260906/data/jira.mjs:9:14
+Total: 0 tests in 0 files
+
+Error: Required env var JIRA_BASE_URL is not set (.env or environment).
+
+   at data/env.mjs:49
+
+  47 |   const env = loadEnv();
+  48 |   const v = env[name];
+> 49 |   if (!v) throw new Error(`Required env var ${name} is not set (.env or environment).`);
+     |                 ^
+  50 |   return v;
+  51 | }
+  52 |
+    at requireEnv (/private/tmp/lz-report-product-throughput-20260906/data/env.mjs:49:17)
+    at /private/tmp/lz-report-product-throughput-20260906/data/jira.mjs:9:14
+
+Error: Required env var JIRA_BASE_URL is not set (.env or environment).
+
+   at data/env.mjs:49
+
+  47 |   const env = loadEnv();
+  48 |   const v = env[name];
+> 49 |   if (!v) throw new Error(`Required env var ${name} is not set (.env or environment).`);
+     |                 ^
+  50 |   return v;
+  51 | }
+  52 |
+    at requireEnv (/private/tmp/lz-report-product-throughput-20260906/data/env.mjs:49:17)
+    at /private/tmp/lz-report-product-throughput-20260906/data/jira.mjs:9:14
+
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.

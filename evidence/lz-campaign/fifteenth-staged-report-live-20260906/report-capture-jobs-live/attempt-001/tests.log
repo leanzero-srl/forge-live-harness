@@ -1,0 +1,34 @@
+
+Running 4 tests using 1 worker
+
+
+(node:90822) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/4] [chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:13:32 › report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML
+[chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:13:32 › report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.585","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T04:56:31.131Z"}
+
+[jira !!] GET /rest/api/3/issue/WFH-2908 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtpcadr3","name":"[harness-test] lz-norm-mtpcadr3","time":"2026-09-06T04:56:32.031Z","issues":[{"key":"WFH-2908","seed":{"label":"report job resume","start":"2026-10-05","due":"2026-10-09","duration":5}}],"planId":"plan-test-mtpcafiz-7euy3j","cleanup":[{"plan":"plan-test-mtpcafiz-7euy3j","deleted":true},{"issue":"WFH-2908","deleted":true}],"searchIndexVerified":[{"key":"WFH-2908","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[],[{"key":"WFH-2908","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[2/4] [chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:13:32 › report jobs: cancellation during held real advance removes staged keys and refuses stale advance
+[chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:13:32 › report jobs: cancellation during held real advance removes staged keys and refuses stale advance
+[jira !!] GET /rest/api/3/issue/WFH-2909 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtpcbxeb","name":"[harness-test] lz-norm-mtpcbxeb","time":"2026-09-06T04:57:44.147Z","issues":[{"key":"WFH-2909","seed":{"label":"report job cancel","start":"2026-10-05","due":"2026-10-09","duration":5}}],"planId":"plan-test-mtpcc0la-9eyuei","cleanup":[{"plan":"plan-test-mtpcc0la-9eyuei","deleted":true},{"issue":"WFH-2909","deleted":true}],"searchIndexVerified":[{"key":"WFH-2909","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2909","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[3/4] [chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:13:32 › report jobs: changed owned source during pause refuses publication and cleans exact staging
+[chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:13:32 › report jobs: changed owned source during pause refuses publication and cleans exact staging
+[jira !!] GET /rest/api/3/issue/WFH-2910 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtpcckn6","name":"[harness-test] lz-norm-mtpcckn6","time":"2026-09-06T04:58:14.274Z","issues":[{"key":"WFH-2910","seed":{"label":"report job source-drift","start":"2026-10-05","due":"2026-10-09","duration":5}}],"planId":"plan-test-mtpccmo7-xklaya","cleanup":[{"plan":"plan-test-mtpccmo7-xklaya","deleted":true},{"issue":"WFH-2910","deleted":true}],"searchIndexVerified":[{"key":"WFH-2910","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2910","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+[4/4] [chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:13:32 › report jobs: changed active baseline during pause refuses publication and preserves original baseline
+[chromium] › scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts:13:32 › report jobs: changed active baseline during pause refuses publication and preserves original baseline
+[jira !!] GET /rest/api/3/issue/WFH-2914 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtpcdgge","name":"[harness-test] lz-norm-mtpcdgge","time":"2026-09-06T04:58:55.502Z","issues":[{"key":"WFH-2914","seed":{"label":"report job baseline-drift","start":"2026-10-05","due":"2026-10-09","duration":5}}],"planId":"plan-test-mtpcdjji-717f1i","cleanup":[{"plan":"plan-test-mtpcdjji-717f1i","deleted":true},{"issue":"WFH-2914","deleted":true}],"searchIndexVerified":[{"key":"WFH-2914","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2914","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+  4 passed (3.2m)

@@ -1,0 +1,84 @@
+2026-09-05T18:24:35.652810+00:00 NOW history-platform-transaction NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T18:24:35.655217+00:00 ACTIVE history-platform-transaction child 61841
+2026-09-05T18:24:50.797809+00:00 ACTIVE history-platform-transaction child 61841
+2026-09-05T18:24:51.572299+00:00 ACTIVE history-platform-transaction child 62447
+2026-09-05T18:24:53.900966+00:00 ACTIVE history-platform-transaction child 62462
+2026-09-05T18:25:09.081904+00:00 ACTIVE history-platform-transaction child 62462
+2026-09-05T18:25:09.601681+00:00 RESULT history-platform-transaction passed
+2026-09-05T18:25:09.605756+00:00 NOW persistence-durability NEXT estimated 2026-09-05T18:25:43.553138+00:00 SWEEP estimated 2026-09-05T18:25:43.553144+00:00
+2026-09-05T18:25:09.607631+00:00 ACTIVE persistence-durability child 62953
+2026-09-05T18:25:23.470961+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:25:38.637315+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:25:53.769996+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:26:08.902014+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:26:24.040752+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:26:39.221716+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:26:54.321307+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:27:09.486323+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:27:24.645845+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:27:39.788663+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:27:54.845379+00:00 ACTIVE persistence-durability child 63496
+2026-09-05T18:28:01.952243+00:00 ACTIVE persistence-durability child 67680
+2026-09-05T18:28:17.166559+00:00 ACTIVE persistence-durability child 67680
+2026-09-05T18:28:17.931967+00:00 RESULT persistence-durability integrity_failed
+2026-09-05T19:04:51.957302+00:00 NOW persistence-durability NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T19:04:51.959384+00:00 ACTIVE persistence-durability child 38690
+2026-09-05T19:04:57.870554+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:05:13.044208+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:05:28.230686+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:05:43.415957+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:05:58.569071+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:06:13.752742+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:06:28.916657+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:06:44.001503+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:06:59.169302+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:07:14.284882+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:07:29.422790+00:00 ACTIVE persistence-durability child 38780
+2026-09-05T19:07:38.115012+00:00 ACTIVE persistence-durability child 41109
+2026-09-05T19:07:44.048856+00:00 RESULT persistence-durability passed
+2026-09-05T19:07:44.059697+00:00 NOW capacity-live-numeric NEXT estimated 2026-09-05T19:10:36.140821+00:00 SWEEP estimated 2026-09-05T19:16:20.303131+00:00
+2026-09-05T19:07:44.063281+00:00 ACTIVE capacity-live-numeric child 41138
+2026-09-05T19:07:49.746230+00:00 ACTIVE capacity-live-numeric child 41304
+2026-09-05T19:08:04.851893+00:00 ACTIVE capacity-live-numeric child 41304
+2026-09-05T19:08:19.957760+00:00 ACTIVE capacity-live-numeric child 41304
+2026-09-05T19:08:35.038981+00:00 ACTIVE capacity-live-numeric child 41304
+2026-09-05T19:08:37.091316+00:00 ACTIVE capacity-live-numeric child 41968
+2026-09-05T19:08:42.768693+00:00 RESULT capacity-live-numeric failed
+2026-09-05T19:08:42.772650+00:00 NOW scenario-sensitivity-live NEXT estimated 2026-09-05T19:10:38.166661+00:00 SWEEP estimated 2026-09-05T19:12:33.560687+00:00
+2026-09-05T19:08:42.775102+00:00 ACTIVE scenario-sensitivity-live child 42059
+2026-09-05T19:08:48.678291+00:00 ACTIVE scenario-sensitivity-live child 42265
+2026-09-05T19:09:03.854996+00:00 ACTIVE scenario-sensitivity-live child 42265
+2026-09-05T19:09:19.029987+00:00 ACTIVE scenario-sensitivity-live child 42265
+2026-09-05T19:09:34.191661+00:00 ACTIVE scenario-sensitivity-live child 42265
+2026-09-05T19:09:34.455798+00:00 ACTIVE scenario-sensitivity-live child 42978
+2026-09-05T19:09:40.115557+00:00 RESULT scenario-sensitivity-live passed
+2026-09-05T19:09:40.121138+00:00 NOW baseline-visible-ghost NEXT estimated 2026-09-05T19:11:16.163808+00:00 SWEEP estimated 2026-09-05T19:11:16.163817+00:00
+2026-09-05T19:09:40.123577+00:00 ACTIVE baseline-visible-ghost child 43102
+2026-09-05T19:09:45.512631+00:00 ACTIVE baseline-visible-ghost child 43135
+2026-09-05T19:10:00.633260+00:00 ACTIVE baseline-visible-ghost child 43135
+2026-09-05T19:10:15.756386+00:00 ACTIVE baseline-visible-ghost child 43135
+2026-09-05T19:10:30.899213+00:00 ACTIVE baseline-visible-ghost child 43135
+2026-09-05T19:10:33.469200+00:00 ACTIVE baseline-visible-ghost child 43873
+2026-09-05T19:10:39.387123+00:00 RESULT baseline-visible-ghost passed
+2026-09-05T19:11:24.761637+00:00 NOW forecast-outcomes-live NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T19:11:24.764503+00:00 ACTIVE forecast-outcomes-live child 44766
+2026-09-05T19:11:30.434573+00:00 ACTIVE forecast-outcomes-live child 44806
+2026-09-05T19:11:45.582228+00:00 ACTIVE forecast-outcomes-live child 44806
+2026-09-05T19:11:47.631937+00:00 ACTIVE forecast-outcomes-live child 45100
+2026-09-05T19:11:53.301232+00:00 RESULT forecast-outcomes-live failed
+2026-09-05T19:13:08.842443+00:00 NOW forecast-outcomes-live NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T19:13:08.845380+00:00 ACTIVE forecast-outcomes-live child 46286
+2026-09-05T19:13:14.740210+00:00 ACTIVE forecast-outcomes-live child 46321
+2026-09-05T19:13:29.895402+00:00 ACTIVE forecast-outcomes-live child 46321
+2026-09-05T19:13:45.049912+00:00 ACTIVE forecast-outcomes-live child 46321
+2026-09-05T19:14:00.171402+00:00 ACTIVE forecast-outcomes-live child 46321
+2026-09-05T19:14:00.947505+00:00 ACTIVE forecast-outcomes-live child 47147
+2026-09-05T19:14:06.600733+00:00 RESULT forecast-outcomes-live failed
+2026-09-05T19:15:36.710381+00:00 NOW forecast-outcomes-live NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T19:15:36.713236+00:00 ACTIVE forecast-outcomes-live child 48516
+2026-09-05T19:15:42.370661+00:00 ACTIVE forecast-outcomes-live child 48648
+2026-09-05T19:15:57.523705+00:00 ACTIVE forecast-outcomes-live child 48648
+2026-09-05T19:16:12.756519+00:00 ACTIVE forecast-outcomes-live child 48648
+2026-09-05T19:16:27.901993+00:00 ACTIVE forecast-outcomes-live child 48648
+2026-09-05T19:16:28.675678+00:00 ACTIVE forecast-outcomes-live child 49370
+2026-09-05T19:16:34.341694+00:00 RESULT forecast-outcomes-live failed

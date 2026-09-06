@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtp35mtu",
+  "name": "[harness-test] lz-norm-mtp35mtu",
+  "time": "2026-09-06T00:40:53.970Z",
+  "issues": [
+    {
+      "key": "WFH-2881",
+      "seed": {
+        "label": "capacity limit positive 8h",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11"
+      }
+    }
+  ],
+  "planId": "plan-test-mtp35qg3-fhhr3e",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp35qg3-fhhr3e",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2881",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2881",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2881",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

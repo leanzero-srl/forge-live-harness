@@ -1,0 +1,28 @@
+{
+  "marker": "lz-norm-mtooiqyi",
+  "name": "[harness-test] lz-norm-mtooiqyi",
+  "time": "2026-09-05T17:51:11.610Z",
+  "issues": [
+    {
+      "key": "WFH-2707",
+      "seed": {
+        "label": "date-backed clear",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": null
+      }
+    }
+  ],
+  "planId": "plan-test-mtooisk8-0igze5",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtooisk8-0igze5",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2707",
+      "deleted": true
+    }
+  ],
+  "integrityPassed": true
+}

@@ -1,0 +1,15 @@
+✔ actual127 terminal plus both realattempts and126→127→127 physicalsequence admits exact183private (13.304ms)
+✔ wrong latestdigest, absent failedrequest, claimedpass or failedfinalaudit refuses (506.550625ms)
+✔ incorrect request127 or changed explicitrefusal and any changed savedstatus refuses (392.464583ms)
+✔ originalhash loss, finalmanifest mismatch, publication or changedprefs cannot admit (498.529875ms)
+✔ 56 remaining exact ack/status/probe steps publish183 with same40 savedruns (9.580834ms)
+✔ unknown/refusal/status/physical/run-counter failures stop afterone attempt without retry (39.509417ms)
+✔ premature publication cannot substitute for exact remaining checkpoint sequence (8.23375ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1734.24575

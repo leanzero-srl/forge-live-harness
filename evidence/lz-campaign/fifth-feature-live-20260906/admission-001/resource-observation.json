@@ -1,0 +1,11 @@
+{
+  "time": "2026-09-05T22:19:05.029641+00:00",
+  "observedPhase": "waiting_for_shared_profile_before_entry",
+  "runnerPid": 99793,
+  "externalReservation": {
+    "phase": "active",
+    "parentPid": 96001,
+    "holderPid": 96016
+  },
+  "ownProductTestsExecuted": 0
+}

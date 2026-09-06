@@ -1,0 +1,497 @@
+{
+  "schema": "local-only-trace-inventory-v1",
+  "files": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/command.json",
+      "sha256": "ba2ac8e827b998af7654ca85099ed241d0c1dab336cef56c4846a6027707447e",
+      "bytes": 1808,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/config.json",
+      "sha256": "6626487b99ec85aed723c421c9ac919b3d9f2391cc478fda2c77f1a5f4c0926d",
+      "bytes": 657,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/before-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/before-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "sha256": "82d0b296a6f6020ac13ea826711cc13b3e585a1b559d68ec3cdb8b44eea64c14",
+      "bytes": 6303608,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/before-command.json",
+      "sha256": "67a0ec69b09528206b666f0dd6aab541167cfed22b80bee0480f89a2af4808af",
+      "bytes": 541,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/before-identity.json",
+      "sha256": "d084e61a21c9ae630c2fbce894020fda09e70f67a90e1247be9c435dd03588a7",
+      "bytes": 386,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/before-identity.png",
+      "sha256": "9df431e6b9aa420560686d1b0ff63cecd778d5fd565878283a1d271670644e26",
+      "bytes": 203390,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/before-playwright.json",
+      "sha256": "39e3230803e604d659be82fb3f2180bf8accd4c2246d28b877b55459231e7d59",
+      "bytes": 4985,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/before.log",
+      "sha256": "2e73e5e1907232ddf7aecd5d0975403d03e4ce484da9aaf6c317a8fc7fe95a9c",
+      "bytes": 1350,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/entry-1788715913234576000/result.json",
+      "sha256": "a52a68bcdd080f6622b7e15f1009512d83f9863043eb3aa4317a7c2ff607cb8f",
+      "bytes": 214,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/launch.json",
+      "sha256": "d3235e0be437814a5394af35855dd614ba5149a7657807625eea5c9c7af9e162",
+      "bytes": 360,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/after-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "sha256": "af48e3b7692a83aa1788a312f3f9b499039f6ec6682be03c4148fd364e25dc32",
+      "bytes": 6346360,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/after-command.json",
+      "sha256": "819ae8109ca3573ff85b394326f0f28fd2a4adbb11b8b70caf925e6f43384134",
+      "bytes": 539,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/after-identity.json",
+      "sha256": "fa2af47c8964b8d1ebd8f134e0d502abbf9b455c10716a09087fcdcc6ef58da3",
+      "bytes": 385,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/after-identity.png",
+      "sha256": "b278e2eaef94d3d106506f2efa3d578d039f3aa1c343d2dd4d9c08222765c7c2",
+      "bytes": 204656,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/after-playwright.json",
+      "sha256": "ce483f5a2be94fb2073e2a927770699b9023189987fd8299b6b8dc608715712f",
+      "bytes": 4990,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/after.log",
+      "sha256": "673f49285c1cb5c2501a3bbe8549a0cbf60106855c70b07e4ea440b748a9fee1",
+      "bytes": 1348,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "sha256": "93aa8a64df1f9e0b278102ae06727d6453d2bf5d207dbd5edd75f04e53d65986",
+      "bytes": 5949817,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before-command.json",
+      "sha256": "75fa536355a1c8bf135e20c16416a5329c0be8ae029012b30820289fdae2fdb7",
+      "bytes": 541,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before-identity.json",
+      "sha256": "1aab71057057720281ef6b3ce324b0a29e27c6a8f887f8cdb17cb764827019b5",
+      "bytes": 386,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before-identity.png",
+      "sha256": "cf47b0c5cb1842429663d27f4d082deee166ae362bcf76cff405767352df8673",
+      "bytes": 204715,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before-playwright.json",
+      "sha256": "4a70791aa83554ca21c17b61f5ef9c0045a1c19f15b12383ba571455916e3bd9",
+      "bytes": 4984,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/before.log",
+      "sha256": "4db08d611af951f5ef694b89a8df9178664159913d32b5def4b5bb6894ee43e8",
+      "bytes": 1349,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/result.json",
+      "sha256": "0366a9a0ca4ad5646ab66e0b3076d3eabcab14b7723ae38835a3bc3361e40acf",
+      "bytes": 1473,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/tests-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-s-747cd--un-normalize-the-durations-chromium/normalization-after-refresh.png",
+      "sha256": "49a0e7082061fbe63f0ceadb58d729ebef3308e7b5318b54631c592853b905a6",
+      "bytes": 173748,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-s-747cd--un-normalize-the-durations-chromium/trace.zip",
+      "sha256": "f9e8ec3be6e52fdad45e9a53645a77c3453ff6b5131cc22484f3ad621e4d01bc",
+      "bytes": 13576158,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/tests-command.json",
+      "sha256": "e72500c2fa1a5af47048b320039314913b0d8237d005f9e5e8e36a1164e59096",
+      "bytes": 603,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/tests-playwright.json",
+      "sha256": "a48154a477066bd9d01b20da881da916bc6b7102156a2764f2f0959594f91586",
+      "bytes": 5299,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001/tests.log",
+      "sha256": "acf8b051533dff9aa1c54572b3b1064e48929bdfafc9e2de2a4b607d8021ec84",
+      "bytes": 1426,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/result.json",
+      "sha256": "0366a9a0ca4ad5646ab66e0b3076d3eabcab14b7723ae38835a3bc3361e40acf",
+      "bytes": 1473,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/after-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "sha256": "8d19a511c0a7b7b852fdaf7e551934c6d6064721875df0bd30f0919cfc590ab1",
+      "bytes": 6252617,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/after-command.json",
+      "sha256": "927e0c7d39ea62a6b3b500a2a991b9a435f6b3e1f7bad294535579b4ad0bf083",
+      "bytes": 548,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/after-identity.json",
+      "sha256": "3410ec80a9d2b745d0882ba667ec63d5b6eb4daf9fa054618509c623d7aa37c8",
+      "bytes": 385,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/after-identity.png",
+      "sha256": "e85bedab79e1b16a6e5ade5b4f95e67653f0a2625300612c74d0ddf0ba2290c5",
+      "bytes": 204963,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/after-playwright.json",
+      "sha256": "722497b6f7a8c2c6151adcc90dd6b1371f0c9bec5711b9abf03ae77f15ff0b9c",
+      "bytes": 5007,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/after.log",
+      "sha256": "6ea9b0d421a195547ed3315888b143d4b70524d438a02388d2050b616e8f12d7",
+      "bytes": 1348,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/before-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/before-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "sha256": "738ce2cfc5b730ff0268d4eff62da0188c2f38ebdd043f86d73bdc379de38cbd",
+      "bytes": 6318009,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/before-command.json",
+      "sha256": "fee6f7f052d51369874cf0f98d2f940950d5c40167a993b5a3654e4999d26ef1",
+      "bytes": 550,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/before-identity.json",
+      "sha256": "3a93e9b48287027386c4a6de943119ca1c6d5ed0ad421de3736440272c955143",
+      "bytes": 386,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/before-identity.png",
+      "sha256": "874fbe9af94bbf63948c832a48b0ebf83e23ab82fc793151140423de555508db",
+      "bytes": 206367,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/before-playwright.json",
+      "sha256": "b106fe6a32a771705b51614a2dafe838d9eec9b0c86ecc4f5096bb8739789883",
+      "bytes": 5011,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/before.log",
+      "sha256": "b475235cc9dfb2e1d115907e7b83ef817b32516d404c9ed13c7eefcdf0db5e45",
+      "bytes": 1349,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/result.json",
+      "sha256": "669288063e78c0a0966b3d33fb77e69deb7c3e67c111414f418036dfe95b98c0",
+      "bytes": 1907,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-3e753-Retry-recovers-unseen-draft-chromium/draft-403-blocked.png",
+      "sha256": "65176fc639a257a697b79144cc382693fab8e826d3860d39e628e5b8deaeed27",
+      "bytes": 27556,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-3e753-Retry-recovers-unseen-draft-chromium/draft-403-blocked.png.capture.json",
+      "sha256": "da7338bad9296ada6a62adfc159ceb9fae690b6aea4d8439bfeae079daf26704",
+      "bytes": 305,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-3e753-Retry-recovers-unseen-draft-chromium/draft-403-recovered9.png",
+      "sha256": "760f1da451a0055585fd5035f6c5dfeaca65432e8f65354c66eed4cb9f10b85e",
+      "bytes": 7174,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-3e753-Retry-recovers-unseen-draft-chromium/draft-403-recovered9.png.capture.json",
+      "sha256": "05e76433ad2a5fed8e7973b73f572e8df6ed631c3c0902286bc1581386758e13",
+      "bytes": 302,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-3e753-Retry-recovers-unseen-draft-chromium/fixture-journal.json",
+      "sha256": "f8d271d64fc12902aa08d17314210436cf4a2e159e2617a4d575abc6cfbe0da9",
+      "bytes": 1342,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-3e753-Retry-recovers-unseen-draft-chromium/trace.zip",
+      "sha256": "35ab464886dbfbbdb590b591f7f65c20d11bedbca94d89cfa3134e46b0fd2ca0",
+      "bytes": 47390700,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-8d9a3-Retry-recovers-unseen-draft-chromium/draft-503-blocked.png",
+      "sha256": "65176fc639a257a697b79144cc382693fab8e826d3860d39e628e5b8deaeed27",
+      "bytes": 27556,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-8d9a3-Retry-recovers-unseen-draft-chromium/draft-503-blocked.png.capture.json",
+      "sha256": "475784faf8e3d27521fd8ebcc8d6af4c8ff37f40ae18084d2c16cd2ea837810b",
+      "bytes": 305,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-8d9a3-Retry-recovers-unseen-draft-chromium/draft-503-recovered9.png",
+      "sha256": "0dfb8c2f8865a52a9aa0915ff5c8453c120b0d267f2128c6a212be1f73669677",
+      "bytes": 7035,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-8d9a3-Retry-recovers-unseen-draft-chromium/draft-503-recovered9.png.capture.json",
+      "sha256": "2f9b03385230d27d15ba7ab87f0f8edeb73924717e7385b784711f45bf478e39",
+      "bytes": 303,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-8d9a3-Retry-recovers-unseen-draft-chromium/fixture-journal.json",
+      "sha256": "4886441fe41a9c142979fa67d7eb20dacd7bef8d84631d840635276a0f10c0f9",
+      "bytes": 1342,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-8d9a3-Retry-recovers-unseen-draft-chromium/trace.zip",
+      "sha256": "95f84a3a37d9b5da8721e7c1f1d53f3164edd486f49d1a295914757e862a47bc",
+      "bytes": 49691264,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-9afa7-ed6-before-immediate-reopen-chromium/fixture-journal.json",
+      "sha256": "78593efbc46929f7c356accb266875cc50d145794df2748159c2c3e40c0a6a7e",
+      "bytes": 858,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-9afa7-ed6-before-immediate-reopen-chromium/save7-immediate-reopen.png",
+      "sha256": "b764fc35acba9baf7a1b49e333e334e3009af5d6bba629a62a3989d36a866f4e",
+      "bytes": 7340,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-9afa7-ed6-before-immediate-reopen-chromium/save7-immediate-reopen.png.capture.json",
+      "sha256": "0fed5c50565c4ba9115f5d0ca83f13cd8acd8bdfcc81d20a77e6cdaa3f1c1e46",
+      "bytes": 302,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-9afa7-ed6-before-immediate-reopen-chromium/trace.zip",
+      "sha256": "21dcf9afe7388553555889e8b91e3152e365d900d531b0d218c31b97ecb87bc4",
+      "bytes": 26648267,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-bceb3-later-local-edit-as-unsaved-chromium/fixture-journal.json",
+      "sha256": "0c6b1f16302dbd6f67849fc1be0bde651e0f37d08ea9df36a0f70cb1b0ac4e6a",
+      "bytes": 857,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-bceb3-later-local-edit-as-unsaved-chromium/late7-remains-unsaved.png",
+      "sha256": "54c9313a827e8e7abd7b0bee4efe2c0f7900287baec7903fdc8c79b1da363f07",
+      "bytes": 7470,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-bceb3-later-local-edit-as-unsaved-chromium/late7-remains-unsaved.png.capture.json",
+      "sha256": "04823d8c53c003809d80fdab067f3715b421e72413296d63d773995fa95bb689",
+      "bytes": 303,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-bceb3-later-local-edit-as-unsaved-chromium/trace.zip",
+      "sha256": "758d7b8e15650bc2441a3d0bde2980bff722d62fa4e2928095b74f3ab54592ba",
+      "bytes": 34829984,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-e7e97-y-through-completion-reload-chromium/discarded-sibling-stays5.png",
+      "sha256": "309ed8774307b86295a2f139d7e7f8e22a1ebe00d957792aa65f5502578f4549",
+      "bytes": 7416,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-e7e97-y-through-completion-reload-chromium/discarded-sibling-stays5.png.capture.json",
+      "sha256": "3f219f5ff240fbe62ca681403d2a4d5351831a6c9a5c70bf44e95a00932dcf4f",
+      "bytes": 302,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-e7e97-y-through-completion-reload-chromium/fixture-journal.json",
+      "sha256": "fff8d62af1611d750ec960ee8057d2c8a7c7674fa58b5c78b34ccbf6214be4d4",
+      "bytes": 1346,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-e7e97-y-through-completion-reload-chromium/trace.zip",
+      "sha256": "647028c7e031d53e42c53babe499fcbcc80c75e1231e5696db6772ec24621547",
+      "bytes": 35415034,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-command.json",
+      "sha256": "0ffac161b18a7aae6fd8cf5a3e537eff6b1d6ed5b271584da515a502a071f3b9",
+      "bytes": 559,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests-playwright.json",
+      "sha256": "8c65cd0690bb1bf07c38a57bcf0c2f14745f420a1cb0586d45b17ee695a52e34",
+      "bytes": 17054,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001/tests.log",
+      "sha256": "08c2bd7503d4098b3597e13761d4ccbfd045718cb2a1147646decdaf0c5a31d6",
+      "bytes": 6733,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/result.json",
+      "sha256": "669288063e78c0a0966b3d33fb77e69deb7c3e67c111414f418036dfe95b98c0",
+      "bytes": 1907,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/runner.log",
+      "sha256": "04617d8899d7eb828a7d61d0bd1c3e222be163602f20069897646155870ace18",
+      "bytes": 1965,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/state.json",
+      "sha256": "67c0c4bfa04227d09f4a51b62fb6a6b8aa7304efaf9f859736878670f599bafb",
+      "bytes": 137,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/summary.json",
+      "sha256": "be6fe72aea02a3ab4eab6f24ffc5559c3df640b2c3522792d12fbe2c157696f7",
+      "bytes": 15034,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/summary.md",
+      "sha256": "454038967fe40fd6afb8826980e1fb96eaadc17ab2ec4cc253e4436fc8076855",
+      "bytes": 1346,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/terminal-receipt.json",
+      "sha256": "d0574c567bae2b7684216b9248b419f1a32c1a6a18e0a073d28c6e2b72e39c49",
+      "bytes": 10451,
+      "localOnly": false
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "M": "2026-09-07",
+  "end": "2026-09-11",
+  "keys": [
+    "WFH-2825",
+    "WFH-2826",
+    "WFH-2827",
+    "WFH-2828"
+  ],
+  "assignees": {
+    "A": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "B": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b"
+  },
+  "steps": [
+    {
+      "name": "missing-zero-partial-week",
+      "report": {
+        "startDate": "2026-09-08",
+        "endDate": "2026-09-11",
+        "asOfDate": "2026-09-05",
+        "weeks": [
+          {
+            "key": "2026-09-07",
+            "startDate": "2026-09-08",
+            "endDate": "2026-09-11"
+          }
+        ],
+        "people": [
+          {
+            "id": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+            "accountId": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+            "name": "LeanZero SRL",
+            "issueCount": 1,
+            "unknownWork": 0,
+            "buckets": [
+              {
+                "week": "2026-09-07",
+                "demandHours": 0,
+                "unknownEffortCount": 0,
+                "availableDays": null,
+                "capacityHours": null,
+                "utilizationPct": null,
+                "status": "capacity-unknown"
+              }
+            ]
+          },
+          {
+            "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "issueCount": 2,
+            "unknownWork": 1,
+            "buckets": [
+              {
+                "week": "2026-09-07",
+                "demandHours": 16,
+                "unknownEffortCount": 1,
+                "availableDays": null,
+                "capacityHours": null,
+                "utilizationPct": null,
+                "status": "capacity-unknown"
+              }
+            ]
+          },
+          {
+            "id": "unassigned",
+            "accountId": null,
+            "name": "Unassigned",
+            "issueCount": 1,
+            "unknownWork": 0,
+            "buckets": [
+              {
+                "week": "2026-09-07",
+                "demandHours": 4,
+                "unknownEffortCount": 0,
+                "availableDays": null,
+                "capacityHours": null,
+                "utilizationPct": null,
+                "status": "capacity-unknown"
+              }
+            ]
+          }
+        ],
+        "conflicts": [],
+        "alternatives": [],
+        "unallocated": [],
+        "coverage": {
+          "selectedPlans": 1,
+          "uniqueIssues": 4,
+          "sharedDuplicatesRemoved": 0,
+          "completedIssues": 0,
+          "missingEffort": 1,
+          "unassignedIssues": 1,
+          "unavailableAssignee": 0,
+          "unavailableStatus": 0,
+          "conflictingIssues": 0,
+          "unallocatedIssues": 0,
+          "unavailableIssueCount": 0
+        },
+        "totals": {
+          "knownEffortHours": 30,
+          "allocatedHours": 20,
+          "outsideWindowHours": 10,
+          "unallocatedHours": 0
+        },
+        "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+      }
+    },
+    {
+      "name": "explicit-zero-capacity",
+      "report": {
+        "startDate": "2026-09-08",
+        "endDate": "2026-09-11",
+        "asOfDate": "2026-09-05",
+        "weeks": [
+          {
+            "key": "2026-09-07",
+            "startDate": "2026-09-08",
+            "endDate": "2026-09-11"
+          }
+        ],
+        "people": [
+          {
+            "id": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+            "accountId": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+            "name": "LeanZero SRL",
+            "issueCount": 1,
+            "unknownWork": 0,
+            "buckets": [
+              {
+                "week": "2026-09-07",
+                "demandHours": 0,
+                "unknownEffortCount": 0,
+                "availableDays": 2,
+                "capacityHours": 0,
+                "utilizationPct": null,
+                "status": "no-capacity"
+              }
+            ]
+          },
+          {
+            "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "issueCount": 2,
+            "unknownWork": 1,
+            "buckets": [
+              {
+                "week": "2026-09-07",
+                "demandHours": 16,
+                "unknownEffortCount": 1,
+                "availableDays": 1,
+                "capacityHours": 0,
+                "utilizationPct": null,
+                "status": "overloaded"
+              }
+            ]
+          },
+          {
+            "id": "unassigned",
+            "accountId": null,
+            "name": "Unassigned",
+            "issueCount": 1,
+            "unknownWork": 0,
+            "buckets": [
+              {
+                "week": "2026-09-07",
+                "demandHours": 4,
+                "unknownEffortCount": 0,
+                "availableDays": null,
+                "capacityHours": null,
+                "utilizationPct": null,
+                "status": "capacity-unknown"
+              }
+            ]
+          }
+        ],
+        "conflicts": [],
+        "alternatives": [],
+        "unallocated": [],
+        "coverage": {
+          "selectedPlans": 1,
+          "uniqueIssues": 4,
+          "sharedDuplicatesRemoved": 0,
+          "completedIssues": 0,
+          "missingEffort": 1,
+          "unassignedIssues": 1,
+          "unavailableAssignee": 0,
+          "unavailableStatus": 0,
+          "conflictingIssues": 0,
+          "unallocatedIssues": 0,
+          "unavailableIssueCount": 0
+        },
+        "totals": {
+          "knownEffortHours": 30,
+          "allocatedHours": 20,
+          "outsideWindowHours": 10,
+          "unallocatedHours": 0
+        },
+        "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+      }
+    }
+  ],
+  "originalSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "privateSettingsRestored": true
+}

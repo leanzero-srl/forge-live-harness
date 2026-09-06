@@ -1,0 +1,5 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:14:1 › campaign: actual UI version and preserved LZPT source
+  [chromium] › scenarios/lz-ppm/campaign-diagnostic-identity.spec.ts:19:1 › campaign: exact retained numeric diagnostic provenance and restored private preferences are unchanged
+  [chromium] › scenarios/lz-ppm/campaign-portable-diagnostic-identity.spec.ts:7:1 › admission: installed portable Chrome152 receipt agrees with actual runtime after original45 and retained diagnostic reads
+Total: 3 tests in 3 files

@@ -1,0 +1,122 @@
+2026-09-05T17:46:51.156465+00:00 NOW baseline-core NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T17:46:51.158773+00:00 ACTIVE baseline-core child 82483
+2026-09-05T17:47:06.374499+00:00 ACTIVE baseline-core child 82483
+2026-09-05T17:47:07.138529+00:00 ACTIVE baseline-core child 83068
+2026-09-05T17:47:22.357336+00:00 ACTIVE baseline-core child 83068
+2026-09-05T17:47:37.583623+00:00 ACTIVE baseline-core child 83068
+2026-09-05T17:47:52.761749+00:00 ACTIVE baseline-core child 83068
+2026-09-05T17:48:03.398300+00:00 ACTIVE baseline-core child 85186
+2026-09-05T17:48:18.632746+00:00 ACTIVE baseline-core child 85186
+2026-09-05T17:48:19.648222+00:00 RESULT baseline-core passed
+2026-09-05T17:48:19.655518+00:00 NOW forecast-contract NEXT estimated 2026-09-05T17:49:48.145053+00:00 SWEEP estimated 2026-09-05T17:55:42.103280+00:00
+2026-09-05T17:48:19.658565+00:00 ACTIVE forecast-contract child 86120
+2026-09-05T17:48:34.867797+00:00 ACTIVE forecast-contract child 86120
+2026-09-05T17:48:35.629883+00:00 ACTIVE forecast-contract child 86967
+2026-09-05T17:48:50.831854+00:00 ACTIVE forecast-contract child 86967
+2026-09-05T17:49:06.035501+00:00 ACTIVE forecast-contract child 86967
+2026-09-05T17:49:21.276331+00:00 ACTIVE forecast-contract child 86967
+2026-09-05T17:49:36.480378+00:00 ACTIVE forecast-contract child 86967
+2026-09-05T17:49:51.714223+00:00 ACTIVE forecast-contract child 86967
+2026-09-05T17:50:04.911669+00:00 ACTIVE forecast-contract child 90558
+2026-09-05T17:50:20.130414+00:00 ACTIVE forecast-contract child 90558
+2026-09-05T17:50:20.893039+00:00 RESULT forecast-contract failed
+2026-09-05T17:50:20.897382+00:00 NOW normalization-companions NEXT estimated 2026-09-05T17:52:05.760230+00:00 SWEEP estimated 2026-09-05T17:57:20.348813+00:00
+2026-09-05T17:50:20.899562+00:00 ACTIVE normalization-companions child 91152
+2026-09-05T17:50:36.114790+00:00 ACTIVE normalization-companions child 91152
+2026-09-05T17:50:36.876016+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:50:52.096917+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:51:07.328349+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:51:22.541810+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:51:37.749844+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:51:52.978982+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:52:08.216170+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:52:23.447556+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:52:38.661697+00:00 ACTIVE normalization-companions child 91742
+2026-09-05T17:52:52.606060+00:00 ACTIVE normalization-companions child 96839
+2026-09-05T17:53:07.609452+00:00 ACTIVE normalization-companions child 96839
+2026-09-05T17:53:08.634204+00:00 RESULT normalization-companions passed
+2026-09-05T17:54:13.993785+00:00 NOW forecast-contract NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T17:54:13.997956+00:00 ACTIVE forecast-contract child 504
+2026-09-05T17:54:29.117491+00:00 ACTIVE forecast-contract child 504
+2026-09-05T17:54:29.891060+00:00 ACTIVE forecast-contract child 1734
+2026-09-05T17:54:45.050717+00:00 ACTIVE forecast-contract child 1734
+2026-09-05T17:55:00.192640+00:00 ACTIVE forecast-contract child 1734
+2026-09-05T17:55:15.303898+00:00 ACTIVE forecast-contract child 1734
+2026-09-05T17:55:27.329084+00:00 ACTIVE forecast-contract child 3670
+2026-09-05T17:55:33.249400+00:00 RESULT forecast-contract passed
+2026-09-05T17:55:33.255936+00:00 NOW assets-live-foundation NEXT estimated 2026-09-05T17:56:52.507978+00:00 SWEEP estimated 2026-09-05T17:59:31.012096+00:00
+2026-09-05T17:55:33.258236+00:00 ACTIVE assets-live-foundation child 3957
+2026-09-05T17:55:39.423730+00:00 ACTIVE assets-live-foundation child 4293
+2026-09-05T17:55:54.566165+00:00 ACTIVE assets-live-foundation child 4293
+2026-09-05T17:56:09.699379+00:00 ACTIVE assets-live-foundation child 4293
+2026-09-05T17:56:24.862441+00:00 ACTIVE assets-live-foundation child 4293
+2026-09-05T17:56:32.272505+00:00 ACTIVE assets-live-foundation child 6850
+2026-09-05T17:56:39.213218+00:00 RESULT assets-live-foundation passed
+2026-09-05T17:56:39.217568+00:00 NOW planning-live-foundation NEXT estimated 2026-09-05T17:57:51.783485+00:00 SWEEP estimated 2026-09-05T17:59:04.349418+00:00
+2026-09-05T17:56:39.220212+00:00 ACTIVE planning-live-foundation child 7087
+2026-09-05T17:56:45.355536+00:00 ACTIVE planning-live-foundation child 7244
+2026-09-05T17:57:00.469581+00:00 ACTIVE planning-live-foundation child 7244
+2026-09-05T17:57:15.588079+00:00 ACTIVE planning-live-foundation child 7244
+2026-09-05T17:57:30.733373+00:00 ACTIVE planning-live-foundation child 7244
+2026-09-05T17:57:45.895357+00:00 ACTIVE planning-live-foundation child 7244
+2026-09-05T17:57:49.735477+00:00 ACTIVE planning-live-foundation child 9476
+2026-09-05T17:58:04.867104+00:00 ACTIVE planning-live-foundation child 9476
+2026-09-05T17:58:20.022078+00:00 ACTIVE planning-live-foundation child 9476
+2026-09-05T17:58:35.164852+00:00 ACTIVE planning-live-foundation child 9476
+2026-09-05T17:58:36.457050+00:00 RESULT planning-live-foundation integrity_failed
+2026-09-05T18:03:59.691865+00:00 NOW planning-live-foundation NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T18:03:59.694098+00:00 ACTIVE planning-live-foundation child 21347
+2026-09-05T18:04:06.128769+00:00 ACTIVE planning-live-foundation child 21551
+2026-09-05T18:04:21.295171+00:00 ACTIVE planning-live-foundation child 21551
+2026-09-05T18:04:36.432015+00:00 ACTIVE planning-live-foundation child 21551
+2026-09-05T18:04:51.520158+00:00 ACTIVE planning-live-foundation child 21551
+2026-09-05T18:04:52.802925+00:00 ACTIVE planning-live-foundation child 22973
+2026-09-05T18:05:06.905692+00:00 RESULT planning-live-foundation failed
+2026-09-05T18:11:00.773313+00:00 NOW normalization-companions NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T18:11:00.775944+00:00 ACTIVE normalization-companions child 33993
+2026-09-05T18:11:07.487007+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:11:22.624702+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:11:37.797685+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:11:52.942632+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:12:08.102045+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:12:23.223722+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:12:38.337348+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:12:53.476380+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:13:08.557391+00:00 ACTIVE normalization-companions child 34188
+2026-09-05T18:13:12.152924+00:00 ACTIVE normalization-companions child 38977
+2026-09-05T18:13:27.316795+00:00 ACTIVE normalization-companions child 38977
+2026-09-05T18:13:28.336450+00:00 RESULT normalization-companions passed
+2026-09-05T18:13:28.342679+00:00 NOW planning-live-foundation NEXT estimated 2026-09-05T18:15:55.901106+00:00 SWEEP estimated 2026-09-05T18:15:55.901118+00:00
+2026-09-05T18:13:28.345166+00:00 ACTIVE planning-live-foundation child 39827
+2026-09-05T18:13:43.503494+00:00 ACTIVE planning-live-foundation child 39827
+2026-09-05T18:13:44.282485+00:00 ACTIVE planning-live-foundation child 40411
+2026-09-05T18:13:59.460682+00:00 ACTIVE planning-live-foundation child 40411
+2026-09-05T18:14:14.559098+00:00 ACTIVE planning-live-foundation child 40411
+2026-09-05T18:14:29.679205+00:00 ACTIVE planning-live-foundation child 40411
+2026-09-05T18:14:44.836326+00:00 ACTIVE planning-live-foundation child 40411
+2026-09-05T18:14:59.942397+00:00 ACTIVE planning-live-foundation child 40411
+2026-09-05T18:15:15.099653+00:00 ACTIVE planning-live-foundation child 40411
+2026-09-05T18:15:20.761999+00:00 ACTIVE planning-live-foundation child 43905
+2026-09-05T18:15:35.913801+00:00 ACTIVE planning-live-foundation child 43905
+2026-09-05T18:15:36.687315+00:00 RESULT planning-live-foundation passed
+2026-09-05T18:17:23.769665+00:00 NOW planning-live-foundation NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T18:17:23.771804+00:00 ACTIVE planning-live-foundation child 48803
+2026-09-05T18:17:38.884304+00:00 ACTIVE planning-live-foundation child 48803
+2026-09-05T18:17:39.660375+00:00 ACTIVE planning-live-foundation child 49136
+2026-09-05T18:17:54.806031+00:00 ACTIVE planning-live-foundation child 49136
+2026-09-05T18:18:09.936835+00:00 ACTIVE planning-live-foundation child 49136
+2026-09-05T18:18:25.083414+00:00 ACTIVE planning-live-foundation child 49136
+2026-09-05T18:18:38.690785+00:00 ACTIVE planning-live-foundation child 51334
+2026-09-05T18:18:52.544215+00:00 RESULT planning-live-foundation failed
+2026-09-05T18:20:05.257818+00:00 NOW planning-live-foundation NEXT estimated unknown until first measured feature SWEEP estimated unknown until first measured feature
+2026-09-05T18:20:05.259460+00:00 ACTIVE planning-live-foundation child 54230
+2026-09-05T18:20:20.384691+00:00 ACTIVE planning-live-foundation child 54230
+2026-09-05T18:20:21.169827+00:00 ACTIVE planning-live-foundation child 54674
+2026-09-05T18:20:36.296279+00:00 ACTIVE planning-live-foundation child 54674
+2026-09-05T18:20:51.471826+00:00 ACTIVE planning-live-foundation child 54674
+2026-09-05T18:21:06.612498+00:00 ACTIVE planning-live-foundation child 54674
+2026-09-05T18:21:21.741039+00:00 ACTIVE planning-live-foundation child 54674
+2026-09-05T18:21:36.856148+00:00 ACTIVE planning-live-foundation child 54674
+2026-09-05T18:21:51.487928+00:00 ACTIVE planning-live-foundation child 57096
+2026-09-05T18:22:06.625707+00:00 ACTIVE planning-live-foundation child 57096
+2026-09-05T18:22:07.388255+00:00 RESULT planning-live-foundation passed

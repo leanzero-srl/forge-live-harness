@@ -1,0 +1,38 @@
+
+Running 4 tests using 1 worker
+
+
+(node:91747) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/4] [chromium] › scenarios/lz-ppm/journey-normalization-owned.spec.ts:10:1 › normalization: declared zero survives dependency movement, Save/reopen, refresh and Discard
+[chromium] › scenarios/lz-ppm/journey-normalization-owned.spec.ts:10:1 › normalization: declared zero survives dependency movement, Save/reopen, refresh and Discard
+[jira !!] GET /rest/api/3/issue/WFH-2706 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2705 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtooi1hu","name":"[harness-test] lz-norm-mtooi1hu","time":"2026-09-05T17:50:38.610Z","issues":[{"key":"WFH-2705","seed":{"label":"predecessor","start":"2026-10-05","due":"2026-10-06","duration":2}},{"key":"WFH-2706","seed":{"label":"declared zero","start":"2026-10-07","due":"2026-10-07","duration":0}}],"planId":"plan-test-mtooi4yd-ta7afs","cleanup":[{"plan":"plan-test-mtooi4yd-ta7afs","deleted":true},{"issue":"WFH-2706","deleted":true},{"issue":"WFH-2705","deleted":true}],"integrityPassed":true}
+
+[2/4] [chromium] › scenarios/lz-ppm/journey-normalization-owned.spec.ts:74:1 › normalization: intentional duration clear on date-backed import survives Save and reopen
+[chromium] › scenarios/lz-ppm/journey-normalization-owned.spec.ts:74:1 › normalization: intentional duration clear on date-backed import survives Save and reopen
+[jira !!] GET /rest/api/3/issue/WFH-2707 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtooiqyi","name":"[harness-test] lz-norm-mtooiqyi","time":"2026-09-05T17:51:11.610Z","issues":[{"key":"WFH-2707","seed":{"label":"date-backed clear","start":"2026-10-05","due":"2026-10-09","duration":null}}],"planId":"plan-test-mtooisk8-0igze5","cleanup":[{"plan":"plan-test-mtooisk8-0igze5","deleted":true},{"issue":"WFH-2707","deleted":true}],"integrityPassed":true}
+
+[3/4] [chromium] › scenarios/lz-ppm/journey-normalization-owned.spec.ts:98:1 › normalization: hydration uses custom working days and leaves inverted range unavailable
+[chromium] › scenarios/lz-ppm/journey-normalization-owned.spec.ts:98:1 › normalization: hydration uses custom working days and leaves inverted range unavailable
+[jira !!] GET /rest/api/3/issue/WFH-2709 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2708 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtooj93w","name":"[harness-test] lz-norm-mtooj93w","time":"2026-09-05T17:51:35.132Z","issues":[{"key":"WFH-2708","seed":{"label":"calendar range","start":"2026-10-05","due":"2026-10-09","duration":null}},{"key":"WFH-2709","seed":{"label":"inverted range","start":"2026-10-09","due":"2026-10-05","duration":null}}],"planId":"plan-test-mtoojbsy-fvrwph","cleanup":[{"plan":"plan-test-mtoojbsy-fvrwph","deleted":true},{"issue":"WFH-2709","deleted":true},{"issue":"WFH-2708","deleted":true}],"integrityPassed":true}
+
+[4/4] [chromium] › scenarios/lz-ppm/journey-normalization-owned.spec.ts:127:1 › apply: owned edit Cancel writes nothing, confirmation writes exact dates and retains normalized reopen
+[chromium] › scenarios/lz-ppm/journey-normalization-owned.spec.ts:127:1 › apply: owned edit Cancel writes nothing, confirmation writes exact dates and retains normalized reopen
+APPLY_REOPEN {"duration":"4","start":"2026-10-05","due":"2026-10-08"}
+
+[jira !!] GET /rest/api/3/issue/WFH-2710 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtoojryu","name":"[harness-test] lz-norm-mtoojryu","time":"2026-09-05T17:51:59.574Z","issues":[{"key":"WFH-2710","seed":{"label":"apply owned","start":"2026-10-05","due":"2026-10-07","duration":3}}],"planId":"plan-test-mtoojtpt-084h5y","cleanup":[{"plan":"plan-test-mtoojtpt-084h5y","deleted":true},{"issue":"WFH-2710","deleted":true}],"integrityPassed":true}
+
+  4 passed (2.3m)

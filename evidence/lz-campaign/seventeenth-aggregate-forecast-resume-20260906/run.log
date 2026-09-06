@@ -1,0 +1,193 @@
+
+Running 1 test using 1 worker
+
+
+(node:76926) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:35:1 › seventeenth aggregate resume: same retained5300 job completes exact40-run report and HTML without cleanup
+[chromium] › scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:35:1 › seventeenth aggregate resume: same retained5300 job completes exact40-run report and HTML without cleanup
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.587","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T13:03:24.486Z"}
+
+PACED_ADVANCE {"checkpoint":127,"startedAt":"2026-09-06T13:06:08.387Z","reservedUnits":128}
+
+PACED_ADVANCE {"checkpoint":128,"startedAt":"2026-09-06T13:06:18.962Z","reservedUnits":128}
+
+PACED_ADVANCE {"checkpoint":129,"startedAt":"2026-09-06T13:07:11.923Z","reservedUnits":128}
+
+PACED_ADVANCE {"checkpoint":130,"startedAt":"2026-09-06T13:07:23.049Z","reservedUnits":128}
+
+PACED_ADVANCE {"checkpoint":131,"startedAt":"2026-09-06T13:08:16.324Z","reservedUnits":64}
+
+PACED_ADVANCE {"checkpoint":132,"startedAt":"2026-09-06T13:08:26.987Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":133,"startedAt":"2026-09-06T13:09:21.496Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":134,"startedAt":"2026-09-06T13:09:32.028Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":135,"startedAt":"2026-09-06T13:10:26.534Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":136,"startedAt":"2026-09-06T13:10:37.037Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":137,"startedAt":"2026-09-06T13:11:31.720Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":138,"startedAt":"2026-09-06T13:11:44.317Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":139,"startedAt":"2026-09-06T13:12:37.675Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":140,"startedAt":"2026-09-06T13:12:49.936Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":141,"startedAt":"2026-09-06T13:13:43.350Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":142,"startedAt":"2026-09-06T13:13:55.603Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":143,"startedAt":"2026-09-06T13:14:49.263Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":144,"startedAt":"2026-09-06T13:15:00.853Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":145,"startedAt":"2026-09-06T13:15:54.784Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":146,"startedAt":"2026-09-06T13:16:06.107Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":147,"startedAt":"2026-09-06T13:17:00.241Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":148,"startedAt":"2026-09-06T13:17:11.180Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":149,"startedAt":"2026-09-06T13:18:05.841Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":150,"startedAt":"2026-09-06T13:18:16.054Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":151,"startedAt":"2026-09-06T13:19:11.197Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":152,"startedAt":"2026-09-06T13:19:21.407Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":153,"startedAt":"2026-09-06T13:20:16.371Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":154,"startedAt":"2026-09-06T13:20:26.719Z","reservedUnits":192}
+
+PACED_ADVANCE {"checkpoint":155,"startedAt":"2026-09-06T13:21:21.584Z","reservedUnits":192}
+
+  1) [chromium] › scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:35:1 › seventeenth aggregate resume: same retained5300 job completes exact40-run report and HTML without cleanup 
+
+    AggregateError: Retained diagnostic/recovery and independent audit errors
+
+      102 |   ['no-unexpected-ui-writes',async()=>{expect(forbiddenUi).toEqual([]);expect(uiRouteErrors).toEqual([]);}],['stop-owned-ui',async()=>{if(!page.isClosed())await stopUi();}],['retained-job',async()=>{if(ready){const final=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);journal.finalJob=final;journal.publicationObserved=final.state==='complete';save();const physical=await probe();journal.finalProbe=physical;save();verifyCaptureProbe(physical,{planId,jobId,...final});if(latestVerifiedProbe)preservedArtifacts(physical,final,latestVerifiedProbe);else if(admittedProbe)preservedArtifacts(physical,final,admittedProbe);if(publishedProbe)expect(physical).toEqual(publishedProbe);}}],['pristine-snapshot',async()=>{if(ready)await snapshot();}],['shared-issue',async()=>{for(let n=0;n<2;n++)await sharedIssue();}],['original-source',async()=>{if(originalSource)expect(await source()).toEqual(originalSource);}],['registry',async()=>await registry(planDeleted?originals:ownedRegistry)],
+      103 |   ['source-plan',async()=>{if(originalOwned&&!planDeleted)expect(await owned()).toEqual(originalOwned);}],['preferences',async()=>{if(ready)for(let n=0;n<2;n++)expect(await read('getCapacitySettings')).toEqual(expectedPrefs);}],['original-drafts',async()=>{if(ready)for(const id of originals)await drafts(id);}],['owned-baseline',async()=>{if(ready&&!planDeleted){await drafts(planId);await baseline();}}]
+    > 104 |  ]as const){try{await audit();}catch(error){errors.push(error);record('independent-audit-error',{label,error:String(error)});}}try{await drainUi();expect(uiRouteErrors).toEqual([]);expect(forbiddenUi).toEqual([]);}catch(error){errors.push(error);record('independent-audit-error',{label:'final-ui-transport-drain',error:String(error)});}budget.close();try{journal.finalBudget=budget.snapshot();}catch(error){errors.push(error);record('independent-audit-error',{label:'final-budget-clock',error:String(error)});}journal.sourceAndPreferencesPreserved=ready&&errors.length===0;if(errors.length)journal.completed=false;page.off('request',capture);await page.unroute('**/*',blockUiWrites);save();if(errors.length)throw new AggregateError([...(bodyFailed?[bodyError]:[]),...errors],'Retained diagnostic/recovery and independent audit errors');}
+          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+      105 | });
+      106 |
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:104:714
+
+    AssertionError: Expected values to be strictly equal:
+
+    false !== true
+
+
+       at scenarios/lz-ppm/seventeenth-aggregate-resume-contract.mjs:26
+
+      24 |  for(let n=0;job.state==='active';n++){
+      25 |   assert.ok(n<maxSteps&&now()-started<maxMs,'Explicit paced continuation deadline or checkpoint bound reached');const before=structuredClone(job);await onObserved({stage:'before-advance',wallTime:new Date().toISOString(),payload:{planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint}});
+    > 26 |   const response=await advance({planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint},before);await onObserved({stage:'advance-response',before:before.checkpoint,response});assert.equal(response?.httpStatus,200);assert.equal(response.outerSuccess,true);assert.equal(response.body?.success,true,response.body?.error);job=resumedJob(response.body.job,before);await onObserved({stage:'forecast-progress',...progress.accept(job,before)});
+         |                                                                                                                                                                                                                                                     ^
+      27 |   if(response.body.report){assert.equal(job.state,'complete');assert.equal(response.body.report.id,retained.reportId);assert.match(response.body.report.hash,/^[a-f0-9]{64}$/);}
+      28 |   const fresh=await status();await onObserved({stage:'fresh-status',job:fresh});assert.deepEqual(fresh,job);await probe(job);await onObserved({stage:'checkpoint-verified',job});
+      29 |  }
+        at continueAggregateReport (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/seventeenth-aggregate-resume-contract.mjs:26:245)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:85:34
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      60 |   }catch(error){record('transport-error',{key,message:String(error)});throw error;}finally{if(key==='advanceSponsorReportCapture'){journal.lastWriteReturnedMs=Date.now();save();}}
+      61 |  });
+    > 62 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+         |                                                                                                                                                            ^
+      63 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+      64 |  const registry=async(ids:string[])=>{const value=await hook({what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      65 |  const source=async()=>{const s=await hook({what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:62:156)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:63:60)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:102:234
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:104:17
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      60 |   }catch(error){record('transport-error',{key,message:String(error)});throw error;}finally{if(key==='advanceSponsorReportCapture'){journal.lastWriteReturnedMs=Date.now();save();}}
+      61 |  });
+    > 62 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+         |                                                                                                                                                            ^
+      63 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+      64 |  const registry=async(ids:string[])=>{const value=await hook({what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      65 |  const source=async()=>{const s=await hook({what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:62:156)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:63:60)
+        at snapshot (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:67:40)
+        at n (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:102:745)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:104:17
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      60 |   }catch(error){record('transport-error',{key,message:String(error)});throw error;}finally{if(key==='advanceSponsorReportCapture'){journal.lastWriteReturnedMs=Date.now();save();}}
+      61 |  });
+    > 62 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+         |                                                                                                                                                            ^
+      63 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+      64 |  const registry=async(ids:string[])=>{const value=await hook({what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      65 |  const source=async()=>{const s=await hook({what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:62:156)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:63:60)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:103:168
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:104:17
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      60 |   }catch(error){record('transport-error',{key,message:String(error)});throw error;}finally{if(key==='advanceSponsorReportCapture'){journal.lastWriteReturnedMs=Date.now();save();}}
+      61 |  });
+    > 62 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+         |                                                                                                                                                            ^
+      63 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+      64 |  const registry=async(ids:string[])=>{const value=await hook({what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      65 |  const source=async()=>{const s=await hook({what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:62:156)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:63:60)
+        at drafts (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:69:41)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:103:293
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:104:17
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      60 |   }catch(error){record('transport-error',{key,message:String(error)});throw error;}finally{if(key==='advanceSponsorReportCapture'){journal.lastWriteReturnedMs=Date.now();save();}}
+      61 |  });
+    > 62 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+         |                                                                                                                                                            ^
+      63 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+      64 |  const registry=async(ids:string[])=>{const value=await hook({what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      65 |  const source=async()=>{const s=await hook({what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:62:156)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:63:60)
+        at drafts (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:69:41)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:103:365
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:104:17
+
+    Error Context: evidence/lz-campaign/seventeenth-aggregate-forecast-resume-20260906/artifacts/scenarios-lz-ppm-campaign--7ca7a-rt-and-HTML-without-cleanup-chromium/error-context.md
+
+
+  Slow test file: [chromium] › scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts (19.0m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-seventeenth-aggregate-resume.spec.ts:35:1 › seventeenth aggregate resume: same retained5300 job completes exact40-run report and HTML without cleanup 

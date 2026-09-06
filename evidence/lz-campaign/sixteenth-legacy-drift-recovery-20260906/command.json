@@ -1,0 +1,28 @@
+{
+  "runId": "sixteenth-legacy-drift-recovery-20260906",
+  "createdAt": "2026-09-06T06:16:52.125413+00:00",
+  "harnessHead": "e2004e546e0335750c741772cce75f69050b5e63",
+  "instrument": "73f4d83215147a1f029bc0ad245ee5c4fdff082c66259d3a333f76e116e11332",
+  "forgeVersion": "6.15.0",
+  "uiVersion": "4.58.585",
+  "appSource": "e8d46785d8cda3d2b3680b0e84e52dbd7c1a68ee",
+  "mode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "recover",
+  "sourceExtension": null,
+  "expectedPreferencesVersion": 59,
+  "expectedTests": 1,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-recover-legacy-drift.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "legacy drift recovery:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-drift-recovery-20260906/artifacts"
+  ]
+}

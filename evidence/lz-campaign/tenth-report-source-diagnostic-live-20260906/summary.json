@@ -1,0 +1,82 @@
+{
+  "time": "2026-09-06T01:48:18.134753+00:00",
+  "runId": "tenth-report-source-diagnostic-live-20260906",
+  "uiVersion": "4.58.581",
+  "forgeVersion": "6.7.0",
+  "instrumentHash": "d06bc939353d9c9a865c4c75af7be743e352ccf262cc84be28240ca79453b501",
+  "browserMode": "portable-chrome152",
+  "complete": false,
+  "blocker": null,
+  "features": [
+    {
+      "id": "sponsor-report-numeric-live",
+      "status": "not_run",
+      "acceptance": [
+        "REP-2-CAPTURED-QUANTILES",
+        "REP-2-SCOPED-PROBABILITIES",
+        "REP-2-OPT-IN-CAPTURED-OVERLOAD",
+        "REP-2-NO-OTHER-PORTFOLIO-DATA",
+        "REP-2-IMMUTABLE-AFTER-LIVE-CHANGES"
+      ],
+      "result": null
+    },
+    {
+      "id": "private-completed-observation-live",
+      "status": "not_run",
+      "acceptance": [
+        "CAL-1-REAL-COMPLETED-RECEIPT",
+        "CAL-1-REOPEN-UNCHANGED-EVIDENCE",
+        "CAL-1-REOPENED-ISSUE-SUPERSEDES",
+        "CAL-1-SOURCE-DELETION-RETAINED"
+      ],
+      "result": null
+    },
+    {
+      "id": "private-observations-live",
+      "status": "not_run",
+      "acceptance": [
+        "OBS-PRIVATE-REOPEN",
+        "OBS-FRESH-ACCESS-CHECK",
+        "OBS-SUPERSEDED-STATE",
+        "OBS-EXACT-RAW-EVIDENCE"
+      ],
+      "result": null
+    },
+    {
+      "id": "sponsor-report-live",
+      "status": "not_run",
+      "acceptance": [
+        "REP-ACTUAL-PAGED-DOWNLOAD",
+        "REP-EVERY-TIMELINE-FIELD",
+        "REP-PRINT-ACTUAL-HTML",
+        "REP-INDEPENDENT-BASELINE-COPY"
+      ],
+      "result": null
+    },
+    {
+      "id": "private-simulation-live",
+      "status": "not_run",
+      "acceptance": [
+        "SCN-PRIVATE-FORK",
+        "SCN-CALENDAR-PRESERVES-WORK",
+        "SCN-SCOPE-HOLIDAY-LAG-REOPEN",
+        "SCN-RESTORE-INITIAL-SCOPE",
+        "SCN-SYNC-SHARING-DENIED",
+        "SCN-STALE-MODEL-REJECTED",
+        "SCN-SOURCE-CAPTURE-JIRA-UNCHANGED",
+        "SCN-PRIVATE-UI-DELETE"
+      ],
+      "result": null
+    },
+    {
+      "id": "large-history-report-live",
+      "status": "failed",
+      "acceptance": [
+        "HIST-LARGE-EXACT-MEMBERSHIP-FIELDS",
+        "REP-LARGE-COMPLETE-HTML-FIELDS",
+        "PERF-LARGE-ACTUAL-LATENCIES"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/tenth-report-source-diagnostic-live-20260906/large-history-report-live/result.json"
+    }
+  ]
+}

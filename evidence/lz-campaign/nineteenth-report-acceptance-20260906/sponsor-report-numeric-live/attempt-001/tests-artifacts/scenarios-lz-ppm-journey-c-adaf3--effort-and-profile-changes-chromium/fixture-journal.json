@@ -1,0 +1,59 @@
+{
+  "marker": "lz-norm-mtq22not",
+  "name": "[harness-test] lz-norm-mtq22not",
+  "time": "2026-09-06T16:58:21.677Z",
+  "issues": [
+    {
+      "key": "WFH-2986",
+      "seed": {
+        "label": "numeric report 20h",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "release": true
+      }
+    }
+  ],
+  "planId": "plan-test-mtq22psp-7ewb9e",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtq22psp-7ewb9e",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2986",
+      "deleted": true
+    },
+    {
+      "version": "10392",
+      "deleted": true
+    }
+  ],
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10392",
+    "id": "10392",
+    "name": "[harness-test] lz-norm-mtq22not",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2986",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2986",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

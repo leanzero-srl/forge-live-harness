@@ -1,0 +1,30 @@
+
+Running 1 test using 1 worker
+
+
+(node:84392) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source
+  1) [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source 
+
+    Error: page.waitForTimeout: Page crashed
+
+       at forge/browser.ts:147
+
+      145 | export async function assertLoggedIn(page: Page): Promise<void> {
+      146 |   await page.goto(`${BASE_URL}/jira/your-work`, { waitUntil: "domcontentloaded" }).catch(() => {});
+    > 147 |   await page.waitForTimeout(600);
+          |              ^
+      148 |   if (LOGIN_URL_RE.test(page.url())) {
+      149 |     throw new Error(
+      150 |       `Atlassian session expired (redirected to ${page.url()}). Run \`npm run auth\` to log in again.`,
+        at assertLoggedIn (/Users/mihaiperdum/Projects/forge-live-harness/forge/browser.ts:147:14)
+        at openPlans (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/forecast-fixture.ts:20:3)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts:23:17
+
+    Error Context: evidence/lz-campaign/third-feature-live-20260905/capacity-live-numeric/attempt-002/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source 

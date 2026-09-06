@@ -1,0 +1,25 @@
+{
+  "schema": "eighteenth-independent-terminal-binding-v1",
+  "status": "closed",
+  "supervisorPid": 9440,
+  "childPid": 9447,
+  "workerPid": 9459,
+  "alivePids": [],
+  "pidCheckedAt": "2026-09-06T16:47:27.927506+00:00",
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-exact-three-recovery-20260906/artifacts/scenarios-lz-ppm-campaign--07182-lan-and-owned-Jira-deletion-chromium/eighteenth-recovery.json",
+    "sha256": "d38dd677f84f42b9b83c705b40c8a80f568af503491ef035a716f38ba99c874b"
+  },
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-exact-three-recovery-20260906/launch.json",
+    "sha256": "070fad20002c5dd0eb26f796872b9ed74db8e743a4529c116d12d71819c7a423"
+  },
+  "process": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-exact-three-recovery-20260906/process.json",
+    "sha256": "3c08a97289e9ed62ccbde2e4da38f895a8788ab87da048b121b8c68828c8b2eb"
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-exact-three-recovery-20260906/command.json",
+    "sha256": "00b7efc2d624e91353c626f77176e98fa6d14033bc514998c4a659fad9dbe2d4"
+  }
+}

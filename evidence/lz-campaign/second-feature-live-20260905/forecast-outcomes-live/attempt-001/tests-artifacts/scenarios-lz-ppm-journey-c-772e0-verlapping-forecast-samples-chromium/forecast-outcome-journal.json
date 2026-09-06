@@ -1,0 +1,69 @@
+{
+  "key": "WFH-2782",
+  "observations": [],
+  "predictions": [
+    {
+      "kind": "forecast",
+      "name": "Prospective forecast one",
+      "sourceVersion": 2,
+      "sources": [
+        {
+          "boardId": null,
+          "id": "src-0",
+          "label": "harness",
+          "projectKey": null,
+          "query": "key in (WFH-2782) ORDER BY Rank ASC",
+          "type": "jql"
+        }
+      ],
+      "calendar": {
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "holidays": [],
+        "calendarName": "Standard (Mon-Fri)"
+      },
+      "milestones": [],
+      "uncertainty": "medium",
+      "fieldOverrides": {},
+      "assets": null,
+      "workingChangeCount": 0,
+      "consistency": {
+        "method": "two-matching-reads",
+        "basisHash": "c51952f09170cff623d34d9feff967a935692a7679181c1fbb82b149fa8513ca",
+        "observedAt": "2026-09-05T19:11:43.704Z"
+      },
+      "forecast": {
+        "modelVersion": "duration-triangular-fs-v1",
+        "runs": 300,
+        "seed": 42,
+        "uncertainty": "medium",
+        "scopes": [
+          {
+            "id": "plan",
+            "name": "Whole plan",
+            "p50": "2026-10-09",
+            "p80": "2026-10-12",
+            "p90": "2026-10-12"
+          }
+        ]
+      },
+      "takenAt": "2026-09-05T19:11:43.758Z",
+      "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "schemaVersion": 1,
+      "planId": "plan-test-mtore46v-wg7t2d",
+      "id": "67b90df5-f8f9-40c6-bd5d-85ac4a77911d",
+      "issueCount": 1,
+      "chunkCount": 1,
+      "chunkHashes": [
+        "a67f0348f9feebd4c1091497acda043053968830d9b564e4acc8410504caee88"
+      ],
+      "hash": "83b8d8e8cc19fd8bfcfd4c5be24d74004d9f63e1ff6e795b250295c70f876124",
+      "state": "complete"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "baseSemanticCommit": "e7868f2",
+  "sourceFiles": [
+    {
+      "path": "scenarios/lz-ppm/report-document-identity.mjs",
+      "sha256": "43185482835388ea6924703d228da9bb976baf46c97ff1b2c1eea3305dff22c3"
+    },
+    {
+      "path": "scenarios/lz-ppm/report-departure.ts",
+      "sha256": "ceda5140e8d62110e9690cbecbace10287f1895ed35ba07280653556bf1dfc8c"
+    },
+    {
+      "path": "tests/report-throughput/departure.test.mjs",
+      "sha256": "7ac312e221a64048d718b20f790d1ba7a1c5e5698c75a4de605fc4ba3d2ab8da"
+    },
+    {
+      "path": "tests/report-throughput/document-identity.test.mjs",
+      "sha256": "edaa56a779c185eae1c0346db57685f82a85de26eb293b61303c5204274d9cbc"
+    }
+  ],
+  "controls": {
+    "count": 65,
+    "pass": 65,
+    "exit": 0
+  },
+  "actualFrameIdentityProof": {
+    "traces": 4,
+    "allStructuralChecksPass": true,
+    "rawUrlsEmitted": false
+  },
+  "siteCalls": 0,
+  "sharedSourceModified": false
+}

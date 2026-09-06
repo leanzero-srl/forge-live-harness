@@ -1,0 +1,269 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/report-capture-jobs-live/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+      "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 106226,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.588\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T16:53:43.070Z\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2982 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtq1wpld\",\"name\":\"[harness-test] lz-norm-mtq1wpld\",\"time\":\"2026-09-06T16:53:44.209Z\",\"issues\":[{\"key\":\"WFH-2982\",\"seed\":{\"label\":\"report job resume\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}}],\"planId\":\"plan-test-mtq1ws6u-8e4muf\",\"cleanup\":[{\"plan\":\"plan-test-mtq1ws6u-8e4muf\",\"deleted\":true},{\"issue\":\"WFH-2982\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2982\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2982\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T16:53:39.903Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5a852e460e54fd2fc7a-428d466decf2b15343ee",
+          "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+          "line": 14,
+          "column": 32
+        },
+        {
+          "title": "report jobs: cancellation during held real advance removes staged keys and refuses stale advance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 32140,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2983 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtq1yza6\",\"name\":\"[harness-test] lz-norm-mtq1yza6\",\"time\":\"2026-09-06T16:55:30.078Z\",\"issues\":[{\"key\":\"WFH-2983\",\"seed\":{\"label\":\"report job cancel\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}}],\"planId\":\"plan-test-mtq1z236-inmlwe\",\"cleanup\":[{\"plan\":\"plan-test-mtq1z236-inmlwe\",\"deleted\":true},{\"issue\":\"WFH-2983\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2983\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2983\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T16:55:29.420Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5a852e460e54fd2fc7a-d0eb5452b5c901c692cc",
+          "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+          "line": 14,
+          "column": 32
+        },
+        {
+          "title": "report jobs: changed owned source during pause refuses publication and cleans exact staging",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 45765,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2984 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtq1zo6l\",\"name\":\"[harness-test] lz-norm-mtq1zo6l\",\"time\":\"2026-09-06T16:56:02.349Z\",\"issues\":[{\"key\":\"WFH-2984\",\"seed\":{\"label\":\"report job source-drift\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}}],\"planId\":\"plan-test-mtq1zqiv-24iszq\",\"cleanup\":[{\"plan\":\"plan-test-mtq1zqiv-24iszq\",\"deleted\":true},{\"issue\":\"WFH-2984\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2984\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2984\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T16:56:01.566Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5a852e460e54fd2fc7a-8d4efdd6366eee289aeb",
+          "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+          "line": 14,
+          "column": 32
+        },
+        {
+          "title": "report jobs: changed active baseline during pause refuses publication and preserves original baseline",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 71812,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2985 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtq20nd2\",\"name\":\"[harness-test] lz-norm-mtq20nd2\",\"time\":\"2026-09-06T16:56:47.942Z\",\"issues\":[{\"key\":\"WFH-2985\",\"seed\":{\"label\":\"report job baseline-drift\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}}],\"planId\":\"plan-test-mtq20ph7-mawd1b\",\"cleanup\":[{\"plan\":\"plan-test-mtq20ph7-mawd1b\",\"deleted\":true},{\"issue\":\"WFH-2985\",\"deleted\":true}],\"searchIndexVerified\":[{\"key\":\"WFH-2985\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}],\"forgeIndexObservations\":[[{\"key\":\"WFH-2985\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":5}]],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T16:56:47.339Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5a852e460e54fd2fc7a-9914b4023ec60e531faf",
+          "file": "scenarios/lz-ppm/journey-campaign-report-jobs.spec.ts",
+          "line": 14,
+          "column": 32
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T16:53:39.522Z",
+    "duration": 260007.56900000002,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

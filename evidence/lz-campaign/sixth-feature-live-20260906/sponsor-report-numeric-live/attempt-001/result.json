@@ -1,0 +1,54 @@
+{
+  "status": "integrity_failed",
+  "stamp": "6d961c1d6d88b9a9e603e796e655c40f6c6b0083d905494203a46ad08059a4c6",
+  "startedAt": "2026-09-05T22:58:59.109971+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/attempt-001",
+  "uiVersion": "4.58.579",
+  "forgeVersion": "6.5.0",
+  "appCommit": "dce1d154f89a4684b3332508cf9de26fa3a1c746",
+  "instrumentHash": "00bb8b99eabed45d0b8966eb253c9a710e9a55e48e00e36fa86ba6391cdf8ba9",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-identity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"campaign: actual UI version and preserved LZPT source\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T22:59:53.228541+00:00",
+  "elapsedSeconds": 54.11825624998892
+}

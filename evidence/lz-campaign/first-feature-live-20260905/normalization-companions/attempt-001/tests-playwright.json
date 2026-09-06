@@ -1,0 +1,293 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-normalization-owned.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/normalization-companions/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/normalization-companions/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/normalization-companions/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-normalization-owned.spec.ts",
+      "file": "scenarios/lz-ppm/journey-normalization-owned.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "normalization: declared zero survives dependency movement, Save/reopen, refresh and Discard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 33120,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2706 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2705 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtooi1hu\",\"name\":\"[harness-test] lz-norm-mtooi1hu\",\"time\":\"2026-09-05T17:50:38.610Z\",\"issues\":[{\"key\":\"WFH-2705\",\"seed\":{\"label\":\"predecessor\",\"start\":\"2026-10-05\",\"due\":\"2026-10-06\",\"duration\":2}},{\"key\":\"WFH-2706\",\"seed\":{\"label\":\"declared zero\",\"start\":\"2026-10-07\",\"due\":\"2026-10-07\",\"duration\":0}}],\"planId\":\"plan-test-mtooi4yd-ta7afs\",\"cleanup\":[{\"plan\":\"plan-test-mtooi4yd-ta7afs\",\"deleted\":true},{\"issue\":\"WFH-2706\",\"deleted\":true},{\"issue\":\"WFH-2705\",\"deleted\":true}],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:50:37.450Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "saved-zero-source",
+                      "contentType": "application/json",
+                      "body": "W3siX29yaWdpbmFsIjp7ImJ1ZmZlciI6Ik5vIiwiZHVlRGF0ZSI6IjIwMjYtMTAtMDYiLCJkdXJhdGlvbiI6MiwicHJlZGVjZXNzb3JzIjpbXSwic3RhcnREYXRlIjoiMjAyNi0xMC0wNSIsInN1Y2Nlc3NvcnMiOlsiV0ZILTI3MDYiXX0sImFzc2lnbmVlQWNjb3VudElkIjoiNzEyMDIwOjkzN2JjODYwLWVlYzItNDI5NC1hNjVkLThlMGZlN2M0NTA4NiIsImFzc2lnbmVlTmFtZSI6Ik1paGFpIFBlcmR1bSIsImFzc2lnbmVlU3RhdGUiOiJhc3NpZ25lZCIsImJ1ZmZlciI6Ik5vIiwiY2hpbGRyZW4iOltdLCJjcmVhdGVkIjoiMjAyNi0wOS0wNSIsImR1ZURhdGUiOiIyMDI2LTEwLTA4IiwiZHVyYXRpb24iOjQsImR1cmF0aW9uRXhwbGljaXRseUNsZWFyZWQiOmZhbHNlLCJmaWVsZEF2YWlsIjp7ImJ1ZmZlciI6dHJ1ZSwiZHVlRGF0ZSI6dHJ1ZSwiZHVyYXRpb24iOnRydWUsInN0YXJ0RGF0ZSI6dHJ1ZX0sImZpeFZlcnNpb25zIjpbXSwiaGllcmFyY2h5TGV2ZWwiOjAsImlkIjoiMjQ5MDIiLCJrZXkiOiJXRkgtMjcwNSIsImxhYmVscyI6WyJsei1ub3JtLW10b29pMWh1Il0sIm9ycGhhblBhcmVudEtleSI6bnVsbCwicGFyZW50S2V5IjpudWxsLCJwcmVkZWNlc3NvcnMiOltdLCJwcmlvcml0eSI6Ik1lZGl1bSIsInJhbmsiOiIwfGkwMWsyNzoiLCJyZW1haW5pbmdFc3RpbWF0ZVNlY29uZHMiOm51bGwsInJlcG9ydGVyIjoiTWloYWkgUGVyZHVtIiwicmVzb2x1dGlvbiI6bnVsbCwic3RhcnREYXRlIjoiMjAyNi0xMC0wNSIsInN0YXR1cyI6Ik5ldyIsInN0YXR1c0NhdGVnb3J5IjoibmV3Iiwic3RvcnlQb2ludHMiOm51bGwsInN1Y2Nlc3NvcnMiOlsiV0ZILTI3MDYiXSwic3VtbWFyeSI6IltoYXJuZXNzLXRlc3RdIGx6LW5vcm0tbXRvb2kxaHUgcHJlZGVjZXNzb3IiLCJ0eXBlIjoiV29yayBwYWNrYWdlIiwidXBkYXRlZCI6IjIwMjYtMDktMDUifSx7Il9vcmlnaW5hbCI6eyJidWZmZXIiOiJObyIsImR1ZURhdGUiOiIyMDI2LTEwLTA3IiwiZHVyYXRpb24iOjAsInByZWRlY2Vzc29ycyI6WyJXRkgtMjcwNSJdLCJzdGFydERhdGUiOiIyMDI2LTEwLTA3Iiwic3VjY2Vzc29ycyI6W119LCJhc3NpZ25lZUFjY291bnRJZCI6IjcxMjAyMDo5MzdiYzg2MC1lZWMyLTQyOTQtYTY1ZC04ZTBmZTdjNDUwODYiLCJhc3NpZ25lZU5hbWUiOiJNaWhhaSBQZXJkdW0iLCJhc3NpZ25lZVN0YXRlIjoiYXNzaWduZWQiLCJidWZmZXIiOiJObyIsImNoaWxkcmVuIjpbXSwiY3JlYXRlZCI6IjIwMjYtMDktMDUiLCJkdWVEYXRlIjoiMjAyNi0xMC0wOSIsImR1cmF0aW9uIjowLCJkdXJhdGlvbkV4cGxpY2l0bHlDbGVhcmVkIjpmYWxzZSwiZmllbGRBdmFpbCI6eyJidWZmZXIiOnRydWUsImR1ZURhdGUiOnRydWUsImR1cmF0aW9uIjp0cnVlLCJzdGFydERhdGUiOnRydWV9LCJmaXhWZXJzaW9ucyI6W10sImhpZXJhcmNoeUxldmVsIjowLCJpZCI6IjI0OTAzIiwia2V5IjoiV0ZILTI3MDYiLCJsYWJlbHMiOlsibHotbm9ybS1tdG9vaTFodSJdLCJvcnBoYW5QYXJlbnRLZXkiOm51bGwsInBhcmVudEtleSI6bnVsbCwicHJlZGVjZXNzb3JzIjpbIldGSC0yNzA1Il0sInByaW9yaXR5IjoiTWVkaXVtIiwicmFuayI6IjB8aTAxazJmOiIsInJlbWFpbmluZ0VzdGltYXRlU2Vjb25kcyI6bnVsbCwicmVwb3J0ZXIiOiJNaWhhaSBQZXJkdW0iLCJyZXNvbHV0aW9uIjpudWxsLCJzdGFydERhdGUiOiIyMDI2LTEwLTA5Iiwic3RhdHVzIjoiTmV3Iiwic3RhdHVzQ2F0ZWdvcnkiOiJuZXciLCJzdG9yeVBvaW50cyI6bnVsbCwic3VjY2Vzc29ycyI6W10sInN1bW1hcnkiOiJbaGFybmVzcy10ZXN0XSBsei1ub3JtLW10b29pMWh1IGRlY2xhcmVkIHplcm8iLCJ0eXBlIjoiV29yayBwYWNrYWdlIiwidXBkYXRlZCI6IjIwMjYtMDktMDUifV0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fbec14df7514afe02aae-5f32099c072441c1f5eb",
+          "file": "scenarios/lz-ppm/journey-normalization-owned.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "normalization: intentional duration clear on date-backed import survives Save and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 23577,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2707 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtooiqyi\",\"name\":\"[harness-test] lz-norm-mtooiqyi\",\"time\":\"2026-09-05T17:51:11.610Z\",\"issues\":[{\"key\":\"WFH-2707\",\"seed\":{\"label\":\"date-backed clear\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":null}}],\"planId\":\"plan-test-mtooisk8-0igze5\",\"cleanup\":[{\"plan\":\"plan-test-mtooisk8-0igze5\",\"deleted\":true},{\"issue\":\"WFH-2707\",\"deleted\":true}],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:51:10.934Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "persisted-clear",
+                      "contentType": "application/json",
+                      "body": "eyJfb3JpZ2luYWwiOnsiYnVmZmVyIjoiTm8iLCJkdWVEYXRlIjoiMjAyNi0xMC0wOSIsImR1cmF0aW9uIjpudWxsLCJwcmVkZWNlc3NvcnMiOltdLCJzdGFydERhdGUiOiIyMDI2LTEwLTA1Iiwic3VjY2Vzc29ycyI6W119LCJhc3NpZ25lZUFjY291bnRJZCI6IjcxMjAyMDo5MzdiYzg2MC1lZWMyLTQyOTQtYTY1ZC04ZTBmZTdjNDUwODYiLCJhc3NpZ25lZU5hbWUiOiJNaWhhaSBQZXJkdW0iLCJhc3NpZ25lZVN0YXRlIjoiYXNzaWduZWQiLCJidWZmZXIiOiJObyIsImNoaWxkcmVuIjpbXSwiY3JlYXRlZCI6IjIwMjYtMDktMDUiLCJkdWVEYXRlIjoiMjAyNi0xMC0wOSIsImR1cmF0aW9uIjpudWxsLCJkdXJhdGlvbkV4cGxpY2l0bHlDbGVhcmVkIjp0cnVlLCJmaWVsZEF2YWlsIjp7ImJ1ZmZlciI6dHJ1ZSwiZHVlRGF0ZSI6dHJ1ZSwiZHVyYXRpb24iOnRydWUsInN0YXJ0RGF0ZSI6dHJ1ZX0sImZpeFZlcnNpb25zIjpbXSwiaGllcmFyY2h5TGV2ZWwiOjAsImlkIjoiMjQ5MDQiLCJrZXkiOiJXRkgtMjcwNyIsImxhYmVscyI6WyJsei1ub3JtLW10b29pcXlpIl0sIm9ycGhhblBhcmVudEtleSI6bnVsbCwicGFyZW50S2V5IjpudWxsLCJwcmVkZWNlc3NvcnMiOltdLCJwcmlvcml0eSI6Ik1lZGl1bSIsInJhbmsiOiIwfGkwMWsyNzoiLCJyZW1haW5pbmdFc3RpbWF0ZVNlY29uZHMiOm51bGwsInJlcG9ydGVyIjoiTWloYWkgUGVyZHVtIiwicmVzb2x1dGlvbiI6bnVsbCwic3RhcnREYXRlIjoiMjAyNi0xMC0wNSIsInN0YXR1cyI6Ik5ldyIsInN0YXR1c0NhdGVnb3J5IjoibmV3Iiwic3RvcnlQb2ludHMiOm51bGwsInN1Y2Nlc3NvcnMiOltdLCJzdW1tYXJ5IjoiW2hhcm5lc3MtdGVzdF0gbHotbm9ybS1tdG9vaXF5aSBkYXRlLWJhY2tlZCBjbGVhciIsInR5cGUiOiJXb3JrIHBhY2thZ2UiLCJ1cGRhdGVkIjoiMjAyNi0wOS0wNSJ9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fbec14df7514afe02aae-eaf0e872870393e2cee6",
+          "file": "scenarios/lz-ppm/journey-normalization-owned.spec.ts",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "normalization: hydration uses custom working days and leaves inverted range unavailable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 24415,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2709 -> 404\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2708 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtooj93w\",\"name\":\"[harness-test] lz-norm-mtooj93w\",\"time\":\"2026-09-05T17:51:35.132Z\",\"issues\":[{\"key\":\"WFH-2708\",\"seed\":{\"label\":\"calendar range\",\"start\":\"2026-10-05\",\"due\":\"2026-10-09\",\"duration\":null}},{\"key\":\"WFH-2709\",\"seed\":{\"label\":\"inverted range\",\"start\":\"2026-10-09\",\"due\":\"2026-10-05\",\"duration\":null}}],\"planId\":\"plan-test-mtoojbsy-fvrwph\",\"cleanup\":[{\"plan\":\"plan-test-mtoojbsy-fvrwph\",\"deleted\":true},{\"issue\":\"WFH-2709\",\"deleted\":true},{\"issue\":\"WFH-2708\",\"deleted\":true}],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:51:34.516Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fbec14df7514afe02aae-545f942f844263b18222",
+          "file": "scenarios/lz-ppm/journey-normalization-owned.spec.ts",
+          "line": 98,
+          "column": 1
+        },
+        {
+          "title": "apply: owned edit Cancel writes nothing, confirmation writes exact dates and retains normalized reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 600000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 23356,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "APPLY_REOPEN {\"duration\":\"4\",\"start\":\"2026-10-05\",\"due\":\"2026-10-08\"}\n"
+                    },
+                    {
+                      "text": "[jira !!] GET /rest/api/3/issue/WFH-2710 -> 404\n"
+                    },
+                    {
+                      "text": "OWNED_SCHEDULE_CLEANUP {\"marker\":\"lz-norm-mtoojryu\",\"name\":\"[harness-test] lz-norm-mtoojryu\",\"time\":\"2026-09-05T17:51:59.574Z\",\"issues\":[{\"key\":\"WFH-2710\",\"seed\":{\"label\":\"apply owned\",\"start\":\"2026-10-05\",\"due\":\"2026-10-07\",\"duration\":3}}],\"planId\":\"plan-test-mtoojtpt-084h5y\",\"cleanup\":[{\"plan\":\"plan-test-mtoojtpt-084h5y\",\"deleted\":true},{\"issue\":\"WFH-2710\",\"deleted\":true}],\"integrityPassed\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:51:58.938Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "apply-second-rest-read",
+                      "contentType": "application/json",
+                      "body": "eyJvcmlnaW5hbCI6eyJrZXkiOiJXRkgtMjcxMCIsInN0YXJ0IjoiMjAyNi0xMC0wNSIsImR1ZSI6IjIwMjYtMTAtMDciLCJkdXJhdGlvbiI6M30sImFmdGVyIjp7ImtleSI6IldGSC0yNzEwIiwic3RhcnQiOiIyMDI2LTEwLTA1IiwiZHVlIjoiMjAyNi0xMC0wOCIsImR1cmF0aW9uIjo0fX0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fbec14df7514afe02aae-75fc2eebabb48ce03be3",
+          "file": "scenarios/lz-ppm/journey-normalization-owned.spec.ts",
+          "line": 127,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T17:50:37.125Z",
+    "duration": 135301.15,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

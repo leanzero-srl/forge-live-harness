@@ -1,0 +1,187 @@
+
+Running 1 test using 1 worker
+
+
+(node:38994) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:20:1 › seventeenth forecast resume: same retained5300 job completes exact40-run report and HTML without cleanup
+[chromium] › scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:20:1 › seventeenth forecast resume: same retained5300 job completes exact40-run report and HTML without cleanup
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.586","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T11:13:51.986Z"}
+
+  1) [chromium] › scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:20:1 › seventeenth forecast resume: same retained5300 job completes exact40-run report and HTML without cleanup 
+
+    AggregateError: Retained diagnostic/recovery and independent audit errors
+
+      80 |   ['no-unexpected-ui-writes',async()=>expect(forbiddenUi).toEqual([])],['stop-owned-ui',async()=>{if(!page.isClosed())await page.goto('about:blank');}],['retained-job',async()=>{if(ready){const final=checkedJob((await read('getSponsorReportCapture',{planId,jobId})).job);journal.finalJob=final;journal.publicationObserved=final.state==='complete';save();const physical=await probe();journal.finalProbe=physical;save();verifyCaptureProbe(physical,{planId,jobId,...final});if(admittedProbe)preservedArtifacts(physical,final,admittedProbe);if(publishedProbe)expect(physical).toEqual(publishedProbe);}}],['pristine-snapshot',async()=>{if(ready)await snapshot();}],['shared-issue',async()=>{for(let n=0;n<2;n++)await sharedIssue();}],['original-source',async()=>{if(originalSource)expect(await source()).toEqual(originalSource);}],['registry',async()=>await registry(planDeleted?originals:ownedRegistry)],
+      81 |   ['source-plan',async()=>{if(originalOwned&&!planDeleted)expect(await owned()).toEqual(originalOwned);}],['preferences',async()=>{if(ready)for(let n=0;n<2;n++)expect(await read('getCapacitySettings')).toEqual(expectedPrefs);}],['original-drafts',async()=>{if(ready)for(const id of originals)await drafts(id);}],['owned-baseline',async()=>{if(ready&&!planDeleted){await drafts(planId);await baseline();}}]
+    > 82 |  ]as const){try{await audit();}catch(error){errors.push(error);record('independent-audit-error',{label,error:String(error)});}}journal.sourceAndPreferencesPreserved=ready&&errors.length===0;if(errors.length)journal.completed=false;page.off('request',capture);await page.unroute('**/*',blockUiWrites);save();if(errors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...errors],'Retained diagnostic/recovery and independent audit errors');}
+         |                                                                                                                                                                                                                                                                                                                                           ^
+      83 | });
+      84 |
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:331
+
+    Error: Limits for the current installation have been exceeded
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      40 |  };
+      41 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+    > 42 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+         |                                                                                                                        ^
+      43 |  const registry=async(ids:string[])=>{const value=await getTestState('lz-ppm',{what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      44 |  const source=async()=>{const s=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+      45 |  const owned=async()=>{const value=await getTestState('lz-ppm',{what:'plan',planId});record('owned-plan',value);expect(value.meta).toMatchObject({id:planId,name,createdBy:'harness',calendarKey:'standard',sources:[{id:'src-0',type:'jql',label:'harness',query:'project = LZPP ORDER BY key ASC',boardId:null,projectKey:null}]});expect(value.meta.mode).toBeUndefined();expect(fields(value.issues)).toEqual(expectedRows);return value;};
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:42:120)
+        at status (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:63:295)
+        at resumeToPublication (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/seventeenth-forecast-resume-contract.mjs:37:15)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:63:7
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      39 |   }catch(error){record('transport-error',{key,message:String(error)});throw error;}
+      40 |  };
+    > 41 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+         |                                                                                                                                                            ^
+      42 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+      43 |  const registry=async(ids:string[])=>{const value=await getTestState('lz-ppm',{what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      44 |  const source=async()=>{const s=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:41:156)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:42:60)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:80:213
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:17
+
+    Error: Limits for the current installation have been exceeded
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      40 |  };
+      41 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+    > 42 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+         |                                                                                                                        ^
+      43 |  const registry=async(ids:string[])=>{const value=await getTestState('lz-ppm',{what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      44 |  const source=async()=>{const s=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+      45 |  const owned=async()=>{const value=await getTestState('lz-ppm',{what:'plan',planId});record('owned-plan',value);expect(value.meta).toMatchObject({id:planId,name,createdBy:'harness',calendarKey:'standard',sources:[{id:'src-0',type:'jql',label:'harness',query:'project = LZPP ORDER BY key ASC',boardId:null,projectKey:null}]});expect(value.meta.mode).toBeUndefined();expect(fields(value.issues)).toEqual(expectedRows);return value;};
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:42:120)
+        at snapshot (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:46:40)
+        at n (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:80:641)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:17
+
+    Error: testState lz-ppm -> 500: {"error":"Limits for the current installation have been exceeded","stack":"ForgeKvsError: Limits for the current installation have been exceeded\n    at checkResponseError (webpack://leanzero-management-forge/node_modules/@forge/kvs/out/utils/error-handling.js:41:1)\n    at process.processTicksAndRe
+
+       at testhook/client.ts:22
+
+      20 |   for (const [k, v] of Object.entries(query)) u.searchParams.set(k, v);
+      21 |   const res = await fetch(u.toString(), { headers: { Authorization: `Bearer ${SECRET}` } });
+    > 22 |   if (!res.ok) throw new Error(`testState ${app} -> ${res.status}: ${(await res.text()).slice(0, 300)}`);
+         |                      ^
+      23 |   return res.json();
+      24 | }
+      25 |
+        at getTestState (/Users/mihaiperdum/Projects/forge-live-harness/testhook/client.ts:22:22)
+        at source (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:44:33)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:80:784
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:17
+
+    Error: testState lz-ppm -> 500: {"error":"Limits for the current installation have been exceeded","stack":"ForgeKvsError: Limits for the current installation have been exceeded\n    at checkResponseError (webpack://leanzero-management-forge/node_modules/@forge/kvs/out/utils/error-handling.js:41:1)\n    at process.processTicksAndRe
+
+       at testhook/client.ts:22
+
+      20 |   for (const [k, v] of Object.entries(query)) u.searchParams.set(k, v);
+      21 |   const res = await fetch(u.toString(), { headers: { Authorization: `Bearer ${SECRET}` } });
+    > 22 |   if (!res.ok) throw new Error(`testState ${app} -> ${res.status}: ${(await res.text()).slice(0, 300)}`);
+         |                      ^
+      23 |   return res.json();
+      24 | }
+      25 |
+        at getTestState (/Users/mihaiperdum/Projects/forge-live-harness/testhook/client.ts:22:22)
+        at registry (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:43:51)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:80:848
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:17
+
+    Error: testState lz-ppm -> 500: {"error":"Limits for the current installation have been exceeded","stack":"ForgeKvsError: Limits for the current installation have been exceeded\n    at checkResponseError (webpack://leanzero-management-forge/node_modules/@forge/kvs/out/utils/error-handling.js:41:1)\n    at process.processTicksAndRe
+
+       at testhook/client.ts:22
+
+      20 |   for (const [k, v] of Object.entries(query)) u.searchParams.set(k, v);
+      21 |   const res = await fetch(u.toString(), { headers: { Authorization: `Bearer ${SECRET}` } });
+    > 22 |   if (!res.ok) throw new Error(`testState ${app} -> ${res.status}: ${(await res.text()).slice(0, 300)}`);
+         |                      ^
+      23 |   return res.json();
+      24 | }
+      25 |
+        at getTestState (/Users/mihaiperdum/Projects/forge-live-harness/testhook/client.ts:22:22)
+        at owned (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:45:36)
+        at n (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:81:66)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:17
+
+    Error: Limits for the current installation have been exceeded
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      40 |  };
+      41 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+    > 42 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+         |                                                                                                                        ^
+      43 |  const registry=async(ids:string[])=>{const value=await getTestState('lz-ppm',{what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      44 |  const source=async()=>{const s=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+      45 |  const owned=async()=>{const value=await getTestState('lz-ppm',{what:'plan',planId});record('owned-plan',value);expect(value.meta).toMatchObject({id:planId,name,createdBy:'harness',calendarKey:'standard',sources:[{id:'src-0',type:'jql',label:'harness',query:'project = LZPP ORDER BY key ASC',boardId:null,projectKey:null}]});expect(value.meta.mode).toBeUndefined();expect(fields(value.issues)).toEqual(expectedRows);return value;};
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:42:120)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:81:168
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:17
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      39 |   }catch(error){record('transport-error',{key,message:String(error)});throw error;}
+      40 |  };
+    > 41 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+         |                                                                                                                                                            ^
+      42 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+      43 |  const registry=async(ids:string[])=>{const value=await getTestState('lz-ppm',{what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      44 |  const source=async()=>{const s=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:41:156)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:42:60)
+        at drafts (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:48:41)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:81:293
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:17
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      39 |   }catch(error){record('transport-error',{key,message:String(error)});throw error;}
+      40 |  };
+    > 41 |  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};
+         |                                                                                                                                                            ^
+      42 |  const read=async(key:string,payload:any={})=>{const value=await invoke(key,payload);expect(value.success,value.error).toBe(true);return value;};
+      43 |  const registry=async(ids:string[])=>{const value=await getTestState('lz-ppm',{what:'plans'});record('registry',value.plans);expect(value.plans.map((p:any)=>p.id).sort()).toEqual(ids);};
+      44 |  const source=async()=>{const s=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});const basis={issues:scheduleFields(s.issues),sources:s.meta.sources,calendarKey:s.meta.calendarKey,holidayYears:s.meta.holidayYears,milestones:s.meta.milestones,protectionEnabled:s.meta.protectionEnabled};expect(s.issues).toHaveLength(45);expect(sha(JSON.stringify(basis))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');return s;};
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:41:156)
+        at read (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:42:60)
+        at drafts (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:48:41)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:81:365
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:82:17
+
+    Error Context: evidence/lz-campaign/seventeenth-forecast-resume-20260906/artifacts/scenarios-lz-ppm-campaign--f695f-rt-and-HTML-without-cleanup-chromium/error-context.md
+
+
+  Slow test file: [chromium] › scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts (8.8m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts:20:1 › seventeenth forecast resume: same retained5300 job completes exact40-run report and HTML without cleanup 

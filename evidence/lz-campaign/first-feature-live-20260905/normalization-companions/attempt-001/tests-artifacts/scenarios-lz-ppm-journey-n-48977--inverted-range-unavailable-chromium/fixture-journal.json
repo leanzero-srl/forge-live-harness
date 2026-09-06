@@ -1,0 +1,41 @@
+{
+  "marker": "lz-norm-mtooj93w",
+  "name": "[harness-test] lz-norm-mtooj93w",
+  "time": "2026-09-05T17:51:35.132Z",
+  "issues": [
+    {
+      "key": "WFH-2708",
+      "seed": {
+        "label": "calendar range",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": null
+      }
+    },
+    {
+      "key": "WFH-2709",
+      "seed": {
+        "label": "inverted range",
+        "start": "2026-10-09",
+        "due": "2026-10-05",
+        "duration": null
+      }
+    }
+  ],
+  "planId": "plan-test-mtoojbsy-fvrwph",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtoojbsy-fvrwph",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2709",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2708",
+      "deleted": true
+    }
+  ],
+  "integrityPassed": true
+}

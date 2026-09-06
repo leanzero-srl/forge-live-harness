@@ -1,0 +1,125 @@
+{
+  "name": "[harness-test] lz-norm-mtp2qmn2 Epic target",
+  "summary": "[harness-test] lz-norm-mtp2qmn2 Epic target owned parent",
+  "source": [
+    {
+      "key": "WFH-2862",
+      "start": "2026-03-02",
+      "due": "2026-03-06",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2863",
+      "start": "2026-03-09",
+      "due": "2026-03-13",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2864",
+      "start": "2026-12-07",
+      "due": "2026-12-11",
+      "duration": 5
+    }
+  ],
+  "phase": "verified",
+  "epic": {
+    "id": "25065",
+    "key": "WFH-2865",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25065"
+  },
+  "planId": "plan-test-mtp2qwl6-qz5ve4",
+  "createStatus": 201,
+  "createBody": "{\"id\":\"25065\",\"key\":\"WFH-2865\",\"self\":\"https://wolfaenpak.atlassian.net/rest/api/3/issue/25065\"}",
+  "indexedHierarchy": [
+    {
+      "key": "WFH-2862",
+      "id": "25062",
+      "parentKey": null,
+      "hierarchyLevel": 0,
+      "predecessors": []
+    },
+    {
+      "key": "WFH-2863",
+      "id": "25063",
+      "parentKey": "WFH-2865",
+      "hierarchyLevel": 0,
+      "predecessors": [
+        "WFH-2862"
+      ]
+    },
+    {
+      "key": "WFH-2864",
+      "id": "25064",
+      "parentKey": null,
+      "hierarchyLevel": 0,
+      "predecessors": []
+    },
+    {
+      "key": "WFH-2865",
+      "id": "25065",
+      "parentKey": null,
+      "hierarchyLevel": 1,
+      "predecessors": []
+    }
+  ],
+  "exactInfluence": true,
+  "forecastRemainedMounted": true,
+  "targetAfter": {
+    "date": "2026-03-01",
+    "id": "4b59515d-85d0-4555-8ebd-6516eb0888dc",
+    "name": "Epic commitment",
+    "scope": {
+      "id": "25065",
+      "memberKeys": [
+        "WFH-2863"
+      ],
+      "type": "epic"
+    },
+    "coverage": {
+      "available": true,
+      "reason": null,
+      "memberKeys": [
+        "WFH-2863"
+      ],
+      "memberCount": 1,
+      "scopeLabel": "WFH-2865 · [harness-test] lz-norm-mtp2qmn2 Epic target owned parent"
+    }
+  },
+  "sourceDatesUnchanged": true,
+  "cleanup": [
+    {
+      "label": "restore primary timer",
+      "ok": true
+    },
+    {
+      "label": "close owned editor",
+      "ok": true
+    },
+    {
+      "label": "leave primary UI",
+      "ok": true
+    },
+    {
+      "label": "identify owned plan",
+      "ok": true
+    },
+    {
+      "label": "clear owned plan draft",
+      "ok": true
+    },
+    {
+      "label": "delete owned plan",
+      "ok": true
+    },
+    {
+      "label": "detach owned child",
+      "ok": true
+    },
+    {
+      "label": "delete owned epic",
+      "ok": true
+    }
+  ],
+  "planDeleted": true,
+  "epicDeleted": true
+}

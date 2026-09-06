@@ -1,0 +1,15 @@
+✔ malformed missing job cannot prove cleanup (0.805333ms)
+✔ malformed undefined job cannot prove cleanup (0.097291ms)
+✔ malformed false job cannot prove cleanup (0.069083ms)
+✔ malformed zero job cannot prove cleanup (0.068292ms)
+✔ malformed empty string job cannot prove cleanup (0.0825ms)
+✔ explicit null can acknowledge no job after an unacknowledged begin (0.092792ms)
+✔ explicit null cannot erase a previously acknowledged job (0.282584ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.077791

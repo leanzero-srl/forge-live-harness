@@ -1,0 +1,24 @@
+[
+  {
+    "planId": "plan-test-mtpbanj1-vfroj0",
+    "requestId": "0d36562d-592c-4702-b77a-ad259ec0f1fb",
+    "jobId": "ee2cdc5f-28e5-441b-b902-6d236f8560fd",
+    "steps": [],
+    "probes": [],
+    "startedAt": 1788668972385,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpbanj1-vfroj0",
+    "requestId": "0d36562d-592c-4702-b77a-ad259ec0f1fb",
+    "jobId": "ee2cdc5f-28e5-441b-b902-6d236f8560fd",
+    "steps": [],
+    "probes": [],
+    "startedAt": 1788668972385,
+    "cleaned": false,
+    "error": {
+      "name": "AssertionError",
+      "message": "Terminal cleanup left wrong physical key state\n\nfalse !== true\n"
+    }
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "status": "authorized",
+  "rootDispatchCommit": "85db41087e089caa71106060d2448a2ab4555365",
+  "authorizedAt": "2026-09-06T17:31:53.103232+00:00",
+  "harnessCommit": "dd177b048638a8429cdfbcb0cd85c43c5278aaf2",
+  "instrumentHash": "fdda23667f010f1ae26151bae9c5a826b2f9a63a5e8e3d4407b4eb60d5fa626d",
+  "command": [
+    "python3",
+    "scripts/lz-campaign.py",
+    "start",
+    "--run-id",
+    "final-six-regressions-20260906",
+    "--manifest",
+    "config/lz-campaign/final-ordinary-manifest.json",
+    "--features",
+    "normalization,persistence-durability",
+    "--ui-version",
+    "4.58.588",
+    "--forge-version",
+    "6.26.0",
+    "--app-commit",
+    "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+    "--browser-mode",
+    "portable-chrome152",
+    "--expected-account-id",
+    "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "--max-minutes",
+    "120"
+  ],
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0"
+  },
+  "sourceHashes": {
+    "config/lz-campaign/final-ordinary-manifest.json": "41eec174348d1058fd2fe31e106c0285b4126bdcf391518ae93b903b9ee99031",
+    "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts": "279755816745d4bcffd35605c97177db6703eb40ffab6be10ce0ae1750fdec9b",
+    "scenarios/lz-ppm/journey-campaign-persistence.spec.ts": "62eaeb7a6a5ad3b5aca4735c759890f34303ef1c289e278e9bf1d9e1a8b2646f",
+    "scenarios/lz-ppm/forecast-fixture.ts": "d2ede1e3e6ecfae69877733a19f024d25210c8ce017fa28b760c066613075bc7",
+    "scenarios/lz-ppm/normalization-owned-fixture.ts": "5b6e2a9ec780d52fad5c2b7da39e26af3b4acea8adad5688fae5ccbfafcc298d",
+    "scenarios/lz-ppm/report-departure.ts": "ceda5140e8d62110e9690cbecbace10287f1895ed35ba07280653556bf1dfc8c"
+  },
+  "retries": 0,
+  "automaticFailedUnitResume": false,
+  "rawTraceArchivesLocalOnly": true,
+  "expectedTests": 6
+}

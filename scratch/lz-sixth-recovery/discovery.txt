@@ -1,0 +1,4 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/campaign-headed-retained-download.spec.ts:13:1 › diagnostic: headed Chrome downloads the exact retained sixth sponsor report without creating or changing captured data
+  [chromium] › scenarios/lz-ppm/campaign-recover-sixth-numeric.spec.ts:10:1 › operator recovery: sixth numeric crash exact acknowledged preferences restored while diagnostic fixtures remain retained
+Total: 2 tests in 2 files

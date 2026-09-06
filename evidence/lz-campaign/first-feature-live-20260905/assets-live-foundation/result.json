@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "stamp": "c5b5de8cf68125c2abda9af890b66a0f1d2a8aafa76923891518ed8b925de707",
+  "startedAt": "2026-09-05T17:55:33.255908+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/assets-live-foundation/attempt-001",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "appCommit": "8bc4dc07",
+  "instrumentHash": "f70ad9aa7ade4531e97188aae07f965141c39b23ff4e67a61b105f06bb1c320a",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "assets: native object label, exact matching and empty filters persist across reopen and refresh"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-05T17:56:39.211867+00:00",
+  "elapsedSeconds": 65.87979800000903
+}

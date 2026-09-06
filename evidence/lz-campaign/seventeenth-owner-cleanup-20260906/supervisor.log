@@ -1,0 +1,94 @@
+
+Running 1 test using 1 worker
+
+
+(node:15328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts:43:1 › seventeenth owner cleanup: approved report private and public payloads absent before exact normal UI plan deletion
+[chromium] › scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts:43:1 › seventeenth owner cleanup: approved report private and public payloads absent before exact normal UI plan deletion
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.587","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T15:26:16.610Z"}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:05.296Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:07.160Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:08.942Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:10.549Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:12.309Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:13.995Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:15.554Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:17.115Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:29:18.618Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:02.489Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:05.196Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:06.765Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:08.474Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:10.152Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:11.831Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:13.506Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:15.189Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:16.824Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:18.646Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:20.364Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:22.082Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:23.897Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:25.691Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:30:27.312Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:06.103Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:08.046Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:09.824Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:11.549Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:13.160Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:14.811Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:16.251Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:17.776Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:19.515Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:21.281Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:22.990Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:24.718Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:26.616Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"private","startedAt":"2026-09-06T15:31:28.207Z","reservedUnits":192}
+
+OWNER_CLEANUP {"key":"deleteSponsorReport","phase":"private","startedAt":"2026-09-06T15:32:29.341Z","reservedUnits":224}
+
+OWNER_CLEANUP {"key":"cancelSponsorReportCapture","phase":"public","startedAt":"2026-09-06T15:32:35.725Z","reservedUnits":352}
+
+  Slow test file: [chromium] › scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts (10.6m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 passed (10.7m)

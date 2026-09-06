@@ -1,0 +1,57 @@
+{
+  "marker": "lz-norm-mtopsn2s",
+  "name": "[harness-test] lz-norm-mtopsn2s",
+  "time": "2026-09-05T18:26:52.756Z",
+  "issues": [
+    {
+      "key": "WFH-2739",
+      "seed": {
+        "label": "edit after recovery",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    },
+    {
+      "key": "WFH-2740",
+      "seed": {
+        "label": "unseen draft",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtopspra-bpkahp",
+  "cleanup": [],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2739",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    },
+    {
+      "key": "WFH-2740",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2739",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      },
+      {
+        "key": "WFH-2740",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ]
+}

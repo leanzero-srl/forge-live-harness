@@ -1,0 +1,1105 @@
+{
+  "marker": "lz-assets-owned-20260905-wfh",
+  "prefix": "[harness-test] LZ Assets owned 20260905 WFH",
+  "base": "https://wolfaenpak.atlassian.net",
+  "operations": [
+    {
+      "kind": "context-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/field/customfield_11148/context",
+      "body": {
+        "name": "[harness-test] LZ Assets owned 20260905 WFH Work package",
+        "description": "lz-assets-owned-20260905-wfh",
+        "projectIds": [
+          "10001"
+        ],
+        "issueTypeIds": [
+          "10004"
+        ]
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:21.609Z",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:58:22.009Z"
+    },
+    {
+      "kind": "context-gate",
+      "method": "POST",
+      "route": "/rest/api/3/field/customfield_11149/context",
+      "body": {
+        "name": "[harness-test] LZ Assets owned 20260905 WFH Work package",
+        "description": "lz-assets-owned-20260905-wfh",
+        "projectIds": [
+          "10001"
+        ],
+        "issueTypeIds": [
+          "10004"
+        ]
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:22.589Z",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:58:22.916Z"
+    },
+    {
+      "kind": "config-multiple",
+      "method": "PUT",
+      "route": "/rest/servicedesk/cmdb/latest/fieldconfig/11761",
+      "body": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:35.837Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:36.177Z"
+    },
+    {
+      "kind": "screen-10009-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10009/tabs/10012/fields",
+      "body": {
+        "fieldId": "customfield_11148"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:36.631Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:37.252Z"
+    },
+    {
+      "kind": "screen-10014-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10014/tabs/10017/fields",
+      "body": {
+        "fieldId": "customfield_11148"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:37.669Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:38.096Z"
+    },
+    {
+      "kind": "screen-10004-multiple",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10004/tabs/10007/fields",
+      "body": {
+        "fieldId": "customfield_11148"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:38.478Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:38.895Z"
+    },
+    {
+      "kind": "config-gate",
+      "method": "PUT",
+      "route": "/rest/servicedesk/cmdb/latest/fieldconfig/11762",
+      "body": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:39.064Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:39.288Z"
+    },
+    {
+      "kind": "screen-10009-gate",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10009/tabs/10012/fields",
+      "body": {
+        "fieldId": "customfield_11149"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:39.700Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:40.285Z"
+    },
+    {
+      "kind": "screen-10014-gate",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10014/tabs/10017/fields",
+      "body": {
+        "fieldId": "customfield_11149"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:40.559Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:40.912Z"
+    },
+    {
+      "kind": "screen-10004-gate",
+      "method": "POST",
+      "route": "/rest/api/3/screens/10004/tabs/10007/fields",
+      "body": {
+        "fieldId": "customfield_11149"
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:41.359Z",
+      "status": 200,
+      "finishedAt": "2026-09-05T20:58:41.717Z"
+    },
+    {
+      "kind": "issue",
+      "method": "POST",
+      "route": "/rest/api/3/issue",
+      "body": {
+        "fields": {
+          "project": {
+            "id": "10001"
+          },
+          "issuetype": {
+            "id": "10004"
+          },
+          "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+          "description": {
+            "type": "doc",
+            "version": 1,
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "lz-assets-owned-20260905-wfh"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:49.953Z",
+      "status": 201,
+      "finishedAt": "2026-09-05T20:58:50.746Z"
+    },
+    {
+      "kind": "assign",
+      "method": "PUT",
+      "route": "/rest/api/3/issue/WFH-2820",
+      "body": {
+        "fields": {
+          "customfield_10015": "2026-10-05",
+          "customfield_10042": "2026-10-09",
+          "customfield_10180": 5,
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ]
+        }
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T20:58:51.155Z",
+      "status": 204,
+      "finishedAt": "2026-09-05T20:58:52.062Z"
+    },
+    {
+      "kind": "mapped-due",
+      "method": "PUT",
+      "route": "/rest/api/3/issue/WFH-2820",
+      "body": {
+        "fields": {
+          "duedate": "2026-10-09"
+        }
+      },
+      "state": "acknowledged",
+      "startedAt": "2026-09-05T21:02:57.695Z",
+      "status": 204,
+      "finishedAt": "2026-09-05T21:02:58.415Z"
+    }
+  ],
+  "fields": {
+    "multiple": {
+      "id": "customfield_11148",
+      "contextId": "11761",
+      "projects": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11761",
+            "projectId": "10001"
+          }
+        ]
+      },
+      "types": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11761",
+            "issueTypeId": "10004"
+          }
+        ]
+      },
+      "configured": true,
+      "config": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      }
+    },
+    "gate": {
+      "id": "customfield_11149",
+      "contextId": "11762",
+      "projects": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11762",
+            "projectId": "10001"
+          }
+        ]
+      },
+      "types": {
+        "maxResults": 50,
+        "startAt": 0,
+        "total": 1,
+        "isLast": true,
+        "values": [
+          {
+            "contextId": "11762",
+            "issueTypeId": "10004"
+          }
+        ]
+      },
+      "configured": true,
+      "config": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      }
+    }
+  },
+  "createdAt": "2026-09-05T20:57:56.084Z",
+  "protectedBefore": {
+    "configs": {
+      "11589": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "11757": {
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "11758": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": true,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "11759": {
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      },
+      "11760": {
+        "objectSchemaId": "35",
+        "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+        "objectSchemaName": "CogniRunner Test Assets",
+        "objectFilterQuery": "objectTypeId = 43 AND objectId IN (411,412,413)",
+        "attributesIncludedInAutoCompleteSearch": [
+          "Name"
+        ],
+        "attributesDisplayedOnIssue": [
+          "Name"
+        ],
+        "multiple": false,
+        "shouldSetDefaultValuesFromEmptySearch": false,
+        "assignStrict": false,
+        "attributesLimit": 50
+      }
+    },
+    "mappings": {
+      "customfield_11148": {
+        "projects": {
+          "maxResults": 50,
+          "startAt": 0,
+          "total": 1,
+          "isLast": true,
+          "values": [
+            {
+              "contextId": "11758",
+              "projectId": "10008"
+            }
+          ]
+        },
+        "types": {
+          "maxResults": 50,
+          "startAt": 0,
+          "total": 1,
+          "isLast": true,
+          "values": [
+            {
+              "contextId": "11758",
+              "issueTypeId": "10005"
+            }
+          ]
+        }
+      },
+      "customfield_11149": {
+        "projects": {
+          "maxResults": 50,
+          "startAt": 0,
+          "total": 1,
+          "isLast": true,
+          "values": [
+            {
+              "contextId": "11760",
+              "projectId": "10008"
+            }
+          ]
+        },
+        "types": {
+          "maxResults": 50,
+          "startAt": 0,
+          "total": 1,
+          "isLast": true,
+          "values": [
+            {
+              "contextId": "11760",
+              "issueTypeId": "10005"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "lastProtection": {
+    "at": "2026-09-05T21:03:19.593Z",
+    "unchanged": true
+  },
+  "discovery": {
+    "at": "2026-09-05T20:58:00.004Z",
+    "project": {
+      "id": "10001",
+      "key": "WFH"
+    },
+    "issueType": {
+      "id": "10004",
+      "name": "Work package"
+    },
+    "association": {
+      "maxResults": 50,
+      "startAt": 0,
+      "total": 1,
+      "isLast": true,
+      "values": [
+        {
+          "issueTypeScreenScheme": {
+            "id": "10001",
+            "name": "WFH: Kanban Issue Type Screen Scheme",
+            "description": "",
+            "projects": {
+              "maxResults": 0,
+              "startAt": 0,
+              "total": 0,
+              "isLast": true,
+              "values": []
+            }
+          },
+          "projectIds": [
+            "10001"
+          ]
+        }
+      ]
+    },
+    "mappings": {
+      "maxResults": 50,
+      "startAt": 0,
+      "total": 4,
+      "isLast": true,
+      "values": [
+        {
+          "issueTypeScreenSchemeId": "10001",
+          "issueTypeId": "default",
+          "screenSchemeId": "10004"
+        },
+        {
+          "issueTypeScreenSchemeId": "10001",
+          "issueTypeId": "10007",
+          "screenSchemeId": "10005"
+        },
+        {
+          "issueTypeScreenSchemeId": "10001",
+          "issueTypeId": "10000",
+          "screenSchemeId": "10016"
+        },
+        {
+          "issueTypeScreenSchemeId": "10001",
+          "issueTypeId": "10006",
+          "screenSchemeId": "10017"
+        }
+      ]
+    },
+    "scheme": {
+      "id": 10004,
+      "name": "WFH: Kanban Default Screen Scheme",
+      "description": "",
+      "screens": {
+        "default": 10009,
+        "edit": 10014,
+        "create": 10004,
+        "view": 10009
+      }
+    },
+    "screens": [
+      {
+        "id": 10009,
+        "tabId": 10012,
+        "tabs": [
+          {
+            "id": 10012,
+            "name": "General"
+          }
+        ],
+        "fieldIds": [
+          "summary",
+          "description",
+          "customfield_10035",
+          "customfield_10036",
+          "customfield_10038",
+          "attachment",
+          "customfield_10034",
+          "reporter",
+          "assignee",
+          "fixVersions",
+          "customfield_10014",
+          "parent",
+          "timetracking",
+          "customfield_10040",
+          "customfield_10049",
+          "customfield_10050",
+          "customfield_10052",
+          "customfield_10053",
+          "customfield_10056",
+          "priority",
+          "customfield_10042"
+        ],
+        "afterIds": [
+          "summary",
+          "description",
+          "customfield_10035",
+          "customfield_10036",
+          "customfield_10038",
+          "attachment",
+          "customfield_10034",
+          "reporter",
+          "assignee",
+          "fixVersions",
+          "customfield_10014",
+          "parent",
+          "timetracking",
+          "customfield_10040",
+          "customfield_10049",
+          "customfield_10050",
+          "customfield_10052",
+          "customfield_10053",
+          "customfield_10056",
+          "priority",
+          "customfield_10042",
+          "customfield_11148",
+          "customfield_11149"
+        ]
+      },
+      {
+        "id": 10014,
+        "tabId": 10017,
+        "tabs": [
+          {
+            "id": 10017,
+            "name": "General"
+          }
+        ],
+        "fieldIds": [
+          "summary",
+          "description",
+          "customfield_10035",
+          "customfield_10036",
+          "customfield_10038",
+          "attachment",
+          "reporter",
+          "assignee",
+          "fixVersions",
+          "customfield_10014",
+          "parent",
+          "timetracking",
+          "customfield_10040",
+          "customfield_10052",
+          "customfield_10050",
+          "customfield_10049",
+          "customfield_10053",
+          "customfield_10034",
+          "customfield_10056",
+          "priority",
+          "customfield_10042",
+          "customfield_10015",
+          "customfield_10180",
+          "customfield_10181"
+        ],
+        "afterIds": [
+          "summary",
+          "description",
+          "customfield_10035",
+          "customfield_10036",
+          "customfield_10038",
+          "attachment",
+          "reporter",
+          "assignee",
+          "fixVersions",
+          "customfield_10014",
+          "parent",
+          "timetracking",
+          "customfield_10040",
+          "customfield_10052",
+          "customfield_10050",
+          "customfield_10049",
+          "customfield_10053",
+          "customfield_10034",
+          "customfield_10056",
+          "priority",
+          "customfield_10042",
+          "customfield_10015",
+          "customfield_10180",
+          "customfield_10181",
+          "customfield_11148",
+          "customfield_11149"
+        ]
+      },
+      {
+        "id": 10004,
+        "tabId": 10007,
+        "tabs": [
+          {
+            "id": 10007,
+            "name": "General"
+          }
+        ],
+        "fieldIds": [
+          "customfield_10011",
+          "issuetype",
+          "summary",
+          "description",
+          "customfield_10034",
+          "attachment"
+        ],
+        "afterIds": [
+          "customfield_10011",
+          "issuetype",
+          "summary",
+          "description",
+          "customfield_10034",
+          "attachment",
+          "customfield_11148",
+          "customfield_11149"
+        ]
+      }
+    ],
+    "create": {
+      "total": 7,
+      "fields": [
+        {
+          "fieldId": "attachment",
+          "name": "Attachment",
+          "required": false,
+          "schema": {
+            "type": "array",
+            "items": "attachment",
+            "system": "attachment"
+          },
+          "operations": [
+            "set",
+            "copy"
+          ]
+        },
+        {
+          "fieldId": "customfield_10034",
+          "name": "Hourly rate",
+          "required": false,
+          "schema": {
+            "type": "number",
+            "custom": "com.atlassian.jira.plugin.system.customfieldtypes:float",
+            "customId": 10034
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        {
+          "fieldId": "description",
+          "name": "Description",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "system": "description"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        {
+          "fieldId": "issuetype",
+          "name": "Issue Type",
+          "required": true,
+          "schema": {
+            "type": "issuetype",
+            "system": "issuetype"
+          },
+          "operations": []
+        },
+        {
+          "fieldId": "parent",
+          "name": "Parent",
+          "required": false,
+          "schema": {
+            "type": "issuelink",
+            "system": "parent"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        {
+          "fieldId": "project",
+          "name": "Project",
+          "required": true,
+          "schema": {
+            "type": "project",
+            "system": "project"
+          },
+          "operations": [
+            "set"
+          ]
+        },
+        {
+          "fieldId": "summary",
+          "name": "Summary",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "system": "summary"
+          },
+          "operations": [
+            "set"
+          ]
+        }
+      ]
+    }
+  },
+  "createAfter": {
+    "total": 9,
+    "fields": [
+      {
+        "fieldId": "attachment",
+        "name": "Attachment",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": "attachment",
+          "system": "attachment"
+        },
+        "operations": [
+          "set",
+          "copy"
+        ]
+      },
+      {
+        "fieldId": "customfield_10034",
+        "name": "Hourly rate",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:float",
+          "customId": 10034
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      {
+        "fieldId": "customfield_11148",
+        "name": "[harness-test] LZ Assets owned 20260905 multiple",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": "cmdb-object-field",
+          "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+          "customId": 11148
+        },
+        "operations": [
+          "set"
+        ],
+        "configuration": {
+          "multiple": true,
+          "attributesIncludedInAutoCompleteSearch": [
+            "Name"
+          ],
+          "isInsightAvailable": true
+        }
+      },
+      {
+        "fieldId": "customfield_11149",
+        "name": "[harness-test] LZ Assets owned 20260905 gate",
+        "required": false,
+        "schema": {
+          "type": "array",
+          "items": "cmdb-object-field",
+          "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+          "customId": 11149
+        },
+        "operations": [
+          "set"
+        ],
+        "configuration": {
+          "multiple": false,
+          "attributesIncludedInAutoCompleteSearch": [
+            "Name"
+          ],
+          "isInsightAvailable": true
+        }
+      },
+      {
+        "fieldId": "description",
+        "name": "Description",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "system": "description"
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      {
+        "fieldId": "issuetype",
+        "name": "Issue Type",
+        "required": true,
+        "schema": {
+          "type": "issuetype",
+          "system": "issuetype"
+        },
+        "operations": []
+      },
+      {
+        "fieldId": "parent",
+        "name": "Parent",
+        "required": false,
+        "schema": {
+          "type": "issuelink",
+          "system": "parent"
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      {
+        "fieldId": "project",
+        "name": "Project",
+        "required": true,
+        "schema": {
+          "type": "project",
+          "system": "project"
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      {
+        "fieldId": "summary",
+        "name": "Summary",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "system": "summary"
+        },
+        "operations": [
+          "set"
+        ]
+      }
+    ]
+  },
+  "issue": {
+    "id": "25020",
+    "key": "WFH-2820",
+    "editable": {
+      "customfield_10015": {
+        "name": "Start date",
+        "schema": {
+          "type": "date",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:datepicker",
+          "customId": 10015
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      "customfield_10042": {
+        "name": "Due Date",
+        "schema": {
+          "type": "date",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:datepicker",
+          "customId": 10042
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      "customfield_10180": {
+        "name": "PPM Duration",
+        "schema": {
+          "type": "number",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:float",
+          "customId": 10180
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      "customfield_10181": {
+        "name": "PPM Buffer",
+        "schema": {
+          "type": "option",
+          "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+          "customId": 10181
+        },
+        "operations": [
+          "set"
+        ]
+      },
+      "customfield_11148": {
+        "name": "[harness-test] LZ Assets owned 20260905 multiple",
+        "schema": {
+          "type": "array",
+          "items": "cmdb-object-field",
+          "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+          "customId": 11148
+        },
+        "operations": [
+          "set"
+        ],
+        "configuration": {
+          "isInsightAvailable": true,
+          "multiple": true,
+          "attributesIncludedInAutoCompleteSearch": [
+            "Name"
+          ]
+        }
+      },
+      "customfield_11149": {
+        "name": "[harness-test] LZ Assets owned 20260905 gate",
+        "schema": {
+          "type": "array",
+          "items": "cmdb-object-field",
+          "custom": "com.atlassian.jira.plugins.cmdb:cmdb-object-cftype",
+          "customId": 11149
+        },
+        "operations": [
+          "set"
+        ],
+        "configuration": {
+          "isInsightAvailable": true,
+          "multiple": false,
+          "attributesIncludedInAutoCompleteSearch": [
+            "Name"
+          ]
+        }
+      }
+    },
+    "assigned": true,
+    "expected": {
+      "customfield_10015": "2026-10-05",
+      "customfield_10042": "2026-10-09",
+      "customfield_10180": 5,
+      "customfield_11148": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        },
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+          "objectId": "412"
+        }
+      ],
+      "customfield_11149": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        }
+      ],
+      "duedate": "2026-10-09"
+    },
+    "reads": [
+      {
+        "at": "2026-09-05T21:03:15.364Z",
+        "id": "25020",
+        "key": "WFH-2820",
+        "fields": {
+          "customfield_10015": "2026-10-05",
+          "customfield_10042": "2026-10-09",
+          "customfield_10180": 5,
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ],
+          "duedate": "2026-10-09"
+        }
+      },
+      {
+        "at": "2026-09-05T21:03:15.619Z",
+        "id": "25020",
+        "key": "WFH-2820",
+        "fields": {
+          "customfield_10015": "2026-10-05",
+          "customfield_10042": "2026-10-09",
+          "customfield_10180": 5,
+          "customfield_11148": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            },
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+              "objectId": "412"
+            }
+          ],
+          "customfield_11149": [
+            {
+              "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+              "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+              "objectId": "411"
+            }
+          ],
+          "duedate": "2026-10-09"
+        }
+      }
+    ],
+    "beforeMappedDue": {
+      "customfield_10042": "2026-10-09",
+      "duedate": null
+    }
+  },
+  "ready": true,
+  "verifiedAt": "2026-09-05T21:03:19.594Z",
+  "mappedFields": {
+    "at": "2026-09-05T21:02:57.323Z",
+    "fields": {
+      "startDate": "customfield_10015",
+      "dueDate": "duedate",
+      "duration": "customfield_10180",
+      "buffer": "customfield_10181",
+      "bufferPercentage": null,
+      "rank": "customfield_10019"
+    }
+  }
+}

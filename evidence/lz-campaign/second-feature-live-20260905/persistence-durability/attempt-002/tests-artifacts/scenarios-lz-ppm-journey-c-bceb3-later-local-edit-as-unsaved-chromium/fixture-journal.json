@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtor694k",
+  "name": "[harness-test] lz-norm-mtor694k",
+  "time": "2026-09-05T19:05:27.476Z",
+  "issues": [
+    {
+      "key": "WFH-2769",
+      "seed": {
+        "label": "inflight save",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtor6bmi-omiupl",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtor6bmi-omiupl",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2769",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2769",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2769",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

@@ -1,0 +1,179 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--retries=0",
+      "--grep",
+      "paced resume:",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-paced-forecast-resume-20260906/artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-paced-forecast-resume-20260906/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-paced-forecast-resume-20260906/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts",
+      "file": "scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "seventeenth paced resume: same retained5300 job completes exact40-run report and HTML without cleanup",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 10800000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 295401,
+                  "error": {
+                    "message": "AssertionError: The report capture could not complete this step. Reload its status and retry, or finish cleanup before creating a fresh report.\n\nfalse !== true\n",
+                    "stack": "AssertionError: The report capture could not complete this step. Reload its status and retry, or finish cleanup before creating a fresh report.\n\nfalse !== true\n\n    at continuePacedReport (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/seventeenth-paced-resume-contract.mjs:24:286)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts:83:34",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/seventeenth-paced-resume-contract.mjs",
+                      "column": 286,
+                      "line": 24
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/seventeenth-paced-resume-contract.mjs:24\n\n  22 |  for(let n=0;job.state==='active';n++){\n  23 |   assert.ok(n<maxSteps&&now()-started<maxMs,'Explicit paced continuation deadline or checkpoint bound reached');const before=structuredClone(job);await onObserved({stage:'before-advance',wallTime:new Date().toISOString(),payload:{planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint}});\n> 24 |   const response=await advance({planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint},before);await onObserved({stage:'advance-response',before:before.checkpoint,response});assert.equal(response?.httpStatus,200);assert.equal(response.outerSuccess,true);assert.equal(response.body?.success,true,response.body?.error);job=resumedJob(response.body.job,before);await onObserved({stage:'forecast-progress',...progress.accept(job,before)});\n     |                                                                                                                                                                                                                                                                                              ^\n  25 |   if(response.body.report){assert.equal(job.state,'complete');assert.equal(response.body.report.id,retained.reportId);assert.match(response.body.report.hash,/^[a-f0-9]{64}$/);}\n  26 |   const fresh=await status();await onObserved({stage:'fresh-status',job:fresh});assert.deepEqual(fresh,job);await probe(job);await onObserved({stage:'checkpoint-verified',job});\n  27 |  }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/seventeenth-paced-resume-contract.mjs",
+                        "column": 286,
+                        "line": 24
+                      },
+                      "message": "AssertionError: The report capture could not complete this step. Reload its status and retry, or finish cleanup before creating a fresh report.\n\nfalse !== true\n\n\n   at scenarios/lz-ppm/seventeenth-paced-resume-contract.mjs:24\n\n  22 |  for(let n=0;job.state==='active';n++){\n  23 |   assert.ok(n<maxSteps&&now()-started<maxMs,'Explicit paced continuation deadline or checkpoint bound reached');const before=structuredClone(job);await onObserved({stage:'before-advance',wallTime:new Date().toISOString(),payload:{planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint}});\n> 24 |   const response=await advance({planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint},before);await onObserved({stage:'advance-response',before:before.checkpoint,response});assert.equal(response?.httpStatus,200);assert.equal(response.outerSuccess,true);assert.equal(response.body?.success,true,response.body?.error);job=resumedJob(response.body.job,before);await onObserved({stage:'forecast-progress',...progress.accept(job,before)});\n     |                                                                                                                                                                                                                                                                                              ^\n  25 |   if(response.body.report){assert.equal(job.state,'complete');assert.equal(response.body.report.id,retained.reportId);assert.match(response.body.report.hash,/^[a-f0-9]{64}$/);}\n  26 |   const fresh=await status();await onObserved({stage:'fresh-status',job:fresh});assert.deepEqual(fresh,job);await probe(job);await onObserved({stage:'checkpoint-verified',job});\n  27 |  }\n    at continuePacedReport (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/seventeenth-paced-resume-contract.mjs:24:286)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts:83:34"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.586\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T12:00:56.262Z\"}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":126,\"startedAt\":\"2026-09-06T12:03:40.248Z\",\"reservedUnits\":96}\n"
+                    },
+                    {
+                      "text": "PACED_ADVANCE {\"checkpoint\":127,\"startedAt\":\"2026-09-06T12:03:50.761Z\",\"reservedUnits\":128}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T12:00:52.739Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-paced-forecast-resume-20260906/artifacts/scenarios-lz-ppm-campaign--6c70d-rt-and-HTML-without-cleanup-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/seventeenth-paced-resume-contract.mjs",
+                    "column": 286,
+                    "line": 24
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "ba647ec45d7634e06961-0c8aed41b03a4fbec5fb",
+          "file": "scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts",
+          "line": 34,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T12:00:52.295Z",
+    "duration": 299680.58400000003,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

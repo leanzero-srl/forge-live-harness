@@ -1,0 +1,315 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+      "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-001/tests-artifacts",
+      "--grep-invert",
+      "table: a background refresh"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+      "file": "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "LZPT: milestone hit probabilities are computed, ordered and consistent",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 900000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 31758,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('div').filter({ hasText: /^Select date\\.\\.\\.$/ }).first()\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('div').filter({ hasText: /^Select date\\.\\.\\.$/ }).first()\u001b[22m\n\n    at pickDate (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:51:34)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:86:11",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+                      "column": 34,
+                      "line": 51
+                    },
+                    "snippet": "  49 |     // whose unset trigger reads \"Select date...\".\n  50 |     const triggers = frame.locator('div').filter({ hasText: /^Select date\\.\\.\\.$/ });\n> 51 |     await triggers.nth(rowIndex).click();\n     |                                  ^\n  52 |     const cal = frame.locator('.lz-datepicker').first();\n  53 |     await cal.waitFor({ state: \"visible\", timeout: 10_000 });\n  54 |     for (let i = 0; i < 24; i++) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+                        "column": 34,
+                        "line": 51
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('div').filter({ hasText: /^Select date\\.\\.\\.$/ }).first()\u001b[22m\n\n\n  49 |     // whose unset trigger reads \"Select date...\".\n  50 |     const triggers = frame.locator('div').filter({ hasText: /^Select date\\.\\.\\.$/ });\n> 51 |     await triggers.nth(rowIndex).click();\n     |                                  ^\n  52 |     const cal = frame.locator('.lz-datepicker').first();\n  53 |     await cal.waitFor({ state: \"visible\", timeout: 10_000 });\n  54 |     for (let i = 0; i < 24; i++) {\n    at pickDate (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:51:34)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts:86:11"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:48:36.206Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-live-20260905/forecast-contract/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-m-fbfe7-uted-ordered-and-consistent-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+                    "column": 34,
+                    "line": 51
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "08b9477aeddc44add9b1-dfb5c575a5b722a698aa",
+          "file": "scenarios/lz-ppm/journey-milestone-confidence-lzpt.spec.ts",
+          "line": 33,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+      "file": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "dashboard: schedule confidence computes ordered distributions and replaces presets honestly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 420000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12865,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "FORECAST FIXTURE {\"planId\":\"plan-test-mtoog4we-knwmgb\",\"name\":\"[harness-test] Forecast proof numbers mtoog4qg\",\"keys\":[\"LZPT-205\",\"LZPT-209\",\"LZPT-215\"]}\n"
+                    },
+                    {
+                      "text": "MEDIUM {\"p50\":\"2026-10-13\",\"p80\":\"2026-10-14\",\"p90\":\"2026-10-14\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.36,\"bars\":[274,26]}\n"
+                    },
+                    {
+                      "text": "HIGH {\"p50\":\"2026-10-14\",\"p80\":\"2026-10-15\",\"p90\":\"2026-10-16\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.22,\"bars\":[191,109]}\n"
+                    },
+                    {
+                      "text": "LOW AFTER RAPID REPLACEMENT {\"p50\":\"2026-10-12\",\"p80\":\"2026-10-13\",\"p90\":\"2026-10-13\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.7333333333333333,\"bars\":[300]} observed renders \u001b[33m44\u001b[39m\n"
+                    },
+                    {
+                      "text": "FORECAST CLEANUP {\"planId\":\"plan-test-mtoog4we-knwmgb\",\"deleted\":true,\"sourceScheduleUnchanged\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:49:08.691Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "preset-replacement-observations",
+                      "contentType": "application/json",
+                      "body": "WwogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xMyIsCiAgICAicHJlc2V0IjogImxvdyIsCiAgICAibGFiZWwiOiAiTG93IOKIkjEwJSAvICsxNSUiCiAgfSwKICB7CiAgICAicDkwIjogIjIwMjYtMTAtMTMiLAogICAgInByZXNldCI6ICJsb3ciLAogICAgImxhYmVsIjogIkxvdyDiiJIxMCUgLyArMTUlIgogIH0sCiAgewogICAgInA5MCI6ICIyMDI2LTEwLTEzIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAiaGlnaCIsCiAgICAibGFiZWwiOiAiSGlnaCDiiJIyMCUgLyArNjAlIgogIH0sCiAgewogICAgInA5MCI6ICIiLAogICAgInByZXNldCI6ICJoaWdoIiwKICAgICJsYWJlbCI6ICJIaWdoIOKIkjIwJSAvICs2MCUiCiAgfSwKICB7CiAgICAicDkwIjogIiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAiaGlnaCIsCiAgICAibGFiZWwiOiAiSGlnaCDiiJIyMCUgLyArNjAlIgogIH0sCiAgewogICAgInA5MCI6ICIiLAogICAgInByZXNldCI6ICJoaWdoIiwKICAgICJsYWJlbCI6ICJIaWdoIOKIkjIwJSAvICs2MCUiCiAgfSwKICB7CiAgICAicDkwIjogIiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAiaGlnaCIsCiAgICAibGFiZWwiOiAiSGlnaCDiiJIyMCUgLyArNjAlIgogIH0sCiAgewogICAgInA5MCI6ICIiLAogICAgInByZXNldCI6ICJoaWdoIiwKICAgICJsYWJlbCI6ICJIaWdoIOKIkjIwJSAvICs2MCUiCiAgfSwKICB7CiAgICAicDkwIjogIiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAiaGlnaCIsCiAgICAibGFiZWwiOiAiSGlnaCDiiJIyMCUgLyArNjAlIgogIH0sCiAgewogICAgInA5MCI6ICIiLAogICAgInByZXNldCI6ICJoaWdoIiwKICAgICJsYWJlbCI6ICJIaWdoIOKIkjIwJSAvICs2MCUiCiAgfSwKICB7CiAgICAicDkwIjogIiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xNiIsCiAgICAicHJlc2V0IjogImhpZ2giLAogICAgImxhYmVsIjogIkhpZ2gg4oiSMjAlIC8gKzYwJSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiIiwKICAgICJwcmVzZXQiOiAibG93IiwKICAgICJsYWJlbCI6ICJMb3cg4oiSMTAlIC8gKzE1JSIKICB9LAogIHsKICAgICJwOTAiOiAiMjAyNi0xMC0xMyIsCiAgICAicHJlc2V0IjogImxvdyIsCiAgICAibGFiZWwiOiAiTG93IOKIkjEwJSAvICsxNSUiCiAgfQpd"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eca6406881ec956467b2-bad57734a541a15321cc",
+          "file": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "dashboard: a background refresh cannot turn the card into false certainty",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 420000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12662,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "FORECAST FIXTURE {\"planId\":\"plan-test-mtoogero-58g797\",\"name\":\"[harness-test] Forecast proof refresh mtoogelq\",\"keys\":[\"LZPT-205\",\"LZPT-209\",\"LZPT-215\"]}\n"
+                    },
+                    {
+                      "text": "BEFORE / AFTER REFRESH {\"before\":{\"p50\":\"2026-10-13\",\"p80\":\"2026-10-14\",\"p90\":\"2026-10-14\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.36,\"bars\":[274,26]},\"after\":{\"p50\":\"2026-10-13\",\"p80\":\"2026-10-14\",\"p90\":\"2026-10-14\",\"runs\":300,\"leaves\":3,\"onBaseline\":0.36,\"bars\":[274,26]}}\n"
+                    },
+                    {
+                      "text": "FORECAST CLEANUP {\"planId\":\"plan-test-mtoogero-58g797\",\"deleted\":true,\"sourceScheduleUnchanged\":true}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:49:21.983Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eca6406881ec956467b2-ba78adf1078bd9df4376",
+          "file": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+          "line": 68,
+          "column": 1
+        },
+        {
+          "title": "dashboard: invalid or missing source dates make the untouched LZPT forecast unavailable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 420000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6186,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "INVALID COVERAGE Forecast unavailable — correct the schedule dates first.\n35 of 37 tasks have valid date pairs · 29 durations eligible for sampling. Not sampled: 6 complete · 0 buffers · 0 declared-zero milestones · 8 parent summaries.\nMissing start or due date (1): LZPT-212.\nDue date before start (1): LZPT-214.\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T17:49:34.650Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eca6406881ec956467b2-6a8e14d7aeeb8a675ef9",
+          "file": "scenarios/lz-ppm/journey-schedule-confidence-lzpt.spec.ts",
+          "line": 90,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T17:48:35.875Z",
+    "duration": 88974.245,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,26 @@
+
+Running 3 tests using 1 worker
+
+
+(node:83072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/3] [chromium] › scenarios/lz-ppm/journey-dashboard-lzpt.spec.ts:15:1 › LZPT dashboard: task count excludes parents, % complete reflects status mix
+[chromium] › scenarios/lz-ppm/journey-dashboard-lzpt.spec.ts:15:1 › LZPT dashboard: task count excludes parents, % complete reflects status mix
+DASH_METRICS: {"leaf":37,"pct":14}
+
+[2/3] [chromium] › scenarios/lz-ppm/journey-groupby-lzpt.spec.ts:15:1 › LZPT Table group-by Status: seeded status counts
+[chromium] › scenarios/lz-ppm/journey-groupby-lzpt.spec.ts:15:1 › LZPT Table group-by Status: seeded status counts
+GROUPS: [{"label":"Done","count":6},{"label":"In Progress","count":4},{"label":"To Do","count":35}]
+
+DONE: 6  IN_PROGRESS: 4  TOTAL: 45  N_GROUPS: 3
+
+[3/3] [chromium] › scenarios/lz-ppm/journey-table-lzpt.spec.ts:17:1 › LZPT Table: select-all=leaves, working-day duration, filter empty
+[chromium] › scenarios/lz-ppm/journey-table-lzpt.spec.ts:17:1 › LZPT Table: select-all=leaves, working-day duration, filter empty
+SELECTED (expect 37 leaves, < 45): 37
+
+WEEKEND_SPAN_DATES May 8 + May 12: true true
+
+EMPTY_STATE_SHOWN: true
+
+  3 passed (55.9s)

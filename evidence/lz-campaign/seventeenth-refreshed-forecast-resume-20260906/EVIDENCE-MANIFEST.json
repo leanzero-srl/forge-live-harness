@@ -1,0 +1,102 @@
+{
+  "files": [
+    {
+      "path": "artifacts/.last-run.json",
+      "bytes": 96,
+      "sha256": "da70da49e28181b0a26ce6549763e552ddda01d916002a7330b385f0aa1fde6b"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/error-context.md",
+      "bytes": 34193,
+      "sha256": "62d8ba739236f74b27a9eefae753ca764fd47f74622d41ef635ea908a1aa8b91"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-LZPP-1.png",
+      "bytes": 205810,
+      "sha256": "a787ac7391877eab2c95ff8765cb5743a1c444037bf9793e606577f4ed534ce1"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-LZPP-1.png.capture.json",
+      "bytes": 305,
+      "sha256": "3611be9e45363c0c03bf7c27cb8619e02842f2ac4a900f3aefceae47df811fb5"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-LZPP-5300.png",
+      "bytes": 145418,
+      "sha256": "a350c814712406521aea88443b491a05561c2811cb107d0168040cb9b812ef65"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-LZPP-5300.png.capture.json",
+      "bytes": 305,
+      "sha256": "dcdf8973212e7db04a6d3e3222658dfacc3f2f5acb52205a8ceb82cf2acd0756"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-LZPP-6.png",
+      "bytes": 147261,
+      "sha256": "308687a4fc43b55d0f6b7ea78b089a8aa14973f87d862cb85de2b65cc181895c"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-LZPP-6.png.capture.json",
+      "bytes": 305,
+      "sha256": "75a05a2d248aba5a876010f02ba561757b55c95cff67f57421bdc11afa002a4b"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-actual-report.html",
+      "bytes": 1248688,
+      "sha256": "a35e0b53e15823a552b44696492b486e4229f6230bd730961f7766833075399e"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-forecast.png",
+      "bytes": 16911,
+      "sha256": "ed2a896bfb5bb64d0ee02d56f455942e9c133f7a846d3e8e3f4f4b4c9a3f7021"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/retained5300-forecast.png.capture.json",
+      "bytes": 301,
+      "sha256": "f7e29f8df7fb899014356199c3a9e71ffda4e90cc62b7210a79fa82fcc741fff"
+    },
+    {
+      "path": "artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/seventeenth-refreshed-resume.json",
+      "bytes": 100139229,
+      "sha256": "e56194a5b9f292be2bbace1709f443c15970963a182f258f78961548270c37c6"
+    },
+    {
+      "path": "command.json",
+      "bytes": 1511,
+      "sha256": "433b747bcb204c8cbf189101b933f5c7db1935aaaf43b86f2411b17b8373ff54"
+    },
+    {
+      "path": "launch.json",
+      "bytes": 296,
+      "sha256": "620a7620a93c4be8d5a5b28e89bfb0220671174a2fbcbc11a351e16b3704066b"
+    },
+    {
+      "path": "process.json",
+      "bytes": 105,
+      "sha256": "be281e0189106f981939505ac1200c4e18808aa58cda26b14b2ebfba862aafef"
+    },
+    {
+      "path": "result.json",
+      "bytes": 27178,
+      "sha256": "4406541b2f7e98b2c00953140e28f14f3dfbb858731d31c06c09962ef989995c"
+    },
+    {
+      "path": "run.log",
+      "bytes": 15671,
+      "sha256": "e859a8ed43e466397566d9d34cf93240211e476e278e6f710a3d1b54f92e4817"
+    },
+    {
+      "path": "supervise.py",
+      "bytes": 1175,
+      "sha256": "0d6b56fad1da18438404d2130f43d07e77f23c8a90001475730a45186a5e6b41"
+    },
+    {
+      "path": "terminal-evidence.json",
+      "bytes": 4098,
+      "sha256": "3ed93056d66037f32d155f84f85dc6d08813e0d4f79736d2fa98fdf71aa8e618"
+    }
+  ],
+  "fileCount": 19,
+  "totalBytes": 101988856,
+  "result": "failed; all28 advances/full106 pages/actual5300 HTML passed, presenceLeave departure abort prevented reopen, no cleanup"
+}

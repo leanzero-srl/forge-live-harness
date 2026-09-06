@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+    "test",
+    "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-adoption.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts",
+    "scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourth-feature-live-20260906/integrated-final-boundaries-live/attempt-001/tests-artifacts"
+  ],
+  "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+  "phase": "tests",
+  "uiVersion": "4.58.578"
+}

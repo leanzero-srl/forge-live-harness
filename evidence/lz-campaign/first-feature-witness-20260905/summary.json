@@ -1,0 +1,155 @@
+{
+  "time": "2026-09-05T17:42:26.586502+00:00",
+  "runId": "first-feature-witness-20260905",
+  "uiVersion": "4.58.572",
+  "forgeVersion": "6.1.0",
+  "instrumentHash": "e0965660d6a13a06813e4ec4f4f253bcf8a10a969e2ae2bc1dc64ce1e2a2dee3",
+  "complete": false,
+  "blocker": null,
+  "features": [
+    {
+      "id": "baseline-core",
+      "status": "not_run",
+      "acceptance": [
+        "CORE-1",
+        "CORE-2"
+      ],
+      "result": null
+    },
+    {
+      "id": "forecast-contract",
+      "status": "not_run",
+      "acceptance": [
+        "FC-1",
+        "FC-2",
+        "FC-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "normalization",
+      "status": "failed",
+      "acceptance": [
+        "NORM-1"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/first-feature-witness-20260905/normalization/result.json"
+    },
+    {
+      "id": "normalization-companions",
+      "status": "not_run",
+      "acceptance": [
+        "NORM-2",
+        "NORM-3",
+        "NORM-4",
+        "APPLY-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "assets-live-foundation",
+      "status": "not_run",
+      "acceptance": [
+        "ASSET-LIVE-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "planning-live-foundation",
+      "status": "not_run",
+      "acceptance": [
+        "TGT-LIVE-1",
+        "HIST-LIVE-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "history-platform-transaction",
+      "status": "not_run",
+      "acceptance": [
+        "HIST-ATOMIC-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "named-scenarios",
+      "status": "not_implemented",
+      "acceptance": [
+        "SCN-1",
+        "SCN-2",
+        "SCN-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "scoped-targets",
+      "status": "not_implemented",
+      "acceptance": [
+        "TGT-1",
+        "TGT-2",
+        "TGT-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "capacity",
+      "status": "not_implemented",
+      "acceptance": [
+        "CAP-1",
+        "CAP-2",
+        "CAP-3",
+        "CAP-4"
+      ],
+      "result": null
+    },
+    {
+      "id": "reports-history",
+      "status": "not_implemented",
+      "acceptance": [
+        "REP-1",
+        "REP-2",
+        "HIST-1",
+        "HIST-2",
+        "AUTH-1"
+      ],
+      "result": null
+    },
+    {
+      "id": "forecast-calibration",
+      "status": "not_implemented",
+      "acceptance": [
+        "CAL-1",
+        "CAL-2"
+      ],
+      "result": null
+    },
+    {
+      "id": "finish-sensitivity",
+      "status": "not_implemented",
+      "acceptance": [
+        "SENS-1",
+        "SENS-2",
+        "SENS-3"
+      ],
+      "result": null
+    },
+    {
+      "id": "assets",
+      "status": "not_implemented",
+      "acceptance": [
+        "ASSET-1",
+        "ASSET-2",
+        "ASSET-3",
+        "ASSET-4"
+      ],
+      "result": null
+    },
+    {
+      "id": "end-to-end-uat",
+      "status": "not_implemented",
+      "acceptance": [
+        "UAT-1"
+      ],
+      "result": null
+    }
+  ]
+}

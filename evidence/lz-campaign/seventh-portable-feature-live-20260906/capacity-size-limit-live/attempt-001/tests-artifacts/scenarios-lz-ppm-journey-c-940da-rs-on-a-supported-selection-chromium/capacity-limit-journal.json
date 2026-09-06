@@ -1,0 +1,229 @@
+{
+  "M": "2026-09-07",
+  "end": "2026-09-11",
+  "largePlanId": "plan-mtbrlh8n-7ghw8u",
+  "largeIssues": 5300,
+  "largeHash": "075e2112a8805946d1a9b17af09f5c4c988b6e08f0268e9a6880cafcf04994ae",
+  "effort": {
+    "key": "WFH-2881",
+    "id": "25081",
+    "assignee": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "seconds": 28800
+  },
+  "steps": [
+    {
+      "name": "supported-before",
+      "report": {
+        "startDate": "2026-09-07",
+        "endDate": "2026-09-11",
+        "asOfDate": "2026-09-06",
+        "weeks": [
+          {
+            "key": "2026-09-07",
+            "startDate": "2026-09-07",
+            "endDate": "2026-09-11"
+          }
+        ],
+        "people": [
+          {
+            "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "issueCount": 1,
+            "unknownWork": 0,
+            "buckets": [
+              {
+                "week": "2026-09-07",
+                "demandHours": 8,
+                "unknownEffortCount": 0,
+                "availableDays": 5,
+                "capacityHours": 40,
+                "utilizationPct": 20,
+                "status": "available"
+              }
+            ]
+          }
+        ],
+        "conflicts": [],
+        "alternatives": [],
+        "unallocated": [],
+        "coverage": {
+          "selectedPlans": 1,
+          "uniqueIssues": 1,
+          "sharedDuplicatesRemoved": 0,
+          "completedIssues": 0,
+          "missingEffort": 0,
+          "unassignedIssues": 0,
+          "unavailableAssignee": 0,
+          "unavailableStatus": 0,
+          "conflictingIssues": 0,
+          "unallocatedIssues": 0,
+          "unavailableIssueCount": 0
+        },
+        "totals": {
+          "knownEffortHours": 8,
+          "allocatedHours": 8,
+          "outsideWindowHours": 0,
+          "unallocatedHours": 0
+        },
+        "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+      }
+    },
+    {
+      "name": "actual-size-refusal",
+      "response": {
+        "success": false,
+        "error": "Select at most 5000 distinct issues for one capacity report. No partial report was produced."
+      }
+    },
+    {
+      "name": "supported-after",
+      "report": {
+        "startDate": "2026-09-07",
+        "endDate": "2026-09-11",
+        "asOfDate": "2026-09-06",
+        "weeks": [
+          {
+            "key": "2026-09-07",
+            "startDate": "2026-09-07",
+            "endDate": "2026-09-11"
+          }
+        ],
+        "people": [
+          {
+            "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "issueCount": 1,
+            "unknownWork": 0,
+            "buckets": [
+              {
+                "week": "2026-09-07",
+                "demandHours": 8,
+                "unknownEffortCount": 0,
+                "availableDays": 5,
+                "capacityHours": 40,
+                "utilizationPct": 20,
+                "status": "available"
+              }
+            ]
+          }
+        ],
+        "conflicts": [],
+        "alternatives": [],
+        "unallocated": [],
+        "coverage": {
+          "selectedPlans": 1,
+          "uniqueIssues": 1,
+          "sharedDuplicatesRemoved": 0,
+          "completedIssues": 0,
+          "missingEffort": 0,
+          "unassignedIssues": 0,
+          "unavailableAssignee": 0,
+          "unavailableStatus": 0,
+          "conflictingIssues": 0,
+          "unallocatedIssues": 0,
+          "unavailableIssueCount": 0
+        },
+        "totals": {
+          "knownEffortHours": 8,
+          "allocatedHours": 8,
+          "outsideWindowHours": 0,
+          "unallocatedHours": 0
+        },
+        "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+      }
+    }
+  ],
+  "preferences": {
+    "initialized": true,
+    "original": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "lastOwned": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "version": 54,
+    "pending": null,
+    "restored": true,
+    "history": [
+      {
+        "name": "admitted",
+        "time": "2026-09-06T00:41:07.784Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T00:41:08.153Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T00:41:08.739Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T00:41:14.787Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T00:41:15.376Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T00:41:17.034Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T00:41:17.512Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T00:41:19.991Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T00:41:20.485Z"
+      },
+      {
+        "name": "restore-intent",
+        "time": "2026-09-06T00:41:23.915Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T00:41:24.385Z"
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-06T00:41:24.675Z",
+        "read": 1,
+        "version": 54
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-06T00:41:24.964Z",
+        "read": 2,
+        "version": 54
+      },
+      {
+        "name": "restored",
+        "time": "2026-09-06T00:41:24.965Z"
+      }
+    ]
+  },
+  "lastOwnedSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "originalSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "largeSourceUnchanged": true,
+  "privateSettingsRestored": true,
+  "largeSourceGuard": true
+}

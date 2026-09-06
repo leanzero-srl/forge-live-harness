@@ -1,0 +1,11 @@
+✔ all three rejected live blanks fail content validation while inspected numeric report passes (163.962292ms)
+✔ real browser capture waits for a transparent ancestor to paint and rejects an empty box (2919.400625ms)
+✔ real inert overlay cannot be accepted as feature evidence, while an intentional outer error can (1757.711875ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5003.494709

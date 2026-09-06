@@ -1,0 +1,11 @@
+# LeanZero harness typing correction
+
+Read AGENTS.md and docs/AI-GUIDE.md, all four affected source files, the existing oracle consumer/test, the surface union and testhook parameter contract before editing. Live-baseline explicitly released the files. No app source, browser, deployment or Jira state was touched.
+
+The recorded whole-harness typecheck had 15 errors. Thirteen belonged to LeanZero or its shared oracle: untyped inputs/output, nullable engine return, two consumers inheriting the empty-object output type, optional plan IDs and a nullable frame captured in a callback. The correction gives the oracle named schedule/issue/fixture types and a keyed schedule return. Missing fixtures/edit keys now throw specific errors. Fixture plan IDs are checked as nonempty strings immediately after creation. The performance surface is narrowed by its actual discriminant before assigning the mutable frame, preserving its existing reload behavior.
+
+No runtime expected values, selectors, retry counts, numerical assertions, cleanup paths or performance thresholds were removed or relaxed. No new any/ts-ignore suppression was introduced. All 23 existing parity-fixture oracle outputs were captured before the edit and compared afterward: every key and schedule field is identical. Two Node/tsx tests exercise the original independently expected chain dates and source immutability, plus explicit missing-fixture/edit-key refusal. This is local oracle proof, not a live scenario pass.
+
+Whole-harness typecheck now has only the two existing Sentinel-owner residuals: my-work-page.spec.ts line 71 callback parameter typing and steward-console-deep.spec.ts line 31 string-or-number replace. Therefore the overall typecheck still fails; it must not be reported as green. Their code was not changed.
+
+Evidence: lz-ppm-typecheck-2026-09-05-before.txt, lz-ppm-typecheck-2026-09-05-after.txt and lz-ppm-oracle-types-2026-09-05-tests.txt. Reproduce with `npm run typecheck` and `node --import tsx --test expected/lz-ppm-cascade.test.ts`. The updated live journey files still require their normal deployed-source/version guards and complete visible acceptance run; no browser discovery or execution was used in this correction.

@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+
+(node:48649) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+[chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+[jira !!] GET /rest/api/3/issue/WFH-2784 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtorjgvy","name":"[harness-test] lz-norm-mtorjgvy","time":"2026-09-05T19:15:44.062Z","issues":[{"key":"WFH-2784","seed":{"label":"forecast observed work","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtorjiu3-w00i03","cleanup":[{"plan":"plan-test-mtorjiu3-w00i03","deleted":true},{"issue":"WFH-2784","deleted":true}],"searchIndexVerified":[{"key":"WFH-2784","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2784","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="forecast-evaluation"]').getByRole('heading', { name: 'Prospective forecast one', exact: true }).locator('..').locator('[data-testid="forecast-outcome"]')
+    Expected substring: "Observed Jira resolution completion 2026-09-05 for 1 captured tasks. P80 hit."
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" with timeout 15000ms
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="forecast-evaluation"]').getByRole('heading', { name: 'Prospective forecast one', exact: true }).locator('..').locator('[data-testid="forecast-outcome"]')
+
+
+      19 |   const first=panel.getByRole('heading',{name:'Prospective forecast one',exact:true}).locator('..');await first.getByRole('button',{name:'Check outcome',exact:true}).click();await expect(first.locator('[data-testid="forecast-outcome"]')).toContainText('still open or has been reopened');await expect(panel.locator('[data-testid="forecast-hit-rate"]')).toContainText('Insufficient observed outcomes');
+      20 |   const initial=await read(key);expect(initial.statusCategory).not.toBe('done');journal.observations.push(initial);const transitions=await get(`/rest/api/3/issue/${key}/transitions?expand=transitions.fields`);const done=transitions.transitions.find((t:any)=>t.to.statusCategory.key==='done');expect(done,'real fixture workflow must expose a Done transition').toBeTruthy();journal.transition={id:done.id,name:done.name,to:done.to.name};persist();await post(`/rest/api/3/issue/${key}/transitions`,{transition:{id:done.id}});const resolved=await read(key);journal.observations.push(resolved);persist();expect(resolved.statusCategory).toBe('done');expect(resolved.resolutionId,'positive completion fixture requires a real Jira resolution, never inferred Done').toBeTruthy();expect(Date.parse(resolved.resolutionDate)).toBeGreaterThan(Math.max(...journal.predictions.map((s:any)=>Date.parse(s.takenAt))));
+    > 21 |   const actualDate=new Date(resolved.resolutionDate).toISOString().slice(0,10);for(const label of ['Prospective forecast one','Overlapping forecast two']){const item=panel.getByRole('heading',{name:label,exact:true}).locator('..');await item.getByRole('button',{name:'Check outcome',exact:true}).click();await expect(item.locator('[data-testid="forecast-outcome"]')).toContainText(`Observed Jira resolution completion ${actualDate} for 1 captured tasks. P80 hit.`);}
+         |                                                                                                                                                                                                                                                                                                                                                                                ^
+      22 |   await expect(panel.locator('[data-testid="forecast-hit-rate"]')).toHaveText('P80 observed hit rate: 1/1 (100%) against nominal 80%.');await expect(panel).toContainText('1 overlapping scopes excluded');await expect(panel).toContainText('this sample does not establish calibration');await panel.screenshot({path:info.outputPath('real-forecast-outcome-overlap.png')});expect(await f.read(key)).toEqual(jiraBefore);
+      23 |   frame=await openPlan(page,f.name);panel=await outcomes(frame);await panel.getByRole('button',{name:'Load recorded forecasts',exact:true}).click();await expect(panel.getByRole('heading',{name:'Prospective forecast one',exact:true})).toBeVisible();await expect(panel.getByRole('heading',{name:'Overlapping forecast two',exact:true})).toBeVisible();await expect(panel).toContainText('0 outcomes checked in this session');await expect(panel.locator('[data-testid="forecast-outcome"]')).toHaveCount(0);journal.sessionResultsNotMisrepresentedAsRetained=true;persist();
+      24 |  });
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:21:368
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:76:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-observations.spec.ts:16:2
+
+    Error Context: evidence/lz-campaign/second-feature-live-20260905/forecast-outcomes-live/attempt-003/tests-artifacts/scenarios-lz-ppm-journey-c-772e0-verlapping-forecast-samples-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:15:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples 

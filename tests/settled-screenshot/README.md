@@ -1,0 +1,5 @@
+# Settled screenshot candidate
+
+Original actual browser paint-boundary reds and corrected actual local Chrome DOM probes are retained. Candidate retries only paint rejection inside a fixed deadline; all browser steps are deadline-bounded, blocked buffers retain a rejected filename, previous accepted paths are moved aside, and the final requested path is only published after pre/post readiness plus nonblank proof. Screenshot operation errors and blank buffers fail without retry. Audit records do not replace semantic field assertions or human artifact inspection.
+
+Installed from reviewed2819f3c candidate; the probe imports the actual installed helper. `node tests/settled-screenshot/probe.mjs` runs seven real unauthenticated DOM cases including original failures, transient pre/post recovery, permanent interference, blank buffer and original operation error. Independent deadline/stale-image controls are retained separately in app docs. Root personally inspected accepted pre/post and rejected post buffers. No app business assertion is weakened.

@@ -1,0 +1,10 @@
+✔ held step executes backend once and delivers the identical response only after release (1.653291ms)
+✔ unrelated plan cannot be held by fixture control (0.161459ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 299.02625

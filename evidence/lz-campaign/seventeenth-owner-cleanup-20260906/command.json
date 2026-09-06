@@ -1,0 +1,39 @@
+{
+  "status": "authorized",
+  "harnessCommit": "39966216720a1e026430f82d7a5826acf96d6a09",
+  "instrumentHash": "6a922c545c2f44f25d738cdc6a327ab2ef22b98e3140b98f088589451ba06e7d",
+  "sourceSha256": {
+    "scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts": "4fa1af04f6f2cd2f68452c3ea524c0886dbbc61eb07f7eedae956aed95944fd9",
+    "scenarios/lz-ppm/owned-plan-departure.mjs": "d472d91fea6e40c9bde6a7e84be44623adfe7f077424a51befd1f0389147fd95",
+    "scenarios/lz-ppm/seventeenth-owner-cleanup-contract.mjs": "09762d6191503ea8dd0d4882babae3803f872c55231b8f02f795dc317150481d"
+  },
+  "appCommit": "c49bf682d01d83ab53bdf06a2edf56e6bef96c3f",
+  "forgeVersion": "6.25.0",
+  "uiVersion": "4.58.587",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "approved-owner-cleanup",
+  "environment": {
+    "LZ_CLEANUP_COMPLETED_JOURNAL": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-readonly-reopen-20260906/artifacts/scenarios-lz-ppm-campaign--077c8-nd-exports-without-mutation-chromium/seventeenth-readonly-reopen.json",
+    "LZ_CLEANUP_COMPLETED_SHA256": "9cc1b8c474084ca54506c72382d7f82fffae17e04c1f79e6e44d8be127822471",
+    "LZ_CLEANUP_ROOT_INSPECTION": "/Users/mihaiperdum/Projects/lz-ppm-forge/docs/campaign-2026-09/report-owner-cleanup-root-inspection.json",
+    "LZ_CLEANUP_ROOT_INSPECTION_SHA256": "e2d7318a512461f20561fdec826edb44925d7577f90fdb189309c86d37834228",
+    "LZ_CLEANUP_REFRESHED_FAILURE_JOURNAL": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-refreshed-forecast-resume-20260906/artifacts/scenarios-lz-ppm-campaign--e3c4b-rt-and-HTML-without-cleanup-chromium/seventeenth-refreshed-resume.json",
+    "LZ_CLEANUP_REFRESHED_FAILURE_SHA256": "e56194a5b9f292be2bbace1709f443c15970963a182f258f78961548270c37c6"
+  },
+  "scope": "Only inspected retained plan/job/report owner cleanup and normal UI deletion; shared Jira GET-only; no mutation retries",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "seventeenth owner cleanup:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-owner-cleanup-20260906/artifacts"
+  ],
+  "rootDispatchCommit": "795bd4bb",
+  "authorizedAt": "2026-09-06T15:26:11.508292+00:00"
+}

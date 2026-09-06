@@ -1,0 +1,5 @@
+{
+  "exitCode": 0,
+  "stdout": "{\"pid\": 8316, \"log\": \"/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-lossless-report-live-20260906/runner.log\", \"statusCommand\": \"python3 scripts/lz-campaign.py status --run-id sixteenth-lossless-report-live-20260906\"}\n",
+  "stderr": ""
+}

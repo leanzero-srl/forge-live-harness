@@ -1,0 +1,127 @@
+{
+  "marker": "lz-norm-mtov165m",
+  "name": "[harness-test] lz-norm-mtov165m",
+  "time": "2026-09-05T20:53:28.810Z",
+  "issues": [
+    {
+      "key": "WFH-2810",
+      "seed": {
+        "label": "buffer predecessor",
+        "duration": 8,
+        "start": "2026-06-01",
+        "due": "2026-06-10"
+      }
+    },
+    {
+      "key": "WFH-2811",
+      "seed": {
+        "label": "fixed buffer",
+        "duration": 7,
+        "start": "2026-06-11",
+        "due": "2026-06-19"
+      }
+    },
+    {
+      "key": "WFH-2812",
+      "seed": {
+        "label": "declared milestone",
+        "duration": 0,
+        "start": "2026-06-01",
+        "due": "2026-06-01"
+      }
+    },
+    {
+      "key": "WFH-2813",
+      "seed": {
+        "label": "completed work",
+        "duration": 2,
+        "start": "2026-05-04",
+        "due": "2026-05-05"
+      }
+    }
+  ],
+  "planId": "plan-test-mtov1bc2-z1xokw",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtov1bc2-z1xokw",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2813",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2812",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2811",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2810",
+      "deleted": true
+    }
+  ],
+  "linkPairs": [
+    {
+      "from": "WFH-2810",
+      "to": "WFH-2811"
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2810",
+      "start": "2026-06-01",
+      "due": "2026-06-10",
+      "duration": 8
+    },
+    {
+      "key": "WFH-2811",
+      "start": "2026-06-11",
+      "due": "2026-06-19",
+      "duration": 7
+    },
+    {
+      "key": "WFH-2812",
+      "start": "2026-06-01",
+      "due": "2026-06-01",
+      "duration": 0
+    },
+    {
+      "key": "WFH-2813",
+      "start": "2026-05-04",
+      "due": "2026-05-05",
+      "duration": 2
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2810",
+        "start": "2026-06-01",
+        "due": "2026-06-10",
+        "duration": 8
+      },
+      {
+        "key": "WFH-2811",
+        "start": "2026-06-11",
+        "due": "2026-06-19",
+        "duration": 7
+      },
+      {
+        "key": "WFH-2812",
+        "start": "2026-06-01",
+        "due": "2026-06-01",
+        "duration": 0
+      },
+      {
+        "key": "WFH-2813",
+        "start": "2026-05-04",
+        "due": "2026-05-05",
+        "duration": 2
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

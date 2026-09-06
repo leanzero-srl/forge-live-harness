@@ -1,0 +1,97 @@
+
+Running 1 test using 1 worker
+
+
+(node:45550) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 
+
+    AggregateError: Capacity settings recovery required; exact owned fixtures retained, cleanup not passed
+
+       at scenarios/lz-ppm/normalization-owned-fixture.ts:106
+
+      104 |       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();
+      105 |       // Retention is a failed recovery boundary, never successful fixture cleanup.
+    > 106 |       throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], 'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');
+          |             ^
+      107 |     }
+      108 |     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
+      109 |     if(journal.planId)await attempt('delete-owned-plan',async()=>{
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:106:13)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2
+
+    AggregateError: Numeric report body and private settings cleanup failures
+
+      74 |   }catch(error){bodyError=error;journal.bodyError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw error;}finally{
+      75 |    try{const state=await preferences.restore();restored=!state.initialized||state.restored;}
+    > 76 |    catch(error){f.retainForRecovery(error);journal.settingsCleanupError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw new AggregateError([...(bodyError?[bodyError]:[]),error],'Numeric report body and private settings cleanup failures');}
+         |                                                                                                                                                                   ^
+      77 |    finally{rpc.stop();journal.originalPrivateSettingsRestored=restored;retain();page.off('crash',crashed);page.off('close',closed);page.context().off('close',contextClosed);}
+      78 |   }
+      79 |  });
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:76:163
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2
+
+    Error: download.saveAs: Target page, context or browser has been closed
+
+      56 |     await report.getByRole('button',{name:'Download complete HTML report',exact:true}).click();stage('download-button-clicked',{suffix});
+      57 |     const file=await event;stage('download-event-observed',{suffix,filename:file.suggestedFilename()});expect(file.suggestedFilename()).toBe(`sponsor-report-${summary.id}.html`);
+    > 58 |     const path=info.outputPath(`numeric-report-${suffix}.html`);await file.saveAs(path);stage('download-saved',{suffix,bytes:fs.statSync(path).size});return path;
+         |                                                                            ^
+      59 |    };
+      60 |    const first=await download('original');stage('report-document-page-opening');const doc=await page.context().newPage(),external:string[]=[];stage('report-document-page-opened');doc.on('request',(r:any)=>{if(/^https?:/.test(r.url()))external.push(r.url());});
+      61 |    let documentError:any;
+        at download (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:58:76)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:60:16
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2
+
+    CapacitySettingsRecoveryRequired: Capacity preferences could not be proven restored; retain the exact owned fixtures
+
+       at scenarios/lz-ppm/capacity-preferences.mjs:20
+
+      18 |  const persist=()=>onState(copy(state));
+      19 |  const record=(name,details={})=>{state.history.push({name,time:new Date().toISOString(),...copy(details)});persist();};
+    > 20 |  const recovery=(message,cause)=>{record('recovery-required',{message});return new CapacitySettingsRecoveryRequired(message,state,cause);};
+         |                                                                                ^
+      21 |  const admit=response=>{assert.equal(state.initialized,false,'Settings admission is once per journey');const r=checked(response);state.initialized=true;state.original=copy(r.settings);state.lastOwned=copy(r.settings);state.version=r.version;record('admitted');};
+      22 |  const current=async()=>{
+      23 |   assert.equal(state.initialized,true,'Actual original settings must be admitted before writes');
+        at recovery (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs:20:80)
+        at Object.restore (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs:55:88)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:75:20
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2
+    [cause]: Error: apiRequestContext.post: Target page, context or browser has been closed
+        at invoke (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-ui.ts:30:36)
+        at current (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs:25:19)
+        at Object.restore (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/capacity-preferences.mjs:51:12)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:75:20
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:16:2
+
+    ProfileReservationError: HOLDER_LOST: Reservation is no longer held
+
+       at forge/profile-reservation.ts:119
+
+      117 |     throw new ProfileReservationError(acquired.kind === "busy" ? "PROFILE_BUSY" : "PROFILE_UNAVAILABLE", acquired.reason ?? "Unknown reservation response");
+      118 |   }
+    > 119 |   const assertHeld = () => { if (failure || intentional || released) throw failure ?? new ProfileReservationError("HOLDER_LOST", "Reservation is no longer held"); };
+          |                                                                                       ^
+      120 |   const finish = async (command: "clean-close" | "cancel-unlaunched") => {
+      121 |     if (released) return;
+      122 |     assertHeld();
+        at assertHeld (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:119:87)
+        at finish (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:122:5)
+        at Object.cleanClose (/Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:133:27)
+        at /Users/mihaiperdum/Projects/forge-live-harness/forge/profile-reservation.ts:179:68
+        at Object.base.extend.sharedContext.scope (/Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:62:7)
+
+    Error Context: evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes 

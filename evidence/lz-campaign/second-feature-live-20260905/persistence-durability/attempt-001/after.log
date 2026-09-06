@@ -1,0 +1,40 @@
+
+Running 1 test using 1 worker
+
+
+(node:67681) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source
+  1) [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source 
+
+    Error: no temporary plan remains or original plan disappeared
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 3
+
+      Array [
+        "plan-msq9dg8l-gz6mz1",
+        "plan-mta3aw3t-6dyijd",
+        "plan-mtbrlh8n-7ghw8u",
+    +   "plan-test-mtoprdq7-sfcqcl",
+    +   "plan-test-mtopspra-bpkahp",
+    +   "plan-test-mtoptbxr-npwwzt",
+      ]
+
+      49 |     const before = JSON.parse(fs.readFileSync(path.join(dir!, 'before-identity.json'), 'utf8'));
+      50 |     expect(fingerprint, 'the complete source schedule and plan settings are unchanged').toBe(before.sourceFingerprint);
+    > 51 |     expect(planIds, 'no temporary plan remains or original plan disappeared').toEqual(before.planIds);
+         |                                                                               ^
+      52 |   }
+      53 |   fs.mkdirSync(dir!, { recursive: true });
+      54 |   fs.writeFileSync(path.join(dir!, `${phase}-identity.json`), JSON.stringify(identity, null, 2) + '\n');
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts:51:79
+
+    Error Context: evidence/lz-campaign/second-feature-live-20260905/persistence-durability/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-identity.spec.ts:11:1 › campaign: actual UI version and preserved LZPT source 

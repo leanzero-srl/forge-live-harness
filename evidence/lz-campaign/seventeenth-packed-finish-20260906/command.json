@@ -1,0 +1,32 @@
+{
+  "runId": "seventeenth-packed-finish-20260906",
+  "createdAt": "2026-09-06T07:29:30.796412+00:00",
+  "harnessHead": "5807048f5b85badc56ed20f1d272dbf76b4a825c",
+  "instrument": "f94e4e69016f83cbf58668a04c88383afb9fc5850147bb6b955b47a7e9ab0aa0",
+  "forgeVersion": "6.18.0",
+  "uiVersion": "4.58.585",
+  "appSource": "598b621b6d56b2939fb682a60f4f261119fdbcf8",
+  "mode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "finish",
+  "sourceExtension": null,
+  "expectedPreferencesVersion": 62,
+  "expectedTests": 1,
+  "sharedReadOnlyIssue": {
+    "key": "WFH-2820",
+    "id": "25020"
+  },
+  "prepareJournal": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-prepare-20260906/artifacts/scenarios-lz-ppm-campaign--f4cfb-efore-packed-layout-upgrade-chromium/packed-prepare.json",
+  "prepareSha": "76aa65a2282c21ddbf710aee88d217480983226f34a26fb53459f942d4f5fd26",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-report-packed-finish.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/seventeenth-packed-finish-20260906/artifacts"
+  ]
+}

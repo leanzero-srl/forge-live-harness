@@ -1,0 +1,30 @@
+{
+  "runId": "sixteenth-legacy-prepare2-20260906",
+  "createdAt": "2026-09-06T06:19:24.548993+00:00",
+  "harnessHead": "a8fee10622827692aa4d740eed05ab3047b40b72",
+  "instrument": "73f4d83215147a1f029bc0ad245ee5c4fdff082c66259d3a333f76e116e11332",
+  "forgeVersion": "6.15.0",
+  "uiVersion": "4.58.585",
+  "appSource": "e8d46785d8cda3d2b3680b0e84e52dbd7c1a68ee",
+  "mode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "prepare",
+  "sourceExtension": null,
+  "expectedPreferencesVersion": 59,
+  "expectedTests": 1,
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--grep",
+    "legacy report prepare:",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-prepare2-20260906/artifacts"
+  ],
+  "reuseReceipt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixteenth-legacy-drift-recovery-20260906/artifacts/scenarios-lz-ppm-campaign--2121d-issue-is-retained-unchanged-chromium/legacy-recovery.json",
+  "reuseSha": "5dfa99d637720a890ef2a4144892541678693420a05b864b46bda872d0e2d0f0"
+}

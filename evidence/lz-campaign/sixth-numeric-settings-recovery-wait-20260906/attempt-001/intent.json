@@ -1,0 +1,17 @@
+{
+  "time": "2026-09-05T23:21:41.308544+00:00",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-recover-sixth-numeric.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=list,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-numeric-settings-recovery-wait-20260906/attempt-001/artifacts"
+  ],
+  "harnessCommit": "874081e76449313a0dbd5c45ffd855c77dfbddfa",
+  "sourceJournal": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/numeric-report-journal.json",
+  "purpose": "Exact operator recovery only; not feature acceptance"
+}

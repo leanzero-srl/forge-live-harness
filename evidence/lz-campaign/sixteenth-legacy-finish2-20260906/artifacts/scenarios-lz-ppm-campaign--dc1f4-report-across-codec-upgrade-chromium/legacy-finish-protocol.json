@@ -1,0 +1,628 @@
+{
+  "planId": "plan-test-mtpf98u5-jel0qu",
+  "job": {
+    "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+    "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+    "name": "Unchanged legacy upgrade report",
+    "createdAt": "2026-09-06T06:19:51.264Z",
+    "expiresAt": "2026-09-07T06:19:51.264Z",
+    "checkpoint": 18,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 18,
+    "totalUnits": 18,
+    "cleanupDone": true,
+    "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+  },
+  "report": {
+    "baseline": null,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "capacity": {
+      "reason": "Capacity was not included at capture. No availability is assumed.",
+      "scope": "captured-plan",
+      "state": "not-included"
+    },
+    "changeCounts": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+    },
+    "consistency": {
+      "basisHash": "c5a3ac7ad682eef4666ad696748bdf9b7fb11790c86e95c309e7a4d2b61f0f84",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T06:19:53.902Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T06:23:18.773Z"
+    },
+    "counts": {
+      "changes": 0,
+      "targets": 0,
+      "timeline": 1
+    },
+    "coverage": {
+      "leafTasks": 1,
+      "unavailableRows": 0,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1
+    },
+    "document": {
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "timeline": {
+        "hashes": [
+          "99e31564c589c46927f9026fbb146b6e8ba87570209e263ea10216517bcf3ea5"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      }
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "f78fca36aff74d615ddcaa07121b9b189bbb6a40c85ce2d06e6bb77fc7ce78bc",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.6566666666666666,
+      "p50": "2026-10-09",
+      "p80": "2026-10-12",
+      "p90": "2026-10-12",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "medium"
+    },
+    "hash": "707a7a13546247fee3b704a6d4513a26150047b6de7f561b81f19238dbe4e838",
+    "id": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2",
+    "name": "Unchanged legacy upgrade report",
+    "pageSize": 50,
+    "pages": {
+      "changes": 0,
+      "targets": 0,
+      "timeline": 1
+    },
+    "planName": "[harness-test] lz-legacy-mtpem3qp",
+    "plannedFinish": "2026-10-09",
+    "sourceVersion": 2,
+    "span": {
+      "finish": "2026-10-09",
+      "start": "2026-10-05"
+    },
+    "takenAt": "2026-09-06T06:19:50.969Z",
+    "uncertainty": "medium",
+    "workingChangeCount": 0
+  },
+  "error": null,
+  "begin": null,
+  "events": [
+    {
+      "type": "admitted-existing-job",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 4,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675779977
+    },
+    {
+      "type": "request",
+      "key": "getSponsorReportCapture",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788675780024
+    },
+    {
+      "type": "response",
+      "key": "getSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 4,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675780878,
+      "elapsedMs": 854
+    },
+    {
+      "type": "request",
+      "key": "getSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": null,
+      "at": 1788675781385
+    },
+    {
+      "type": "response",
+      "key": "getSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 4,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675782182,
+      "elapsedMs": 797
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 4,
+      "at": 1788675782182
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 5,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 5,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675783471,
+      "elapsedMs": 1289
+    },
+    {
+      "type": "request",
+      "key": "getSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": null,
+      "at": 1788675785832
+    },
+    {
+      "type": "response",
+      "key": "getSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 5,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 5,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675786591,
+      "elapsedMs": 759
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 5,
+      "at": 1788675786592
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 6,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 6,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675787788,
+      "elapsedMs": 1196
+    },
+    {
+      "type": "request",
+      "key": "getSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": null,
+      "at": 1788675790848
+    },
+    {
+      "type": "response",
+      "key": "getSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 6,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 6,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675791609,
+      "elapsedMs": 761
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 6,
+      "at": 1788675791610
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 7,
+        "state": "active",
+        "stageLabel": "Retaining the selected baseline",
+        "completedUnits": 7,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675792769,
+      "elapsedMs": 1159
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 7,
+      "at": 1788675792769
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 8,
+        "state": "active",
+        "stageLabel": "Preparing the report",
+        "completedUnits": 8,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675793897,
+      "elapsedMs": 1128
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 8,
+      "at": 1788675793898
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 9,
+        "state": "active",
+        "stageLabel": "Retaining report pages",
+        "completedUnits": 9,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675795214,
+      "elapsedMs": 1316
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 9,
+      "at": 1788675795215
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 10,
+        "state": "active",
+        "stageLabel": "Checking for plan changes",
+        "completedUnits": 10,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675796439,
+      "elapsedMs": 1224
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 10,
+      "at": 1788675796439
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 11,
+        "state": "active",
+        "stageLabel": "Confirming the plan is unchanged",
+        "completedUnits": 11,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675797699,
+      "elapsedMs": 1260
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 11,
+      "at": 1788675797700
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 12,
+        "state": "active",
+        "stageLabel": "Recording capture provenance",
+        "completedUnits": 12,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675798942,
+      "elapsedMs": 1242
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 12,
+      "at": 1788675798943
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 13,
+        "state": "active",
+        "stageLabel": "Checking every report page",
+        "completedUnits": 13,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675800364,
+      "elapsedMs": 1421
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 13,
+      "at": 1788675800364
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 14,
+        "state": "active",
+        "stageLabel": "Checking the retained schedule",
+        "completedUnits": 14,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675801508,
+      "elapsedMs": 1144
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 14,
+      "at": 1788675801509
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 15,
+        "state": "active",
+        "stageLabel": "Publishing the verified report",
+        "completedUnits": 15,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675802775,
+      "elapsedMs": 1266
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": 15,
+      "at": 1788675802776
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 16,
+        "state": "complete",
+        "stageLabel": "Report ready",
+        "completedUnits": 16,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675804076,
+      "elapsedMs": 1300
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": null,
+      "at": 1788675804077
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 17,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 17,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675805146,
+      "elapsedMs": 1069
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+      "expectedCheckpoint": null,
+      "at": 1788675805146
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "182d59d1-0cbc-42b5-8553-c4c0f9cedaa1",
+        "requestId": "4634bab0-7b66-489d-8cd4-d6622f2a3377",
+        "name": "Unchanged legacy upgrade report",
+        "createdAt": "2026-09-06T06:19:51.264Z",
+        "expiresAt": "2026-09-07T06:19:51.264Z",
+        "checkpoint": 18,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 18,
+        "totalUnits": 18,
+        "cleanupDone": true,
+        "reportId": "bb42c05c-f6e6-4655-b2ea-f5f710b26fa2"
+      },
+      "at": 1788675806136,
+      "elapsedMs": 990
+    }
+  ]
+}

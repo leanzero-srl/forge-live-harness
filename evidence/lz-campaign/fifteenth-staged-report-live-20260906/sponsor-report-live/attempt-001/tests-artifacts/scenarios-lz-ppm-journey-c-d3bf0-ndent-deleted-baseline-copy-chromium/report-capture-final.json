@@ -1,0 +1,252 @@
+{
+  "job": {
+    "id": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+    "requestId": "0c994db6-0fe5-4786-9673-2f161b2a9890",
+    "name": "All rows and retained baseline",
+    "createdAt": "2026-09-06T05:02:11.094Z",
+    "expiresAt": "2026-09-07T05:02:11.094Z",
+    "checkpoint": 18,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 18,
+    "totalUnits": 18,
+    "cleanupDone": true,
+    "reportId": "800497f6-2aa8-4648-b5c0-2947c19f3b2d"
+  },
+  "report": {
+    "id": "800497f6-2aa8-4648-b5c0-2947c19f3b2d",
+    "hash": "d9973f9fb8b3bc0a50f4aaef74685db76411bda2f6143054c3bea8b1fc423a82",
+    "name": "All rows and retained baseline",
+    "planName": "[harness-test] Report proof mtpch8gm",
+    "takenAt": "2026-09-06T05:02:10.763Z",
+    "sourceVersion": 3,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 35,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 1,
+        "missingDates": 1,
+        "sampledLeaves": 0,
+        "totalLeaves": 37
+      },
+      "inputHash": "0f6269eabc4402b6dea3499fd8e45a92baa6871da976e7417f05ce54218e4982",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": null,
+      "p50": null,
+      "p80": null,
+      "p90": null,
+      "reason": "The full captured network has missing, invalid or inverted dates, including required baseline dates.",
+      "runs": 0,
+      "seed": 42,
+      "state": "unavailable",
+      "uncertainty": "medium"
+    },
+    "capacity": {
+      "reason": "Capacity was not included at capture. No availability is assumed.",
+      "scope": "captured-plan",
+      "state": "not-included"
+    },
+    "uncertainty": "medium",
+    "consistency": {
+      "basisHash": "812c73c946ec77e1dfae0f9a8e7d9357e9ce84c77a19711eaf69294b5892ae47",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T05:02:14.579Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T05:02:30.038Z"
+    },
+    "baseline": {
+      "coverageNote": null,
+      "hash": "27710f2de2dca18358ac53d35b83122420c954dde7e7ab8b2e692cd72c4a4ff6",
+      "id": "800497f6-2aa8-4648-b5c0-2947c19f3b2d",
+      "issueCount": 45,
+      "name": "Report original baseline",
+      "sourceSnapshotId": "bc687561-cf93-4772-9a58-eb19caa1796f",
+      "takenAt": "2026-09-06T05:02:01.655Z"
+    },
+    "counts": {
+      "timeline": 45,
+      "targets": 0,
+      "changes": 2
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 0,
+      "changes": 1
+    },
+    "document": {
+      "changes": {
+        "hashes": [
+          "046ce941625c78c9f4000faec267b21de27c6c8e67ee411673d6b6809a5a350e"
+        ],
+        "sizes": [
+          2
+        ],
+        "total": 2
+      },
+      "targets": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "timeline": {
+        "hashes": [
+          "f1e0696e21d258fbba57bd58ee35c71864c12af281786855433b0f3c9b3ca251"
+        ],
+        "sizes": [
+          45
+        ],
+        "total": 45
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 37,
+      "unscheduledOrInvalidLeaves": 2,
+      "validRows": 38,
+      "unavailableRows": 7
+    },
+    "span": {
+      "start": "2026-04-27",
+      "finish": "2026-10-13"
+    },
+    "plannedFinish": null,
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 2
+    }
+  },
+  "freshRetainedRead": true,
+  "physicalCleanup": {
+    "planId": "plan-test-mtpch8kq-xzd548",
+    "jobId": "1f3bf03a-2a9a-4d52-992c-40a71e3070e5",
+    "registryMember": true,
+    "state": "complete",
+    "checkpoint": 18,
+    "cleanupDone": true,
+    "privateManifestHash": "0850b892e2989dfdf765fb549dcb7fb117c40df15bedc369024a018ad17a80ff",
+    "publicManifestHash": "27aac7c619b67bcbd88336b7d47e8420c4293bcfa8c758bce29e7ea3ce674c21",
+    "privateArtifacts": [
+      {
+        "keyHash": "ab09e1c0e1ad1789aa294eba44abbc959190c6cf1d29cc728b39c3b365af1b44",
+        "expectedHash": "482c7c9b6c49504be02632b95b1c7c0e6845dbc28cd8f4c6b3a02137066e8dbe",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "e11aa4ffa13985b5b492630c4ed3191c2fa1cb08633a208f17712527aa9d13ca",
+        "expectedHash": "f3f5f73f4626491eac02e921729ac9e69e95bd223e4e33d891bcac60f4ae16fa",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "6811c1fd07456c588787d91046b0375dccde66ccce5de173943828411f025c08",
+        "expectedHash": "f1e0696e21d258fbba57bd58ee35c71864c12af281786855433b0f3c9b3ca251",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "d7917109cb15fcdf9411b7e7e4ea22f634682917e0a24bd217d32e6120cc1234",
+        "expectedHash": "398cebbf63744f9a62910ad035300ce66932879151059268aea692da8405b78b",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "4756412d7977e52d16180676f761a7007c16c634baf99ffd0e521209d6db1a0e",
+        "expectedHash": "7a3cf447e54a5e42ed41784cccff94a4a92b9f832263c7a3f0e16e7f342fd3cb",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "74b0cfe63447538817e82183bfb1ed055d382936d0f222c7905830d9e34d46e8",
+        "expectedHash": "2bf4ff7ba3cba0199d4b58fd07615f5d898b7f245f9cd46bf8a7e1e628ea0280",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "c6b93035ce9dfb9096ba17a543fb6c4301fafdd6374c192bae4e56c450615607",
+        "expectedHash": "d9d88ea1bdaabf02c47b62627408b8ef8b881951c7db281c77b34e459188c6fb",
+        "present": false,
+        "actualHash": null
+      }
+    ],
+    "publicArtifacts": [
+      {
+        "keyHash": "e7f71053fea54d653e0045f0c9bf02a0f2be08d9298bacb2fdfd09640c7a98b0",
+        "role": "descriptor",
+        "collection": "baseline",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "a88d3b28dc40579f948da8b10fd60b8f9676dfd55663cb7b39bb6fe9eb0b68c2"
+      },
+      {
+        "keyHash": "d6c5b287edd92836d538e5be4e7b4914c9c3a74f8224cde82214274e5be3f63e",
+        "role": "chunk",
+        "collection": "baseline",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "f3f5f73f4626491eac02e921729ac9e69e95bd223e4e33d891bcac60f4ae16fa"
+      },
+      {
+        "keyHash": "c8936e692d9c0a224991aed234cd0bbded6a5e86f635da354c3b77d4dcc164db",
+        "role": "descriptor",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "b0833e76e8887191ccf80f39b13b311afbbf28e6b4579858e3c1ee32be3f391e"
+      },
+      {
+        "keyHash": "ec838e4100dc737eb4babcf245c4148a7455bb244e1ae2810c230c3881ac37c9",
+        "role": "chunk",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "f1e0696e21d258fbba57bd58ee35c71864c12af281786855433b0f3c9b3ca251"
+      },
+      {
+        "keyHash": "b751d045d957d49df9fde1581a0fbb6efae82949df2feae3cf76da87bbcaec2b",
+        "role": "page",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "f1e0696e21d258fbba57bd58ee35c71864c12af281786855433b0f3c9b3ca251"
+      },
+      {
+        "keyHash": "728a489bfb2e88615c83cca0c73fdb8b338cb3f7116227ca3db0f4bc04c090cd",
+        "role": "page",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "046ce941625c78c9f4000faec267b21de27c6c8e67ee411673d6b6809a5a350e"
+      },
+      {
+        "keyHash": "a1f799534e8d125aa4b0a2ed75c335bba65fa753eea0cbf882292e604f8bb1c6",
+        "role": "deletion-marker",
+        "collection": "current",
+        "expectedPresent": false,
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "37833d5104c53f51a5c7ff06063dcf9aba29fda1b8dc84dd3ad1139d58cd5404",
+        "role": "deletion-marker",
+        "collection": "baseline",
+        "expectedPresent": false,
+        "present": false,
+        "actualHash": null
+      }
+    ]
+  }
+}

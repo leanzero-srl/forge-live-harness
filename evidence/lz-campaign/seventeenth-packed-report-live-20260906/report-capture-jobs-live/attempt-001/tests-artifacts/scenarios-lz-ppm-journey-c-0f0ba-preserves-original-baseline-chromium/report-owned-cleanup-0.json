@@ -1,0 +1,683 @@
+[
+  {
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+    "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+    "steps": [],
+    "probes": [],
+    "startedAt": 1788682149789,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+    "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+    "steps": [],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 7,
+        "cleanupDone": false,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": true,
+            "actualHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8"
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": true,
+            "actualHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467"
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": true,
+            "actualHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918"
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": true,
+            "actualHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f"
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": true,
+            "actualHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20"
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": true,
+            "actualHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5"
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682149789,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+    "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+    "steps": [
+      {
+        "before": 7,
+        "after": 8,
+        "state": "cancelled",
+        "cleanupDone": false
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 7,
+        "cleanupDone": false,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": true,
+            "actualHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8"
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": true,
+            "actualHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467"
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": true,
+            "actualHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918"
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": true,
+            "actualHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f"
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": true,
+            "actualHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20"
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": true,
+            "actualHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5"
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682149789,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+    "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+    "steps": [
+      {
+        "before": 7,
+        "after": 8,
+        "state": "cancelled",
+        "cleanupDone": false
+      },
+      {
+        "before": 8,
+        "after": 9,
+        "state": "cancelled",
+        "cleanupDone": true
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 7,
+        "cleanupDone": false,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": true,
+            "actualHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8"
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": true,
+            "actualHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467"
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": true,
+            "actualHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918"
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": true,
+            "actualHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f"
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": true,
+            "actualHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20"
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": true,
+            "actualHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5"
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682149789,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+    "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+    "steps": [
+      {
+        "before": 7,
+        "after": 8,
+        "state": "cancelled",
+        "cleanupDone": false
+      },
+      {
+        "before": 8,
+        "after": 9,
+        "state": "cancelled",
+        "cleanupDone": true
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 7,
+        "cleanupDone": false,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": true,
+            "actualHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8"
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": true,
+            "actualHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467"
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": true,
+            "actualHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918"
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": true,
+            "actualHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f"
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": true,
+            "actualHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20"
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": true,
+            "actualHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5"
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 9,
+        "cleanupDone": true,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682149789,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+    "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+    "steps": [
+      {
+        "before": 7,
+        "after": 8,
+        "state": "cancelled",
+        "cleanupDone": false
+      },
+      {
+        "before": 8,
+        "after": 9,
+        "state": "cancelled",
+        "cleanupDone": true
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 7,
+        "cleanupDone": false,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": true,
+            "actualHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8"
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": true,
+            "actualHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467"
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": true,
+            "actualHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918"
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": true,
+            "actualHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f"
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": true,
+            "actualHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20"
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": true,
+            "actualHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5"
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 9,
+        "cleanupDone": true,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 9,
+        "cleanupDone": true,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682149789,
+    "cleaned": false
+  },
+  {
+    "planId": "plan-test-mtpj5g7p-1uu0li",
+    "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+    "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+    "steps": [
+      {
+        "before": 7,
+        "after": 8,
+        "state": "cancelled",
+        "cleanupDone": false
+      },
+      {
+        "before": 8,
+        "after": 9,
+        "state": "cancelled",
+        "cleanupDone": true
+      }
+    ],
+    "probes": [
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 7,
+        "cleanupDone": false,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": true,
+            "actualHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8"
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": true,
+            "actualHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467"
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": true,
+            "actualHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918"
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": true,
+            "actualHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f"
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": true,
+            "actualHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20"
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": true,
+            "actualHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5"
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 9,
+        "cleanupDone": true,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      },
+      {
+        "planId": "plan-test-mtpj5g7p-1uu0li",
+        "jobId": "619f9675-717e-433e-83f1-b24944eb1685",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 9,
+        "cleanupDone": true,
+        "privateManifestHash": "0ec2752a6382ea21ebd04ebe08f1d60e762676e761248259fc3cafb7089dc502",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "40bfdaee482f528d57747647bdd9d14b99e3fec7dd793a711f88a1624f6dbfe0",
+            "expectedHash": "bcec7acc51153c5c31009e97114e0b5ab3ae7731c5dc3577b6c1c8f0cdafafc8",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5f80199a87b447bef2aa5ba307ca7c66df08a890feab060c9e5641c7cdab4c13",
+            "expectedHash": "a5134a06b2f8aa0188884fe1995f85f8f1dd12060fe21ccee52a065bd67c3467",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "5806cc5e820876c4dc5d0bcb6141c6d2c29fd58f311d3ae4e0c6a38b1a6e4ce1",
+            "expectedHash": "f13773d63c40a71d39bf6e90eb65b6d7afdfae0d6fc7d7df5d0fab671503d918",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "110d604600d675bb62cb5beb7699b26d8f55d8eb7e28ef533eb965d1bf96fe3a",
+            "expectedHash": "1305f52addf1f82b13b1f7a61d3a62e5f66cf04213f8e0cb83c3f8e4f527886f",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "7df8417e00141ceb9dd450ce5191ccfe48351b646a697fcd653176aa6e6d615d",
+            "expectedHash": "cb81665076ab7ae94438cf95a4ce76fb276631cf240a915c40d11a0b4cc08c20",
+            "present": false,
+            "actualHash": null
+          },
+          {
+            "keyHash": "6ffd388750c244955376ec66165912ab0e388558f06bc8b90e95be3966f899f8",
+            "expectedHash": "403c888f84869175877ccdb4a82335efe6b6146acec2e621f8e2117dd5f064b5",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      }
+    ],
+    "startedAt": 1788682149789,
+    "cleaned": true,
+    "job": {
+      "id": "619f9675-717e-433e-83f1-b24944eb1685",
+      "requestId": "3c218f07-84d0-49e8-b490-b4d54ce82fb2",
+      "name": "Bounded baseline-drift report",
+      "createdAt": "2026-09-06T08:08:52.606Z",
+      "expiresAt": "2026-09-07T08:08:52.606Z",
+      "checkpoint": 9,
+      "state": "cancelled",
+      "stageLabel": "Cleaning up temporary data",
+      "completedUnits": 9,
+      "totalUnits": 19,
+      "cleanupDone": true,
+      "reportId": "677103c5-7bab-4185-bd40-0af19cad4b0b"
+    }
+  }
+]

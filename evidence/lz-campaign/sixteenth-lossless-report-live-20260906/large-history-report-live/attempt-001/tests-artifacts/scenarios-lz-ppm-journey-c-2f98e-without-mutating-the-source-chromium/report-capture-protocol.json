@@ -1,0 +1,1576 @@
+{
+  "planId": "plan-test-mtpfsb3x-zok6h0",
+  "job": {
+    "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+    "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+    "name": "Every existing performance row",
+    "createdAt": "2026-09-06T06:36:01.829Z",
+    "expiresAt": "2026-09-07T06:36:01.829Z",
+    "checkpoint": 56,
+    "state": "active",
+    "stageLabel": "Calculating the forecast",
+    "completedUnits": 56,
+    "totalUnits": 69,
+    "cleanupDone": false,
+    "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+  },
+  "report": null,
+  "error": {
+    "name": "Error",
+    "message": "advanceSponsorReportCapture: [{\"message\":\"There was an error invoking the function - RequestId: 3f5c450e-3600-4775-b14a-274e89a865f6 Error: Task timed out after 25.00 seconds\",\"extensions\":{\"__typename\":\"GenericMutationErrorExtension\",\"errorType\":\"FUNCTION_TIME_OUT\",\"statusCode\":400}}]"
+  },
+  "begin": {
+    "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+    "name": "Every existing performance row",
+    "inputHash": "47aa016011344d29f924d8e33cc13eac2a211b381c29059f832d2cfcea5266bd",
+    "at": 1788676560966
+  },
+  "events": [
+    {
+      "type": "request",
+      "key": "captureSponsorReport",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788676560966
+    },
+    {
+      "type": "response",
+      "key": "captureSponsorReport",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 0,
+        "state": "active",
+        "stageLabel": "Checking the plan",
+        "completedUnits": 0,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676561992,
+      "elapsedMs": 1026
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 0,
+      "at": 1788676561993
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676565391,
+      "elapsedMs": 3398
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 1,
+      "at": 1788676565392
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 2,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 2,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676568705,
+      "elapsedMs": 3313
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 2,
+      "at": 1788676568706
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 3,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 3,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676570133,
+      "elapsedMs": 1427
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 3,
+      "at": 1788676570134
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 4,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676571443,
+      "elapsedMs": 1309
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 4,
+      "at": 1788676571443
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 5,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 5,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676572694,
+      "elapsedMs": 1251
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 5,
+      "at": 1788676572694
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 6,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 6,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676573986,
+      "elapsedMs": 1292
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 6,
+      "at": 1788676573986
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 7,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 7,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676575163,
+      "elapsedMs": 1177
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 7,
+      "at": 1788676575163
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 8,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 8,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676576494,
+      "elapsedMs": 1331
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 8,
+      "at": 1788676576495
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 9,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 9,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676577837,
+      "elapsedMs": 1342
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 9,
+      "at": 1788676577838
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 10,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 10,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676579063,
+      "elapsedMs": 1225
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 10,
+      "at": 1788676579064
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 11,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 11,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676580253,
+      "elapsedMs": 1189
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 11,
+      "at": 1788676580253
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 12,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 12,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676581471,
+      "elapsedMs": 1218
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 12,
+      "at": 1788676581471
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 13,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 13,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676582661,
+      "elapsedMs": 1190
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 13,
+      "at": 1788676582661
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 14,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 14,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676583847,
+      "elapsedMs": 1186
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 14,
+      "at": 1788676583848
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 15,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 15,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676585157,
+      "elapsedMs": 1309
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 15,
+      "at": 1788676585157
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 16,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 16,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676586431,
+      "elapsedMs": 1274
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 16,
+      "at": 1788676586432
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 17,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 17,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676587802,
+      "elapsedMs": 1370
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 17,
+      "at": 1788676587802
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 18,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 18,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676588999,
+      "elapsedMs": 1197
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 18,
+      "at": 1788676588999
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 19,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 19,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676590425,
+      "elapsedMs": 1426
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 19,
+      "at": 1788676590426
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 20,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 20,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676591665,
+      "elapsedMs": 1239
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 20,
+      "at": 1788676591665
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 21,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 21,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676592898,
+      "elapsedMs": 1233
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 21,
+      "at": 1788676592898
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 22,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 22,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676594146,
+      "elapsedMs": 1248
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 22,
+      "at": 1788676594147
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 23,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 23,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676595363,
+      "elapsedMs": 1216
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 23,
+      "at": 1788676595363
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 24,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 24,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676596548,
+      "elapsedMs": 1185
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 24,
+      "at": 1788676596548
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 25,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 25,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676597936,
+      "elapsedMs": 1388
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 25,
+      "at": 1788676597936
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 26,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 26,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676599118,
+      "elapsedMs": 1182
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 26,
+      "at": 1788676599119
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 27,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 27,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676600388,
+      "elapsedMs": 1269
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 27,
+      "at": 1788676600388
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 28,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 28,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676601606,
+      "elapsedMs": 1218
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 28,
+      "at": 1788676601606
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 29,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 29,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676602774,
+      "elapsedMs": 1168
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 29,
+      "at": 1788676602774
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 30,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 30,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676603976,
+      "elapsedMs": 1202
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 30,
+      "at": 1788676603976
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 31,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 31,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676605163,
+      "elapsedMs": 1187
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 31,
+      "at": 1788676605164
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 32,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 32,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676606395,
+      "elapsedMs": 1231
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 32,
+      "at": 1788676606396
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 33,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 33,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676607653,
+      "elapsedMs": 1257
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 33,
+      "at": 1788676607653
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 34,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 34,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676608868,
+      "elapsedMs": 1215
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 34,
+      "at": 1788676608868
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 35,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 35,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676610180,
+      "elapsedMs": 1312
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 35,
+      "at": 1788676610180
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 36,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 36,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676611435,
+      "elapsedMs": 1255
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 36,
+      "at": 1788676611435
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 37,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 37,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676612661,
+      "elapsedMs": 1226
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 37,
+      "at": 1788676612661
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 38,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 38,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676613913,
+      "elapsedMs": 1252
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 38,
+      "at": 1788676613913
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 39,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 39,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676615185,
+      "elapsedMs": 1272
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 39,
+      "at": 1788676615186
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 40,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 40,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676616407,
+      "elapsedMs": 1221
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 40,
+      "at": 1788676616407
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 41,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 41,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676617635,
+      "elapsedMs": 1228
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 41,
+      "at": 1788676617635
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 42,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 42,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676618859,
+      "elapsedMs": 1224
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 42,
+      "at": 1788676618859
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 43,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 43,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676620078,
+      "elapsedMs": 1219
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 43,
+      "at": 1788676620079
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 44,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 44,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676621462,
+      "elapsedMs": 1383
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 44,
+      "at": 1788676621462
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 45,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 45,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676622790,
+      "elapsedMs": 1328
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 45,
+      "at": 1788676622790
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 46,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 46,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676624062,
+      "elapsedMs": 1272
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 46,
+      "at": 1788676624062
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 47,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 47,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676625315,
+      "elapsedMs": 1253
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 47,
+      "at": 1788676625315
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 48,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 48,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676626619,
+      "elapsedMs": 1304
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 48,
+      "at": 1788676626620
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 49,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 49,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676628013,
+      "elapsedMs": 1393
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 49,
+      "at": 1788676628014
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 50,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 50,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676629288,
+      "elapsedMs": 1274
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 50,
+      "at": 1788676629288
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 51,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 51,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676630535,
+      "elapsedMs": 1247
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 51,
+      "at": 1788676630535
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 52,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 52,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676631813,
+      "elapsedMs": 1278
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 52,
+      "at": 1788676631813
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 53,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 53,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676633022,
+      "elapsedMs": 1209
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 53,
+      "at": 1788676633022
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 54,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 54,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676634241,
+      "elapsedMs": 1219
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 54,
+      "at": 1788676634241
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 55,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 55,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676635510,
+      "elapsedMs": 1269
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 55,
+      "at": 1788676635510
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+        "requestId": "bb51b679-2302-4cb2-a149-9a157cbb259a",
+        "name": "Every existing performance row",
+        "createdAt": "2026-09-06T06:36:01.829Z",
+        "expiresAt": "2026-09-07T06:36:01.829Z",
+        "checkpoint": 56,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 56,
+        "totalUnits": 69,
+        "cleanupDone": false,
+        "reportId": "841762d5-8a74-4458-afbc-1fc3519a45d8"
+      },
+      "at": 1788676636521,
+      "elapsedMs": 1011
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "1d7c9d10-c4d9-488e-bc78-d148e64075ad",
+      "expectedCheckpoint": 56,
+      "at": 1788676636521
+    }
+  ]
+}

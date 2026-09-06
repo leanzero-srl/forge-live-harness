@@ -1,0 +1,28 @@
+{
+  "marker": "lz-norm-mtop03as",
+  "name": "[harness-test] lz-norm-mtop03as",
+  "time": "2026-09-05T18:04:40.756Z",
+  "issues": [
+    {
+      "key": "WFH-2719",
+      "seed": {
+        "label": "history",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtop051h-ylstrn",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtop051h-ylstrn",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2719",
+      "deleted": true
+    }
+  ],
+  "integrityPassed": true
+}

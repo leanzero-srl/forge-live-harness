@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: actual hook HTTP credential echo is withheld from all optional-corpus observer evidence while original rejection survives
+ok 1 - actual hook HTTP credential echo is withheld from all optional-corpus observer evidence while original rejection survives
+  ---
+  duration_ms: 2.808125
+  type: 'test'
+  ...
+# Subtest: actual direct helper transport rejection with call-log credential preserves original error but cannot escape observer corpus
+ok 2 - actual direct helper transport rejection with call-log credential preserves original error but cannot escape observer corpus
+  ---
+  duration_ms: 6.03625
+  type: 'test'
+  ...
+# Subtest: unsafe job summary and actual direct response echoes are withheld while the caller receives the unchanged body
+ok 3 - unsafe job summary and actual direct response echoes are withheld while the caller receives the unchanged body
+  ---
+  duration_ms: 1.319625
+  type: 'test'
+  ...
+# Subtest: no-corpus default preserves archived complete event/value/error observations without inspecting request headers
+ok 4 - no-corpus default preserves archived complete event/value/error observations without inspecting request headers
+  ---
+  duration_ms: 13.931917
+  type: 'test'
+  ...
+# Subtest: actual optional full source and begin receipts feed the independent grader with both digests and the exact selected request
+ok 5 - actual optional full source and begin receipts feed the independent grader with both digests and the exact selected request
+  ---
+  duration_ms: 307.616375
+  type: 'test'
+  ...
+# Subtest: held privacy acquisition retains original body timing and still produces gradeable actual per-request evidence
+ok 6 - held privacy acquisition retains original body timing and still produces gradeable actual per-request evidence
+  ---
+  duration_ms: 1.822584
+  type: 'test'
+  ...
+# Subtest: optional corpus cannot persist a request credential echoed through an unvalidated response trace header
+ok 7 - optional corpus cannot persist a request credential echoed through an unvalidated response trace header
+  ---
+  duration_ms: 0.268834
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 610.109875

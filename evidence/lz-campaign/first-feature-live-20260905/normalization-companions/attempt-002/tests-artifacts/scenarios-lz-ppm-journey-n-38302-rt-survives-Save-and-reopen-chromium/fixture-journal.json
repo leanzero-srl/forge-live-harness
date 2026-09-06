@@ -1,0 +1,36 @@
+{
+  "marker": "lz-norm-mtop97zf",
+  "name": "[harness-test] lz-norm-mtop97zf",
+  "time": "2026-09-05T18:11:46.731Z",
+  "issues": [
+    {
+      "key": "WFH-2722",
+      "seed": {
+        "label": "date-backed clear",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": null
+      }
+    }
+  ],
+  "planId": "plan-test-mtop9akj-v9hb75",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtop9akj-v9hb75",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2722",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2722",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": null
+    }
+  ],
+  "integrityPassed": true
+}

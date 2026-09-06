@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtor5njt",
+  "name": "[harness-test] lz-norm-mtor5njt",
+  "time": "2026-09-05T19:04:59.514Z",
+  "issues": [
+    {
+      "key": "WFH-2768",
+      "seed": {
+        "label": "older autosave",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtor5psa-tjtv79",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtor5psa-tjtv79",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2768",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2768",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2768",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

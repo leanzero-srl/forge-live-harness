@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "stamp": "9b2985d3aa682467fd35f9f4701885312c183e210fafe732070f5f346d373ebe",
+  "startedAt": "2026-09-06T01:08:53.915749+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighth-corrected-feature-live-20260906/sponsor-report-numeric-live/attempt-001",
+  "uiVersion": "4.58.580",
+  "forgeVersion": "6.6.0",
+  "appCommit": "7f48d1e0af6c40f43c005db5f22a9964b5453d50",
+  "instrumentHash": "eb157d35d1e84d85f93e59a76e4c9b68b0a5792e21b25538aab2d32007e5ab94",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T01:10:18.081125+00:00",
+  "elapsedSeconds": 84.16465933300788
+}

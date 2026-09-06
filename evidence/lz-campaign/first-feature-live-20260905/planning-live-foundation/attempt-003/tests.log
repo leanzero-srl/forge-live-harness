@@ -1,0 +1,24 @@
+
+Running 2 tests using 1 worker
+
+
+(node:40412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/2] [chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:21:1 › targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent
+[chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:21:1 › targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent
+[jira !!] GET /rest/api/3/issue/WFH-2727 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2726 -> 404
+
+[jira !!] GET /rest/api/3/version/10283 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtopbry5","name":"[harness-test] lz-norm-mtopbry5","time":"2026-09-05T18:13:45.917Z","issues":[{"key":"WFH-2726","seed":{"label":"scoped early","duration":2,"start":"2026-10-05","due":"2026-10-06","release":true}},{"key":"WFH-2727","seed":{"label":"outside long","duration":41,"start":"2026-10-05","due":"2026-11-30"}}],"planId":"plan-test-mtopbvdg-gmmh0i","cleanup":[{"plan":"plan-test-mtopbvdg-gmmh0i","deleted":true},{"issue":"WFH-2727","deleted":true},{"issue":"WFH-2726","deleted":true},{"version":"10283","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10283","id":"10283","name":"[harness-test] lz-norm-mtopbry5","archived":false,"released":false,"projectId":10001},"searchIndexVerified":[{"key":"WFH-2726","start":"2026-10-05","due":"2026-10-06","duration":2},{"key":"WFH-2727","start":"2026-10-05","due":"2026-11-30","duration":41}],"integrityPassed":true}
+
+[2/2] [chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:49:1 › history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion
+[chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:49:1 › history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion
+[jira !!] GET /rest/api/3/issue/WFH-2728 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtopcg8k","name":"[harness-test] lz-norm-mtopcg8k","time":"2026-09-05T18:14:17.396Z","issues":[{"key":"WFH-2728","seed":{"label":"history","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtopcic6-fxvk8k","cleanup":[{"plan":"plan-test-mtopcic6-fxvk8k","deleted":true},{"issue":"WFH-2728","deleted":true}],"searchIndexVerified":[{"key":"WFH-2728","start":"2026-10-05","due":"2026-10-09","duration":5}],"integrityPassed":true}
+
+  2 passed (1.6m)

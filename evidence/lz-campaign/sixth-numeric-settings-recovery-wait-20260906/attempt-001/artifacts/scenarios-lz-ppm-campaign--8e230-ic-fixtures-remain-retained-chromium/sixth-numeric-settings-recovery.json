@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/sixth-feature-live-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/numeric-report-journal.json",
+  "expectedAcknowledgedVersion": 35,
+  "original": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "expected": {
+    "selectedPlanIds": [
+      "plan-msq9dg8l-gz6mz1"
+    ],
+    "profiles": {
+      "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+        "hoursPerDay": 8,
+        "partTimePct": 50,
+        "reservePct": 25,
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "leaveDates": [
+          "2026-09-10"
+        ]
+      }
+    },
+    "issueChoices": {}
+  },
+  "fixture": {
+    "planId": "plan-test-mtozislw-v816ze",
+    "name": "[harness-test] lz-norm-mtoziqi3",
+    "issues": [
+      {
+        "key": "WFH-2847",
+        "seed": {
+          "label": "numeric report 20h",
+          "duration": 5,
+          "start": "2026-09-07",
+          "due": "2026-09-11",
+          "release": true
+        }
+      }
+    ],
+    "version": {
+      "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10289",
+      "id": "10289",
+      "name": "[harness-test] lz-norm-mtoziqi3",
+      "archived": false,
+      "released": false,
+      "projectId": 10001
+    }
+  },
+  "intent": null,
+  "restored": true,
+  "fixtureRetainedForDiagnosis": true,
+  "before": {
+    "success": true,
+    "version": 35,
+    "settings": {
+      "selectedPlanIds": [
+        "plan-msq9dg8l-gz6mz1"
+      ],
+      "profiles": {
+        "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+          "hoursPerDay": 8,
+          "partTimePct": 50,
+          "reservePct": 25,
+          "workingDays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "leaveDates": [
+            "2026-09-10"
+          ]
+        }
+      },
+      "issueChoices": {}
+    }
+  },
+  "acknowledged": {
+    "success": true,
+    "version": 36,
+    "settings": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  },
+  "after": {
+    "success": true,
+    "version": 36,
+    "settings": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  },
+  "reopened": {
+    "success": true,
+    "version": 36,
+    "settings": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  }
+}

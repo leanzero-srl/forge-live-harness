@@ -1,0 +1,59 @@
+{
+  "marker": "lz-norm-mtp45x7c",
+  "name": "[harness-test] lz-norm-mtp45x7c",
+  "time": "2026-09-06T01:09:07.032Z",
+  "issues": [
+    {
+      "key": "WFH-2882",
+      "seed": {
+        "label": "numeric report 20h",
+        "duration": 5,
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "release": true
+      }
+    }
+  ],
+  "planId": "plan-test-mtp45zpv-1rjfaw",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtp45zpv-1rjfaw",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2882",
+      "deleted": true
+    },
+    {
+      "version": "10292",
+      "deleted": true
+    }
+  ],
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10292",
+    "id": "10292",
+    "name": "[harness-test] lz-norm-mtp45x7c",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2882",
+      "start": "2026-09-07",
+      "due": "2026-09-11",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2882",
+        "start": "2026-09-07",
+        "due": "2026-09-11",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

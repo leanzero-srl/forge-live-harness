@@ -1,0 +1,67 @@
+{
+  "key": "WFH-2866",
+  "steps": [],
+  "forecast": {
+    "kind": "forecast",
+    "name": "Prospective retained completion",
+    "sourceVersion": 2,
+    "sources": [
+      {
+        "boardId": null,
+        "id": "src-0",
+        "label": "harness",
+        "projectKey": null,
+        "query": "key in (WFH-2866) ORDER BY Rank ASC",
+        "type": "jql"
+      }
+    ],
+    "calendar": {
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "holidays": [],
+      "calendarName": "Standard (Mon-Fri)"
+    },
+    "milestones": [],
+    "uncertainty": "medium",
+    "fieldOverrides": {},
+    "assets": null,
+    "workingChangeCount": 0,
+    "consistency": {
+      "method": "two-matching-reads",
+      "basisHash": "ab20fa96c50615e506de8611a133119105fba60664bf3664258730463e19d825",
+      "observedAt": "2026-09-06T00:30:37.140Z"
+    },
+    "forecast": {
+      "modelVersion": "duration-triangular-fs-v1",
+      "runs": 300,
+      "seed": 42,
+      "uncertainty": "medium",
+      "scopes": [
+        {
+          "id": "plan",
+          "name": "Whole plan",
+          "p50": "2026-10-09",
+          "p80": "2026-10-12",
+          "p90": "2026-10-12"
+        }
+      ]
+    },
+    "takenAt": "2026-09-06T00:30:37.160Z",
+    "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "schemaVersion": 1,
+    "planId": "plan-test-mtp2s6yk-isqt9v",
+    "id": "e4290fff-1ca9-458b-a26e-ccd6e3d41c6f",
+    "issueCount": 1,
+    "chunkCount": 1,
+    "chunkHashes": [
+      "b5649495aca123ba6d83ea69a7f619a717845838ff4c312da266115e839f15cf"
+    ],
+    "hash": "11b36a1a4a1808713599906e3d9055e7991e17e0665eaea67b7e10e480487a17",
+    "state": "complete"
+  }
+}

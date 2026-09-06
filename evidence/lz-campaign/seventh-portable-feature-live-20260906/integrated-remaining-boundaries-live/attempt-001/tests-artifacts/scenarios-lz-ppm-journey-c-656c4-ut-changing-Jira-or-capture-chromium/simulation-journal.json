@@ -1,0 +1,58 @@
+{
+  "sourcePlanId": "plan-test-mtp2zdca-1rwdp7",
+  "simName": "[harness-test] lz-norm-mtp2z8gd private simulation",
+  "keys": [
+    "WFH-2875",
+    "WFH-2876",
+    "WFH-2877"
+  ],
+  "steps": [],
+  "cleanup": {
+    "fallbackRealResolverDelete": true,
+    "simulationRegistryAbsent": true
+  },
+  "base": {
+    "id": "afbe2d8b-915f-423b-a667-2dc740e5eb41",
+    "hash": "34cae00928f941755aff4d331f6860a57f41576242f37d89c58e90b8d3feedca",
+    "rows": [
+      {
+        "key": "WFH-2875",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5,
+        "predecessors": [],
+        "predecessorLags": {}
+      },
+      {
+        "key": "WFH-2876",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5,
+        "predecessors": [
+          "WFH-2875"
+        ],
+        "predecessorLags": {}
+      },
+      {
+        "key": "WFH-2877",
+        "start": "2026-12-07",
+        "due": "2026-12-11",
+        "duration": 5,
+        "predecessors": [],
+        "predecessorLags": {}
+      }
+    ],
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "simId": "sim-c71068fa-2823-4ebb-9de0-5e56a0646197"
+}

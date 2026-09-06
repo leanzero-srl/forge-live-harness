@@ -1,0 +1,9 @@
+{
+  "supervisorPid": 15309,
+  "dispatchedAt": "2026-09-06T15:26:11.535896+00:00",
+  "harnessCommit": "dc27ca0224c312e53f53e878b0344d25dc45eea4",
+  "instrumentHash": "6a922c545c2f44f25d738cdc6a327ab2ef22b98e3140b98f088589451ba06e7d",
+  "rootDispatchCommit": "795bd4bb",
+  "commandReceipt": "command.json",
+  "status": "dispatched"
+}

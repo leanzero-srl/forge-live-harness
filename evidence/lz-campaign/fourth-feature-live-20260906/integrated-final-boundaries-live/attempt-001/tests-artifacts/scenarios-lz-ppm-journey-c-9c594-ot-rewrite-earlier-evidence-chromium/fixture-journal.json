@@ -1,0 +1,46 @@
+{
+  "marker": "lz-norm-mtowe18s",
+  "name": "[harness-test] lz-norm-mtowe18s",
+  "time": "2026-09-05T21:31:28.588Z",
+  "issues": [
+    {
+      "key": "WFH-2833",
+      "seed": {
+        "label": "retained completed outcome",
+        "duration": 5,
+        "start": "2026-10-05",
+        "due": "2026-10-09"
+      }
+    }
+  ],
+  "planId": "plan-test-mtowe3tg-bvsgwh",
+  "cleanup": [
+    {
+      "plan": "plan-test-mtowe3tg-bvsgwh",
+      "deleted": true
+    },
+    {
+      "issue": "WFH-2833",
+      "deleted": true
+    }
+  ],
+  "searchIndexVerified": [
+    {
+      "key": "WFH-2833",
+      "start": "2026-10-05",
+      "due": "2026-10-09",
+      "duration": 5
+    }
+  ],
+  "forgeIndexObservations": [
+    [
+      {
+        "key": "WFH-2833",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      }
+    ]
+  ],
+  "integrityPassed": true
+}

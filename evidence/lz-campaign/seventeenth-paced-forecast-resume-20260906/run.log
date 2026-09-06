@@ -1,0 +1,39 @@
+
+Running 1 test using 1 worker
+
+
+(node:98971) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts:34:1 › seventeenth paced resume: same retained5300 job completes exact40-run report and HTML without cleanup
+[chromium] › scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts:34:1 › seventeenth paced resume: same retained5300 job completes exact40-run report and HTML without cleanup
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.586","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T12:00:56.262Z"}
+
+PACED_ADVANCE {"checkpoint":126,"startedAt":"2026-09-06T12:03:40.248Z","reservedUnits":96}
+
+PACED_ADVANCE {"checkpoint":127,"startedAt":"2026-09-06T12:03:50.761Z","reservedUnits":128}
+
+  1) [chromium] › scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts:34:1 › seventeenth paced resume: same retained5300 job completes exact40-run report and HTML without cleanup 
+
+    AssertionError: The report capture could not complete this step. Reload its status and retry, or finish cleanup before creating a fresh report.
+
+    false !== true
+
+
+       at scenarios/lz-ppm/seventeenth-paced-resume-contract.mjs:24
+
+      22 |  for(let n=0;job.state==='active';n++){
+      23 |   assert.ok(n<maxSteps&&now()-started<maxMs,'Explicit paced continuation deadline or checkpoint bound reached');const before=structuredClone(job);await onObserved({stage:'before-advance',wallTime:new Date().toISOString(),payload:{planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint}});
+    > 24 |   const response=await advance({planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint},before);await onObserved({stage:'advance-response',before:before.checkpoint,response});assert.equal(response?.httpStatus,200);assert.equal(response.outerSuccess,true);assert.equal(response.body?.success,true,response.body?.error);job=resumedJob(response.body.job,before);await onObserved({stage:'forecast-progress',...progress.accept(job,before)});
+         |                                                                                                                                                                                                                                                                                              ^
+      25 |   if(response.body.report){assert.equal(job.state,'complete');assert.equal(response.body.report.id,retained.reportId);assert.match(response.body.report.hash,/^[a-f0-9]{64}$/);}
+      26 |   const fresh=await status();await onObserved({stage:'fresh-status',job:fresh});assert.deepEqual(fresh,job);await probe(job);await onObserved({stage:'checkpoint-verified',job});
+      27 |  }
+        at continuePacedReport (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/seventeenth-paced-resume-contract.mjs:24:286)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts:83:34
+
+    Error Context: evidence/lz-campaign/seventeenth-paced-forecast-resume-20260906/artifacts/scenarios-lz-ppm-campaign--6c70d-rt-and-HTML-without-cleanup-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts:34:1 › seventeenth paced resume: same retained5300 job completes exact40-run report and HTML without cleanup 

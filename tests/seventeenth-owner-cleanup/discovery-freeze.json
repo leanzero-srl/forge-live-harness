@@ -1,0 +1,35 @@
+{
+  "baseCommit": "79f0395",
+  "files": [
+    {
+      "path": "scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts",
+      "sha256": "4fa1af04f6f2cd2f68452c3ea524c0886dbbc61eb07f7eedae956aed95944fd9"
+    },
+    {
+      "path": "scenarios/lz-ppm/seventeenth-owner-cleanup-contract.mjs",
+      "sha256": "09762d6191503ea8dd0d4882babae3803f872c55231b8f02f795dc317150481d"
+    }
+  ],
+  "discoveryControls": {
+    "tests": 5,
+    "exitCode": 0
+  },
+  "priorControls": {
+    "tests": 66,
+    "exitCode": 0
+  },
+  "defaultListBefore": 1,
+  "defaultListAfter": 0,
+  "defaultTestStatus": "skipped",
+  "explicitMissingOrInvalidAdmission": "refuses before registration",
+  "broadListAfter": {
+    "exitCode": 1,
+    "remaining": "Five inherited cross-test import errors; no owner cleanup failure"
+  },
+  "typecheck": {
+    "exitCode": 2,
+    "remaining": "Two inherited Sentinel errors"
+  },
+  "browserLaunched": false,
+  "sharedSourceChanged": false
+}

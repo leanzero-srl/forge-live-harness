@@ -1,0 +1,909 @@
+{
+  "sourcePlanId": "plan-test-mtp4ut3m-9370na",
+  "simName": "[harness-test] lz-norm-mtp4uopa private simulation",
+  "keys": [
+    "WFH-2894",
+    "WFH-2895",
+    "WFH-2896"
+  ],
+  "steps": [
+    {
+      "name": "calendar-only-preserves-five-days",
+      "version": 2,
+      "rows": [
+        {
+          "key": "WFH-2894",
+          "start": "2026-03-02",
+          "due": "2026-03-09",
+          "duration": 5,
+          "predecessors": [],
+          "predecessorLags": {}
+        },
+        {
+          "key": "WFH-2895",
+          "start": "2026-03-10",
+          "due": "2026-03-16",
+          "duration": 5,
+          "predecessors": [
+            "WFH-2894"
+          ],
+          "predecessorLags": {
+            "WFH-2894": 0
+          }
+        },
+        {
+          "key": "WFH-2896",
+          "start": "2026-12-07",
+          "due": "2026-12-11",
+          "duration": 5,
+          "predecessors": [],
+          "predecessorLags": {}
+        }
+      ]
+    },
+    {
+      "name": "scope-holiday-lag-saved",
+      "version": 3,
+      "rows": [
+        {
+          "key": "WFH-2894",
+          "start": "2026-03-02",
+          "due": "2026-03-10",
+          "duration": 6,
+          "predecessors": [],
+          "predecessorLags": {}
+        },
+        {
+          "key": "WFH-2895",
+          "start": "2026-03-13",
+          "due": "2026-03-19",
+          "duration": 5,
+          "predecessors": [
+            "WFH-2894"
+          ],
+          "predecessorLags": {
+            "WFH-2894": 2
+          }
+        }
+      ],
+      "calendar": {
+        "calendarName": "Standard (Mon-Fri)",
+        "holidays": [
+          {
+            "date": "2026-03-04",
+            "name": ""
+          }
+        ],
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "name": "startWrite",
+      "denied": {
+        "success": false,
+        "error": "This is a private simulation plan. Live Jira operations, source changes and sharing are unavailable."
+      }
+    },
+    {
+      "name": "indexPlan",
+      "denied": {
+        "success": false,
+        "error": "This is a private simulation plan. Live Jira operations, source changes and sharing are unavailable."
+      }
+    },
+    {
+      "name": "updatePlan",
+      "denied": {
+        "success": false,
+        "error": "This is a private simulation plan. Live Jira operations, source changes and sharing are unavailable."
+      }
+    },
+    {
+      "name": "updatePlanAccess",
+      "denied": {
+        "success": false,
+        "error": "This is a private simulation plan. Live Jira operations, source changes and sharing are unavailable."
+      }
+    },
+    {
+      "name": "all-four-denials-preserve-entire-model-and-scope",
+      "before": {
+        "success": true,
+        "model": {
+          "assets": null,
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [
+              {
+                "date": "2026-03-04",
+                "name": ""
+              }
+            ],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "chunkCount": 1,
+          "chunkHashes": [
+            "40be8983bc4cb2f9ce0a064f73d6e4130d515e8b776ca77f9a90fca26875e6fa"
+          ],
+          "consistency": {
+            "basisHash": "5eabed68d2979c9085e93ae554ef86f78e0c8beb74a74698733de54a9718fce0",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T01:28:41.709Z"
+          },
+          "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "fieldOverrides": {},
+          "hash": "5f4de04127c2ec37a72e7b05f2ee18e0225f7b3bfbb7e5035307b05ae0ff6c89",
+          "id": "f306d19b-bced-4182-8a6c-0fb1f21a0ff9",
+          "issueCount": 2,
+          "kind": "scenario",
+          "milestones": [],
+          "mode": "simulation",
+          "name": "[harness-test] lz-norm-mtp4uopa private simulation",
+          "planId": "sim-d057e964-bb4b-419a-bec2-145717d9f19b",
+          "previousGeneration": "99cecb1f-a53c-42a7-bb83-d252dec20004",
+          "provenance": {
+            "baseHash": "a6025e71042ddb9088ffc84e81feced6bbfd1c546ee1ff449fcb2217f407accc",
+            "baseSnapshotId": "99cecb1f-a53c-42a7-bb83-d252dec20004",
+            "baseSourceVersion": 2,
+            "baseTakenAt": "2026-09-06T01:28:47.840Z",
+            "dependencyChanges": [
+              {
+                "fromKey": "WFH-2894",
+                "lag": 2,
+                "remove": false,
+                "toKey": "WFH-2895"
+              }
+            ],
+            "excludedLeafKeys": [
+              "WFH-2896"
+            ],
+            "kind": "saved-scenario-variant",
+            "removedBoundaryLinks": [],
+            "selectedLeafKeys": [
+              "WFH-2894",
+              "WFH-2895"
+            ],
+            "targetScopesRefreshed": false
+          },
+          "schemaVersion": 1,
+          "sourceVersion": 2,
+          "sources": [],
+          "state": "complete",
+          "takenAt": "2026-09-06T01:28:52.940Z",
+          "targetAvailability": [],
+          "uncertainty": "medium",
+          "workingChangeCount": 1,
+          "issues": [
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-03-06",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-03-02",
+                "successors": [
+                  "WFH-2895"
+                ]
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-03-10",
+              "duration": 6,
+              "durationExplicitlyCleared": false,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25094",
+              "key": "WFH-2894",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessorLags": {},
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k1z:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-03-02",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [
+                "WFH-2895"
+              ],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation predecessor",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-03-13",
+                "duration": 5,
+                "predecessors": [
+                  "WFH-2894"
+                ],
+                "startDate": "2026-03-09",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-03-19",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25095",
+              "key": "WFH-2895",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessorLags": {
+                "WFH-2894": 2
+              },
+              "predecessors": [
+                "WFH-2894"
+              ],
+              "priority": "Medium",
+              "rank": "0|i01k27:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-03-13",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation successor",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            }
+          ],
+          "assetsReadState": "requires-current-user-read"
+        },
+        "scopeBasis": {
+          "assets": null,
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "chunkCount": 1,
+          "chunkHashes": [
+            "0691da108e6cd892218b21eafac276b130f6cda74277c7e009d3cb9432423ed8"
+          ],
+          "consistency": {
+            "basisHash": "5eabed68d2979c9085e93ae554ef86f78e0c8beb74a74698733de54a9718fce0",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T01:28:41.709Z"
+          },
+          "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "fieldOverrides": {},
+          "hash": "61e701a4e44722793e7b303eef3f62f82c5673cef77029dbf931e61c1d2c39f3",
+          "id": "2cab1039-7c28-4da1-86ff-b92b9aa0c8f9",
+          "issueCount": 3,
+          "kind": "scenario",
+          "milestones": [],
+          "mode": "simulation",
+          "name": "[harness-test] lz-norm-mtp4uopa private simulation",
+          "planId": "sim-d057e964-bb4b-419a-bec2-145717d9f19b",
+          "schemaVersion": 1,
+          "sourceVersion": 2,
+          "sources": [],
+          "state": "complete",
+          "takenAt": "2026-09-06T01:28:43.051Z",
+          "uncertainty": "medium",
+          "workingChangeCount": 0,
+          "issues": [
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-03-06",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-03-02",
+                "successors": [
+                  "WFH-2895"
+                ]
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-03-06",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25094",
+              "key": "WFH-2894",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k1z:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-03-02",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [
+                "WFH-2895"
+              ],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation predecessor",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-03-13",
+                "duration": 5,
+                "predecessors": [
+                  "WFH-2894"
+                ],
+                "startDate": "2026-03-09",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-03-13",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25095",
+              "key": "WFH-2895",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [
+                "WFH-2894"
+              ],
+              "priority": "Medium",
+              "rank": "0|i01k27:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-03-09",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation successor",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-12-11",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-12-07",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-12-11",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25096",
+              "key": "WFH-2896",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k2f:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-12-07",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation independent December",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            }
+          ],
+          "assetsReadState": "requires-current-user-read"
+        },
+        "version": 3
+      },
+      "after": {
+        "success": true,
+        "model": {
+          "assets": null,
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [
+              {
+                "date": "2026-03-04",
+                "name": ""
+              }
+            ],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "chunkCount": 1,
+          "chunkHashes": [
+            "40be8983bc4cb2f9ce0a064f73d6e4130d515e8b776ca77f9a90fca26875e6fa"
+          ],
+          "consistency": {
+            "basisHash": "5eabed68d2979c9085e93ae554ef86f78e0c8beb74a74698733de54a9718fce0",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T01:28:41.709Z"
+          },
+          "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "fieldOverrides": {},
+          "hash": "5f4de04127c2ec37a72e7b05f2ee18e0225f7b3bfbb7e5035307b05ae0ff6c89",
+          "id": "f306d19b-bced-4182-8a6c-0fb1f21a0ff9",
+          "issueCount": 2,
+          "kind": "scenario",
+          "milestones": [],
+          "mode": "simulation",
+          "name": "[harness-test] lz-norm-mtp4uopa private simulation",
+          "planId": "sim-d057e964-bb4b-419a-bec2-145717d9f19b",
+          "previousGeneration": "99cecb1f-a53c-42a7-bb83-d252dec20004",
+          "provenance": {
+            "baseHash": "a6025e71042ddb9088ffc84e81feced6bbfd1c546ee1ff449fcb2217f407accc",
+            "baseSnapshotId": "99cecb1f-a53c-42a7-bb83-d252dec20004",
+            "baseSourceVersion": 2,
+            "baseTakenAt": "2026-09-06T01:28:47.840Z",
+            "dependencyChanges": [
+              {
+                "fromKey": "WFH-2894",
+                "lag": 2,
+                "remove": false,
+                "toKey": "WFH-2895"
+              }
+            ],
+            "excludedLeafKeys": [
+              "WFH-2896"
+            ],
+            "kind": "saved-scenario-variant",
+            "removedBoundaryLinks": [],
+            "selectedLeafKeys": [
+              "WFH-2894",
+              "WFH-2895"
+            ],
+            "targetScopesRefreshed": false
+          },
+          "schemaVersion": 1,
+          "sourceVersion": 2,
+          "sources": [],
+          "state": "complete",
+          "takenAt": "2026-09-06T01:28:52.940Z",
+          "targetAvailability": [],
+          "uncertainty": "medium",
+          "workingChangeCount": 1,
+          "issues": [
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-03-06",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-03-02",
+                "successors": [
+                  "WFH-2895"
+                ]
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-03-10",
+              "duration": 6,
+              "durationExplicitlyCleared": false,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25094",
+              "key": "WFH-2894",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessorLags": {},
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k1z:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-03-02",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [
+                "WFH-2895"
+              ],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation predecessor",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-03-13",
+                "duration": 5,
+                "predecessors": [
+                  "WFH-2894"
+                ],
+                "startDate": "2026-03-09",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-03-19",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25095",
+              "key": "WFH-2895",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessorLags": {
+                "WFH-2894": 2
+              },
+              "predecessors": [
+                "WFH-2894"
+              ],
+              "priority": "Medium",
+              "rank": "0|i01k27:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-03-13",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation successor",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            }
+          ],
+          "assetsReadState": "requires-current-user-read"
+        },
+        "scopeBasis": {
+          "assets": null,
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "chunkCount": 1,
+          "chunkHashes": [
+            "0691da108e6cd892218b21eafac276b130f6cda74277c7e009d3cb9432423ed8"
+          ],
+          "consistency": {
+            "basisHash": "5eabed68d2979c9085e93ae554ef86f78e0c8beb74a74698733de54a9718fce0",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T01:28:41.709Z"
+          },
+          "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "fieldOverrides": {},
+          "hash": "61e701a4e44722793e7b303eef3f62f82c5673cef77029dbf931e61c1d2c39f3",
+          "id": "2cab1039-7c28-4da1-86ff-b92b9aa0c8f9",
+          "issueCount": 3,
+          "kind": "scenario",
+          "milestones": [],
+          "mode": "simulation",
+          "name": "[harness-test] lz-norm-mtp4uopa private simulation",
+          "planId": "sim-d057e964-bb4b-419a-bec2-145717d9f19b",
+          "schemaVersion": 1,
+          "sourceVersion": 2,
+          "sources": [],
+          "state": "complete",
+          "takenAt": "2026-09-06T01:28:43.051Z",
+          "uncertainty": "medium",
+          "workingChangeCount": 0,
+          "issues": [
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-03-06",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-03-02",
+                "successors": [
+                  "WFH-2895"
+                ]
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-03-06",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25094",
+              "key": "WFH-2894",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k1z:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-03-02",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [
+                "WFH-2895"
+              ],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation predecessor",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-03-13",
+                "duration": 5,
+                "predecessors": [
+                  "WFH-2894"
+                ],
+                "startDate": "2026-03-09",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-03-13",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25095",
+              "key": "WFH-2895",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [
+                "WFH-2894"
+              ],
+              "priority": "Medium",
+              "rank": "0|i01k27:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-03-09",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation successor",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-12-11",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-12-07",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "capturedDuration": true,
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-12-11",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25096",
+              "key": "WFH-2896",
+              "labels": [
+                "lz-norm-mtp4uopa"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k2f:",
+              "remainingEstimateSeconds": null,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-12-07",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] lz-norm-mtp4uopa simulation independent December",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            }
+          ],
+          "assetsReadState": "requires-current-user-read"
+        },
+        "version": 3
+      }
+    },
+    {
+      "name": "stale-version-rejected",
+      "error": "The simulation changed or its version is missing. Reload before saving."
+    },
+    {
+      "name": "excluded-task-restored-after-reopen",
+      "version": 4,
+      "rows": [
+        {
+          "key": "WFH-2894",
+          "start": "2026-03-02",
+          "due": "2026-03-10",
+          "duration": 6,
+          "predecessors": [],
+          "predecessorLags": {}
+        },
+        {
+          "key": "WFH-2895",
+          "start": "2026-03-13",
+          "due": "2026-03-19",
+          "duration": 5,
+          "predecessors": [
+            "WFH-2894"
+          ],
+          "predecessorLags": {
+            "WFH-2894": 2
+          }
+        },
+        {
+          "key": "WFH-2896",
+          "start": "2026-12-07",
+          "due": "2026-12-11",
+          "duration": 5,
+          "predecessors": [],
+          "predecessorLags": {}
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "uiDelete": true,
+    "simulationRegistryAbsent": true
+  },
+  "base": {
+    "id": "c527f80d-e36c-416c-bf3d-a2100da4dfd2",
+    "hash": "ebc0175b9816c21e191f749ea00635ab0a5dd6b14e5a0b19aaa382018a8e810f",
+    "rows": [
+      {
+        "key": "WFH-2894",
+        "start": "2026-03-02",
+        "due": "2026-03-06",
+        "duration": 5,
+        "predecessors": [],
+        "predecessorLags": {}
+      },
+      {
+        "key": "WFH-2895",
+        "start": "2026-03-09",
+        "due": "2026-03-13",
+        "duration": 5,
+        "predecessors": [
+          "WFH-2894"
+        ],
+        "predecessorLags": {}
+      },
+      {
+        "key": "WFH-2896",
+        "start": "2026-12-07",
+        "due": "2026-12-11",
+        "duration": 5,
+        "predecessors": [],
+        "predecessorLags": {}
+      }
+    ],
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "simId": "sim-d057e964-bb4b-419a-bec2-145717d9f19b",
+  "sourceAndCaptureUnchanged": true
+}

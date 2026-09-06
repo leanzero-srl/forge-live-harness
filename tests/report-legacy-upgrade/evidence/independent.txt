@@ -1,0 +1,12 @@
+✔ seeded resume never accepts a begin, including identical retained nonce (1.216083ms)
+✔ seeded resumed response preserves every established identity field (1.090417ms)
+✔ explicit seed permits actual monotonic resume without synthesizing begin; foreign and overlapping writes refuse (0.197375ms)
+✔ known report identity cannot change even when returned summary agrees with the replacement (0.192333ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42.616167

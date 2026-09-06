@@ -1,0 +1,434 @@
+{
+  "time": "2026-09-06T00:20:09.984Z",
+  "phase": "before",
+  "planIds": [
+    "plan-msq9dg8l-gz6mz1",
+    "plan-mta3aw3t-6dyijd",
+    "plan-mtbrlh8n-7ghw8u",
+    "plan-test-mtozislw-v816ze"
+  ],
+  "plan": {
+    "name": "[harness-test] lz-norm-mtoziqi3",
+    "issues": [
+      {
+        "_original": {
+          "buffer": "No",
+          "dueDate": "2026-09-11",
+          "duration": 5,
+          "predecessors": [],
+          "startDate": "2026-09-07",
+          "successors": []
+        },
+        "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "assigneeName": "Mihai Perdum",
+        "assigneeState": "assigned",
+        "buffer": "No",
+        "children": [],
+        "created": "2026-09-06",
+        "dueDate": "2026-09-11",
+        "duration": 5,
+        "fieldAvail": {
+          "buffer": true,
+          "dueDate": true,
+          "duration": true,
+          "startDate": true
+        },
+        "fixVersions": [
+          {
+            "id": "10289",
+            "name": "[harness-test] lz-norm-mtoziqi3"
+          }
+        ],
+        "hierarchyLevel": 0,
+        "id": "25047",
+        "key": "WFH-2847",
+        "labels": [
+          "lz-norm-mtoziqi3"
+        ],
+        "orphanParentKey": null,
+        "parentKey": null,
+        "predecessors": [],
+        "priority": "Medium",
+        "rank": "0|i01k1z:",
+        "remainingEstimateSeconds": 72000,
+        "reporter": "Mihai Perdum",
+        "resolution": null,
+        "startDate": "2026-09-07",
+        "status": "New",
+        "statusCategory": "new",
+        "storyPoints": null,
+        "successors": [],
+        "summary": "[harness-test] lz-norm-mtoziqi3 numeric report 20h",
+        "type": "Work package",
+        "updated": "2026-09-06"
+      }
+    ],
+    "sources": [
+      {
+        "boardId": null,
+        "id": "src-0",
+        "label": "harness",
+        "projectKey": null,
+        "query": "key in (WFH-2847) ORDER BY Rank ASC",
+        "type": "jql"
+      }
+    ]
+  },
+  "issue": {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "25047",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25047",
+    "key": "WFH-2847",
+    "fields": {
+      "summary": "[harness-test] lz-norm-mtoziqi3 numeric report 20h",
+      "timeestimate": 72000,
+      "customfield_10180": 5,
+      "duedate": "2026-09-11",
+      "project": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+        "id": "10001",
+        "key": "WFH",
+        "name": "WORK FOR HIRE",
+        "projectTypeKey": "software",
+        "simplified": false,
+        "avatarUrls": {
+          "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+          "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+          "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+          "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+        }
+      },
+      "assignee": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "emailAddress": "mihai@wolfaenpak.com",
+        "avatarUrls": {
+          "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+          "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+          "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+          "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+        },
+        "displayName": "Mihai Perdum",
+        "active": true,
+        "timeZone": "Europe/Bucharest",
+        "accountType": "atlassian"
+      },
+      "fixVersions": [
+        {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10289",
+          "id": "10289",
+          "name": "[harness-test] lz-norm-mtoziqi3",
+          "archived": false,
+          "released": false
+        }
+      ],
+      "customfield_10015": "2026-09-07",
+      "labels": [
+        "lz-norm-mtoziqi3"
+      ]
+    }
+  },
+  "version": {
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/version/10289",
+    "id": "10289",
+    "name": "[harness-test] lz-norm-mtoziqi3",
+    "archived": false,
+    "released": false,
+    "projectId": 10001
+  },
+  "summary": {
+    "id": "4fbb1943-7064-4dc1-8faa-e06816c188f6",
+    "hash": "4c29c2fe0671145b7f329dc96ddcdba3843e295dcedf9020fa570c6666f9b80b",
+    "name": "Numeric commitment and overload",
+    "planName": "[harness-test] lz-norm-mtoziqi3",
+    "takenAt": "2026-09-05T22:59:32.673Z",
+    "sourceVersion": 6,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 1,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 1,
+        "totalLeaves": 1
+      },
+      "inputHash": "79530050d91c6abad432e378a27c4f777c3412090a18e556bb184521b7202212",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.48333333333333334,
+      "p50": "2026-09-14",
+      "p80": "2026-09-14",
+      "p90": "2026-09-15",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "high"
+    },
+    "capacity": {
+      "asOfDate": "2026-09-05",
+      "assumptions": "This captured plan only, not the selected portfolio. Remaining Jira effort is spread over its remaining working dates; personal leave reduces capacity, not demand. The author explicitly included these saved availability assumptions in this shared report. No tasks are moved.",
+      "coverage": {
+        "completedIssues": 0,
+        "conflictingIssues": 0,
+        "missingEffort": 0,
+        "selectedPlans": 1,
+        "sharedDuplicatesRemoved": 0,
+        "unallocatedIssues": 0,
+        "unassignedIssues": 0,
+        "unavailableAssignee": 0,
+        "unavailableIssueCount": 0,
+        "unavailableStatus": 0,
+        "uniqueIssues": 1
+      },
+      "endDate": "2026-09-13",
+      "inputHash": "e75582bdc3f604dabae3bf97a8c9dec13cde2ccc4b2796c55ab6d41a5dd8e26a",
+      "profileVersion": 35,
+      "readAt": "2026-09-05T22:59:32.360Z",
+      "readStartedAt": "2026-09-05T22:59:32.094Z",
+      "reason": null,
+      "scope": "captured-plan",
+      "sourceVersion": 6,
+      "startDate": "2026-09-07",
+      "state": "available",
+      "totals": {
+        "allocatedHours": 20,
+        "knownEffortHours": 20,
+        "outsideWindowHours": 0,
+        "unallocatedHours": 0
+      }
+    },
+    "uncertainty": "high",
+    "consistency": {
+      "basisHash": "ecf510fc2c512c456c1fba1b42fb4bf4124c67c03670bcf80e8071b15ec8201d",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-05T22:59:32.056Z",
+      "verifiedAfterAnalysisAt": "2026-09-05T22:59:32.673Z"
+    },
+    "baseline": null,
+    "counts": {
+      "timeline": 1,
+      "targets": 2,
+      "changes": 0,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 1,
+      "changes": 0,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "document": {
+      "availability": {
+        "hashes": [
+          "b8b8a0aeda00622baffa642368f1f9c792fc56078d3df4077b76a2135d32bcfe"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "capacity": {
+        "hashes": [
+          "ccfeec3e049324dcdaa0971d364d542ffa0f36d913b99c2e850cbe7f599f11fc"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "changes": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      },
+      "targets": {
+        "hashes": [
+          "cf1ca192172f32e9384c44e0d402f2befdce837d31887a130750f3e6c39be5fa"
+        ],
+        "sizes": [
+          2
+        ],
+        "total": 2
+      },
+      "timeline": {
+        "hashes": [
+          "8f25b51ec166e6f32e3d649621f7afd98fb4721c6aef5ce9a1fed6f592016e48"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "unallocated": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 1,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 1,
+      "unavailableRows": 0
+    },
+    "span": {
+      "start": "2026-09-07",
+      "finish": "2026-09-11"
+    },
+    "plannedFinish": "2026-09-11",
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 0
+    }
+  },
+  "pages": [
+    {
+      "reportId": "4fbb1943-7064-4dc1-8faa-e06816c188f6",
+      "hash": "4c29c2fe0671145b7f329dc96ddcdba3843e295dcedf9020fa570c6666f9b80b",
+      "section": "availability",
+      "page": 0,
+      "pageCount": 1,
+      "total": 1,
+      "pageHash": "b8b8a0aeda00622baffa642368f1f9c792fc56078d3df4077b76a2135d32bcfe",
+      "rows": [
+        {
+          "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "name": "Mihai Perdum",
+          "profile": {
+            "hoursPerDay": 8,
+            "leaveDates": [
+              "2026-09-10"
+            ],
+            "partTimePct": 50,
+            "reservePct": 25,
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "reportId": "4fbb1943-7064-4dc1-8faa-e06816c188f6",
+      "hash": "4c29c2fe0671145b7f329dc96ddcdba3843e295dcedf9020fa570c6666f9b80b",
+      "section": "capacity",
+      "page": 0,
+      "pageCount": 1,
+      "total": 1,
+      "pageHash": "ccfeec3e049324dcdaa0971d364d542ffa0f36d913b99c2e850cbe7f599f11fc",
+      "rows": [
+        {
+          "availableDays": 4,
+          "capacityHours": 12,
+          "demandHours": 20,
+          "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-09-07",
+          "name": "Mihai Perdum",
+          "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "status": "overloaded",
+          "unknownEffortCount": 0,
+          "utilizationPct": 166.66666666666669,
+          "week": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "reportId": "4fbb1943-7064-4dc1-8faa-e06816c188f6",
+      "hash": "4c29c2fe0671145b7f329dc96ddcdba3843e295dcedf9020fa570c6666f9b80b",
+      "section": "targets",
+      "page": 0,
+      "pageCount": 1,
+      "total": 2,
+      "pageHash": "cf1ca192172f32e9384c44e0d402f2befdce837d31887a130750f3e6c39be5fa",
+      "rows": [
+        {
+          "date": "2026-09-07",
+          "forecastReason": null,
+          "forecastState": "available",
+          "key": "cc9ee018-ce6f-4a0f-8e73-9db696215f66",
+          "memberCount": 1,
+          "name": "Scoped earliest",
+          "p50": "2026-09-14",
+          "p80": "2026-09-14",
+          "p90": "2026-09-15",
+          "plannedFinish": "2026-09-11",
+          "probability": 0,
+          "reason": null,
+          "scopeId": "10289",
+          "scopeLabel": "[harness-test] lz-norm-mtoziqi3",
+          "scopeType": "release",
+          "state": "After target"
+        },
+        {
+          "date": "2026-09-18",
+          "forecastReason": null,
+          "forecastState": "available",
+          "key": "d0e4c6b6-bc18-4b73-8c76-d6ba3be3899f",
+          "memberCount": 1,
+          "name": "Scoped later",
+          "p50": "2026-09-14",
+          "p80": "2026-09-14",
+          "p90": "2026-09-15",
+          "plannedFinish": "2026-09-11",
+          "probability": 1,
+          "reason": null,
+          "scopeId": "10289",
+          "scopeLabel": "[harness-test] lz-norm-mtoziqi3",
+          "scopeType": "release",
+          "state": "Within target"
+        }
+      ]
+    },
+    {
+      "reportId": "4fbb1943-7064-4dc1-8faa-e06816c188f6",
+      "hash": "4c29c2fe0671145b7f329dc96ddcdba3843e295dcedf9020fa570c6666f9b80b",
+      "section": "timeline",
+      "page": 0,
+      "pageCount": 1,
+      "total": 1,
+      "pageHash": "8f25b51ec166e6f32e3d649621f7afd98fb4721c6aef5ce9a1fed6f592016e48",
+      "rows": [
+        {
+          "buffer": "No",
+          "dueDate": "2026-09-11",
+          "duration": 5,
+          "key": "WFH-2847",
+          "parentKey": null,
+          "startDate": "2026-09-07",
+          "statusCategory": "new",
+          "summary": "[harness-test] lz-norm-mtoziqi3 numeric report 20h"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "settingsVersion": 36,
+  "draft": null,
+  "activeDrafts": {}
+}

@@ -1,0 +1,17 @@
+{
+  "candidateCommit": "6e2ad54f",
+  "independentReviewCommit": "14fc333a",
+  "originalRedCommit": "d5cc6473",
+  "independentOriginalReplayCommit": "435a90a4",
+  "candidateModuleByteIdentical": true,
+  "hashes": {
+    "forge/portable-viewport.mjs": "38fccb4d16bb5db28c2604b64fa58b9627a39e61471598b953c451d3cee808e2",
+    "forge/portable-browser.mjs": "b25edbae13e78c206038d75516d37642d1e6d5c568b010d78eea15a1ba82f433",
+    "forge/browser.ts": "ae6228c02c930aa81897318c4d774d81cca04b38d51c48834e8eea8a9c5ce681",
+    "auth/auth.setup.ts": "2c89ab147b8f338ef676eb0faf90e378d8425e490b9e120b1449417b03a2d11a",
+    "scripts/lz-campaign.py": "85237b2d876e3217b34016e3591e3c903ee08b7038dcb4b3f64f4ad8f30064ea",
+    "tests/portable-viewport/portable-viewport.test.mjs": "564720c084b087de0717fd10fc958e027e2e313c863c8c4276b903bfc75fd768",
+    "tests/portable-viewport/adapter-composition.test.mjs": "eaa9524cf774063e04090e6eac06321e1cf8c87bbdeafca11638a0a3502565ab",
+    "tests/portable-viewport/actual-chrome.mjs": "7b4081088a7062603bb3382187a3ad3ca8ef6a54329272377abbaa00861dfad2"
+  }
+}

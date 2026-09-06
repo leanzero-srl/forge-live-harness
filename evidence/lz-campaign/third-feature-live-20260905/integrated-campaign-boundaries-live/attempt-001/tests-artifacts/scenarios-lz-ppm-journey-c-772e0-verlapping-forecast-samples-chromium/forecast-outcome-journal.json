@@ -1,0 +1,153 @@
+{
+  "key": "WFH-2805",
+  "observations": [
+    {
+      "id": "25002",
+      "statusCategory": "new",
+      "resolutionId": null,
+      "resolutionDate": null,
+      "statusCategoryChangedDate": "2026-09-05T23:50:52.506+0300"
+    },
+    {
+      "id": "25002",
+      "statusCategory": "done",
+      "resolutionId": "10001",
+      "resolutionDate": "2026-09-05T23:51:11.432+0300",
+      "statusCategoryChangedDate": "2026-09-05T23:51:11.450+0300"
+    }
+  ],
+  "predictions": [
+    {
+      "kind": "forecast",
+      "name": "Prospective forecast one",
+      "sourceVersion": 2,
+      "sources": [
+        {
+          "boardId": null,
+          "id": "src-0",
+          "label": "harness",
+          "projectKey": null,
+          "query": "key in (WFH-2805) ORDER BY Rank ASC",
+          "type": "jql"
+        }
+      ],
+      "calendar": {
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "holidays": [],
+        "calendarName": "Standard (Mon-Fri)"
+      },
+      "milestones": [],
+      "uncertainty": "medium",
+      "fieldOverrides": {},
+      "assets": null,
+      "workingChangeCount": 0,
+      "consistency": {
+        "method": "two-matching-reads",
+        "basisHash": "0275ef5de8d076083a2c89fba92d7bb0007d583d8c84ffe4f19334a591fb7a2a",
+        "observedAt": "2026-09-05T20:51:05.294Z"
+      },
+      "forecast": {
+        "modelVersion": "duration-triangular-fs-v1",
+        "runs": 300,
+        "seed": 42,
+        "uncertainty": "medium",
+        "scopes": [
+          {
+            "id": "plan",
+            "name": "Whole plan",
+            "p50": "2026-10-09",
+            "p80": "2026-10-12",
+            "p90": "2026-10-12"
+          }
+        ]
+      },
+      "takenAt": "2026-09-05T20:51:05.307Z",
+      "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "schemaVersion": 1,
+      "planId": "plan-test-mtouxw78-h1ddz2",
+      "id": "9858e852-5718-4e15-833e-03f2dbb1e7f9",
+      "issueCount": 1,
+      "chunkCount": 1,
+      "chunkHashes": [
+        "8392a494f1e93a462afcd2baf70813e9fa68db647e89d7eee986ef1692ef8896"
+      ],
+      "hash": "826796887d8211ec0570df941988b78c368f993184111b89481e6012f65c1f17",
+      "state": "complete"
+    },
+    {
+      "kind": "forecast",
+      "name": "Overlapping forecast two",
+      "sourceVersion": 2,
+      "sources": [
+        {
+          "boardId": null,
+          "id": "src-0",
+          "label": "harness",
+          "projectKey": null,
+          "query": "key in (WFH-2805) ORDER BY Rank ASC",
+          "type": "jql"
+        }
+      ],
+      "calendar": {
+        "workingDays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "holidays": [],
+        "calendarName": "Standard (Mon-Fri)"
+      },
+      "milestones": [],
+      "uncertainty": "medium",
+      "fieldOverrides": {},
+      "assets": null,
+      "workingChangeCount": 0,
+      "consistency": {
+        "method": "two-matching-reads",
+        "basisHash": "0275ef5de8d076083a2c89fba92d7bb0007d583d8c84ffe4f19334a591fb7a2a",
+        "observedAt": "2026-09-05T20:51:07.351Z"
+      },
+      "forecast": {
+        "modelVersion": "duration-triangular-fs-v1",
+        "runs": 300,
+        "seed": 42,
+        "uncertainty": "medium",
+        "scopes": [
+          {
+            "id": "plan",
+            "name": "Whole plan",
+            "p50": "2026-10-09",
+            "p80": "2026-10-12",
+            "p90": "2026-10-12"
+          }
+        ]
+      },
+      "takenAt": "2026-09-05T20:51:07.367Z",
+      "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "schemaVersion": 1,
+      "planId": "plan-test-mtouxw78-h1ddz2",
+      "id": "9454e5a5-d1d6-436c-b43a-75aee00dd110",
+      "issueCount": 1,
+      "chunkCount": 1,
+      "chunkHashes": [
+        "8392a494f1e93a462afcd2baf70813e9fa68db647e89d7eee986ef1692ef8896"
+      ],
+      "hash": "cc3d1f1688752a044589bdb2ce367284338a3a1402665945e0379b33ce31dd09",
+      "state": "complete"
+    }
+  ],
+  "transition": {
+    "id": "31",
+    "name": "Reject work",
+    "to": "Rejected"
+  },
+  "sessionResultsNotMisrepresentedAsRetained": true
+}

@@ -1,0 +1,20 @@
+
+AssertionError: LZ_CLEANUP_COMPLETED_JOURNAL required before test registration
+
+   at scenarios/lz-ppm/seventeenth-owner-cleanup-contract.mjs:34
+
+  32 |  return {journal:j,inspection:i,journalSha256,inspectionSha256};
+  33 | }
+> 34 | export function loadOwnerCleanupAdmission(env=process.env){for(const k of ['LZ_CLEANUP_COMPLETED_JOURNAL','LZ_CLEANUP_COMPLETED_SHA256','LZ_CLEANUP_ROOT_INSPECTION','LZ_CLEANUP_ROOT_INSPECTION_SHA256'])assert.ok(env[k],`${k} required before test registration`);return admitOwnerCleanup({journalBytes:fs.readFileSync(env.LZ_CLEANUP_COMPLETED_JOURNAL),journalSha256:env.LZ_CLEANUP_COMPLETED_SHA256,inspectionBytes:fs.readFileSync(env.LZ_CLEANUP_ROOT_INSPECTION),inspectionSha256:env.LZ_CLEANUP_ROOT_INSPECTION_SHA256});}
+     |                                                                                                                                                                                                                  ^
+  35 |
+  36 | /** Finite progression, no mutation retries. Acknowledged false-cleanup is continuation, not retry.
+  37 |  * Transport allowance60s + one61s rolling-window wait per call, plus two10-minute
+    at loadOwnerCleanupAdmission (/private/tmp/lz-harness-retained-cleanup-20260906/scenarios/lz-ppm/seventeenth-owner-cleanup-contract.mjs:34:210)
+    at /private/tmp/lz-harness-retained-cleanup-20260906/scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts:24:18
+Listing tests:
+
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+Total: 0 tests in 0 files

@@ -1,0 +1,42 @@
+{
+  "status": "authorized",
+  "runId": "eighteenth-exact-three-recovery-20260906",
+  "preparedAt": "2026-09-06T16:20:15.057328+00:00",
+  "harnessCommit": "156d8d0b26b23e1901dd98474aae642ac0259763",
+  "isolatedSourceCommit": "82de12bfd2682dc271b105fa4cbfaa4f19a77098",
+  "instrumentHash": "5ba852d1a05f0e87a23391ea46c494cd210af97a40ccee342ed564515696dbb7",
+  "sourceSha256": {
+    "scenarios/lz-ppm/campaign-eighteenth-recovery.spec.ts": "59e8b696a247f7f4b3f5d4a9e9334d1fd667699eaa70dad494f1ee330cb95605",
+    "scenarios/lz-ppm/eighteenth-recovery-contract.mjs": "4f5448ba725c53ca9dd219d1b65db179b6543e3977527cc15c7b22951300a96e",
+    "tests/eighteenth-recovery/pinned.json": "4f95b5accf1ddbc91bba05b9ccb3b598f892a2e03cd183433b341b3a023f37ed"
+  },
+  "appSourceCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "forgeVersion": "6.26.0",
+  "uiVersion": "4.58.588",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "phase": "approved-three-fixtures",
+  "rootDispatchCommit": "4fae773d12421d7df8a3f56db475503f8f055b00",
+  "authorizedAt": "2026-09-06T16:23:27.502862+00:00",
+  "environment": {
+    "LZ_EIGHTEENTH_RECOVERY_EVIDENCE": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-report-acceptance-20260906",
+    "LZ_EIGHTEENTH_RECOVERY_APPROVAL": "/Users/mihaiperdum/Projects/lz-ppm-forge/docs/campaign-2026-09/eighteenth-recovery-root-approval.json",
+    "LZ_EIGHTEENTH_RECOVERY_APPROVAL_SHA256": "6405e65e6454cd13c3900f02edc4d082aa33b7b36b6ea65a0e5a936e3cef3768"
+  },
+  "mutationBound": {
+    "cancel": 2,
+    "normalUiPlanDelete": 3,
+    "ownedJiraDelete": 3
+  },
+  "scope": "Only exact three retained fixtures; no start until reviewed transfer, external approval and root dispatch; no actual mutation retries",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-eighteenth-recovery.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighteenth-exact-three-recovery-20260906/artifacts"
+  ]
+}

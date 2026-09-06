@@ -1,0 +1,57 @@
+
+Running 2 tests using 1 worker
+
+
+(node:49187) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/2] [chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:21:1 › targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent
+[chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:21:1 › targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent
+[jira !!] GET /rest/api/3/issue/WFH-2730 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2729 -> 404
+
+[jira !!] GET /rest/api/3/version/10284 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtopgtn3","name":"[harness-test] lz-norm-mtopgtn3","time":"2026-09-05T18:17:41.391Z","issues":[{"key":"WFH-2729","seed":{"label":"scoped early","duration":2,"start":"2026-10-05","due":"2026-10-06","release":true}},{"key":"WFH-2730","seed":{"label":"outside long","duration":41,"start":"2026-10-05","due":"2026-11-30"}}],"planId":"plan-test-mtopgx02-k4xdyb","cleanup":[{"plan":"plan-test-mtopgx02-k4xdyb","deleted":true},{"issue":"WFH-2730","deleted":true},{"issue":"WFH-2729","deleted":true},{"version":"10284","deleted":true}],"version":{"self":"https://wolfaenpak.atlassian.net/rest/api/3/version/10284","id":"10284","name":"[harness-test] lz-norm-mtopgtn3","archived":false,"released":false,"projectId":10001},"searchIndexVerified":[{"key":"WFH-2729","start":"2026-10-05","due":"2026-10-06","duration":2},{"key":"WFH-2730","start":"2026-10-05","due":"2026-11-30","duration":41}],"integrityPassed":true}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:21:1 › targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+      Array [
+        "WFH-2729",
+    -   "WFH-2730",
+      ]
+
+       at scenarios/lz-ppm/normalization-owned-fixture.ts:60
+
+      58 |     const created = await getTestState('lz-ppm', { what: 'createFixture', name, jql: fixtureJql });
+      59 |     journal.planId = created.planId; persist();
+    > 60 |     expect(created.issues.map((i: any) => i.key).sort()).toEqual(journal.issues.map((i: any) => i.key).sort());
+         |                                                          ^
+      61 |     for (const i of journal.issues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
+      62 |     if (linked) expect(created.issues.find((i: any) => i.key === journal.issues[1].key).predecessors).toContain(journal.issues[0].key);
+      63 |     await work({ planId: journal.planId, name, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:60:58)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-planning.spec.ts:22:2
+
+    Error Context: evidence/lz-campaign/first-feature-live-20260905/planning-live-foundation/attempt-004/tests-artifacts/scenarios-lz-ppm-journey-c-0c444-ounded-100-versus-0-percent-chromium/error-context.md
+
+
+
+(node:49573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[2/2] [chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:49:1 › history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion
+[chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:49:1 › history: captures retain schedules, active baseline cannot be deleted, replacement permits deletion
+[jira !!] GET /rest/api/3/issue/WFH-2731 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtoph3jh","name":"[harness-test] lz-norm-mtoph3jh","time":"2026-09-05T18:17:54.221Z","issues":[{"key":"WFH-2731","seed":{"label":"history","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtoph5si-aycfrl","cleanup":[{"plan":"plan-test-mtoph5si-aycfrl","deleted":true},{"issue":"WFH-2731","deleted":true}],"searchIndexVerified":[{"key":"WFH-2731","start":"2026-10-05","due":"2026-10-09","duration":5}],"integrityPassed":true}
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-planning.spec.ts:21:1 › targets: real release scope CRUD persists and produces independently bounded 100 versus 0 percent 
+  1 passed (58.7s)

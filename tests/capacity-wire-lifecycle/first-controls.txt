@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: only completed exact Capacity observation promotes a single atomic wire generation
+ok 1 - only completed exact Capacity observation promotes a single atomic wire generation
+  ---
+  duration_ms: 1.88325
+  type: 'test'
+  ...
+# Subtest: request creation alone cannot promote; concurrent callers share one completed acquisition
+ok 2 - request creation alone cannot promote; concurrent callers share one completed acquisition
+  ---
+  duration_ms: 0.283542
+  type: 'test'
+  ...
+# Subtest: mismatched principal, endpoint, identity, preferences or unsuccessful response fail closed
+not ok 3 - mismatched principal, endpoint, identity, preferences or unsuccessful response fail closed
+  ---
+  duration_ms: 1.182333
+  type: 'test'
+  location: '/private/tmp/lz-capacity-wire-lifecycle-20260906/tests/capacity-wire-lifecycle/lifecycle.test.mjs:49:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /CAPACITY_WIRE_/. Input:
+    
+    'DataCloneError: #<Promise> could not be cloned.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: ''
+  stack: |-
+    new DOMException (node:internal/per_context/domexception:76:18)
+    structuredClone (node:internal/worker/js_transferable:126:26)
+    file:///private/tmp/lz-capacity-wire-lifecycle-20260906/scenarios/lz-ppm/capacity-wire-lifecycle.mjs:92:27
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///private/tmp/lz-capacity-wire-lifecycle-20260906/tests/capacity-wire-lifecycle/lifecycle.test.mjs:58:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: expiry and claim errors never fabricate or adopt a returned replacement token
+ok 4 - expiry and claim errors never fabricate or adopt a returned replacement token
+  ---
+  duration_ms: 0.405792
+  type: 'test'
+  ...
+# Subtest: queued RPC aging refreshes outside budget and preserves the charged unsent reservation
+ok 5 - queued RPC aging refreshes outside budget and preserves the charged unsent reservation
+  ---
+  duration_ms: 1.237292
+  type: 'test'
+  ...
+# Subtest: actual UI route freshness check rejects a request aged while its own route was queued
+ok 6 - actual UI route freshness check rejects a request aged while its own route was queued
+  ---
+  duration_ms: 0.193417
+  type: 'test'
+  ...
+# Subtest: no retry of any actual dispatched rejection, unknown response, or outer token refusal
+ok 7 - no retry of any actual dispatched rejection, unknown response, or outer token refusal
+  ---
+  duration_ms: 0.290916
+  type: 'test'
+  ...
+# Subtest: repeated local queue aging is bounded with zero dispatches
+ok 8 - repeated local queue aging is bounded with zero dispatches
+  ---
+  duration_ms: 0.209916
+  type: 'test'
+  ...
+# Subtest: forced refresh rejects a nonextending expired captured token even if the UI response carries a new one
+ok 9 - forced refresh rejects a nonextending expired captured token even if the UI response carries a new one
+  ---
+  duration_ms: 0.228917
+  type: 'test'
+  ...
+# Subtest: export forces genuine acquisition first, forbids refresh/navigation and RPC until settled
+ok 10 - export forces genuine acquisition first, forbids refresh/navigation and RPC until settled
+  ---
+  duration_ms: 0.411416
+  type: 'test'
+  ...
+# Subtest: active dispatch prevents export or stale refresh; failed export releases exclusion without swallowing original error
+ok 11 - active dispatch prevents export or stale refresh; failed export releases exclusion without swallowing original error
+  ---
+  duration_ms: 0.291458
+  type: 'test'
+  ...
+# Subtest: final audits acquire fresh wire using the same lifecycle, without resetting budget
+ok 12 - final audits acquire fresh wire using the same lifecycle, without resetting budget
+  ---
+  duration_ms: 0.478875
+  type: 'test'
+  ...
+# Subtest: clock regressions and malformed time fail closed before further dispatch
+ok 13 - clock regressions and malformed time fail closed before further dispatch
+  ---
+  duration_ms: 0.285417
+  type: 'test'
+  ...
+# Subtest: a slow promotion journal cannot make an aged wire eligible for dispatch
+ok 14 - a slow promotion journal cannot make an aged wire eligible for dispatch
+  ---
+  duration_ms: 0.080041
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 13
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 41.465459

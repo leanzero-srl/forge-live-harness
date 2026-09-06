@@ -1,0 +1,42 @@
+
+Running 1 test using 1 worker
+
+
+(node:80611) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture
+[chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.580","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T01:13:49.473Z"}
+
+[jira !!] GET /rest/api/3/issue/WFH-2889 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2888 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2887 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtp4bztd","name":"[harness-test] lz-norm-mtp4bztd","time":"2026-09-06T01:13:50.353Z","issues":[{"key":"WFH-2887","seed":{"label":"simulation predecessor","duration":5,"start":"2026-03-02","due":"2026-03-06"}},{"key":"WFH-2888","seed":{"label":"simulation successor","duration":5,"start":"2026-03-09","due":"2026-03-13"}},{"key":"WFH-2889","seed":{"label":"simulation independent December","duration":5,"start":"2026-12-07","due":"2026-12-11"}}],"planId":"plan-test-mtp4c55o-9jemmx","cleanup":[{"plan":"plan-test-mtp4c55o-9jemmx","deleted":true},{"issue":"WFH-2889","deleted":true},{"issue":"WFH-2888","deleted":true},{"issue":"WFH-2887","deleted":true}],"linkPairs":[{"from":"WFH-2887","to":"WFH-2888"}],"searchIndexVerified":[{"key":"WFH-2887","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2888","start":"2026-03-09","due":"2026-03-13","duration":5},{"key":"WFH-2889","start":"2026-12-07","due":"2026-12-11","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2887","start":"2026-03-02","due":"2026-03-06","duration":5},{"key":"WFH-2888","start":"2026-03-09","due":"2026-03-13","duration":5},{"key":"WFH-2889","start":"2026-12-07","due":"2026-12-11","duration":5}]],"bodyError":{"name":"Error","message":"\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"private simulation\"\u001b[39m\nReceived string:    \u001b[31m\"The simulation changed or its version is missing. Reload before saving.\"\u001b[39m"},"integrityPassed":true}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "private simulation"
+    Received string:    "The simulation changed or its version is missing. Reload before saving."
+
+      189 |       ] as const) {
+      190 |         const denied=await invoke(name,payload); expect(denied.success).toBe(false);
+    > 191 |         expect(denied.error).toContain('private simulation'); journal.steps.push({name,denied}); retain();
+          |                              ^
+      192 |       }
+      193 |       const stale=await invoke('saveSimulationModel',{planId:simId,expectedVersion:initial.version,name:simName,
+      194 |         selectedLeafKeys:[pred,succ],changes:[],calendar:saved.model.calendar,uncertainty:'medium',dependencyChanges:[]});
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-simulation.spec.ts:191:30
+        at withOwnedSchedule (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/normalization-owned-fixture.ts:84:5)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-simulation.spec.ts:43:3
+
+    Error Context: evidence/lz-campaign/eighth-corrected-feature-live-20260906/private-simulation-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-656c4-ut-changing-Jira-or-capture-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture 

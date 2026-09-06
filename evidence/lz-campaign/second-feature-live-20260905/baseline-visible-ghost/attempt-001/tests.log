@@ -1,0 +1,14 @@
+
+Running 1 test using 1 worker
+
+
+(node:43136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-baseline-visual.spec.ts:5:1 › baseline: shortened live task visibly exposes retained original ghost span after reopen
+[chromium] › scenarios/lz-ppm/journey-campaign-baseline-visual.spec.ts:5:1 › baseline: shortened live task visibly exposes retained original ghost span after reopen
+[jira !!] GET /rest/api/3/issue/WFH-2781 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtorbtgl","name":"[harness-test] lz-norm-mtorbtgl","time":"2026-09-05T19:09:47.109Z","issues":[{"key":"WFH-2781","seed":{"label":"visible baseline span","duration":5,"start":"2026-10-05","due":"2026-10-09"}}],"planId":"plan-test-mtorbwiw-sr4h61","cleanup":[{"plan":"plan-test-mtorbwiw-sr4h61","deleted":true},{"issue":"WFH-2781","deleted":true}],"searchIndexVerified":[{"key":"WFH-2781","start":"2026-10-05","due":"2026-10-09","duration":5}],"forgeIndexObservations":[[{"key":"WFH-2781","start":"2026-10-05","due":"2026-10-09","duration":5}]],"integrityPassed":true}
+
+  1 passed (47.7s)

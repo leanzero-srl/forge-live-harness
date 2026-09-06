@@ -1,0 +1,1038 @@
+[
+  {
+    "stage": "report-departure-owner",
+    "time": "2026-09-06T15:51:48.970Z",
+    "value": {
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "name": "[harness-test] lz-norm-mtpzozmh"
+    }
+  },
+  {
+    "stage": "owned-departure-blank",
+    "time": "2026-09-06T15:51:49.205Z",
+    "value": {
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "mounted": false
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:53.108Z",
+    "value": {
+      "requestId": 1,
+      "key": "listPlans",
+      "planId": null,
+      "requestedAtMs": 1788709912287,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709912287,
+      "completedAtMs": 1788709913108,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.031Z",
+    "value": {
+      "requestId": 2,
+      "key": "checkUserRole",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709913524,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709913524,
+      "completedAtMs": 1788709914031,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.056Z",
+    "value": {
+      "requestId": 3,
+      "key": "getPlan",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709913525,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709913525,
+      "completedAtMs": 1788709914056,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.156Z",
+    "value": {
+      "requestId": 5,
+      "key": "getWritability",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709913525,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709913525,
+      "completedAtMs": 1788709914156,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.157Z",
+    "value": {
+      "requestId": 4,
+      "key": "getBaseline",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709913525,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709913525,
+      "completedAtMs": 1788709914157,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.378Z",
+    "value": {
+      "requestId": 6,
+      "key": "getAssetsFields",
+      "planId": null,
+      "requestedAtMs": 1788709914034,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914034,
+      "completedAtMs": 1788709914378,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.483Z",
+    "value": {
+      "requestId": 7,
+      "key": "getAllIssues",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709914058,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914058,
+      "completedAtMs": 1788709914483,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.551Z",
+    "value": {
+      "requestId": 8,
+      "key": "getPlanCalendar",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709914059,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914059,
+      "completedAtMs": 1788709914551,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.681Z",
+    "value": {
+      "requestId": 12,
+      "key": "getNotifications",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709914086,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914086,
+      "completedAtMs": 1788709914681,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.681Z",
+    "value": {
+      "requestId": 9,
+      "key": "getNotifications",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709914064,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914064,
+      "completedAtMs": 1788709914681,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.777Z",
+    "value": {
+      "requestId": 13,
+      "key": "getNotifications",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709914086,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914086,
+      "completedAtMs": 1788709914777,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.939Z",
+    "value": {
+      "requestId": 14,
+      "key": "getDraft",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709914577,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914577,
+      "completedAtMs": 1788709914939,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:54.966Z",
+    "value": {
+      "requestId": 10,
+      "key": "getWritability",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709914064,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914064,
+      "completedAtMs": 1788709914966,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:55.211Z",
+    "value": {
+      "requestId": 11,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709914065,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709914065,
+      "completedAtMs": 1788709915207,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "bd55cd6f6faf54d27bc66af865ebf73edee147b87836502718cadd7da09f8bf6",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"displayName\":\"Mihai Perdum\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"view\":\"gantt\",\"ts\":1788709914849}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788709914,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "cd8c352db9e93a7bb4a2ce781e45e12be6c356688cd5f36f2d0b1b91afa0ff4d",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "displayName": "Mihai Perdum",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "view": "gantt",
+            "ts": 1788709914849
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      }
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:55.807Z",
+    "value": {
+      "requestId": 15,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709915318,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709915318,
+      "completedAtMs": 1788709915807,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:56.016Z",
+    "value": {
+      "requestId": 16,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709915318,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709915318,
+      "completedAtMs": 1788709916013,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "0b427451dc3363d431ef0785d20651d048047244b839a48c1ca4aee2382b0d9a",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788709915717,\"view\":\"table\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788709915,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "71b75e8e21fc8dee070c025f192c6d44b7015a838600c25f2c2650bee2c557d5",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788709915717,
+            "view": "table"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      }
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:56.623Z",
+    "value": {
+      "requestId": 18,
+      "key": "listSnapshots",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709916190,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709916190,
+      "completedAtMs": 1788709916623,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:56.623Z",
+    "value": {
+      "requestId": 17,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709916190,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709916190,
+      "completedAtMs": 1788709916623,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:57.057Z",
+    "value": {
+      "requestId": 19,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709916190,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709916190,
+      "completedAtMs": 1788709917056,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "949d9169813539e27ed93027af6c3f046c1371bb60bdc486b1e1bcd4f17f272a",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788709916689,\"view\":\"planning\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788709916,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "e9448675493972f45cc98f4f32b5d902cc2aedc6a0d5dbfabe0f5702483cf70b",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788709916689,
+            "view": "planning"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      }
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:57.829Z",
+    "value": {
+      "requestId": 20,
+      "key": "captureSnapshot",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709917119,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709917119,
+      "completedAtMs": 1788709917829,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:58.362Z",
+    "value": {
+      "requestId": 21,
+      "key": "getSnapshot",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709917833,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709917833,
+      "completedAtMs": 1788709918362,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:59.075Z",
+    "value": {
+      "requestId": 22,
+      "key": "setBaseline",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709918404,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709918404,
+      "completedAtMs": 1788709919075,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:51:59.617Z",
+    "value": {
+      "requestId": 23,
+      "key": "getBaseline",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709919079,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709919079,
+      "completedAtMs": 1788709919617,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:00.139Z",
+    "value": {
+      "requestId": 25,
+      "key": "listSponsorReports",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709919760,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709919760,
+      "completedAtMs": 1788709920139,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:00.453Z",
+    "value": {
+      "requestId": 24,
+      "key": "getSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709919759,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709919759,
+      "completedAtMs": 1788709920453,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:01.732Z",
+    "value": {
+      "requestId": 26,
+      "key": "captureSponsorReport",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709920555,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709920555,
+      "completedAtMs": 1788709921732,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:04.010Z",
+    "value": {
+      "requestId": 27,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709921735,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709921735,
+      "completedAtMs": 1788709924010,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:07.791Z",
+    "value": {
+      "requestId": 28,
+      "key": "getSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709926904,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709926904,
+      "completedAtMs": 1788709927791,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:09.031Z",
+    "value": {
+      "requestId": 29,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709927794,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709927794,
+      "completedAtMs": 1788709929031,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:10.604Z",
+    "value": {
+      "requestId": 30,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709929034,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709929034,
+      "completedAtMs": 1788709930604,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:11.795Z",
+    "value": {
+      "requestId": 31,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709930606,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709930606,
+      "completedAtMs": 1788709931795,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:13.225Z",
+    "value": {
+      "requestId": 32,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709931798,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709931798,
+      "completedAtMs": 1788709933225,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:14.371Z",
+    "value": {
+      "requestId": 33,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709933227,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709933227,
+      "completedAtMs": 1788709934371,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:15.735Z",
+    "value": {
+      "requestId": 34,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709934373,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709934373,
+      "completedAtMs": 1788709935735,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:16.939Z",
+    "value": {
+      "requestId": 35,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709935738,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709935738,
+      "completedAtMs": 1788709936939,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:18.153Z",
+    "value": {
+      "requestId": 36,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709936941,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709936941,
+      "completedAtMs": 1788709938153,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:19.326Z",
+    "value": {
+      "requestId": 37,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709938156,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709938156,
+      "completedAtMs": 1788709939326,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:20.695Z",
+    "value": {
+      "requestId": 38,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709939328,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709939328,
+      "completedAtMs": 1788709940695,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:21.856Z",
+    "value": {
+      "requestId": 39,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709940696,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709940696,
+      "completedAtMs": 1788709941856,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:23.188Z",
+    "value": {
+      "requestId": 40,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709941859,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709941859,
+      "completedAtMs": 1788709943188,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:24.324Z",
+    "value": {
+      "requestId": 41,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709943192,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709943192,
+      "completedAtMs": 1788709944324,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:24.768Z",
+    "value": {
+      "requestId": 42,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709944063,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709944063,
+      "completedAtMs": 1788709944766,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "2f6a9f656e561ab102321cc1bf11ae990b2d87a31a8cd50780cc3493a712938d",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788709944517,\"view\":\"planning\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788709944,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "836ca410d8a8f924430ded6e7664b524c41fa5d7e88b993070741571fb094d0d",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788709944517,
+            "view": "planning"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      }
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:25.481Z",
+    "value": {
+      "requestId": 43,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709944327,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709944327,
+      "completedAtMs": 1788709945481,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:26.665Z",
+    "value": {
+      "requestId": 44,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709945486,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709945486,
+      "completedAtMs": 1788709946665,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:27.847Z",
+    "value": {
+      "requestId": 45,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709946667,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709946667,
+      "completedAtMs": 1788709947847,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:29.167Z",
+    "value": {
+      "requestId": 46,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709947848,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709947848,
+      "completedAtMs": 1788709949167,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:30.337Z",
+    "value": {
+      "requestId": 47,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709949171,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709949171,
+      "completedAtMs": 1788709950337,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:31.584Z",
+    "value": {
+      "requestId": 48,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709950339,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709950339,
+      "completedAtMs": 1788709951584,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:32.828Z",
+    "value": {
+      "requestId": 49,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709951587,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709951587,
+      "completedAtMs": 1788709952828,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:34.132Z",
+    "value": {
+      "requestId": 50,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709952831,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709952831,
+      "completedAtMs": 1788709954132,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:35.226Z",
+    "value": {
+      "requestId": 51,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709954134,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709954134,
+      "completedAtMs": 1788709955226,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:36.223Z",
+    "value": {
+      "requestId": 52,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709955229,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709955229,
+      "completedAtMs": 1788709956223,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:37.350Z",
+    "value": {
+      "requestId": 53,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709956226,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709956226,
+      "completedAtMs": 1788709957350,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:38.725Z",
+    "value": {
+      "requestId": 54,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709957353,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709957353,
+      "completedAtMs": 1788709958725,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:39.801Z",
+    "value": {
+      "requestId": 55,
+      "key": "advanceSponsorReportCapture",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709958729,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709958729,
+      "completedAtMs": 1788709959801,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "owned-departure-before-back",
+    "time": "2026-09-06T15:52:41.151Z",
+    "value": {
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "armedAtMs": 1788709961151
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:41.870Z",
+    "value": {
+      "requestId": 56,
+      "key": "presenceLeave",
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestedAtMs": 1788709961188,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709961188,
+      "completedAtMs": 1788709961869,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "edff143350b3dfa2d482de1141f3ea509b4e209d846caa231af0015bc8cb16c1",
+      "responseBytes": 2236,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"success\":true}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788709961,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "2263cc23fd0e7e2fe57fae3fc7cbce950909b6b2ca2ae9e4ebea89d707475775",
+      "retainedResponseBytes": 193,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "success": true
+      }
+    }
+  },
+  {
+    "stage": "owned-departure-leave-observed",
+    "time": "2026-09-06T15:52:41.870Z",
+    "value": {
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestId": 56,
+      "armedAtMs": 1788709961151,
+      "requestedAtMs": 1788709961188,
+      "dispatchedAtMs": 1788709961188,
+      "completedAtMs": 1788709961869
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T15:52:41.924Z",
+    "value": {
+      "requestId": 57,
+      "key": "listPlans",
+      "planId": null,
+      "requestedAtMs": 1788709961188,
+      "ownerAtRequest": "plan-test-mtpzp1h1-e2krm3",
+      "dispatchedAtMs": 1788709961188,
+      "completedAtMs": 1788709961924,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "owned-departure-all-leaves",
+    "time": "2026-09-06T15:52:41.955Z",
+    "value": [
+      56
+    ]
+  },
+  {
+    "stage": "owned-departure-unmounted",
+    "time": "2026-09-06T15:52:41.955Z",
+    "value": {
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "requestId": 56
+    }
+  },
+  {
+    "stage": "owned-departure-postblank-leaves",
+    "time": "2026-09-06T15:52:41.973Z",
+    "value": [
+      56
+    ]
+  },
+  {
+    "stage": "owned-departure-blank",
+    "time": "2026-09-06T15:52:41.973Z",
+    "value": {
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "mounted": true
+    }
+  },
+  {
+    "stage": "owned-departure-blank",
+    "time": "2026-09-06T15:52:51.366Z",
+    "value": {
+      "planId": "plan-test-mtpzp1h1-e2krm3",
+      "mounted": false
+    }
+  },
+  {
+    "stage": "report-departure-disposed",
+    "time": "2026-09-06T15:52:56.208Z",
+    "value": {
+      "owner": {
+        "planId": "plan-test-mtpzp1h1-e2krm3",
+        "name": "[harness-test] lz-norm-mtpzozmh"
+      },
+      "receipts": 57
+    }
+  }
+]

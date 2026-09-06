@@ -1,0 +1,18 @@
+{"source":"/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourteenth-staged-report-live-20260906/first-failure-readonly-probe.json","sourceSha256":"47a344fe71387b5b3a05c07f2f1e44d3307f8806a8b55d08e7eb3d011786e9c9","observedAt":"2026-09-06T04:30:50.844Z","planId":"plan-test-mtpbanj1-vfroj0","jobId":"ee2cdc5f-28e5-441b-b902-6d236f8560fd","checkpoint":16,"privateAbsent":6,"public":[{"role":"descriptor","collection":"current","keyHash":"3a17140940d5e2d0049fddff217d8a23034888d6493efd001508a201afd03d22","expectedPresent":true,"actualPresent":true},{"role":"chunk","collection":"current","keyHash":"fcf9b1802bf7f6ca53daf1ef4d24e06f03c6a028b34921aea945e595e23fc11f","expectedPresent":true,"actualPresent":true},{"role":"page","collection":"current","keyHash":"2cc56cf5052a0ddf4ee3cdd0046d8ea90304879cdcab054a0732b2a12a4123e6","expectedPresent":true,"actualPresent":true},{"role":"deletion-marker","collection":"current","keyHash":"bbf2bfcaa418afe4f6c2cd12f4a5de0f3ae9ff1ecb20ca730e04a8cd5509fd48","expectedPresent":false,"actualPresent":false},{"role":"deletion-marker","collection":"baseline","keyHash":"5d9918e69c39aa747d632189a1feb9fafa40f346e94d4fbcaa419892f23d82dc","expectedPresent":false,"actualPresent":false}]}
+✔ actual completed physical state: required report content exists and exact deletion markers are absent (0.592ms)
+✔ each missing required descriptor, chunk or page is still rejected (1.050583ms)
+✔ present deletion markers cannot masquerade as successfully retained content (0.148458ms)
+✔ manifest omission remains a failure even when remaining content appears healthy (0.163375ms)
+✔ private temporary data still must be absent after terminal cleanup (0.121708ms)
+✔ missing or unknown role metadata refuses instead of relaxing the physical proof (0.252291ms)
+✔ actual publication14 with pending private cleanup agrees with the actual devprobe role producer (0.828542ms)
+✔ complete-but-pending cleanup still refuses missing required content (0.93475ms)
+✔ complete-but-pending cleanup still refuses present deletion markers (0.167709ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45.688583

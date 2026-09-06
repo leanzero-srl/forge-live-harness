@@ -1,0 +1,823 @@
+{
+  "M": "2026-09-07",
+  "M2": "2026-09-14",
+  "end": "2026-09-20",
+  "people": {
+    "A": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "B": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b"
+  },
+  "effort": [
+    {
+      "key": "WFH-2792",
+      "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "hours": 20
+    },
+    {
+      "key": "WFH-2793",
+      "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "hours": 12
+    },
+    {
+      "key": "WFH-2794",
+      "accountId": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+      "hours": 40
+    }
+  ],
+  "privateSettingsRestored": true,
+  "secondPlan": "plan-test-mtouilr7-8eh1wg",
+  "originalSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "initialReport": {
+    "startDate": "2026-09-07",
+    "endDate": "2026-09-20",
+    "asOfDate": "2026-09-05",
+    "weeks": [
+      {
+        "key": "2026-09-07",
+        "startDate": "2026-09-07",
+        "endDate": "2026-09-13"
+      },
+      {
+        "key": "2026-09-14",
+        "startDate": "2026-09-14",
+        "endDate": "2026-09-20"
+      }
+    ],
+    "people": [
+      {
+        "id": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+        "accountId": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+        "name": "LeanZero SRL",
+        "issueCount": 1,
+        "unknownWork": 0,
+        "buckets": [
+          {
+            "week": "2026-09-07",
+            "demandHours": 40,
+            "unknownEffortCount": 0,
+            "availableDays": null,
+            "capacityHours": null,
+            "utilizationPct": null,
+            "status": "capacity-unknown"
+          },
+          {
+            "week": "2026-09-14",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": null,
+            "capacityHours": null,
+            "utilizationPct": null,
+            "status": "capacity-unknown"
+          }
+        ]
+      },
+      {
+        "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "name": "Mihai Perdum",
+        "issueCount": 2,
+        "unknownWork": 0,
+        "buckets": [
+          {
+            "week": "2026-09-07",
+            "demandHours": 22,
+            "unknownEffortCount": 0,
+            "availableDays": null,
+            "capacityHours": null,
+            "utilizationPct": null,
+            "status": "capacity-unknown"
+          },
+          {
+            "week": "2026-09-14",
+            "demandHours": 10,
+            "unknownEffortCount": 0,
+            "availableDays": null,
+            "capacityHours": null,
+            "utilizationPct": null,
+            "status": "capacity-unknown"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "alternatives": [],
+    "unallocated": [],
+    "coverage": {
+      "selectedPlans": 2,
+      "uniqueIssues": 3,
+      "sharedDuplicatesRemoved": 1,
+      "completedIssues": 0,
+      "missingEffort": 0,
+      "unassignedIssues": 0,
+      "unavailableAssignee": 0,
+      "unavailableStatus": 0,
+      "conflictingIssues": 0,
+      "unallocatedIssues": 0,
+      "unavailableIssueCount": 0
+    },
+    "totals": {
+      "knownEffortHours": 72,
+      "allocatedHours": 72,
+      "outsideWindowHours": 0,
+      "unallocatedHours": 0
+    },
+    "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+  },
+  "numericReport": {
+    "startDate": "2026-09-07",
+    "endDate": "2026-09-20",
+    "asOfDate": "2026-09-05",
+    "weeks": [
+      {
+        "key": "2026-09-07",
+        "startDate": "2026-09-07",
+        "endDate": "2026-09-13"
+      },
+      {
+        "key": "2026-09-14",
+        "startDate": "2026-09-14",
+        "endDate": "2026-09-20"
+      }
+    ],
+    "people": [
+      {
+        "id": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+        "accountId": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+        "name": "LeanZero SRL",
+        "issueCount": 1,
+        "unknownWork": 0,
+        "buckets": [
+          {
+            "week": "2026-09-07",
+            "demandHours": 40,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 100,
+            "status": "at-capacity"
+          },
+          {
+            "week": "2026-09-14",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          }
+        ]
+      },
+      {
+        "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "name": "Mihai Perdum",
+        "issueCount": 2,
+        "unknownWork": 0,
+        "buckets": [
+          {
+            "week": "2026-09-07",
+            "demandHours": 22,
+            "unknownEffortCount": 0,
+            "availableDays": 4,
+            "capacityHours": 12,
+            "utilizationPct": 183.33333333333331,
+            "status": "overloaded"
+          },
+          {
+            "week": "2026-09-14",
+            "demandHours": 10,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 66.66666666666666,
+            "status": "available"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "alternatives": [],
+    "unallocated": [],
+    "coverage": {
+      "selectedPlans": 2,
+      "uniqueIssues": 3,
+      "sharedDuplicatesRemoved": 1,
+      "completedIssues": 0,
+      "missingEffort": 0,
+      "unassignedIssues": 0,
+      "unavailableAssignee": 0,
+      "unavailableStatus": 0,
+      "conflictingIssues": 0,
+      "unallocatedIssues": 0,
+      "unavailableIssueCount": 0
+    },
+    "totals": {
+      "knownEffortHours": 72,
+      "allocatedHours": 72,
+      "outsideWindowHours": 0,
+      "unallocatedHours": 0
+    },
+    "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+  },
+  "unresolvedReport": {
+    "startDate": "2026-09-05",
+    "endDate": "2026-10-30",
+    "asOfDate": "2026-09-05",
+    "weeks": [
+      {
+        "key": "2026-08-31",
+        "startDate": "2026-09-05",
+        "endDate": "2026-09-06"
+      },
+      {
+        "key": "2026-09-07",
+        "startDate": "2026-09-07",
+        "endDate": "2026-09-13"
+      },
+      {
+        "key": "2026-09-14",
+        "startDate": "2026-09-14",
+        "endDate": "2026-09-20"
+      },
+      {
+        "key": "2026-09-21",
+        "startDate": "2026-09-21",
+        "endDate": "2026-09-27"
+      },
+      {
+        "key": "2026-09-28",
+        "startDate": "2026-09-28",
+        "endDate": "2026-10-04"
+      },
+      {
+        "key": "2026-10-05",
+        "startDate": "2026-10-05",
+        "endDate": "2026-10-11"
+      },
+      {
+        "key": "2026-10-12",
+        "startDate": "2026-10-12",
+        "endDate": "2026-10-18"
+      },
+      {
+        "key": "2026-10-19",
+        "startDate": "2026-10-19",
+        "endDate": "2026-10-25"
+      },
+      {
+        "key": "2026-10-26",
+        "startDate": "2026-10-26",
+        "endDate": "2026-10-30"
+      }
+    ],
+    "people": [
+      {
+        "id": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+        "accountId": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+        "name": "LeanZero SRL",
+        "issueCount": 1,
+        "unknownWork": 0,
+        "buckets": [
+          {
+            "week": "2026-08-31",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 0,
+            "capacityHours": 0,
+            "utilizationPct": null,
+            "status": "no-capacity"
+          },
+          {
+            "week": "2026-09-07",
+            "demandHours": 40,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 100,
+            "status": "at-capacity"
+          },
+          {
+            "week": "2026-09-14",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-09-21",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-09-28",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-05",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-12",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-19",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-26",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          }
+        ]
+      },
+      {
+        "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "name": "Mihai Perdum",
+        "issueCount": 1,
+        "unknownWork": 1,
+        "buckets": [
+          {
+            "week": "2026-08-31",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 0,
+            "capacityHours": 0,
+            "utilizationPct": null,
+            "status": "no-capacity"
+          },
+          {
+            "week": "2026-09-07",
+            "demandHours": 12,
+            "unknownEffortCount": 1,
+            "availableDays": 4,
+            "capacityHours": 12,
+            "utilizationPct": null,
+            "status": "effort-unknown"
+          },
+          {
+            "week": "2026-09-14",
+            "demandHours": 0,
+            "unknownEffortCount": 1,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": null,
+            "status": "effort-unknown"
+          },
+          {
+            "week": "2026-09-21",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-09-28",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-05",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-12",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-19",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-26",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "identity": "jira:24989",
+        "key": "WFH-2792",
+        "selectedPlanId": null,
+        "alternatives": [
+          {
+            "planId": "plan-test-mtouii6f-9anh9a",
+            "planName": "[harness-test] lz-norm-mtouidrr",
+            "startDate": "2026-09-07",
+            "dueDate": "2026-09-18",
+            "calendarName": "Standard (Mon-Fri)",
+            "assigneeName": "Mihai Perdum",
+            "remainingEstimateSeconds": 72000
+          },
+          {
+            "planId": "plan-test-mtouilr7-8eh1wg",
+            "planName": "[harness-test] lz-norm-mtouidrr secondary",
+            "startDate": "2026-09-14",
+            "dueDate": "2026-09-18",
+            "calendarName": "Standard (Mon-Fri)",
+            "assigneeName": "Mihai Perdum",
+            "remainingEstimateSeconds": 72000
+          }
+        ]
+      }
+    ],
+    "alternatives": [
+      {
+        "identity": "jira:24989",
+        "key": "WFH-2792",
+        "selectedPlanId": null,
+        "alternatives": [
+          {
+            "planId": "plan-test-mtouii6f-9anh9a",
+            "planName": "[harness-test] lz-norm-mtouidrr",
+            "startDate": "2026-09-07",
+            "dueDate": "2026-09-18",
+            "calendarName": "Standard (Mon-Fri)",
+            "assigneeName": "Mihai Perdum",
+            "remainingEstimateSeconds": 72000
+          },
+          {
+            "planId": "plan-test-mtouilr7-8eh1wg",
+            "planName": "[harness-test] lz-norm-mtouidrr secondary",
+            "startDate": "2026-09-14",
+            "dueDate": "2026-09-18",
+            "calendarName": "Standard (Mon-Fri)",
+            "assigneeName": "Mihai Perdum",
+            "remainingEstimateSeconds": 72000
+          }
+        ]
+      }
+    ],
+    "unallocated": [],
+    "coverage": {
+      "selectedPlans": 2,
+      "uniqueIssues": 3,
+      "sharedDuplicatesRemoved": 1,
+      "completedIssues": 0,
+      "missingEffort": 0,
+      "unassignedIssues": 0,
+      "unavailableAssignee": 0,
+      "unavailableStatus": 0,
+      "conflictingIssues": 1,
+      "unallocatedIssues": 0,
+      "unavailableIssueCount": 0
+    },
+    "totals": {
+      "knownEffortHours": 52,
+      "allocatedHours": 52,
+      "outsideWindowHours": 0,
+      "unallocatedHours": 0
+    },
+    "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+  },
+  "chosenReport": {
+    "startDate": "2026-09-05",
+    "endDate": "2026-10-30",
+    "asOfDate": "2026-09-05",
+    "weeks": [
+      {
+        "key": "2026-08-31",
+        "startDate": "2026-09-05",
+        "endDate": "2026-09-06"
+      },
+      {
+        "key": "2026-09-07",
+        "startDate": "2026-09-07",
+        "endDate": "2026-09-13"
+      },
+      {
+        "key": "2026-09-14",
+        "startDate": "2026-09-14",
+        "endDate": "2026-09-20"
+      },
+      {
+        "key": "2026-09-21",
+        "startDate": "2026-09-21",
+        "endDate": "2026-09-27"
+      },
+      {
+        "key": "2026-09-28",
+        "startDate": "2026-09-28",
+        "endDate": "2026-10-04"
+      },
+      {
+        "key": "2026-10-05",
+        "startDate": "2026-10-05",
+        "endDate": "2026-10-11"
+      },
+      {
+        "key": "2026-10-12",
+        "startDate": "2026-10-12",
+        "endDate": "2026-10-18"
+      },
+      {
+        "key": "2026-10-19",
+        "startDate": "2026-10-19",
+        "endDate": "2026-10-25"
+      },
+      {
+        "key": "2026-10-26",
+        "startDate": "2026-10-26",
+        "endDate": "2026-10-30"
+      }
+    ],
+    "people": [
+      {
+        "id": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+        "accountId": "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b",
+        "name": "LeanZero SRL",
+        "issueCount": 1,
+        "unknownWork": 0,
+        "buckets": [
+          {
+            "week": "2026-08-31",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 0,
+            "capacityHours": 0,
+            "utilizationPct": null,
+            "status": "no-capacity"
+          },
+          {
+            "week": "2026-09-07",
+            "demandHours": 40,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 100,
+            "status": "at-capacity"
+          },
+          {
+            "week": "2026-09-14",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-09-21",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-09-28",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-05",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-12",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-19",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-26",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 40,
+            "utilizationPct": 0,
+            "status": "available"
+          }
+        ]
+      },
+      {
+        "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "name": "Mihai Perdum",
+        "issueCount": 2,
+        "unknownWork": 0,
+        "buckets": [
+          {
+            "week": "2026-08-31",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 0,
+            "capacityHours": 0,
+            "utilizationPct": null,
+            "status": "no-capacity"
+          },
+          {
+            "week": "2026-09-07",
+            "demandHours": 12,
+            "unknownEffortCount": 0,
+            "availableDays": 4,
+            "capacityHours": 12,
+            "utilizationPct": 100,
+            "status": "at-capacity"
+          },
+          {
+            "week": "2026-09-14",
+            "demandHours": 20,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 133.33333333333331,
+            "status": "overloaded"
+          },
+          {
+            "week": "2026-09-21",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-09-28",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-05",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-12",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-19",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-26",
+            "demandHours": 0,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "capacityHours": 15,
+            "utilizationPct": 0,
+            "status": "available"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "alternatives": [
+      {
+        "identity": "jira:24989",
+        "key": "WFH-2792",
+        "selectedPlanId": "plan-test-mtouilr7-8eh1wg",
+        "alternatives": [
+          {
+            "planId": "plan-test-mtouii6f-9anh9a",
+            "planName": "[harness-test] lz-norm-mtouidrr",
+            "startDate": "2026-09-07",
+            "dueDate": "2026-09-18",
+            "calendarName": "Standard (Mon-Fri)",
+            "assigneeName": "Mihai Perdum",
+            "remainingEstimateSeconds": 72000
+          },
+          {
+            "planId": "plan-test-mtouilr7-8eh1wg",
+            "planName": "[harness-test] lz-norm-mtouidrr secondary",
+            "startDate": "2026-09-14",
+            "dueDate": "2026-09-18",
+            "calendarName": "Standard (Mon-Fri)",
+            "assigneeName": "Mihai Perdum",
+            "remainingEstimateSeconds": 72000
+          }
+        ]
+      }
+    ],
+    "unallocated": [],
+    "coverage": {
+      "selectedPlans": 2,
+      "uniqueIssues": 3,
+      "sharedDuplicatesRemoved": 1,
+      "completedIssues": 0,
+      "missingEffort": 0,
+      "unassignedIssues": 0,
+      "unavailableAssignee": 0,
+      "unavailableStatus": 0,
+      "conflictingIssues": 0,
+      "unallocatedIssues": 0,
+      "unavailableIssueCount": 0
+    },
+    "totals": {
+      "knownEffortHours": 72,
+      "allocatedHours": 72,
+      "outsideWindowHours": 0,
+      "unallocatedHours": 0
+    },
+    "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+  },
+  "reopenedWindow": {
+    "startDate": "2026-09-05",
+    "endDate": "2026-10-30",
+    "behavior": "visit-local rolling default"
+  },
+  "secondaryDeleted": true
+}

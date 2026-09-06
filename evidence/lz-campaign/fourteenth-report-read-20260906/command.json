@@ -1,0 +1,23 @@
+{
+  "time": "2026-09-06T04:46:47.354443+00:00",
+  "forgeVersion": "6.12.0",
+  "uiVersion": "4.58.585",
+  "appCommit": "da699034bceacc4fd9b08512dd834a8debe4eb2b",
+  "harnessCommit": "f4745a57ced3c08904c59de1ca07482b2c6d9fc0",
+  "instrumentHash": "038d8064e200dceda7bba06a87a58fd832747547bdb75048e384436258597025",
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "scope": "read/export only; original3+exactretainedfirstplan; no fixture/settings mutations",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "scenarios/lz-ppm/campaign-recover-fourteenth-report.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/fourteenth-report-read-20260906/artifacts"
+  ],
+  "retries": 0
+}

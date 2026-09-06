@@ -1,0 +1,142 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.5.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-history-transaction.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/history-platform-transaction/attempt-001/tests-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/history-platform-transaction/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/second-feature-live-20260905/history-platform-transaction/attempt-001/tests-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/campaign-history-transaction.spec.ts",
+      "file": "scenarios/lz-ppm/campaign-history-transaction.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "history platform: real entity fence rolls back both KVS mutations and preserves successor lease",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1663,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-05T18:24:52.089Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "real-platform-transaction-proof",
+                      "contentType": "application/json",
+                      "body": "eyJwcm9iZUlkIjoiYjk0ZTQwNmEtZDUyNi00MGIyLTk0M2ItOWMwNWZmMjAwNTBhIiwicGxhbklkIjoiaGFybmVzcy1oaXN0b3J5LWI5NGU0MDZhLWQ1MjYtNDBiMi05NDNiLTljMDVmZjIwMDUwYSIsImtleXMiOlsicDpoYXJuZXNzLWhpc3RvcnktYjk0ZTQwNmEtZDUyNi00MGIyLTk0M2ItOWMwNWZmMjAwNTBhOmJsIiwicDpoYXJuZXNzLWhpc3RvcnktYjk0ZTQwNmEtZDUyNi00MGIyLTk0M2ItOWMwNWZmMjAwNTBhOmhpc3Rvcnk6ZGVsZXRlZDpwcm9iZSJdLCJjaGVja3MiOnsiYWNxdWlyZWRSZWFsRW50aXR5TGVhc2UiOnRydWUsImd1YXJkZWRNaXhlZENvbW1pdFJlYWRCYWNrIjp0cnVlLCJyZXBsYWNlbWVudExlYXNlUmVhZEJhY2siOnRydWUsInN0YWxlQ29tbWl0UmVqZWN0ZWQiOnRydWUsInBvaW50ZXJVbmNoYW5nZWQiOnRydWUsInRvbWJzdG9uZVVuY2hhbmdlZCI6dHJ1ZSwic3RhbGVGaW5hbGx5UHJlc2VydmVkU3VjY2Vzc29yIjp0cnVlfSwicmVhZHMiOnsicG9zaXRpdmUiOnsicG9pbnRlciI6eyJzbmFwc2hvdElkIjoicG9zaXRpdmUtY29udHJvbCJ9LCJ0b21ic3RvbmUiOnsiZGVsZXRlZCI6ZmFsc2V9fSwicmVwbGFjZW1lbnQiOnsiZXhwaXJlc0F0IjoxNzg4NjMyODEzMDY3LCJ0b2tlbiI6IjExZjVkMjlkLTM4YzItNDQ1Yy1hMmJhLTcxZWQ4YjY4M2MxNiJ9LCJhZnRlclJlamVjdGVkIjp7InBvaW50ZXIiOnsic25hcHNob3RJZCI6InBvc2l0aXZlLWNvbnRyb2wifSwidG9tYnN0b25lIjp7ImRlbGV0ZWQiOmZhbHNlfX0sImFmdGVyU3RhbGVSZWxlYXNlIjp7ImV4cGlyZXNBdCI6MTc4ODYzMjgxMzA2NywidG9rZW4iOiIxMWY1ZDI5ZC0zOGMyLTQ0NWMtYTJiYS03MWVkOGI2ODNjMTYifX0sImVycm9ycyI6W10sImNsZWFudXAiOnsicG9pbnRlckFic2VudCI6dHJ1ZSwidG9tYnN0b25lQWJzZW50Ijp0cnVlLCJlbnRpdHlBYnNlbnQiOnRydWV9LCJyZWplY3RlZENvbW1pdCI6eyJuYW1lIjoiRm9yZ2VLdnNFcnJvciIsIm1lc3NhZ2UiOiJSZXF1ZXN0IGZhaWxlZCBkdWUgdG8gY29uZGl0aW9uYWwgY2hlY2sgc3BlY2lmaWVkIG9yIG9wdGltaXN0aWMgbG9ja2luZyJ9LCJwYXNzZWQiOnRydWV9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "75123466e98c623a65d7-a33ed8b073e0fee997fc",
+          "file": "scenarios/lz-ppm/campaign-history-transaction.spec.ts",
+          "line": 7,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-05T18:24:51.804Z",
+    "duration": 1984.433,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

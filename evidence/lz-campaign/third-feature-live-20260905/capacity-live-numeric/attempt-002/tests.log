@@ -1,0 +1,18 @@
+
+Running 1 test using 1 worker
+
+
+(node:79946) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-capacity.spec.ts:18:1 › capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads
+[chromium] › scenarios/lz-ppm/journey-campaign-capacity.spec.ts:18:1 › capacity: real Jira seconds deduplicate across plans, explicit availability and saved alternatives produce exact weekly loads
+[jira !!] GET /rest/api/3/issue/WFH-2794 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2793 -> 404
+
+[jira !!] GET /rest/api/3/issue/WFH-2792 -> 404
+
+OWNED_SCHEDULE_CLEANUP {"marker":"lz-norm-mtouidrr","name":"[harness-test] lz-norm-mtouidrr","time":"2026-09-05T20:38:52.215Z","issues":[{"key":"WFH-2792","seed":{"label":"shared20h","duration":10,"start":"2026-09-07","due":"2026-09-18"}},{"key":"WFH-2793","seed":{"label":"extra12h","duration":3,"start":"2026-09-09","due":"2026-09-11"}},{"key":"WFH-2794","seed":{"label":"other40h","duration":5,"start":"2026-09-07","due":"2026-09-11"}}],"planId":"plan-test-mtouii6f-9anh9a","cleanup":[{"plan":"plan-test-mtouii6f-9anh9a","deleted":true},{"issue":"WFH-2794","deleted":true},{"issue":"WFH-2793","deleted":true},{"issue":"WFH-2792","deleted":true}],"searchIndexVerified":[{"key":"WFH-2792","start":"2026-09-07","due":"2026-09-18","duration":10},{"key":"WFH-2793","start":"2026-09-09","due":"2026-09-11","duration":3}],"forgeIndexObservations":[[{"key":"WFH-2792","start":"2026-09-07","due":"2026-09-18","duration":10},{"key":"WFH-2793","start":"2026-09-09","due":"2026-09-11","duration":3}]],"integrityPassed":true}
+
+  1 passed (1.4m)

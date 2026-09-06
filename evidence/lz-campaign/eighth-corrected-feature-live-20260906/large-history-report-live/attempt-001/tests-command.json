@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+    "test",
+    "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/eighth-corrected-feature-live-20260906/large-history-report-live/attempt-001/tests-artifacts"
+  ],
+  "cwd": "/Users/mihaiperdum/Projects/forge-live-harness",
+  "phase": "tests",
+  "uiVersion": "4.58.580",
+  "browserMode": "portable-chrome152"
+}

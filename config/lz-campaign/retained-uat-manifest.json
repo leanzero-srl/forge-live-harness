@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "campaign": "lz-ppm-retained-uat-2026-09",
+  "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
+  "features": [
+    {
+      "id": "retained-uat-live",
+      "status": "ready",
+      "retainedUat": true,
+      "acceptance": [
+        "UAT-NATIVE-CONTEXT-SELECTION",
+        "UAT-LABEL-UNAVAILABLE-RECOVERY",
+        "UAT-SAVED-BUFFER-UNCERTAINTY-DECISION",
+        "UAT-CANCEL-NO-DRAFT",
+        "UAT-ADOPT-DRAFT-REOPEN-DISCARD",
+        "UAT-EXACT-FOUR-WEEK-CAPACITY",
+        "UAT-IMMUTABLE-ALL-FIELD-REPORT",
+        "UAT-KEYBOARD-RESPONSIVE-RENDER",
+        "UAT-EXACT-RETAINED-OWNERSHIP",
+        "UAT-PRIVATE-SETTINGS-RESTORED"
+      ],
+      "specs": [
+        "scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 2400,
+      "scopeNote": "Prepared and independently reviewed at aa90029+a0f8ba3; no live result yet. Creates exactly four owned WFH issues and two retained plans for later user inspection. Automated evidence never substitutes for user UAT acknowledgement."
+    }
+  ]
+}

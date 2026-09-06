@@ -1,0 +1,173 @@
+[
+  {
+    "name": "original-pre",
+    "kind": "pre",
+    "scrolls": 1,
+    "shots": 0,
+    "accepted": false,
+    "error": "Screenshot subject became blocked before capture\n\nfalse !== true\n",
+    "published": false,
+    "audit": null
+  },
+  {
+    "name": "fixed-pre",
+    "kind": "pre",
+    "scrolls": 2,
+    "shots": 1,
+    "accepted": true,
+    "published": true,
+    "audit": {
+      "accepted": true,
+      "attempts": [
+        {
+          "number": 1,
+          "startedAt": "2026-09-06T00:53:52.601Z",
+          "state": "rejected-before-capture"
+        },
+        {
+          "number": 2,
+          "startedAt": "2026-09-06T00:53:52.681Z",
+          "state": "accepted",
+          "content": {
+            "width": 640,
+            "height": 480,
+            "colors": 363,
+            "differentPixels": 54185,
+            "nonblank": true
+          }
+        }
+      ],
+      "previousImage": "/Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-pre.png.previous-5731fbea-c9bf-463f-88f6-4bea3bdc45ce.png"
+    }
+  },
+  {
+    "name": "original-post",
+    "kind": "post",
+    "scrolls": 1,
+    "shots": 1,
+    "accepted": false,
+    "error": "Screenshot subject became blocked during capture: /Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/original-post.png\n\nfalse !== true\n",
+    "published": true,
+    "audit": null
+  },
+  {
+    "name": "fixed-post",
+    "kind": "post",
+    "scrolls": 2,
+    "shots": 2,
+    "accepted": true,
+    "published": true,
+    "audit": {
+      "accepted": true,
+      "attempts": [
+        {
+          "number": 1,
+          "startedAt": "2026-09-06T00:53:53.216Z",
+          "state": "rejected-during-capture",
+          "rejectedImage": "/Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-post.png.rejected-1.png"
+        },
+        {
+          "number": 2,
+          "startedAt": "2026-09-06T00:53:53.322Z",
+          "state": "accepted",
+          "content": {
+            "width": 640,
+            "height": 480,
+            "colors": 363,
+            "differentPixels": 54185,
+            "nonblank": true
+          }
+        }
+      ],
+      "previousImage": "/Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-post.png.previous-0ebea307-0178-4446-b0eb-7b91795abd47.png"
+    }
+  },
+  {
+    "name": "fixed-permanent",
+    "kind": "permanent",
+    "scrolls": 4,
+    "shots": 0,
+    "accepted": false,
+    "error": "intended app subject is painted and outside every inert loading/adoption boundary\n\nintended app subject is painted and outside every inert loading/adoption boundary\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 6.265625ms exceeded while waiting on the predicate",
+    "published": false,
+    "audit": {
+      "accepted": false,
+      "attempts": [
+        {
+          "number": 1,
+          "startedAt": "2026-09-06T00:53:53.917Z",
+          "state": "rejected-before-capture"
+        },
+        {
+          "number": 2,
+          "startedAt": "2026-09-06T00:53:53.992Z",
+          "state": "rejected-before-capture"
+        },
+        {
+          "number": 3,
+          "startedAt": "2026-09-06T00:53:54.143Z",
+          "state": "rejected-before-capture"
+        },
+        {
+          "number": 4,
+          "startedAt": "2026-09-06T00:53:54.329Z",
+          "state": "rejected-before-capture"
+        },
+        {
+          "number": 5,
+          "startedAt": "2026-09-06T00:53:54.510Z",
+          "state": "waiting"
+        }
+      ],
+      "error": "Error: intended app subject is painted and outside every inert loading/adoption boundary\n\nintended app subject is painted and outside every inert loading/adoption boundary\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 6.265625ms exceeded while waiting on the predicate"
+    }
+  },
+  {
+    "name": "fixed-blank",
+    "kind": "blank",
+    "scrolls": 1,
+    "shots": 1,
+    "accepted": false,
+    "error": "Blank screenshot rejected: /Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-blank.png {\"width\":640,\"height\":480,\"colors\":1,\"differentPixels\":0,\"nonblank\":false}\n\nfalse !== true\n",
+    "published": false,
+    "audit": {
+      "accepted": false,
+      "attempts": [
+        {
+          "number": 1,
+          "startedAt": "2026-09-06T00:53:54.624Z",
+          "state": "waiting",
+          "content": {
+            "width": 640,
+            "height": 480,
+            "colors": 1,
+            "differentPixels": 0,
+            "nonblank": false
+          }
+        }
+      ],
+      "error": "AssertionError [ERR_ASSERTION]: Blank screenshot rejected: /Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-blank.png {\"width\":640,\"height\":480,\"colors\":1,\"differentPixels\":0,\"nonblank\":false}\n\nfalse !== true\n"
+    }
+  },
+  {
+    "name": "fixed-original-error",
+    "kind": "throw",
+    "scrolls": 1,
+    "shots": 1,
+    "accepted": false,
+    "error": "actual capture boundary failure",
+    "published": false,
+    "audit": {
+      "accepted": false,
+      "attempts": [
+        {
+          "number": 1,
+          "startedAt": "2026-09-06T00:53:54.845Z",
+          "state": "waiting"
+        }
+      ],
+      "error": "Error: actual capture boundary failure"
+    },
+    "sentinelPreserved": true
+  }
+]

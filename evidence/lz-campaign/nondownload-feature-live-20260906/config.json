@@ -1,0 +1,14 @@
+{
+  "runId": "nondownload-feature-live-20260906",
+  "manifest": "/Users/mihaiperdum/Projects/forge-live-harness/config/lz-campaign/nondownload-manifest.json",
+  "identitySpec": "scenarios/lz-ppm/campaign-diagnostic-identity.spec.ts",
+  "uiVersion": "4.58.579",
+  "forgeVersion": "6.5.0",
+  "appCommit": "dce1d154f89a4684b3332508cf9de26fa3a1c746",
+  "sourceExtension": null,
+  "features": [
+    "integrated-nondownload-boundaries-live",
+    "capacity-size-limit-live"
+  ],
+  "maxMinutes": 180
+}

@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {retained,checkedJob} from './seventeenth-report-recovery-contract.mjs';
+import {resumedJob,preservedArtifacts} from './seventeenth-forecast-resume-contract.mjs';
+export const aggregateFailureSha='7be7311c7d5369ccdf70bd9f9144c4ae44111814a7100a9df3a5d72b80afdf67';
+const sha=x=>createHash('sha256').update(x).digest('hex');
+const expired={message:'Token has expired: 1788700881 > 1788700835',extensions:{__typename:'GenericMutationErrorExtension',errorType:'FCT_VALIDATION_TOKEN_EXPIRED',statusCode:400}};
+/** Replay all28 successful transitions and the expired29th; final155 is laststrong, not an invented successful finalaudit. */
+export function admitRefreshedResume(failed,digest,previous){
+ assert.equal(digest,aggregateFailureSha);assert.equal(failed.phase,'paced-resume127');assert.deepEqual(failed.retained,retained);assert.equal(failed.pacedFailureReceipt.sha256,'4a7b7bba5d81bed6d83cf6c2b91ca669786313e591757aca259c4e478fd460d0');assert.equal(failed.failedReceipt.sha256,'333e483b880dae0c81e9369e461c612c8dd99d8daa4e9ee6f4fb9e702b5a02f7');assert.equal(failed.quotaAdmission.sha256,'847489b867f3481372340e39a0263ef09537d1b95973415849c5679ef5046079');assert.equal(failed.sourceReceipt.sha256,'7226d8e907632eaf8c2d464b50c3a48ba701bd639f9a4ac0af92bf9078eecba5');assert.equal(failed.completed,false);assert.equal(failed.publicationObserved,false);assert.equal(failed.sourceAndPreferencesPreserved,false);assert.equal(failed.advanceCalls,29);assert.equal(failed.probes.length,29);assert.deepEqual(failed.probes[0],previous.probe);
+ const dispatched=failed.events.filter(e=>e.stage==='actual-advance-dispatch').map(e=>e.value),replies=failed.events.filter(e=>e.stage==='advanceSponsorReportCapture').map(e=>e.value),statuses=failed.events.filter(e=>e.stage==='getSponsorReportCapture').map(e=>e.value);assert.equal(dispatched.length,29);assert.equal(replies.length,29);assert.equal(statuses.length,30);assert.deepEqual(statuses[0].body.job,previous.job);let job=previous.job,physical=previous.probe;
+ for(let n=0;n<29;n++){assert.deepEqual(dispatched[n].payload,{planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:127+n});const reply=replies[n];assert.equal(reply.startedMs,dispatched[n].startedMs);assert.ok(reply.returnedMs>=reply.startedMs);assert.equal(reply.httpStatus,200);assert.equal(sha(reply.raw),reply.responseSha256);assert.equal(Buffer.byteLength(reply.raw),reply.responseBytes);const outer=JSON.parse(reply.raw).data.invokeExtension;assert.equal(outer.success,reply.outerSuccess);
+  if(n<28){assert.equal(reply.outerSuccess,true);assert.equal(reply.body.success,true);assert.equal(reply.errors,null);assert.deepEqual(outer.response.body,reply.body);const next=resumedJob(reply.body.job,job);previous.progress.accept(next,job);assert.deepEqual(next.forecastRuns,{completed:40,total:40});assert.equal(statuses[n+1].httpStatus,200);assert.equal(statuses[n+1].outerSuccess,true);assert.equal(statuses[n+1].body.success,true);assert.deepEqual(statuses[n+1].body.job,next);preservedArtifacts(failed.probes[n+1],next,physical);physical=failed.probes[n+1];job=next;}
+  else{assert.equal(reply.outerSuccess,false);assert.equal(reply.body,null);assert.deepEqual(reply.errors,[expired]);assert.deepEqual(outer.errors,[expired]);}
+ }
+ assert.equal(job.checkpoint,155);assert.equal(job.stageLabel,'Retaining report pages');assert.equal(job.state,'active');assert.deepEqual(failed.finalJob,job);assert.deepEqual(failed.finalProbe,physical);assert.equal(physical.privateArtifacts.length,187);assert.equal(physical.publicArtifacts.length,114);assert.equal(physical.publicArtifacts.filter(a=>a.present).length,110);assert.equal(statuses[29].outerSuccess,false);assert.equal(statuses[29].body,null);assert.equal(statuses[29].errors[0].extensions.errorType,'FCT_VALIDATION_TOKEN_EXPIRED');
+ assert.equal(failed.lastWriteStartedMs,replies[28].startedMs);assert.ok(failed.lastWriteReturnedMs>=replies[28].returnedMs);assert.equal(failed.events.filter(e=>e.stage==='body-error').length,1);assert.deepEqual(failed.events.filter(e=>e.stage==='independent-audit-error').map(e=>e.value.label),['retained-job','pristine-snapshot','preferences','original-drafts','owned-baseline']);
+ return {job,probe:physical,progress:previous.progress};
+}
+/** Exactly28 remaining exact checkpoints. Pacing is external; no retry on any failed observation. */
+export async function continueRefreshedReport({initial,progress,advance,status,probe,onObserved=(_v)=>{},now=()=>performance.now(),maxSteps=28,maxMs=7200000}){
+ let job=checkedJob(initial);assert.equal(job.state,'active');assert.equal(job.checkpoint,155);assert.deepEqual(job.forecastRuns,{completed:40,total:40});const started=now();
+ for(let n=0;job.state==='active';n++){
+  assert.ok(n<maxSteps&&now()-started<maxMs,'Explicit paced continuation deadline or checkpoint bound reached');const before=structuredClone(job);await onObserved({stage:'before-advance',wallTime:new Date().toISOString(),payload:{planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint}});
+  const response=await advance({planId:retained.planId,jobId:retained.jobId,expectedCheckpoint:job.checkpoint},before);await onObserved({stage:'advance-response',before:before.checkpoint,response});assert.equal(response?.httpStatus,200);assert.equal(response.outerSuccess,true);assert.equal(response.body?.success,true,response.body?.error);job=resumedJob(response.body.job,before);await onObserved({stage:'forecast-progress',...progress.accept(job,before)});
+  if(response.body.report){assert.equal(job.state,'complete');assert.equal(response.body.report.id,retained.reportId);assert.match(response.body.report.hash,/^[a-f0-9]{64}$/);}
+  const fresh=await status();await onObserved({stage:'fresh-status',job:fresh});assert.deepEqual(fresh,job);await probe(job);await onObserved({stage:'checkpoint-verified',job});
+ }
+ assert.equal(job.state,'complete');assert.equal(job.checkpoint,183);await onObserved({stage:'forecast-complete',...progress.finish(job)});return job;
+}
