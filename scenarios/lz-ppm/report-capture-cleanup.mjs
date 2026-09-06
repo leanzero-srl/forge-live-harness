@@ -15,7 +15,8 @@ export async function cleanReportCapture({planId,requestId,jobId,invoke,probe,on
  const state={planId,requestId,jobId,steps:[],probes:[],startedAt:now(),cleaned:false};const retain=()=>onState(structuredClone(state));retain();
  try{
   await stopUi();const read=await invoke('getSponsorReportCapture',{planId,...(jobId?{jobId}:{})});assert.equal(read.success,true,read.error);const initial=read.job;
-  if(!initial){assert.equal(jobId,undefined,'Previously acknowledged job disappeared');state.noRegisteredJob=true;state.cleaned=true;retain();return state;}
+  if(initial===null){assert.equal(jobId,undefined,'Previously acknowledged job disappeared');state.noRegisteredJob=true;state.cleaned=true;retain();return state;}
+  assert.ok(initial && typeof initial==='object' && !Array.isArray(initial),'Discovery must return an explicit job object or null');
   assert.equal(initial.requestId,requestId,'Cleanup cannot adopt another owner request');if(jobId)assert.equal(initial.id,jobId);state.jobId=initial.id;
   let job=initial;const first=await probe(planId,job.id);verifyCaptureProbe(first,{planId,jobId:job.id,...job});state.probes.push(first);retain();
   for(let n=0;!job.cleanupDone;n++){
