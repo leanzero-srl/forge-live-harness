@@ -1,0 +1,48 @@
+✔ only completed exact Capacity observation promotes a single atomic wire generation (1.447167ms)
+✔ request creation alone cannot promote; concurrent callers share one completed acquisition (0.280541ms)
+✔ mismatched principal, endpoint, identity, preferences or unsuccessful response fail closed (1.263958ms)
+✔ expiry and claim errors never fabricate or adopt a returned replacement token (0.477208ms)
+✔ queued RPC aging refreshes outside budget and preserves the charged unsent reservation (1.401792ms)
+✔ actual UI route freshness check rejects a request aged while its own route was queued (0.165125ms)
+✔ no retry of any actual dispatched rejection, unknown response, or outer token refusal (0.315375ms)
+✔ repeated local queue aging is bounded with zero dispatches (0.195917ms)
+✔ forced refresh rejects a nonextending expired captured token even if the UI response carries a new one (0.156625ms)
+✔ export forces genuine acquisition first, forbids refresh/navigation and RPC until settled (0.262875ms)
+✔ active dispatch prevents export or stale refresh; failed export releases exclusion without swallowing original error (0.228042ms)
+✔ final audits acquire fresh wire using the same lifecycle, without resetting budget (0.153333ms)
+✔ clock regressions and malformed time fail closed before further dispatch (0.252917ms)
+✔ a slow promotion journal cannot make an aged wire eligible for dispatch (0.091583ms)
+✔ export requires its full declared duration plus dispatch margin before UI work starts (0.136ms)
+✔ stores sanitized JSON with separate exact original and retained hashes/bytes; full business body and errors unchanged (1.325292ms)
+✔ outer refusal and app refusal retain exact safe error evidence without implying success (0.171791ms)
+✔ malformed JSON records only original digest/bytes and refuses without raw echo (0.279375ms)
+✔ known response/request token echoes in business data/errors/keys fail rather than changing the business result (0.620375ms)
+✔ credential headers, individual cookies and unknown credential locations never reach retained content (0.474792ms)
+✔ actual returned {jwt,expiresAt} transport object is removed; its echoed jwt still refuses (0.158833ms)
+✔ trivial preference cookies do not censor ordinary issue fields; session and full-header echoes refuse (0.1595ms)
+✔ unknown JWT-shaped echo and malformed transport token refuse, while body numeric/null/arrays retain exact values (0.202125ms)
+✔ exact matched terminal Capacity observation produces candidate without changing wire (1.274ms)
+✔ unknown/failed transport and missing or changed request evidence cannot promote (0.648208ms)
+✔ wrong actual call payload rejected (0.431375ms)
+✔ route freshness checked when continuation occurs, after any queue (0.352833ms)
+✔ route retains exact actual wire and records gate immediately before dispatch (0.153375ms)
+✔ foreign app/module and endpoint never dispatch (0.257708ms)
+✔ dispatch journal failure waits for exact actual request before releasing ownership (0.121916ms)
+✔ simultaneous journal and actual transport failures both preserved without retry (0.095292ms)
+✔ transport error retains digest but never header call log or original cause (0.363791ms)
+✔ browser principal uses same request context once with no retry and safe failure (0.180292ms)
+✔ exact28 real acknowledgements and proofs plus expired29th admit laststrong155 only (22.673834ms)
+✔ wrong receipt, missing expiredrequest or falsely successful finalaudits refuse (489.773417ms)
+✔ expiry is not an acknowledgement and no other errorclass or checkpoint can replaceit (511.560875ms)
+✔ missing priorrunheader, altered status or physicalproof and erased finalfailedaudit refuse (498.268458ms)
+✔ exact28 remaining transitions155→183 use all40 savedruns and every status/probe (17.386459ms)
+✔ actual expired/unknown/refused/status/proof/counter failure is terminal withno secondattempt (83.344792ms)
+✔ premature publication cannot replace complete28-step protocol (14.371834ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2025.087917
