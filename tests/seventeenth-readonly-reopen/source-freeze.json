@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "6e6e5bee95e6c0d2c46de3429f098a7073de26bc",
+  "sourceFiles": [
+    {
+      "path": "scenarios/lz-ppm/campaign-seventeenth-readonly-reopen.spec.ts",
+      "sha256": "1725f1601be2866dfd70f1d55225b0a8ae5305c4295906751fddf0aad0c72b6b"
+    },
+    {
+      "path": "scenarios/lz-ppm/owned-plan-departure.mjs",
+      "sha256": "d472d91fea6e40c9bde6a7e84be44623adfe7f077424a51befd1f0389147fd95"
+    },
+    {
+      "path": "scenarios/lz-ppm/seventeenth-readonly-reopen-contract.mjs",
+      "sha256": "c696c451641338ea9704f7b3c159ed1770e931fd934889e3f53d3d079f885e84"
+    }
+  ],
+  "newControls": 16,
+  "priorControls": 84,
+  "liveDispatched": false,
+  "typecheckLimit": "Only the two existing Sentinel errors remain; see typecheck.txt."
+}
