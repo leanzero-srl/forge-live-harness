@@ -14,7 +14,9 @@ export async function actualPrivateFixture(){
  const captured=snapshotCaptureData(source.meta,source.issues,{name:'Source snapshot',kind:'scenario',uncertainty:'medium',changes:[]},calendar);
  captured.issues=captured.issues.map(({predecessorLags,...row})=>row);
  const snapshotInput={...captured,id:randomUUID(),createdBy:account,takenAt:new Date().toISOString(),consistency:{method:'two-matching-reads',basisHash:snapshots.snapshotHash({meta:source.meta,issues:source.issues,calendar,deps:{}}),observedAt:new Date().toISOString()}};
- await historyStore.create(source.meta.id,snapshotInput);const snapshot=await historyStore.get(source.meta.id,snapshotInput.id);
+ await historyStore.create(source.meta.id,snapshotInput);const storedSnapshot=await historyStore.get(source.meta.id,snapshotInput.id);
+ const snapshotHandlers=new Map(),snapshotResolvers=await moduleWithBoundaries(pathToFileURL(app+'/src/resolvers/snapshot-resolvers.js'),{'../services/permissions':{requireView:async(id,owner)=>({ok:id===source.meta.id&&owner===account,meta:source.meta})},'../services/plan-history':{historyStore},'../services/assets-fields.mjs':assets});
+ snapshotResolvers.registerSnapshotResolvers({define:(key,handler)=>snapshotHandlers.set(key,handler)});const snapshotReply=await snapshotHandlers.get('getSnapshot')({payload:{planId:source.meta.id,snapshotId:snapshotInput.id},context:{accountId:account}}),snapshot=snapshotReply.snapshot;
  const keys={planMeta:id=>`p:${id}:meta`,planSchedule:id=>`p:${id}:sched`,planDeps:id=>`p:${id}:deps`};values.set(keys.planMeta(source.meta.id),source.meta);
  const kvs={...io,query(){const q={where(){return q;},limit(){return q;},cursor(){return q;},getMany:async()=>({results:[]})};return q;}};
  const store={getPlanMeta:id=>kvs.get(keys.planMeta(id)),addPlanListEntry:async()=>({ok:true})};
@@ -24,5 +26,7 @@ export async function actualPrivateFixture(){
  const allow=async(id,owner)=>({ok:owner===account,meta:await store.getPlanMeta(id)});
  const runtime=await moduleWithBoundaries(pathToFileURL(app+'/src/services/simulation-plans.js'),{'node:crypto':{randomUUID},'@forge/kvs':{kvs},'./kvs-store':store,'./kvs-keys':{keys},'./permissions':{requireView:allow,requireEdit:allow,requireDelete:allow},'./plan-factory':factory,'./plan-history':{historyStore,withHistoryOperation:async(id,work)=>work(operation)},'./simulation-generations':generations,'./simulation-model.mjs':models,'./scenario-variant.mjs':scenario,'./simulation-plan-mode.mjs':mode,'./assets-fields.mjs':assets});
  const name='[harness-test] local private model',ack=await runtime.forkSimulationPlan({planId:source.meta.id,snapshotId:snapshot.id,name},account),planRead={success:true,plan:await store.getPlanMeta(ack.plan.id)},modelRead=await runtime.getSimulationModel({planId:ack.plan.id},account);
- return{source,calendar,snapshot,name,ack,planRead,modelRead,values,runtime,account};
+ const presenceHandlers=new Map(),presenceResolvers=await moduleWithBoundaries(pathToFileURL(app+'/src/resolvers/presence-resolvers.js'),{'@forge/kvs':{kvs},'../services/kvs-keys':{keys:{planPresence:id=>`p:${id}:presence`}},'../services/jira-client':{getCurrentUser:async()=>({displayName:'Local owner'})},'../services/realtime/publisher':{emitPlanEvent:async()=>{}}});presenceResolvers.registerPresenceResolvers({define:(key,handler)=>presenceHandlers.set(key,handler)});
+ const presenceCall=(key,payload,principal=account)=>presenceHandlers.get(key)({payload,context:{accountId:principal}});
+ return{source,calendar,snapshot,storedSnapshot,presenceCall,name,ack,planRead,modelRead,values,runtime,account};
 }
