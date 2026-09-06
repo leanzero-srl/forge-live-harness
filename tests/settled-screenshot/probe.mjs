@@ -1,7 +1,7 @@
 import {chromium} from '@playwright/test';
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
 import {settledScreenshot as old} from './original-before.mjs';
-import {settledScreenshot as fixed} from './candidate.mjs';
+import {settledScreenshot as fixed} from '../../scenarios/lz-ppm/settled-screenshot.mjs';
 const out=path.resolve('tests/settled-screenshot/evidence');fs.mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({channel:'chrome',headless:true});const results=[];
 const fixture='<html><body style="margin:0;background:#14253d;color:white;font:24px sans-serif"><main id="subject" style="height:400px;padding:20px"><h1>Actual settled subject</h1><p>Expected complete value: 20h / 12h</p><div style="background:#1e53ec;padding:20px">Ready result α ✓</div></main></body></html>';

@@ -3,12 +3,12 @@
   "attempts": [
     {
       "number": 1,
-      "startedAt": "2026-09-06T00:49:24.990Z",
+      "startedAt": "2026-09-06T00:53:52.601Z",
       "state": "rejected-before-capture"
     },
     {
       "number": 2,
-      "startedAt": "2026-09-06T00:49:25.073Z",
+      "startedAt": "2026-09-06T00:53:52.681Z",
       "state": "accepted",
       "content": {
         "width": 640,
@@ -19,5 +19,5 @@
       }
     }
   ],
-  "previousImage": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-settled-candidate/evidence/fixed-pre.png.previous-082f7a65-1e06-45c7-8004-c5b70828f78f.png"
+  "previousImage": "/Users/mihaiperdum/Projects/forge-live-harness/tests/settled-screenshot/evidence/fixed-pre.png.previous-5731fbea-c9bf-463f-88f6-4bea3bdc45ce.png"
 }

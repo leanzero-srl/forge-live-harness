@@ -1,5 +1,8 @@
 import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {randomUUID} from 'node:crypto';
 import {expect} from '@playwright/test';
 const {PNG}=createRequire(import.meta.url)('playwright-core/lib/utilsBundle');
 
@@ -28,20 +31,51 @@ async function painted(subject) {
   const r=el.getBoundingClientRect();return r.width>0&&r.height>0;
  });
 }
-export async function waitForAppReady(subject) {
- await expect(subject).toBeVisible();
- await expect.poll(()=>painted(subject),{timeout:30000,message:'intended app subject is painted and outside every inert loading/adoption boundary'}).toBe(true);
+export async function waitForAppReady(subject,{timeout=30000}={}) {
+ const deadline=performance.now()+timeout;
+ await expect(subject).toBeVisible({timeout});
+ await expect.poll(()=>painted(subject),{timeout:Math.max(1,deadline-performance.now()),message:'intended app subject is painted and outside every inert loading/adoption boundary'}).toBe(true);
 }
 export async function settledScreenshot(target,options) {
- const {subject:specifiedSubject,...shotOptions}=options;
+ const {subject:specifiedSubject,stabilityTimeout=30000,path:outputPath,...shotOptions}=options;
  const isPage=typeof target.context==='function';
  assert.ok(!isPage||specifiedSubject,'Page screenshots require an explicit intended subject; host chrome cannot prove app readiness');
- const subject=specifiedSubject||target;
- await waitForAppReady(subject);await subject.scrollIntoViewIfNeeded();
- await subject.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve))));
- assert.equal(await painted(subject),true,'Screenshot subject became blocked before capture');
- const buffer=await target.screenshot({...shotOptions,animations:'disabled'}),content=pngContent(buffer);
- assert.equal(await painted(subject),true,`Screenshot subject became blocked during capture: ${options.path}`);
- assert.equal(content.nonblank,true,`Blank screenshot rejected: ${options.path} ${JSON.stringify(content)}`);
- return content;
+ assert.ok(Number.isFinite(stabilityTimeout)&&stabilityTimeout>0,'Positive screenshot stability deadline required');
+ const subject=specifiedSubject||target,deadline=performance.now()+stabilityTimeout;
+ const audit={accepted:false,attempts:[]};let originalError;
+ const write=(file,bytes)=>{fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,bytes);};
+ const remaining=()=>{const ms=deadline-performance.now();if(ms<=0)throw new Error(`Screenshot stability deadline exceeded: ${outputPath}`);return ms;};
+ // Bound every browser operation; a late buffer cannot reach publication.
+ // Race rejection is observed even if an underlying protocol operation finishes later.
+ const within=async(operation)=>{let timer;const ms=remaining();try{return await Promise.race([Promise.resolve().then(operation),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(`Screenshot stability deadline exceeded: ${outputPath}`)),ms);})]);}finally{clearTimeout(timer);}};
+ try {
+  if(outputPath&&fs.existsSync(outputPath)){
+   audit.previousImage=`${outputPath}.previous-${randomUUID()}.png`;
+   fs.renameSync(outputPath,audit.previousImage);
+  }
+  while(performance.now()<deadline) {
+   const attempt={number:audit.attempts.length+1,startedAt:new Date().toISOString(),state:'waiting'};audit.attempts.push(attempt);
+   await within(()=>waitForAppReady(subject,{timeout:remaining()}));
+   await within(()=>subject.scrollIntoViewIfNeeded({timeout:remaining()}));
+   await within(()=>subject.evaluate(el=>new Promise(resolve=>el.ownerDocument.defaultView.requestAnimationFrame(()=>el.ownerDocument.defaultView.requestAnimationFrame(resolve)))));
+   if(!await within(()=>painted(subject))){attempt.state='rejected-before-capture';continue;}
+   // Publish only after both readiness observations accept this exact buffer.
+   const buffer=await within(()=>target.screenshot({...shotOptions,timeout:Math.min(shotOptions.timeout>0?shotOptions.timeout:Infinity,remaining()),animations:'disabled'}));
+   if(!await within(()=>painted(subject))){
+    attempt.state='rejected-during-capture';
+    if(outputPath){attempt.rejectedImage=`${outputPath}.rejected-${attempt.number}.png`;write(attempt.rejectedImage,buffer);}
+    continue;
+   }
+   const content=pngContent(buffer);attempt.content=content;
+   assert.equal(content.nonblank,true,`Blank screenshot rejected: ${outputPath} ${JSON.stringify(content)}`);
+   remaining();
+   if(outputPath)write(outputPath,buffer);
+   attempt.state='accepted';audit.accepted=true;return content;
+  }
+  throw new Error(`Screenshot subject did not remain ready within ${stabilityTimeout}ms: ${outputPath}`);
+ }catch(error){originalError=error;audit.error=String(error);throw error;}
+ finally {
+  if(outputPath)try{write(`${outputPath}.capture.json`,JSON.stringify(audit,null,2)+'\n');}
+  catch(error){throw new AggregateError([...(originalError?[originalError]:[]),error],'Screenshot capture and audit-write errors');}
+ }
 }
