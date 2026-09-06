@@ -1,0 +1,24 @@
+✔ actual successful source-return receipt admits exact active78/full134 baseline (14.318458ms)
+✔ wrong receipt, unknown prior call, mutation, failed integrity or changed manifest refuse (706.633541ms)
+✔ acknowledgement rejects changed owner identities, names, checkpoint skips and failed states (0.522375ms)
+✔ original full physical history must remain exactly present as new immutable artifacts appear (1.046917ms)
+✔ serial continuation requires each fresh status and physical probe before next RPC and reaches publication (1.146958ms)
+✔ unknown/timeout/refused/malformed/failed response stops after one actual call without retry (0.4155ms)
+✔ fresh saved-state mismatch or physical corruption stops before second advance (0.235708ms)
+✔ finite checkpoint budget stops acknowledged active job without manufactured publication (0.252542ms)
+✔ UI route allows only exact-owned presence bookkeeping alongside real reads (0.10675ms)
+✔ every exact UI read is an actual registered resolver; lookalike prefixes never authorize mutation (3.426375ms)
+✔ forecast progress refuses counter skips, duplicated run acknowledgements, premature fold and altered run budget (0.541334ms)
+✔ physical immutable run headers exactly match acknowledged run count, with no future header (1.091833ms)
+✔ all18 pure producer blobs equal exact old6.23 source fence (109.718ms)
+✔ complete old40 seeded runs reproduce exact full retained input and every forecast field (3853.41975ms)
+✔ full published summary/hash and all106 every-field pages use original producer and independent source (64.012166ms)
+✔ any full forecast/provenance/manifest/row mutation or stale source verification fails (232.738833ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4544.999708

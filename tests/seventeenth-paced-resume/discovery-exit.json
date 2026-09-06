@@ -1,0 +1,1 @@
+{"command": ["npx", "playwright", "test", "scenarios/lz-ppm/campaign-seventeenth-paced-resume.spec.ts", "--project=chromium", "--list"], "exitCode": 0}

@@ -1,0 +1,1852 @@
+{
+  "sourceDataSha256": "52493f969ef51d88549070ff928ce4622d427907f670429814a5144378887b8c",
+  "actualJournalSha256": "333e483b880dae0c81e9369e461c612c8dd99d8daa4e9ee6f4fb9e702b5a02f7",
+  "formula": "ceil(1.25 * max_in_prior_stage(sum(max(1,ceil(each GET JSON bytes/10000))) + GET_count) /32)*32",
+  "meaning": "One extra unit per GET covers up to an additional10000 bytes per GET;25percent further headroom; rounded upward to32. These are pinned fixture measurements, not universal plan bounds.",
+  "fallbackUnits": 768,
+  "byPriorAcknowledgedStage": {
+    "Checking the plan": 768,
+    "Confirming the complete plan": 768,
+    "Retaining the captured schedule": 96,
+    "Preparing the retained schedule": 128,
+    "Calculating the forecast": 96,
+    "Calculating forecast runs": 128,
+    "Combining forecast runs": 96,
+    "Verifying forecast results": 128,
+    "Preparing forecast results": 128,
+    "Retaining the selected baseline": 64,
+    "Preparing the report": 192,
+    "Retaining report pages": 192,
+    "Checking for plan changes": 768,
+    "Confirming the plan is unchanged": 768,
+    "Recording capture provenance": 192,
+    "Checking every report page": 96,
+    "Checking the retained schedule": 192,
+    "Publishing the verified report": 96
+  },
+  "rows": [
+    {
+      "priorStage": "Checking the plan",
+      "samples": 1,
+      "maxActualUnits": 520,
+      "maxActualGets": 82,
+      "maxUnitsPlusGets": 602,
+      "reservedUnits": 768,
+      "cycleWithProbe1024AndStatus64": 1856,
+      "calls": [
+        {
+          "from": 0,
+          "to": 1,
+          "units": 520,
+          "gets": 82,
+          "withPerGetHeadroom": 602
+        }
+      ]
+    },
+    {
+      "priorStage": "Confirming the complete plan",
+      "samples": 1,
+      "maxActualUnits": 519,
+      "maxActualGets": 81,
+      "maxUnitsPlusGets": 600,
+      "reservedUnits": 768,
+      "cycleWithProbe1024AndStatus64": 1856,
+      "calls": [
+        {
+          "from": 1,
+          "to": 2,
+          "units": 519,
+          "gets": 81,
+          "withPerGetHeadroom": 600
+        }
+      ]
+    },
+    {
+      "priorStage": "Retaining the captured schedule",
+      "samples": 54,
+      "maxActualUnits": 33,
+      "maxActualGets": 22,
+      "maxUnitsPlusGets": 55,
+      "reservedUnits": 96,
+      "cycleWithProbe1024AndStatus64": 1184,
+      "calls": [
+        {
+          "from": 2,
+          "to": 3,
+          "units": 30,
+          "gets": 22,
+          "withPerGetHeadroom": 52
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "units": 30,
+          "gets": 22,
+          "withPerGetHeadroom": 52
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "units": 30,
+          "gets": 22,
+          "withPerGetHeadroom": 52
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "units": 30,
+          "gets": 22,
+          "withPerGetHeadroom": 52
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "units": 30,
+          "gets": 22,
+          "withPerGetHeadroom": 52
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "units": 30,
+          "gets": 22,
+          "withPerGetHeadroom": 52
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 9,
+          "to": 10,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 10,
+          "to": 11,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 11,
+          "to": 12,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 12,
+          "to": 13,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 13,
+          "to": 14,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 14,
+          "to": 15,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 15,
+          "to": 16,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 16,
+          "to": 17,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 17,
+          "to": 18,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 18,
+          "to": 19,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 19,
+          "to": 20,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 20,
+          "to": 21,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 21,
+          "to": 22,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 22,
+          "to": 23,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 23,
+          "to": 24,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 24,
+          "to": 25,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 25,
+          "to": 26,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 26,
+          "to": 27,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 27,
+          "to": 28,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 28,
+          "to": 29,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 29,
+          "to": 30,
+          "units": 31,
+          "gets": 22,
+          "withPerGetHeadroom": 53
+        },
+        {
+          "from": 30,
+          "to": 31,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 31,
+          "to": 32,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 32,
+          "to": 33,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 33,
+          "to": 34,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 34,
+          "to": 35,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 35,
+          "to": 36,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 36,
+          "to": 37,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 37,
+          "to": 38,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 38,
+          "to": 39,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 39,
+          "to": 40,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 40,
+          "to": 41,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 41,
+          "to": 42,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 42,
+          "to": 43,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 43,
+          "to": 44,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 44,
+          "to": 45,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 45,
+          "to": 46,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 46,
+          "to": 47,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 47,
+          "to": 48,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 48,
+          "to": 49,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 49,
+          "to": 50,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 50,
+          "to": 51,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 51,
+          "to": 52,
+          "units": 32,
+          "gets": 22,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 52,
+          "to": 53,
+          "units": 33,
+          "gets": 22,
+          "withPerGetHeadroom": 55
+        },
+        {
+          "from": 53,
+          "to": 54,
+          "units": 33,
+          "gets": 22,
+          "withPerGetHeadroom": 55
+        },
+        {
+          "from": 54,
+          "to": 55,
+          "units": 33,
+          "gets": 22,
+          "withPerGetHeadroom": 55
+        },
+        {
+          "from": 55,
+          "to": 56,
+          "units": 21,
+          "gets": 18,
+          "withPerGetHeadroom": 39
+        }
+      ]
+    },
+    {
+      "priorStage": "Preparing the retained schedule",
+      "samples": 23,
+      "maxActualUnits": 51,
+      "maxActualGets": 26,
+      "maxUnitsPlusGets": 77,
+      "reservedUnits": 128,
+      "cycleWithProbe1024AndStatus64": 1216,
+      "calls": [
+        {
+          "from": 56,
+          "to": 57,
+          "units": 27,
+          "gets": 24,
+          "withPerGetHeadroom": 51
+        },
+        {
+          "from": 57,
+          "to": 58,
+          "units": 31,
+          "gets": 25,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 58,
+          "to": 59,
+          "units": 34,
+          "gets": 25,
+          "withPerGetHeadroom": 59
+        },
+        {
+          "from": 59,
+          "to": 60,
+          "units": 37,
+          "gets": 25,
+          "withPerGetHeadroom": 62
+        },
+        {
+          "from": 60,
+          "to": 61,
+          "units": 39,
+          "gets": 25,
+          "withPerGetHeadroom": 64
+        },
+        {
+          "from": 61,
+          "to": 62,
+          "units": 42,
+          "gets": 25,
+          "withPerGetHeadroom": 67
+        },
+        {
+          "from": 62,
+          "to": 63,
+          "units": 45,
+          "gets": 25,
+          "withPerGetHeadroom": 70
+        },
+        {
+          "from": 63,
+          "to": 64,
+          "units": 48,
+          "gets": 26,
+          "withPerGetHeadroom": 74
+        },
+        {
+          "from": 64,
+          "to": 65,
+          "units": 30,
+          "gets": 25,
+          "withPerGetHeadroom": 55
+        },
+        {
+          "from": 65,
+          "to": 66,
+          "units": 32,
+          "gets": 25,
+          "withPerGetHeadroom": 57
+        },
+        {
+          "from": 66,
+          "to": 67,
+          "units": 33,
+          "gets": 23,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 67,
+          "to": 68,
+          "units": 32,
+          "gets": 24,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 68,
+          "to": 69,
+          "units": 40,
+          "gets": 25,
+          "withPerGetHeadroom": 65
+        },
+        {
+          "from": 69,
+          "to": 70,
+          "units": 49,
+          "gets": 26,
+          "withPerGetHeadroom": 75
+        },
+        {
+          "from": 70,
+          "to": 71,
+          "units": 37,
+          "gets": 25,
+          "withPerGetHeadroom": 62
+        },
+        {
+          "from": 71,
+          "to": 72,
+          "units": 46,
+          "gets": 26,
+          "withPerGetHeadroom": 72
+        },
+        {
+          "from": 72,
+          "to": 73,
+          "units": 34,
+          "gets": 25,
+          "withPerGetHeadroom": 59
+        },
+        {
+          "from": 73,
+          "to": 74,
+          "units": 42,
+          "gets": 25,
+          "withPerGetHeadroom": 67
+        },
+        {
+          "from": 74,
+          "to": 75,
+          "units": 51,
+          "gets": 26,
+          "withPerGetHeadroom": 77
+        },
+        {
+          "from": 75,
+          "to": 76,
+          "units": 39,
+          "gets": 25,
+          "withPerGetHeadroom": 64
+        },
+        {
+          "from": 76,
+          "to": 77,
+          "units": 48,
+          "gets": 26,
+          "withPerGetHeadroom": 74
+        },
+        {
+          "from": 77,
+          "to": 78,
+          "units": 32,
+          "gets": 23,
+          "withPerGetHeadroom": 55
+        },
+        {
+          "from": 129,
+          "to": 130,
+          "units": 24,
+          "gets": 20,
+          "withPerGetHeadroom": 44
+        }
+      ]
+    },
+    {
+      "priorStage": "Calculating the forecast",
+      "samples": 1,
+      "maxActualUnits": 54,
+      "maxActualGets": 22,
+      "maxUnitsPlusGets": 76,
+      "reservedUnits": 96,
+      "cycleWithProbe1024AndStatus64": 1184,
+      "calls": [
+        {
+          "from": 78,
+          "to": 79,
+          "units": 54,
+          "gets": 22,
+          "withPerGetHeadroom": 76
+        }
+      ]
+    },
+    {
+      "priorStage": "Calculating forecast runs",
+      "samples": 40,
+      "maxActualUnits": 57,
+      "maxActualGets": 24,
+      "maxUnitsPlusGets": 81,
+      "reservedUnits": 128,
+      "cycleWithProbe1024AndStatus64": 1216,
+      "calls": [
+        {
+          "from": 79,
+          "to": 80,
+          "units": 55,
+          "gets": 23,
+          "withPerGetHeadroom": 78
+        },
+        {
+          "from": 80,
+          "to": 81,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 81,
+          "to": 82,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 82,
+          "to": 83,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 83,
+          "to": 84,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 84,
+          "to": 85,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 85,
+          "to": 86,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 86,
+          "to": 87,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 87,
+          "to": 88,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 88,
+          "to": 89,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 89,
+          "to": 90,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 90,
+          "to": 91,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 91,
+          "to": 92,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 92,
+          "to": 93,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 93,
+          "to": 94,
+          "units": 56,
+          "gets": 24,
+          "withPerGetHeadroom": 80
+        },
+        {
+          "from": 94,
+          "to": 95,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 95,
+          "to": 96,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 96,
+          "to": 97,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 97,
+          "to": 98,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 98,
+          "to": 99,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 99,
+          "to": 100,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 100,
+          "to": 101,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 101,
+          "to": 102,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 102,
+          "to": 103,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 103,
+          "to": 104,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 104,
+          "to": 105,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 105,
+          "to": 106,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 106,
+          "to": 107,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 107,
+          "to": 108,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 108,
+          "to": 109,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 109,
+          "to": 110,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 110,
+          "to": 111,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 111,
+          "to": 112,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 112,
+          "to": 113,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 113,
+          "to": 114,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 114,
+          "to": 115,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 115,
+          "to": 116,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 116,
+          "to": 117,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 117,
+          "to": 118,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        },
+        {
+          "from": 118,
+          "to": 119,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        }
+      ]
+    },
+    {
+      "priorStage": "Combining forecast runs",
+      "samples": 8,
+      "maxActualUnits": 30,
+      "maxActualGets": 26,
+      "maxUnitsPlusGets": 56,
+      "reservedUnits": 96,
+      "cycleWithProbe1024AndStatus64": 1184,
+      "calls": [
+        {
+          "from": 119,
+          "to": 120,
+          "units": 29,
+          "gets": 25,
+          "withPerGetHeadroom": 54
+        },
+        {
+          "from": 120,
+          "to": 121,
+          "units": 30,
+          "gets": 26,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 121,
+          "to": 122,
+          "units": 30,
+          "gets": 26,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 122,
+          "to": 123,
+          "units": 30,
+          "gets": 26,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 123,
+          "to": 124,
+          "units": 30,
+          "gets": 26,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 124,
+          "to": 125,
+          "units": 30,
+          "gets": 26,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 125,
+          "to": 126,
+          "units": 30,
+          "gets": 26,
+          "withPerGetHeadroom": 56
+        },
+        {
+          "from": 126,
+          "to": 127,
+          "units": 30,
+          "gets": 26,
+          "withPerGetHeadroom": 56
+        }
+      ]
+    },
+    {
+      "priorStage": "Verifying forecast results",
+      "samples": 1,
+      "maxActualUnits": 57,
+      "maxActualGets": 24,
+      "maxUnitsPlusGets": 81,
+      "reservedUnits": 128,
+      "cycleWithProbe1024AndStatus64": 1216,
+      "calls": [
+        {
+          "from": 127,
+          "to": 128,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        }
+      ]
+    },
+    {
+      "priorStage": "Preparing forecast results",
+      "samples": 2,
+      "maxActualUnits": 57,
+      "maxActualGets": 24,
+      "maxUnitsPlusGets": 81,
+      "reservedUnits": 128,
+      "cycleWithProbe1024AndStatus64": 1216,
+      "calls": [
+        {
+          "from": 128,
+          "to": 129,
+          "units": 22,
+          "gets": 18,
+          "withPerGetHeadroom": 40
+        },
+        {
+          "from": 130,
+          "to": 131,
+          "units": 57,
+          "gets": 24,
+          "withPerGetHeadroom": 81
+        }
+      ]
+    },
+    {
+      "priorStage": "Retaining the selected baseline",
+      "samples": 1,
+      "maxActualUnits": 23,
+      "maxActualGets": 19,
+      "maxUnitsPlusGets": 42,
+      "reservedUnits": 64,
+      "cycleWithProbe1024AndStatus64": 1152,
+      "calls": [
+        {
+          "from": 131,
+          "to": 132,
+          "units": 23,
+          "gets": 19,
+          "withPerGetHeadroom": 42
+        }
+      ]
+    },
+    {
+      "priorStage": "Preparing the report",
+      "samples": 1,
+      "maxActualUnits": 117,
+      "maxActualGets": 30,
+      "maxUnitsPlusGets": 147,
+      "reservedUnits": 192,
+      "cycleWithProbe1024AndStatus64": 1280,
+      "calls": [
+        {
+          "from": 132,
+          "to": 133,
+          "units": 117,
+          "gets": 30,
+          "withPerGetHeadroom": 147
+        }
+      ]
+    },
+    {
+      "priorStage": "Retaining report pages",
+      "samples": 23,
+      "maxActualUnits": 122,
+      "maxActualGets": 30,
+      "maxUnitsPlusGets": 152,
+      "reservedUnits": 192,
+      "cycleWithProbe1024AndStatus64": 1280,
+      "calls": [
+        {
+          "from": 133,
+          "to": 134,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 134,
+          "to": 135,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 135,
+          "to": 136,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 136,
+          "to": 137,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 137,
+          "to": 138,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 138,
+          "to": 139,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 139,
+          "to": 140,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 140,
+          "to": 141,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 141,
+          "to": 142,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 142,
+          "to": 143,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 143,
+          "to": 144,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 144,
+          "to": 145,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 145,
+          "to": 146,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 146,
+          "to": 147,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 147,
+          "to": 148,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 148,
+          "to": 149,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 149,
+          "to": 150,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 150,
+          "to": 151,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 151,
+          "to": 152,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 152,
+          "to": 153,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 153,
+          "to": 154,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 154,
+          "to": 155,
+          "units": 122,
+          "gets": 30,
+          "withPerGetHeadroom": 152
+        },
+        {
+          "from": 155,
+          "to": 156,
+          "units": 119,
+          "gets": 27,
+          "withPerGetHeadroom": 146
+        }
+      ]
+    },
+    {
+      "priorStage": "Checking for plan changes",
+      "samples": 1,
+      "maxActualUnits": 525,
+      "maxActualGets": 81,
+      "maxUnitsPlusGets": 606,
+      "reservedUnits": 768,
+      "cycleWithProbe1024AndStatus64": 1856,
+      "calls": [
+        {
+          "from": 156,
+          "to": 157,
+          "units": 525,
+          "gets": 81,
+          "withPerGetHeadroom": 606
+        }
+      ]
+    },
+    {
+      "priorStage": "Confirming the plan is unchanged",
+      "samples": 1,
+      "maxActualUnits": 525,
+      "maxActualGets": 81,
+      "maxUnitsPlusGets": 606,
+      "reservedUnits": 768,
+      "cycleWithProbe1024AndStatus64": 1856,
+      "calls": [
+        {
+          "from": 157,
+          "to": 158,
+          "units": 525,
+          "gets": 81,
+          "withPerGetHeadroom": 606
+        }
+      ]
+    },
+    {
+      "priorStage": "Recording capture provenance",
+      "samples": 1,
+      "maxActualUnits": 120,
+      "maxActualGets": 28,
+      "maxUnitsPlusGets": 148,
+      "reservedUnits": 192,
+      "cycleWithProbe1024AndStatus64": 1280,
+      "calls": [
+        {
+          "from": 158,
+          "to": 159,
+          "units": 120,
+          "gets": 28,
+          "withPerGetHeadroom": 148
+        }
+      ]
+    },
+    {
+      "priorStage": "Checking every report page",
+      "samples": 22,
+      "maxActualUnits": 38,
+      "maxActualGets": 28,
+      "maxUnitsPlusGets": 66,
+      "reservedUnits": 96,
+      "cycleWithProbe1024AndStatus64": 1184,
+      "calls": [
+        {
+          "from": 159,
+          "to": 160,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 160,
+          "to": 161,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 161,
+          "to": 162,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 162,
+          "to": 163,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 163,
+          "to": 164,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 164,
+          "to": 165,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 165,
+          "to": 166,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 166,
+          "to": 167,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 167,
+          "to": 168,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 168,
+          "to": 169,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 169,
+          "to": 170,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 170,
+          "to": 171,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 171,
+          "to": 172,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 172,
+          "to": 173,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 173,
+          "to": 174,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 174,
+          "to": 175,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 175,
+          "to": 176,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 176,
+          "to": 177,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 177,
+          "to": 178,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 178,
+          "to": 179,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 179,
+          "to": 180,
+          "units": 38,
+          "gets": 28,
+          "withPerGetHeadroom": 66
+        },
+        {
+          "from": 180,
+          "to": 181,
+          "units": 34,
+          "gets": 24,
+          "withPerGetHeadroom": 58
+        }
+      ]
+    },
+    {
+      "priorStage": "Checking the retained schedule",
+      "samples": 1,
+      "maxActualUnits": 119,
+      "maxActualGets": 28,
+      "maxUnitsPlusGets": 147,
+      "reservedUnits": 192,
+      "cycleWithProbe1024AndStatus64": 1280,
+      "calls": [
+        {
+          "from": 181,
+          "to": 182,
+          "units": 119,
+          "gets": 28,
+          "withPerGetHeadroom": 147
+        }
+      ]
+    },
+    {
+      "priorStage": "Publishing the verified report",
+      "samples": 1,
+      "maxActualUnits": 37,
+      "maxActualGets": 27,
+      "maxUnitsPlusGets": 64,
+      "reservedUnits": 96,
+      "cycleWithProbe1024AndStatus64": 1184,
+      "calls": [
+        {
+          "from": 182,
+          "to": 183,
+          "units": 37,
+          "gets": 27,
+          "withPerGetHeadroom": 64
+        }
+      ]
+    }
+  ],
+  "remainingAfter126": [
+    {
+      "from": 126,
+      "to": 127,
+      "priorStage": "Combining forecast runs",
+      "reservedUnits": 96
+    },
+    {
+      "from": 127,
+      "to": 128,
+      "priorStage": "Verifying forecast results",
+      "reservedUnits": 128
+    },
+    {
+      "from": 128,
+      "to": 129,
+      "priorStage": "Preparing forecast results",
+      "reservedUnits": 128
+    },
+    {
+      "from": 129,
+      "to": 130,
+      "priorStage": "Preparing the retained schedule",
+      "reservedUnits": 128
+    },
+    {
+      "from": 130,
+      "to": 131,
+      "priorStage": "Preparing forecast results",
+      "reservedUnits": 128
+    },
+    {
+      "from": 131,
+      "to": 132,
+      "priorStage": "Retaining the selected baseline",
+      "reservedUnits": 64
+    },
+    {
+      "from": 132,
+      "to": 133,
+      "priorStage": "Preparing the report",
+      "reservedUnits": 192
+    },
+    {
+      "from": 133,
+      "to": 134,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 134,
+      "to": 135,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 135,
+      "to": 136,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 136,
+      "to": 137,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 137,
+      "to": 138,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 138,
+      "to": 139,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 139,
+      "to": 140,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 140,
+      "to": 141,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 141,
+      "to": 142,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 142,
+      "to": 143,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 143,
+      "to": 144,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 144,
+      "to": 145,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 145,
+      "to": 146,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 146,
+      "to": 147,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 147,
+      "to": 148,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 148,
+      "to": 149,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 149,
+      "to": 150,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 150,
+      "to": 151,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 151,
+      "to": 152,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 152,
+      "to": 153,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 153,
+      "to": 154,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 154,
+      "to": 155,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 155,
+      "to": 156,
+      "priorStage": "Retaining report pages",
+      "reservedUnits": 192
+    },
+    {
+      "from": 156,
+      "to": 157,
+      "priorStage": "Checking for plan changes",
+      "reservedUnits": 768
+    },
+    {
+      "from": 157,
+      "to": 158,
+      "priorStage": "Confirming the plan is unchanged",
+      "reservedUnits": 768
+    },
+    {
+      "from": 158,
+      "to": 159,
+      "priorStage": "Recording capture provenance",
+      "reservedUnits": 192
+    },
+    {
+      "from": 159,
+      "to": 160,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 160,
+      "to": 161,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 161,
+      "to": 162,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 162,
+      "to": 163,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 163,
+      "to": 164,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 164,
+      "to": 165,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 165,
+      "to": 166,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 166,
+      "to": 167,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 167,
+      "to": 168,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 168,
+      "to": 169,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 169,
+      "to": 170,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 170,
+      "to": 171,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 171,
+      "to": 172,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 172,
+      "to": 173,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 173,
+      "to": 174,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 174,
+      "to": 175,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 175,
+      "to": 176,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 176,
+      "to": 177,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 177,
+      "to": 178,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 178,
+      "to": 179,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 179,
+      "to": 180,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 180,
+      "to": 181,
+      "priorStage": "Checking every report page",
+      "reservedUnits": 96
+    },
+    {
+      "from": 181,
+      "to": 182,
+      "priorStage": "Checking the retained schedule",
+      "reservedUnits": 192
+    },
+    {
+      "from": 182,
+      "to": 183,
+      "priorStage": "Publishing the verified report",
+      "reservedUnits": 96
+    }
+  ]
+}

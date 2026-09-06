@@ -1,0 +1,14 @@
+✔ combined calls never exceed budget at boundary; every cost held60s after response (0.8175ms)
+✔ parallel callers cannot both spend unavailable units and wait for active response (1.85925ms)
+✔ failed/unknown call is charged and never repeated (0.597541ms)
+✔ cancelled pending wait sends no operation and does not change active outcome (0.874875ms)
+✔ unknown/unbounded costs refuse before send; cancellation does not poison queue release (0.49975ms)
+✔ receipt failure preserves original operation error (0.132875ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42.077583
