@@ -1,0 +1,36 @@
+{
+  "ordinaryTestsDiscovered": 6,
+  "liveTestsExecuted": false,
+  "results": [
+    {
+      "featureId": "sponsor-report-numeric-live",
+      "exit": 0,
+      "output": "Listing tests:\n  [chromium] \u203a scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 \u203a report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes\nTotal: 1 test in 1 file"
+    },
+    {
+      "featureId": "private-completed-observation-live",
+      "exit": 0,
+      "output": "Listing tests:\n  [chromium] \u203a scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:12:1 \u203a completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence\nTotal: 1 test in 1 file"
+    },
+    {
+      "featureId": "private-observations-live",
+      "exit": 0,
+      "output": "Listing tests:\n  [chromium] \u203a scenarios/lz-ppm/journey-campaign-observations.spec.ts:28:1 \u203a private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact\nTotal: 1 test in 1 file"
+    },
+    {
+      "featureId": "sponsor-report-live",
+      "exit": 0,
+      "output": "Listing tests:\n  [chromium] \u203a scenarios/lz-ppm/journey-campaign-report.spec.ts:15:1 \u203a reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy\nTotal: 1 test in 1 file"
+    },
+    {
+      "featureId": "private-simulation-live",
+      "exit": 0,
+      "output": "Listing tests:\n  [chromium] \u203a scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 \u203a private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture\nTotal: 1 test in 1 file"
+    },
+    {
+      "featureId": "large-history-report-live",
+      "exit": 0,
+      "output": "Listing tests:\n  [chromium] \u203a scenarios/lz-ppm/journey-campaign-large-history.spec.ts:13:1 \u203a large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source\nTotal: 1 test in 1 file"
+    }
+  ]
+}

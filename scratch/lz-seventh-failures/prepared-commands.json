@@ -1,0 +1,92 @@
+{
+  "preparedOnly": true,
+  "candidateBinding": "PENDING root source/UI/Forge freeze and reviewed browser/screenshot fixes",
+  "features": [
+    {
+      "featureId": "sponsor-report-numeric-live",
+      "minimumOrdinaryTests": 1,
+      "discoveryCommand": [
+        "npx",
+        "playwright",
+        "test",
+        "scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts",
+        "--workers=1",
+        "--retries=0",
+        "--list"
+      ],
+      "runnerSelection": "sponsor-report-numeric-live"
+    },
+    {
+      "featureId": "private-completed-observation-live",
+      "minimumOrdinaryTests": 1,
+      "discoveryCommand": [
+        "npx",
+        "playwright",
+        "test",
+        "scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts",
+        "--workers=1",
+        "--retries=0",
+        "--list"
+      ],
+      "runnerSelection": "private-completed-observation-live"
+    },
+    {
+      "featureId": "private-observations-live",
+      "minimumOrdinaryTests": 1,
+      "discoveryCommand": [
+        "npx",
+        "playwright",
+        "test",
+        "scenarios/lz-ppm/journey-campaign-observations.spec.ts",
+        "--workers=1",
+        "--retries=0",
+        "--list",
+        "--grep",
+        "private observations:"
+      ],
+      "runnerSelection": "private-observations-live"
+    },
+    {
+      "featureId": "sponsor-report-live",
+      "minimumOrdinaryTests": 1,
+      "discoveryCommand": [
+        "npx",
+        "playwright",
+        "test",
+        "scenarios/lz-ppm/journey-campaign-report.spec.ts",
+        "--workers=1",
+        "--retries=0",
+        "--list"
+      ],
+      "runnerSelection": "sponsor-report-live"
+    },
+    {
+      "featureId": "private-simulation-live",
+      "minimumOrdinaryTests": 1,
+      "discoveryCommand": [
+        "npx",
+        "playwright",
+        "test",
+        "scenarios/lz-ppm/journey-campaign-simulation.spec.ts",
+        "--workers=1",
+        "--retries=0",
+        "--list"
+      ],
+      "runnerSelection": "private-simulation-live"
+    },
+    {
+      "featureId": "large-history-report-live",
+      "minimumOrdinaryTests": 1,
+      "discoveryCommand": [
+        "npx",
+        "playwright",
+        "test",
+        "scenarios/lz-ppm/journey-campaign-large-history.spec.ts",
+        "--workers=1",
+        "--retries=0",
+        "--list"
+      ],
+      "runnerSelection": "large-history-report-live"
+    }
+  ]
+}
