@@ -19,6 +19,8 @@ export class ForgeResponseRecordError extends Error {
  * The original response exists only in memory. Stored raw is explicitly encoded
  * sanitized JSON, with separate original and retained digests. Business content
  * is never rewritten: a credential echo outside the known transport field fails.
+ * @param {string} raw
+ * @param {{requestToken?:string,requestHeaders?:Record<string,string>}} options
  */
 export function serializeForgeResponse(raw, { requestToken, requestHeaders = {} } = {}) {
   if (typeof raw !== 'string') throw new ForgeResponseRecordError('input-type', {});
