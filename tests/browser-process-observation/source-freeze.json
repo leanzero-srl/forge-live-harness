@@ -1,0 +1,31 @@
+{
+  "schema": "owned-browser-process-source-v1",
+  "sourceCommit": "3982efa6dcd14b146497e3f28dd0901d68c235a7",
+  "base": "a8bc0b1e3764ea4561d40635ca82b328147ca211",
+  "files": {
+    "forge/browser-process-observation.cjs": {
+      "sha256": "c18747e1554b425f0dfa026a3def0a9785a36ec16df05554ea1c80815eecbe91",
+      "bytes": 6482
+    },
+    "forge/portable-browser.mjs": {
+      "sha256": "1f06bc4d95f2bbe7403d75c755e79c7e2ec86b81605a83e4d98833b9f3d68fcd",
+      "bytes": 9927
+    },
+    "tests/browser-process-observation/controls.txt": {
+      "sha256": "0765db6824ec2029b66eb51d8c2318c2a7b892761e73820d70e853417e656a57",
+      "bytes": 13188
+    },
+    "tests/browser-process-observation/typecheck.txt": {
+      "sha256": "04acf2ef48f378b69b58c1a971ff8ba5a6b43e766b0a22bf632ebd5d5165c316",
+      "bytes": 304
+    }
+  },
+  "controls": {
+    "pass": 59,
+    "fail": 0
+  },
+  "typecheck": "only two inherited Sentinel errors",
+  "browserLaunches": 0,
+  "siteCalls": 0,
+  "sourceUnchangedAfterFreeze": true
+}
