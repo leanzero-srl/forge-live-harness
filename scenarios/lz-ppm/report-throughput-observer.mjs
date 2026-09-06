@@ -30,7 +30,12 @@ export function observeCall(observer,method,...args){
 export function createReportThroughputObserver({page,extensionId,emit=(_event)=>{},saveFailure=(_id,_raw)=>{},saveResponse,now=()=>performance.now(),wall=()=>Date.now(),maxRecords=10000}){
  if(!/^ari:cloud:ecosystem::extension\/[\w-]+\/[\w-]+\/static\/ppm-dashboard$/.test(extensionId))throw new Error('Exact dashboard extension identity required');
  const records=new Map(),byRequest=new Map(),requestEvidence=new WeakMap(),pending=new Set(),errors=[];let nextId=0,lastClock=-Infinity,phase='preparation',closed=false,recordCount=0;
- const recordObserverFailure=error=>{errors.push({kind:'observer',...errorData(error)});};
+ const diagnostic=error=>{
+  if(typeof saveResponse!=='function')return errorData(error);
+  let detail;try{detail=String(error?.message??error);}catch{detail='Unprintable error';}
+  return {name:'ObservedError',message:'Observed operation failed; original detail withheld',detailSha256:hash(detail),detailBytes:Buffer.byteLength(detail)};
+ };
+ const recordObserverFailure=error=>{errors.push({kind:'observer',...diagnostic(error)});};
  const safe=(work)=>{try{return work();}catch(error){recordObserverFailure(error);return undefined;}};
  const stamp=()=>{
   const monoMs=now(),wallMs=wall();if(!Number.isFinite(monoMs)||monoMs<lastClock||!Number.isFinite(wallMs)){recordObserverFailure(new Error('Invalid monotonic/wall observation clock'));return {monoMs:null,wallMs:null};}
@@ -69,6 +74,7 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
       if(requestCall){const {data:callData,...callReceipt}=serializeForgeResponse(JSON.stringify(requestCall),options);receipt.requestCall=callReceipt;}
      }catch(error){receipt=null;evidenceRefusal=error instanceof ForgeResponseRecordError?error.receipt:{refusal:'response-evidence-unavailable'};}
     }
+    if(evidenceRefusal){summary.job=null;summary.outerSuccess=typeof summary.outerSuccess==='boolean'?summary.outerSuccess:null;summary.bodySuccess=typeof summary.bodySuccess==='boolean'?summary.bodySuccess:null;}
     if(failures.length){errors.push({kind:'response',id:record.id,failures});
      // The optional strict corpus also fences the older failure sink: it must
      // never publish an opaque request credential echoed by an error response.
@@ -88,13 +94,13 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
      }catch{evidenceRefusal={refusal:'response-evidence-sink-failed'};}}
      if(evidenceRefusal){errors.push({kind:'response-evidence',id:record.id,...evidenceRefusal});event(record,'response-evidence-refused',stamp(),evidenceRefusal);}
     }
-   }catch(error){record.bodyTerminal=stamp();record.outcome='unknown';errors.push({kind:'body',id:record.id,...errorData(error)});event(record,'body-read-failed',record.bodyTerminal,{error:errorData(error)});}
+   }catch(error){record.bodyTerminal=stamp();record.outcome='unknown';errors.push({kind:'body',id:record.id,...diagnostic(error)});event(record,'body-read-failed',record.bodyTerminal,{error:diagnostic(error)});}
   })();track(work);
  }
  const request=req=>safe(()=>{
   const at=stamp();const url=new URL(req.url());if(!/^\/gateway\/api\/graphql(?:\/pq\/[a-fA-F0-9]{64})?$/.test(url.pathname))return;
   let envelope;try{let raw=req.postDataBuffer();if(!raw)return;if(raw[0]===31&&raw[1]===139)raw=gunzipSync(raw);envelope=JSON.parse(raw.toString());}
-  catch(error){errors.push({kind:'unclassified-graphql',...errorData(error)});event(null,'unclassified-graphql',at);return;}
+  catch(error){errors.push({kind:'unclassified-graphql',...diagnostic(error)});event(null,'unclassified-graphql',at);return;}
   const input=envelope?.variables?.input;if(input?.extensionId!==extensionId)return;
   const call=input?.payload?.call;if(typeof call?.functionKey!=='string'||!call.functionKey){errors.push({kind:'unclassified-app-rpc'});event(null,'unclassified-app-rpc',at);return;}
   const record=start('ui',call.functionKey,selectedCall(call),at);byRequest.set(req,record);
@@ -105,7 +111,7 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
  });
  const response=res=>safe(()=>{const at=stamp(),req=res.request(),record=byRequest.get(req);if(record){const evidence=requestEvidence.get(req);requestEvidence.delete(req);responseBody(record,res,at,evidence);}});
  const finished=req=>safe(()=>{const at=stamp(),record=byRequest.get(req);if(!record)return;record.networkTerminal=at;event(record,'network-finished',at,{timing:readTiming(req)});});
- const failed=req=>safe(()=>{const at=stamp(),record=byRequest.get(req);if(!record)return;record.networkTerminal=at;record.outcome='failed';errors.push({kind:'transport',id:record.id,...errorData(req.failure()?.errorText)});event(record,'network-failed',at,{error:errorData(req.failure()?.errorText),timing:readTiming(req)});});
+ const failed=req=>safe(()=>{const at=stamp(),record=byRequest.get(req);if(!record)return;record.networkTerminal=at;record.outcome='failed';errors.push({kind:'transport',id:record.id,...diagnostic(req.failure()?.errorText)});event(record,'network-failed',at,{error:diagnostic(req.failure()?.errorText),timing:readTiming(req)});});
  page.on('request',request);page.on('response',response);page.on('requestfinished',finished);page.on('requestfailed',failed);
  const detached=()=>{page.off('request',request);page.off('response',response);page.off('requestfinished',finished);page.off('requestfailed',failed);};
  const snapshot=()=>({schema:'report-throughput-v1',extensionId,phase,closed,recordCount,records:[...records.values()],errors:[...errors],complete:false,productPassed:false});
@@ -115,8 +121,8 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
   beginExternal(kind,key,meta={}){return safe(()=>{if(closed)throw new Error('Observer closed');if(!['rpc','hook'].includes(kind))throw new Error('Unknown external kind');return start(kind,key,{planId:typeof meta.planId==='string'?meta.planId:null},stamp()).id;});},
   externalResponse(id,response,privacy={}){safe(()=>{const record=records.get(id);if(!record)throw new Error('Unknown external response');responseBody(record,response,stamp(),{api:record.kind==='rpc',hook:record.kind==='hook',clone:record.kind==='hook',privacy});});},
   endExternal(id,error,failedCall=false){safe(()=>{const record=records.get(id);if(!record)throw new Error('Unknown external terminal');record.networkTerminal=stamp();
-   if(failedCall){errors.push({kind:'external-operation',id,...errorData(error)});record.outcome='failed';}
-   event(record,'external-consumer-terminal',record.networkTerminal,{failed:failedCall,...(failedCall?{error:errorData(error)}:{})});
+   if(failedCall){errors.push({kind:'external-operation',id,...diagnostic(error)});record.outcome='failed';}
+   event(record,'external-consumer-terminal',record.networkTerminal,{failed:failedCall,...(failedCall?{error:diagnostic(error)}:{})});
   });},
   snapshot,
   async finish({timeoutMs=10000,requireCapture=false}={}){
