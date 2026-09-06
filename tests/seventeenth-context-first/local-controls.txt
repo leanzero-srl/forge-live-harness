@@ -1,0 +1,16 @@
+✔ actual immutable diagnostic permits only exact retained next experiment (0.784542ms)
+✔ wrong digest, identity, previous outcome or preservation cannot admit (0.880625ms)
+✔ exact returned timestamp and finite elapsed lease are mandatory (0.165542ms)
+✔ missing, foreign, changed or newly public artifact cannot admit (4.38925ms)
+✔ only one exact next checkpoint succeeds (0.918875ms)
+✔ published outcome is distinct and cannot enter staging cleanup (0.229917ms)
+✔ timeouts and malformed bodies remain unknown, named refusal remains refusal (0.077125ms)
+✔ cleanup requires exact audited receipt and elapsed lease with no public data (2.3495ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.403875
