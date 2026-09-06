@@ -1,0 +1,11 @@
+# Checkpoint155 receipt admission — prepared only
+
+No live spec or dispatch is authorized by this source-only contract. True UI credential-refresh design and implementation require root review before the next browser run. Runtime remains actual development6.25/UI587; no application change is inferred from the expired captured context token.
+
+`admitRefreshedResume` requires full terminal7be7311c7d5369ccdf70bd9f9144c4ae44111814a7100a9df3a5d72b80afdf67, preserving false completed/publication/sourceAndPreferencesPreserved flags. Its input is the separately verified complete prior chain (333e initial run,8474 strong126,4a7b paced refusal and all source/original captures). It replays28 exact successful acknowledgements127→155, corresponding real saved statuses and complete physical proofs, then requires the actual29th155 request's HTTP200/outerfalse/bodynull FCT_VALIDATION_TOKEN_EXPIRED response. Expiry is never turned into an acknowledgement or hidden as an accepted retry. All five final-audit failures are retained exactly.
+
+Expected fresh state is laststrong155,187 private keys,114 registered public keys/110 present, all40 run headers and every prior hash unchanged. This is not a claim that final state was freshly read after token expiry. A subsequent reviewed live spec must acquire a genuine current-user UI request, then re-prove this exact job/probe and all existing full5300/snapshot/original45/registry/drafts/baseline/prefs65/sharedfixture guards before any new advance.
+
+`continueRefreshedReport` independently retains the same serial acknowledgement→freshstatus→completephysicalproof order, all40 savedrun progress, no retry after any actual failure, and exactly28 remaining155→183 transitions. Premature publication fails. Full106pages/all5300fields/old-producerHTML/reopen/finalaudits will be retained when the auth gate is integrated; they have not been replaced with this local protocol control.
+
+Planned next journal phase `paced-resume155` retains failedReceipt/quotaAdmission/pacedFailureReceipt/sourcechain and adds aggregateFailureReceipt with exact7be731 hash. No historical spec, evidence, budget helper, or cost map changed. Seven new local admission/protocol controls pass with actual exit0 recorded in admission-controls-exit.json. They prove the saved boundary and refusal handling, not a functioning auth refresh or live report.
