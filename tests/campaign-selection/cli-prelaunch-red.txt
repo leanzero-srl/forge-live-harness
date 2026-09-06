@@ -1,0 +1,186 @@
+test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) ... 
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value=',') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='unknown') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='normalization,unknown') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='normalization,normalization') ... ERROR
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/ast.py:46: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmpzh4s3tn_/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  return compile(source, filename, mode, flags,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/ast.py:46: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmpesf73v2k/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  return compile(source, filename, mode, flags,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/ast.py:46: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmp2td_m6v1/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  return compile(source, filename, mode, flags,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/ast.py:46: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmp9d4p0250/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  return compile(source, filename, mode, flags,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value=' normalization') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value=',') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='unknown') ... ERROR
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py:2259: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmplb9l_t39/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py:2259: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmp1i_ouzd0/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py:2259: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmp_wq3dhqw/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py:2259: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmpjhflxjhj/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='normalization,unknown') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='normalization,normalization') ... ERROR
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value=' normalization') ... ERROR
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value=',')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='normalization,unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='normalization,normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value=' normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value=',')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='normalization,unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='normalization,normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+======================================================================
+ERROR: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value=' normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:launched.append(a)),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                              ~~~~~~^^
+  File "/private/tmp/lz-campaign-selected-completion-20260906/scripts/lz-campaign.py", line 490, in main
+    if current_state.get('pid') != child.pid:
+                                   ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+----------------------------------------------------------------------
+Ran 1 test in 1.995s
+
+FAILED (errors=12)

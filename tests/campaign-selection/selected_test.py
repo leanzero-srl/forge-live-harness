@@ -90,6 +90,23 @@ class Selection(unittest.TestCase):
      return 'changed' if fault=='instrument' and calls>3 else instrument
     with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'instrument_hash',side_effect=observed),patch.object(m,'lock_acquire',return_value={}),patch.object(m,'run_phase',side_effect=phase),patch.object(m,'STOP_NOW',False),contextlib.redirect_stdout(io.StringIO()):self.assertEqual(m.run(c,root),2)
     self.assertFalse(m.read(root/'summary.json')['selectedRun']['complete']);self.assertNotEqual(m.read(root/'state.json')['status'],'complete')
+ def test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch(self):
+  for verb in ['start','resume']:
+   for value in ['',',','unknown','normalization,unknown','normalization,normalization',' normalization']:
+    with self.subTest(verb=verb,value=value),tempfile.TemporaryDirectory() as d:
+     root=Path(d);run=root/'evidence/lz-campaign'/config['runId'];run.mkdir(parents=True);c=self.fixture(run);m.atomic(run/'config.json',c)
+     originals={n:(run/n).read_bytes() for n in ['config.json','state.json','summary.json']};launched=[]
+     args=['runner',verb,'--run-id',c['runId'],'--manifest',c['manifest'],'--ui-version',c['uiVersion'],'--forge-version',c['forgeVersion'],'--app-commit',c['appCommit'],'--features',value]
+     with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+     self.assertEqual(failure.exception.code,2);self.assertEqual(launched,[]);self.assertEqual(originals,{n:(run/n).read_bytes() for n in originals})
+ def test_actual_start_cli_omitted_selection_remains_all_and_explicit_valid_selection_remains_exact(self):
+  for requested in [None,'normalization,persistence-durability']:
+   with self.subTest(requested=requested),tempfile.TemporaryDirectory() as d:
+    root=Path(d);manifest=root/'manifest.json';manifest.write_bytes((DATA/'manifest.json').read_bytes());launched=[]
+    def child(*args,**kwargs):launched.append(args);return type('Child',(),{'pid':12345})()
+    args=['runner','start','--run-id',config['runId'],'--manifest',str(manifest),'--ui-version','ui','--forge-version','forge','--app-commit','source']+(['--features',requested] if requested is not None else [])
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m,'process_start',return_value='local'),patch.object(m.subprocess,'Popen',side_effect=child),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()):self.assertEqual(m.main(),0)
+    saved=m.read(root/'evidence/lz-campaign'/config['runId']/'config.json');self.assertEqual(saved['features'],None if requested is None else requested.split(','));self.assertEqual(len(launched),1)
  def test_stale_status_display_clears_both_flags_without_rewriting_history(self):
   with tempfile.TemporaryDirectory() as d:
    root=Path(d);run=root/'evidence/lz-campaign'/config['runId'];run.mkdir(parents=True);c=self.fixture(run);self.summarize(run,c);before=(run/'summary.json').read_bytes();out=io.StringIO()

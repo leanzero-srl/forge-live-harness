@@ -1,0 +1,138 @@
+test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) ... 
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value=',') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='unknown') ... FAIL
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/ast.py:46: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmpifbohw5g/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  return compile(source, filename, mode, flags,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/ast.py:46: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmpx3ddblg2/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  return compile(source, filename, mode, flags,
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='normalization,unknown') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='normalization,normalization') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value=' normalization') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value=',') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='unknown') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='normalization,unknown') ... FAIL
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='normalization,normalization') ... FAIL
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py:2259: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmpvskvtzak/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/mock.py:2259: ResourceWarning: unclosed file <_io.FileIO name='/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/tmpt99q1jwy/evidence/lz-campaign/final-six-regressions-20260906/runner.log' mode='ab' closefd=True>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+  test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value=' normalization') ... FAIL
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value=',')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='normalization,unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value='normalization,normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='start', value=' normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value=',')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='normalization,unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value='normalization,normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch (__main__.Selection.test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch) (verb='resume', value=' normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 100, in test_actual_start_resume_cli_rejects_explicit_invalid_selection_before_config_or_launch
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'is_owner_alive',return_value=False),patch.object(m.subprocess,'Popen',side_effect=lambda *a,**k:(launched.append(a) or type('Child',(),{'pid':12345})())),patch.object(m,'process_start',return_value='local'),patch.object(m.time,'sleep'),patch.object(sys,'argv',args),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit) as failure:m.main()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.042s
+
+FAILED (failures=12)
