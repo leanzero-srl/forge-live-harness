@@ -1,0 +1,7 @@
+scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts(20,118): error TS2339: Property 'principalSha256' does not exist on type 'PortableReceipt | { mode: "persistent-chrome"; browserVersion: string | null; }'.
+  Property 'principalSha256' does not exist on type '{ mode: "persistent-chrome"; browserVersion: string | null; }'.
+scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts(20,181): error TS2339: Property 'uiVersion' does not exist on type 'PortableReceipt | { mode: "persistent-chrome"; browserVersion: string | null; }'.
+  Property 'uiVersion' does not exist on type '{ mode: "persistent-chrome"; browserVersion: string | null; }'.
+scenarios/sentinel-vault/my-work-page.spec.ts(80,27): error TS7006: Parameter 't' implicitly has an 'any' type.
+scenarios/sentinel-vault/steward-console-deep.spec.ts(31,140): error TS2339: Property 'replace' does not exist on type 'string | number'.
+  Property 'replace' does not exist on type 'number'.

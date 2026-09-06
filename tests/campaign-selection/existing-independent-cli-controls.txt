@@ -1,0 +1,9 @@
+test_actual_start_resume_cli_persist_mode_and_refuse_same_id_switch (__main__.Review.test_actual_start_resume_cli_persist_mode_and_refuse_same_id_switch) ... ok
+test_default_run_phase_overrides_inherited_mode_and_binds_ui (__main__.Review.test_default_run_phase_overrides_inherited_mode_and_binds_ui) ... ok
+test_invalid_persisted_mode_refuses_before_any_lane_or_child (__main__.Review.test_invalid_persisted_mode_refuses_before_any_lane_or_child) ... ok
+test_result_reuse_separates_modes_and_expected_configuration (__main__.Review.test_result_reuse_separates_modes_and_expected_configuration) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.009s
+
+OK

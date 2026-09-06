@@ -1,0 +1,9 @@
+# Private owner staged-report witness (preparation only)
+
+Base b5a97100363a6f33783c2925554f2edb3a484610. New files only. No browser/site/Playwright journey execution, shared helper/app edit or deployment is authorized in this cut.
+
+Source correction to the earlier proposal: SimulationFork immediately calls onOpenPlan on the actual successful Create response; keyed PlanView replacement emits the source usePresence cleanup leave. The witness must arm before Create, validate exactly one future successful source leave and actual private mount, and then promote ownership only after actual fork acknowledgement plus fresh same-user plan/model/provenance validation. It cannot perform a Back before this existing automatic transition. Root approved this measured source shape. Later departures use the unchanged shared departOwnedPlan with a real Back click. Neither global plan-test ownership nor reportCaptureState is weakened.
+
+The witness uses only GET for WFH-2820/id25020; the existing frozen fixture bytes and two actual equal reads bind admission. Fresh source fixture and private fork identities are server-created. Unknown creation, fork, departure, capture, or deletion prevents dependent cleanup. Finalization performs only safe departure and independent reads; it never attempts deletion after failure.
+
+Physical private KVS payload absence and second-principal denial are explicitly not proven by this owner/public-API witness. No physical hook is called on sim-*; no metadata/identity is fabricated to make it pass. Cleanup must prove public receipt/page/list absence while the exact private plan resolves, then actual private plan UI deletion and two fresh metadata/registry absences, then exact ordinary source cleanup. WFH remains untouched. This is not a substitute for an eventual separately reviewed private physical hook if that stronger acceptance is required.

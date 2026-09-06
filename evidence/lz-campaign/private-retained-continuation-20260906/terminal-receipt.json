@@ -1,0 +1,97 @@
+{
+  "schema": "private-retained-terminal-v1",
+  "status": "closed",
+  "outcome": "failed",
+  "exitCode": 1,
+  "finishedAt": "2026-09-06T18:29:43.990247+00:00",
+  "pidCheckedAt": "2026-09-06T18:31:56.435995+00:00",
+  "supervisorPid": 46984,
+  "childPid": 46995,
+  "workerPid": 46997,
+  "alivePids": [],
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/artifacts/scenarios-lz-ppm-campaign--bd9a9-d-cleanup-without-recapture-chromium/private-retained-continuation.json",
+    "sha256": "aa44d3a1e0dad63fce75998798dd36d60058e0f7629313bb5b893d7056a7ad20",
+    "bytes": 1062906
+  },
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/launch.json",
+    "sha256": "6da998fb3b2f9c4d94f555adf678ebfe1bb2efcc35ca121b94236146713c22b6",
+    "bytes": 538
+  },
+  "process": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/process.json",
+    "sha256": "4a7b714b3628d00ddb94f6394516d967553346c1830c4775fae92519e758e802",
+    "bytes": 1265
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/command.json",
+    "sha256": "80f7d5c3ba5736502b9ecfe3312a9b73de85ca9543df54405b7f93d7c1d7634c",
+    "bytes": 2728
+  },
+  "step": "delete-retained-source-plan",
+  "originalFlags": {
+    "completed": false,
+    "integrityPreserved": false,
+    "state": "recovery-required",
+    "sourceDeleted": null
+  },
+  "failure": {
+    "reason": "Retained private continuation failed; no retry or inferred cleanup",
+    "detailSha256": "445f33513ecebc229dd255d50cdd7b8555d8f9bfc5557bc77d465daf365bcd07",
+    "detailBytes": 95
+  },
+  "recordedProgress": {
+    "reopened": true,
+    "reportDeleted": true,
+    "publicAbsenceTwice": true,
+    "privateDeleted": true
+  },
+  "cleanedJob": {
+    "id": "de0cf61c-7c83-4a5b-8fbc-79eca19506fe",
+    "requestId": "579376b8-254b-4afe-96a7-23bf41be692a",
+    "name": "Private owner immutable report",
+    "createdAt": "2026-09-06T17:54:21.578Z",
+    "expiresAt": "2026-09-07T17:54:21.578Z",
+    "checkpoint": 43,
+    "state": "cancelled",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 43,
+    "totalUnits": 43,
+    "cleanupDone": true,
+    "forecastRuns": {
+      "completed": 300,
+      "total": 300
+    },
+    "reportId": "7fb0d2d8-37f9-461e-910a-406246a5d46b"
+  },
+  "html": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/artifacts/scenarios-lz-ppm-campaign--bd9a9-d-cleanup-without-recapture-chromium/private-retained-reopened.html",
+      "sha256": "648906d038d174b7f98e97aa52aff383e7a4d1a7e33e6b71c927340dff841508",
+      "bytes": 6092
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/artifacts/scenarios-lz-ppm-campaign--bd9a9-d-cleanup-without-recapture-chromium/private-retained-report.html",
+      "sha256": "648906d038d174b7f98e97aa52aff383e7a4d1a7e33e6b71c927340dff841508",
+      "bytes": 6092
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/artifacts/scenarios-lz-ppm-campaign--bd9a9-d-cleanup-without-recapture-chromium/private-retained-reopened.png",
+      "sha256": "df8d1cafcb2e859b542e99e6c433546cecb61840b7805c3b1c66ff3a0ab74d23",
+      "bytes": 219089
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/artifacts/scenarios-lz-ppm-campaign--bd9a9-d-cleanup-without-recapture-chromium/private-retained-report.png",
+      "sha256": "df8d1cafcb2e859b542e99e6c433546cecb61840b7805c3b1c66ff3a0ab74d23",
+      "bytes": 219089
+    }
+  ],
+  "visualInspection": "Both full exported-report PNGs personally viewed: exact private-model title/provenance, WFH-2820 Oct5\u20139/d5, P50 Oct9/P80/P90 Oct12, empty scoped-target and baseline sections, capacity excluded. No blank/loading state.",
+  "boundary": "deleteFixture acknowledged exact deletion/registryRemoved, next plan hook returned {issues:[]} without meta; explicit toBeNull expectation failed before second absent-plan proof. Final registry recorded original three. No sourceDeleted flag inferred and original failure retained.",
+  "extraSiteCallsAfterTerminal": 0,
+  "followOnRuns": 0,
+  "rawTraceArchivesLocalOnly": true
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "campaign": "lz-private-owner-2026-09",
+  "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
+  "scopeNote": "Exactly one private-owner staged report witness; public API and exact output proof only. No second-principal or physical private KVS claim. No retained UAT.",
+  "features": [
+    {
+      "id": "private-staged-report-owner-live",
+      "status": "ready",
+      "specs": [
+        "scenarios/lz-ppm/campaign-private-staged-report.spec.ts"
+      ],
+      "minTests": 1,
+      "timeoutSeconds": 900,
+      "acceptance": [
+        "PRIVATE-REAL-OWNER-FORK",
+        "PRIVATE-STAGED-CAPTURE-FULL-REPORT-HTML",
+        "PRIVATE-OWNER-STATUS-REOPEN",
+        "PRIVATE-PUBLIC-REPORT-CLEANUP",
+        "PRIVATE-OWNED-PLAN-DELETION",
+        "PRIVATE-SOURCE-REGISTRY-PREFS-SHARED-JIRA-PRESERVED"
+      ]
+    }
+  ]
+}

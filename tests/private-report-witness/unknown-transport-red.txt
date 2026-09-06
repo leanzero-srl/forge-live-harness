@@ -1,0 +1,182 @@
+TAP version 13
+# (node:82114) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/utils/target-scope.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual current fork, snapshot store and generation roundtrip satisfy exact owner provenance
+ok 1 - actual current fork, snapshot store and generation roundtrip satisfy exact owner provenance
+  ---
+  duration_ms: 8.77625
+  type: 'test'
+  ...
+# Subtest: same actual fork refuses each foreign identity, permission, stale generation and data substitution
+ok 2 - same actual fork refuses each foreign identity, permission, stale generation and data substitution
+  ---
+  duration_ms: 5.811834
+  type: 'test'
+  ...
+# Subtest: finalization never deletes on unknown outcome and executes every independent audit after failed leave
+ok 3 - finalization never deletes on unknown outcome and executes every independent audit after failed leave
+  ---
+  duration_ms: 0.286708
+  type: 'test'
+  ...
+# Subtest: explicit owner phase only, disabled discovery stays inert and unknown phases refuse
+ok 4 - explicit owner phase only, disabled discovery stays inert and unknown phases refuse
+  ---
+  duration_ms: 0.116291
+  type: 'test'
+  ...
+# Subtest: all pre-existing scenario/helper blobs remain exactly the reviewed base; no direct Jira mutations or physical guard bypass
+ok 5 - all pre-existing scenario/helper blobs remain exactly the reviewed base; no direct Jira mutations or physical guard bypass
+  ---
+  duration_ms: 9.753417
+  type: 'test'
+  ...
+# [sponsor-report-stage] {"stage":"source-first","event":"start","checkpoint":0,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-first","event":"complete","checkpoint":1,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"source-second","event":"start","checkpoint":1,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-second","event":"complete","checkpoint":2,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"materialize","event":"start","checkpoint":2,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"materialize","event":"complete","checkpoint":3,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"materialize","event":"start","checkpoint":3,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"materialize","event":"complete","checkpoint":4,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"pack-source","event":"start","checkpoint":4,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"complete","checkpoint":5,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"start","checkpoint":5,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"complete","checkpoint":6,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"analyze","event":"start","checkpoint":6,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"analyze","event":"complete","checkpoint":7,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":7,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":8,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":8,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":9,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":9,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":10,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":10,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":11,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":11,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":12,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":12,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":13,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":13,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":14,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":14,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":15,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":15,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":16,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":16,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":17,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":17,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":18,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":18,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":19,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"start","checkpoint":19,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"complete","checkpoint":20,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"start","checkpoint":20,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"complete","checkpoint":21,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"start","checkpoint":21,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"complete","checkpoint":22,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-aggregate","event":"start","checkpoint":22,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-aggregate","event":"complete","checkpoint":23,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-project","event":"start","checkpoint":23,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-project","event":"complete","checkpoint":24,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"start","checkpoint":24,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"complete","checkpoint":25,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-project","event":"start","checkpoint":25,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-project","event":"complete","checkpoint":26,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"baseline","event":"start","checkpoint":26,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"baseline","event":"complete","checkpoint":27,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"prepare","event":"start","checkpoint":27,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"prepare","event":"complete","checkpoint":28,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"write-output","event":"start","checkpoint":28,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"write-output","event":"complete","checkpoint":29,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-third","event":"start","checkpoint":29,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-third","event":"complete","checkpoint":30,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-fourth","event":"start","checkpoint":30,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-fourth","event":"complete","checkpoint":31,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"seal","event":"start","checkpoint":31,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"seal","event":"complete","checkpoint":32,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"verify-pages","event":"start","checkpoint":32,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"verify-pages","event":"complete","checkpoint":33,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"verify-current","event":"start","checkpoint":33,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"verify-current","event":"complete","checkpoint":34,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"publish","event":"start","checkpoint":34,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"publish","event":"complete","checkpoint":35,"elapsedMs":0}
+# Subtest: actual fork model runs through current registered staged handlers and agrees with whole frozen report/page/HTML oracle
+ok 6 - actual fork model runs through current registered staged handlers and agrees with whole frozen report/page/HTML oracle
+  ---
+  duration_ms: 73.90225
+  type: 'test'
+  ...
+# Subtest: cleanup continuation requires same complete receipt identity and strictly acknowledged checkpoint progression
+ok 7 - cleanup continuation requires same complete receipt identity and strictly acknowledged checkpoint progression
+  ---
+  duration_ms: 2.386292
+  type: 'test'
+  ...
+# (node:82115) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/utils/target-scope.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual usePresence Create transition emits source leave, binds private generation and uses real Back before blank
+ok 8 - actual usePresence Create transition emits source leave, binds private generation and uses real Back before blank
+  ---
+  duration_ms: 11.052458
+  type: 'test'
+  ...
+# Subtest: actual failed, missing, foreign, duplicate, stale and invalid private mount transitions poison without blank or replay
+ok 9 - actual failed, missing, foreign, duplicate, stale and invalid private mount transitions poison without blank or replay
+  ---
+  duration_ms: 163.693541
+  type: 'test'
+  ...
+# Subtest: old observed leave cannot satisfy newly armed source transition
+ok 10 - old observed leave cannot satisfy newly armed source transition
+  ---
+  duration_ms: 65.229417
+  type: 'test'
+  ...
+# Subtest: wrong principal or changed request document fails before private creation
+ok 11 - wrong principal or changed request document fails before private creation
+  ---
+  duration_ms: 7.788583
+  type: 'test'
+  ...
+# Subtest: expired genuine wire refuses before an actual POST, and no raw credential enters retained evidence
+ok 12 - expired genuine wire refuses before an actual POST, and no raw credential enters retained evidence
+  ---
+  duration_ms: 3.2695
+  type: 'test'
+  ...
+# Subtest: unknown actual capture transport poisons all subsequent mutations and preserves acknowledged private owner
+not ok 13 - unknown actual capture transport poisons all subsequent mutations and preserves acknowledged private owner
+  ---
+  duration_ms: 5.016125
+  type: 'test'
+  location: '/private/tmp/lz-private-report-witness-20260906/tests/private-report-witness/session.test.mjs:35:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert(protocol.snapshot().error)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: ~
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-private-report-witness-20260906/tests/private-report-witness/session.test.mjs:37:180)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 12
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 504.315

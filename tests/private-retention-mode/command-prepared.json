@@ -1,0 +1,49 @@
+{
+  "schema": "private-retention-command-v1",
+  "status": "prepared",
+  "runId": "private-retained-acceptance-20260906",
+  "rootDispatchCommit": null,
+  "harnessSourceCommit": "c75029728cdfc099bd6d46841d2dba29c218c436",
+  "instrumentHash": null,
+  "supervisorSha256": "218a0449f98dd0684dc7c9258daecaaca223040dd0274296c850436ce185fa26",
+  "appSourceCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "forgeVersion": "6.26.0",
+  "uiVersion": "4.58.588",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "command": [
+    "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "scenarios/lz-ppm/campaign-private-staged-report.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/artifacts"
+  ],
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0",
+    "LZ_HARNESS_BROWSER_MODE": "portable-chrome152",
+    "LZ_EXPECTED_ACCOUNT_ID": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "LZ_EXPECTED_UI_VERSION": "4.58.588",
+    "LZ_PRIVATE_REPORT_PHASE": "owner",
+    "LZ_PRIVATE_RETAIN_MODE": "retain",
+    "LZ_PRIVATE_EXPECTED_SETTINGS": "{\"success\":true,\"version\":68,\"settings\":{\"selectedPlanIds\":[],\"profiles\":{},\"issueChoices\":{}}}",
+    "PLAYWRIGHT_JSON_OUTPUT_NAME": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/report.json"
+  },
+  "timeoutSeconds": 900,
+  "sourceHashes": {
+    "scenarios/lz-ppm/campaign-private-staged-report.spec.ts": "4fe7caec2341c9b2dae42cadba90041f437335c9228e73514c9093d337a944ca",
+    "scenarios/lz-ppm/private-retention-mode.mjs": "88babc7f28fb39ae2075d00a1a16f04d4582ec11b705d3a7300608bab8cd81b1",
+    "scenarios/lz-ppm/deleted-plan-absence.mjs": "2b8ef33d7e64b69be204200f57e8da7db758ac2e3dbcbd5dfba153cfb204bd11",
+    "scenarios/lz-ppm/private-report-witness-contract.mjs": "3b5d3527f4e571993e0e7bf2d698b42f4b66e4eab70f9abdea83a5eb3ddcf491",
+    "scenarios/lz-ppm/private-report-witness-session.ts": "c24b03c98ca3b9641f9be1ab595a46eaddcb98ba05e98f0038dce6cba717fdee",
+    "scenarios/lz-ppm/settled-screenshot.mjs": "78d8bdd5a10648061c5ac5b84e868e67cd249c3e6b3860703831b61634f7dba3",
+    "scripts/lz-campaign.py": "b2951157a16d458523ff3abeb1ed54f8243644a9a2de1f18b9c6dda2ce49bf6c"
+  },
+  "rawTraceArchivesLocalOnly": true,
+  "automaticRetries": 0,
+  "followOnUnits": 0,
+  "intent": "Retain all newly owned source/private/snapshot/report content; no explicit report/plan cleanup."
+}

@@ -27,19 +27,20 @@ const oracleBytes=fs.readFileSync(path.resolve(repo,'../lz-ppm-forge/docs/campai
 export const oracleSha256=createHash('sha256').update(oracleBytes).digest('hex');
 export const oracle=JSON.parse(oracleBytes.toString('utf8'));
 
-export async function createRetainedUat(info:any){
+export async function createRetainedUat(info:any,{retainExperiments=false}:{retainExperiments?:boolean}={}){
+ if(typeof retainExperiments!=='boolean')throw new TypeError('retainExperiments must be a boolean');
  expect(oracleSha256,'independently reviewed oracle bytes must match before any tenant write').toBe('487ac1e69615a8bf56bc30c89eccd42968ac982edef3afd3d1caaae85932da2e');
  expect(BASE).toBe('https://wolfaenpak.atlassian.net');
  expect(new Date().toISOString().slice(0,10)<'2026-10-05','fixed future fixture must run before October5; do not invent past forecast validity').toBe(true);
  fs.mkdirSync(path.dirname(ledgerPath),{recursive:true});fs.mkdirSync(info.outputDir,{recursive:true});
  const unitDir=process.env.LZ_CAMPAIGN_UNIT_DIR?path.resolve(process.env.LZ_CAMPAIGN_UNIT_DIR):null;const mirror=process.env.LZ_RETAINED_UAT_LEDGER?path.resolve(process.env.LZ_RETAINED_UAT_LEDGER):null;if(mirror)expect(unitDir&&mirror.startsWith(unitDir+path.sep),'optional ledger mirror must be inside this attempt').toBeTruthy();
  const beforeIdentitySha256=unitDir?createHash('sha256').update(fs.readFileSync(path.join(unitDir,'before-identity.json'))).digest('hex'):null;
- const journal:any={schema:1,oracleSha256,state:'admission',startedAt:new Date().toISOString(),ledgerPath,runId:process.env.LZ_CAMPAIGN_RUN_ID||null,unitDir,beforeIdentitySha256,optionalLedger:mirror,noPendingDrafts:false,issues:{},plans:{},steps:[],cleanup:[]};
+ const journal:any={schema:1,...(retainExperiments?{retentionPolicy:'retain-experiments'}:{}),oracleSha256,state:'admission',startedAt:new Date().toISOString(),ledgerPath,runId:process.env.LZ_CAMPAIGN_RUN_ID||null,unitDir,beforeIdentitySha256,optionalLedger:mirror,noPendingDrafts:false,issues:{},plans:{},steps:[],cleanup:[]};
  // Durable exclusive claim prevents a retry from creating a second retained UAT
  // over an earlier uncertain/retained run. Operator reconciles the ledger first.
  fs.writeFileSync(ledgerPath,JSON.stringify(journal,null,2),{flag:'wx'});
  const persist=()=>{fs.writeFileSync(ledgerPath,JSON.stringify(journal,null,2));fs.writeFileSync(info.outputPath('retained-uat-journal.json'),JSON.stringify(journal,null,2));if(mirror){fs.mkdirSync(path.dirname(mirror),{recursive:true});fs.writeFileSync(mirror,JSON.stringify(journal,null,2));}};persist();
- const f:any={journal,persist,keys:{},names:UAT_NAMES,planId:null,mirrorId:null};
+ const f:any={journal,persist,retainExperiments,keys:{},names:UAT_NAMES,planId:null,mirrorId:null};
  f.own=async(role:Role)=>{
   const owned=journal.issues[role];expect(owned?.id,'creation returned an owned actual ID').toBeTruthy();
   const issue=await get(`/rest/api/3/issue/${owned.id}?fields=project,issuetype,summary,labels`);
@@ -56,13 +57,14 @@ export async function createRetainedUat(info:any){
    await step('reconcile uncertain issue creates',async()=>{const found=await post('/rest/api/3/search/jql',{jql:`project = WFH AND labels = "${UAT_LABEL}"`,fields:['summary','labels','issuetype'],maxResults:100});
     for(const role of roles){const owned=journal.issues[role];if(!owned||owned.id||owned.state==='rejected')continue;const matches=found.issues.filter((i:any)=>i.fields.summary===owned.summary&&i.fields.issuetype.id===seeds[role].type);expect(matches.length,'uncertain create requires exactly one positively owned result; no empty-search assumption').toBe(1);Object.assign(owned,{id:matches[0].id,key:matches[0].key});f.keys[role]=owned.key;persist();}});
    await step('reconcile plan IDs',async()=>{const plans=(await getTestState('lz-ppm',{what:'plans'})).plans;for(const kind of ['main','mirror']){const item=journal.plans[kind];if(!item||item.id)continue;const matches=plans.filter((p:any)=>p.name===item.name&&!journal.registry.includes(p.id));expect(matches.length,'uncertain plan create needs exact owned record').toBe(1);item.id=matches[0].id;persist();}});
-   for(const item of Object.values(journal.plans) as any[])if(item.id)await step(`delete owned plan ${item.id}`,async()=>{const p=await getTestState('lz-ppm',{what:'plan',planId:item.id});expect(p.meta.name).toBe(item.name);await getTestState('lz-ppm',{what:'clearDrafts',planId:item.id});expect(await getTestState('lz-ppm',{what:'deleteFixture',planId:item.id})).toEqual({deleted:item.id,registryRemoved:true});});
-   for(const role of ['A','B'] as Role[])if(journal.issues[role]?.id)await step(`detach ${role}`,async()=>{await f.own(role);await put(`/rest/api/3/issue/${f.keys[role]}`,{fields:{parent:null}});const detached=await get(`/rest/api/3/issue/${f.keys[role]}?fields=project,summary,parent`);expect(detached.id).toBe(journal.issues[role].id);expect(detached.key).toBe(f.keys[role]);expect(detached.fields.project.key).toBe('WFH');expect(detached.fields.summary).toBe(journal.issues[role].summary);expect(detached.fields.parent||null).toBe(null);});
-   for(const role of ['L','B','A','E'] as Role[])if(journal.issues[role]?.id)await step(`delete ${role}`,async()=>{await f.own(role);await request('DELETE',`/rest/api/3/issue/${f.keys[role]}`);expect((await request('GET',`/rest/api/3/issue/${f.keys[role]}`,{raw:true})).status).toBe(404);});
+   for(const item of Object.values(journal.plans) as any[])if(item.id)await step(`${retainExperiments?'retain owned plan':'delete owned plan'} ${item.id}`,async()=>{const p=await getTestState('lz-ppm',{what:'plan',planId:item.id});expect(p.meta.name).toBe(item.name);if(!retainExperiments){await getTestState('lz-ppm',{what:'clearDrafts',planId:item.id});expect(await getTestState('lz-ppm',{what:'deleteFixture',planId:item.id})).toEqual({deleted:item.id,registryRemoved:true});}});
+   for(const role of ['A','B'] as Role[])if(!retainExperiments&&journal.issues[role]?.id)await step(`detach ${role}`,async()=>{await f.own(role);await put(`/rest/api/3/issue/${f.keys[role]}`,{fields:{parent:null}});const detached=await get(`/rest/api/3/issue/${f.keys[role]}?fields=project,summary,parent`);expect(detached.id).toBe(journal.issues[role].id);expect(detached.key).toBe(f.keys[role]);expect(detached.fields.project.key).toBe('WFH');expect(detached.fields.summary).toBe(journal.issues[role].summary);expect(detached.fields.parent||null).toBe(null);});
+   for(const role of ['L','B','A','E'] as Role[])if(journal.issues[role]?.id)await step(`${retainExperiments?'retain':'delete'} ${role}`,async()=>{await f.own(role);if(!retainExperiments){await request('DELETE',`/rest/api/3/issue/${f.keys[role]}`);expect((await request('GET',`/rest/api/3/issue/${f.keys[role]}`,{raw:true})).status).toBe(404);}});
   }
-  if(journal.registry)await step('registry exact retained delta',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual([...journal.registry,...(retain?Object.values(journal.plans).map((p:any)=>p.id):[])].sort());});
+  if(journal.registry)await step('registry exact retained delta',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual([...journal.registry,...((retain||retainExperiments)?Object.values(journal.plans).map((p:any)=>p.id):[])].sort());});
   if(journal.standingSchedule)await step('standing schedule unchanged',async()=>expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(journal.standingSchedule));
-  journal.state=errors.length?'recovery-required':retain?'retained':'cleaned-after-failure';journal.finishedAt=new Date().toISOString();persist();if(errors.length)throw new AggregateError(errors,'Retained UAT cleanup/admission guard failed; exact journal retained');
+  if(retainExperiments&&!retain)journal.retainedExperiments={plans:journal.plans,issues:journal.issues,reason:'failed-admission-or-journey'};
+  journal.state=errors.length?'recovery-required':retain?'retained':retainExperiments?'retained-after-failure':'cleaned-after-failure';journal.finishedAt=new Date().toISOString();persist();if(errors.length)throw new AggregateError(errors,'Retained UAT cleanup/admission guard failed; exact journal retained');
  };
  try{
   const standing=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});expect(standing.issues).toHaveLength(45);journal.standingSchedule=scheduleFields(standing.issues);const registryPlans=(await getTestState('lz-ppm',{what:'plans'})).plans;journal.registry=registryPlans.map((p:any)=>p.id).sort();persist();expect(registryPlans.some((p:any)=>Object.values(UAT_NAMES).includes(p.name))).toBe(false);

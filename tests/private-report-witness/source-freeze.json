@@ -1,0 +1,36 @@
+{
+  "base": "b5a97100363a6f33783c2925554f2edb3a484610",
+  "files": {
+    "scenarios/lz-ppm/campaign-private-staged-report.spec.ts": "14feadb1c949d4780b15c97fc44a3a7bfb7bdc565829c395d9cbc4c91549e878",
+    "scenarios/lz-ppm/private-report-witness-session.ts": "200d281fb66bdbf0abe70d043310e9e44ec5f77eecbe5d0eb3998f2e692ccc20",
+    "scenarios/lz-ppm/private-report-witness-contract.mjs": "3b5d3527f4e571993e0e7bf2d698b42f4b66e4eab70f9abdea83a5eb3ddcf491"
+  },
+  "applicationReadOnlySources": {
+    "src/services/simulation-plans.js": "ea4021b6e50b1c268aca571376b3ede271837714633e4ee76d89bfcfd7da778e",
+    "src/services/simulation-plan-access.mjs": "cfc49870d57e87378726d2c56c7cc82d1d25770461e12930f22788a9ce14e9b2",
+    "src/services/simulation-plan-mode.mjs": "720252a8e0601707caa0719f358c9c112beeaa0b05ed74a9a114ac56a7ef0e80",
+    "src/resolvers/sponsor-report-resolvers.js": "69380caf62c8a29e75599e7c27bc4ad9ef6187ae4c50e142ae22ed856b60ee8c",
+    "src/services/sponsor-report-service.js": "85f34a9086fa1d7fd7ce591abd68ab10bdbedc06a2f744fce2d314e2cc5d0360",
+    "static/ppm-ui/src/components/planning/SimulationFork.jsx": "453d33d30779f6127c95abecb7f38dade94e420dc8548ab4dc00527a45412740",
+    "static/ppm-ui/src/hooks/usePresence.js": "ad429d9a40b01fc1c4d138e3e37e33376cbb9a3bb9a14346ac640cd0d87252ad",
+    "src/resolvers/snapshot-resolvers.js": "31692616df46b7848683f16e4c11464376c69c32cf16aa31311232f335e84487",
+    "src/resolvers/presence-resolvers.js": "6f09381621cbf14b8b62ff138b654114923d84dc3fee390bcd8786f5d7705aa2",
+    "src/resolvers/plan-resolvers.js": "a50f0d93a3d6d2783154efd956a308c5fc2da7b6bd9c1ff91bd21dc7707f88d6",
+    "src/resolvers/concurrency-resolvers.js": "d5fd643ab76cac0e820a24ffdaeb7678ba28769904f80bfd5d33e02562301398",
+    "src/resolvers/capacity-resolvers.js": "cf0a08c6ca7b09c9e6cbe6eb8368e65c554815617812bca576c1c991bc0653e9",
+    "src/resolvers/simulation-plan-resolvers.js": "9441d10f9875ac59810c38b982adb3c311d7be03a152ccedebcbfa8a671b2b06",
+    "src/services/plan-resolver-access.mjs": "9b3e7a346277c2ba762a7cba58c605c0e416387b476c88b08a853c5cc4f8b810"
+  },
+  "localControls": 22,
+  "liveRun": false,
+  "physicalKvsVerified": false,
+  "secondPrincipalVerified": false,
+  "previousWitnessFreeze": "f626989c73644517eb112f8182e1ae39b9200611",
+  "independentRed": "dcd345b4",
+  "unchangedIndependentControls": 9,
+  "independentWrapperReds": [
+    "03745258",
+    "359c458a"
+  ],
+  "screenshotRootProof": "cabebbabce6c4f844560e08bbe584193fe931ca5"
+}

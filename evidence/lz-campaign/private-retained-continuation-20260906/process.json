@@ -1,0 +1,31 @@
+{
+  "status": "terminal",
+  "supervisorPid": 46984,
+  "supervisorStart": "Sun Sep  6 21:28:30 2026",
+  "startedAt": "2026-09-06T18:28:30.515719+00:00",
+  "actualHarnessCommit": "316b3c6d183333154701f47cc1b985c39de64405",
+  "instrumentHash": "4dbab3b8635160af8cea03d05efb2a27be468fde9bc3b28a4378ee34e85584f4",
+  "rootDispatchCommit": "df0a6231a31b5bb0ed2904b44eb0a09838acb1ef",
+  "commandSha256": "80f7d5c3ba5736502b9ecfe3312a9b73de85ca9543df54405b7f93d7c1d7634c",
+  "childPid": 46995,
+  "childStart": "Sun Sep  6 21:28:30 2026",
+  "heartbeatAt": "2026-09-06T18:29:31.177409+00:00",
+  "finishedAt": "2026-09-06T18:29:43.990247+00:00",
+  "processResult": {
+    "exit": 1
+  },
+  "testResult": {
+    "status": "failed",
+    "ordinaryPasses": [],
+    "expectedDefectWitnesses": [],
+    "reasons": [
+      "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"retained private report: exact failed-run owner reopen export and guarded cleanup without recapture\"}",
+      "Playwright exit 1",
+      "insufficient passing tests or explicitly allowed defect witnesses"
+    ],
+    "testCount": 1,
+    "process": {
+      "exit": 1
+    }
+  }
+}

@@ -1,0 +1,158 @@
+TAP version 13
+# Subtest: actual UAT finalizer retains both plans/issues after prior departure failure even without registered capture
+ok 1 - actual UAT finalizer retains both plans/issues after prior departure failure even without registered capture
+  ---
+  duration_ms: 0.696292
+  type: 'test'
+  ...
+# Subtest: actual final safe departure failure retains successful UAT and keeps independent audits
+ok 2 - actual final safe departure failure retains successful UAT and keeps independent audits
+  ---
+  duration_ms: 0.647875
+  type: 'test'
+  ...
+# Subtest: cleanup-triggered departure failure stays poisoned through final stop
+ok 3 - cleanup-triggered departure failure stays poisoned through final stop
+  ---
+  duration_ms: 0.110458
+  type: 'test'
+  ...
+# Subtest: original body error and departure error are both retained in AggregateError
+ok 4 - original body error and departure error are both retained in AggregateError
+  ---
+  duration_ms: 0.131708
+  type: 'test'
+  ...
+# Subtest: preference failure still audits source and retains ownership
+ok 5 - preference failure still audits source and retains ownership
+  ---
+  duration_ms: 0.10825
+  type: 'test'
+  ...
+# Subtest: safe successful departure preserves retained handoff and exact preference/source order
+ok 6 - safe successful departure preserves retained handoff and exact preference/source order
+  ---
+  duration_ms: 0.259375
+  type: 'test'
+  ...
+# Subtest: ordinary body failure without uncertain departure keeps original authorized failure cleanup
+ok 7 - ordinary body failure without uncertain departure keeps original authorized failure cleanup
+  ---
+  duration_ms: 0.146417
+  type: 'test'
+  ...
+# Subtest: original UAT body, expectations, wait budgets, 503 injection and UI interactions remain exact
+ok 8 - original UAT body, expectations, wait budgets, 503 injection and UI interactions remain exact
+  ---
+  duration_ms: 57.481458
+  type: 'test'
+  ...
+# Subtest: UAT alone opts in and binds actual admitted main identity before first Table
+ok 9 - UAT alone opts in and binds actual admitted main identity before first Table
+  ---
+  duration_ms: 0.438041
+  type: 'test'
+  ...
+# Subtest: intentional retention fixture delta is exactly the separately committed source freeze
+ok 10 - intentional retention fixture delta is exactly the separately committed source freeze
+  ---
+  duration_ms: 6.429542
+  type: 'test'
+  ...
+# Subtest: actual admission failure retains its positively owned issue under explicit preference
+ok 11 - actual admission failure retains its positively owned issue under explicit preference
+  ---
+  duration_ms: 42.490083
+  type: 'test'
+  ...
+# Subtest: unknown create retains intent and original refusal, never retries or deletes
+ok 12 - unknown create retains intent and original refusal, never retries or deletes
+  ---
+  duration_ms: 23.23875
+  type: 'test'
+  ...
+# Subtest: actual failed finish preserves both plans, every issue and independent exact guards
+ok 13 - actual failed finish preserves both plans, every issue and independent exact guards
+  ---
+  duration_ms: 0.838958
+  type: 'test'
+  ...
+# Subtest: actual failed scenario finalizer never dispatches report cleanup and still restores/audits
+ok 14 - actual failed scenario finalizer never dispatches report cleanup and still restores/audits
+  ---
+  duration_ms: 0.1935
+  type: 'test'
+  ...
+# Subtest: all original UAT business actions, assertions and deliberate duplicate deletion remain byte-exact
+ok 15 - all original UAT business actions, assertions and deliberate duplicate deletion remain byte-exact
+  ---
+  duration_ms: 31.238833
+  type: 'test'
+  ...
+# Subtest: original body error survives retained finalizer with preference failure false
+ok 16 - original body error survives retained finalizer with preference failure false
+  ---
+  duration_ms: 0.481792
+  type: 'test'
+  ...
+# Subtest: original body error survives retained finalizer with preference failure true
+ok 17 - original body error survives retained finalizer with preference failure true
+  ---
+  duration_ms: 0.273208
+  type: 'test'
+  ...
+# Subtest: failed admission deletes only the positively owned created issue and retains source/registry guards
+ok 18 - failed admission deletes only the positively owned created issue and retains source/registry guards
+  ---
+  duration_ms: 64.97675
+  type: 'test'
+  ...
+# Subtest: an ambiguous create with no searchable positive match fails closed and does not license deletion
+ok 19 - an ambiguous create with no searchable positive match fails closed and does not license deletion
+  ---
+  duration_ms: 26.012166
+  type: 'test'
+  ...
+# Subtest: ownership mismatch prevents delete even when an earlier create returned that ID
+ok 20 - ownership mismatch prevents delete even when an earlier create returned that ID
+  ---
+  duration_ms: 19.468209
+  type: 'test'
+  ...
+# Subtest: an existing ledger blocks a second run before any second REST/hook call
+ok 21 - an existing ledger blocks a second run before any second REST/hook call
+  ---
+  duration_ms: 17.860708
+  type: 'test'
+  ...
+# Subtest: changed oracle bytes refuse admission before any tenant call or ownership ledger write
+ok 22 - changed oracle bytes refuse admission before any tenant call or ownership ledger write
+  ---
+  duration_ms: 12.267417
+  type: 'test'
+  ...
+# (node:22612) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/lz-ppm-forge/static/ppm-ui/src/utils/sponsor-report.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/lz-ppm-forge/static/ppm-ui/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual retained row/target/change projections match every authored expected API field
+ok 23 - actual retained row/target/change projections match every authored expected API field
+  ---
+  duration_ms: 10.164291
+  type: 'test'
+  ...
+# Subtest: actual report capacity matches all four independently authored rows and relevant availability
+ok 24 - actual report capacity matches all four independently authored rows and relevant availability
+  ---
+  duration_ms: 1.006125
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 393.1225

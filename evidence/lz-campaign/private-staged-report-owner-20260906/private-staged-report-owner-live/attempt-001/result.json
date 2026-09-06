@@ -1,0 +1,55 @@
+{
+  "status": "integrity_failed",
+  "stamp": "625b3ea0ab8d7f467f45cadbe44618800d7df8e75476a94b0c75b3f706d71477",
+  "startedAt": "2026-09-06T17:53:40.868266+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001",
+  "uiVersion": "4.58.588",
+  "forgeVersion": "6.26.0",
+  "appCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "instrumentHash": "b42cd64549f3833bfc5858616dc860e37f3fe10e1141437449e495f4de575455",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-private-staged-report.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"private staged report owner: genuine fork, all report fields and immutable HTML, public cleanup, unchanged shared Jira\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    },
+    "after": {
+      "status": "failed",
+      "ordinaryPasses": [],
+      "expectedDefectWitnesses": [],
+      "reasons": [
+        "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-identity.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"campaign: actual UI version and preserved LZPT source\"}",
+        "Playwright exit 1",
+        "insufficient passing tests or explicitly allowed defect witnesses"
+      ],
+      "testCount": 1,
+      "process": {
+        "exit": 1
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T17:55:21.396968+00:00",
+  "elapsedSeconds": 100.52819437498692
+}

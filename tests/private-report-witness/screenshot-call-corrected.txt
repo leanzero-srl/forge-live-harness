@@ -1,0 +1,31 @@
+TAP version 13
+# Subtest: actual compiled screenshot call supplies body to unchanged real settledScreenshot boundary
+not ok 1 - actual compiled screenshot call supplies body to unchanged real settledScreenshot boundary
+  ---
+  duration_ms: 5.753041
+  type: 'test'
+  location: '/private/tmp/lz-private-report-witness-20260906/tests/private-report-witness/screenshot-call.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: 'toBeVisible can be only used with Locator object, was called with Locator Locator {}'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    expectTypes (/Users/mihaiperdum/Projects/forge-live-harness/node_modules/playwright/lib/matchers/expect.js:11638:11)
+    Object.toBeTruthy (/Users/mihaiperdum/Projects/forge-live-harness/node_modules/playwright/lib/matchers/expect.js:11692:3)
+    Object.toBeVisible (/Users/mihaiperdum/Projects/forge-live-harness/node_modules/playwright/lib/matchers/expect.js:12358:21)
+    invokeMatcher (/Users/mihaiperdum/Projects/forge-live-harness/node_modules/playwright/lib/matchers/expect.js:12925:20)
+    invoke (/Users/mihaiperdum/Projects/forge-live-harness/node_modules/playwright/lib/matchers/expect.js:12904:109)
+    callMatcherAsStep (/Users/mihaiperdum/Projects/forge-live-harness/node_modules/playwright/lib/matchers/expect.js:12905:78)
+    Object.toBeVisible (/Users/mihaiperdum/Projects/forge-live-harness/node_modules/playwright/lib/matchers/expect.js:12867:23)
+    waitForAppReady (file:///private/tmp/lz-private-report-witness-20260906/scenarios/lz-ppm/settled-screenshot.mjs:36:24)
+    file:///private/tmp/lz-private-report-witness-20260906/scenarios/lz-ppm/settled-screenshot.mjs:58:21
+    async within (file:///private/tmp/lz-private-report-witness-20260906/scenarios/lz-ppm/settled-screenshot.mjs:50:76)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 349.394625

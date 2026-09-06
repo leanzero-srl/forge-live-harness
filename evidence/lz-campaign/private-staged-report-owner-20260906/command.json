@@ -1,0 +1,61 @@
+{
+  "schema": "private-owner-launch-preparation-v1",
+  "status": "authorized",
+  "runId": "private-staged-report-owner-20260906",
+  "isolatedManifestCommit": "f8b12986834a60ed6dd7a4e69e7d0c755037f7c0",
+  "reviewedWitnessCommit": "f626989c73644517eb112f8182e1ae39b9200611",
+  "manifestSha256": "061be773b243774223029384b197c14a3f835fad416cb66cd5f5bcddf75782d5",
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0",
+    "LZ_PRIVATE_REPORT_PHASE": "owner",
+    "LZ_PRIVATE_EXPECTED_SETTINGS": "{\"success\":true,\"version\":68,\"settings\":{\"selectedPlanIds\":[],\"profiles\":{},\"issueChoices\":{}}}"
+  },
+  "command": [
+    "python3",
+    "scripts/lz-campaign.py",
+    "start",
+    "--run-id",
+    "private-staged-report-owner-20260906",
+    "--manifest",
+    "config/lz-campaign/private-owner-manifest.json",
+    "--features",
+    "private-staged-report-owner-live",
+    "--ui-version",
+    "4.58.588",
+    "--forge-version",
+    "6.26.0",
+    "--app-commit",
+    "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+    "--browser-mode",
+    "portable-chrome152",
+    "--expected-account-id",
+    "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "--max-minutes",
+    "15"
+  ],
+  "settingsEvidence": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/nineteenth-report-acceptance-20260906/sponsor-report-numeric-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-adaf3--effort-and-profile-changes-chromium/numeric-report-journal.json",
+    "sha256": "c1def85e432b3874ac93a27519d4332a33d5d1f0973d361dff8a2a795d85b1a9",
+    "twoReadbackTimes": [
+      "2026-09-06T17:00:29.406Z",
+      "2026-09-06T17:00:29.624Z"
+    ],
+    "freshAdmission": "Actual private witness re-reads exact full getCapacitySettings body before any fixture creation and at final audit; mismatch refuses."
+  },
+  "captureWaitMs": 600000,
+  "testTimeoutMs": 900000,
+  "featureTimeoutSeconds": 900,
+  "runnerMaxMinutes": 15,
+  "retries": 0,
+  "automaticResume": false,
+  "physicalKvsVerified": false,
+  "secondPrincipalVerified": false,
+  "launchHeadAndInstrument": "must bind actual transferred source at root dispatch",
+  "liveCalls": 0,
+  "rootDispatchCommit": "530f35c118cb77e194d1977954e65adbb0299d07",
+  "authorizedAt": "2026-09-06T17:53:29.290016+00:00",
+  "harnessCommit": "1f911b20ac261ed96bbc35c95992e3beddfc7d18",
+  "instrumentHash": "b42cd64549f3833bfc5858616dc860e37f3fe10e1141437449e495f4de575455",
+  "nodeExecutable": "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node"
+}

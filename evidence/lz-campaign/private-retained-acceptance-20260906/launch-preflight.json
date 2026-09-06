@@ -1,0 +1,14 @@
+{
+  "status": "preflight-passed",
+  "checkedAt": "2026-09-06T19:20:16.602741+00:00",
+  "rootDispatchCommit": "871c40e4d089ca8c78632249ccb30a1fc0a68190",
+  "instrumentHash": "78f5762a9e4c452901e7d3cc4fcefed0b2f24b260faf74a9596a8b8592d93046",
+  "priorOwnedPidsAbsent": [
+    46984,
+    46995,
+    46997
+  ],
+  "sharedLaneAbsent": true,
+  "actualCommandAdmitted": true,
+  "retainAllNewContent": true
+}

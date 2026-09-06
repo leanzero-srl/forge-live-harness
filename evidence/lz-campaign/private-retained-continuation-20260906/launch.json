@@ -1,0 +1,10 @@
+{
+  "schema": "private-retained-launch-v1",
+  "runId": "private-retained-continuation-20260906",
+  "startedAt": "2026-09-06T18:28:30.453791+00:00",
+  "supervisorPid": 46984,
+  "actualHarnessHead": "316b3c6d183333154701f47cc1b985c39de64405",
+  "rootDispatchCommit": "df0a6231a31b5bb0ed2904b44eb0a09838acb1ef",
+  "instrumentHash": "4dbab3b8635160af8cea03d05efb2a27be468fde9bc3b28a4378ee34e85584f4",
+  "commandPath": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/command.json"
+}

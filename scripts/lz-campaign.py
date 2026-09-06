@@ -292,7 +292,23 @@ def archive_interrupted(unit):
         atomic(unit / 'result.json', previous)
 
 
+def selected_feature_ids(config, features):
+    """Use the same exact selection for execution and selected-run completion."""
+    known = [feature['id'] for feature in features]
+    requested = config.get('features')
+    if requested is None:
+        return known
+    if (not isinstance(requested, list) or not requested
+            or any(not isinstance(value, str) or not value for value in requested)
+            or len(set(requested)) != len(requested)):
+        raise ValueError('Requested features must be a nonempty list of unique exact feature IDs')
+    if set(requested) - set(known):
+        raise ValueError('Unknown requested feature')
+    return [value for value in known if value in requested]
+
+
 def summarize(config, features, directory, instrument, blocker=None):
+    selected = selected_feature_ids(config, features)
     rows = []
     for feature in features:
         result = read(directory / feature['id'] / 'result.json')
@@ -300,9 +316,10 @@ def summarize(config, features, directory, instrument, blocker=None):
         status = 'not_implemented' if feature['status'] == 'planned' else 'not_run' if not result else result['status'] if result.get('stamp') == stamp else 'stale'
         rows.append({'id': feature['id'], 'status': status, 'acceptance': feature['acceptance'], 'result': str(directory / feature['id'] / 'result.json') if result else None})
     summary = {'time': utc(), 'runId': config['runId'], 'uiVersion': config['uiVersion'], 'forgeVersion': config['forgeVersion'],
-               'instrumentHash': instrument, 'browserMode': browser_mode(config), 'complete': not blocker and bool(rows) and all(r['status'] == 'passed' for r in rows), 'blocker': blocker, 'features': rows}
+               'instrumentHash': instrument, 'browserMode': browser_mode(config), 'complete': not blocker and bool(rows) and all(r['status'] == 'passed' for r in rows), 'blocker': blocker, 'features': rows,
+               'selectedRun': {'featureIds': selected, 'complete': not blocker and bool(selected) and all(r['status'] == 'passed' for r in rows if r['id'] in selected)}}
     atomic(directory / 'summary.json', summary)
-    (directory / 'summary.md').write_text('# LZ campaign ' + config['runId'] + '\n\n' + ('COMPLETE' if summary['complete'] else 'INCOMPLETE') + '\n\n' + '\n'.join('- ' + r['id'] + ': ' + r['status'] for r in rows) + '\n')
+    (directory / 'summary.md').write_text('# LZ campaign ' + config['runId'] + '\n\n' + 'Selected run: ' + ('COMPLETE' if summary['selectedRun']['complete'] else 'INCOMPLETE') + '\n\nWhole manifest: ' + ('COMPLETE' if summary['complete'] else 'INCOMPLETE') + '\n\n' + '\n'.join('- ' + r['id'] + ': ' + r['status'] for r in rows) + '\n')
     return summary
 
 
@@ -313,9 +330,7 @@ def run(config, directory):
     signal.signal(signal.SIGINT, lambda *_: globals().__setitem__('STOP_NOW', True))
     manifest = read(Path(config['manifest']))
     features = validate_manifest(manifest)
-    selected = set(config.get('features') or [f['id'] for f in features])
-    if selected - {f['id'] for f in features}:
-        raise ValueError('Unknown requested feature')
+    selected = set(selected_feature_ids(config, features))
     instrument = instrument_hash()
     lock = ROOT / '.lz-campaign-browser.lock'
     state_path = directory / 'state.json'
@@ -399,8 +414,8 @@ def run(config, directory):
                 stop_reason = result['status']
                 break
         summary = summarize(config, features, directory, instrument_hash(), blocker=stop_reason)
-        atomic(state_path, {**owner, 'status': stop_reason or ('complete' if summary['complete'] else 'incomplete'), 'time': utc()})
-        return 0 if summary['complete'] else 2
+        atomic(state_path, {**owner, 'status': stop_reason or ('complete' if summary['selectedRun']['complete'] else 'incomplete'), 'time': utc()})
+        return 0 if summary['selectedRun']['complete'] else 2
     except (Exception, SystemExit) as exc:
         atomic(state_path, {**owner, 'status': 'runner_failed', 'error': str(exc), 'time': utc()})
         summarize(config, features, directory, instrument_hash(), blocker='runner_failed')
@@ -441,7 +456,8 @@ def main():
             summary = read(directory / 'summary.json')
             stale = bool(summary and summary.get('instrumentHash') != instrument_hash())
             if stale:
-                summary = {**summary, 'complete': False, 'blocker': 'instrument_changed_since_summary'}
+                summary = {**summary, 'complete': False, 'blocker': 'instrument_changed_since_summary',
+                           **({'selectedRun': {**summary['selectedRun'], 'complete': False}} if 'selectedRun' in summary else {})}
             print(json.dumps({'running': is_owner_alive(state), 'instrumentChanged': stale, 'state': state, 'summary': summary}, indent=2))
         return 0
     manifest = read(Path(args.manifest).resolve())
@@ -460,7 +476,11 @@ def main():
         config = {**binding, 'runId': args.run_id, 'manifest': str(Path(args.manifest).resolve()), 'identitySpec': manifest['identitySpec'],
                   'uiVersion': args.ui_version, 'forgeVersion': args.forge_version, 'appCommit': args.app_commit,
                   'sourceExtension': read(Path(args.source_extension).resolve()) if args.source_extension else None,
-                  'features': args.features.split(',') if args.features else None, 'maxMinutes': args.max_minutes}
+                  'features': args.features.split(',') if args.features is not None else None, 'maxMinutes': args.max_minutes}
+        try:
+            selected_feature_ids(config, features)
+        except ValueError as exc:
+            parser.error(str(exc))
         directory.mkdir(parents=True, exist_ok=True)
         state = read(directory / 'state.json')
         if is_owner_alive(state):

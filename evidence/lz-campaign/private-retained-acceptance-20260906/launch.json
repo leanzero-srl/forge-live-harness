@@ -1,0 +1,10 @@
+{
+  "schema": "private-retention-launch-v1",
+  "runId": "private-retained-acceptance-20260906",
+  "startedAt": "2026-09-06T19:20:32.674526+00:00",
+  "supervisorPid": 19602,
+  "actualHarnessHead": "11b27060b6a544e152ba92abe5572e3b74b60837",
+  "rootDispatchCommit": "871c40e4d089ca8c78632249ccb30a1fc0a68190",
+  "instrumentHash": "78f5762a9e4c452901e7d3cc4fcefed0b2f24b260faf74a9596a8b8592d93046",
+  "retainAllNewContent": true
+}

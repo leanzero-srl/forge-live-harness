@@ -1,0 +1,233 @@
+{
+  "schema": "local-only-trace-inventory-v1",
+  "files": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/command.json",
+      "sha256": "8b5c102ae86b0956a13ca74d369cb6665b23669cd99b8e71ebdae8e75d454c60",
+      "bytes": 2509,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/config.json",
+      "sha256": "1cea94d990c40c8a1bd70a13bf0ee9fa1bf8ff808c204ad94e744b727d7d972f",
+      "bytes": 650,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/entry-1788717209413181000/before-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/entry-1788717209413181000/before-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "sha256": "480bb6539acac4c7d31c167d955f68ac3326f51c563d857a2c1ed11f0be70bfa",
+      "bytes": 6492313,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/entry-1788717209413181000/before-command.json",
+      "sha256": "1711f28e4d349cc58fd4ff27893ef65ae5f2266c4246e2772b2cd20ab265929c",
+      "bytes": 547,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/entry-1788717209413181000/before-identity.json",
+      "sha256": "7173cc158ea2aaa6af3c5768e20abed4d51790ffe226eeec91d18efb353b38ab",
+      "bytes": 386,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/entry-1788717209413181000/before-identity.png",
+      "sha256": "e35832b8a9fe25623ff7624918d7ab3c1e485ce772ebf85994dec95209119ccf",
+      "bytes": 206364,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/entry-1788717209413181000/before-playwright.json",
+      "sha256": "b4e5fa591fb38a3aef7ebb8eb5d64e1fc8b99a189879d997423e4df3ec2947e6",
+      "bytes": 5017,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/entry-1788717209413181000/before.log",
+      "sha256": "214322e288a048ee81419da351592a50201566c30674bb823a33e854fedbc518",
+      "bytes": 1350,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/entry-1788717209413181000/result.json",
+      "sha256": "a52a68bcdd080f6622b7e15f1009512d83f9863043eb3aa4317a7c2ff607cb8f",
+      "bytes": 214,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/launch.json",
+      "sha256": "6018a92de472f24f982577591de1fe7db31e3917f818af90f9809b0d75c26bcb",
+      "bytes": 360,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/after-artifacts/.last-run.json",
+      "sha256": "f079465ad27dc5bf92ab68ffb9c457160ad3be884e6d439c9f89a609633aea4c",
+      "bytes": 96,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/error-context.md",
+      "sha256": "be69c42cd1551b45b55057ae6cd30c2824c736a5825212ea6c1ac889eddd535e",
+      "bytes": 35457,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "sha256": "bbbc362d3a537617ea56a15078122d04f88f078c5c2ff768480f52be2f6b0473",
+      "bytes": 6185680,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/after-command.json",
+      "sha256": "c5ff89d4f12abbd41d1302defa750c2aba08604eb9be63fff4a2f32ab193aa52",
+      "bytes": 564,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/after-playwright.json",
+      "sha256": "15a9edfe006f43528259a87a8ce4188118dbb1bf03fe80ec9c981e24d65d7cf9",
+      "bytes": 9640,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/after.log",
+      "sha256": "d25083664e70074e38f4c6eb606c149043b81076e2e3bb32df766908b4f34649",
+      "bytes": 2697,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/before-artifacts/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/before-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "sha256": "3d694b6ac8033c637dd148350c9170a0e9c271481a8ca9cda7b09356e3146e4c",
+      "bytes": 6305871,
+      "localOnly": true
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/before-command.json",
+      "sha256": "0e62c5e4a4f13d1652ff4c81138db3da0e001fa1515e82ed176efeabf025d1ae",
+      "bytes": 566,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/before-identity.json",
+      "sha256": "86f9a1e7d461fb6f1d9c08e327ca1b1dfd759045a2b52fb7739736fd7ef1538c",
+      "bytes": 386,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/before-identity.png",
+      "sha256": "bcc340ecbb5bc2707ba7d2b608dbce54df5a10e9f51f094826c2c5068113ce08",
+      "bytes": 204628,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/before-playwright.json",
+      "sha256": "057da3c74b4a54fe40228cddff647919f0d74fb315ef43612d9f068ec15e6bb5",
+      "bytes": 5073,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/before.log",
+      "sha256": "9a4b964353b620e969825643df0c2ae4a67e4e87abd45443f76d0c87e1f9ee32",
+      "bytes": 1349,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/result.json",
+      "sha256": "2949aacf89b2847148ff8b0bf739cff63f5fabddcca99fc0dec9465d1ef67aae",
+      "bytes": 2125,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-artifacts/.last-run.json",
+      "sha256": "aeea768ae5281caf0e6b2e30a18d2755f28c295b885655f2ebb1ac94d631b6fc",
+      "bytes": 96,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/error-context.md",
+      "sha256": "80e1662663a930dc8499e0a1e2b2706ac213da3ce37d969c5632dfa785e5c1e5",
+      "bytes": 17536,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-owner-report.html",
+      "sha256": "648906d038d174b7f98e97aa52aff383e7a4d1a7e33e6b71c927340dff841508",
+      "bytes": 6092,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-report-witness.json",
+      "sha256": "8945bf1bdbcda9834da1c3d8940d32ed53ee8e635da1d792fb56890aff4077dc",
+      "bytes": 613817,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-command.json",
+      "sha256": "fa16ee290c34f78acebdacaa365267800305c037a5af4024dcf3a6d08fea45bb",
+      "bytes": 577,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-playwright.json",
+      "sha256": "270a9455972c0dad22a195caa0edfbf436e1b2f0fd3ef45715ec9e7d004dee77",
+      "bytes": 10383,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests.log",
+      "sha256": "557f39cb31f9ed724e9c5c1937416c49e98f6aab5d98ead6ae23bc88f8c6b981",
+      "bytes": 3854,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/result.json",
+      "sha256": "2949aacf89b2847148ff8b0bf739cff63f5fabddcca99fc0dec9465d1ef67aae",
+      "bytes": 2125,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/runner.log",
+      "sha256": "ad3f722fe6fa1cc4f30e75604f09f44b35b6e9d648c48758f44fdeac33e16d1e",
+      "bytes": 945,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/state.json",
+      "sha256": "25321f85e874bb09842ad5688beb2f3b520f1edf968e1b3ddcc8a679353c54ba",
+      "bytes": 143,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/summary.json",
+      "sha256": "e181e593734fcd6832d9099560bf6e967c4f7a5f877c158fac8bdd1dca7b24a0",
+      "bytes": 919,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/summary.md",
+      "sha256": "c69224aa06b544cadc5a14316da7a4182975f2f24cb394ad207be77f3d305c17",
+      "bytes": 117,
+      "localOnly": false
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/terminal-receipt.json",
+      "sha256": "b98fa29d7f564cacd251ecb472ff28dce552c4afe487f04b2da409150dad7bcf",
+      "bytes": 8288,
+      "localOnly": false
+    }
+  ]
+}

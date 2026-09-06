@@ -1,0 +1,17 @@
+{
+  "accepted": true,
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-06T19:21:52.515Z",
+      "state": "accepted",
+      "content": {
+        "width": 1440,
+        "height": 1062,
+        "colors": 450,
+        "differentPixels": 375124,
+        "nonblank": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "base": "b5a97100363a6f33783c2925554f2edb3a484610",
+  "node": "v22.22.0",
+  "files": {
+    "scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts": "96088611047bcd304ec2649f2cd14f5914c1c9c93b1f55beec8b3dc1788d1237",
+    "tests/retained-uat-departure/finalizer.test.mjs": "4544a40f9331ba4a25bc899544c7e8e7d800f12dc350df2668c594c50108e768"
+  },
+  "localControls": 12,
+  "liveRun": false
+}

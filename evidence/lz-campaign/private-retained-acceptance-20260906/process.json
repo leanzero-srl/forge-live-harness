@@ -1,0 +1,29 @@
+{
+  "status": "terminal",
+  "supervisorPid": 19602,
+  "supervisorStart": "Sun Sep  6 22:20:32 2026",
+  "startedAt": "2026-09-06T19:20:32.761862+00:00",
+  "actualHarnessCommit": "11b27060b6a544e152ba92abe5572e3b74b60837",
+  "instrumentHash": "78f5762a9e4c452901e7d3cc4fcefed0b2f24b260faf74a9596a8b8592d93046",
+  "rootDispatchCommit": "871c40e4d089ca8c78632249ccb30a1fc0a68190",
+  "commandSha256": "7c22ff2141fb9f0cd2597c9cff96d69c980185d1a1017029ae106c312f9e97d3",
+  "childPid": 19613,
+  "childStart": "Sun Sep  6 22:20:32 2026",
+  "heartbeatAt": "2026-09-06T19:22:04.156331+00:00",
+  "finishedAt": "2026-09-06T19:22:12.271859+00:00",
+  "processResult": {
+    "exit": 0
+  },
+  "testResult": {
+    "status": "passed",
+    "ordinaryPasses": [
+      "private staged report owner: genuine fork, all report fields and immutable HTML, public cleanup, unchanged shared Jira"
+    ],
+    "expectedDefectWitnesses": [],
+    "reasons": [],
+    "testCount": 1,
+    "process": {
+      "exit": 0
+    }
+  }
+}

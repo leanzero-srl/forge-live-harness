@@ -1,0 +1,25 @@
+{
+  "time": "2026-09-06T17:55:21.405447+00:00",
+  "runId": "private-staged-report-owner-20260906",
+  "uiVersion": "4.58.588",
+  "forgeVersion": "6.26.0",
+  "instrumentHash": "b42cd64549f3833bfc5858616dc860e37f3fe10e1141437449e495f4de575455",
+  "browserMode": "portable-chrome152",
+  "complete": false,
+  "blocker": "integrity_failed",
+  "features": [
+    {
+      "id": "private-staged-report-owner-live",
+      "status": "integrity_failed",
+      "acceptance": [
+        "PRIVATE-REAL-OWNER-FORK",
+        "PRIVATE-STAGED-CAPTURE-FULL-REPORT-HTML",
+        "PRIVATE-OWNER-STATUS-REOPEN",
+        "PRIVATE-PUBLIC-REPORT-CLEANUP",
+        "PRIVATE-OWNED-PLAN-DELETION",
+        "PRIVATE-SOURCE-REGISTRY-PREFS-SHARED-JIRA-PRESERVED"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/result.json"
+    }
+  ]
+}

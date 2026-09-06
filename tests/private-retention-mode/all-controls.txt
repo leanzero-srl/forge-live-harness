@@ -1,0 +1,416 @@
+TAP version 13
+# Subtest: whole closure has no report mutation/capture, private mounting or replay request surface
+ok 1 - whole closure has no report mutation/capture, private mounting or replay request surface
+  ---
+  duration_ms: 0.751833
+  type: 'test'
+  ...
+# Subtest: four exact actual files preserve both failures; every byte substitution refuses
+ok 2 - four exact actual files preserve both failures; every byte substitution refuses
+  ---
+  duration_ms: 30.733208
+  type: 'test'
+  ...
+# Subtest: read-only exact closure executes paired source/private absence and full guards twice
+ok 3 - read-only exact closure executes paired source/private absence and full guards twice
+  ---
+  duration_ms: 9.269292
+  type: 'test'
+  ...
+# Subtest: foreign principal, settings drift, original row change and missing draft refuse
+ok 4 - foreign principal, settings drift, original row change and missing draft refuse
+  ---
+  duration_ms: 77.347834
+  type: 'test'
+  ...
+# Subtest: second absent source or private resurrection and final guard drift refuse without mutation path
+ok 5 - second absent source or private resurrection and final guard drift refuse without mutation path
+  ---
+  duration_ms: 26.052708
+  type: 'test'
+  ...
+# Subtest: complete deployed producer serializes missing metadata and null without discarding issue rows
+ok 6 - complete deployed producer serializes missing metadata and null without discarding issue rows
+  ---
+  duration_ms: 121.366709
+  type: 'test'
+  ...
+# Subtest: wrong metadata, missing rows, ambiguous body and unadvertised fields fail closed
+ok 7 - wrong metadata, missing rows, ambiguous body and unadvertised fields fail closed
+  ---
+  duration_ms: 3.008792
+  type: 'test'
+  ...
+# Subtest: two independent plan/registry pairs required in exact order
+ok 8 - two independent plan/registry pairs required in exact order
+  ---
+  duration_ms: 0.139042
+  type: 'test'
+  ...
+# Subtest: first/second rows or registry resurrection and duplicates refuse without retry
+ok 9 - first/second rows or registry resurrection and duplicates refuse without retry
+  ---
+  duration_ms: 0.593083
+  type: 'test'
+  ...
+# Subtest: rejected second read retains error identity and never converts to empty
+ok 10 - rejected second read retains error identity and never converts to empty
+  ---
+  duration_ms: 0.282625
+  type: 'test'
+  ...
+# Subtest: both complete scenarios change only the shared deletion proof and import
+ok 11 - both complete scenarios change only the shared deletion proof and import
+  ---
+  duration_ms: 74.031083
+  type: 'test'
+  ...
+# (node:12751) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/utils/target-scope.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual current fork, snapshot store and generation roundtrip satisfy exact owner provenance
+ok 12 - actual current fork, snapshot store and generation roundtrip satisfy exact owner provenance
+  ---
+  duration_ms: 18.92975
+  type: 'test'
+  ...
+# Subtest: same actual fork refuses each foreign identity, permission, stale generation and data substitution
+ok 13 - same actual fork refuses each foreign identity, permission, stale generation and data substitution
+  ---
+  duration_ms: 58.515208
+  type: 'test'
+  ...
+# Subtest: finalization never deletes on unknown outcome and executes every independent audit after failed leave
+ok 14 - finalization never deletes on unknown outcome and executes every independent audit after failed leave
+  ---
+  duration_ms: 0.3685
+  type: 'test'
+  ...
+# Subtest: explicit owner phase only, disabled discovery stays inert and unknown phases refuse
+ok 15 - explicit owner phase only, disabled discovery stays inert and unknown phases refuse
+  ---
+  duration_ms: 0.129958
+  type: 'test'
+  ...
+# Subtest: reviewed private cut and current witness preserve existing helper blobs without binding unrelated history
+ok 16 - reviewed private cut and current witness preserve existing helper blobs without binding unrelated history
+  ---
+  duration_ms: 40.340875
+  type: 'test'
+  ...
+# [sponsor-report-stage] {"stage":"source-first","event":"start","checkpoint":0,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-first","event":"complete","checkpoint":1,"elapsedMs":2}
+# [sponsor-report-stage] {"stage":"source-second","event":"start","checkpoint":1,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"source-second","event":"complete","checkpoint":2,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"materialize","event":"start","checkpoint":2,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"materialize","event":"complete","checkpoint":3,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"materialize","event":"start","checkpoint":3,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"materialize","event":"complete","checkpoint":4,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"start","checkpoint":4,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"complete","checkpoint":5,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"pack-source","event":"start","checkpoint":5,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"complete","checkpoint":6,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"analyze","event":"start","checkpoint":6,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"analyze","event":"complete","checkpoint":7,"elapsedMs":2}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":7,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":8,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":8,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":9,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":9,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":10,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":10,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":11,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":11,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":12,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":12,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":13,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":13,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":14,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":14,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":15,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":15,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":16,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":16,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":17,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":17,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":18,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"start","checkpoint":18,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-run","event":"complete","checkpoint":19,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"start","checkpoint":19,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"complete","checkpoint":20,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"start","checkpoint":20,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"complete","checkpoint":21,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"start","checkpoint":21,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-fold","event":"complete","checkpoint":22,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-aggregate","event":"start","checkpoint":22,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-aggregate","event":"complete","checkpoint":23,"elapsedMs":2}
+# [sponsor-report-stage] {"stage":"forecast-project","event":"start","checkpoint":23,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-project","event":"complete","checkpoint":24,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"start","checkpoint":24,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"pack-source","event":"complete","checkpoint":25,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"forecast-project","event":"start","checkpoint":25,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"forecast-project","event":"complete","checkpoint":26,"elapsedMs":2}
+# [sponsor-report-stage] {"stage":"baseline","event":"start","checkpoint":26,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"baseline","event":"complete","checkpoint":27,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"prepare","event":"start","checkpoint":27,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"prepare","event":"complete","checkpoint":28,"elapsedMs":2}
+# [sponsor-report-stage] {"stage":"write-output","event":"start","checkpoint":28,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"write-output","event":"complete","checkpoint":29,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"source-third","event":"start","checkpoint":29,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-third","event":"complete","checkpoint":30,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"source-fourth","event":"start","checkpoint":30,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"source-fourth","event":"complete","checkpoint":31,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"seal","event":"start","checkpoint":31,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"seal","event":"complete","checkpoint":32,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"verify-pages","event":"start","checkpoint":32,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"verify-pages","event":"complete","checkpoint":33,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"verify-current","event":"start","checkpoint":33,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"verify-current","event":"complete","checkpoint":34,"elapsedMs":1}
+# [sponsor-report-stage] {"stage":"publish","event":"start","checkpoint":34,"elapsedMs":0}
+# [sponsor-report-stage] {"stage":"publish","event":"complete","checkpoint":35,"elapsedMs":0}
+# Subtest: actual fork model runs through current registered staged handlers and agrees with whole frozen report/page/HTML oracle
+ok 17 - actual fork model runs through current registered staged handlers and agrees with whole frozen report/page/HTML oracle
+  ---
+  duration_ms: 123.937291
+  type: 'test'
+  ...
+# Subtest: delete acknowledgement binds a fresh cancelled status, then every cleanup acknowledges exactly one checkpoint
+ok 18 - delete acknowledgement binds a fresh cancelled status, then every cleanup acknowledges exactly one checkpoint
+  ---
+  duration_ms: 1.602458
+  type: 'test'
+  ...
+# Subtest: actual snapshot response excludes only its proven read marker from stored hash verification
+ok 19 - actual snapshot response excludes only its proven read marker from stored hash verification
+  ---
+  duration_ms: 12.135625
+  type: 'test'
+  ...
+# Subtest: compiled actual hook fences every fixture mutation for existing and newly drained observation failures
+ok 20 - compiled actual hook fences every fixture mutation for existing and newly drained observation failures
+  ---
+  duration_ms: 28.617291
+  type: 'test'
+  ...
+# Subtest: compiled actual hook preserves positive writes, independent read audits and rejects unknown actions
+ok 21 - compiled actual hook preserves positive writes, independent read audits and rejects unknown actions
+  ---
+  duration_ms: 10.614625
+  type: 'test'
+  ...
+# Subtest: compiled actual UI perform refuses poisoned or pending-failure actions and preserves healthy response semantics
+ok 22 - compiled actual UI perform refuses poisoned or pending-failure actions and preserves healthy response semantics
+  ---
+  duration_ms: 3.039875
+  type: 'test'
+  ...
+# Subtest: actual compiled screenshot call supplies body to unchanged real settledScreenshot boundary
+ok 23 - actual compiled screenshot call supplies body to unchanged real settledScreenshot boundary
+  ---
+  duration_ms: 204.086
+  type: 'test'
+  ...
+# Subtest: compiled document flow records only fixed phase boundaries and stops at each exact failed operation
+ok 24 - compiled document flow records only fixed phase boundaries and stops at each exact failed operation
+  ---
+  duration_ms: 0.491416
+  type: 'test'
+  ...
+# Subtest: all original business expectations and waits remain exact; screenshot changes only explicit intended body
+ok 25 - all original business expectations and waits remain exact; screenshot changes only explicit intended body
+  ---
+  duration_ms: 14.260708
+  type: 'test'
+  ...
+# (node:12754) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/utils/target-scope.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual usePresence Create transition emits source leave, binds private generation and uses real Back before blank
+ok 26 - actual usePresence Create transition emits source leave, binds private generation and uses real Back before blank
+  ---
+  duration_ms: 15.166459
+  type: 'test'
+  ...
+# Subtest: actual failed, missing, foreign, duplicate, stale and invalid private mount transitions poison without blank or replay
+ok 27 - actual failed, missing, foreign, duplicate, stale and invalid private mount transitions poison without blank or replay
+  ---
+  duration_ms: 172.390666
+  type: 'test'
+  ...
+# Subtest: old observed leave cannot satisfy newly armed source transition
+ok 28 - old observed leave cannot satisfy newly armed source transition
+  ---
+  duration_ms: 65.216542
+  type: 'test'
+  ...
+# Subtest: wrong principal or changed request document fails before private creation
+ok 29 - wrong principal or changed request document fails before private creation
+  ---
+  duration_ms: 16.263208
+  type: 'test'
+  ...
+# Subtest: expired genuine wire refuses before an actual POST, and no raw credential enters retained evidence
+ok 30 - expired genuine wire refuses before an actual POST, and no raw credential enters retained evidence
+  ---
+  duration_ms: 4.56075
+  type: 'test'
+  ...
+# Subtest: unknown actual capture transport poisons all subsequent mutations and preserves acknowledged private owner
+ok 31 - unknown actual capture transport poisons all subsequent mutations and preserves acknowledged private owner
+  ---
+  duration_ms: 5.514958
+  type: 'test'
+  ...
+# Subtest: actual direct mutation drains an already dispatched failed UI response before any POST
+ok 32 - actual direct mutation drains an already dispatched failed UI response before any POST
+  ---
+  duration_ms: 5.805708
+  type: 'test'
+  ...
+# Subtest: presence admission requires the actual own roster entry and rejects invented body success or malformed rosters
+ok 33 - presence admission requires the actual own roster entry and rejects invented body success or malformed rosters
+  ---
+  duration_ms: 22.206542
+  type: 'test'
+  ...
+# Subtest: exact failed journal/terminal and full fresh guards admit only retained41 owner
+ok 34 - exact failed journal/terminal and full fresh guards admit only retained41 owner
+  ---
+  duration_ms: 3.026375
+  type: 'test'
+  ...
+# Subtest: changed or foreign source/snapshot/model/generation/owner/job receipt refuses
+ok 35 - changed or foreign source/snapshot/model/generation/owner/job receipt refuses
+  ---
+  duration_ms: 22.632459
+  type: 'test'
+  ...
+# Subtest: every fresh equality guard is required and changed principal/settings/Jira/source/drafts/registry refuses
+ok 36 - every fresh equality guard is required and changed principal/settings/Jira/source/drafts/registry refuses
+  ---
+  duration_ms: 15.132792
+  type: 'test'
+  ...
+# Subtest: cleanup remains unarmed until both full HTML exports and exact report/pages/job are proved
+ok 37 - cleanup remains unarmed until both full HTML exports and exact report/pages/job are proved
+  ---
+  duration_ms: 7.283208
+  type: 'test'
+  ...
+# Subtest: removing only explicit retained-only branches recovers exact reviewed ordinary session bytes
+ok 38 - removing only explicit retained-only branches recovers exact reviewed ordinary session bytes
+  ---
+  duration_ms: 15.709333
+  type: 'test'
+  ...
+# Subtest: actual cleanup fence requires full output admission and exact owner before any mutation dispatch
+ok 39 - actual cleanup fence requires full output admission and exact owner before any mutation dispatch
+  ---
+  duration_ms: 24.998542
+  type: 'test'
+  ...
+# Subtest: actual fixture hook permits only exact retained source deletion and never creation or foreign writes
+ok 40 - actual fixture hook permits only exact retained source deletion and never creation or foreign writes
+  ---
+  duration_ms: 23.93275
+  type: 'test'
+  ...
+# Subtest: actual hook and delete UI action cannot cross an uncertain observation fence
+ok 41 - actual hook and delete UI action cannot cross an uncertain observation fence
+  ---
+  duration_ms: 4.709125
+  type: 'test'
+  ...
+# Subtest: actual continuation never calls fork/capture/advance and every Page screenshot has explicit body subject
+ok 42 - actual continuation never calls fork/capture/advance and every Page screenshot has explicit body subject
+  ---
+  duration_ms: 0.844208
+  type: 'test'
+  ...
+# (node:12758) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/utils/target-scope.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual retained admission binds fresh private generation and current own document without a source Create transition
+ok 43 - actual retained admission binds fresh private generation and current own document without a source Create transition
+  ---
+  duration_ms: 18.6775
+  type: 'test'
+  ...
+# Subtest: retained mode forbids new fork and capture before any action
+ok 44 - retained mode forbids new fork and capture before any action
+  ---
+  duration_ms: 6.951625
+  type: 'test'
+  ...
+# Subtest: retained candidate is readonly and mutation cannot dispatch before private promotion
+ok 45 - retained candidate is readonly and mutation cannot dispatch before private promotion
+  ---
+  duration_ms: 7.846042
+  type: 'test'
+  ...
+# Subtest: foreign generation, missing candidate and changed fresh model refuse retained owner without mutation
+ok 46 - foreign generation, missing candidate and changed fresh model refuse retained owner without mutation
+  ---
+  duration_ms: 24.220583
+  type: 'test'
+  ...
+# Subtest: wrong mount, wrong private principal and stale request document poison retained promotion
+ok 47 - wrong mount, wrong private principal and stale request document poison retained promotion
+  ---
+  duration_ms: 17.438709
+  type: 'test'
+  ...
+# Subtest: missing current beat and existing mounted source cannot satisfy retained admission
+ok 48 - missing current beat and existing mounted source cannot satisfy retained admission
+  ---
+  duration_ms: 9.039
+  type: 'test'
+  ...
+# Subtest: unknown UI result drains before retained cleanup dispatch and keeps the acknowledged owner
+ok 49 - unknown UI result drains before retained cleanup dispatch and keeps the acknowledged owner
+  ---
+  duration_ms: 7.105167
+  type: 'test'
+  ...
+# Subtest: retention is explicit and unknown dispositions fail before registration
+ok 50 - retention is explicit and unknown dispositions fail before registration
+  ---
+  duration_ms: 0.929292
+  type: 'test'
+  ...
+# Subtest: default cleanup branch retains every previous statement; all surrounding business logic is unchanged
+ok 51 - default cleanup branch retains every previous statement; all surrounding business logic is unchanged
+  ---
+  duration_ms: 34.603834
+  type: 'test'
+  ...
+# Subtest: actual compiled retention branch verifies full receipt and rows, persists exact IDs, and dispatches zero cleanup
+ok 52 - actual compiled retention branch verifies full receipt and rows, persists exact IDs, and dispatches zero cleanup
+  ---
+  duration_ms: 17.604542
+  type: 'test'
+  ...
+# Subtest: retention refuses each failed preservation read without marking retained or reaching cleanup
+ok 53 - retention refuses each failed preservation read without marking retained or reaching cleanup
+  ---
+  duration_ms: 8.311542
+  type: 'test'
+  ...
+# Subtest: actual final roster requires exact new source/private IDs and rejects extras or absent retained content
+ok 54 - actual final roster requires exact new source/private IDs and rejects extras or absent retained content
+  ---
+  duration_ms: 0.894667
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 657.270792

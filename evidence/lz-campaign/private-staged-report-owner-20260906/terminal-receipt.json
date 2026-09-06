@@ -1,0 +1,309 @@
+{
+  "schema": "private-owner-terminal-receipt-v1",
+  "status": "closed",
+  "terminalAt": "2026-09-06T17:55:21.405825+00:00",
+  "pidCheckedAt": "2026-09-06T17:58:11.089862+00:00",
+  "checkedPids": [
+    66177,
+    66190,
+    66479,
+    66480,
+    66705,
+    66706,
+    68836,
+    68865
+  ],
+  "alivePids": [],
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/launch.json",
+    "sha256": "6018a92de472f24f982577591de1fe7db31e3917f818af90f9809b0d75c26bcb",
+    "bytes": 360
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/command.json",
+    "sha256": "8b5c102ae86b0956a13ca74d369cb6665b23669cd99b8e71ebdae8e75d454c60",
+    "bytes": 2509
+  },
+  "state": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/state.json",
+    "sha256": "25321f85e874bb09842ad5688beb2f3b520f1edf968e1b3ddcc8a679353c54ba",
+    "bytes": 143
+  },
+  "summary": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/summary.json",
+    "sha256": "e181e593734fcd6832d9099560bf6e967c4f7a5f877c158fac8bdd1dca7b24a0",
+    "bytes": 919
+  },
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-report-witness.json",
+    "sha256": "8945bf1bdbcda9834da1c3d8940d32ed53ee8e635da1d792fb56890aff4077dc",
+    "bytes": 613817
+  },
+  "actualHtml": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-owner-report.html",
+    "sha256": "648906d038d174b7f98e97aa52aff383e7a4d1a7e33e6b71c927340dff841508",
+    "bytes": 6092
+  },
+  "owned": {
+    "sourcePlanId": "plan-test-mtq429na-ycwarn",
+    "privatePlanId": "sim-bb5ccf50-eec6-4ea2-8315-bd69b3dc604d"
+  },
+  "reportId": "7fb0d2d8-37f9-461e-910a-406246a5d46b",
+  "jobId": "de0cf61c-7c83-4a5b-8fbc-79eca19506fe",
+  "finalJob": {
+    "id": "de0cf61c-7c83-4a5b-8fbc-79eca19506fe",
+    "requestId": "579376b8-254b-4afe-96a7-23bf41be692a",
+    "name": "Private owner immutable report",
+    "createdAt": "2026-09-06T17:54:21.578Z",
+    "expiresAt": "2026-09-07T17:54:21.578Z",
+    "checkpoint": 41,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 41,
+    "totalUnits": 41,
+    "cleanupDone": true,
+    "forecastRuns": {
+      "completed": 300,
+      "total": 300
+    },
+    "reportId": "7fb0d2d8-37f9-461e-910a-406246a5d46b"
+  },
+  "captureMs": 44321,
+  "bodyFailed": true,
+  "overallPassed": false,
+  "originalFailure": "Private owner witness failed; exact known resources retained without retry",
+  "integrityPreserved": true,
+  "settingsReads": [
+    {
+      "requestId": 3,
+      "body": {
+        "success": true,
+        "version": 68,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      },
+      "receiptHash": "c23d3f91c4a78a8ead03f3990804f269affcace33f30c1d75cc7a1dc2a07b97a"
+    },
+    {
+      "requestId": 4,
+      "body": {
+        "success": true,
+        "version": 68,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      },
+      "receiptHash": "c23d3f91c4a78a8ead03f3990804f269affcace33f30c1d75cc7a1dc2a07b97a"
+    },
+    {
+      "requestId": 111,
+      "body": {
+        "success": true,
+        "version": 68,
+        "settings": {
+          "selectedPlanIds": [],
+          "profiles": {},
+          "issueChoices": {}
+        }
+      },
+      "receiptHash": "52178d04e6a6189d0ad252e599ef039f7579d878be8aabff29374cf02ece7254"
+    }
+  ],
+  "draftReads": [
+    {
+      "requestId": 5,
+      "planId": "plan-msq9dg8l-gz6mz1",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 6,
+      "planId": "plan-msq9dg8l-gz6mz1",
+      "key": "getActiveDrafts",
+      "body": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "requestId": 7,
+      "planId": "plan-mta3aw3t-6dyijd",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 8,
+      "planId": "plan-mta3aw3t-6dyijd",
+      "key": "getActiveDrafts",
+      "body": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "requestId": 9,
+      "planId": "plan-mtbrlh8n-7ghw8u",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 10,
+      "planId": "plan-mtbrlh8n-7ghw8u",
+      "key": "getActiveDrafts",
+      "body": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "requestId": 24,
+      "planId": "plan-test-mtq429na-ycwarn",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 35,
+      "planId": "plan-test-mtq429na-ycwarn",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 36,
+      "planId": "plan-test-mtq429na-ycwarn",
+      "key": "getActiveDrafts",
+      "body": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "requestId": 52,
+      "planId": "sim-bb5ccf50-eec6-4ea2-8315-bd69b3dc604d",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 53,
+      "planId": "sim-bb5ccf50-eec6-4ea2-8315-bd69b3dc604d",
+      "key": "getActiveDrafts",
+      "body": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "requestId": 112,
+      "planId": "plan-msq9dg8l-gz6mz1",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 113,
+      "planId": "plan-msq9dg8l-gz6mz1",
+      "key": "getActiveDrafts",
+      "body": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "requestId": 114,
+      "planId": "plan-mta3aw3t-6dyijd",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 115,
+      "planId": "plan-mta3aw3t-6dyijd",
+      "key": "getActiveDrafts",
+      "body": {
+        "success": true,
+        "drafts": {}
+      }
+    },
+    {
+      "requestId": 116,
+      "planId": "plan-mtbrlh8n-7ghw8u",
+      "key": "getDraft",
+      "body": {
+        "success": true,
+        "draft": null
+      }
+    },
+    {
+      "requestId": 117,
+      "planId": "plan-mtbrlh8n-7ghw8u",
+      "key": "getActiveDrafts",
+      "body": {
+        "success": true,
+        "drafts": {}
+      }
+    }
+  ],
+  "standingBeforeAfterExact": true,
+  "sharedIssueFourGetsExact": true,
+  "lastRegistry": {
+    "plans": [
+      {
+        "id": "plan-msq9dg8l-gz6mz1",
+        "name": "LZPT Scenarios"
+      },
+      {
+        "id": "plan-mta3aw3t-6dyijd",
+        "name": "test"
+      },
+      {
+        "id": "plan-mtbrlh8n-7ghw8u",
+        "name": "LZPP Perf"
+      },
+      {
+        "id": "plan-test-mtq429na-ycwarn",
+        "name": "[harness-test] Private report source mtq4231y"
+      },
+      {
+        "id": "sim-bb5ccf50-eec6-4ea2-8315-bd69b3dc604d",
+        "name": "[harness-test] Private report model mtq4231y"
+      }
+    ]
+  },
+  "retainedResponseCount": 117,
+  "allRetainedResponseHashesVerified": true,
+  "actualHtmlEqualsExpected": true,
+  "reportDeleted": false,
+  "privateDeleted": false,
+  "sourceDeleted": false,
+  "screenshotFailureDiagnosis": "Root identified Page screenshot helper requires subject; actual private spec omits it. Original catch preserves only generic error. Root independent reproduction pending.",
+  "physicalKvsVerified": false,
+  "secondPrincipalVerified": false,
+  "siteCallsAfterTerminal": 0,
+  "cleanupAuthorized": false
+}

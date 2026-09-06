@@ -1,0 +1,13 @@
+test_actual_existing_runner_enforces_900s_and_cleans_its_own_group (__main__.SupervisorTests.test_actual_existing_runner_enforces_900s_and_cleans_its_own_group) ... ok
+test_actual_existing_runner_stop_now_refuses_success_and_cleans (__main__.SupervisorTests.test_actual_existing_runner_stop_now_refuses_success_and_cleans) ... ok
+test_changed_command_cannot_reach_process_admission (__main__.SupervisorTests.test_changed_command_cannot_reach_process_admission) ... ok
+test_lock_replacement_is_not_removed (__main__.SupervisorTests.test_lock_replacement_is_not_removed) ... ok
+test_prepared_missing_dispatch_is_inert (__main__.SupervisorTests.test_prepared_missing_dispatch_is_inert) ... ok
+test_success_bound_child_marker_and_no_replay (__main__.SupervisorTests.test_success_bound_child_marker_and_no_replay) ... ok
+test_timeout_and_interruption_never_grade_success_or_replay (__main__.SupervisorTests.test_timeout_and_interruption_never_grade_success_or_replay) ... ok
+test_unknown_process_failure_preserves_marker_and_redacts_detail (__main__.SupervisorTests.test_unknown_process_failure_preserves_marker_and_redacts_detail) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.026s
+
+OK

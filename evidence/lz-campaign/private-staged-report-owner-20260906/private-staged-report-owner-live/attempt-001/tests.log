@@ -1,0 +1,29 @@
+
+Running 1 test using 1 worker
+
+
+(node:66706) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-private-staged-report.spec.ts:19:1 › private staged report owner: genuine fork, all report fields and immutable HTML, public cleanup, unchanged shared Jira
+[chromium] › scenarios/lz-ppm/campaign-private-staged-report.spec.ts:19:1 › private staged report owner: genuine fork, all report fields and immutable HTML, public cleanup, unchanged shared Jira
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.588","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T17:53:54.064Z"}
+
+  1) [chromium] › scenarios/lz-ppm/campaign-private-staged-report.spec.ts:19:1 › private staged report owner: genuine fork, all report fields and immutable HTML, public cleanup, unchanged shared Jira 
+
+    Error: Private owner witness failed; exact known resources retained without retry
+
+      71 |   for(let n=0;n<2;n++){expect(await session.invoke('getPlan',{planId:owner.planId})).toEqual({success:false,error:'Plan not found'});await registry([...originals,source.meta.id]);}journal.privateDeleted=true;persist();
+      72 |   await sourceUnchanged();await session.stop();await hook({what:'clearDrafts',planId:source.meta.id});expect(await hook({what:'deleteFixture',planId:source.meta.id})).toEqual({deleted:source.meta.id,registryRemoved:true});for(let n=0;n<2;n++){expect((await hook({what:'plan',planId:source.meta.id})).meta).toBeNull();await registry(originals);}journal.sourceDeleted=true;journal.completed=true;persist();
+    > 73 |  }catch{bodyFailed=true;journal.failure='Private owner witness failed; exact known resources retained without retry';persist();throw new Error(journal.failure);}
+         |                                                                                                                                      ^
+      74 |  finally{
+      75 |   const audits=[async()=>{if(documentPage&&!documentPage.isClosed())await documentPage.close();},principal,standing,issue,issue,async()=>{expect(await read('getCapacitySettings')).toEqual(settings);},async()=>{for(const id of originals)await drafts(id);},async()=>{const ids=[...originals,...(journal.owned.sourcePlanId&&!journal.sourceDeleted?[journal.owned.sourcePlanId]:[]),...(journal.observedPrivatePlanId&&!journal.privateDeleted?[journal.observedPrivatePlanId]:[])];await registry(ids);}];
+      76 |   try{await finishPrivateWitness({journal,persist,stop:()=>session.stop(),audits});}finally{try{await session.dispose();}catch{journal.completed=false;journal.state='recovery-required';persist();throw new Error('Private owner witness observation remained incomplete');}if(bodyFailed){journal.completed=false;journal.state='recovery-required';persist();}}
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-private-staged-report.spec.ts:73:134
+
+    Error Context: evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-private-staged-report.spec.ts:19:1 › private staged report owner: genuine fork, all report fields and immutable HTML, public cleanup, unchanged shared Jira 

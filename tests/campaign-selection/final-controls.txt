@@ -1,0 +1,14 @@
+test_actual_result_identity_stamps_still_bind_all_existing_axes (__main__.Selection.test_actual_result_identity_stamps_still_bind_all_existing_axes) ... ok
+test_actual_run_refuses_entry_failure_and_final_instrument_change_even_with_all_selected_pass_receipts (__main__.Selection.test_actual_run_refuses_entry_failure_and_final_instrument_change_even_with_all_selected_pass_receipts) ... ok
+test_actual_run_terminal_uses_selected_completion_after_fresh_entry_and_exact_reuse (__main__.Selection.test_actual_run_terminal_uses_selected_completion_after_fresh_entry_and_exact_reuse) ... ok
+test_actual_six_selected_completion_preserves_entire_manifest_progress_and_original_results (__main__.Selection.test_actual_six_selected_completion_preserves_entire_manifest_progress_and_original_results) ... ok
+test_default_all_passed_inventory_still_completes_and_explicit_order_is_canonical (__main__.Selection.test_default_all_passed_inventory_still_completes_and_explicit_order_is_canonical) ... ok
+test_default_whole_selection_matches_legacy_complete_and_planned_never_passes (__main__.Selection.test_default_whole_selection_matches_legacy_complete_and_planned_never_passes) ... ok
+test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) ... ok
+test_stale_status_display_clears_both_flags_without_rewriting_history (__main__.Selection.test_stale_status_display_clears_both_flags_without_rewriting_history) ... ok
+test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.049s
+
+OK

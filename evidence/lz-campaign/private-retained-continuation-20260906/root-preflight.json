@@ -1,0 +1,9 @@
+{
+  "admit": true,
+  "negativeAdmissions": 3,
+  "oldPidsAbsent": true,
+  "rootDispatch": "df0a6231a31b5bb0ed2904b44eb0a09838acb1ef",
+  "harnessSource": "f1c42a7ca2643dd06836e083207ad867381bddc1",
+  "instrument": "4dbab3b8635160af8cea03d05efb2a27be468fde9bc3b28a4378ee34e85584f4",
+  "supervisorSha256": "a80f31b5bff7795fde697dae0d4328e8f0afaa74148267509d11d3b8b2f558fa"
+}

@@ -1,0 +1,120 @@
+{
+  "schema": "private-retention-terminal-v1",
+  "status": "closed",
+  "outcome": "passed",
+  "exitCode": 0,
+  "finishedAt": "2026-09-06T19:22:12.271859+00:00",
+  "pidCheckedAt": "2026-09-06T19:23:39.954303+00:00",
+  "supervisorPid": 19602,
+  "childPid": 19613,
+  "workerPid": 19615,
+  "alivePids": [],
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-report-witness.json",
+    "sha256": "0b2fd40ff74d3b1b6b7cb067a0f261144303808117a896922beb8727bf956f74",
+    "bytes": 853135
+  },
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/launch.json",
+    "sha256": "ce19839f96c0738e72767824891410232c450f5949e95cfbfb29af82ffeeeb3c",
+    "bytes": 428
+  },
+  "process": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/process.json",
+    "sha256": "ae686a46a570aef8c0235a312f4c807ba8f76978f52f69d0435e82db806fcf53",
+    "bytes": 993
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/command.json",
+    "sha256": "7c22ff2141fb9f0cd2597c9cff96d69c980185d1a1017029ae106c312f9e97d3",
+    "bytes": 2755
+  },
+  "flags": {
+    "completed": true,
+    "retentionMode": "retain",
+    "integrityPreserved": true,
+    "state": "completed"
+  },
+  "retained": {
+    "sourcePlanId": "plan-test-mtq75tk1-49uuzd",
+    "snapshotId": "199e52b6-c10e-4325-98d4-4e6a348087d7",
+    "snapshotHash": "f26835b2b975932ce3df0e14e9447f81f305bf3bef92570efb418d87453b8b0d",
+    "privatePlanId": "sim-e84e4730-e7f4-421b-8582-dc17a564697b",
+    "generationId": "5a55ad1f-132f-434e-9648-d37dc84811d0",
+    "reportId": "5dff3113-830f-4719-a2fa-57a7d1f6cdd5",
+    "reportHash": "2781d2ee236606cd511cc1712917e3abe71c1d44fb5da543180722fd8bb3a955",
+    "jobId": "41b4e7fa-5b53-4dff-a095-603a221fa55d",
+    "checkpoint": 41,
+    "settingsVersion": 68
+  },
+  "finalRegistry": {
+    "plans": [
+      {
+        "id": "plan-msq9dg8l-gz6mz1",
+        "name": "LZPT Scenarios"
+      },
+      {
+        "id": "plan-mta3aw3t-6dyijd",
+        "name": "test"
+      },
+      {
+        "id": "plan-mtbrlh8n-7ghw8u",
+        "name": "LZPP Perf"
+      },
+      {
+        "id": "plan-test-mtq75tk1-49uuzd",
+        "name": "[harness-test] Private report source mtq75lja"
+      },
+      {
+        "id": "sim-e84e4730-e7f4-421b-8582-dc17a564697b",
+        "name": "[harness-test] Private report model mtq75lja"
+      }
+    ]
+  },
+  "captureMilliseconds": 43241,
+  "fullJob": {
+    "id": "41b4e7fa-5b53-4dff-a095-603a221fa55d",
+    "requestId": "9995d16f-a1d6-454c-9d28-ea77f961ba1c",
+    "name": "Private owner immutable report",
+    "createdAt": "2026-09-06T19:21:07.571Z",
+    "expiresAt": "2026-09-07T19:21:07.571Z",
+    "checkpoint": 41,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 41,
+    "totalUnits": 41,
+    "cleanupDone": true,
+    "forecastRuns": {
+      "completed": 300,
+      "total": 300
+    },
+    "reportId": "5dff3113-830f-4719-a2fa-57a7d1f6cdd5"
+  },
+  "html": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-owner-report-reopened.html",
+      "sha256": "90676d582b81f2aed896d96a7b7ad8c0bf87e2f8da3dbf3e2d6dad3bf5be5695",
+      "bytes": 6092
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-owner-report.html",
+      "sha256": "90676d582b81f2aed896d96a7b7ad8c0bf87e2f8da3dbf3e2d6dad3bf5be5695",
+      "bytes": 6092
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-acceptance-20260906/artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-owner-report.png",
+      "sha256": "9dc1c2a8416eec680f276cf317b923049b667905cb4b8ba33b4795464645c1e8",
+      "bytes": 218498
+    }
+  ],
+  "explicitCleanupCalls": 0,
+  "jiraWrites": 0,
+  "sourcePreserved": true,
+  "visualInspection": "Actual full PNG personally viewed. Complete private report, exact WFH2820 Oct5-9/d5; P50Oct9/P80/P90Oct12; captured metadata, baseline/target empty states, capacity excluded; readable without clipping or loading placeholder. Reopened HTML exact byte equality independently checked locally.",
+  "physicalKvsVerified": false,
+  "secondPrincipalVerified": false,
+  "additionalSiteCallsAfterTerminal": 0,
+  "followOnRuns": 0
+}
