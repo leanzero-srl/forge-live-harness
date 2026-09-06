@@ -78,9 +78,20 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
     const f = opts.panel || frame;
     const app = opts.panel ? PANEL_APP : GLOBAL_APP;
     const t0 = Date.now();
+    // ⚠️ `issueKey` IS WHAT MAKES A TURN A PANEL TURN, and omitting it made this
+    // spec report a false P0 on its first run.
+    //
+    // The consumer decides `inIssuePanel` from `job.issueKey` — that is the
+    // frame's own condition, `job.issueKey == null` — and `chat.routes.js` takes
+    // `issueKey` off the PAYLOAD. Calling the route from the panel's frame with
+    // only a conversation id produces `profile=standard` and
+    // `allowJiraAdminWrites=true`, which reads exactly like the write group
+    // leaking into the panel. It is the harness talking to the backend the way
+    // the panel never does.
     const sent: any = await callResolver(f, app, "chat", {
       conversationId: opts.panel ? `issue-${panelIssue}` : conversationId,
       message, personaId: "jira-admin", personaLocked: true,
+      ...(opts.panel ? { issueKey: panelIssue } : {}),
     });
     expect(sent?.success, `${label}: enqueue failed: ${JSON.stringify(sent?.error)}`).toBeTruthy();
     let data: any = null;
@@ -120,9 +131,37 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
   const gateIn = (line: string, flag: string) =>
     (line.match(new RegExp(`${flag}=(true|false(?:\\([^)]*\\))?)`)) || [])[1] || "(absent)";
 
-  /** The admin page's checkbox for one policy row. Forge drops the id prefix. */
+  /**
+   * The admin page's checkbox for one policy row.
+   *
+   * Forge PREFIXES the id on first paint and drops it after any re-render, so
+   * ends-with is the stable selector — anchored on the BARE name, without the
+   * leading dash, or it matches only the first render.
+   */
   const rowBox = (root: any, id: string) =>
     root.locator(`input[type="checkbox"][id$="${id}"]`).first();
+
+  /**
+   * FLIP A TOGGLE. `check()`/`uncheck()` DO NOT WORK ON THESE.
+   *
+   * Atlaskit's Toggle is a visually-hidden input under a styled track, so
+   * Playwright's actionability check resolves the input, finds a decorative
+   * `<span>` intercepting pointer events and retries until it times out
+   * (measured: `subtree intercepts pointer events`, 20s, on
+   * `allowJiraAdminTools`). `journey-admin-ui` has clicked these with
+   * `{ force: true }` since the destructive row shipped; this is the same move
+   * with the desired STATE asserted afterwards rather than assumed, because a
+   * forced click on an already-correct toggle would flip it the wrong way.
+   */
+  async function setRow(root: any, id: string, want: boolean) {
+    const box = rowBox(root, id);
+    await box.waitFor({ state: "attached", timeout: 30_000 });
+    if ((await box.isChecked()) === want) return;
+    await box.click({ force: true });
+    await expect
+      .poll(async () => box.isChecked(), { timeout: 15_000 })
+      .toBe(want);
+  }
 
   try {
     /* =================== PRE-FLIGHT: the list really is empty ============ */
@@ -159,8 +198,7 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
     // With tools OFF, writes must be DISABLED — not merely unchecked. An
     // unreachable-but-live control is a lever an admin can move that does
     // nothing, which is the `allowBulk` class this codebase has paid for twice.
-    const toolsOn0 = await rowBox(root, "allowJiraAdminTools").isChecked();
-    if (toolsOn0) await rowBox(root, "allowJiraAdminTools").uncheck();
+    await setRow(root, "allowJiraAdminTools", false);
     await page.waitForTimeout(1_000);
     const writesDisabledWhileToolsOff = await rowBox(root, "allowJiraAdminWrites").isDisabled();
     console.log(`[card] tools OFF -> writes control disabled = ${writesDisabledWhileToolsOff}`);
@@ -172,11 +210,11 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
         `believed and do nothing.`,
     ).toBe(true);
 
-    await rowBox(root, "allowJiraAdminTools").check();
+    await setRow(root, "allowJiraAdminTools", true);
     await page.waitForTimeout(1_000);
     const writesLiveNow = !(await rowBox(root, "allowJiraAdminWrites").isDisabled());
     expect.soft(writesLiveNow, `writes stayed disabled after reading was switched on`).toBe(true);
-    await rowBox(root, "allowJiraAdminWrites").check();
+    await setRow(root, "allowJiraAdminWrites", true);
     await page.waitForTimeout(1_000);
 
     // The destructive row needs `allowDestructive` too, which this spec leaves
@@ -244,12 +282,22 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
     const panelLine = toolsetOf(panelTurn.win);
     console.log(`[gate] PANEL: ${panelLine}`);
     const panelValue = gateIn(panelLine, "allowJiraAdminWrites");
-    expect(
+    // SOFT, and the reason is structural rather than a lack of conviction: this
+    // is a claim about which SURFACE offers a capability, and step 3 below is
+    // the measurement four surgeons are waiting on. A surface claim that aborts
+    // the run takes the answer with it — which is exactly what happened on the
+    // first run of this spec, and on `admin-persona-panel` before it.
+    expect.soft(
       panelLine,
       `THE WRITE GROUP REACHED THE ISSUE PANEL. The frame's guarantee is that it never does: the ` +
         `panel is open on one issue and reconfiguring a whole site from it is the wrong shape.\n` +
         `${panelLine}`,
     ).toMatch(/allowJiraAdminWrites=false/);
+    expect.soft(
+      panelLine,
+      `the panel turn did not run under the issue-panel profile, so this measured a global-page ` +
+        `turn and says nothing about the panel:\n${panelLine}`,
+    ).toMatch(/profile=issue-panel/);
     // WHAT THE REASON SAYS, recorded rather than asserted. The consumer reports
     // `admin-off` for the panel deliberately (asyncConsumer.js: inventing a
     // `not-here` code would add a fifth administration line to the standing
@@ -261,6 +309,15 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
     table.push({ step: "2 gate panel", value: panelValue });
 
     /* =================== 3. THE WRITE — THIS GATES FOUR SURGEONS ========= */
+    // ⚠️ BACK TO THE GLOBAL PAGE FIRST, AND RE-ACQUIRE THE FRAME. There is ONE
+    // browser window; opening the panel navigated it to the issue, so the
+    // handle captured before step 2 points at a page that is no longer loaded.
+    // The symptom is not a timeout but
+    // `window.chatWiseGlobal is not present — the app has not booted`, thrown
+    // on the first turn of step 3 — which is to say, the measurement four
+    // surgeons are waiting on dies on a stale variable.
+    frame = await openGlobalPage(page, CHAT);
+    await waitForChatApp(page, frame, GLOBAL_APP, 120_000);
     await page.waitForTimeout(GAP_MS);
     const ask = await turnQ(
       "write-ask",
@@ -405,7 +462,7 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
 
     // WRITES OFF, THEN THE SAME ASK.
     const r3 = await openAdminSettings(page, T.deepLink(T.envId)!);
-    await rowBox(r3, "allowJiraAdminWrites").uncheck();
+    await setRow(r3, "allowJiraAdminWrites", false);
     await page.waitForTimeout(1_000);
     await r3.getByRole("button", { name: "Save tool policy", exact: true }).first().click();
     await page.waitForTimeout(4_000);
