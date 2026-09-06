@@ -86,6 +86,28 @@ async function openOdometer(page: Page) {
   return { p, frame };
 }
 
+
+/**
+ * A button that belongs to THIS card, found from one of the card's own fields.
+ *
+ * ⚠️ "Save key", "Test key" and "Remove key" are on the web-search card AND on
+ * the organisation admin key card — measured 6 Sep 2026, when this spec went
+ * red with `strict mode violation: getByRole('button', { name: /save key/i })
+ * resolved to 2 elements`. The organisation card did not exist when this file
+ * was written. `.first()` is not the fix: it silently depends on which card
+ * paints first, and on the credential cards that exact assumption pressed the
+ * wrong Save while the other card's fields sat filled and unsaved.
+ *
+ * The anchor is the field, because a card's own input is the one thing that
+ * cannot belong to a different card.
+ */
+function cardButtonNear(root: any, fieldIdSuffix: string, label: string) {
+  return root.locator(
+    `xpath=//input[contains(@id,"${fieldIdSuffix}")]/ancestor::*[.//button[normalize-space(.)="${label}"]][1]` +
+      `//button[normalize-space(.)="${label}"]`,
+  );
+}
+
 test.describe.configure({ timeout: 420_000 });
 
 test("the card states the egress cost, refuses the switch without a key, and never reads the key back", async ({
@@ -164,7 +186,7 @@ test("the card states the egress cost, refuses the switch without a key, and nev
 
     // ---- Save a key THROUGH THE UI ----------------------------------------
     await keyField.fill(CANARY);
-    await root.getByRole("button", { name: /save key/i }).click();
+    await cardButtonNear(root, "webSearchKey", "Save key").first().click();
     keySaved = true;
 
     await expect(
@@ -240,7 +262,7 @@ test("the card states the egress cost, refuses the switch without a key, and nev
     expect(polOn.policy.allowAgile).toBe(policyBefore.policy.allowAgile);
 
     // ---- Remove the key: the app's OWN dialog, and the switch goes with it -
-    await root2.getByRole("button", { name: /remove key/i }).first().click();
+    await cardButtonNear(root2, "webSearchKey", "Remove key").first().click();
     await expect(
       root2.getByText(/The stored key is deleted and web search is switched off/i),
       "the removal confirmation dialog did not open",

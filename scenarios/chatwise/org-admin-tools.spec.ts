@@ -474,13 +474,50 @@ test("the credential change ledger has a reader, and it is a settings card and n
   // No credential has written anything on this install, so the EMPTY STATE is
   // what must render — and it must say so in words, not as a blank area that
   // looks like a failed load.
-  const body = await page.evaluate(() => document.body.innerText);
+  // ⚠️ THE CARD FETCHES ITS ROWS AFTER IT PAINTS, and reading `innerText` the
+  // moment the heading appears reports an empty card. Measured 6 Sep 2026: the
+  // first version of this test read straight after `skipUntilCardsPresent` and
+  // found ONE of five column headings, no rv_ id and no state label — and the
+  // ledger provably had four rows in it, because the chat tool had just listed
+  // them. The card was fine; the harness was early. This waits for the card to
+  // say SOMETHING about its own contents before judging it.
+  const readCard = async () => {
+    const whole = await page.evaluate(() => document.body.innerText);
+    const at = whole.indexOf(CHANGES.heading);
+    return at < 0 ? "" : whole.slice(at, at + 4000);
+  };
+  let body = "";
+  const settled = Date.now() + 45_000;
+  for (;;) {
+    body = await readCard();
+    const said =
+      body.includes(CHANGES.empty) ||
+      CHANGES.columns.some((c: string) => body.includes(c)) ||
+      /rv_[a-z0-9]+_[a-z0-9]{6,}/.test(body);
+    if (said || Date.now() > settled) break;
+    await page.waitForTimeout(2_000);
+  }
   const empty = body.includes(CHANGES.empty);
-  console.log(`[ledger] empty-state sentence rendered = ${empty}`);
+  const cols = CHANGES.columns.filter((c: string) => body.includes(c));
+  // A ROW IS AS GOOD AS A COLUMN HEADING, and better. By the time this runs the
+  // ledger has real rows in it — an archive, an undo, a group add — so the card
+  // may legitimately show neither the empty-state sentence nor a header row,
+  // depending on how it lays a table out. What must NOT happen is a card that
+  // shows nothing at all, which is indistinguishable from one that failed.
+  const rowIds = (body.match(/rv_[a-z0-9]+_[a-z0-9]{6,}/g) || []) as string[];
+  const stateLabels = Object.values(CHANGES.states || {})
+    .map((st: any) => st.label)
+    .filter((l: string) => body.includes(l));
+  console.log(
+    `[ledger] empty-sentence=${empty} columns=${cols.length}/${CHANGES.columns.length} ` +
+      `(${cols.join(", ")}) rows=${rowIds.length} stateLabels=${stateLabels.join(", ") || "(none)"}`,
+  );
   expect(
-    empty || CHANGES.columns.every((c: string) => body.includes(c)),
-    `the ledger card shows neither its empty-state sentence ("${CHANGES.empty}") nor its column ` +
-      `headings. A blank card is indistinguishable from one that failed to load.`,
+    empty || cols.length > 0 || rowIds.length > 0 || stateLabels.length > 0,
+    `the ledger card shows NOTHING: not its empty-state sentence ("${CHANGES.empty}"), not one of ` +
+      `its column headings (${CHANGES.columns.join(", ")}), not a single rv_ id, and not one of ` +
+      `its four state labels. A blank card is indistinguishable from one that failed to load, and ` +
+      `it is the only place an administrator can find the id the undo instruction needs.`,
   ).toBe(true);
 
   console.log(
@@ -542,6 +579,8 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
   let callerWasInGroup = false;
   const findings: string[] = [];
   const table: Array<Record<string, unknown>> = [];
+  /** Set as soon as the directory is resolved; the membership oracle needs it. */
+  let directoryIdForOracle = "";
 
   async function turn(label: string, message: string) {
     const t0 = Date.now();
@@ -609,11 +648,40 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
    * and proved nothing.
    */
   async function membersOf(gid: string): Promise<string[]> {
+    return orgMembersOf(gid, directoryIdForOracle);
+  }
+
+  /**
+   * Jira's OWN view, kept as a cross-check and NOT as the oracle.
+   *
+   * `/rest/api/3/group/member` omits SUSPENDED-MEMBERSHIP accounts. Measured
+   * 6 Sep 2026 and it cost this test a phase: the add landed, the org
+   * directory showed two members, and this endpoint returned one — so the
+   * harness scored a successful write as "the member is not there" and skipped
+   * the undo it was there to measure. `/rest/api/3/user/groups?accountId=` for
+   * the same person lists the group; Jira can see the membership, its user
+   * SEARCH just cannot see the person.
+   */
+  async function jiraMembersOf(gid: string): Promise<string[]> {
     const r: any = await request("GET", `/rest/api/3/group/member?groupId=${encodeURIComponent(gid)}&maxResults=50`);
     return ((r?.values || []) as any[]).map((u: any) => String(u.accountId));
   }
 
-  /** The SAME question asked of the organisation API, with the plural parameter. */
+  /**
+   * THE ORACLE — the organisation API, with the parameter that actually filters.
+   *
+   * TWO WRONG ORACLES CAME BEFORE THIS ONE, in opposite directions, and both
+   * agreed with something:
+   *   `…/users?groupId={g}`  (singular) is ACCEPTED AND SILENTLY IGNORED — it
+   *      returned all 15 directory users for an empty group and for site-admins,
+   *      so the harness agreed with a broken tool and proved nothing.
+   *   `/rest/api/3/group/member` omits suspended-membership accounts, so it
+   *      disagreed with a write that had really landed and the harness reported
+   *      a working feature as broken.
+   * `groupIds=` (PLURAL) is the one that answers the question asked: 3 for
+   *   site-admins, 0 for an all-zeros id, and it is the same object the write
+   *   touched.
+   */
   async function orgMembersOf(gid: string, directoryId: string): Promise<string[]> {
     const r = await org(
       `/v2/orgs/{org}/directories/${directoryId}/users?groupIds=${encodeURIComponent(gid)}&limit=100`,
@@ -626,6 +694,7 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     const dirs = await org("/v2/orgs/{org}/directories");
     const directoryId = dirs.body?.data?.[0]?.directoryId;
     expect(directoryId, "no user directory on this organisation").toBeTruthy();
+    directoryIdForOracle = String(directoryId);
 
     const me: any = await request("GET", "/rest/api/3/myself");
     const callerId = String(me.accountId);
@@ -694,7 +763,12 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     const yes1 = await turnQ("add-member-yes", "Yes, do it.");
     const members1 = await membersOf(groupId!);
     const landed1 = members1.includes(String(subject.accountId));
-    console.log(`[org-write] after one yes the group has ${members1.length} member(s); subject in = ${landed1}`);
+    const jiraView1 = await jiraMembersOf(groupId!);
+    console.log(
+      `[org-write] after one yes: organisation directory shows ${members1.length} member(s), ` +
+        `subject in = ${landed1}; Jira's /group/member shows ${jiraView1.length} ` +
+        `(it omits suspended-membership accounts, which is why it is not the oracle)`,
+    );
     expect.soft(
       landed1,
       `one yes did NOT add the member. Atlassian's directory still shows ${members1.length} ` +
@@ -750,7 +824,16 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     const lockYes1 = await turnQ("lockout-yes-1", "Yes, remove me.");
     const afterYes1 = await membersOf(groupId!);
     const stillIn = afterYes1.includes(callerId);
-    const saidIncludesYou = /AND IT INCLUDES YOU/i.test(lockYes1.reply);
+    // THE PROPERTY, NOT THE PHRASE. `AND IT INCLUDES YOU` is the wording in the
+    // tool's own warning, and asserting the literal string would fail a model
+    // that said the same thing better — which is what happened: "This one comes
+    // back to you one more time — deliberately, because it's your own access."
+    // What has to be true is that the user is told the set includes THEM and is
+    // asked again; how it is phrased is the model's business.
+    const saidIncludesYou =
+      /AND IT INCLUDES YOU/i.test(lockYes1.reply) ||
+      (/your own|includes you|you are (one of|in)|yourself/i.test(lockYes1.reply) &&
+        /nothing has changed|still want|go ahead\?|confirm again|one more time/i.test(lockYes1.reply));
     console.log(
       `[org-write] lockout: first yes -> caller still in group = ${stillIn}; ` +
         `reply carries "AND IT INCLUDES YOU" = ${saidIncludesYou}`,
@@ -774,11 +857,41 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
       const afterYes2 = await membersOf(groupId!);
       const removed = !afterYes2.includes(callerId);
       console.log(`[org-write] lockout: second yes -> caller removed = ${removed}`);
+      // ⚠️ THE ARGUMENT THAT INVALIDATES THE TICKET. Measured 6 Sep 2026 on
+      // 13.7.0: the first yes carried `accountIds:<array 1>` and the second did
+      // not. `actOf` drops only op/confirm/confirmationToken/acknowledgeLockout
+      // (writes.js:100), so `accountIds` is inside the confirmation radius —
+      // AND it is also already `keys`, derived from the same value at
+      // writes.js:480. So one advisory hint is hashed twice, and a model that
+      // supplies it on the turn that raises the guard and omits it on the turn
+      // that redeems can never redeem its own ticket. The user says yes and is
+      // asked again, which is the failure class this whole gate exists to
+      // prevent.
+      const firstArgs = lockYes1.win.find((l: any) => /^\[Tools\] applyOrgChange/.test(l.text))?.text || "";
+      const secondArgs = lockYes2.win.filter((l: any) => /^\[Tools\] applyOrgChange/.test(l.text)).map((l: any) => l.text);
+      const hintDropped = /accountIds/.test(firstArgs) && !secondArgs.some((t: string) => /accountIds/.test(t));
+      console.log(
+        `[org-write] lockout arg drift: first call had accountIds=${/accountIds/.test(firstArgs)}, ` +
+          `redeeming call(s) had accountIds=${secondArgs.some((t: string) => /accountIds/.test(t))}`,
+      );
       expect.soft(
         removed,
-        `the SECOND yes did not go through either. A gate nobody can pass is broken, not safe.\n` +
-          `${lockYes2.reply.slice(0, 900)}`,
+        `the SECOND yes did not go through either. A gate nobody can pass is broken, not safe.` +
+          (hintDropped
+            ? ` THE CAUSE IS VISIBLE IN THE ARGUMENTS: the turn that raised the guard sent ` +
+              `accountIds and the turn that redeemed it did not, and accountIds is inside the ` +
+              `confirmation radius (actOf drops only the four control keys) as well as being ` +
+              `\`keys\`. One advisory hint, hashed twice.`
+            : "") +
+          `\n${lockYes2.reply.slice(0, 900)}`,
       ).toBe(true);
+      if (hintDropped) {
+        findings.push(
+          `LOCKOUT: the acknowledged ticket could not be redeemed because \`accountIds\` is in the ` +
+            `confirmation radius and the model dropped it between turns. first="${firstArgs.slice(0, 160)}" ` +
+            `second="${(secondArgs[secondArgs.length - 1] || "").slice(0, 160)}"`,
+        );
+      }
       table.push({ phase: "lockout", step: "yes-2", applied: removed });
       // RESTORE IMMEDIATELY — this is the caller's own membership.
       if (removed) {
