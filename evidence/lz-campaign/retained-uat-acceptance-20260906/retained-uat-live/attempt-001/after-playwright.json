@@ -1,0 +1,170 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node",
+      "/Users/mihaiperdum/Projects/forge-live-harness/node_modules/.bin/playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-identity.spec.ts",
+      "--project=chromium",
+      "--workers=1",
+      "--reporter=line,json",
+      "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/after-artifacts"
+    ],
+    "configFile": "/Users/mihaiperdum/Projects/forge-live-harness/playwright.config.ts",
+    "rootDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/after-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "setup",
+        "name": "setup",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/auth\\/.*\\.setup\\.ts/"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/after-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mihaiperdum/Projects/forge-live-harness",
+        "testIgnore": [],
+        "testMatch": [
+          "/scenarios\\/.*\\.spec\\.ts/"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "scenarios/lz-ppm/campaign-identity.spec.ts",
+      "file": "scenarios/lz-ppm/campaign-identity.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "campaign: actual UI version and preserved LZPT source",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8466,
+                  "error": {
+                    "message": "AssertionError: Expected values to be strictly equal:\n\u001b[32mactual\u001b[39m \u001b[31mexpected\u001b[39m\n\n\u001b[39m'\u001b[39m\u001b[39mr\u001b[39m\u001b[39me\u001b[39m\u001b[39mt\u001b[39m\u001b[39ma\u001b[39m\u001b[39mi\u001b[39m\u001b[39mn\u001b[39m\u001b[39me\u001b[39m\u001b[39md\u001b[39m\u001b[32m-\u001b[39m\u001b[32ma\u001b[39m\u001b[32mf\u001b[39m\u001b[32mt\u001b[39m\u001b[32me\u001b[39m\u001b[32mr\u001b[39m\u001b[32m-\u001b[39m\u001b[32mf\u001b[39m\u001b[32ma\u001b[39m\u001b[32mi\u001b[39m\u001b[32ml\u001b[39m\u001b[32mu\u001b[39m\u001b[32mr\u001b[39m\u001b[32me\u001b[39m\u001b[39m'\u001b[39m\n",
+                    "stack": "AssertionError: Expected values to be strictly equal:\n\u001b[32mactual\u001b[39m \u001b[31mexpected\u001b[39m\n\n\u001b[39m'\u001b[39m\u001b[39mr\u001b[39m\u001b[39me\u001b[39m\u001b[39mt\u001b[39m\u001b[39ma\u001b[39m\u001b[39mi\u001b[39m\u001b[39mn\u001b[39m\u001b[39me\u001b[39m\u001b[39md\u001b[39m\u001b[32m-\u001b[39m\u001b[32ma\u001b[39m\u001b[32mf\u001b[39m\u001b[32mt\u001b[39m\u001b[32me\u001b[39m\u001b[32mr\u001b[39m\u001b[32m-\u001b[39m\u001b[32mf\u001b[39m\u001b[32ma\u001b[39m\u001b[32mi\u001b[39m\u001b[32ml\u001b[39m\u001b[32mu\u001b[39m\u001b[32mr\u001b[39m\u001b[32me\u001b[39m\u001b[39m'\u001b[39m\n\n    at retainedIdentityPolicy (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/retained-identity-policy.mjs:16:40)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts:70:28",
+                    "location": {
+                      "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/retained-identity-policy.mjs",
+                      "column": 40,
+                      "line": 16
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39mscenarios/lz-ppm/retained-identity-policy.mjs:16\n\n  14 |   assert.equal(actualLedgerPath,path.resolve(ledgerPath),'Symlinked ledger/ancestor must not escape the attempt');\n  15 |   const before=JSON.parse(beforeBytes);\n> 16 |   assert.equal(ledger.schema,1);assert.equal(ledger.state,'retained');\n     |                                        ^\n  17 |   assert.equal(ledger.runId,runId);assert.ok(typeof runId==='string'&&runId.length>0);\n  18 |   assert.equal(ledger.unitDir,path.resolve(unitDir));\n  19 |   assert.equal(ledger.beforeIdentitySha256,createHash('sha256').update(beforeBytes).digest('hex'));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/retained-identity-policy.mjs",
+                        "column": 40,
+                        "line": 16
+                      },
+                      "message": "AssertionError: Expected values to be strictly equal:\n\u001b[32mactual\u001b[39m \u001b[31mexpected\u001b[39m\n\n\u001b[39m'\u001b[39m\u001b[39mr\u001b[39m\u001b[39me\u001b[39m\u001b[39mt\u001b[39m\u001b[39ma\u001b[39m\u001b[39mi\u001b[39m\u001b[39mn\u001b[39m\u001b[39me\u001b[39m\u001b[39md\u001b[39m\u001b[32m-\u001b[39m\u001b[32ma\u001b[39m\u001b[32mf\u001b[39m\u001b[32mt\u001b[39m\u001b[32me\u001b[39m\u001b[32mr\u001b[39m\u001b[32m-\u001b[39m\u001b[32mf\u001b[39m\u001b[32ma\u001b[39m\u001b[32mi\u001b[39m\u001b[32ml\u001b[39m\u001b[32mu\u001b[39m\u001b[32mr\u001b[39m\u001b[32me\u001b[39m\u001b[39m'\u001b[39m\n\n\n   at scenarios/lz-ppm/retained-identity-policy.mjs:16\n\n  14 |   assert.equal(actualLedgerPath,path.resolve(ledgerPath),'Symlinked ledger/ancestor must not escape the attempt');\n  15 |   const before=JSON.parse(beforeBytes);\n> 16 |   assert.equal(ledger.schema,1);assert.equal(ledger.state,'retained');\n     |                                        ^\n  17 |   assert.equal(ledger.runId,runId);assert.ok(typeof runId==='string'&&runId.length>0);\n  18 |   assert.equal(ledger.unitDir,path.resolve(unitDir));\n  19 |   assert.equal(ledger.beforeIdentitySha256,createHash('sha256').update(beforeBytes).digest('hex'));\n    at retainedIdentityPolicy (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/retained-identity-policy.mjs:16:40)\n    at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-identity.spec.ts:70:28"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "HARNESS_BROWSER_RECEIPT {\"mode\":\"portable-chrome152\",\"browserVersion\":\"152.0.7977.76\",\"principalSha256\":\"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769\",\"uiVersion\":\"4.58.588\",\"appUrl\":\"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77\",\"executableSha256\":\"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee\",\"frameworkSha256\":\"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6\",\"admittedAt\":\"2026-09-06T19:31:35.728Z\"}\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-06T19:31:32.372Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/retained-identity-policy.mjs",
+                    "column": 40,
+                    "line": 16
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1a21fc320c9d1e087f8e-dbc5adc0ea77de296154",
+          "file": "scenarios/lz-ppm/campaign-identity.spec.ts",
+          "line": 14,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-06T19:31:31.884Z",
+    "duration": 12648.664999999999,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

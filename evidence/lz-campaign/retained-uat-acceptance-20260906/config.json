@@ -1,0 +1,16 @@
+{
+  "browserMode": "portable-chrome152",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "runId": "retained-uat-acceptance-20260906",
+  "manifest": "/Users/mihaiperdum/Projects/forge-live-harness/config/lz-campaign/retained-uat-manifest.json",
+  "identitySpec": "scenarios/lz-ppm/campaign-identity.spec.ts",
+  "uiVersion": "4.58.588",
+  "forgeVersion": "6.26.0",
+  "appCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "sourceExtension": null,
+  "features": [
+    "retained-uat-live"
+  ],
+  "maxMinutes": 60,
+  "sourceFingerprint": "2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104"
+}

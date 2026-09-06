@@ -1,0 +1,35 @@
+{
+  "time": "2026-09-06T19:31:44.790902+00:00",
+  "runId": "retained-uat-acceptance-20260906",
+  "uiVersion": "4.58.588",
+  "forgeVersion": "6.26.0",
+  "instrumentHash": "a8d14447523154ea5e7ef981fbed94644098e0bf7de2baace9851946ebf100ea",
+  "browserMode": "portable-chrome152",
+  "complete": false,
+  "blocker": "integrity_failed",
+  "features": [
+    {
+      "id": "retained-uat-live",
+      "status": "integrity_failed",
+      "acceptance": [
+        "UAT-NATIVE-CONTEXT-SELECTION",
+        "UAT-LABEL-UNAVAILABLE-RECOVERY",
+        "UAT-SAVED-BUFFER-UNCERTAINTY-DECISION",
+        "UAT-CANCEL-NO-DRAFT",
+        "UAT-ADOPT-DRAFT-REOPEN-DISCARD",
+        "UAT-EXACT-FOUR-WEEK-CAPACITY",
+        "UAT-IMMUTABLE-ALL-FIELD-REPORT",
+        "UAT-KEYBOARD-RESPONSIVE-RENDER",
+        "UAT-EXACT-RETAINED-OWNERSHIP",
+        "UAT-PRIVATE-SETTINGS-RESTORED"
+      ],
+      "result": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/result.json"
+    }
+  ],
+  "selectedRun": {
+    "featureIds": [
+      "retained-uat-live"
+    ],
+    "complete": false
+  }
+}

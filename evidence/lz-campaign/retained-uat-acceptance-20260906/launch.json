@@ -1,0 +1,10 @@
+{
+  "schema": "retained-uat-launch-v1",
+  "startedAt": "2026-09-06T19:29:20.324696+00:00",
+  "actualHarnessHead": "37d1c496d038e19e82c6b62269e1f8e3799d6015",
+  "rootDispatchCommit": "17c2358205aad953df486225675608fd8ba5bd43",
+  "instrumentHash": "a8d14447523154ea5e7ef981fbed94644098e0bf7de2baace9851946ebf100ea",
+  "runnerPid": 29628,
+  "runnerProcessStart": "Sun Sep  6 22:29:20 2026",
+  "retainAllExperiments": true
+}

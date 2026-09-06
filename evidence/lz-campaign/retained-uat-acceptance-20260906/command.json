@@ -1,0 +1,71 @@
+{
+  "status": "authorized",
+  "rootDispatchCommit": "17c2358205aad953df486225675608fd8ba5bd43",
+  "authorizedAt": "2026-09-06T19:29:03.567692+00:00",
+  "harnessCommit": "2693a05acf6872c1fe4521d3b774581ced2e51b4",
+  "instrumentHash": "a8d14447523154ea5e7ef981fbed94644098e0bf7de2baace9851946ebf100ea",
+  "command": [
+    "python3",
+    "scripts/lz-campaign.py",
+    "start",
+    "--run-id",
+    "retained-uat-acceptance-20260906",
+    "--manifest",
+    "config/lz-campaign/retained-uat-manifest.json",
+    "--features",
+    "retained-uat-live",
+    "--ui-version",
+    "4.58.588",
+    "--forge-version",
+    "6.26.0",
+    "--app-commit",
+    "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+    "--browser-mode",
+    "portable-chrome152",
+    "--expected-account-id",
+    "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "--max-minutes",
+    "60"
+  ],
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0",
+    "PATH_prefix": "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin"
+  },
+  "sourceHashes": {
+    "config/lz-campaign/retained-uat-manifest.json": "3c570977bcac693d6b0cf2200822eecb1f123568f307fd141a637183f3579503",
+    "scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts": "45f63a7aaa74149ab929dc2e23a059a5e86cfc0ed113f803e1f9706e5e06051f",
+    "scenarios/lz-ppm/retained-uat-fixture.ts": "0a0d99b1f0227fe0e72e6c092332a55cdd36a2709f89f0acdbd20d43c1791b15",
+    "scenarios/lz-ppm/campaign-identity.spec.ts": "0768db40173754e29c34074b90688c508b5582561d65001190fb43f738b87d35",
+    "scenarios/lz-ppm/retained-identity-policy.mjs": "b3b092f7c84b78e79037a7f1c470e525fa0f0860cb6184d4a76e757e6395167a",
+    "scenarios/lz-ppm/report-departure.ts": "ceda5140e8d62110e9690cbecbace10287f1895ed35ba07280653556bf1dfc8c",
+    "scripts/lz-campaign.py": "b2951157a16d458523ff3abeb1ed54f8243644a9a2de1f18b9c6dda2ce49bf6c"
+  },
+  "expectedEntryPlans": [
+    {
+      "id": "plan-msq9dg8l-gz6mz1",
+      "name": "LZPT Scenarios"
+    },
+    {
+      "id": "plan-mta3aw3t-6dyijd",
+      "name": "test"
+    },
+    {
+      "id": "plan-mtbrlh8n-7ghw8u",
+      "name": "LZPP Perf"
+    },
+    {
+      "id": "plan-test-mtq75tk1-49uuzd",
+      "name": "[harness-test] Private report source mtq75lja"
+    },
+    {
+      "id": "sim-e84e4730-e7f4-421b-8582-dc17a564697b",
+      "name": "[harness-test] Private report model mtq75lja"
+    }
+  ],
+  "exclusiveLedgerAbsent": true,
+  "retries": 0,
+  "automaticResume": false,
+  "retainAllExperiments": true,
+  "rawTraceArchivesLocalOnly": true
+}

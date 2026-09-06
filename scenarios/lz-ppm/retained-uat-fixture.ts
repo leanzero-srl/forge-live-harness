@@ -27,19 +27,22 @@ const oracleBytes=fs.readFileSync(path.resolve(repo,'../lz-ppm-forge/docs/campai
 export const oracleSha256=createHash('sha256').update(oracleBytes).digest('hex');
 export const oracle=JSON.parse(oracleBytes.toString('utf8'));
 
-export async function createRetainedUat(info:any,{retainExperiments=false}:{retainExperiments?:boolean}={}){
+export async function createRetainedUat(info:any,{retainExperiments=false,reuse}:{retainExperiments?:boolean,reuse?:any}={}){
  if(typeof retainExperiments!=='boolean')throw new TypeError('retainExperiments must be a boolean');
  expect(oracleSha256,'independently reviewed oracle bytes must match before any tenant write').toBe('487ac1e69615a8bf56bc30c89eccd42968ac982edef3afd3d1caaae85932da2e');
  expect(BASE).toBe('https://wolfaenpak.atlassian.net');
  expect(new Date().toISOString().slice(0,10)<'2026-10-05','fixed future fixture must run before October5; do not invent past forecast validity').toBe(true);
- fs.mkdirSync(path.dirname(ledgerPath),{recursive:true});fs.mkdirSync(info.outputDir,{recursive:true});
+ const retained=reuse===undefined?null:await (await import('./retained-uat-reuse.mjs')).loadUatReuse(reuse,repo);
+ if(retained)expect(retainExperiments).toBe(true);
+ const activeLedger=retained?retained.ledgerPath:ledgerPath;
+ fs.mkdirSync(path.dirname(activeLedger),{recursive:true});fs.mkdirSync(info.outputDir,{recursive:true});
  const unitDir=process.env.LZ_CAMPAIGN_UNIT_DIR?path.resolve(process.env.LZ_CAMPAIGN_UNIT_DIR):null;const mirror=process.env.LZ_RETAINED_UAT_LEDGER?path.resolve(process.env.LZ_RETAINED_UAT_LEDGER):null;if(mirror)expect(unitDir&&mirror.startsWith(unitDir+path.sep),'optional ledger mirror must be inside this attempt').toBeTruthy();
  const beforeIdentitySha256=unitDir?createHash('sha256').update(fs.readFileSync(path.join(unitDir,'before-identity.json'))).digest('hex'):null;
- const journal:any={schema:1,...(retainExperiments?{retentionPolicy:'retain-experiments'}:{}),oracleSha256,state:'admission',startedAt:new Date().toISOString(),ledgerPath,runId:process.env.LZ_CAMPAIGN_RUN_ID||null,unitDir,beforeIdentitySha256,optionalLedger:mirror,noPendingDrafts:false,issues:{},plans:{},steps:[],cleanup:[]};
+ const journal:any={schema:1,...(retainExperiments?{retentionPolicy:'retain-experiments'}:{}),oracleSha256,state:'admission',startedAt:new Date().toISOString(),ledgerPath:activeLedger,runId:process.env.LZ_CAMPAIGN_RUN_ID||null,unitDir,beforeIdentitySha256,optionalLedger:mirror,noPendingDrafts:false,issues:{},plans:{},steps:[],cleanup:[]};
  // Durable exclusive claim prevents a retry from creating a second retained UAT
  // over an earlier uncertain/retained run. Operator reconciles the ledger first.
- fs.writeFileSync(ledgerPath,JSON.stringify(journal,null,2),{flag:'wx'});
- const persist=()=>{fs.writeFileSync(ledgerPath,JSON.stringify(journal,null,2));fs.writeFileSync(info.outputPath('retained-uat-journal.json'),JSON.stringify(journal,null,2));if(mirror){fs.mkdirSync(path.dirname(mirror),{recursive:true});fs.writeFileSync(mirror,JSON.stringify(journal,null,2));}};persist();
+ fs.writeFileSync(activeLedger,JSON.stringify(journal,null,2),{flag:'wx'});
+ const persist=()=>{fs.writeFileSync(activeLedger,JSON.stringify(journal,null,2));fs.writeFileSync(info.outputPath('retained-uat-journal.json'),JSON.stringify(journal,null,2));if(mirror){fs.mkdirSync(path.dirname(mirror),{recursive:true});fs.writeFileSync(mirror,JSON.stringify(journal,null,2));}};persist();
  const f:any={journal,persist,retainExperiments,keys:{},names:UAT_NAMES,planId:null,mirrorId:null};
  f.own=async(role:Role)=>{
   const owned=journal.issues[role];expect(owned?.id,'creation returned an owned actual ID').toBeTruthy();
@@ -66,6 +69,10 @@ export async function createRetainedUat(info:any,{retainExperiments=false}:{reta
   if(retainExperiments&&!retain)journal.retainedExperiments={plans:journal.plans,issues:journal.issues,reason:'failed-admission-or-journey'};
   journal.state=errors.length?'recovery-required':retain?'retained':retainExperiments?'retained-after-failure':'cleaned-after-failure';journal.finishedAt=new Date().toISOString();persist();if(errors.length)throw new AggregateError(errors,'Retained UAT cleanup/admission guard failed; exact journal retained');
  };
+ if(retained){
+  try{await (await import('./retained-uat-reuse.mjs')).admitUatReuse(f,retained,{hook:getTestState,get,scheduleFields});return f;}
+  catch(error){journal.failure=String(error);journal.state='reuse-admission-refused';persist();throw error;}
+ }
  try{
   const standing=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});expect(standing.issues).toHaveLength(45);journal.standingSchedule=scheduleFields(standing.issues);const registryPlans=(await getTestState('lz-ppm',{what:'plans'})).plans;journal.registry=registryPlans.map((p:any)=>p.id).sort();persist();expect(registryPlans.some((p:any)=>Object.values(UAT_NAMES).includes(p.name))).toBe(false);
   expect((await getTestState('lz-ppm',{what:'fieldConfig'})).fields).toMatchObject({startDate:'customfield_10015',dueDate:'duedate',duration:'customfield_10180'});

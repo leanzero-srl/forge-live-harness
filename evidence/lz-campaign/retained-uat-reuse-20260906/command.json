@@ -1,0 +1,54 @@
+{
+  "schema": "retained-uat-reuse-command-v1",
+  "status": "authorized",
+  "runId": "retained-uat-reuse-20260906",
+  "rootDispatchCommit": "c6eb6488c3179aa219ddf6d4d156c330117b7147",
+  "harnessSourceCommit": "d1ad1e91763ff9b3cac0e1a98fb21e88ad5319f7",
+  "instrumentHash": "49ad1d06b47c1fcc5a562c83fcbe009d8214c6b1815c9ae4321e2ac9c759c250",
+  "supervisorSha256": "0830fbb6ccf2c376127d8b9c24b6920d0e43647712e7f4dcd2bfd27d81086acc",
+  "appSourceCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "forgeVersion": "6.26.0",
+  "uiVersion": "4.58.588",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "command": [
+    "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts"
+  ],
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0",
+    "LZ_HARNESS_BROWSER_MODE": "portable-chrome152",
+    "LZ_EXPECTED_ACCOUNT_ID": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "LZ_EXPECTED_UI_VERSION": "4.58.588",
+    "LZ_RETAINED_UAT_REUSE_PHASE": "reuse-owned",
+    "LZ_RETAINED_UAT_PRIOR_JOURNAL": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-retained-uat-20260906/ownership.json",
+    "LZ_RETAINED_UAT_PRIOR_TERMINAL": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/terminal-receipt.json",
+    "PLAYWRIGHT_JSON_OUTPUT_NAME": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/report.json"
+  },
+  "timeoutSeconds": 2400,
+  "sourceHashes": {
+    "scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts": "bacca0729451cf253436b34d5c040ded57775ae70424727ccdb94597d8085b9b",
+    "scenarios/lz-ppm/retained-uat-fixture.ts": "8a1bf1efd7e044fab11603a66d9ef1c0d4636e5604f67f607a6b8fc9ca8cf87e",
+    "scenarios/lz-ppm/retained-uat-reuse.mjs": "a21a6d4382be9c4b97301fef799f2052452600644253e2d663ec6104985d8f5a",
+    "scenarios/lz-ppm/report-departure.ts": "ceda5140e8d62110e9690cbecbace10287f1895ed35ba07280653556bf1dfc8c",
+    "scenarios/lz-ppm/campaign-ui.ts": "a012f713b2d6522eff9c541978d879dae0b8e082eb995fa7f69466f45e7fd0be",
+    "scenarios/lz-ppm/settled-screenshot.mjs": "78d8bdd5a10648061c5ac5b84e868e67cd249c3e6b3860703831b61634f7dba3",
+    "scripts/lz-campaign.py": "b2951157a16d458523ff3abeb1ed54f8243644a9a2de1f18b9c6dda2ce49bf6c"
+  },
+  "inputHashes": {
+    "LZ_RETAINED_UAT_PRIOR_JOURNAL": "088895c999101331b39830bacc147470035faa02d52176f21f08a6fa247e6896",
+    "LZ_RETAINED_UAT_PRIOR_TERMINAL": "83d48866f87c7fd88be29ac9ae86966f9a72f97d26533b34e8561c82c4b03a6a"
+  },
+  "rawTraceArchivesLocalOnly": true,
+  "automaticRetries": 0,
+  "followOnUnits": 0,
+  "intent": "Complete original connected UAT on exact retained2 plans4issues; no fixture creation/deletion; keep all experiments.",
+  "authorizedAt": "2026-09-06T19:57:36.415339+00:00"
+}

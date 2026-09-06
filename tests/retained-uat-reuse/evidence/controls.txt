@@ -1,0 +1,296 @@
+TAP version 13
+# Subtest: actual UAT finalizer retains both plans/issues after prior departure failure even without registered capture
+ok 1 - actual UAT finalizer retains both plans/issues after prior departure failure even without registered capture
+  ---
+  duration_ms: 0.690542
+  type: 'test'
+  ...
+# Subtest: actual final safe departure failure retains successful UAT and keeps independent audits
+ok 2 - actual final safe departure failure retains successful UAT and keeps independent audits
+  ---
+  duration_ms: 0.146375
+  type: 'test'
+  ...
+# Subtest: cleanup-triggered departure failure stays poisoned through final stop
+ok 3 - cleanup-triggered departure failure stays poisoned through final stop
+  ---
+  duration_ms: 0.085458
+  type: 'test'
+  ...
+# Subtest: original body error and departure error are both retained in AggregateError
+ok 4 - original body error and departure error are both retained in AggregateError
+  ---
+  duration_ms: 0.112292
+  type: 'test'
+  ...
+# Subtest: preference failure still audits source and retains ownership
+ok 5 - preference failure still audits source and retains ownership
+  ---
+  duration_ms: 0.089833
+  type: 'test'
+  ...
+# Subtest: safe successful departure preserves retained handoff and exact preference/source order
+ok 6 - safe successful departure preserves retained handoff and exact preference/source order
+  ---
+  duration_ms: 0.224417
+  type: 'test'
+  ...
+# Subtest: ordinary body failure without uncertain departure keeps original authorized failure cleanup
+ok 7 - ordinary body failure without uncertain departure keeps original authorized failure cleanup
+  ---
+  duration_ms: 0.129292
+  type: 'test'
+  ...
+# Subtest: reviewed UAT body and wait budgets match reuse freeze; departure dependencies remain original
+ok 8 - reviewed UAT body and wait budgets match reuse freeze; departure dependencies remain original
+  ---
+  duration_ms: 72.432541
+  type: 'test'
+  ...
+# Subtest: UAT alone opts in and binds actual admitted main identity before first Table
+ok 9 - UAT alone opts in and binds actual admitted main identity before first Table
+  ---
+  duration_ms: 0.421959
+  type: 'test'
+  ...
+# Subtest: optional reuse fixture delta is exactly the separately committed source freeze
+ok 10 - optional reuse fixture delta is exactly the separately committed source freeze
+  ---
+  duration_ms: 6.838209
+  type: 'test'
+  ...
+# Subtest: actual admission failure retains its positively owned issue under explicit preference
+ok 11 - actual admission failure retains its positively owned issue under explicit preference
+  ---
+  duration_ms: 44.966292
+  type: 'test'
+  ...
+# Subtest: unknown create retains intent and original refusal, never retries or deletes
+ok 12 - unknown create retains intent and original refusal, never retries or deletes
+  ---
+  duration_ms: 23.673375
+  type: 'test'
+  ...
+# Subtest: actual failed finish preserves both plans, every issue and independent exact guards
+ok 13 - actual failed finish preserves both plans, every issue and independent exact guards
+  ---
+  duration_ms: 0.605292
+  type: 'test'
+  ...
+# Subtest: actual failed scenario finalizer never dispatches report cleanup and still restores/audits
+ok 14 - actual failed scenario finalizer never dispatches report cleanup and still restores/audits
+  ---
+  duration_ms: 0.163209
+  type: 'test'
+  ...
+# Subtest: reviewed reuse UAT business actions and unchanged capture dependencies match their frozen cuts
+ok 15 - reviewed reuse UAT business actions and unchanged capture dependencies match their frozen cuts
+  ---
+  duration_ms: 48.362541
+  type: 'test'
+  ...
+# Subtest: original body error survives retained finalizer with preference failure false
+ok 16 - original body error survives retained finalizer with preference failure false
+  ---
+  duration_ms: 0.299083
+  type: 'test'
+  ...
+# Subtest: original body error survives retained finalizer with preference failure true
+ok 17 - original body error survives retained finalizer with preference failure true
+  ---
+  duration_ms: 0.210708
+  type: 'test'
+  ...
+# Subtest: actual failed receipts admit exact IDs and a distinct ledger; originals unchanged
+ok 18 - actual failed receipts admit exact IDs and a distinct ledger; originals unchanged
+  ---
+  duration_ms: 1.941541
+  type: 'test'
+  ...
+# Subtest: unknown or incomplete replay intent refuses "new"
+ok 19 - unknown or incomplete replay intent refuses "new"
+  ---
+  duration_ms: 0.516375
+  type: 'test'
+  ...
+# Subtest: unknown or incomplete replay intent refuses "reuse-owned"
+ok 20 - unknown or incomplete replay intent refuses "reuse-owned"
+  ---
+  duration_ms: 0.065625
+  type: 'test'
+  ...
+# Subtest: unknown or incomplete replay intent refuses "reuse-owned"
+ok 21 - unknown or incomplete replay intent refuses "reuse-owned"
+  ---
+  duration_ms: 0.254125
+  type: 'test'
+  ...
+# Subtest: changed journal or terminal bytes refuse, not normalized into acceptance
+ok 22 - changed journal or terminal bytes refuse, not normalized into acceptance
+  ---
+  duration_ms: 1.925375
+  type: 'test'
+  ...
+# Subtest: full exact current source, actor, settings and both clean plan contexts admit with only reads
+ok 23 - full exact current source, actor, settings and both clean plan contexts admit with only reads
+  ---
+  duration_ms: 8.086167
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses foreign actor before business body
+ok 24 - current-user admission refuses foreign actor before business body
+  ---
+  duration_ms: 1.227458
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses changed settings before business body
+ok 25 - current-user admission refuses changed settings before business body
+  ---
+  duration_ms: 0.920875
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses draft before business body
+ok 26 - current-user admission refuses draft before business body
+  ---
+  duration_ms: 1.150209
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses foreign draft before business body
+ok 27 - current-user admission refuses foreign draft before business body
+  ---
+  duration_ms: 1.113
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses retained report before business body
+ok 28 - current-user admission refuses retained report before business body
+  ---
+  duration_ms: 1.238459
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses history next page before business body
+ok 29 - current-user admission refuses history next page before business body
+  ---
+  duration_ms: 0.800166
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses target before business body
+ok 30 - current-user admission refuses target before business body
+  ---
+  duration_ms: 1.536667
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses baseline before business body
+ok 31 - current-user admission refuses baseline before business body
+  ---
+  duration_ms: 0.883792
+  type: 'test'
+  ...
+# Subtest: current-user admission refuses unknown response before business body
+ok 32 - current-user admission refuses unknown response before business body
+  ---
+  duration_ms: 0.772583
+  type: 'test'
+  ...
+# Subtest: complete source refuses sourceJQL
+ok 33 - complete source refuses sourceJQL
+  ---
+  duration_ms: 0.166084
+  type: 'test'
+  ...
+# Subtest: complete source refuses foreign plan
+ok 34 - complete source refuses foreign plan
+  ---
+  duration_ms: 0.059167
+  type: 'test'
+  ...
+# Subtest: complete source refuses missing row
+ok 35 - complete source refuses missing row
+  ---
+  duration_ms: 0.066792
+  type: 'test'
+  ...
+# Subtest: complete source refuses buffer drift
+ok 36 - complete source refuses buffer drift
+  ---
+  duration_ms: 0.065
+  type: 'test'
+  ...
+# Subtest: complete source refuses asset identity drift
+ok 37 - complete source refuses asset identity drift
+  ---
+  duration_ms: 0.427917
+  type: 'test'
+  ...
+# Subtest: complete source refuses dirty target
+ok 38 - complete source refuses dirty target
+  ---
+  duration_ms: 0.105
+  type: 'test'
+  ...
+# Subtest: all downstream UAT body, math oracles and cleanup/final guards remain byte-exact
+ok 39 - all downstream UAT body, math oracles and cleanup/final guards remain byte-exact
+  ---
+  duration_ms: 7.269542
+  type: 'test'
+  ...
+# Subtest: actual fixture reuse branches before every create and permanent wx blocks another call
+ok 40 - actual fixture reuse branches before every create and permanent wx blocks another call
+  ---
+  duration_ms: 291.453375
+  type: 'test'
+  ...
+# Subtest: failed admission deletes only the positively owned created issue and retains source/registry guards
+ok 41 - failed admission deletes only the positively owned created issue and retains source/registry guards
+  ---
+  duration_ms: 68.783583
+  type: 'test'
+  ...
+# Subtest: an ambiguous create with no searchable positive match fails closed and does not license deletion
+ok 42 - an ambiguous create with no searchable positive match fails closed and does not license deletion
+  ---
+  duration_ms: 26.896917
+  type: 'test'
+  ...
+# Subtest: ownership mismatch prevents delete even when an earlier create returned that ID
+ok 43 - ownership mismatch prevents delete even when an earlier create returned that ID
+  ---
+  duration_ms: 21.343833
+  type: 'test'
+  ...
+# Subtest: an existing ledger blocks a second run before any second REST/hook call
+ok 44 - an existing ledger blocks a second run before any second REST/hook call
+  ---
+  duration_ms: 21.946166
+  type: 'test'
+  ...
+# Subtest: changed oracle bytes refuse admission before any tenant call or ownership ledger write
+ok 45 - changed oracle bytes refuse admission before any tenant call or ownership ledger write
+  ---
+  duration_ms: 13.237583
+  type: 'test'
+  ...
+# (node:65854) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///private/tmp/lz-ppm-forge/static/ppm-ui/src/utils/sponsor-report.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /private/tmp/lz-ppm-forge/static/ppm-ui/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual retained row/target/change projections match every authored expected API field
+ok 46 - actual retained row/target/change projections match every authored expected API field
+  ---
+  duration_ms: 11.033042
+  type: 'test'
+  ...
+# Subtest: actual report capacity matches all four independently authored rows and relevant availability
+ok 47 - actual report capacity matches all four independently authored rows and relevant availability
+  ---
+  duration_ms: 1.089125
+  type: 'test'
+  ...
+1..47
+# tests 47
+# suites 0
+# pass 47
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 414.766084

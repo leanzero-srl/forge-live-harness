@@ -1,0 +1,117 @@
+{
+  "schema": "retained-uat-terminal-v1",
+  "status": "closed",
+  "outcome": "failed",
+  "runnerStatus": "integrity_failed",
+  "finishedAt": "2026-09-06T19:31:44.791244+00:00",
+  "pidCheckedAt": "2026-09-06T19:32:54.227257+00:00",
+  "checkedPids": [
+    29628,
+    29638,
+    30108,
+    30109,
+    30249,
+    30250,
+    33662,
+    33688
+  ],
+  "alivePids": [],
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/retained-uat-journal.json",
+    "sha256": "088895c999101331b39830bacc147470035faa02d52176f21f08a6fa247e6896",
+    "bytes": 42579
+  },
+  "globalLedger": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-retained-uat-20260906/ownership.json",
+    "sha256": "088895c999101331b39830bacc147470035faa02d52176f21f08a6fa247e6896",
+    "bytes": 42579
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/command.json",
+    "sha256": "4f1f05fa7bccdc7738b13c65f1f703ea030765141d351fa75910e2b7f33ca97f",
+    "bytes": 2479
+  },
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/launch.json",
+    "sha256": "d9cf0ce893ba3ead1113e56854c5689af85f1d6eb86acacb3c88c749b04f5161",
+    "bytes": 421
+  },
+  "state": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/state.json",
+    "sha256": "13119e99a9656f50eb75617d32fec017cfff065d59e6a41b5d226524c4cdcb5f",
+    "bytes": 143
+  },
+  "originalJournalState": "retained-after-failure",
+  "stage": "Assets context and failure recovery",
+  "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2998\"]').locator('[data-field-id=\"customfield_11148\"]')\nExpected substring: \u001b[32m\"411 \u00b7 label unavailable\"\u001b[39m\nReceived string:    \u001b[31m\"Object 411 (unavailable); CRT-412 \u00b7 [harness-test] LZ Assets owned 20260905 B\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2998\"]').locator('[data-field-id=\"customfield_11148\"]')\u001b[22m\n\u001b[2m    34 \u00d7 locator resolved to <div data-testid=\"table-asset-value\" data-field-id=\"customfield_11148\">Object 411 (unavailable); CRT-412 \u00b7 [harness-test\u2026</div>\u001b[22m\n\u001b[2m       - unexpected value \"Object 411 (unavailable); CRT-412 \u00b7 [harness-test] LZ Assets owned 20260905 B\"\u001b[22m\n",
+  "plans": {
+    "main": {
+      "name": "[harness-test] UAT 20260906 October release decisions",
+      "state": "created",
+      "id": "plan-test-mtq7hsun-koj1jf"
+    },
+    "mirror": {
+      "name": "[harness-test] UAT 20260906 October capacity mirror",
+      "state": "created",
+      "id": "plan-test-mtq7hwv8-sk47wf"
+    }
+  },
+  "issues": {
+    "E": {
+      "summary": "[harness-test] LZ retained UAT 20260906 October release",
+      "type": "10000",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25229",
+      "key": "WFH-2997"
+    },
+    "A": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25230",
+      "key": "WFH-2998"
+    },
+    "B": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25231",
+      "key": "WFH-2999"
+    },
+    "L": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25232",
+      "key": "WFH-3000"
+    }
+  },
+  "privateSettingsRestored": true,
+  "noPendingDrafts": false,
+  "handoff": null,
+  "noAutomaticRetry": true,
+  "extraSiteCallsAfterTerminal": 0,
+  "retentionPolicy": "retain-experiments",
+  "rawTraceArchivesLocalOnly": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/before-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "bytes": 6455834
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/trace.zip",
+      "bytes": 78810735
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/after-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "bytes": 8653999
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/entry-1788722960422005000/before-artifacts/scenarios-lz-ppm-campaign--76c53-n-and-preserved-LZPT-source-chromium/trace.zip",
+      "bytes": 6716879
+    }
+  ]
+}

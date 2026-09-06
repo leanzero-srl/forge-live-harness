@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+
+(node:30250) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts:22:1 › retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff
+[chromium] › scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts:22:1 › retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.588","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T19:29:47.749Z"}
+
+  1) [chromium] › scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts:22:1 › retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="table-row"][data-row-key="WFH-2998"]').locator('[data-field-id="customfield_11148"]')
+    Expected substring: "411 · label unavailable"
+    Received string:    "Object 411 (unavailable); CRT-412 · [harness-test] LZ Assets owned 20260905 B"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toContainText" with timeout 15000ms
+      - waiting for locator('iframe[data-testid="hosted-resources-iframe"]').first().contentFrame().locator('[data-testid="table-row"][data-row-key="WFH-2998"]').locator('[data-field-id="customfield_11148"]')
+        34 × locator resolved to <div data-testid="table-asset-value" data-field-id="customfield_11148">Object 411 (unavailable); CRT-412 · [harness-test…</div>
+           - unexpected value "Object 411 (unavailable); CRT-412 · [harness-test] LZ Assets owned 20260905 B"
+
+
+      56 |   const native=await checked('getPlanAssets',{planId:f.planId,issueKeys:roles.map(role=>f.keys[role]),labelOffset:0});const identity=`${ASSET_WORKSPACE}:411`,originalLabel=native.labels[identity];expect(originalLabel.state).toBe('available');expect(originalLabel.label).toBeTruthy();
+      57 |   let injected=0;routeHandler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getPlanAssets'||c.payload.planId!==f.planId)return route.continue();injected++;const res=await route.fetch({headers:replayHeaders(await route.request().allHeaders())});expect(res.status()).toBe(200);const body=await res.json(),actual=body.data.invokeExtension.response.body;expect(actual.success).toBe(true);expect(actual.labels[identity].state).toBe('available');actual.labels[identity]={state:'unavailable'};await route.fulfill({response:res,json:body});};
+    > 58 |   await page.route(graph,routeHandler);await bar.getByRole('button',{name:'Refresh Assets',exact:true}).click();await assertRows(frame,[E,A]);await expect(row(frame,A).locator(`[data-field-id="${ASSET_FIELDS[0]}"]`)).toContainText('411 · label unavailable');await expect(row(frame,A)).not.toContainText(originalLabel.label);expect(injected).toBe(1);await screenshot(bar,'uat-label-unavailable-filter');
+         |                                                                                                                                                                                                                          ^
+      59 |   await mode('Empty field');await assertRows(frame,[]);await mode('Value unavailable');await assertRows(frame,[]);await mode('Any selected object');await object('411');
+      60 |   await page.unroute(graph,routeHandler);routeHandler=null;await bar.getByRole('button',{name:'Refresh Assets',exact:true}).click();await assertRows(frame,[E,A]);await expect(row(frame,A)).toContainText(originalLabel.label);log('explicit label-only response injection',{requests:injected,identity,realValuesPreserved:true,notAlternateIdentityProof:true});
+      61 |   injected=0;routeHandler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getPlanAssets'||c.payload.planId!==f.planId)return route.continue();injected++;await route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Harness simulated Assets read failure'})});};
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts:58:218
+        at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:63:13)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts:23:2
+
+    Error Context: evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/journey-campaign-retained-uat.spec.ts:22:1 › retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff 
