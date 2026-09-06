@@ -22,3 +22,9 @@ python3 tests/portable-browser/independent_cli_test.py
 ```
 
 42 controls pass. Existing process-lifecycle tests create and clean only their own local subprocess groups. No shared config/state/result was written. This isolated patch changes the runner instrument hash and must be integrated only outside an active campaign; it cannot make the archived instrument current or retroactively change its exit code.
+
+## CLI admission follow-up
+
+Root found that the initial CLI still converted explicit --features '' into None and allowed a detached launch before run() rejected other invalid selections. f4a2d97 preserves the actual CLI red: explicit empty, delimiter-only, unknown, mixed-unknown, duplicate and whitespace-altered selections for both start and resume previously reached the launch branch. The first fake child returned None, producing an irrelevant pid failure; cli-prelaunch-red.txt is retained and cli-prelaunch-exact-red.txt uses a real-shaped local stub to prove the missing prelaunch refusal directly. No process was launched by either control.
+
+The CLI now distinguishes absent from explicitly empty and validates the assembled selection before creating the run directory, writing config/state, clearing STOP or spawning its detached child. Invalid selections yield argparse exit2 and leave original config/state/summary bytes unchanged. Omitted selection still persists None and means all features; explicit valid selection is preserved exactly. This is the same selected_feature_ids validator used by run and summarize, with no new execution policy. All 44 local controls pass (11 selection/CLI plus unchanged 23 runner, six binding and four independent CLI). The source remains isolated while the private live witness holds the shared instrument frozen.

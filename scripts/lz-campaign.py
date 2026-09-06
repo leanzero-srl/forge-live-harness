@@ -476,7 +476,11 @@ def main():
         config = {**binding, 'runId': args.run_id, 'manifest': str(Path(args.manifest).resolve()), 'identitySpec': manifest['identitySpec'],
                   'uiVersion': args.ui_version, 'forgeVersion': args.forge_version, 'appCommit': args.app_commit,
                   'sourceExtension': read(Path(args.source_extension).resolve()) if args.source_extension else None,
-                  'features': args.features.split(',') if args.features else None, 'maxMinutes': args.max_minutes}
+                  'features': args.features.split(',') if args.features is not None else None, 'maxMinutes': args.max_minutes}
+        try:
+            selected_feature_ids(config, features)
+        except ValueError as exc:
+            parser.error(str(exc))
         directory.mkdir(parents=True, exist_ok=True)
         state = read(directory / 'state.json')
         if is_owner_alive(state):

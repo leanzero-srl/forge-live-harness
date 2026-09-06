@@ -2,8 +2,10 @@
   "base": "22f6541681f8be17acf2b2540fc544ddd9a70398",
   "red": "541f75b",
   "source": "scripts/lz-campaign.py",
-  "sha256": "7ad992b9694e0676b66a3f1a0bfb87da626e1365cfb76def60ba707d73e046db",
-  "controls": 42,
+  "sha256": "b2951157a16d458523ff3abeb1ed54f8243644a9a2de1f18b9c6dda2ce49bf6c",
+  "controls": 44,
   "originalEvidenceUnchanged": true,
-  "liveExecuted": false
+  "liveExecuted": false,
+  "previousSource": "4d4eabc7adbf31be6461872d10e94661d6fb6ade",
+  "cliRed": "f4a2d97"
 }
