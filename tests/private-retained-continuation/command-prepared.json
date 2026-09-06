@@ -1,0 +1,46 @@
+{
+  "schema": "private-retained-command-v1",
+  "status": "prepared",
+  "runId": "private-retained-continuation-20260906",
+  "rootDispatchCommit": null,
+  "harnessSourceCommit": "34490da6543bfa64ee26352a277e71ca1354e5b2",
+  "instrumentHash": "4dbab3b8635160af8cea03d05efb2a27be468fde9bc3b28a4378ee34e85584f4",
+  "supervisorSha256": "a80f31b5bff7795fde697dae0d4328e8f0afaa74148267509d11d3b8b2f558fa",
+  "appSourceCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "forgeVersion": "6.26.0",
+  "uiVersion": "4.58.588",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "command": [
+    "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/artifacts"
+  ],
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0",
+    "LZ_HARNESS_BROWSER_MODE": "portable-chrome152",
+    "LZ_EXPECTED_ACCOUNT_ID": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "LZ_EXPECTED_UI_VERSION": "4.58.588",
+    "LZ_PRIVATE_RETAINED_PHASE": "reopen-cleanup",
+    "PLAYWRIGHT_JSON_OUTPUT_NAME": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-retained-continuation-20260906/report.json",
+    "LZ_PRIVATE_RETAINED_JOURNAL": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/private-staged-report-owner-live/attempt-001/tests-artifacts/scenarios-lz-ppm-campaign--bee9c-eanup-unchanged-shared-Jira-chromium/private-report-witness.json",
+    "LZ_PRIVATE_RETAINED_TERMINAL": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/private-staged-report-owner-20260906/terminal-receipt.json"
+  },
+  "timeoutSeconds": 900,
+  "sourceHashes": {
+    "scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts": "511fceae1a24b109b5792f08b99aeb4cb000ab874a4ff4b569e9328eb334f27c",
+    "scenarios/lz-ppm/private-retained-continuation-contract.mjs": "31d63ce5a30d249e68bfe8314b7a406f643b9bb3ea642b4020f1d538c69c31a3",
+    "scenarios/lz-ppm/private-report-witness-session.ts": "c24b03c98ca3b9641f9be1ab595a46eaddcb98ba05e98f0038dce6cba717fdee",
+    "scenarios/lz-ppm/settled-screenshot.mjs": "78d8bdd5a10648061c5ac5b84e868e67cd249c3e6b3860703831b61634f7dba3",
+    "scripts/lz-campaign.py": "b2951157a16d458523ff3abeb1ed54f8243644a9a2de1f18b9c6dda2ce49bf6c"
+  },
+  "rawTraceArchivesLocalOnly": true,
+  "automaticRetries": 0,
+  "followOnUnits": 0
+}
