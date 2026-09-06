@@ -46,3 +46,26 @@ npx playwright test scenarios/lz-ppm/campaign-report-legacy-upgrade.spec.ts \
 ```
 
 Finish uses a new directory sixteenth-legacy-finish-20260906, phasefinish and grep 'legacy report finish:', the actual new Forge/app binding and the actual completed prepare journal path/SHA through LZ_LEGACY_PREPARE_JOURNAL and LZ_LEGACY_PREPARE_SHA. No placeholder path/hash may be sent as a valid prepared receipt. The four-plan retained intermediate state is explicit and does not weaken any ordinary three-plan campaign guard.
+
+## Preserved first finish drift and finite reuse correction
+
+The first preparation genuinely passed, then actual version2→3 metadata drift stopped the first finish before Resume. Every issue field was unchanged; the captured source guard intentionally includes version and full metadata, so the equality assertion remains strict. Evidence4f31a36 and app fe2cea27 are retained. Actual sole setup Jira changelog and metadata timing are consistent with delayed incremental delivery; the successful trigger itself has no log receipt. No fixed sleep is substituted for delivery evidence.
+
+The parent redeployed the identical old source e8d46785 to actual Forge6.15.0 (same585). One separately selected `campaign-recover-legacy-drift.spec.ts` now requires the exact original successful prepare SHA and exact failed finish SHA. It checks current plan against the full observed version3 object, reads the actual old checkpoint4 status twice and exact3private/0public probe, then invokes only acknowledged cancellation and normal exact plan deletion. It proves all original private artifacts absent before plan removal and reads plan absence twice. WFH2935/id25167 stays untouched and exactly equal to its acknowledged original. Preferences and all original plan/source/draft guards remain independent.
+
+Run only after admission, using the existing supervisor and a fresh sixteenth-legacy-drift-recovery-20260906 directory:
+
+```
+HEADLESS=1 HARNESS_VIDEO=0 LZ_HARNESS_BROWSER_MODE=portable-chrome152 \
+LZ_EXPECTED_ACCOUNT_ID=712020:937bc860-eec2-4294-a65d-8e0fe7c45086 \
+LZ_EXPECTED_UI_VERSION=4.58.585 LZ_CAMPAIGN_SOURCE_EXTENSION=null \
+LZ_DEPLOYED_FORGE=6.15.0 LZ_DEPLOYED_APP=e8d46785d8cda3d2b3680b0e84e52dbd7c1a68ee \
+PLAYWRIGHT_JSON_OUTPUT_NAME=evidence/lz-campaign/sixteenth-legacy-drift-recovery-20260906/result.json \
+npx playwright test scenarios/lz-ppm/campaign-recover-legacy-drift.spec.ts \
+ --project=chromium --workers=1 --retries=0 --grep 'legacy drift recovery:' \
+ --reporter=line,json --output=evidence/lz-campaign/sixteenth-legacy-drift-recovery-20260906/artifacts
+```
+
+Only a successfully completed and integrity-preserved recovery receipt, with exact old job identity and two all-absent physical proofs, permits opt-in `LZ_LEGACY_REUSE_RECEIPT` plus `LZ_LEGACY_REUSE_SHA`. The subsequent separately admitted prepare uses that existing issue and original marker; its create/PUT branch is skipped entirely. It creates a fresh owned plan and real old-code report. The old runtime source is still pinned to e8d46785, while the actual Forge version is recorded from its new deployment binding; a negative source-pin test remains, and an explicitly redeployed historical version is a positive control. No old metadata or capture expectedVersion is rewritten. Finish still requires complete same-job conversion/publication/input-hash/HTML/cleanup before deleting this exact issue.
+
+The added three local controls cover actual old-source version binding and exact acknowledged cleanup/reuse admission.32 Node tests pass, discovery3 in2files, typecheck only2 existing Sentinel failures. Historical local and live results are not overwritten; new logs have reuse-prefixed filenames. The four original independent observer probes remain unchanged.

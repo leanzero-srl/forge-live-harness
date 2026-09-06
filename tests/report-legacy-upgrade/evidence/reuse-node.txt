@@ -1,0 +1,40 @@
+✔ actual cleanup retains exact manifest before and verifies two strong absence reads (1.443417ms)
+✔ foreign owner request cannot be adopted for cleanup (0.867708ms)
+✔ failed or ambiguous cancel is never retried and exact state survives (0.259333ms)
+✔ false cleanupDone while keys still present cannot pass (0.206958ms)
+✔ missing manifest entries after cancellation is not proof of removal (0.152167ms)
+✔ cleanup after complete keeps all public report objects (0.29875ms)
+✔ zero-progress cleanup refused rather than infinite retry (0.121333ms)
+✔ failed physical proof is retained before assertion, without deleting or marking clean (0.184917ms)
+✔ shared observation callback retains exact response before caller validation throws (0.109167ms)
+✔ content cannot be excused by relabeling it as a deletion marker (0.156125ms)
+✔ real shape full lifecycle requires cleanup and preserves immutable report (1.456792ms)
+✔ progress alone is not completion and bounded timeout stays failure (6.638417ms)
+✔ begin request nonce mismatch refused (0.60275ms)
+✔ foreign plan ignored and different job cannot replace admitted job (0.164709ms)
+✔ overlapping mutations fail even if eventual outcomes look successful (0.135667ms)
+✔ wrong expected checkpoint refused before accepting later result (0.109417ms)
+✔ unchanged active checkpoint cannot be graded as progress (0.116917ms)
+✔ terminal cleanup cannot erase a completed report (0.142417ms)
+✔ wrong report hash/identity refused (0.119917ms)
+✔ unknown transport outcome preserves original error and last acknowledged job (0.134042ms)
+✔ failed terminal state retained for explicit refusal assertions, not coerced complete (0.085792ms)
+✔ second begin cannot silently replace first job after a lost result (0.231875ms)
+✔ actual compiled fixture retains report staging and original failure without deleting (56.269ms)
+✔ actual compiled fixture retains report staging and both independent recovery causes without deleting (14.557125ms)
+✔ exact real old receipt allows resume; owner/plan/job/request/checkpoint changes refuse (1.724792ms)
+✔ old physical key/hash values remain unchanged and present alongside newly registered keys (0.643792ms)
+✔ real historical runtime may have a new Forge deployment version; runtime source stays exact (0.109875ms)
+✔ existing status is explicit admission, never a fabricated begin (0.928917ms)
+✔ resume keeps foreign identity, stale checkpoint and overlap failures (0.603209ms)
+✔ malformed/non-active admission is rejected before observing writes (3.013833ms)
+✔ only successful exact known cleanup allows retained issue reuse (1.612167ms)
+✔ unknown or incomplete physical cleanup never licenses reuse (2.78975ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 339.629917
