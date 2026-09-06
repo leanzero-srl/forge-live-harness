@@ -27,7 +27,7 @@ test('recovery read: exact retained fourteenth report content, pages and actual 
  try{
   initialSource=await source();record('original-source',initialSource);record('exact-four-registry',await registry());initialPlan=await getTestState('lz-ppm',{what:'plan',planId});expect(initialPlan.meta).toMatchObject({id:planId,name,createdBy:'harness'});expect(initialPlan.issues.map((i:any)=>i.key)).toEqual([issueKey]);record('owned-plan',initialPlan);initialIssue=await issue();record('owned-issue-positive',initialIssue);
   const frame=await openPlans(page);await expect(frame.getByRole('button',{name:/Open plan/})).toHaveCount(4);const pending=actualResponse(page,'getCapacitySettings');await frame.getByRole('button',{name:'Capacity',exact:true}).click();settings=await pending;expect(settings.success).toBe(true);expect(Number.isSafeInteger(settings.version)).toBe(true);expect(settings.version).toBeGreaterThanOrEqual(57);record('admitted-current-private-preferences',settings);
-  expect((await read('getDraft',{planId})).draft).toBeNull();expect((await read('getActiveDrafts',{planId})).drafts).toEqual({});expect(await read('getLockStatus',{planId})).toMatchObject({locked:false});
+  expect((await read('getDraft',{planId:LZPT_PLAN})).draft).toBeNull();expect((await read('getActiveDrafts',{planId:LZPT_PLAN})).drafts).toEqual({});expect((await read('getDraft',{planId})).draft).toBeNull();expect((await read('getActiveDrafts',{planId})).drafts).toEqual({});expect(await read('getLockStatus',{planId})).toMatchObject({locked:false});
   expect((await read('getSponsorReportCapture',{planId,jobId})).job).toEqual(original.job);const physical=await probe();verifyCaptureProbe(physical,{planId,jobId,...original.job});expect(physical.privateArtifacts).toHaveLength(6);expect(physical.publicArtifacts).toHaveLength(5);
   expect((await read('getSponsorReport',{planId,reportId})).report).toEqual(original.report);const pages:any[]=[];for(const [section,count]of Object.entries(original.report.pages)){expect(Number.isSafeInteger(count)).toBe(true);for(let n=0;n<Number(count);n++){const response=await read('getSponsorReportPage',{planId,reportId,section,page:n});expect(response.page.rows).toHaveLength(original.report.document[section].sizes[n]);expect(sha(JSON.stringify(canonical(response.page.rows)))).toBe(original.report.document[section].hashes[n]);pages.push(response.page);}}
   expect(pages).toHaveLength(1);expect(pages[0].rows).toEqual([expectedRow]);journal.pages=pages;save();
@@ -40,6 +40,7 @@ test('recovery read: exact retained fourteenth report content, pages and actual 
  finally{const errors:any[]=[];for(const [label,audit]of [
   ['source',async()=>{if(initialSource)expect(await source()).toEqual(initialSource);}],
   ['registry',async()=>{record('final-registry',await registry());}],
+  ['original-drafts',async()=>{if(settings){expect((await read('getDraft',{planId:LZPT_PLAN})).draft).toBeNull();expect((await read('getActiveDrafts',{planId:LZPT_PLAN})).drafts).toEqual({});}}],
   ['owned-plan',async()=>{if(initialPlan)expect(await getTestState('lz-ppm',{what:'plan',planId})).toEqual(initialPlan);}],
   ['owned-issue',async()=>{if(initialIssue)expect(await issue()).toEqual(initialIssue);}],
   ['preferences',async()=>{if(settings)for(let n=0;n<2;n++)expect(await read('getCapacitySettings',{})).toEqual(settings);}],
