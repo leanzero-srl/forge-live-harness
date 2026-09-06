@@ -21,7 +21,7 @@ export interface LaunchOpts {
   /** Force headed (auth) / headless. Default: follow HEADLESS env. */
   headed?: boolean;
   /** Explicit opt-in only; runner environment remains authoritative. */
-  browserMode?: "persistent-chrome" | "portable-cft151";
+  browserMode?: "persistent-chrome" | "portable-chrome152";
   expectedAccountId?: string;
   expectedUiVersion?: string;
   /** Interactive auth must always use the existing persistent profile. */
@@ -67,9 +67,9 @@ export async function launchHarnessContext(opts: LaunchOpts = {}): Promise<Brows
   const envMode = process.env.LZ_HARNESS_BROWSER_MODE;
   if (opts.browserMode && envMode !== undefined && opts.browserMode !== envMode) throw new Error("BROWSER_MODE_MISMATCH");
   const mode = envMode ?? opts.browserMode ?? "persistent-chrome";
-  if (!["persistent-chrome", "portable-cft151"].includes(mode)) throw new Error("BROWSER_MODE_UNKNOWN");
+  if (!["persistent-chrome", "portable-chrome152"].includes(mode)) throw new Error("BROWSER_MODE_UNKNOWN");
   const headless = opts.headed === true ? false : opts.headed === false ? true : HEADLESS;
-  if (mode === "portable-cft151") {
+  if (mode === "portable-chrome152") {
     if (opts.authFlow) throw new Error("PORTABLE_AUTH_FLOW_FORBIDDEN");
     if (opts.expectedAccountId && process.env.LZ_EXPECTED_ACCOUNT_ID !== undefined && opts.expectedAccountId !== process.env.LZ_EXPECTED_ACCOUNT_ID) throw new Error("BROWSER_PRINCIPAL_BINDING_MISMATCH");
     if (opts.expectedUiVersion && process.env.LZ_EXPECTED_UI_VERSION !== undefined && opts.expectedUiVersion !== process.env.LZ_EXPECTED_UI_VERSION) throw new Error("BROWSER_UI_BINDING_MISMATCH");

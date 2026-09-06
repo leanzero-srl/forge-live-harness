@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / 'config/lz-campaign/manifest.json'
 STOP_NOW = False
 
-BROWSER_MODES = ('persistent-chrome', 'portable-cft151')
+BROWSER_MODES = ('persistent-chrome', 'portable-chrome152')
 
 
 def browser_mode(config):
@@ -42,7 +42,7 @@ def browser_binding(requested, account, previous, verb):
     if previous_account is not None and account is not None and previous_account != account:
         raise ValueError('Expected principal changed; use a new run ID')
     expected = account if account is not None else previous_account
-    if mode == 'portable-cft151' and (not isinstance(expected, str) or not expected.strip()):
+    if mode == 'portable-chrome152' and (not isinstance(expected, str) or not expected.strip()):
         raise ValueError('Portable mode requires the independently known expected account ID')
     return {'browserMode': mode, 'expectedAccountId': expected}
 
@@ -50,7 +50,7 @@ def browser_binding(requested, account, previous, verb):
 def browser_environment(config, inherited):
     mode = browser_mode(config)
     expected = config.get('expectedAccountId')
-    if mode == 'portable-cft151' and (not isinstance(expected, str) or not expected.strip()):
+    if mode == 'portable-chrome152' and (not isinstance(expected, str) or not expected.strip()):
         raise ValueError('Portable config has no expected principal')
     env = dict(inherited)
     # Authoritative binding on entry/tests/after/resume, never inherited shell mode.

@@ -1,11 +1,11 @@
 import type {BrowserType, BrowserContext} from '@playwright/test';
 export interface PortableReceipt {
- readonly mode: 'portable-cft151'; readonly browserVersion: string; readonly principalSha256: string;
+ readonly mode: 'portable-chrome152'; readonly browserVersion: string; readonly principalSha256: string;
  readonly uiVersion: string; readonly appUrl: string; readonly executableSha256: string;
  readonly frameworkSha256: string; readonly admittedAt: string;
 }
 export interface PortableOptions {
- mode: 'portable-cft151'; headed?: boolean; authFlow?: boolean;
+ mode: 'portable-chrome152'; headed?: boolean; authFlow?: boolean;
  expected: {accountId: string; uiVersion: string}; viewport: {width:number;height:number}; recordVideoDir?: string;
 }
 export function getPortableReceipt(context: BrowserContext): PortableReceipt | null;

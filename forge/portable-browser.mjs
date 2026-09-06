@@ -1,17 +1,17 @@
-// Scratch candidate only. No harness import, environment read, profile or persistent launch.
+// Explicit portable-session adapter. The shared persistent profile is never opened or changed.
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-export const MODE = 'portable-cft151';
-export const VERSION = '151.0.7922.34';
-export const EXECUTABLE_SHA256 = 'a596b1cfc6353e987fcec8d71a23a28cd6a9e7a6b4e20b908e4c4fcffe51158e';
-export const FRAMEWORK_SHA256 = '269114cf695f1c50b54e0816a1442e41dc468d28672e2dedc2036105fb5a8dbe';
+export const MODE = 'portable-chrome152';
+export const VERSION = '152.0.7977.76';
+export const EXECUTABLE_SHA256 = '755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee';
+export const FRAMEWORK_SHA256 = 'bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6';
 const receipts = new WeakMap();
 export const getPortableReceipt = context => receipts.get(context) ?? null;
-const bundle = path.join(os.homedir(), 'Library/Caches/ms-playwright/chromium-1234/chrome-mac-arm64/Google Chrome for Testing.app');
-export const EXECUTABLE = path.join(bundle, 'Contents/MacOS/Google Chrome for Testing');
-export const FRAMEWORK = path.join(bundle, `Contents/Frameworks/Google Chrome for Testing Framework.framework/Versions/${VERSION}/Google Chrome for Testing Framework`);
+const bundle = '/Applications/Google Chrome.app';
+export const EXECUTABLE = path.join(bundle, 'Contents/MacOS/Google Chrome');
+export const FRAMEWORK = path.join(bundle, `Contents/Frameworks/Google Chrome Framework.framework/Versions/${VERSION}/Google Chrome Framework`);
 export const STORAGE_STATE = path.join(os.homedir(), 'Projects/forge-live-harness/.auth/storage-state.json');
 export const APP_URL = 'https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77';
 export class PortableBrowserError extends Error {
