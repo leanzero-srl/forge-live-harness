@@ -473,10 +473,24 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     // things: one is the product protecting them, the other is the product
     // losing their consent.
     const lock2Clean = assertNoRadiusDrift(lock2.win, "lockout/yes-1");
+    /**
+     * ONLY THE PART THAT MUST BE IN WORDS.
+     *
+     * Three runs, three different phrasings, all correct: "AND IT INCLUDES
+     * YOU", "because it's your own access", "This is genuinely your own access
+     * being removed … nothing has been changed yet". A predicate that also
+     * demanded a second clause failed the third on `has been` versus `has`,
+     * which is a harness reading a model's prose too closely.
+     *
+     * The "and it asked again" half needs no prose at all — it is proven
+     * STRUCTURALLY, and better: REST says the change did not happen on this
+     * turn, and the next yes makes it happen. What cannot be proven any other
+     * way is that the user was TOLD the set includes them, so that is the only
+     * thing asserted here.
+     */
     const toldItIsThem =
       /AND IT INCLUDES YOU/i.test(lock2.reply) ||
-      (/your own|includes you|you are (one of|in)|yourself/i.test(lock2.reply) &&
-        /nothing has changed|still want|go ahead\?|confirm again|one more time/i.test(lock2.reply));
+      /your own|includes you|you are (one of|in)|yourself|that is you\b/i.test(lock2.reply);
     console.log(`[cycle] lockout yes-1: stillIn=${stillIn} toldItIsThem=${toldItIsThem} noDrift=${lock2Clean}`);
     expect.soft(
       stillIn,
@@ -485,8 +499,10 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     ).toBe(true);
     expect.soft(
       toldItIsThem,
-      `the re-ticket does not tell the user the set includes THEM, so they are asked a second ` +
-        `time without being told what is different about the question:\n${lock2.reply.slice(0, 900)}`,
+      `the re-ticket does not tell the user the change includes THEIR OWN account, so they are ` +
+        `asked a second time without being told what is different about the question. (That it ` +
+        `asked again at all is proven by REST — nothing changed on this turn — and by the next ` +
+        `yes landing.)\n${lock2.reply.slice(0, 900)}`,
     ).toBe(true);
     table.push({ step: "lockout/yes-1", refused: stillIn, toldItIsThem, noDrift: lock2Clean });
 
