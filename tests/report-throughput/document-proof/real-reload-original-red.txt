@@ -1,0 +1,22 @@
+✖ real literal reload finishes before delayed app mount; adapter waits for positive list without replacing reload (768.997709ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 924.127
+
+✖ failing tests:
+
+test at tests/report-throughput/document-identity.test.mjs:28:1
+✖ real literal reload finishes before delayed app mount; adapter waits for positive list without replacing reload (768.997709ms)
+  Error: Owned report departure failed; exact fixture retained
+      at Object.stop (eval at <anonymous> (file:///private/tmp/lz-report-product-throughput-20260906/tests/report-throughput/document-identity.test.mjs:32:16), <anonymous>:100:29)
+      at async TestContext.<anonymous> (file:///private/tmp/lz-report-product-throughput-20260906/tests/report-throughput/document-identity.test.mjs:35:255)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'LZ_REPORT_CAPTURE_RECOVERY_REQUIRED',
+    reportState: { planId: 'plan-test-local', owner: { planId: 'plan-test-local', name: '[harness-test] exact owner' }, departureFailed: true }
+  }

@@ -1,0 +1,22 @@
+✖ post-literal-reload transient surface must become positively ready before ordinary navigation (1.461875ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 388.792959
+
+✖ failing tests:
+
+test at tests/report-throughput/departure.test.mjs:51:1
+✖ post-literal-reload transient surface must become positively ready before ordinary navigation (1.461875ms)
+  Error: Owned report departure failed; exact fixture retained
+      at Object.stop (eval at module (file:///private/tmp/lz-report-product-throughput-20260906/tests/report-throughput/departure.test.mjs:8:26), <anonymous>:100:29)
+      at async TestContext.<anonymous> (file:///private/tmp/lz-report-product-throughput-20260906/tests/report-throughput/departure.test.mjs:51:223)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'LZ_REPORT_CAPTURE_RECOVERY_REQUIRED',
+    reportState: { planId: 'plan-test-local', owner: { planId: 'plan-test-local', name: '[harness-test] exact owner' }, departureFailed: true }
+  }
