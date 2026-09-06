@@ -1,0 +1,25 @@
+Listing tests:
+Total: 0 tests in 0 files
+
+AssertionError: Expected values to be strictly equal:
++ actual - expected
+
++ 'owner'
+- 'reopen-cleanup'
+
+
+   at scenarios/lz-ppm/private-retained-continuation-contract.mjs:7
+
+   5 | export const originalPlans=Object.freeze(['plan-msq9dg8l-gz6mz1','plan-mta3aw3t-6dyijd','plan-mtbrlh8n-7ghw8u']);
+   6 | export const shaBytes=bytes=>createHash('sha256').update(bytes).digest('hex');
+>  7 | export function retainedPhase(value){if(value===undefined||value==='')return false;assert.equal(value,'reopen-cleanup');return true;}
+     |                                                                                           ^
+   8 | export function validateRetainedState(j){
+   9 |  assert.equal(j.phase,'owner');assert.equal(j.completed,false);assert.equal(j.state,'recovery-required');assert.equal(j.integrityPreserved,true);assert.equal(j.jiraWrites,0);assert.equal(j.physicalKvsVerified,false);assert.equal(j.secondPrincipalVerified,false);
+  10 |  assert.deepEqual(j.owned,{sourcePlanId:retainedPins.sourcePlanId,privatePlanId:retainedPins.privatePlanId});assert.equal(j.observedPrivatePlanId,retainedPins.privatePlanId);for(const key of ['reportDeleted','sourceDeleted','privateDeleted','publicAbsenceTwice'])assert.equal(j[key],undefined);
+    at retainedPhase (/private/tmp/lz-private-retained-continuation-20260906/scenarios/lz-ppm/private-retained-continuation-contract.mjs:7:91)
+    at /private/tmp/lz-private-retained-continuation-20260906/scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts:14:15
+
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.

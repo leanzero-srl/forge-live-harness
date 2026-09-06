@@ -1,0 +1,19 @@
+Listing tests:
+Total: 0 tests in 0 files
+
+Error: ENOENT: no such file or directory, open ''
+
+   at scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts:16
+
+  14 | const enabled=retainedPhase(process.env.LZ_PRIVATE_RETAINED_PHASE);
+  15 | // With a phase present, missing/wrong bound input refuses before registration.
+> 16 | const pinned:any=enabled?admitRetainedBytes(fs.readFileSync(process.env.LZ_PRIVATE_RETAINED_JOURNAL||''),fs.readFileSync(process.env.LZ_PRIVATE_RETAINED_TERMINAL||'')):null;
+     |                                                ^
+  17 | test.describe.configure({retries:0,timeout:900000});
+  18 | test('retained private report: exact failed-run owner reopen export and guarded cleanup without recapture',async({page},info)=>{
+  19 |  test.skip(!enabled,'Explicit retained continuation phase required');expect(BASE).toBe('https://wolfaenpak.atlassian.net');
+    at /private/tmp/lz-private-retained-continuation-20260906/scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts:16:48
+
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.

@@ -1,0 +1,14 @@
+{
+  "status": "prepared-not-authorized",
+  "runId": "private-retained-continuation-20260906",
+  "spec": "scenarios/lz-ppm/campaign-private-retained-continuation.spec.ts",
+  "phase": "reopen-cleanup",
+  "journalSha256": "8945bf1bdbcda9834da1c3d8940d32ed53ee8e635da1d792fb56890aff4077dc",
+  "terminalSha256": "b98fa29d7f564cacd251ecb472ff28dce552c4afe487f04b2da409150dad7bcf",
+  "timeoutMs": 900000,
+  "supervisorMaxSeconds": 900,
+  "retries": 0,
+  "normalCampaignIdentityUsable": false,
+  "reason": "Unchanged identity guard requires original3 only; exact retained2 admission lives in reviewed standalone spec. Existing durable supervise.py pattern must execute this one spec directly.",
+  "liveCalls": 0
+}
