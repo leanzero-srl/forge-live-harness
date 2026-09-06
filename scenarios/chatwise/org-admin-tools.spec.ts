@@ -780,13 +780,27 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
       "delete-policy",
       `Delete the policy ${createdPolicyId || policiesAfter[0]?.id} permanently.`,
     );
-    const namesOp = /deletePolicy|delete a policy|no Atlassian API|admin\.atlassian\.com|admin console/i.test(del.reply);
-    console.log(`[org-write] deletePolicy refusal names where it is done = ${namesOp}`);
+    // WHAT THE REFUSAL OWES THE USER IS A ROUTE, NOT A PLACE.
+    //
+    // Corrected after the first live run. The registry description says these
+    // three ops "say where they are done instead", and for
+    // `publishDraftPolicies` and `revokeApiToken` the handler's text does name
+    // a place (the admin console, id.atlassian.com). `deletePolicy`'s does NOT
+    // — it names the reversible ALTERNATIVE instead: "To stop a policy
+    // applying, DISABLE it". That is a better answer than a place, and an
+    // assertion that demanded the console would have reported a good refusal as
+    // a defect. What is asserted is the property that matters: the user is left
+    // with something they can do.
+    const namesRoute = /disable|admin console|admin\.atlassian\.com|id\.atlassian\.com/i.test(del.reply);
+    const saysNoApi = /no (way|endpoint|delete)|does not support|never deleting|cannot be deleted/i.test(del.reply);
+    console.log(`[org-write] deletePolicy refusal: namesRoute=${namesRoute} saysNoApi=${saysNoApi}`);
     expect.soft(
-      namesOp,
-      `the deletePolicy refusal does not say WHERE the deletion is done instead. A refusal with ` +
-        `no route through is the failure, not the refusal:\n${del.reply.slice(0, 900)}`,
+      namesRoute && saysNoApi,
+      `the deletePolicy refusal does not both say that Atlassian has no delete AND leave the user ` +
+        `something they can do instead. A refusal with no route through is the failure, not the ` +
+        `refusal:\n${del.reply.slice(0, 900)}`,
     ).toBe(true);
+    const namesOp = namesRoute && saysNoApi;
     const stillThere = createdPolicyId
       ? ((await org("/v1/orgs/{org}/policies")).body?.data || []).some((p: any) => p.id === createdPolicyId)
       : true;
