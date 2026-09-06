@@ -102,6 +102,30 @@ check("asUser: a draft 404 does not become the tool's status",
    "[Tools] getWorkflowScheme(WFH): 1 issue-type mapping(s), draft=false"],
   ['[Tools] getWorkflowScheme(WFH) failed: 403 {"errorMessages":["forbidden"]}']);
 
+
+// 18. the radius-drift assertion — the one the write cycle turns on
+const driftLine = "[Confirmation] applyOrgChange: blast radius changed since approval — refusing";
+const cleanLine = "[Confirmation] applyOrgChange: same-turn redemption refused (no prior disclosure)";
+const noDrift = (lines) => lines.filter((t) => /^\[Confirmation\].*blast radius changed/.test(t)).length === 0;
+check("write-cycle: a radius refusal is detected", (ls) => noDrift(ls) === true,
+  ["[Tools] applyOrgChange {op:\"createPolicy\"}", cleanLine],
+  ["[Tools] applyOrgChange {op:\"createPolicy\"}", driftLine]);
+
+// 19. the undo id must be STATED
+const stated = (t) => /\b(rv_[a-z0-9]+_[a-z0-9]{6,})\b/.test(t);
+check("write-cycle: the undo id is stated in the reply", (t) => stated(t) === true,
+  "Done. This can be undone for 30 days — reference undo id rv_mtpysogl_naclcnakiu.",
+  "Done. This change can be undone for 30 days — just ask and I can revert it.");
+
+// 20. the lockout re-ticket, as a property rather than a phrase
+const toldItIsThem = (t) =>
+  /AND IT INCLUDES YOU/i.test(t) ||
+  (/your own|includes you|you are (one of|in)|yourself/i.test(t) &&
+    /nothing has changed|still want|go ahead\?|confirm again|one more time/i.test(t));
+check("write-cycle: the re-ticket says the set includes the caller", (t) => toldItIsThem(t) === true,
+  "This one comes back to you one more time — deliberately, because it's your own access. Nothing has changed yet. Do you still want to go ahead?",
+  "Done — the account has been removed from the group.");
+
 let bad = 0;
 for (const c of cases) {
   const ok = c.pass && c.failsOnBad;
