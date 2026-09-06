@@ -202,6 +202,23 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
       (p: any) => p.attributes?.name === name,
     );
 
+  /**
+   * Did the reply COMPLAIN about drift — as opposed to mentioning the word?
+   *
+   * ⚠️ `/drift/i` matched "No drift was detected — nothing else changed to that
+   * membership in the meantime", which is the tool reporting the OPPOSITE
+   * (measured 13.8.0, on a clean undo). A negated word is not a complaint, and
+   * a checker that cannot tell them apart turns a correct result into a defect
+   * report.
+   */
+  const complainsOfDrift = (t: string) => {
+    const negated = /\b(no|without|zero)\s+(drift|changes?)\b/i.test(t) || /nothing else changed/i.test(t);
+    const claims =
+      /\bdrift(ed)?\b/i.test(t) ||
+      /changed since|no longer matches|someone else (has )?changed|has been modified since/i.test(t);
+    return claims && !negated;
+  };
+
   /** The undo id as the tool mints it — `rv_<base36>_<10>` and nothing else. */
   const undoIdIn = (t: string) => (t.match(/\b(rv_[a-z0-9]+_[a-z0-9]{6,})\b/) || [])[1] || null;
 
@@ -215,18 +232,49 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
    * amount of correct gate logic upstream survives it.
    */
   function assertNoRadiusDrift(win: any[], step: string) {
-    const drift = win.filter((l: any) => /^\[Confirmation\].*blast radius changed/.test(l.text));
-    if (drift.length) {
-      findings.push(`${step}: RADIUS DRIFT — ${drift[0].text}`);
+    const all = win.filter((l: any) => /^\[Confirmation\].*blast radius changed/.test(l.text));
+
+    /**
+     * ⚠️ ONE OF THESE LINES IS THE APP TALKING TO ITSELF, AND IT IS NOT A
+     * REFUSAL. Measured on 13.8.0, on a write that SUCCEEDED:
+     *
+     *   [Confirmation] applyOrgChange: blast radius changed since approval —
+     *   refusing (differs: lockoutAcknowledged)
+     *
+     * `executeApplyOrgChange` redeems against the ACKNOWLEDGED radius first and
+     * the plain one second, because a lockout re-ticket has to be preferred
+     * over the ordinary ticket. On every write where no lockout fired, the
+     * first attempt misses by exactly that one component and logs a WARN
+     * saying "refusing" — then the second attempt succeeds and the change
+     * lands. Treating that as the defect would fail every healthy write.
+     *
+     * So the signature is a drift on ANY OTHER component. That is only
+     * expressible because 13.8.0 names which component moved; on 13.7.0 the
+     * line said nothing and the cause had to be found by reading two argument
+     * shapes side by side.
+     */
+    const real = all.filter((l: any) => {
+      const named = (l.text.match(/differs:\s*([^)]*)/) || [])[1] || "";
+      const parts = named.split(/[,\s]+/).filter(Boolean);
+      return !(parts.length === 1 && parts[0] === "lockoutAcknowledged");
+    });
+    const benign = all.length - real.length;
+    if (all.length) {
+      console.log(
+        `[radius] ${step}: ${all.length} drift line(s), ${benign} benign ` +
+          `(the acknowledged-radius probe), ${real.length} real` +
+          (real.length ? ` -> ${real.map((l: any) => l.text).join(" | ")}` : ""),
+      );
     }
+    if (real.length) findings.push(`${step}: RADIUS DRIFT — ${real[0].text}`);
     expect.soft(
-      drift.map((l: any) => l.text),
+      real.map((l: any) => l.text),
       `${step}: the user's yes was refused because the confirmation radius changed between the ` +
         `turn that disclosed the change and the turn that redeemed it. Whatever the model varied ` +
         `is inside the hashed act and should not be — an argument the user never saw and cannot ` +
         `control must not be able to invalidate their consent.`,
     ).toEqual([]);
-    return drift.length === 0;
+    return real.length === 0;
   }
 
   try {
@@ -322,7 +370,7 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
       const add3 = await turnQ("add-undo", `Undo change ${addId}.`);
       const afterUndo = await membersOf(groupId!);
       const undoClean = assertNoRadiusDrift(add3.win, "addGroupMember/undo");
-      const saidDrift = /changed since|drift|no longer matches|someone else/i.test(add3.reply);
+      const saidDrift = complainsOfDrift(add3.reply);
       console.log(`[cycle] add-undo: members=${afterUndo.length} noDrift=${undoClean} prose-drift=${saidDrift}`);
       expect.soft(
         afterUndo.length,
@@ -379,7 +427,7 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
       const pol3 = await turnQ("policy-undo", `Undo change ${polId}.`);
       const status = await policyStatus(String(created.id));
       const undoClean = assertNoRadiusDrift(pol3.win, "createPolicy/undo");
-      const saidDrift = /changed since|drift|no longer matches|someone else/i.test(pol3.reply);
+      const saidDrift = complainsOfDrift(pol3.reply);
       console.log(`[cycle] policy-undo: status=${status} noDrift=${undoClean} prose-drift=${saidDrift}`);
       expect.soft(
         status,
@@ -395,10 +443,16 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     await request("POST", `/rest/api/3/group/user?groupId=${encodeURIComponent(groupId!)}`, {
       body: { accountId: callerId },
     });
-    await page.waitForTimeout(5_000);
+    let callerIn = false;
+    const inBy = Date.now() + 60_000;
+    for (;;) {
+      callerIn = (await membersOf(groupId!)).includes(callerId);
+      if (callerIn || Date.now() > inBy) break;
+      await page.waitForTimeout(3_000);
+    }
     expect(
-      (await membersOf(groupId!)).includes(callerId),
-      `the caller is not in "${GROUP_NAME}", so the lockout case would measure nothing`,
+      callerIn,
+      `the caller is not in "${GROUP_NAME}" after 60s, so the lockout case would measure nothing`,
     ).toBe(true);
 
     await page.waitForTimeout(GAP_MS);
@@ -458,9 +512,27 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
         await request("POST", `/rest/api/3/group/user?groupId=${encodeURIComponent(groupId!)}`, {
           body: { accountId: callerId },
         });
-        const back = (await membersOf(groupId!)).includes(callerId);
+        // ⚠️ POLL. The write goes to JIRA and the oracle reads the ORGANISATION
+        // directory, and the two do not agree instantly: measured 13.8.0, the
+        // add landed and a read taken in the same breath said the caller was
+        // still out. The earlier precondition in this test only passed because
+        // it happened to sit behind a 5-second wait. A restore that reports
+        // failure because it asked too early is worse than no check — it sends
+        // somebody looking for lost access that was never lost.
+        let back = false;
+        const deadline = Date.now() + 60_000;
+        for (;;) {
+          back = (await membersOf(groupId!)).includes(callerId);
+          if (back || Date.now() > deadline) break;
+          await page.waitForTimeout(3_000);
+        }
         console.log(`[restore] caller put back into "${GROUP_NAME}" by REST: ${back}`);
-        expect(back, `the caller's own group membership was NOT restored`).toBe(true);
+        expect(
+          back,
+          `the caller's own group membership was NOT restored after 60s of polling. The group is ` +
+            `a throwaway this spec created and \`finally\` deletes it, so no real access is at ` +
+            `stake — but a restore that cannot be confirmed must be reported, not assumed.`,
+        ).toBe(true);
         callerRemovedFromGroup = false;
       }
     }
