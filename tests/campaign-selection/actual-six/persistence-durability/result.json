@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "stamp": "c22331e6fea14f86663dece714780297b6d96446f23e0fe3c12e6681bf624bb6",
+  "startedAt": "2026-09-06T17:33:08.258807+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/attempt-001",
+  "uiVersion": "4.58.588",
+  "forgeVersion": "6.26.0",
+  "appCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "instrumentHash": "fdda23667f010f1ae26151bae9c5a826b2f9a63a5e8e3d4407b4eb60d5fa626d",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "persistence: acknowledged Save7 replaces earlier autosaved6 before immediate reopen",
+        "persistence: an actual held Save response preserves a later local edit as unsaved",
+        "persistence: partial Apply discards a previously Saved sibling durably through completion reload",
+        "persistence: simulated draft-read HTTP403 gates edits and real Retry recovers unseen draft",
+        "persistence: simulated draft-read HTTP503 gates edits and real Retry recovers unseen draft"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 5,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T17:36:40.292930+00:00",
+  "elapsedSeconds": 212.0330778749776
+}

@@ -1,0 +1,197 @@
+test_actual_result_identity_stamps_still_bind_all_existing_axes (__main__.Selection.test_actual_result_identity_stamps_still_bind_all_existing_axes) ... ERROR
+test_actual_run_terminal_uses_selected_completion_after_fresh_entry_and_exact_reuse (__main__.Selection.test_actual_run_terminal_uses_selected_completion_after_fresh_entry_and_exact_reuse) ... FAIL
+test_actual_six_selected_completion_preserves_entire_manifest_progress_and_original_results (__main__.Selection.test_actual_six_selected_completion_preserves_entire_manifest_progress_and_original_results) ... ERROR
+test_default_whole_selection_matches_legacy_complete_and_planned_never_passes (__main__.Selection.test_default_whole_selection_matches_legacy_complete_and_planned_never_passes) ... ERROR
+test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) ... 
+  test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='missing') ... ERROR
+  test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='failed') ... ERROR
+  test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='known_defect') ... ERROR
+  test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='timed_out') ... ERROR
+  test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='running') ... ERROR
+  test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='stale') ... ERROR
+  test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='blocker') ... ERROR
+test_stale_status_display_clears_both_flags_without_rewriting_history (__main__.Selection.test_stale_status_display_clears_both_flags_without_rewriting_history) ... ERROR
+test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) ... 
+  test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=['unknown']) ... FAIL
+  test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=['normalization', 'unknown']) ... FAIL
+  test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=[]) ... FAIL
+  test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=['normalization', 'normalization']) ... FAIL
+  test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected='normalization') ... FAIL
+  test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=[None]) ... FAIL
+  test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=['']) ... FAIL
+
+======================================================================
+ERROR: test_actual_result_identity_stamps_still_bind_all_existing_axes (__main__.Selection.test_actual_result_identity_stamps_still_bind_all_existing_axes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 59, in test_actual_result_identity_stamps_still_bind_all_existing_axes
+    for change in changes:self.assertFalse(self.summarize(root,{**config,**change})['selectedRun']['complete'])
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_actual_six_selected_completion_preserves_entire_manifest_progress_and_original_results (__main__.Selection.test_actual_six_selected_completion_preserves_entire_manifest_progress_and_original_results)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 35, in test_actual_six_selected_completion_preserves_entire_manifest_progress_and_original_results
+    self.assertEqual(result['selectedRun'],{'featureIds':c['features'],'complete':True})
+                     ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_default_whole_selection_matches_legacy_complete_and_planned_never_passes (__main__.Selection.test_default_whole_selection_matches_legacy_complete_and_planned_never_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 72, in test_default_whole_selection_matches_legacy_complete_and_planned_never_passes
+    result=self.summarize(root,c);self.assertEqual(result['selectedRun']['featureIds'],[f['id'] for f in features]);self.assertEqual(result['selectedRun']['complete'],result['complete']);self.assertFalse(result['complete'])
+                                                   ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 54, in test_selected_missing_failed_stale_and_blocker_never_complete
+    result=self.summarize(root,blocker='identity_failed' if fault=='blocker' else None);self.assertFalse(result['selectedRun']['complete'])
+                                                                                                         ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='failed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 54, in test_selected_missing_failed_stale_and_blocker_never_complete
+    result=self.summarize(root,blocker='identity_failed' if fault=='blocker' else None);self.assertFalse(result['selectedRun']['complete'])
+                                                                                                         ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='known_defect')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 54, in test_selected_missing_failed_stale_and_blocker_never_complete
+    result=self.summarize(root,blocker='identity_failed' if fault=='blocker' else None);self.assertFalse(result['selectedRun']['complete'])
+                                                                                                         ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='timed_out')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 54, in test_selected_missing_failed_stale_and_blocker_never_complete
+    result=self.summarize(root,blocker='identity_failed' if fault=='blocker' else None);self.assertFalse(result['selectedRun']['complete'])
+                                                                                                         ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='running')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 54, in test_selected_missing_failed_stale_and_blocker_never_complete
+    result=self.summarize(root,blocker='identity_failed' if fault=='blocker' else None);self.assertFalse(result['selectedRun']['complete'])
+                                                                                                         ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='stale')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 54, in test_selected_missing_failed_stale_and_blocker_never_complete
+    result=self.summarize(root,blocker='identity_failed' if fault=='blocker' else None);self.assertFalse(result['selectedRun']['complete'])
+                                                                                                         ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_selected_missing_failed_stale_and_blocker_never_complete (__main__.Selection.test_selected_missing_failed_stale_and_blocker_never_complete) (fault='blocker')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 54, in test_selected_missing_failed_stale_and_blocker_never_complete
+    result=self.summarize(root,blocker='identity_failed' if fault=='blocker' else None);self.assertFalse(result['selectedRun']['complete'])
+                                                                                                         ~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+ERROR: test_stale_status_display_clears_both_flags_without_rewriting_history (__main__.Selection.test_stale_status_display_clears_both_flags_without_rewriting_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 78, in test_stale_status_display_clears_both_flags_without_rewriting_history
+    actual=json.loads(out.getvalue());self.assertTrue(actual['instrumentChanged']);self.assertFalse(actual['summary']['complete']);self.assertFalse(actual['summary']['selectedRun']['complete']);self.assertEqual((run/'summary.json').read_bytes(),before)
+                                                                                                                                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'selectedRun'
+
+======================================================================
+FAIL: test_actual_run_terminal_uses_selected_completion_after_fresh_entry_and_exact_reuse (__main__.Selection.test_actual_run_terminal_uses_selected_completion_after_fresh_entry_and_exact_reuse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 45, in test_actual_run_terminal_uses_selected_completion_after_fresh_entry_and_exact_reuse
+    self.assertEqual(m.run(c,root),0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0
+
+======================================================================
+FAIL: test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=['unknown'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 65, in test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary
+    with self.assertRaises(ValueError):self.summarize(root,c)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=['normalization', 'unknown'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 65, in test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary
+    with self.assertRaises(ValueError):self.summarize(root,c)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 65, in test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary
+    with self.assertRaises(ValueError):self.summarize(root,c)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=['normalization', 'normalization'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 65, in test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary
+    with self.assertRaises(ValueError):self.summarize(root,c)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected='normalization')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 65, in test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary
+    with self.assertRaises(ValueError):self.summarize(root,c)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=[None])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 65, in test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary
+    with self.assertRaises(ValueError):self.summarize(root,c)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary (__main__.Selection.test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary) (selected=[''])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/lz-campaign-selected-completion-20260906/tests/campaign-selection/selected_test.py", line 65, in test_unknown_malformed_empty_or_duplicate_selection_refuses_without_lane_or_summary
+    with self.assertRaises(ValueError):self.summarize(root,c)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.041s
+
+FAILED (failures=8, errors=11)

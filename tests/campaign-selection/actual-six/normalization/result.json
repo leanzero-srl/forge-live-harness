@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "stamp": "1c7fedfb20bbba854d285ee178e7a2225c78aa3f95d77bd6f387d5d48eb7aef4",
+  "startedAt": "2026-09-06T17:32:03.781679+00:00",
+  "attempt": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/final-six-regressions-20260906/normalization/attempt-001",
+  "uiVersion": "4.58.588",
+  "forgeVersion": "6.26.0",
+  "appCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "instrumentHash": "fdda23667f010f1ae26151bae9c5a826b2f9a63a5e8e3d4407b4eb60d5fa626d",
+  "browserMode": "portable-chrome152",
+  "phases": {
+    "before": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "tests": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "table: a background refresh must not un-normalize the durations"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    },
+    "after": {
+      "status": "passed",
+      "ordinaryPasses": [
+        "campaign: actual UI version and preserved LZPT source"
+      ],
+      "expectedDefectWitnesses": [],
+      "reasons": [],
+      "testCount": 1,
+      "process": {
+        "exit": 0
+      }
+    }
+  },
+  "finishedAt": "2026-09-06T17:33:08.249268+00:00",
+  "elapsedSeconds": 64.46727583301254
+}

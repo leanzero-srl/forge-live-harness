@@ -1,0 +1,32 @@
+{
+  "config.json": {
+    "source": "evidence/lz-campaign/final-six-regressions-20260906/config.json",
+    "sha256": "6626487b99ec85aed723c421c9ac919b3d9f2391cc478fda2c77f1a5f4c0926d",
+    "bytes": 657
+  },
+  "summary.json": {
+    "source": "evidence/lz-campaign/final-six-regressions-20260906/summary.json",
+    "sha256": "be6fe72aea02a3ab4eab6f24ffc5559c3df640b2c3522792d12fbe2c157696f7",
+    "bytes": 15034
+  },
+  "state.json": {
+    "source": "evidence/lz-campaign/final-six-regressions-20260906/state.json",
+    "sha256": "67c0c4bfa04227d09f4a51b62fb6a6b8aa7304efaf9f859736878670f599bafb",
+    "bytes": 137
+  },
+  "manifest.json": {
+    "source": "config/lz-campaign/final-ordinary-manifest.json",
+    "sha256": "41eec174348d1058fd2fe31e106c0285b4126bdcf391518ae93b903b9ee99031",
+    "bytes": 22949
+  },
+  "normalization/result.json": {
+    "source": "evidence/lz-campaign/final-six-regressions-20260906/normalization/result.json",
+    "sha256": "0366a9a0ca4ad5646ab66e0b3076d3eabcab14b7723ae38835a3bc3361e40acf",
+    "bytes": 1473
+  },
+  "persistence-durability/result.json": {
+    "source": "evidence/lz-campaign/final-six-regressions-20260906/persistence-durability/result.json",
+    "sha256": "669288063e78c0a0966b3d33fb77e69deb7c3e67c111414f418036dfe95b98c0",
+    "bytes": 1907
+  }
+}
