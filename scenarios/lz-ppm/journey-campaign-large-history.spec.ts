@@ -1,9 +1,11 @@
+import {createReportThroughputObserver,observeCall} from './report-throughput-observer.mjs';
+import {getTarget} from '../../config/targets';
 import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
 import {settledScreenshot,waitForAppReady} from './settled-screenshot.mjs';
 import fs from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {test,expect} from '../../fixtures/forge';
-import {getTestState} from '../../testhook/client';
+import {getTestState as baseGetTestState} from '../../testhook/client';
 import {openPlan,scheduleFields,LZPT_PLAN} from './forecast-fixture';
 import {actualResponse,currentUserResolver,planning,callOf} from './campaign-ui';
 import {table,row,editDuration} from './normalization-owned-fixture';
@@ -12,6 +14,14 @@ test.describe.configure({retries:0,timeout:1800000});
 const rowFields=(rows:any[])=>rows.map(i=>({key:i.key,id:i.id,summary:i.summary,statusCategory:i.statusCategory??'unknown',startDate:i.startDate??null,dueDate:i.dueDate??null,duration:i.duration??null,buffer:i.buffer||'No',parentKey:i.parentKey??null,predecessors:[...(i.predecessors||[])].sort(),successors:[...(i.successors||[])].sort()})).sort((a,b)=>a.key.localeCompare(b.key));
 
 test('large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source',async({page},info)=>{
+ fs.mkdirSync(info.outputDir,{recursive:true});
+ const target=getTarget('lz-ppm-dashboard'),appId=target.appId.split('/').at(-1)!;
+ const throughput=createReportThroughputObserver({page,extensionId:`ari:cloud:ecosystem::extension/${appId}/${target.envId}/static/ppm-dashboard`,
+  emit:(event:any)=>fs.appendFileSync(info.outputPath('large-throughput-events.jsonl'),JSON.stringify(event)+'\n'),
+  saveFailure:(id:number,raw:string)=>fs.writeFileSync(info.outputPath(`large-throughput-failure-${id}.txt`),raw)});
+ const getTestState=(app:string,query:any)=>baseGetTestState(app,query,throughput);
+ let originalFailed=false,originalFailure:any;
+ try {
  const population=await readLzppPopulation();expect(population.count).toBeGreaterThan(2000);
  if(!population.first||!population.last)throw new Error('Large population must include first and terminal issue controls');
  const keys=population.rows.map((i:any)=>i.key).sort(),name=`[harness-test] Large retained capture ${Date.now().toString(36)}`;
@@ -19,7 +29,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
  const standing=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});
  let planId:string|undefined,bodyError:any,reportRecovery:any;const journal:any={name,population:{count:population.count,sha256:population.sha256,first:population.first,last:population.last,pages:population.pages,elapsedMs:population.elapsedMs},metrics:{}};
  fs.mkdirSync(info.outputDir,{recursive:true});const retain=()=>fs.writeFileSync(info.outputPath('large-history-journal.json'),JSON.stringify(journal,null,2));retain();
- const rpc=currentUserResolver(page,c=>c?.functionKey==='captureSnapshot'&&c.payload?.planId===planId);
+ const rpc=currentUserResolver(page,c=>c?.functionKey==='captureSnapshot'&&c.payload?.planId===planId,{observer:throughput});
  try{
   const start=Date.now(),made=await getTestState('lz-ppm',{what:'createFixture',name,jql:'project = LZPP ORDER BY key ASC'});planId=made.planId;journal.planId=planId;journal.metrics.indexMs=Date.now()-start;retain();
   expect(made.meta.mode).toBeUndefined();expect(made.meta.calendarKey).toBe('standard');
@@ -51,7 +61,8 @@ test('large history and report: existing >2000 Jira issues retain every captured
   await expect(work.locator('[data-testid="snapshot-detail"]')).toContainText(`${population.count} retained issues`);await settledScreenshot(work,{path:info.outputPath('large-capture-visible-count-and-context.png')});
   // Reopen is another real read, compared across the entire result, not its count.
   frame=await openPlan(page,name);work=await planning(frame);const reread=actualResponse(page,'getSnapshot',planId!);await work.getByRole('navigation',{name:'Retained captures'}).getByRole('button').filter({hasText:'Complete large decision'}).click();const reopened=(await reread).snapshot;expect(reopened.hash).toBe(snapshot.hash);expect(reopened.mode).toBeUndefined();expect(reopened.calendar).toEqual(snapshot.calendar);expect(rowFields(reopened.issues)).toEqual(rawExpected);
-  await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();const report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name',{exact:true}).fill('Every existing performance row');const reportStart=Date.now();const summary=await captureReport(page,report,planId!,info,{onRecovery:(error:any)=>{reportRecovery=error;journal.reportRecovery=error.reportState;retain();}});journal.metrics.reportCaptureMs=Date.now()-reportStart;expect(summary.mode).toBeUndefined();expect(summary.calendar).toEqual({calendarName:snapshot.calendar.calendarName??'Unnamed calendar',workingDays:snapshot.calendar.workingDays,holidays:snapshot.calendar.holidays});expect(summary.counts.timeline).toBe(population.count);expect(summary.pages.timeline).toBeGreaterThan(40);journal.report=summary;retain();
+  await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();const report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name',{exact:true}).fill('Every existing performance row');observeCall(throughput,'mark','capture');const reportStart=Date.now();const summary=await captureReport(page,report,planId!,info,{observer:throughput,onRecovery:(error:any)=>{reportRecovery=error;journal.reportRecovery=error.reportState;retain();}});journal.metrics.reportCaptureMs=Date.now()-reportStart;expect(summary.mode).toBeUndefined();expect(summary.calendar).toEqual({calendarName:snapshot.calendar.calendarName??'Unnamed calendar',workingDays:snapshot.calendar.workingDays,holidays:snapshot.calendar.holidays});expect(summary.counts.timeline).toBe(population.count);expect(summary.pages.timeline).toBeGreaterThan(40);journal.report=summary;retain();
+  observeCall(throughput,'mark','direct-page-audit');
   const allRows:any[]=[],pageMetrics:any[]=[];
   for(let n=0;n<summary.pages.timeline;n++){
    const start=Date.now(),response=await rpc.invoke('getSponsorReportPage',{planId,reportId:summary.id,section:'timeline',page:n});expect(response.success).toBe(true);const part=response.page;expect(part.page).toBe(n);expect(part.pageCount).toBe(summary.pages.timeline);expect(part.total).toBe(population.count);expect(part.rows.length).toBeGreaterThan(0);allRows.push(...part.rows);pageMetrics.push({page:n,rows:part.rows.length,elapsedMs:Date.now()-start,bytes:Buffer.byteLength(JSON.stringify(response))});
@@ -59,6 +70,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
   expect(allRows.map(r=>r.key).sort()).toEqual(keys);
   const reportFields=(rows:any[])=>rows.map(i=>({key:i.key,summary:i.summary,statusCategory:i.statusCategory??'unknown',startDate:i.startDate??null,dueDate:i.dueDate??null,duration:i.duration??null})).sort((a,b)=>a.key.localeCompare(b.key));
   expect(reportFields(allRows)).toEqual(reportFields(workingExpected));journal.metrics.reportPageReads=pageMetrics;journal.reportTerminalRows=allRows.slice(-5);retain();
+  observeCall(throughput,'mark','ui-download');
   const downloadStart=Date.now(),download=page.waitForEvent('download',{timeout:600000});await report.getByRole('button',{name:'Download complete HTML report',exact:true}).click();const file=await download;expect(file.suggestedFilename()).toBe(`sponsor-report-${summary.id}.html`);const target=info.outputPath('large-actual-report.html');await file.saveAs(target);journal.metrics.completeDownloadMs=Date.now()-downloadStart;journal.metrics.htmlBytes=fs.statSync(target).size;retain();
   const html=await page.context().newPage(),external:string[]=[];html.on('request',(r:any)=>{if(/^https?:/.test(r.url()))external.push(r.url());});
   let htmlError:any;
@@ -71,6 +83,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
    for(const [label,key]of [['first',population.first.key],['terminal',population.last.key]]){await html.locator(`tr[data-issue-key="${key}"]`).scrollIntoViewIfNeeded();await settledScreenshot(html,{subject:html.locator(`tr[data-issue-key="${key}"]`),path:info.outputPath(`large-report-${label}-row-visible.png`)});}
    journal.renderedTerminalRow=renderedByKey.get(population.last.key);journal.allHtmlFieldsVerified=true;retain();
   }catch(error){htmlError=error;throw error;}finally{try{await html.close();}catch(error){throw new AggregateError([...(htmlError?[htmlError]:[]),error],'Large HTML body/close failures');}}
+  observeCall(throughput,'mark','source-checks');
   const again=await rpc.invoke('getSnapshot',{planId,snapshotId:snapshot.id});expect(again.success).toBe(true);expect(again.snapshot.hash).toBe(snapshot.hash);expect(rowFields(again.snapshot.issues)).toEqual(rawExpected);
   // A real isolated local duration edit must survive capture without rewriting
   // every pristine raw duration. Choose an unparented terminal leaf so the exact
@@ -87,13 +100,19 @@ test('large history and report: existing >2000 Jira issues retain every captured
   expect(rowFields((await getTestState('lz-ppm',{what:'plan',planId:planId!})).issues)).toEqual(rawExpected);
   const after=await readLzppPopulation();expect(after.rows).toEqual(population.rows);journal.jiraPopulationUnchanged=true;retain();
  }catch(error){bodyError=error;journal.bodyError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw error;}finally{
+  observeCall(throughput,'mark','final-cleanup');
   rpc.stop();const cleanupErrors:any[]=[];const attempt=async(stage:string,work:()=>Promise<void>)=>{try{await work();}catch(error){cleanupErrors.push(error);journal.cleanupErrors??=[];journal.cleanupErrors.push({stage,message:String((error as any)?.message||error)});retain();}};
   await attempt('stop-owned-ui',async()=>{if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());});
   await attempt('resolve-owned-plan',async()=>{if(!planId)planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
-  if(planId)await attempt('report-job-cleanup',async()=>{await cleanupOwnedReportCaptures(page,planId!,info,{onRecovery:(e:any)=>{reportRecovery=e;journal.reportRecovery=e.reportState;retain();}});});
+  if(planId)await attempt('report-job-cleanup',async()=>{await cleanupOwnedReportCaptures(page,planId!,info,{observer:throughput,onRecovery:(e:any)=>{reportRecovery=e;journal.reportRecovery=e.reportState;retain();}});});
   if(planId&&!reportRecovery)await attempt('delete-owned-plan',async()=>{const current=await getTestState('lz-ppm',{what:'plan',planId:planId!});expect(current.meta.name).toBe(name);await getTestState('lz-ppm',{what:'clearDrafts',planId:planId!});await getTestState('lz-ppm',{what:'deleteFixture',planId:planId!});journal.ownedPlanCleaned=true;retain();});
   await attempt('registry-integrity',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(reportRecovery?[...registry,planId].sort():registry);});
   await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(standing.issues));});
   if(reportRecovery){journal.retainedForRecovery={planId,reason:reportRecovery.message};cleanupErrors.push(reportRecovery);}retain();if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Large history body/cleanup failures');
+ }
+ } catch(error) {originalFailed=true;originalFailure=error;throw error;}
+ finally {
+  const observed=await throughput.finish({requireCapture:true});fs.writeFileSync(info.outputPath('large-throughput-final.json'),JSON.stringify(observed,null,2));
+  if(!observed.complete)throw new AggregateError([...(originalFailed?[originalFailure]:[]),new Error('Passive throughput observation recorded failures or incomplete requests; inspect retained events')],'Large history and throughput evidence failures');
  }
 });

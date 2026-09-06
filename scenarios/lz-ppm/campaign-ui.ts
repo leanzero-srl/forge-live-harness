@@ -1,3 +1,4 @@
+import {observeCall} from './report-throughput-observer.mjs';
 import {waitForAppReady} from './settled-screenshot.mjs';
 import {replayHeaders} from './replay-headers.mjs';
 import {gunzipSync} from 'node:zlib';
@@ -17,7 +18,7 @@ export function actualResponse(page:any,functionKey:string,planId?:string) {
  return observedResponse(page,functionKey,planId).then((b:any)=>{expect(b.success,`${functionKey}: ${b.error||'unspecified failure'}`).toBe(true);return b;});
 }
 /** Capture only an actual current-user request. Secrets remain memory-only. */
-export function currentUserResolver(page:any,filter:(call:any)=>boolean) {
+export function currentUserResolver(page:any,filter:(call:any)=>boolean,{observer=null}:any={}) {
   let wire:any;
   const capture=(req:any)=>{const data=callEnvelope(req);if(filter(data?.variables?.input?.payload?.call))wire={url:req.url(),data,headers:req.allHeaders()};};
   page.on('request',capture);
@@ -27,7 +28,10 @@ export function currentUserResolver(page:any,filter:(call:any)=>boolean) {
       expect(wire,'actual authenticated resolver request observed in this journey').toBeTruthy();
       const data=structuredClone(wire.data);data.variables.input.payload.call={functionKey,payload};
       const headers=replayHeaders(await wire.headers);
-      const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});expect(res.status()).toBe(200);const body=await bodyOf(res);expect(body).toBeTruthy();return body;
+      if(!observer){const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});expect(res.status()).toBe(200);const body=await bodyOf(res);expect(body).toBeTruthy();return body;}
+      const observed=observeCall(observer,'beginExternal','rpc',functionKey,payload);let failed=false,cause:any;
+      try{const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});observeCall(observer,'externalResponse',observed,res);expect(res.status()).toBe(200);const body=await bodyOf(res);expect(body).toBeTruthy();return body;}
+      catch(error){failed=true;cause=error;throw error;}finally{observeCall(observer,'endExternal',observed,cause,failed);}
     },
   };
 }
