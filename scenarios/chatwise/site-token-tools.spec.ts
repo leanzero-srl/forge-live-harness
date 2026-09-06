@@ -301,8 +301,10 @@ test("the site token opens four tools, they run as the stored administrator, and
         `one yes did not archive ${throwaway}. Jira still reports archived=${afterYes.archived}.\n` +
           `${archYes.reply.slice(0, 900)}`,
       ).toBe(true);
+      // `rv_<base36>_<10>` only: a UUID pattern here matches the project id and
+      // the scheme ids sitting in the same paragraph (measured on the org run).
       const revertId =
-        (archYes.reply.match(/\b(rev_[A-Za-z0-9_-]{6,}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b/) || [])[1] || null;
+        (archYes.reply.match(/\b(rv_[a-z0-9]+_[a-z0-9]{6,})\b/) || [])[1] || null;
       console.log(`[site-token] revertId from the archive = ${revertId}`);
       expect.soft(revertId, `the archive reported no revertId, so "REVERSIBLE for 30 days" in the ` +
         `tool's own description points at nothing:\n${archYes.reply.slice(0, 900)}`).toBeTruthy();

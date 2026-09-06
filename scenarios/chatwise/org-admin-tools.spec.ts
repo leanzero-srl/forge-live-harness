@@ -521,16 +521,37 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     }
     return r;
   }
-  /** A revertId as the tool hands it back, taken from the reply text. */
+  /**
+   * A revertId as the tool hands it back.
+   *
+   * ⚠️ `rv_<base36>_<10 chars>` AND NOTHING ELSE — the format is minted in
+   * revert.js:216. The first version of this also accepted a bare UUID, and on
+   * the very first live organisation run it matched the GROUP ID sitting in the
+   * same sentence, so the next turn went off to undo a change id that never
+   * existed and the measurement of the undo was worthless.
+   */
   const revertIdIn = (text: string) =>
-    (text.match(/\b(rev_[A-Za-z0-9_-]{6,}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b/) || [])[1] || null;
+    (text.match(/\b(rv_[a-z0-9]+_[a-z0-9]{6,})\b/) || [])[1] || null;
 
-  /** Who is in the throwaway group, straight from Atlassian. */
-  async function membersOf(gid: string, directoryId: string): Promise<string[]> {
-    const r = await org(
-      `/v2/orgs/{org}/directories/${directoryId}/users?groupId=${encodeURIComponent(gid)}&limit=50`,
-    );
-    return ((r.body?.data || []) as any[]).map((u: any) => String(u.accountId || u.account_id));
+  /**
+   * Who is in the group — FROM JIRA, because the organisation endpoint lies.
+   *
+   * ⚠️ MEASURED 6 Sep 2026 and it invalidated the oracle this test started
+   * with. `/admin/v2/orgs/{o}/directories/{d}/users?groupId={g}` IGNORES the
+   * filter completely: it returned all 15 directory users for a group that was
+   * empty, for no filter at all, for an all-zeros UUID, and for `site-admins`
+   * (which Jira says has 3 people). The app's `reads.js` header records this
+   * path as "MEASURED 200 — THE group-members read"; the STATUS was measured
+   * and the SEMANTICS never were.
+   *
+   * `/rest/api/3/group/member?groupId=` honours it — 0 for the empty group, 3
+   * for site-admins — so that is the ground truth here. A harness that used the
+   * same broken read as the code under test would have agreed with it perfectly
+   * and proved nothing.
+   */
+  async function membersOf(gid: string): Promise<string[]> {
+    const r: any = await request("GET", `/rest/api/3/group/member?groupId=${encodeURIComponent(gid)}&maxResults=50`);
+    return ((r?.values || []) as any[]).map((u: any) => String(u.accountId));
   }
 
   try {
@@ -576,14 +597,14 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     });
 
     // ================= PHASE 1 — ADD A MEMBER =============================
-    const before1 = await membersOf(groupId!, directoryId);
+    const before1 = await membersOf(groupId!);
     const ask1 = await turnQ(
       "add-member-ask",
       `Add the account ${subject.accountId} to the organisation group called "${GROUP_NAME}". ` +
         `Find its group id first.`,
     );
     skipIfQuotaBlocked(ask1.reply, "org-writes/add-member-ask");
-    const afterAsk1 = await membersOf(groupId!, directoryId);
+    const afterAsk1 = await membersOf(groupId!);
     // THE ONLY ASSERTION THAT MATTERS ON AN ASKING TURN: nothing happened.
     expect(
       afterAsk1.length,
@@ -596,7 +617,7 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
 
     await page.waitForTimeout(GAP_MS);
     const yes1 = await turnQ("add-member-yes", "Yes, do it.");
-    const members1 = await membersOf(groupId!, directoryId);
+    const members1 = await membersOf(groupId!);
     const landed1 = members1.includes(String(subject.accountId));
     console.log(`[org-write] after one yes the group has ${members1.length} member(s); subject in = ${landed1}`);
     expect.soft(
@@ -614,7 +635,7 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     if (rev1 && landed1) {
       await page.waitForTimeout(GAP_MS);
       const undo1 = await turnQ("add-member-undo", `Undo change ${rev1}.`);
-      const members1b = await membersOf(groupId!, directoryId);
+      const members1b = await membersOf(groupId!);
       const undone1 = !members1b.includes(String(subject.accountId));
       console.log(`[org-write] after the undo the group has ${members1b.length} member(s); undone = ${undone1}`);
       const claimedDrift = /changed since|drift|someone else|no longer matches/i.test(undo1.reply);
@@ -636,7 +657,7 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     });
     callerWasInGroup = true;
     await page.waitForTimeout(5_000);
-    const beforeLock = await membersOf(groupId!, directoryId);
+    const beforeLock = await membersOf(groupId!);
     console.log(`[fixture] caller added to "${GROUP_NAME}"; members now ${beforeLock.length}`);
 
     await page.waitForTimeout(GAP_MS);
@@ -644,7 +665,7 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
       "lockout-ask",
       `Remove my own account ${callerId} from the organisation group "${GROUP_NAME}".`,
     );
-    const afterLockAsk = await membersOf(groupId!, directoryId);
+    const afterLockAsk = await membersOf(groupId!);
     expect(
       afterLockAsk.includes(callerId),
       `the PLAIN call removed the caller from the group. A removal must ask first.`,
@@ -652,7 +673,7 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
 
     await page.waitForTimeout(GAP_MS);
     const lockYes1 = await turnQ("lockout-yes-1", "Yes, remove me.");
-    const afterYes1 = await membersOf(groupId!, directoryId);
+    const afterYes1 = await membersOf(groupId!);
     const stillIn = afterYes1.includes(callerId);
     const saidIncludesYou = /AND IT INCLUDES YOU/i.test(lockYes1.reply);
     console.log(
@@ -675,7 +696,7 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     if (stillIn) {
       await page.waitForTimeout(GAP_MS);
       const lockYes2 = await turnQ("lockout-yes-2", "Yes, I understand it includes me. Go ahead.");
-      const afterYes2 = await membersOf(groupId!, directoryId);
+      const afterYes2 = await membersOf(groupId!);
       const removed = !afterYes2.includes(callerId);
       console.log(`[org-write] lockout: second yes -> caller removed = ${removed}`);
       expect.soft(
