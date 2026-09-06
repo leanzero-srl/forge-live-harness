@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import {expect} from '../../fixtures/forge';
 import {callOf,currentUserResolver} from './campaign-ui';
-import {cleanReportCapture,verifyCaptureProbe,reportRecovery} from './report-capture-cleanup.mjs';
+import {cleanReportCapture,verifyCaptureProbe,reportRecovery,observeCaptureProbe} from './report-capture-cleanup.mjs';
 import {getTestState} from '../../testhook/client';
 import {createReportCaptureObserver} from './report-capture-observer.mjs';
 
@@ -33,7 +33,7 @@ export async function captureReport(page:any,report:any,planId:string,info:any,{
   await report.getByRole('button',{name:'Capture sponsor report',exact:true}).click();
   const result:any=await session.recorder.wait((state:any)=>!!state.job&&(['failed','cancelled'].includes(state.job.state)||(state.job.state==='complete'&&state.job.cleanupDone&&!!state.report)),timeoutMs);
   expect(result.job.state,result.job.error||'Capture did not complete').toBe('complete');expect(result.job.cleanupDone).toBe(true);
-  const physical=await getTestState('lz-ppm',{what:'reportCaptureState',planId,jobId:result.job.id});verifyCaptureProbe(physical,{planId,jobId:result.job.id,...result.job});expect(physical.privateArtifacts.length,'Completed capture retained nonempty cleanup manifest').toBeGreaterThan(0);
+  const physical=await observeCaptureProbe(()=>getTestState('lz-ppm',{what:'reportCaptureState',planId,jobId:result.job.id}),(value:any)=>fs.writeFileSync(info.outputPath(`${label}-physical-probe.json`),JSON.stringify(value,null,2)));verifyCaptureProbe(physical,{planId,jobId:result.job.id,...result.job});expect(physical.privateArtifacts.length,'Completed capture retained nonempty cleanup manifest').toBeGreaterThan(0);
   const fresh=await session.invoke('getSponsorReport',{planId,reportId:result.job.reportId});expect(fresh.success).toBe(true);expect(fresh.report).toEqual(result.report);
   await expect(report.locator('[data-testid="report-capture-progress"]')).toContainText('Report captured and verified.');
   fs.writeFileSync(info.outputPath(`${label}-final.json`),JSON.stringify({job:result.job,report:fresh.report,freshRetainedRead:true,physicalCleanup:physical},null,2));return fresh.report;

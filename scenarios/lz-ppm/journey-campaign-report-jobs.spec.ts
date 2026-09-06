@@ -6,7 +6,7 @@ import {withOwnedSchedule,table,editDuration,save} from './normalization-owned-f
 import {planning,actualResponse} from './campaign-ui';
 import {observeReportCapture,cleanupOwnedReportCaptures} from './report-capture';
 import {holdFirstReportAdvance,awaitHeldReportStep} from './report-capture-held-step';
-import {verifyCaptureProbe} from './report-capture-cleanup.mjs';
+import {verifyCaptureProbe,observeCaptureProbe} from './report-capture-cleanup.mjs';
 import {settledScreenshot} from './settled-screenshot.mjs';
 test.describe.configure({retries:0,timeout:900000});
 const cases=[['resume','report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML'],['cancel','report jobs: cancellation during held real advance removes staged keys and refuses stale advance'],['source-drift','report jobs: changed owned source during pause refuses publication and cleans exact staging'],['baseline-drift','report jobs: changed active baseline during pause refuses publication and preserves original baseline']] as const;
@@ -14,7 +14,7 @@ for(const [kind,title]of cases)test(title,async({page},info)=>{
  await withOwnedSchedule(page,info,[{label:`report job ${kind}`,start:'2026-10-05',due:'2026-10-09',duration:5}],async(f)=>{
   const journal:any={kind,events:[]},retain=()=>fs.writeFileSync(info.outputPath('report-job-journal.json'),JSON.stringify(journal,null,2));
   const event=(e:any)=>{journal.events.push(e);retain();};let session:any,held:any,finalHeld:any,bodyError:any;
-  const proof=(planId:string,jobId:string)=>getTestState('lz-ppm',{what:'reportCaptureState',planId,jobId});
+  const proof=(planId:string,jobId:string)=>observeCaptureProbe(()=>getTestState('lz-ppm',{what:'reportCaptureState',planId,jobId}),(value:any)=>{journal.probeObservations=[...(journal.probeObservations||[]),value];retain();});
   try{
    const original=await f.read(f.keys[0]);journal.originalJira=original;let frame=await table(page,f.name),work=await planning(frame),baseline:any;
    if(kind==='baseline-drift'){

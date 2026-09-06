@@ -1,0 +1,42 @@
+✔ exact owned state restores through versioned write and two independent reads (2.437792ms)
+✔ foreign settings before write refuse without any overwrite (0.957708ms)
+✔ foreign settings before restore refuse without any overwrite (0.279833ms)
+✔ unacknowledged response failure keeps pending and blocks restoration (0.184541ms)
+✔ unacknowledged response 90 keeps pending and blocks restoration (0.192375ms)
+✔ transport failure after possibly committed save does not license restoration (0.459834ms)
+✔ UI save acknowledgement is retained before a later report failure; known state safely restores (1.85375ms)
+✔ unknown restore outcome remains failed and cannot authorize fixture deletion (0.169958ms)
+✔ second read changed by another user never reports successful restoration (0.3215ms)
+✔ actual compiled fixture retains all exact recovery resources and original failure, checks guards, never deletes (57.073208ms)
+✔ actual cleanup retains exact manifest before and verifies two strong absence reads (1.261083ms)
+✔ foreign owner request cannot be adopted for cleanup (0.51425ms)
+✔ failed or ambiguous cancel is never retried and exact state survives (0.617125ms)
+✔ false cleanupDone while keys still present cannot pass (0.219292ms)
+✔ missing manifest entries after cancellation is not proof of removal (0.166ms)
+✔ cleanup after complete keeps all public report objects (0.322875ms)
+✔ zero-progress cleanup refused rather than infinite retry (0.134459ms)
+✔ failed physical proof is retained before assertion, without deleting or marking clean (0.183834ms)
+✔ shared observation callback retains exact response before caller validation throws (0.108125ms)
+✔ content cannot be excused by relabeling it as a deletion marker (0.160875ms)
+✔ real shape full lifecycle requires cleanup and preserves immutable report (1.16125ms)
+✔ progress alone is not completion and bounded timeout stays failure (6.384625ms)
+✔ begin request nonce mismatch refused (0.602458ms)
+✔ foreign plan ignored and different job cannot replace admitted job (0.161542ms)
+✔ overlapping mutations fail even if eventual outcomes look successful (0.221042ms)
+✔ wrong expected checkpoint refused before accepting later result (0.1795ms)
+✔ unchanged active checkpoint cannot be graded as progress (0.1585ms)
+✔ terminal cleanup cannot erase a completed report (0.183208ms)
+✔ wrong report hash/identity refused (0.142125ms)
+✔ unknown transport outcome preserves original error and last acknowledged job (0.157375ms)
+✔ failed terminal state retained for explicit refusal assertions, not coerced complete (0.105ms)
+✔ second begin cannot silently replace first job after a lost result (0.31475ms)
+✔ actual compiled fixture retains report staging and original failure without deleting (56.534417ms)
+✔ actual compiled fixture retains report staging and both independent recovery causes without deleting (14.53125ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 351.613875
