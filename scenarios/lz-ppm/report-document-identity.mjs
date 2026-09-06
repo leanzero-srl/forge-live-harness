@@ -9,7 +9,8 @@ export function createReportDocumentIdentity({page,appId,envId,record=(_stage,_v
  const detached=frame=>{if(matches(frame)||[...bindings].some(b=>b.frame===frame))invalidate('app-frame-detached');};
  const navigated=frame=>{if(frame===page.mainFrame()||matches(frame))emit('report-document-navigation-observed',{scope:frame===page.mainFrame()?'host':'app',invalidated:false});};
  page.on('request',request);page.on('framedetached',detached);page.on('framenavigated',navigated);
- const release=async binding=>{binding.released=true;bindings.delete(binding);if(binding.handle){const handle=binding.handle;binding.handle=null;try{await handle.dispose();}catch{errors.push(new Error('Document witness handle disposal failed'));}}};
+ const bounded=async operation=>{let timer;operation.catch(()=>{});try{return await Promise.race([operation,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('Document operation timeout')),timeoutMs);})]);}finally{clearTimeout(timer);}};
+ const release=async binding=>{binding.released=true;bindings.delete(binding);if(binding.handle){const handle=binding.handle;binding.handle=null;try{await bounded(handle.dispose());}catch{errors.push(new Error('Document witness handle disposal failed'));}}};
  const capture=requestId=>{
   if(disposed)throw new Error('Report document witness disposed');
   const frames=page.frames().filter(matches),binding={requestId,epoch,frame:frames.length===1?frames[0]:null,handle:null,released:false,valid:false};bindings.add(binding);
@@ -32,7 +33,7 @@ export function createReportDocumentIdentity({page,appId,envId,record=(_stage,_v
  };
  const current=async binding=>{
   await binding.pending;if(errors.length)throw new AggregateError(errors,'Document witness failed');if(disposed||binding.released||!binding.valid||binding.epoch!==epoch||!page.frames().includes(binding.frame)||!matches(binding.frame))return false;
-  try{return await binding.handle.evaluate(doc=>doc===document)&&binding.epoch===epoch&&!binding.released;}catch{return false;}
+  try{return await bounded(binding.handle.evaluate(doc=>doc===document))&&binding.epoch===epoch&&!binding.released;}catch{binding.valid=false;await release(binding);emit('report-document-current-refused',{requestId:binding.requestId,requestEpoch:binding.epoch});return false;}
  };
  const settle=async()=>{await Promise.all([...tasks]);if(errors.length)throw new AggregateError(errors,'Document witness failed');};
  return{capture,current,release,settle,matches,get epoch(){return epoch;},async dispose(){disposed=true;page.off('request',request);page.off('framedetached',detached);page.off('framenavigated',navigated);for(const binding of [...bindings])await release(binding);await settle();}};

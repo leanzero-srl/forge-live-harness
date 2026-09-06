@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "source": "closed eighteenth trace frame snapshots",
+  "queriesAndPathsIncluded": false,
+  "rows": [
+    {
+      "traceSha256": "ba3d7e4ecdcc61cf7dd7088d2699e07a67e2dfa6f15145fbfe9d052202c25426",
+      "directory": "scenarios-lz-ppm-journey-c-26aea-use-then-full-retained-HTML-chromium",
+      "matchingAppSnapshotCount": 75,
+      "uniqueMatchingAppFrameCount": 2,
+      "allUrlStructuralPredicates": true,
+      "exactHostedIframeTagObserved": true,
+      "tagSnapshotSrcLinksAppFrameId": true
+    },
+    {
+      "traceSha256": "53deb4d151d833eb36640677f5a265d0de13cf21878aa97b112a9209027b0d1a",
+      "directory": "scenarios-lz-ppm-journey-c-2ca7a-s-and-refuses-stale-advance-chromium",
+      "matchingAppSnapshotCount": 86,
+      "uniqueMatchingAppFrameCount": 1,
+      "allUrlStructuralPredicates": true,
+      "exactHostedIframeTagObserved": true,
+      "tagSnapshotSrcLinksAppFrameId": true
+    },
+    {
+      "traceSha256": "fe18204bdfe0cff35ceceacde6b2e48baf163379f3ce00394b4a1b0aab6ae84f",
+      "directory": "scenarios-lz-ppm-journey-c-fd1f8-on-and-cleans-exact-staging-chromium",
+      "matchingAppSnapshotCount": 71,
+      "uniqueMatchingAppFrameCount": 1,
+      "allUrlStructuralPredicates": true,
+      "exactHostedIframeTagObserved": true,
+      "tagSnapshotSrcLinksAppFrameId": true
+    },
+    {
+      "traceSha256": "ceebfac83b1d816880f737bd21c7f128e0d9d35833e2979dc63194aa294b5978",
+      "directory": "scenarios-lz-ppm-journey-c-0f0ba-preserves-original-baseline-chromium",
+      "matchingAppSnapshotCount": 116,
+      "uniqueMatchingAppFrameCount": 1,
+      "allUrlStructuralPredicates": true,
+      "exactHostedIframeTagObserved": true,
+      "tagSnapshotSrcLinksAppFrameId": true
+    }
+  ]
+}

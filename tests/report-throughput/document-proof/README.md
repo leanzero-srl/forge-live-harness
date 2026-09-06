@@ -20,3 +20,9 @@ npx tsc --noEmit
 ```
 
 64controls pass,7tests/4files discover. Both intentionally archived red commands exit1. An initial discovery invocation without required dummy environment refused before discovering tests; that output is retained separately and is not counted green. Typecheck remains exit2 from the two unchanged Sentinel errors, with no authored-file errors. This is prepared harness proof, not a passing live report rerun.
+
+## Root follow-up closure
+
+`actual-frame-admission.py` reads all four closed eighteenth lifecycle traces and proves each actual app iframe URL satisfies every structural selector predicate. The host DOM's exact hosted-resources-iframe element is linked to that child frame through the trace snapshot src. Only booleans/counts/hashes are emitted; URL paths/queries and raw DOM are not retained in this proof.
+
+Current document evaluation and handle release now have the existing explicit adapter timeout. The added held-evaluation control proves expiration releases the handle and allows disposal to finish; actual tenant request timeouts are unchanged. The original64-control result remains immutable; `bounded-current-controls-green.txt` records65/65 after this follow-up. The final source file hashes are in `final-freeze.json`.
