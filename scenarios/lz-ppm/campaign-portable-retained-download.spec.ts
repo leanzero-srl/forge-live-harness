@@ -5,7 +5,7 @@ import {pathToFileURL} from 'node:url';
 import {chromium} from '@playwright/test';
 import {test,expect} from '../../fixtures/forge';
 import {getHarnessLaunchReceipt} from '../../forge/browser';
-import {assertDiagnosticReceipt} from './portable-diagnostic-receipt.mjs';
+import {assertDiagnosticReceipt,readDiagnosticRuntime} from './portable-diagnostic-receipt.mjs';
 import {getTestState} from '../../testhook/client';
 import {openPlan} from './forecast-fixture';
 import {actualResponse,currentUserResolver,planning} from './campaign-ui';
@@ -19,7 +19,7 @@ test('diagnostic: portable current Chrome downloads the exact retained sixth spo
  const rpc=currentUserResolver(page,c=>c?.functionKey==='getSponsorReport');
  page.on('crash',()=>stage('app-page-crash'));page.on('close',()=>stage('app-page-closed'));page.context().on('close',()=>stage('browser-context-closed'));
  try{
-  const cdp=await page.context().newCDPSession(page),args=(await cdp.send('Browser.getBrowserCommandLine')).arguments;journal.browser=await cdp.send('Browser.getVersion');expect(journal.browser.product).toBe('Chrome/152.0.7977.76');journal.headlessFlags=args.filter((a:string)=>a.startsWith('--headless'));journal.actualHeadless=journal.headlessFlags.length>0;await cdp.detach();retain();
+  journal.browser=await readDiagnosticRuntime(page.context());journal.requestedHeadless=process.env.HEADLESS==='1';retain();
   const originalPlan=await getTestState('lz-ppm',{what:'plan',planId:fixture.planId});expect(originalPlan.meta.name).toBe(fixture.name);expect(originalPlan.issues.map((i:any)=>i.key)).toEqual(['WFH-2847']);
   const frame=await openPlan(page,fixture.name);await expect(frame.locator('body')).toContainText(/V4\.58\.579/i);const work=await planning(frame);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();const report=work.locator('[data-testid="sponsor-reports"]');
   const reading=actualResponse(page,'getSponsorReport',fixture.planId);await report.getByRole('navigation',{name:'Retained sponsor reports'}).getByRole('button').filter({hasText:'Numeric commitment and overload'}).click();expect((await reading).report).toEqual(source.summary);await expect(report.locator('[data-testid="report-forecast"]')).toContainText('P50 2026-09-14 · P80 2026-09-14 · P90 2026-09-15');

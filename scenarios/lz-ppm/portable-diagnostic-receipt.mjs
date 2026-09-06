@@ -6,3 +6,8 @@ export function assertDiagnosticReceipt(receipt, now=Date.now()) {
  const age=now-Date.parse(receipt.admittedAt);assert.ok(Number.isFinite(age)&&age>=0&&age<=300000,'Actual receipt must be fresh and not future dated');
  return receipt;
 }
+export async function readDiagnosticRuntime(context) {
+ const cdp=await context.newCDPSession(context.pages()[0]);
+ try {const version=await cdp.send('Browser.getVersion');assert.equal(version.product,'Chrome/152.0.7977.76','Actual CDP runtime version');return version;}
+ finally {await cdp.detach();}
+}
