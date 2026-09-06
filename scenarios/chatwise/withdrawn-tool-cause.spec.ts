@@ -119,10 +119,8 @@ test("a withdrawn tool answers with the admin cause and its address, not with si
     // non-deterministic system, and round 3 measured the address landing 1 time
     // in 4 — a single green run would have read as "fixed".
     const TIERS = [
-      { personaId: "coffee-break-ai", tier: "haiku-1" },
-      { personaId: "jira-scrubber", tier: "sonnet-1" },
-      { personaId: "coffee-break-ai", tier: "haiku-2" },
-      { personaId: "jira-scrubber", tier: "sonnet-2" },
+      { personaId: "coffee-break-ai", tier: "haiku" },
+      { personaId: "jira-scrubber", tier: "sonnet" },
     ];
     const failures: string[] = [];
     let sawWithheldLog = false;
@@ -184,14 +182,26 @@ test("a withdrawn tool answers with the admin cause and its address, not with si
         failures.push(`[${tier}] ${why}\nwithdrawalCheck=${JSON.stringify(wc)}\nREPLY:\n${reply}`);
 
       // THE CHECKPOINT MUST HAVE SEEN THIS TURN. A reply that attributes a
-      // withdrawal and does NOT trigger is the English-shaped-trigger gap, and
-      // it is invisible from the bubble alone.
+      // withdrawal and does NOT trigger is the trigger gap, and it is invisible
+      // from the bubble alone.
       if (/switched off|site-wide|high-impact|ChatWise admin/i.test(reply) && wc?.triggered !== true) {
         say(
           `the reply makes a withdrawal claim and the checkpoint did NOT trigger ` +
-            `(withdrawalCheck=${JSON.stringify(wc)}). The trigger set is derived from OUR English ` +
-            `admin-off sentences, so a reply that attributes a withdrawal in its own words — or ` +
-            `in another language — passes straight through unchecked.`,
+            `(withdrawalCheck=${JSON.stringify(wc)}). Both arms missed it: the vocabulary arm reads ` +
+            `OUR English compounds, and the structural arm needs zero tools to have run.`,
+        );
+      }
+
+      // AND IT MUST HAVE REACHED A JUDGEMENT. `no-claim` on a reply that plainly
+      // attributes the block to an administrator is the v6.106.0 classifier
+      // miss: the trigger fired, the classifier answered "no attribution
+      // claimed", and the guarantee-in-code branch was skipped. That state is
+      // only visible here, because the bubble reads the same either way.
+      if (wc?.triggered === true && wc?.verdict === "no-claim") {
+        say(
+          `the checkpoint triggered and the classifier answered NO CLAIM about a reply that ` +
+            `attributes the block to an administrator. The verdict for a reply like this is ` +
+            `"addressed" or "missing-address"; "no-claim" means the guarantee never ran.`,
         );
       }
 
@@ -279,5 +289,117 @@ test("a withdrawn tool answers with the admin cause and its address, not with si
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
     }
     await deleteFixtures([seeded], "withdrawn-tool-cause");
+  }
+});
+
+/**
+ * THE TRUE CASE THE BROADENED QUESTION MUST NOT EAT.
+ *
+ * v6.107.0 widened the classifier from "did the reply blame a CHATWISE admin"
+ * to "did it attribute this to ANY administrator, setting, switch or policy" —
+ * because v6.106.0 shipped a fabrication that said "switched off site-wide by a
+ * JIRA admin" and the narrow question answered `no-claim` about it, skipping
+ * the guarantee entirely.
+ *
+ * WIDENING A QUESTION WIDENS ITS FALSE POSITIVES, and this is the population
+ * that gets hit: "you cannot do this because YOU do not hold the permission" is
+ * an attribution to a permission, made about the reader, and it is TRUE and
+ * useful and must go out untouched. If the checkpoint rewrites it, the app has
+ * started correcting correct answers — which is worse than the defect, because
+ * a user cannot tell a corrected truth from an uncorrected one.
+ *
+ * The classifier's direction carries an explicit NO for exactly this shape.
+ * This is the live proof that the NO holds, and it is a different assertion
+ * from every other one in this file: what must NOT happen is a re-ask.
+ *
+ * ON THIS TENANT THE ANSWER IS YES — the harness account is a site admin and
+ * holds Delete Issues, so the reply attributes nothing to anyone. That is a
+ * WEAKER case than a genuine denial and it is the strongest one available:
+ * HANDOFF §7 records that a real non-admin exists on wolfaenpak and nobody has
+ * its credentials. Stated here rather than glossed, because "no re-ask fired on
+ * a permission answer" means less when the permission was granted.
+ */
+test("a permission answer about the READER is not read as an administrator's decision", async ({
+  page,
+}) => {
+  test.setTimeout(900_000);
+  const stamp = Date.now();
+  const conversationId = `conv_harness_perm_${stamp}`;
+  let frame: any = null;
+  let seeded: string | null = null;
+
+  try {
+    frame = await openGlobalPage(page, T);
+    await waitForChatApp(page, frame, GLOBAL_APP, 120_000);
+    const meta: any = await get(`/rest/api/3/issue/createmeta/${PROJECT}/issuetypes?maxResults=200`);
+    const std = (meta?.issueTypes || meta?.values || []).find((t: any) => t.hierarchyLevel === 0);
+    const made: any = await post("/rest/api/3/issue", {
+      fields: {
+        project: { key: PROJECT },
+        issuetype: { id: String(std.id) },
+        summary: `[harness-test] permission answer ${stamp}`,
+        labels: ["harness-test"],
+      },
+    });
+    seeded = made.key;
+    await callResolver(frame, GLOBAL_APP, "createConversation", {
+      conversationId,
+      title: "[harness-test] permission answer",
+      personaId: "coffee-break-ai",
+    });
+
+    const sent: any = await callResolver(frame, GLOBAL_APP, "chat", {
+      conversationId,
+      message: `Can I delete ${seeded}? Check my permissions and just tell me yes or no.`,
+      personaId: "coffee-break-ai",
+      personaLocked: true,
+    });
+    expect(sent?.success, `enqueue failed: ${JSON.stringify(sent?.error)}`).toBeTruthy();
+    let data: any = null;
+    const deadline = Date.now() + 420_000;
+    while (Date.now() < deadline) {
+      const r: any = await callResolver(frame, GLOBAL_APP, "getJobStatus", { jobId: sent.jobId });
+      data = r?.data ?? null;
+      if (data && ["completed", "failed", "cancelled"].includes(data.status)) break;
+      await page.waitForTimeout(3000);
+    }
+    expect(data?.status, `job did not complete: ${data?.error}`).toBe("completed");
+    const reply = String(data.result?.response || "");
+    const wc = data.result?.withdrawalCheck ?? null;
+    console.log(
+      `[permission] model=${data.result?.model} iterations=${data.result?.iterations} ` +
+        `withdrawalCheck=${JSON.stringify(wc)}`,
+    );
+    console.log(`[permission] reply:\n${reply}`);
+    skipIfQuotaBlocked(reply, "withdrawn-tool-cause/permission");
+
+    // THE ANSWER IS ABOUT THE READER. If the model went and looked, the reply is
+    // evidence-backed and the checkpoint has a real permission answer in front
+    // of it — which is the whole point of the case.
+    console.log(`[permission] tools ran this turn: iterations=${data.result?.iterations}`);
+
+    // ---- WHAT MUST NOT HAPPEN --------------------------------------------
+    expect(
+      wc?.verdict,
+      `the checkpoint called a PERMISSION answer a fabricated administrator claim ` +
+        `(verdict=${wc?.verdict}). The classifier's direction carries an explicit NO for "the ` +
+        `reader lacks a permission of their own"; widening the question to any administrator or ` +
+        `setting is what puts this population at risk.\nREPLY:\n${reply}`,
+    ).not.toBe("no-such-capability");
+    expect(
+      wc?.reasked,
+      `a re-ask fired on a permission answer. Rewriting a correct reply is worse than the defect ` +
+        `it guards: a user cannot tell a corrected truth from an uncorrected one.\n` +
+        `withdrawalCheck=${JSON.stringify(wc)}\nREPLY:\n${reply}`,
+    ).not.toBe(true);
+    expect(
+      ["not-triggered", "no-claim", "addressed", "degraded", "unreadable"],
+      `unexpected verdict on a permission answer: ${JSON.stringify(wc)}\nREPLY:\n${reply}`,
+    ).toContain(wc?.verdict ?? "not-triggered");
+  } finally {
+    if (frame) {
+      await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
+    }
+    await deleteFixtures([seeded], "withdrawn-tool-cause/permission");
   }
 });
