@@ -82,9 +82,9 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
     for (const i of primaryIssues) expect(created.issues.find((r: any) => r.key === i.key)).toMatchObject({ duration: i.seed.duration, startDate: i.seed.start, dueDate: i.seed.due });
     for (const [from, to] of linkPairs) expect(created.issues.find((i: any) => i.key === journal.issues[to].key).predecessors).toContain(journal.issues[from].key);
     await work({ planId: journal.planId, name, retainForRecovery:(error:any,additionalPlans:any[]=[])=>{
-      expect(error?.code).toBe('LZ_CAPACITY_SETTINGS_RECOVERY_REQUIRED');
+      expect(['LZ_CAPACITY_SETTINGS_RECOVERY_REQUIRED','LZ_REPORT_CAPTURE_RECOVERY_REQUIRED']).toContain(error?.code);
       for(const item of additionalPlans){expect(typeof item.id).toBe('string');expect(item.name.startsWith(name+' ')).toBe(true);expect(registry).not.toContain(item.id);}
-      recoveryRetention={reason:error.message,code:error.code,settingsState:error.settingsState,additionalPlans,time:new Date().toISOString()};journal.recoveryRetention=recoveryRetention;persist();
+      recoveryRetention={reason:error.message,code:error.code,settingsState:error.settingsState||recoveryRetention?.settingsState,reportState:error.reportState||recoveryRetention?.reportState,additionalPlans:[...new Map([...(recoveryRetention?.additionalPlans||[]),...additionalPlans].map((p:any)=>[p.id,p])).values()],causes:[...(recoveryRetention?.causes||[]),{code:error.code,reason:error.message}],time:new Date().toISOString()};journal.recoveryRetention=recoveryRetention;persist();
     }, keys: journal.issues.map((i: any) => i.key), read, fields, version: journal.version });
   } catch(error) {
     bodyError=error;journal.bodyError={name:(error as any)?.name,message:String((error as any)?.message||error)};persist();
@@ -103,7 +103,7 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
       await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(before.issues));});
       journal.retainedForRecovery={plans:retainedPlans,issues:journal.issues,version:journal.version||null,reason:recoveryRetention.reason};journal.integrityPassed=false;persist();
       // Retention is a failed recovery boundary, never successful fixture cleanup.
-      throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], 'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');
+      throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors], recoveryRetention.reportState?'Report capture recovery required; exact owned fixtures retained, cleanup not passed':'Capacity settings recovery required; exact owned fixtures retained, cleanup not passed');
     }
     await attempt('resolve-owned-plan',async()=>{if(!journal.planId)journal.planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
     if(journal.planId)await attempt('delete-owned-plan',async()=>{

@@ -32,6 +32,7 @@ export function createReportCaptureObserver({planId,onState=(_state)=>{},now=()=
    assert.ok(body&&body.success===true,`${call.key}: ${body?.error||'No successful resolver body'}`);
    assert.ok(Object.hasOwn(body,'job'),'Capture response must include job');const next=body.job;
    assert.ok(next,'An observed capture cannot disappear');
+   for(const key of ['createdAt','expiresAt']){assert.equal(typeof next[key],'string');assert.ok(Number.isFinite(Date.parse(next[key])),`Invalid ${key}`);}assert.ok(Date.parse(next.expiresAt)>Date.parse(next.createdAt));
    assert.equal(typeof next.id,'string');assert.ok(next.id);assert.ok(['active','complete','cancelled','failed'].includes(next.state));
    for(const key of ['checkpoint','completedUnits','totalUnits'])assert.ok(Number.isSafeInteger(next[key])&&next[key]>=0,`Invalid ${key}`);
    assert.ok(next.completedUnits<=next.totalUnits);assert.equal(typeof next.cleanupDone,'boolean');assert.equal(typeof next.stageLabel,'string');

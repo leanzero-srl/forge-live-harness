@@ -1,4 +1,4 @@
-import {captureReport} from './report-capture';
+import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
 import {createCapacityPreferences} from './capacity-preferences.mjs';
 import {settledScreenshot} from './settled-screenshot.mjs';
 import fs from 'node:fs';
@@ -36,7 +36,7 @@ test('report analytics: actual capture retains exact seeded quantiles, scoped pr
    }
    await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();let report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name',{exact:true}).fill('Numeric commitment and overload');
    await report.locator('form').getByRole('combobox').click();await report.getByRole('option',{name:'High −20% / +60%',exact:true}).click();await report.getByRole('checkbox',{name:'Include captured plan capacity',exact:true}).click();await expect(report).toContainText('become part of this shared report');await chooseDate(frame,report,'Report capacity starts',M);await chooseDate(frame,report,'Report capacity ends',add(M,6));
-   const summary=await captureReport(page,report,f.planId,info);journal.summary=summary;retain();
+   const summary=await captureReport(page,report,f.planId,info,{onRecovery:f.retainForRecovery});journal.summary=summary;retain();
    // Independent fixed model oracle: triangular[4,5,8] rounded working duration;
    // seed42/300 draws places P50/P80 at6 days and P90 at7 days. Inclusive Monday
    // schedule therefore lands next Monday/Tuesday. Earliest target is below any
@@ -73,9 +73,12 @@ test('report analytics: actual capture retains exact seeded quantiles, scoped pr
    const second=await download('after-live-changes');expect(fs.readFileSync(second,'utf8')).toBe(fs.readFileSync(first,'utf8'));journal.immutableAfterScheduleEffortProfileChanges=true;retain();
    await report.getByRole('button',{name:'Delete report',exact:true}).click();await frame.getByRole('dialog',{name:'Delete sponsor report',exact:true}).getByRole('button',{name:'Delete report',exact:true}).click();await expect(report.getByRole('navigation',{name:'Retained sponsor reports'}).getByRole('button')).toHaveCount(0);
   }catch(error){bodyError=error;journal.bodyError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw error;}finally{
+   const cleanupErrors:any[]=[];
+   try{await cleanupOwnedReportCaptures(page,f.planId,info,{onRecovery:f.retainForRecovery});}catch(error){cleanupErrors.push(error);journal.reportCleanupError=String(error);retain();}
    try{const state=await preferences.restore();restored=!state.initialized||state.restored;}
-   catch(error){f.retainForRecovery(error);journal.settingsCleanupError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw new AggregateError([...(bodyError?[bodyError]:[]),error],'Numeric report body and private settings cleanup failures');}
+   catch(error){f.retainForRecovery(error);cleanupErrors.push(error);journal.settingsCleanupError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();}
    finally{rpc.stop();journal.originalPrivateSettingsRestored=restored;retain();page.off('crash',crashed);page.off('close',closed);page.context().off('close',contextClosed);}
+   if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Numeric report body and independent cleanup failures');
   }
  });
 });

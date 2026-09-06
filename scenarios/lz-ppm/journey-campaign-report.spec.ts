@@ -1,4 +1,4 @@
-import {captureReport} from './report-capture';
+import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
 import {settledScreenshot,waitForAppReady} from './settled-screenshot.mjs';
 import {fixtureReportRows} from './report-fixture-oracle.mjs';
 import fs from 'node:fs';
@@ -15,7 +15,7 @@ const planning=async(frame:any)=>{await frame.getByRole('button',{name:/^Plannin
 
 test('reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy',async({page},info)=>{
  const source=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});const keys=source.issues.map((i:any)=>i.key).sort();expect(keys,'standing source is the exact original45 after foreign cleanup').toEqual(Array.from({length:45},(_,n)=>`LZPT-${186+n}`).sort());
- const registry=(await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort();const name=`[harness-test] Report proof ${Date.now().toString(36)}`;let planId:string|undefined,bodyFailure:any;
+ const registry=(await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort();const name=`[harness-test] Report proof ${Date.now().toString(36)}`;let planId:string|undefined,bodyFailure:any,reportRecovery:any;
  const journal:any={name,sourceKeys:keys,sourceCount:keys.length};fs.mkdirSync(info.outputDir,{recursive:true});const persist=()=>fs.writeFileSync(info.outputPath('report-journal.json'),JSON.stringify(journal,null,2));persist();
  try{
   const created=await getTestState('lz-ppm',{what:'createFixture',name,jql:`key in (${keys.join(',')}) ORDER BY key`});planId=created.planId;if(typeof planId!=='string'||!planId)throw new Error('Report fixture creation returned no plan ID');journal.planId=planId;persist();expect(created.issues.map((i:any)=>i.key).sort()).toEqual(keys);
@@ -34,7 +34,7 @@ test('reports: complete actual paged HTML and printed PDF retain all source rows
   // those dates; saved explicit current values remain their own layer.
   const capturedSchedule=fixtureReportRows(savedRaw,original.calendar);expect(capturedSchedule.find((r:any)=>r.key==='LZPT-209')).toMatchObject({startDate:'2026-10-05',dueDate:'2026-10-13',duration:7});
   journal.savedRawSchedule=scheduleFields(savedRaw);journal.capturedWorkingRows=await assertTable(capturedSchedule);persist();
-  work=await planning(frame);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();let report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name').fill('All rows and retained baseline');const manifest=await captureReport(page,report,planId!,info);journal.report=manifest;persist();expect(manifest.counts.timeline).toBe(keys.length);expect(manifest.pages.timeline).toBe(Math.ceil(keys.length/50));expect(manifest.baseline).toMatchObject({name:'Report original baseline',issueCount:keys.length});
+  work=await planning(frame);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();let report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name').fill('All rows and retained baseline');const manifest=await captureReport(page,report,planId!,info,{onRecovery:(error:any)=>{reportRecovery=error;journal.reportRecovery=error.reportState;persist();}});journal.report=manifest;persist();expect(manifest.counts.timeline).toBe(keys.length);expect(manifest.pages.timeline).toBe(Math.ceil(keys.length/50));expect(manifest.baseline).toMatchObject({name:'Report original baseline',issueCount:keys.length});
   await expect(report).toContainText(`Baseline: Report original baseline · ${keys.length} retained rows.`);const preview=report.getByRole('table',{name:'Report preview'});const seen:string[]=[];
   for(let number=0;number<manifest.pages.timeline;number++){await expect(report).toContainText(`Page ${number+1} of ${manifest.pages.timeline}`);const pageKeys=await preview.locator('tbody th').allTextContents();expect(pageKeys.length).toBeGreaterThan(0);seen.push(...pageKeys);if(number+1<manifest.pages.timeline)await report.getByRole('button',{name:'Next report page',exact:true}).click();}
   expect(seen.sort()).toEqual(keys);await settledScreenshot(report,{path:info.outputPath('report-final-preview-page.png')});
@@ -54,10 +54,11 @@ test('reports: complete actual paged HTML and printed PDF retain all source rows
   const clean=async(label:string,action:()=>Promise<void>)=>{try{await action();journal.cleanup.push({label,ok:true});}catch(error){failures.push(error);journal.cleanup.push({label,ok:false,error:String(error)});}persist();};
   await clean('stop owned UI',async()=>{if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());});
   await clean('identify owned plan',async()=>{if(!planId)planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
-  if(planId){const ownedPlanId=planId;await clean('clear owned drafts',async()=>{await getTestState('lz-ppm',{what:'clearDrafts',planId:ownedPlanId});});await clean('delete owned plan',async()=>{expect(await getTestState('lz-ppm',{what:'deleteFixture',planId:ownedPlanId})).toEqual({deleted:ownedPlanId,registryRemoved:true});});}
-  await clean('registry restored',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(registry);});
+  if(planId)await clean('report job cleanup',async()=>{await cleanupOwnedReportCaptures(page,planId!,info,{onRecovery:(e:any)=>{reportRecovery=e;journal.reportRecovery=e.reportState;persist();}});});
+  if(planId&&!reportRecovery){const ownedPlanId=planId;await clean('clear owned drafts',async()=>{await getTestState('lz-ppm',{what:'clearDrafts',planId:ownedPlanId});});await clean('delete owned plan',async()=>{expect(await getTestState('lz-ppm',{what:'deleteFixture',planId:ownedPlanId})).toEqual({deleted:ownedPlanId,registryRemoved:true});});}
+  await clean('registry restored',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(reportRecovery?[...registry,planId].sort():registry);});
   await clean('source unchanged',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(source.issues));});
-  journal.cleanupVerified=failures.length===0;persist();
+  if(reportRecovery){journal.retainedForRecovery={planId,reason:reportRecovery.message};failures.push(reportRecovery);}journal.cleanupVerified=failures.length===0;persist();
   if(failures.length)throw new AggregateError([...(bodyFailure?[bodyFailure]:[]),...failures],'Report test and/or cleanup failed; original evidence retained');
  }
 });

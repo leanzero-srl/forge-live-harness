@@ -1,4 +1,4 @@
-import {captureReport} from './report-capture';
+import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
 import {settledScreenshot,waitForAppReady} from './settled-screenshot.mjs';
 import fs from 'node:fs';
 import {pathToFileURL} from 'node:url';
@@ -17,7 +17,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
  const keys=population.rows.map((i:any)=>i.key).sort(),name=`[harness-test] Large retained capture ${Date.now().toString(36)}`;
  const registry=(await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort();
  const standing=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});
- let planId:string|undefined,bodyError:any;const journal:any={name,population:{count:population.count,sha256:population.sha256,first:population.first,last:population.last,pages:population.pages,elapsedMs:population.elapsedMs},metrics:{}};
+ let planId:string|undefined,bodyError:any,reportRecovery:any;const journal:any={name,population:{count:population.count,sha256:population.sha256,first:population.first,last:population.last,pages:population.pages,elapsedMs:population.elapsedMs},metrics:{}};
  fs.mkdirSync(info.outputDir,{recursive:true});const retain=()=>fs.writeFileSync(info.outputPath('large-history-journal.json'),JSON.stringify(journal,null,2));retain();
  const rpc=currentUserResolver(page,c=>c?.functionKey==='captureSnapshot'&&c.payload?.planId===planId);
  try{
@@ -51,7 +51,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
   await expect(work.locator('[data-testid="snapshot-detail"]')).toContainText(`${population.count} retained issues`);await settledScreenshot(work,{path:info.outputPath('large-capture-visible-count-and-context.png')});
   // Reopen is another real read, compared across the entire result, not its count.
   frame=await openPlan(page,name);work=await planning(frame);const reread=actualResponse(page,'getSnapshot',planId!);await work.getByRole('navigation',{name:'Retained captures'}).getByRole('button').filter({hasText:'Complete large decision'}).click();const reopened=(await reread).snapshot;expect(reopened.hash).toBe(snapshot.hash);expect(reopened.mode).toBeUndefined();expect(reopened.calendar).toEqual(snapshot.calendar);expect(rowFields(reopened.issues)).toEqual(rawExpected);
-  await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();const report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name',{exact:true}).fill('Every existing performance row');const reportStart=Date.now();const summary=await captureReport(page,report,planId!,info);journal.metrics.reportCaptureMs=Date.now()-reportStart;expect(summary.mode).toBeUndefined();expect(summary.calendar).toEqual({calendarName:snapshot.calendar.calendarName??'Unnamed calendar',workingDays:snapshot.calendar.workingDays,holidays:snapshot.calendar.holidays});expect(summary.counts.timeline).toBe(population.count);expect(summary.pages.timeline).toBeGreaterThan(40);journal.report=summary;retain();
+  await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();const report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name',{exact:true}).fill('Every existing performance row');const reportStart=Date.now();const summary=await captureReport(page,report,planId!,info,{onRecovery:(error:any)=>{reportRecovery=error;journal.reportRecovery=error.reportState;retain();}});journal.metrics.reportCaptureMs=Date.now()-reportStart;expect(summary.mode).toBeUndefined();expect(summary.calendar).toEqual({calendarName:snapshot.calendar.calendarName??'Unnamed calendar',workingDays:snapshot.calendar.workingDays,holidays:snapshot.calendar.holidays});expect(summary.counts.timeline).toBe(population.count);expect(summary.pages.timeline).toBeGreaterThan(40);journal.report=summary;retain();
   const allRows:any[]=[],pageMetrics:any[]=[];
   for(let n=0;n<summary.pages.timeline;n++){
    const start=Date.now(),response=await rpc.invoke('getSponsorReportPage',{planId,reportId:summary.id,section:'timeline',page:n});expect(response.success).toBe(true);const part=response.page;expect(part.page).toBe(n);expect(part.pageCount).toBe(summary.pages.timeline);expect(part.total).toBe(population.count);expect(part.rows.length).toBeGreaterThan(0);allRows.push(...part.rows);pageMetrics.push({page:n,rows:part.rows.length,elapsedMs:Date.now()-start,bytes:Buffer.byteLength(JSON.stringify(response))});
@@ -90,9 +90,10 @@ test('large history and report: existing >2000 Jira issues retain every captured
   rpc.stop();const cleanupErrors:any[]=[];const attempt=async(stage:string,work:()=>Promise<void>)=>{try{await work();}catch(error){cleanupErrors.push(error);journal.cleanupErrors??=[];journal.cleanupErrors.push({stage,message:String((error as any)?.message||error)});retain();}};
   await attempt('stop-owned-ui',async()=>{if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());});
   await attempt('resolve-owned-plan',async()=>{if(!planId)planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
-  if(planId)await attempt('delete-owned-plan',async()=>{const current=await getTestState('lz-ppm',{what:'plan',planId:planId!});expect(current.meta.name).toBe(name);await getTestState('lz-ppm',{what:'clearDrafts',planId:planId!});await getTestState('lz-ppm',{what:'deleteFixture',planId:planId!});journal.ownedPlanCleaned=true;retain();});
-  await attempt('registry-integrity',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(registry);});
+  if(planId)await attempt('report-job-cleanup',async()=>{await cleanupOwnedReportCaptures(page,planId!,info,{onRecovery:(e:any)=>{reportRecovery=e;journal.reportRecovery=e.reportState;retain();}});});
+  if(planId&&!reportRecovery)await attempt('delete-owned-plan',async()=>{const current=await getTestState('lz-ppm',{what:'plan',planId:planId!});expect(current.meta.name).toBe(name);await getTestState('lz-ppm',{what:'clearDrafts',planId:planId!});await getTestState('lz-ppm',{what:'deleteFixture',planId:planId!});journal.ownedPlanCleaned=true;retain();});
+  await attempt('registry-integrity',async()=>{expect((await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort()).toEqual(reportRecovery?[...registry,planId].sort():registry);});
   await attempt('standing-source-integrity',async()=>{expect(scheduleFields((await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN})).issues)).toEqual(scheduleFields(standing.issues));});
-  retain();if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Large history body/cleanup failures');
+  if(reportRecovery){journal.retainedForRecovery={planId,reason:reportRecovery.message};cleanupErrors.push(reportRecovery);}retain();if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Large history body/cleanup failures');
  }
 });
