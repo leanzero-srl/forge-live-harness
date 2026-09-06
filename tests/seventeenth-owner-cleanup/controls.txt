@@ -1,0 +1,16 @@
+✔ external exact completed journal and inspection admit; no invented terminal in executable (5.479917ms)
+✔ missing or unapproved root receipt and either mismatched byte digest refuse (8.766458ms)
+✔ active/stale/cleaned/failed terminal and changed owner identity refuse (11.619583ms)
+✔ lost private payload, wrong marker, missing page and uninspected/tampered artifact refuse (9.429792ms)
+✔ complete owner flow exactly38 acknowledgements then stops; no extra calls (1.718458ms)
+✔ false/throw/zero-progress/cross-job/false-final never retries (5.587875ms)
+✔ monotonic and explicit bounded duration fail closed (2.647084ms)
+✔ only measured cleanup mutations priced and unknown operations still refuse (0.298708ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92.727833
