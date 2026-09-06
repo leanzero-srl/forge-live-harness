@@ -157,7 +157,7 @@ export async function cardState(root: Root, card: any): Promise<string> {
  */
 export async function removeCredentialViaCard(root: Root, card: any): Promise<boolean> {
   if ((await cardState(root, card)) === "unconfigured") return true;
-  const open = root.getByRole("button", { name: card.buttons.remove, exact: true }).first();
+  const open = cardButton(root, card, card.buttons.remove).first();
   const there = await open
     .waitFor({ state: "visible", timeout: 8_000 })
     .then(() => true)
@@ -167,6 +167,30 @@ export async function removeCredentialViaCard(root: Root, card: any): Promise<bo
     return false;
   }
   await open.click().catch(() => {});
+  // ⚠️ WAIT FOR THE DIALOG BEFORE CHOOSING `.last()`, AND THIS IS NOT
+  // DEFENSIVENESS — IT IS THE BUG THAT LEFT A REAL SITE-ADMIN TOKEN ON A SHARED
+  // TENANT (measured 6 Sep 2026).
+  //
+  // The card's own control and the modal's confirm carry the SAME LABEL
+  // ("Remove token" is both `buttons.remove` and `remove.confirm`). Before the
+  // modal paints there is exactly ONE button with that name, so `.last()`
+  // resolves to the CARD'S button and the confirm click lands back on the
+  // opener — the dialog toggles and nothing is removed. Playwright reports the
+  // click delivered, `.catch(() => {})` swallows nothing because nothing threw,
+  // and the only symptom is a card that still says "Token saved" ten polls
+  // later. Measured: 1 matching button before the dialog, 2 after ~4s.
+  //
+  // The dialog TITLE is the thing to wait on — it is unique to the modal, where
+  // the button label is not.
+  const dialogUp = await root
+    .getByText(card.remove.title, { exact: true })
+    .first()
+    .waitFor({ state: "visible", timeout: 20_000 })
+    .then(() => true)
+    .catch(() => false);
+  if (!dialogUp) {
+    console.warn(`[restore] the "${card.remove.title}" dialog never opened`);
+  }
   await root
     .getByRole("button", { name: card.remove.confirm, exact: true })
     .last()
@@ -275,6 +299,33 @@ export async function openAdminSettings(page: Page, deepLink: string): Promise<R
  * `values` is keyed by the copy module's field `key`, so a renamed field id
  * fails here rather than silently filling nothing. THE VALUES ARE NEVER LOGGED.
  */
+/**
+ * A button that belongs to THIS card, not to whichever card painted first.
+ *
+ * ⚠️ "Save key", "Test key" and "Remove key" are the labels on BOTH the
+ * web-search card and the organisation card (measured 6 Sep 2026: the Settings
+ * tab carries `Save key, Test key, Remove key, Save token, Test token, Remove
+ * token, Save key, Test key, Remove key`). A page-wide `getByRole("button",
+ * { name: "Save key" })` is therefore a strict-mode violation, and `.first()`
+ * — which is what a harness reaches for to silence that — presses the WEB
+ * SEARCH card's Save while the organisation fields sit there filled and
+ * unsaved. The spec then reports "the card does not show the key as stored"
+ * and the finger points at the product.
+ *
+ * So the button is found FROM THE CARD'S OWN FIELD: the nearest ancestor of one
+ * of this card's inputs that contains a button with that label. No ordering
+ * assumption, no `.first()`, and it fails loudly if the card ever loses its
+ * field.
+ */
+export function cardButton(root: Root, card: any, label: string) {
+  const anchorId = card.fields?.[card.fields.length - 1]?.id;
+  if (!anchorId) throw new Error(`"${card.heading}" declares no fields to anchor its buttons on`);
+  return root.locator(
+    `xpath=//input[contains(@id,"${anchorId}")]/ancestor::*[.//button[normalize-space(.)="${label}"]][1]` +
+      `//button[normalize-space(.)="${label}"]`,
+  );
+}
+
 export async function storeCredentialViaCard(
   root: Root,
   card: any,
@@ -287,7 +338,7 @@ export async function storeCredentialViaCard(
     await loc.waitFor({ state: "visible", timeout: 30_000 });
     await loc.fill(value);
   }
-  await root.getByRole("button", { name: card.buttons.save, exact: true }).first().click();
+  await cardButton(root, card, card.buttons.save).first().click();
   await root
     .getByText(card.savedLozenge, { exact: true })
     .first()

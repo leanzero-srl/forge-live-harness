@@ -131,8 +131,12 @@ test("the organisation reads return what the organisation actually contains", as
     }
     return r;
   }
+  /** Executed, not merely reached for — `executor.js` prints both on one prefix. */
   const called = (win: any[], tool: string) =>
-    win.filter((l: any) => new RegExp(`^\\[Tools\\] ${tool}\\b`).test(l.text));
+    win.filter(
+      (l: any) =>
+        new RegExp(`^\\[Tools\\] ${tool}\\b`).test(l.text) && !/is withheld this turn/.test(l.text),
+    );
 
   try {
     // ---- GROUND TRUTH FIRST, so the asks are checked and not just read ------

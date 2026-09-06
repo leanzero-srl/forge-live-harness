@@ -130,8 +130,21 @@ test("the site token opens four tools, they run as the stored administrator, and
   }
   const toolset = (win: any[]) =>
     win.find((l: any) => /^\[Consumer\] toolset:/.test(l.text))?.text || "";
+  /**
+   * Calls that really EXECUTED.
+   *
+   * `executor.js` prints `[Tools] <name> is withheld this turn — not executed`
+   * on the very same prefix when a gate is closed and the model reaches anyway,
+   * so a naive prefix match counts a refusal as a call — which is the exact
+   * opposite of what the closed-gate assertions below are asking.
+   */
   const called = (win: any[], tool: string) =>
-    win.filter((l: any) => new RegExp(`^\\[Tools\\] ${tool}\\b`).test(l.text));
+    win.filter(
+      (l: any) =>
+        new RegExp(`^\\[Tools\\] ${tool}\\b`).test(l.text) && !/is withheld this turn/.test(l.text),
+    );
+  const withheld = (win: any[], tool: string) =>
+    win.filter((l: any) => new RegExp(`^\\[Tools\\] ${tool}\\b.*is withheld this turn`).test(l.text));
 
   try {
     // ---- PRE-FLIGHT: REST ground truth, and the ghost key really is a ghost --
@@ -298,8 +311,8 @@ test("the site token opens four tools, they run as the stored administrator, and
     await waitForChatApp(page, frame, GLOBAL_APP, 120_000);
     const refused = await turnQ(
       "site-token-refusal",
-      `Now read the screen configuration of project ${PROJECT} again — its issue type screen ` +
-        `scheme and screens.`,
+      `Now, using the stored site admin token, read the screen configuration of project ` +
+        `${PROJECT} again — the issue type screen scheme and the screens behind it.`,
     );
     if (!QUOTA_BUBBLE.test(refused.reply)) {
       const line2 = toolset(refused.win);
@@ -309,20 +322,36 @@ test("the site token opens four tools, they run as the stored administrator, and
         `the site-token gate is STILL OPEN after the credential was removed through the card. ` +
           `Removing a credential has to close it on the very next turn:\n${line2}`,
       ).toMatch(/allowSiteToken=false\(no-credential\)/);
+      console.log(
+        `[site-token] after removal: getScreenConfiguration executed=` +
+          `${called(refused.win, "getScreenConfiguration").length} withheld=` +
+          `${withheld(refused.win, "getScreenConfiguration").length}`,
+      );
       expect(
         called(refused.win, "getScreenConfiguration").length,
         `getScreenConfiguration ran with no stored token. There is no asUser fallback by design; ` +
           `a tool that sometimes acts as a person and sometimes as the app is a permission model ` +
           `nobody could describe.`,
       ).toBe(0);
-      // The refusal has to point somewhere. `capabilityNotes.allowSiteToken`'s
+      // THE REFUSAL HAS TO POINT SOMEWHERE, and this is the assertion the
+      // owner's degraded-path rule turns on: a "no" with no route through is
+      // the failure, not the refusal itself. `capabilityNotes.allowSiteToken`'s
       // no-credential sentence names the card by its heading precisely so an
-      // administrator sent to a settings page can find the field.
+      // administrator sent to a settings page can find the one field being
+      // talked about. Either the heading verbatim, or the two facts it carries
+      // (a stored site admin token, added in ChatWise's settings), counts —
+      // a model is allowed to say it in its own words, not to drop it.
+      const heading = new RegExp(SITE.heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+      const namesRoute =
+        heading.test(refused.reply) ||
+        (/site admin(istrator)? token/i.test(refused.reply) &&
+          /settings|manage apps|ChatWise admin/i.test(refused.reply));
       expect(
-        refused.reply,
-        `the refusal does not name the "${SITE.heading}" card, so a user is told no and given no ` +
-          `way through:\n${refused.reply.slice(0, 1200)}`,
-      ).toMatch(new RegExp(SITE.heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
+        namesRoute,
+        `the refusal names no way through. It has to say a site admin token is not stored AND ` +
+          `where a ChatWise admin adds one ("${SITE.heading}" on the Settings tab); a bare "I ` +
+          `cannot" leaves an administrator stuck:\n${refused.reply.slice(0, 1400)}`,
+      ).toBe(true);
     }
   } finally {
     console.log(`[site-token] FINDINGS:\n- ${findings.join("\n- ") || "(none)"}`);

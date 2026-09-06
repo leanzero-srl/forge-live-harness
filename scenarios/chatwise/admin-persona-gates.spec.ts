@@ -155,12 +155,56 @@ test("the admin gates open for the admin persona only, and the eight asUser read
         table.push({ tool, status: "SKIPPED (quota)", called: false });
         continue;
       }
-      const called = r.win.filter((l: any) => new RegExp(`^\\[Tools\\] ${tool}\\b`).test(l.text));
+      // WITHHELD IS NOT CALLED. `executor.js` prints the refusal on the same
+      // `[Tools] <name>` prefix, so a naive match would record a closed gate as
+      // a 200 — the one mistake that would make this whole table a lie.
+      const called = r.win.filter(
+        (l: any) =>
+          new RegExp(`^\\[Tools\\] ${tool}\\b`).test(l.text) && !/is withheld this turn/.test(l.text),
+      );
+      /**
+       * A SUB-REQUEST'S 404 IS NOT THE TOOL'S STATUS — measured 6 Sep 2026 and
+       * it corrupted the first run of this table.
+       *
+       * `getWorkflowScheme` asks for the scheme AND, optionally, its draft.
+       * WFH has no draft, so Jira answers 404 to the second call and the
+       * handler absorbs it and prints
+       *   `[Tools] getWorkflowScheme(WFH) draft failed: 404 …`
+       * one line above its own successful outcome
+       *   `[Tools] getWorkflowScheme(WFH): 1 issue-type mapping(s), draft=false`.
+       * A naive `.*failed:` match recorded 404 for a read that returned exactly
+       * what the model then reported correctly — which is the whole table
+       * lying in the direction of "asUser does not survive", the one
+       * conclusion this spec exists to establish.
+       *
+       * So: an OUTCOME line (the tool's own name followed by `:` or `(...):`
+       * and no "failed") settles the row as 200; only when there is no outcome
+       * line does a failure line decide it.
+       */
+      const outcome = r.win.filter(
+        (l: any) =>
+          new RegExp(`^\\[Tools\\] ${tool}(\\(|:)`).test(l.text) && !/ failed:/.test(l.text),
+      );
       const failed = r.win.filter((l: any) => new RegExp(`^\\[Tools\\] .*${tool}.*failed:`).test(l.text));
-      const status = failed.length
-        ? (failed[0].text.match(/failed:\s*(\d{3})/) || [])[1] || "error"
-        : called.length ? "200" : "not-called";
-      table.push({ tool, status, called: called.length > 0, evidence: (failed[0]?.text || called[0]?.text || "").slice(0, 220) });
+      const wholeToolFailed = failed.filter((l: any) =>
+        new RegExp(`^\\[Tools\\] ${tool}(\\([^)]*\\))? failed:`).test(l.text),
+      );
+      const status = outcome.length
+        ? "200"
+        : wholeToolFailed.length
+          ? (wholeToolFailed[0].text.match(/failed:\s*(\d{3})/) || [])[1] || "error"
+          : failed.length
+            ? (failed[0].text.match(/failed:\s*(\d{3})/) || [])[1] || "error"
+            : called.length
+              ? "200"
+              : "not-called";
+      table.push({
+        tool,
+        status,
+        called: called.length > 0,
+        subRequestFailures: failed.length - wholeToolFailed.length,
+        evidence: (outcome[0]?.text || wholeToolFailed[0]?.text || failed[0]?.text || called[0]?.text || "").slice(0, 220),
+      });
       console.log(`[asUser] ${tool} -> ${status}`);
       fs.writeFileSync(OUT, JSON.stringify(table, null, 2));
       if (i < EIGHT.length - 1) await page.waitForTimeout(GAP_MS);
@@ -189,8 +233,11 @@ test("the admin gates open for the admin persona only, and the eight asUser read
     console.log(`[gates] scrubber toolset line: ${scrubLine}`);
     expect(scrubLine, `the Scrubber got the admin tools:\n${scrubLine}`)
       .toMatch(/allowJiraAdminTools=false\(not-this-persona\)/);
-    const adminCalls = scrub.win.filter((l: any) =>
-      /^\[Tools\] (getProjectConfiguration|getPermissionScheme|getSchemeUsage|getWorkflowScheme|getNotificationScheme|getFieldContexts|listGroupsAndMembers|getAuditRecords)\b/.test(l.text));
+    const adminCalls = scrub.win.filter(
+      (l: any) =>
+        /^\[Tools\] (getProjectConfiguration|getPermissionScheme|getSchemeUsage|getWorkflowScheme|getNotificationScheme|getFieldContexts|listGroupsAndMembers|getAuditRecords)\b/.test(l.text) &&
+        !/is withheld this turn/.test(l.text),
+    );
     expect(adminCalls.map((l: any) => l.text),
       `the Scrubber executed admin-config tools:\n${describeLogs(adminCalls)}`).toEqual([]);
     expect(scrub.reply,

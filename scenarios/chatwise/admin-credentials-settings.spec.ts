@@ -29,6 +29,7 @@ import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";
 import { GLOBAL_APP, callResolver, openGlobalPage, waitForChatApp } from "./chatwise-support";
 import {
+  cardButton,
   cardState,
   hasSecret,
   loadCredentialCopy,
@@ -76,6 +77,7 @@ test("both credential cards say exactly what the app says they say, and never gi
   let root: Root | null = null;
   let stored: string[] = [];
   let testOutcome = "(not reached)";
+  let emailBefore = 0;
 
   try {
     await assertLoggedIn(page);
@@ -144,9 +146,15 @@ test("both credential cards say exactly what the app says they say, and never gi
     );
 
     // ---- STORE THE SITE TOKEN THROUGH THE UI ------------------------------
+    // The baseline for the leak check below: how many times Jira's OWN page
+    // already carries this address before ChatWise is given it.
+    emailBefore = await page.evaluate(
+      (m) => document.documentElement.outerHTML.split(m).length - 1,
+      secret(".site_email"),
+    );
     await siteEmail.fill(secret(".site_email"));
     await siteToken.fill(secret(".site_token"));
-    await root.getByRole("button", { name: SITE.buttons.save, exact: true }).click();
+    await cardButton(root, SITE, SITE.buttons.save).first().click();
     stored.push("SITE_TOKEN");
     await expect(
       root.getByText(SITE.savedLozenge, { exact: true }).first(),
@@ -168,7 +176,7 @@ test("both credential cards say exactly what the app says they say, and never gi
     // CAPTURED FIRST, THEN ASSERTED. A bare assertion on `testPass` reports
     // "Test is broken" without saying what the card DID say, which is the
     // difference between a bug report and one somebody can act on.
-    await root.getByRole("button", { name: SITE.buttons.test, exact: true }).click();
+    await cardButton(root, SITE, SITE.buttons.test).first().click();
     await page.waitForTimeout(20_000);
     const afterTest = await page.evaluate(() => document.body.innerText);
     const near = afterTest
@@ -186,6 +194,52 @@ test("both credential cards say exactly what the app says they say, and never gi
       `Atlassian did not accept the stored token. The card showed:\n${near.join("\n")}`,
     ).toBe(true);
 
+    // ---- THE VERDICT PERSISTS, AND THE TIMESTAMP MOVES --------------------
+    //
+    // 13.6.0's fix. Two different failures hide behind one green sentence:
+    // a verdict that flashes and vanishes leaves an administrator who blinked
+    // with no answer, and a verdict that STAYS while the timestamp under it
+    // does not move is a stale "accepted" standing over a token that may have
+    // been revoked an hour ago. So: read the "Last accepted by Atlassian" line
+    // before pressing Test a second time, and require it to change.
+    //
+    // ⚠️ THE LINE IS NOT IN `credentialCopy.js`. It is typed into the JSX
+    // (src/admin-uikit/src/index.jsx), which is the one string on this card
+    // that a copy edit can change without any test noticing — the exact defect
+    // the copy module exists to prevent. Reported, not worked around.
+    const LAST_ACCEPTED = "Last accepted by Atlassian";
+    const readLastAccepted = async () => {
+      const body = await page.evaluate(() => document.body.innerText);
+      return (body.split("\n").find((l) => l.includes(LAST_ACCEPTED)) || "").trim();
+    };
+    const firstStamp = await readLastAccepted();
+    console.log(`[admin-creds] after Test #1 the card says: "${firstStamp}"`);
+    expect(
+      firstStamp,
+      `the card shows no "${LAST_ACCEPTED}" line after a successful Test, so an administrator ` +
+        `cannot tell whether the verdict above it is from just now or from last week`,
+    ).not.toBe("");
+
+    // A second press, far enough apart that a to-the-minute stamp must differ.
+    await page.waitForTimeout(65_000);
+    await cardButton(root, SITE, SITE.buttons.test).first().click();
+    await page.waitForTimeout(20_000);
+    const secondStamp = await readLastAccepted();
+    console.log(`[admin-creds] after Test #2 the card says: "${secondStamp}"`);
+    expect(
+      secondStamp,
+      `"${LAST_ACCEPTED}" did not move between two presses of Test 65 seconds apart. A verdict ` +
+        `that never ages is a stale "accepted" standing over a credential that may since have ` +
+        `been revoked.\nfirst:  ${firstStamp}\nsecond: ${secondStamp}`,
+    ).not.toBe(firstStamp);
+    // And the verdict is still there — it persists rather than flashing.
+    const stillThere = await page.evaluate(() => document.body.innerText);
+    expect(
+      stillThere.includes(SITE.testPass),
+      `the "${SITE.testPass}" verdict is not on the card any more. It has to persist: an admin ` +
+        `who looked away has no other way to learn the answer.`,
+    ).toBe(true);
+
     // ---- RELOAD: THE SECRET IS NOWHERE IN THE PAGE ------------------------
     await page.reload({ waitUntil: "domcontentloaded" });
     const root2 = await resolveAdminRoot(page);
@@ -196,6 +250,8 @@ test("both credential cards say exactly what the app says they say, and never gi
     });
     const tok = secret(".site_token");
     const mail = secret(".site_email");
+    const countEmail = (m: string) =>
+      page.evaluate((x) => document.documentElement.outerHTML.split(x).length - 1, m);
     const leak = await page.evaluate(
       (v) => {
         const html = document.documentElement.outerHTML;
@@ -203,7 +259,7 @@ test("both credential cards say exactly what the app says they say, and never gi
         return {
           full: html.includes(v.tok),
           prefix: html.includes(v.pre),
-          email: html.includes(v.mail),
+          emailCount: html.split(v.mail).length - 1,
           inInput: inputs.includes(v.pre) || inputs.includes(v.mail),
         };
       },
@@ -211,7 +267,27 @@ test("both credential cards say exactly what the app says they say, and never gi
     );
     expect(leak.full, "the token is in the admin page's DOM after a reload").toBe(false);
     expect(leak.prefix, "a PREFIX of the token is in the DOM — a prefix narrows a brute force").toBe(false);
-    expect(leak.email, "the account email is in the DOM").toBe(false);
+    // ⚠️ THE EMAIL IS ASSERTED AS A DIFFERENCE, NOT AS AN ABSENCE, and the
+    // first version of this line was a false P0 (measured 6 Sep 2026).
+    //
+    // The admin page is UI Kit 2 and renders in the HOST DOM, so "the DOM"
+    // here is JIRA'S WHOLE PAGE — and the account whose token this is happens
+    // to be the account driving the browser, whose address Jira itself puts in
+    // the profile button and in `window.SPA_STATE`. Two text nodes matched, no
+    // input did, and neither came from ChatWise. Scoping by frame is not
+    // available on this surface, so the honest question is not "is the address
+    // present" but "did STORING it put it anywhere it was not already" — which
+    // is what `emailBefore`, captured before the save, makes answerable.
+    console.log(
+      `[admin-creds] account email occurrences in the host page: before=${emailBefore} ` +
+        `after=${leak.emailCount} (Jira's own chrome renders the signed-in user's address)`,
+    );
+    expect(
+      leak.emailCount,
+      `storing the token ADDED ${leak.emailCount - emailBefore} occurrence(s) of the account ` +
+        `address to the page. Jira's own chrome already carried ${emailBefore}; anything above ` +
+        `that came from ChatWise re-rendering a stored value.`,
+    ).toBeLessThanOrEqual(emailBefore);
     expect(leak.inInput, "the credential was rehydrated into an input").toBe(false);
 
     // ---- THE ORG KEY, THE SAME WAY ----------------------------------------
@@ -220,14 +296,14 @@ test("both credential cards say exactly what the app says they say, and never gi
       const orgKey2 = root2.locator(fid(ORG, "key")).first();
       await orgId2.fill(secret(".org_id"));
       await orgKey2.fill(secret(".org_key"));
-      await root2.getByRole("button", { name: ORG.buttons.save, exact: true }).click();
+      await cardButton(root2, ORG, ORG.buttons.save).first().click();
       stored.push("ORG_KEY");
       await expect(
         root2.getByText(ORG.savedLozenge, { exact: true }).first(),
         "no acknowledgement that the org key was stored",
       ).toBeVisible({ timeout: 30_000 });
       expect(await cardState(root2, ORG), "the card does not show the key as stored").toBe("configured");
-      await root2.getByRole("button", { name: ORG.buttons.test, exact: true }).click();
+      await cardButton(root2, ORG, ORG.buttons.test).first().click();
       await expect(
         root2.getByText(ORG.testPass, { exact: false }).first(),
         "Test did not report Atlassian accepting the org key",
@@ -237,7 +313,7 @@ test("both credential cards say exactly what the app says they say, and never gi
     }
 
     // ---- REMOVE, THROUGH THE APP'S OWN DIALOG -----------------------------
-    await root2.getByRole("button", { name: SITE.buttons.remove, exact: true }).first().click();
+    await cardButton(root2, SITE, SITE.buttons.remove).first().click();
     await expect(
       root2.getByText(SITE.remove.title, { exact: true }).first(),
       "the removal confirmation dialog did not open",
