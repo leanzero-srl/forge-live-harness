@@ -460,45 +460,57 @@ test("a 45-slide ask meets the REAL ceiling of 40 — and both files actually ar
     ).toBe(decks.length);
 
     // ---- THREE BUILDS IS THE CEILING, AND ONLY BUILDS COUNT ---------------
-    // v6.105.0 caps a turn at MAX_DECKS_PER_TURN = 3 BUILT decks. The
-    // distinction matters: on v6.104.0 one turn made SEVEN createPresentation
-    // calls (40, 45, 24, 23, 21, 34, 11) of which five produced nothing,
-    // because making decks free removed the only counter there was. A refused
-    // over-ceiling attempt is not a build and must not be charged, or the
-    // model pays for being told no — which is the v6.103.0 defect in a new
-    // coat.
+    // v6.105.0 caps a turn at MAX_DECKS_PER_TURN = 3 BUILT decks. v6.104.0 had
+    // no counter at all — making decks free removed the only one there was, and
+    // one turn made SEVEN createPresentation calls of which five produced
+    // nothing.
     //
-    // COUNTED FROM THE LOG, not from the reply: `slides:<array N>` with N <= 40
-    // is a call that could have built. Over-ceiling calls are excluded because
-    // presentation.js refuses them before the renderer.
+    // COUNTED FROM `decks`, NOT FROM THE LOG, and the first version of this
+    // assertion got that wrong. A `[Tools] createPresentation` line is an
+    // ATTEMPT; the ceiling is on BUILDS, and the log cannot tell the two apart
+    // — a call whose slot names are wrong is refused by the renderer and is not
+    // a build. Since v6.105.0 decks never collapse, every successful build adds
+    // an entry, so `decks.length` IS the build count. Measured: five attempts
+    // (42 refused over-ceiling, then 20, 21, 23, 25) with TWO on the row —
+    // the 20 and the 23 failed and were re-issued. Four attempts, two builds,
+    // ceiling not touched. Asserting on attempts called that a violation.
     const buildAttempts = calls.filter((l) => {
       const m = l.text.match(/slides:<array (\d+)>/);
       return m ? Number(m[1]) <= 40 : false;
     });
     console.log(
-      `[deck45] build-shaped calls=${buildAttempts.length} (over-ceiling=${overCeiling.length}, ` +
-        `total=${calls.length})`,
+      `[deck45] attempts=${calls.length} (over-ceiling ${overCeiling.length}, ` +
+        `build-shaped ${buildAttempts.length}) -> builds=${decks.length}`,
     );
     expect(
-      buildAttempts.length,
-      `${buildAttempts.length} build-shaped createPresentation calls in one turn. ` +
-        `MAX_DECKS_PER_TURN is 3 and only BUILT decks count toward it, so a fourth build must be ` +
-        `refused rather than executed.\n${describeLogs(calls)}`,
+      decks.length,
+      `${decks.length} decks were BUILT in one turn. MAX_DECKS_PER_TURN is 3.\n${describeLogs(calls)}`,
     ).toBeLessThanOrEqual(3);
 
-    // IF a fourth was attempted, the refusal has to name the ceiling and the
-    // way through. A budget refusal that does not say "a new message restores
-    // it" reads as a dead end — that rule is why every other budget refusal in
-    // this app carries it.
-    if (buildAttempts.length > 3 || /deck limit|three decks|3 decks/i.test(reply)) {
+    // THE CEILING BOUNDS BUILDS, NOT ATTEMPTS — so a model whose calls keep
+    // failing can still churn, and each attempt costs ~40s of the 900s window.
+    // Not an assertion (a failed render is the model's mistake, not the app's)
+    // but worth saying out loud, because it is what the counter does NOT do.
+    if (buildAttempts.length > decks.length + 1) {
+      console.warn(
+        `[deck45] CHURN: ${buildAttempts.length} build-shaped attempts produced ${decks.length} ` +
+          `deck(s). MAX_DECKS_PER_TURN does not bound attempts, only builds; the iteration cap is ` +
+          `the only thing that ends this.`,
+      );
+    }
+
+    // IF a build was refused for the ceiling, the refusal must name it AND say
+    // a new message restores the allowance — a per-turn cap that does not say
+    // so reads as a permanent one.
+    const ceilingRefusal = win.filter((l) => /MAX_DECKS|deck.{0,20}per turn|three decks/i.test(l.text));
+    if (ceilingRefusal.length || /deck limit|three decks|3 decks/i.test(reply)) {
       expect(
         reply,
         `the reply mentions hitting the deck ceiling but does not name 3:\n${reply.slice(0, 1200)}`,
       ).toMatch(/\b3\b|three/i);
       expect(
         reply,
-        `the deck-ceiling refusal does not tell the user a NEW MESSAGE restores the allowance, ` +
-          `so a per-turn cap reads as a permanent one:\n${reply.slice(0, 1200)}`,
+        `the deck-ceiling refusal does not tell the user a NEW MESSAGE restores the allowance:\n${reply.slice(0, 1200)}`,
       ).toMatch(/new message|next message|another message|send.{0,20}again/i);
     }
 
