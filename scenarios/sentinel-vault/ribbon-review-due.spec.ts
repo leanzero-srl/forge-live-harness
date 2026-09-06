@@ -49,19 +49,20 @@ test("steward moves the review date from the ribbon; the dialog is fully visible
         const src = (await ifr.nth(i).getAttribute("src").catch(() => "")) || "";
         if (!src.includes(DEV)) continue;
         const cf = ifr.nth(i).contentFrame();
-        if ((await cf.locator('[data-testid="wf-review-due"]').count().catch(() => 0)) > 0) { ribbon = cf; ribbonEl = ifr.nth(i); break; }
+        if ((await cf.locator('[data-testid="wf-details-chip"]').count().catch(() => 0)) > 0) { ribbon = cf; ribbonEl = ifr.nth(i); break; }
       }
       if (!ribbon) await page.waitForTimeout(1500);
     }
     expect(ribbon, "the ribbon renders the review-due control for a steward").toBeTruthy();
 
-    const control = ribbon.locator('[data-testid="wf-review-due"]');
+    const control = ribbon.locator('[data-testid="wf-details-chip"]');
     const before = ((await control.innerText()) as string).replace(/\s+/g, " ").trim();
     console.log("### review-due before:", JSON.stringify(before));
-    expect(before, "the indicator reads as a review date").toMatch(/Review (due|overdue)/i);
+    expect(before, "the details chip names the review date").toMatch(/review (due|overdue)/i);
     await control.click();
     const dialog = ribbon.locator('[data-testid="wf-review-due-dialog"]');
-    await expect(dialog, "the review-date dialog opens").toBeVisible({ timeout: 8000 });
+    await expect(dialog, "the review-date section opens in the details popover").toBeVisible({ timeout: 8000 });
+    await dialog.locator('[data-testid="wf-review-due-change"]').click(); // a steward reveals the month grid
 
     // THE CLIPPING GUARD: the dialog's box (page coordinates) must lie inside the iframe's box.
     // The host resizes the iframe a beat after the in-flow dialog mounts — poll the frame box.
@@ -97,7 +98,8 @@ test("steward moves the review date from the ribbon; the dialog is fully visible
     await expect(day, `the day ${ymd(target)} is offered`).toBeVisible();
     await day.click();
     await dialog.locator('[data-testid="wf-review-due-save"]').click();
-    await expect(dialog, "the dialog closes on save").toBeHidden({ timeout: 10_000 });
+    await expect(dialog.locator('[data-testid="sv-datepicker"]'), "the month grid closes on save (the popover stays, showing the new date)").toBeHidden({ timeout: 10_000 });
+    await page.keyboard.press("Escape");
 
     // The record moved, and the chip says so.
     let rec: any = null;
@@ -106,7 +108,7 @@ test("steward moves the review date from the ribbon; the dialog is fully visible
     expect(String(rec?.reviewDueAt), "…anchored to the END of that day in UTC").toBe(`${ymd(target)}T23:59:59.999Z`);
     let after = "";
     for (let i = 0; i < 10; i++) {
-      after = ((await ribbon.locator('[data-testid="wf-review-due"]').innerText().catch(() => "")) as string).replace(/\s+/g, " ").trim();
+      after = ((await ribbon.locator('[data-testid="wf-details-chip"]').innerText().catch(() => "")) as string).replace(/\s+/g, " ").trim();
       if (after && after !== before) break;
       await page.waitForTimeout(1500);
     }

@@ -56,18 +56,18 @@ test("confirm from the ribbon; the steward's read dialog names who has and has n
     expect(ribbon, "the ribbon shows the read-confirmation control").toBeTruthy();
     const btn = ribbon.locator('[data-testid="wf-read-confirm"]');
     await expect(btn, "the button asks to confirm v1").toHaveText(/Confirm I've read v1/);
-    const count = ribbon.locator('[data-testid="wf-read-count"]');
-    await expect(count, "the steward sees the count").toHaveText(/Read by 0 of 2/);
+    const details = ribbon.locator('[data-testid="wf-details-chip"]');
+    await expect(details, "the steward's details chip carries the count").toHaveText(/read 0\/2/);
     await page.screenshot({ path: `${OUT}/1-before.png` });
 
     await btn.click();
     const done = ribbon.locator('[data-testid="wf-read-done"]');
     await expect(done, "the button becomes a confirmation").toHaveText(/Read v1/, { timeout: 15000 });
-    await expect(count, "…and the count moved").toHaveText(/Read by 1 of 2/, { timeout: 15000 });
+    await expect(details, "…and the count moved").toHaveText(/read 1\/2/, { timeout: 15000 });
     expect((await getKvs(`read-ack-${p.id}-${MIHAI}`))?.version, "the ack record names v1").toBe(1);
-    console.log("### confirmed from the ribbon ✓ (Read v1 ✓, Read by 1 of 2)");
+    console.log("### confirmed from the ribbon ✓ (Read v1 ✓, read 1/2 on the details chip)");
 
-    await count.click();
+    await details.click();
     const dialog = ribbon.locator('[data-testid="wf-read-dialog"]');
     await expect(dialog).toBeVisible({ timeout: 8000 });
     const rows = dialog.locator('[data-testid="wf-read-row"]');
@@ -78,7 +78,7 @@ test("confirm from the ribbon; the steward's read dialog names who has and has n
     for (let i = 0; i < 12; i++) { frameBox = await ribbonEl.boundingBox(); dialogBox = await dialog.boundingBox(); if (frameBox && dialogBox && dialogBox.y + dialogBox.height <= frameBox.y + frameBox.height + 2) break; await page.waitForTimeout(1000); }
     expect(dialogBox!.y + dialogBox!.height, "the dialog is not clipped by the banner iframe").toBeLessThanOrEqual(frameBox!.y + frameBox!.height + 2);
     await page.screenshot({ path: `${OUT}/2-dialog.png` });
-    console.log("### steward read dialog ✓ (names, inside the iframe box)");
+    console.log("### steward readers section ✓ (names, inside the iframe box)");
   } finally {
     if (priorSettings) await setKvs(SETTINGS_KEY, priorSettings); else await delKvs(SETTINGS_KEY).catch(() => {});
     if (priorSteward) await setKvs(STEWARD_KEY, priorSteward); else await delKvs(STEWARD_KEY).catch(() => {});

@@ -140,8 +140,8 @@ test("signed approval from the ribbon: setup pointer, code field, wrong code, ri
     console.log("### right code approved ✓");
 
     // The evidence dialog marks the decision Signed.
-    for (let i = 0; i < 10; i++) { ribbon = await findRibbon(page); if (ribbon && (await ribbon.locator('[data-testid="wf-evidence-chip"]').count()) > 0) break; await page.waitForTimeout(1500); }
-    const evChip = ribbon.locator('[data-testid="wf-evidence-chip"]');
+    for (let i = 0; i < 10; i++) { ribbon = await findRibbon(page); if (ribbon && (await ribbon.locator('[data-testid="wf-details-chip"]').count()) > 0) break; await page.waitForTimeout(1500); }
+    const evChip = ribbon.locator('[data-testid="wf-details-chip"]');
     await expect(evChip).toBeVisible({ timeout: 20000 });
     await evChip.click();
     await expect(ribbon.locator('[data-testid="wf-evidence-signed"]').first(), "the decision row says Signed").toBeVisible({ timeout: 10000 });

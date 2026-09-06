@@ -159,10 +159,10 @@ test("#7: approval dialog — opens from the awaiting chip, Escape returns focus
     console.log("### chip now shows the Approved state ✓");
 
     // ── A4: the evidence chip opens the approval record with the decision just made
-    const evChip = ribbon.locator('[data-testid="wf-evidence-chip"]');
+    const evChip = ribbon.locator('[data-testid="wf-details-chip"]');
     await expect(evChip, "the Approved v{n} evidence chip renders next to the state chip").toBeVisible({ timeout: 20_000 });
     const evLabel = ((await evChip.innerText()) as string).replace(/\s+/g, " ").trim();
-    expect(evLabel, "the chip names the approved version").toMatch(/Approval record · v\d+/);
+    expect(evLabel, "the chip names the approved version").toMatch(/Approved v\d+/);
     await evChip.click();
     const evPanel = ribbon.locator('[data-testid="wf-evidence-panel"]');
     await expect(evPanel, "the Approval record dialog opens").toBeVisible({ timeout: 8000 });
