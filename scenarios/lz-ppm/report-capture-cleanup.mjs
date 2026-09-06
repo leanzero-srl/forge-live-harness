@@ -13,8 +13,8 @@ export function verifyCaptureProbe(probe,{planId,jobId,state,checkpoint,cleanupD
     assert.ok(['descriptor','chunk','page','deletion-marker'].includes(item.role),'Unknown public artifact role');assert.ok(['current','baseline'].includes(item.collection),'Unknown public artifact collection');
     const marker=markerHashes.get(item.keyHash);
     if(item.role==='deletion-marker'){assert.ok(marker,'Deletion marker is not an exact owned report marker');assert.equal(item.collection,marker);}else assert.equal(marker,undefined,'Known deletion marker mislabeled as content');
-    const expected=cleanupDone?state==='complete'&&item.role!=='deletion-marker':null;assert.equal(item.expectedPresent,expected,'Server role expectation differs from independent terminal rule');
-    if(cleanupDone)assert.equal(item.present,expected,'Terminal cleanup left wrong physical key state');
+    const expected=state==='complete'?item.role!=='deletion-marker':cleanupDone?false:null;assert.equal(item.expectedPresent,expected,'Server role expectation differs from independent terminal rule');
+    if(expected!==null)assert.equal(item.present,expected,'Published content or terminal cleanup left wrong physical key state');
    }
    if(rows.length||state==='complete'){assert.ok(reportId,'Public manifest requires exact report identity');assert.deepEqual(rows.filter(r=>r.role==='deletion-marker').map(r=>r.keyHash).sort(),[...markerHashes.keys()].sort(),'Both exact deletion markers must remain in cleanup manifest');}
   }
