@@ -1,4 +1,3 @@
-scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts(6,44): error TS2459: Module '"./campaign-ui"' declares 'waitForAppReady' locally, but it is not exported.
 scenarios/sentinel-vault/my-work-page.spec.ts(80,27): error TS7006: Parameter 't' implicitly has an 'any' type.
 scenarios/sentinel-vault/steward-console-deep.spec.ts(31,140): error TS2339: Property 'replace' does not exist on type 'string | number'.
   Property 'replace' does not exist on type 'number'.
