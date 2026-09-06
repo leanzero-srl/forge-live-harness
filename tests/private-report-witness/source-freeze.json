@@ -1,7 +1,7 @@
 {
   "base": "b5a97100363a6f33783c2925554f2edb3a484610",
   "files": {
-    "scenarios/lz-ppm/campaign-private-staged-report.spec.ts": "9b8a24e906740914412bd3f33e7f64c32dca904d03399fd6c33a6301fdc04b8e",
+    "scenarios/lz-ppm/campaign-private-staged-report.spec.ts": "14feadb1c949d4780b15c97fc44a3a7bfb7bdc565829c395d9cbc4c91549e878",
     "scenarios/lz-ppm/private-report-witness-session.ts": "200d281fb66bdbf0abe70d043310e9e44ec5f77eecbe5d0eb3998f2e692ccc20",
     "scenarios/lz-ppm/private-report-witness-contract.mjs": "3b5d3527f4e571993e0e7bf2d698b42f4b66e4eab70f9abdea83a5eb3ddcf491"
   },
@@ -21,15 +21,16 @@
     "src/resolvers/simulation-plan-resolvers.js": "9441d10f9875ac59810c38b982adb3c311d7be03a152ccedebcbfa8a671b2b06",
     "src/services/plan-resolver-access.mjs": "9b3e7a346277c2ba762a7cba58c605c0e416387b476c88b08a853c5cc4f8b810"
   },
-  "localControls": 19,
+  "localControls": 22,
   "liveRun": false,
   "physicalKvsVerified": false,
   "secondPrincipalVerified": false,
-  "previousWitnessFreeze": "27affdb43dc9c06601db0341f25646038d637704",
+  "previousWitnessFreeze": "f626989c73644517eb112f8182e1ae39b9200611",
   "independentRed": "dcd345b4",
   "unchangedIndependentControls": 9,
   "independentWrapperReds": [
     "03745258",
     "359c458a"
-  ]
+  ],
+  "screenshotRootProof": "cabebbabce6c4f844560e08bbe584193fe931ca5"
 }
