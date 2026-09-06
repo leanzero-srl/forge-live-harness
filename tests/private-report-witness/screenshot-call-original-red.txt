@@ -1,0 +1,31 @@
+TAP version 13
+# Subtest: actual compiled screenshot call supplies body to unchanged real settledScreenshot boundary
+not ok 1 - actual compiled screenshot call supplies body to unchanged real settledScreenshot boundary
+  ---
+  duration_ms: 1.129708
+  type: 'test'
+  location: '/private/tmp/lz-private-report-witness-20260906/tests/private-report-witness/screenshot-call.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: 'Page screenshots require an explicit intended subject; host chrome cannot prove app readiness'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    settledScreenshot (file:///private/tmp/lz-private-report-witness-20260906/scenarios/lz-ppm/settled-screenshot.mjs:42:9)
+    eval (eval at <anonymous> (file:///private/tmp/lz-private-report-witness-20260906/tests/private-report-witness/screenshot-call.test.mjs:5:14), <anonymous>:3:8)
+    TestContext.<anonymous> (file:///private/tmp/lz-private-report-witness-20260906/tests/private-report-witness/screenshot-call.test.mjs:10:25)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 346.661125
