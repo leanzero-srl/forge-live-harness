@@ -1,0 +1,18 @@
+Listing tests:
+  [chromium] › scenarios/lz-ppm/journey-campaign-adoption.spec.ts:9:1 › adoption: compatible capture Cancel is inert, confirmed draft survives reopen, explicit Apply writes exact Jira fields, later Discard retains applied original
+  [chromium] › scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts:33:1 › native Assets: actual multi-object ANY, second-field AND, empty and no-match, complete combination grouping, saved filters and object rename preserve source
+  [chromium] › scenarios/lz-ppm/journey-campaign-assets-expanded.spec.ts:66:1 › native Assets: filtered-out successor still cascades and explicit Apply writes both actual Jira schedules without altering either native field
+  [chromium] › scenarios/lz-ppm/journey-campaign-capacity-boundaries.spec.ts:13:1 › capacity boundaries: real missing and zero effort, custom-calendar partial week, unknown/zero availability and failed refresh never show false spare capacity
+  [chromium] › scenarios/lz-ppm/journey-campaign-capacity-limit.spec.ts:18:1 › capacity size limit: actual 5300-issue selection refuses a partial report, clears prior 8h/40h totals and recovers on a supported selection
+  [chromium] › scenarios/lz-ppm/journey-campaign-epic-targets.spec.ts:19:1 › epic targets: actual hierarchy retains outside predecessor influence; target edit during a yielded forecast cannot publish the old commitment
+  [chromium] › scenarios/lz-ppm/journey-campaign-large-history.spec.ts:13:1 › large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source
+  [chromium] › scenarios/lz-ppm/journey-campaign-observation-completed.spec.ts:12:1 › completed private observation: real later resolution survives reopen and source forecast deletion; reopened Jira cannot rewrite earlier evidence
+  [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:16:1 › forecast outcomes: prospective numeric capture uses real later Jira resolution and excludes overlapping forecast samples
+  [chromium] › scenarios/lz-ppm/journey-campaign-observations.spec.ts:28:1 › private observations: retained open-work evidence survives reopen, fresh Jira state is marked superseded, original raw evidence remains intact
+  [chromium] › scenarios/lz-ppm/journey-campaign-report-numeric.spec.ts:14:1 › report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes
+  [chromium] › scenarios/lz-ppm/journey-campaign-report.spec.ts:15:1 › reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy
+  [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:18:1 › sensitivity: tied branches have no solo-shortening benefit; actual yielded cancellation and scope change never publish old or partial rankings
+  [chromium] › scenarios/lz-ppm/journey-campaign-sensitivity-boundaries.spec.ts:38:1 › sensitivity: fixed buffer absorbs predecessor changes and buffer, completed work and declared zero are not directly perturbed
+  [chromium] › scenarios/lz-ppm/journey-campaign-simulation.spec.ts:42:1 › private simulation: scope, holiday and lag survive model save/reopen; excluded task can return without changing Jira or capture
+  [chromium] › scenarios/lz-ppm/journey-campaign-target-boundaries.spec.ts:10:1 › targets: outside-release predecessor constrains finish; rename keeps identity, drift requires explicit refresh, empty scope and invalid date never yield success
+Total: 16 tests in 13 files
