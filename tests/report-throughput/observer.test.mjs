@@ -27,11 +27,11 @@ test('HTTP, outer and body refusals retain exact raw/hash and phase without inte
  const f=fixture();f.observer.mark('capture');const replies=[['getNotifications','{"rate":"RATE_LIMIT_EXCEEDED"}',429],['advanceSponsorReportCapture',JSON.stringify({data:{invokeExtension:{success:false,errors:[{message:'expired'}]}}}),200],['presenceBeat',outer({success:false,error:'refused'}),200]];
  for(const[k,raw,status]of replies){const r=req(k);dispatch(f,r);complete(f,r,response(r,raw,status));}
  f.observer.mark('post-capture-audit');const r=req('getSponsorReport');dispatch(f,r);complete(f,r);const result=await f.observer.finish();assert.equal(result.complete,false);assert.equal(result.records[3].outcome,'success');assert.equal(f.raws.length,3);
- for(let n=0;n<3;n++){assert.equal(f.raws[n].raw,replies[n][1]);assert.equal(result.records[n].phaseAtStart,'capture');assert.equal(result.records[n].events.find(e=>e.type==='body-terminal').responseSha256,createHash('sha256').update(replies[n][1]).digest('hex'));}
+ for(let n=0;n<3;n++){assert.deepEqual(JSON.parse(f.raws[n].raw).envelope,JSON.parse(replies[n][1]));assert.equal(JSON.parse(f.raws[n].raw).originalRawRetained,false);assert.equal(result.records[n].phaseAtStart,'capture');assert.equal(result.records[n].events.find(e=>e.type==='body-terminal').responseSha256,createHash('sha256').update(replies[n][1]).digest('hex'));}
 });
 test('malformed JSON, body rejection and requestfailed remain distinct failures',async()=>{
  const f=fixture(),a=req(),b=req(),c=req();dispatch(f,a);complete(f,a,response(a,'not json'));dispatch(f,b);complete(f,b,{...response(b),text:async()=>{throw new Error('body unavailable');}});dispatch(f,c);f.page.emit('requestfailed',c);
- const result=await f.observer.finish();assert.equal(result.complete,false);assert.ok(result.errors.some(e=>e.kind==='response'));assert.ok(result.errors.some(e=>e.kind==='body'));assert.ok(result.errors.some(e=>e.kind==='transport'));assert.equal(f.raws[0].raw,'not json');
+ const result=await f.observer.finish();assert.equal(result.complete,false);assert.ok(result.errors.some(e=>e.kind==='response'));assert.ok(result.errors.some(e=>e.kind==='body'));assert.ok(result.errors.some(e=>e.kind==='transport'));assert.equal(JSON.parse(f.raws[0].raw).format,'unparseable');assert.equal(JSON.parse(f.raws[0].raw).contentOmitted,true);assert.equal(JSON.parse(f.raws[0].raw).originalSha256,createHash('sha256').update('not json').digest('hex'));
 });
 test('finish retains unresolved work and detaches; it never claims timeout completion',async()=>{
  const f=fixture(),r=req(),hold=deferred();dispatch(f,r);f.page.emit('response',{...response(r),text:()=>hold.promise});const result=await f.observer.finish({timeoutMs:5});assert.equal(result.complete,false);assert.ok(result.errors.some(e=>e.kind==='incomplete'));for(const event of ['request','response','requestfinished','requestfailed'])assert.equal(f.page.listenerCount(event),0);hold.resolve(outer({success:true}));
@@ -54,4 +54,15 @@ test('hook clone and API body are independent observed terminal surfaces, never 
 test('wrong app filter or only direct audit success cannot pass large capture coverage',async()=>{
  const f=fixture();const r=req('captureSponsorReport',extensionId.replace('/app/','/other/'));dispatch(f,r);complete(f,r);const result=await f.observer.finish({requireCapture:true});assert.equal(result.complete,false);assert.ok(result.errors.some(e=>e.kind==='capture-coverage'));
  const good=fixture();for(const [key,job] of [['captureSponsorReport',{state:'active',cleanupDone:false}],['advanceSponsorReportCapture',{state:'complete',cleanupDone:false}],['cancelSponsorReportCapture',{state:'complete',cleanupDone:true}]]){const q=req(key);dispatch(good,q);complete(good,q,response(q,outer({success:true,job})));}assert.equal((await good.observer.finish({requireCapture:true})).complete,true);
+});
+
+test('real-shaped outer-success/body-failure cannot persist response credentials or echoed header values',async()=>{
+ const f=fixture(),r=req();const raw=JSON.stringify({data:{invokeExtension:{success:true,contextToken:'renewed-secret-token',response:{headers:{Authorization:'Bearer echoed-secret',other:'sensitive-header'},body:{success:false,error:'refused renewed-secret-token and Bearer echoed-secret',contextToken:'nested-secret'}}}}});
+ dispatch(f,r);complete(f,r,response(r,raw));const result=await f.observer.finish();assert.equal(result.complete,false);
+ const evidence=JSON.parse(f.raws[0].raw);assert.equal(evidence.originalSha256,createHash('sha256').update(raw).digest('hex'));assert.equal(evidence.originalBytes,Buffer.byteLength(raw));assert.equal(evidence.originalRawRetained,false);assert.equal(evidence.removedFields.length,3);assert.equal(evidence.envelope.data.invokeExtension.response.body.success,false);
+ assert.doesNotMatch(f.raws[0].raw,/renewed-secret-token|Bearer echoed-secret|sensitive-header|nested-secret/);assert.doesNotMatch(JSON.stringify(result),/renewed-secret-token|Bearer echoed-secret|sensitive-header|nested-secret/);
+ assert.equal(result.records[0].events.find(e=>e.type==='body-terminal').responseSha256,evidence.originalSha256);
+});
+test('nonarray outer/top-level errors are failures even when success and body are true',async()=>{
+ for(const placement of ['outer','top']){const f=fixture(),r=req();const value=JSON.parse(outer({success:true}));if(placement==='outer')value.data.invokeExtension.errors={message:'RATE_LIMIT_EXCEEDED'};else value.errors={message:'RATE_LIMIT_EXCEEDED'};dispatch(f,r);complete(f,r,response(r,JSON.stringify(value)));const result=await f.observer.finish();assert.equal(result.complete,false);assert.equal(f.raws.length,1);assert.ok(result.errors.some(e=>e.kind==='response'));}
 });

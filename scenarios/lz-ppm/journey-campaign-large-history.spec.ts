@@ -18,7 +18,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
  const target=getTarget('lz-ppm-dashboard'),appId=target.appId.split('/').at(-1)!;
  const throughput=createReportThroughputObserver({page,extensionId:`ari:cloud:ecosystem::extension/${appId}/${target.envId}/static/ppm-dashboard`,
   emit:(event:any)=>fs.appendFileSync(info.outputPath('large-throughput-events.jsonl'),JSON.stringify(event)+'\n'),
-  saveFailure:(id:number,raw:string)=>fs.writeFileSync(info.outputPath(`large-throughput-failure-${id}.txt`),raw)});
+  saveFailure:(id:number,raw:string)=>fs.writeFileSync(info.outputPath(`large-throughput-failure-${id}.json`),raw)});
  const getTestState=(app:string,query:any)=>baseGetTestState(app,query,throughput);
  let originalFailed=false,originalFailure:any;
  try {

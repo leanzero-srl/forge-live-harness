@@ -33,7 +33,7 @@ test('actual hook optional seam consumes same result and raw HTTP failure withou
   let calls=0;const raw=httpStatus===200?'{}':'{"code":"RATE_LIMIT_EXCEEDED","detail":"exact failure"}',saved:any[]=[];const page:any=new EventEmitter();const observer=createReportThroughputObserver({page,extensionId,saveFailure:(id,raw)=>saved.push({id,raw})});
   globalThis.fetch=(async(url:any,options:any)=>{calls++;assert.equal(new URL(url).hostname,'example.invalid');assert.equal(options.headers.Authorization,'Bearer synthetic-private-secret');return new Response(raw,{status:httpStatus});}) as any;
   if(httpStatus===200)assert.deepEqual(await getTestState('lz-ppm',{what:'plan',planId:'p'},enabled?observer:null),{});else await assert.rejects(getTestState('lz-ppm',{what:'plan',planId:'p'},enabled?observer:null),/testState lz-ppm -> 429:.*RATE_LIMIT_EXCEEDED/);
-  assert.equal(calls,1);const result=await observer.finish();assert.equal(result.complete,!enabled||httpStatus===200);if(enabled&&httpStatus===429)assert.equal(saved[0].raw,raw);assert.doesNotMatch(JSON.stringify(result),/synthetic-private-secret/);
+  assert.equal(calls,1);const result=await observer.finish();assert.equal(result.complete,!enabled||httpStatus===200);if(enabled&&httpStatus===429)assert.deepEqual(JSON.parse(saved[0].raw).envelope,JSON.parse(raw));assert.doesNotMatch(JSON.stringify(result),/synthetic-private-secret/);
  }}finally{globalThis.fetch=originalFetch;}
 });
 

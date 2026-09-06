@@ -3,6 +3,21 @@ import {gunzipSync} from 'node:zlib';
 
 const phases=new Set(['preparation','capture','post-capture-audit','direct-page-audit','ui-download','source-checks','failure-cleanup','final-cleanup']);
 const hash=raw=>createHash('sha256').update(raw).digest('hex');
+const hasErrors=value=>value!=null&&(!Array.isArray(value)||value.length>0);
+/** Failed envelopes may themselves carry a renewed contextToken. Never persist it. */
+export function failureEvidence(raw){
+ const removedFields=[];let value;
+ try{value=JSON.parse(raw);}catch{return {schema:'sanitized-rpc-failure-v1',originalSha256:hash(raw),originalBytes:Buffer.byteLength(raw),originalRawRetained:false,format:'unparseable',contentOmitted:true,removedFields:[]};}
+ const secrets=new Set();
+ const protectedKey=key=>/^(contextToken|headers|authorization|cookie|set-cookie)$/i.test(key);
+ function collect(item){if(!item||typeof item!=='object')return;for(const[key,child]of Object.entries(item)){if(protectedKey(key)&&typeof child==='string'&&child)secrets.add(child);if(protectedKey(key)&&child&&typeof child==='object')for(const v of Object.values(child))if(typeof v==='string'&&v)secrets.add(v);collect(child);}}
+ collect(value);let redactedStrings=0;
+ function clean(item,path){if(typeof item==='string'){let text=item;for(const secret of secrets)if(text.includes(secret)){text=text.split(secret).join('[REDACTED]');redactedStrings++;}return text;}
+  if(Array.isArray(item))return item.map((child,index)=>clean(child,`${path}[${index}]`));
+  if(item&&typeof item==='object')return Object.fromEntries(Object.entries(item).filter(([key])=>{if(!protectedKey(key))return true;removedFields.push(`${path}.${key}`);return false;}).map(([key,child])=>[key,clean(child,`${path}.${key}`)]));return item;}
+ return {schema:'sanitized-rpc-failure-v1',originalSha256:hash(raw),originalBytes:Buffer.byteLength(raw),originalRawRetained:false,format:'json',envelope:clean(value,'$'),removedFields,redactedStrings};
+}
+
 const errorData=error=>({name:error?.name??typeof error,message:String(error?.message??error)});
 /** Optional helper seam. Observation is never awaited by the operation. */
 export function observeCall(observer,method,...args){
@@ -40,13 +55,13 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
     let parsed,validJson=true;try{parsed=JSON.parse(raw);}catch{validJson=false;}
     const outer=hook?null:parsed?.data?.invokeExtension,body=hook?parsed:outer?.response?.body;
     const failures=[];if(!Number.isInteger(status)||status<200||status>=300)failures.push('http');if(!validJson)failures.push('json');
-    if(!hook&&(!outer||outer.success!==true||!body||outer.errors?.length||parsed?.errors?.length))failures.push('invoke');
+    if(!hook&&(!outer||outer.success!==true||!body||hasErrors(outer.errors)||hasErrors(parsed?.errors)))failures.push('invoke');
     if(body?.success===false)failures.push('body');
     if(hook&&(!parsed||typeof parsed!=='object'))failures.push('hook-body');
     record.outcome=failures.length||record.outcome==='failed'?'failed':'success';
     const summary={outcome:record.outcome,failures,responseSha256:hash(raw),responseBytes:Buffer.byteLength(raw),outerSuccess:outer?.success??null,bodySuccess:body?.success??null,job:jobSummary(body?.job)};
     if(failures.length){errors.push({kind:'response',id:record.id,failures});
-     const file=saveFailure(record.id,raw);if(file?.then)await file;summary.failedRawRetained=true;
+     const evidence=JSON.stringify(failureEvidence(raw)),file=saveFailure(record.id,evidence);if(file?.then)await file;summary.failureEvidence={schema:'sanitized-rpc-failure-v1',sha256:hash(evidence),bytes:Buffer.byteLength(evidence),originalRawRetained:false};
     }
     event(record,'body-terminal',terminal,summary);
    }catch(error){record.bodyTerminal=stamp();record.outcome='unknown';errors.push({kind:'body',id:record.id,...errorData(error)});event(record,'body-read-failed',record.bodyTerminal,{error:errorData(error)});}
