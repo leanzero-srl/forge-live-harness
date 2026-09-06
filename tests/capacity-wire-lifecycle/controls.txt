@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: only completed exact Capacity observation promotes a single atomic wire generation
+ok 1 - only completed exact Capacity observation promotes a single atomic wire generation
+  ---
+  duration_ms: 1.293959
+  type: 'test'
+  ...
+# Subtest: request creation alone cannot promote; concurrent callers share one completed acquisition
+ok 2 - request creation alone cannot promote; concurrent callers share one completed acquisition
+  ---
+  duration_ms: 0.693666
+  type: 'test'
+  ...
+# Subtest: mismatched principal, endpoint, identity, preferences or unsuccessful response fail closed
+ok 3 - mismatched principal, endpoint, identity, preferences or unsuccessful response fail closed
+  ---
+  duration_ms: 1.379292
+  type: 'test'
+  ...
+# Subtest: expiry and claim errors never fabricate or adopt a returned replacement token
+ok 4 - expiry and claim errors never fabricate or adopt a returned replacement token
+  ---
+  duration_ms: 0.501125
+  type: 'test'
+  ...
+# Subtest: queued RPC aging refreshes outside budget and preserves the charged unsent reservation
+ok 5 - queued RPC aging refreshes outside budget and preserves the charged unsent reservation
+  ---
+  duration_ms: 1.17075
+  type: 'test'
+  ...
+# Subtest: actual UI route freshness check rejects a request aged while its own route was queued
+ok 6 - actual UI route freshness check rejects a request aged while its own route was queued
+  ---
+  duration_ms: 0.212958
+  type: 'test'
+  ...
+# Subtest: no retry of any actual dispatched rejection, unknown response, or outer token refusal
+ok 7 - no retry of any actual dispatched rejection, unknown response, or outer token refusal
+  ---
+  duration_ms: 0.251834
+  type: 'test'
+  ...
+# Subtest: repeated local queue aging is bounded with zero dispatches
+ok 8 - repeated local queue aging is bounded with zero dispatches
+  ---
+  duration_ms: 0.213292
+  type: 'test'
+  ...
+# Subtest: forced refresh rejects a nonextending expired captured token even if the UI response carries a new one
+ok 9 - forced refresh rejects a nonextending expired captured token even if the UI response carries a new one
+  ---
+  duration_ms: 0.206833
+  type: 'test'
+  ...
+# Subtest: export forces genuine acquisition first, forbids refresh/navigation and RPC until settled
+ok 10 - export forces genuine acquisition first, forbids refresh/navigation and RPC until settled
+  ---
+  duration_ms: 0.403542
+  type: 'test'
+  ...
+# Subtest: active dispatch prevents export or stale refresh; failed export releases exclusion without swallowing original error
+ok 11 - active dispatch prevents export or stale refresh; failed export releases exclusion without swallowing original error
+  ---
+  duration_ms: 0.311041
+  type: 'test'
+  ...
+# Subtest: final audits acquire fresh wire using the same lifecycle, without resetting budget
+ok 12 - final audits acquire fresh wire using the same lifecycle, without resetting budget
+  ---
+  duration_ms: 0.375958
+  type: 'test'
+  ...
+# Subtest: clock regressions and malformed time fail closed before further dispatch
+ok 13 - clock regressions and malformed time fail closed before further dispatch
+  ---
+  duration_ms: 0.2505
+  type: 'test'
+  ...
+# Subtest: a slow promotion journal cannot make an aged wire eligible for dispatch
+ok 14 - a slow promotion journal cannot make an aged wire eligible for dispatch
+  ---
+  duration_ms: 0.075208
+  type: 'test'
+  ...
+# Subtest: export requires its full declared duration plus dispatch margin before UI work starts
+ok 15 - export requires its full declared duration plus dispatch margin before UI work starts
+  ---
+  duration_ms: 0.126833
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 40.141708
