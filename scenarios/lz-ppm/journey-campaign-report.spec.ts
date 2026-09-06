@@ -1,3 +1,4 @@
+import {captureReport} from './report-capture';
 import {settledScreenshot,waitForAppReady} from './settled-screenshot.mjs';
 import {fixtureReportRows} from './report-fixture-oracle.mjs';
 import fs from 'node:fs';
@@ -33,7 +34,7 @@ test('reports: complete actual paged HTML and printed PDF retain all source rows
   // those dates; saved explicit current values remain their own layer.
   const capturedSchedule=fixtureReportRows(savedRaw,original.calendar);expect(capturedSchedule.find((r:any)=>r.key==='LZPT-209')).toMatchObject({startDate:'2026-10-05',dueDate:'2026-10-13',duration:7});
   journal.savedRawSchedule=scheduleFields(savedRaw);journal.capturedWorkingRows=await assertTable(capturedSchedule);persist();
-  work=await planning(frame);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();let report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name').fill('All rows and retained baseline');const captured=result(page,'captureSponsorReport',planId!);await report.getByRole('button',{name:'Capture sponsor report',exact:true}).click();const manifest=(await captured).report;journal.report=manifest;persist();expect(manifest.counts.timeline).toBe(keys.length);expect(manifest.pages.timeline).toBe(Math.ceil(keys.length/50));expect(manifest.baseline).toMatchObject({name:'Report original baseline',issueCount:keys.length});
+  work=await planning(frame);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();let report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name').fill('All rows and retained baseline');const manifest=await captureReport(page,report,planId!,info);journal.report=manifest;persist();expect(manifest.counts.timeline).toBe(keys.length);expect(manifest.pages.timeline).toBe(Math.ceil(keys.length/50));expect(manifest.baseline).toMatchObject({name:'Report original baseline',issueCount:keys.length});
   await expect(report).toContainText(`Baseline: Report original baseline · ${keys.length} retained rows.`);const preview=report.getByRole('table',{name:'Report preview'});const seen:string[]=[];
   for(let number=0;number<manifest.pages.timeline;number++){await expect(report).toContainText(`Page ${number+1} of ${manifest.pages.timeline}`);const pageKeys=await preview.locator('tbody th').allTextContents();expect(pageKeys.length).toBeGreaterThan(0);seen.push(...pageKeys);if(number+1<manifest.pages.timeline)await report.getByRole('button',{name:'Next report page',exact:true}).click();}
   expect(seen.sort()).toEqual(keys);await settledScreenshot(report,{path:info.outputPath('report-final-preview-page.png')});

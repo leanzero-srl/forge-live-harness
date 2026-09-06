@@ -1,3 +1,4 @@
+import {captureReport} from './report-capture';
 import {createCapacityPreferences} from './capacity-preferences.mjs';
 import {settledScreenshot} from './settled-screenshot.mjs';
 import fs from 'node:fs';
@@ -35,7 +36,7 @@ test('report analytics: actual capture retains exact seeded quantiles, scoped pr
    }
    await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();let report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name',{exact:true}).fill('Numeric commitment and overload');
    await report.locator('form').getByRole('combobox').click();await report.getByRole('option',{name:'High −20% / +60%',exact:true}).click();await report.getByRole('checkbox',{name:'Include captured plan capacity',exact:true}).click();await expect(report).toContainText('become part of this shared report');await chooseDate(frame,report,'Report capacity starts',M);await chooseDate(frame,report,'Report capacity ends',add(M,6));
-   pending=actualResponse(page,'captureSponsorReport',f.planId);await report.getByRole('button',{name:'Capture sponsor report',exact:true}).click();const summary=(await pending).report;journal.summary=summary;retain();
+   const summary=await captureReport(page,report,f.planId,info);journal.summary=summary;retain();
    // Independent fixed model oracle: triangular[4,5,8] rounded working duration;
    // seed42/300 draws places P50/P80 at6 days and P90 at7 days. Inclusive Monday
    // schedule therefore lands next Monday/Tuesday. Earliest target is below any
