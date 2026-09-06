@@ -1,0 +1,24 @@
+{
+  "accepted": true,
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-06T00:49:25.605Z",
+      "state": "rejected-during-capture",
+      "rejectedImage": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-settled-candidate/evidence/fixed-post.png.rejected-1.png"
+    },
+    {
+      "number": 2,
+      "startedAt": "2026-09-06T00:49:25.709Z",
+      "state": "accepted",
+      "content": {
+        "width": 640,
+        "height": 480,
+        "colors": 363,
+        "differentPixels": 54185,
+        "nonblank": true
+      }
+    }
+  ],
+  "previousImage": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-settled-candidate/evidence/fixed-post.png.previous-74350e57-ddf5-46e0-a36b-56c55ff7012b.png"
+}

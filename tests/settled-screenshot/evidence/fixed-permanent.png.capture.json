@@ -1,0 +1,31 @@
+{
+  "accepted": false,
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-06T00:49:26.298Z",
+      "state": "rejected-before-capture"
+    },
+    {
+      "number": 2,
+      "startedAt": "2026-09-06T00:49:26.374Z",
+      "state": "rejected-before-capture"
+    },
+    {
+      "number": 3,
+      "startedAt": "2026-09-06T00:49:26.523Z",
+      "state": "rejected-before-capture"
+    },
+    {
+      "number": 4,
+      "startedAt": "2026-09-06T00:49:26.709Z",
+      "state": "rejected-before-capture"
+    },
+    {
+      "number": 5,
+      "startedAt": "2026-09-06T00:49:26.890Z",
+      "state": "waiting"
+    }
+  ],
+  "error": "Error: intended app subject is painted and outside every inert loading/adoption boundary\n\nintended app subject is painted and outside every inert loading/adoption boundary\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 6.660624999999982ms exceeded while waiting on the predicate"
+}

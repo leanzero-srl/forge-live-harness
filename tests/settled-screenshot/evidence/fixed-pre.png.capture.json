@@ -1,0 +1,23 @@
+{
+  "accepted": true,
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-06T00:49:24.990Z",
+      "state": "rejected-before-capture"
+    },
+    {
+      "number": 2,
+      "startedAt": "2026-09-06T00:49:25.073Z",
+      "state": "accepted",
+      "content": {
+        "width": 640,
+        "height": 480,
+        "colors": 363,
+        "differentPixels": 54185,
+        "nonblank": true
+      }
+    }
+  ],
+  "previousImage": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-settled-candidate/evidence/fixed-pre.png.previous-082f7a65-1e06-45c7-8004-c5b70828f78f.png"
+}
