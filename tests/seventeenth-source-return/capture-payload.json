@@ -1,0 +1,14 @@
+{
+  "sourceTrace": "evidence/lz-campaign/seventeenth-packed-report-live-20260906/large-history-report-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2f98e-without-mutating-the-source-chromium/trace.zip",
+  "traceSha256": "f033236825a8d2d9aca22c89d246d616bcd9ab27ada51df6ed5e1cacbfd6ca48",
+  "payload": {
+    "planId": "plan-test-mtpjc7v3-o83uav",
+    "name": "Every existing performance row",
+    "kind": "report",
+    "uncertainty": "medium",
+    "expectedVersion": 2,
+    "changes": [],
+    "includeCapacity": false,
+    "requestId": "2d8c3fef-b28e-45a5-b4bc-06755e609e03"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "source": {
+    "rawHash": "075e2112a8805946d1a9b17af09f5c4c988b6e08f0268e9a6880cafcf04994ae",
+    "rawIssueCount": 5300,
+    "basisHash": "4131e2f36b20145ac8f30cf7a9cdd5fb8187465174078ed13ab4e2d53a52d369",
+    "capturedHash": "98f9e7bf39ab0481d133b2b30e0a7ea7e27383df4ee9da632595f778783248a4",
+    "capturedIssueCount": 5300,
+    "forecastInputHash": "74e3f14bb519b5733ec1a65d729605f63ccebf4e6594b1f1ddf0682b90404e4a",
+    "targetCount": 0
+  },
+  "contextHash": "a465e89e1db7cd0ad025b351d93fec418850e765dea6cd58fdbac88b781cab23",
+  "payloadHash": "1956dfec53cb36197acefdcb2f97fb340ed650f6da1f82191cf0436d312827e5"
+}
