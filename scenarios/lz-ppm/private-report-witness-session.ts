@@ -30,7 +30,7 @@ export function privateWitnessSession(page:any,{record,timeoutMs=120000}:any){
    wire={url:req.url(),headers:replayHeaders(headers),data:item.envelope};
    if(item.key==='presenceBeat'){if(beats.has(item.planId))await documents.release(beats.get(item.planId).binding);beats.set(item.planId,{value,binding:item.document});}
    record('private-ui-terminal',value);for(const observe of leaves)observe(value);for(const observe of waiters)observe(value);
-  }catch{if(protocol&&item.planId===protocolPlan)protocol.transportFailure(req,new Error('Actual private report transport or evidence failed'));throw fail('ui-response');}
+  }catch{if(protocol&&item.planId===protocolPlan)enqueue(()=>protocol.transportFailure(req,new Error('Actual private report transport or evidence failed')));throw fail('ui-response');}
  })();pending.add(task);task.catch(()=>{}).finally(()=>pending.delete(task));};
  const response=(res:any)=>{const req=res.request(),item=requests.get(req);if(!item)return;item.body=(async()=>{const failed=await res.finished();assert.equal(failed,null);return safeBody(res,{requestToken:item.envelope.variables.input.payload.contextToken,requestHeaders:await req.allHeaders()},{requestId:item.requestId,key:item.key,planId:item.planId});})();item.body.catch(()=>{});if(protocol&&item.planId===protocolPlan&&reportKeys.has(item.key))enqueue(async()=>protocol.response(req,await item.body));};
  const finished=(req:any)=>terminal(req,false),failed=(req:any)=>terminal(req,true);page.on('request',request);page.on('response',response);page.on('requestfinished',finished);page.on('requestfailed',failed);
