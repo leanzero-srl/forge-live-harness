@@ -293,9 +293,31 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     // account is preferred because adding one to an empty group with no
     // application access grants nothing at all — the least consequential real
     // write available on this tenant.
+    /**
+     * ⚠️ AN **ACTIVE** SUBJECT, AND THAT IS THE MEASUREMENT.
+     *
+     * On 13.9.0 the undo of a group add reported drift on a group nothing else
+     * had touched — "membership status and the group's member count are both
+     * different now". The subject that run used had `membershipStatus:
+     * suspended`, and `membershipStatus` is one of the fields the projection
+     * carries, so the sighting had two possible causes and the harness could
+     * not tell them apart: a real regression in the drift comparison, or a
+     * suspended member's row reading differently between two projections.
+     *
+     * An ACTIVE subject separates them. If the undo still reports drift, the
+     * regression is real and general. If it is clean, the 13.9.0 sighting was
+     * suspended-member drift and belongs in the notes as that.
+     */
     const subject =
-      people.find((u: any) => String(u.accountId) !== callerId && u.membershipStatus !== "active") ||
+      people.find((u: any) => String(u.accountId) !== callerId && u.membershipStatus === "active") ||
       people.find((u: any) => String(u.accountId) !== callerId);
+    expect
+      .soft(
+        subject?.membershipStatus,
+        `no ACTIVE second account in this directory, so this run cannot separate a real drift ` +
+          `regression from suspended-member drift — the 13.9.0 question stays open.`,
+      )
+      .toBe("active");
     expect(subject?.accountId, "no second account in the directory to add to a group").toBeTruthy();
 
     // The ROLE subject, discovered rather than named: an obviously-disposable
@@ -311,7 +333,8 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     roleSubject = throwaway ? String(throwaway.accountId) : null;
     console.log(
       `[fixture] add-member subject=${subject.accountId} (${subject.name}, membership=${subject.membershipStatus}); ` +
-        `role subject=${roleSubject ? `${roleSubject} (${throwaway.name}, no roles)` : "(NONE FOUND)"}`,
+        `role subject=${roleSubject ? `${roleSubject} (${throwaway.name}, no roles)` : "(NONE FOUND)"}; ` +
+        `add-member subject membershipStatus=${subject?.membershipStatus}`,
     );
 
     const made: any = await request("POST", "/rest/api/3/group", { body: { name: GROUP_NAME } });
@@ -379,9 +402,16 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
       ).toBe(0);
       expect.soft(
         saidDrift,
-        `the undo reported DRIFT on an object nothing else touched, which is the ledger comparing ` +
-          `against the wrong snapshot:\n${add3.reply.slice(0, 700)}`,
+        `the undo reported DRIFT on a group nothing else touched, with an ACTIVE member. That ` +
+          `settles the 13.9.0 sighting as a REAL regression in the drift comparison rather than ` +
+          `something about suspended members:\n${add3.reply.slice(0, 700)}`,
       ).toBe(false);
+      findings.push(
+        `DRIFT QUESTION (13.9.0): subject membershipStatus=${subject?.membershipStatus}, ` +
+          `undo complained=${saidDrift} -> ${saidDrift
+            ? "REGRESSION CONFIRMED, general"
+            : "the 13.9.0 sighting was suspended-member drift"}`,
+      );
       table.push({ step: "addGroupMember/undo", members: afterUndo.length, noDrift: undoClean });
     }
 
@@ -595,7 +625,94 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
           `errors=${roleErr.map((l: any) => l.text.slice(0, 140)).join(" | ") || "none"}; ` +
           `roles ${rolesBefore.length} -> ${rolesAfter.length}`,
       );
+      // ⚠️ 13.10.0 MOVES THIS ONTO `/role-assignments/assign`. On 13.7.0-13.9.0
+      // it posted to `/roles/assign`, which is Atlassian's "Grant user access"
+      // — PRODUCT access, `resource` required — and answered
+      // `400 ADMIN-UAM-400-5 "Cloud Resource is empty"` with a body the app
+      // then dropped, so the user was told "no reason for the failure was
+      // given". Either outcome is a result; being unable to say WHY is not.
+      const saysNoReason = /no reason (for the failure )?(was )?given|don't know why|cannot tell you why/i.test(role2.reply);
+      expect.soft(
+        saysNoReason,
+        `assignOrgRole failed and the reply says no reason was given. Atlassian's body carries a ` +
+          `code, a title and a detail; dropping it turns a diagnosable refusal into a dead end:\n` +
+          `${role2.reply.slice(0, 900)}`,
+      ).toBe(false);
+      if (!roleGranted) {
+        expect.soft(
+          /\brole\b/i.test(role2.reply) && /[A-Z]{3,}-[A-Z]{3,}-\d{3}|resource|forbidden|not permitted|refus/i.test(role2.reply),
+          `assignOrgRole failed without quoting Atlassian's own words for it:\n${role2.reply.slice(0, 900)}`,
+        ).toBe(true);
+      }
       table.push({ step: "assignOrgRole/yes", granted: roleGranted, noDrift: roleClean, errors: roleErr.length });
+    }
+
+    /* ============================ 4b. PRODUCT ACCESS ===================== */
+    //
+    // ONE PRODUCT INSTANCE, not the organisation — and it consumes a LICENCE,
+    // which Atlassian can refuse with a 409 when the plan has none free. That
+    // is a subscription limit and not a permission, and a refusal that reads as
+    // a permission problem is the failure this surface keeps being measured on.
+    if (roleSubject) {
+      const accessBefore = await org(
+        `/v2/orgs/{org}/directories/${directoryId}/users/${roleSubject}/role-assignments`,
+      );
+      const countBefore = ((accessBefore.body?.data || []) as any[]).length;
+      console.log(`[truth] ${roleSubject} role-assignments before = ${countBefore} (HTTP ${accessBefore.status})`);
+
+      await page.waitForTimeout(GAP_MS);
+      const grantAsk = await turnQ(
+        "product-ask",
+        `Give the account ${roleSubject} access to Jira Software on this site. Read what it can ` +
+          `reach first and tell me which workspace or resource you would use.`,
+      );
+      const midway = await org(
+        `/v2/orgs/{org}/directories/${directoryId}/users/${roleSubject}/role-assignments`,
+      );
+      expect(
+        ((midway.body?.data || []) as any[]).length,
+        `the PLAIN call granted product access`,
+      ).toBe(countBefore);
+
+      await page.waitForTimeout(GAP_MS);
+      const grantYes = await turnQ("product-yes", "Yes, grant it.");
+      const accessAfter = await org(
+        `/v2/orgs/{org}/directories/${directoryId}/users/${roleSubject}/role-assignments`,
+      );
+      const countAfter = ((accessAfter.body?.data || []) as any[]).length;
+      const granted = countAfter > countBefore;
+      const grantErr = grantYes.win.filter((l: any) => /^\[OrgAdmin\] HTTP/.test(l.text));
+      const saysLicence = /licence|license|409|subscription|no seats|plan/i.test(grantYes.reply);
+      console.log(
+        `[org-write] grantProductAccess: ${countBefore} -> ${countAfter} (granted=${granted}); ` +
+          `errors=${grantErr.map((l: any) => l.text).join(" | ") || "(none)"}; namesLicence=${saysLicence}`,
+      );
+      assertNoRadiusDrift(grantYes.win, "grantProductAccess/yes");
+      findings.push(
+        `grantProductAccess on ${roleSubject}: ${countBefore} -> ${countAfter}; undoId=${undoIdIn(grantYes.reply)}; ` +
+          `errors=${grantErr.map((l: any) => l.text.slice(0, 140)).join(" | ") || "none"}`,
+      );
+      // A REFUSAL IS A RESULT. What must not happen is a licence limit reported
+      // as somebody's permissions.
+      const blamesRights = /you (do not|don't) have|not an admin|lack.*permission/i.test(grantYes.reply);
+      expect.soft(
+        blamesRights && !granted,
+        `product access was refused and the reply blames the asker's rights. A 409 for a plan with ` +
+          `no free seats is a SUBSCRIPTION limit:\n${grantYes.reply.slice(0, 900)}`,
+      ).toBe(false);
+      table.push({ phase: "grantProductAccess", before: countBefore, after: countAfter, granted });
+
+      const grantUndo = undoIdIn(grantYes.reply);
+      if (granted && grantUndo) {
+        await page.waitForTimeout(GAP_MS);
+        const undo = await turnQ("product-undo", `Undo change ${grantUndo}.`);
+        const back = ((await org(
+          `/v2/orgs/{org}/directories/${directoryId}/users/${roleSubject}/role-assignments`,
+        )).body?.data || []) as any[];
+        console.log(`[org-write] after the product-access undo: ${back.length} (was ${countBefore})`);
+        expect.soft(back.length, `the undo did not take the product access back off`).toBe(countBefore);
+        table.push({ phase: "revokeProductAccess/undo", after: back.length });
+      }
     }
 
     /* ============================ 5. THE LEDGER READS IT BACK ============= */

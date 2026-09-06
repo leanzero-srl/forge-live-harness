@@ -406,8 +406,14 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
         `the ledger does not carry the undo id of a change made minutes ago (${undoId}):\n` +
           `${led.reply.slice(0, 1200)}`,
       ).toBe(true);
+      // ⚠️ THE KIND IS AN INTERNAL NAME AND THE MODEL IS FORBIDDEN TO SHOW IT.
+      // `JIRA_ASUSER` is the ledger's dispatch key, not a word for a user, and
+      // MODEL_AUDIENCE_RULE keeps internal identifiers out of replies — which
+      // is why the reply says "Create project category" where the row says
+      // JIRA_ASUSER. So this is RECORDED, never asserted: what the user needs
+      // is the id and the state, and both are there.
       const saysKind = /JIRA_ASUSER/i.test(led.reply);
-      console.log(`[PROBE-0] ledger names kind JIRA_ASUSER = ${saysKind}`);
+      console.log(`[PROBE-0] ledger reply names the internal kind JIRA_ASUSER = ${saysKind} (not required)`);
       findings.push(`ledger row for ${undoId}: present=${led.reply.includes(undoId)} kind-named=${saysKind}`);
       table.push({ step: "4 ledger", carriesId: led.reply.includes(undoId), kindNamed: saysKind });
 
@@ -439,9 +445,15 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
     frame = await openGlobalPage(page, CHAT);
     await waitForChatApp(page, frame, GLOBAL_APP, 120_000);
     await page.waitForTimeout(GAP_MS);
+    // ⚠️ AN OP THE TABLE GENUINELY LACKS. This used to ask for a permission
+    // grant, and cut A shipped `addPermissionGrant` — so on 13.10.0 the model
+    // correctly went looking for the group, found none called "developers",
+    // measured the scheme's blast radius and refused honestly. Excellent
+    // behaviour, and it stopped measuring the §7.1 sentence entirely. Automation
+    // rules have no plan and no endpoint in this surface.
     const unknown = await turnQ(
       "degraded-unknown-op",
-      `Grant the Browse Projects permission to the developers group on ${PROJECT}.`,
+      `Create an automation rule on ${PROJECT} that assigns every new bug to me.`,
     );
     const catsNow = await categories();
     const listsWhatItCan = /createProjectCategory|project categor/i.test(unknown.reply);
