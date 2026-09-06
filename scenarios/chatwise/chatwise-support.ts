@@ -892,6 +892,234 @@ export async function logWindow(
   }
 }
 
+/* ------------------------------------------------------------------------ *
+ * THE SETTINGS PAGE'S DUPLICATE BUTTON LABELS — ONE HELPER, THREE SPECS.
+ *
+ * "Save key", "Test key" and "Remove key" are on the WEB SEARCH card AND on the
+ * ORGANISATION ADMIN KEY card. "Yes, remove it" is the confirm on all three
+ * credential cards. So a page-wide `getByRole("button", { name })` is a strict
+ * mode violation, and `.first()` — the thing a harness reaches for to silence
+ * that — is worse than the error it hides: it depends on which card painted
+ * first.
+ *
+ * THIS COLLISION HAS COST THREE SPECS, TWICE EACH:
+ *   admin-credentials-settings   pressed the WEB SEARCH card's Save while the
+ *                                organisation fields sat filled and unsaved,
+ *                                and reported "the card does not show the key
+ *                                as stored" — a green-looking product bug.
+ *   admin-credentials-support    clicked a confirm that shared the opener's
+ *                                label before the dialog existed, so the click
+ *                                landed back on the opener, nothing threw, and
+ *                                a REAL site-administrator token was left
+ *                                stored on a shared tenant.
+ *   websearch-settings-card      went red with `resolved to 2 elements` the day
+ *                                the organisation card shipped — a spec that
+ *                                was correct when it was written and had no way
+ *                                to know a second card would take its label.
+ *
+ * ANCHORED ON THE HEADING, not on a field: a card is the thing that has that
+ * heading, and the ledger card has buttons and no fields at all.
+ * ------------------------------------------------------------------------ */
+
+/**
+ * Every settings-page card heading this helper knows about.
+ *
+ * It exists ONLY to catch the walk-too-far case below, and it is a list rather
+ * than a lookup because the check is "did I climb past my own card into a
+ * container that holds somebody else's heading too". A heading missing from
+ * here weakens that check and breaks nothing else, which is why it may be a
+ * hand-kept list — but keep it in step with `credentialCopy.js`.
+ */
+export const SETTINGS_CARD_HEADINGS = [
+  "Web search",
+  "Jira site admin token",
+  "Atlassian organisation admin key",
+  "Recent changes made with stored credentials",
+];
+
+/**
+ * A button that belongs to ONE named card.
+ *
+ * Resolves the nearest ancestor of the card's heading that also contains a
+ * button with `label`, then the button inside it. `assertCardButton` is the
+ * checked version and is what specs should call: the bare locator cannot tell
+ * you that the walk climbed past the card into a shared parent, and a silent
+ * wrong-card click is the whole failure this replaces.
+ */
+export function cardButton(root: Page | FrameLocator, cardHeading: string, label: string) {
+  const q = (v: string) => v.replace(/"/g, '\\"');
+  return root.locator(
+    `xpath=//*[normalize-space(text())="${q(cardHeading)}"]` +
+      `/ancestor::*[.//button[normalize-space(.)="${q(label)}"]][1]` +
+      `//button[normalize-space(.)="${q(label)}"]`,
+  );
+}
+
+/**
+ * The same button, having PROVED it is the right card's.
+ *
+ * Two ways this can be wrong and both are checked:
+ *   - the card has no such button, so the ancestor walk climbed until it found
+ *     somebody else's. Detected by the resolved container carrying a SECOND
+ *     known card heading.
+ *   - the walk found more than one matching button.
+ * Either way it throws with the card and the label named, because "the click
+ * did nothing" is the symptom this exists to stop being the first thing anybody
+ * sees.
+ */
+export async function assertCardButton(
+  root: Page | FrameLocator,
+  cardHeading: string,
+  label: string,
+  timeoutMs = 20_000,
+) {
+  const button = cardButton(root, cardHeading, label);
+  await button.first().waitFor({ state: "visible", timeout: timeoutMs });
+
+  // DID THE WALK STAY INSIDE THE CARD? Checked FIRST, because it is the CAUSE
+  // and the count below is only a symptom of it: a card with no button of its
+  // own sends the walk up to a parent that holds the next card too, and that
+  // parent naturally holds two matching buttons. Reporting "resolved to 2
+  // buttons inside this card" would send somebody looking for a duplicate
+  // control that does not exist.
+  const strays: string[] = await button.first().evaluate((el: Element, headings: string[]) => {
+    let box: Element | null = el;
+    while (box?.parentElement) {
+      box = box.parentElement;
+      const text = (box as HTMLElement).innerText || "";
+      const found = headings.filter((h) => text.includes(h));
+      if (found.length) return found;
+    }
+    return [];
+  }, SETTINGS_CARD_HEADINGS);
+
+  if (strays.length > 1 || (strays.length === 1 && strays[0] !== cardHeading)) {
+    throw new Error(
+      `the "${label}" button found for "${cardHeading}" sits in a container that holds ` +
+        `${strays.map((h) => `"${h}"`).join(", ")}. The ancestor walk climbed PAST the card, ` +
+        `which means this card has no "${label}" of its own — so a click here would have landed ` +
+        `on another card's, silently.`,
+    );
+  }
+
+  const count = await button.count();
+  if (count !== 1) {
+    throw new Error(
+      `"${label}" resolved to ${count} buttons inside the "${cardHeading}" card. One card should ` +
+        `own one control with a given label; if that is genuinely no longer true, the anchor has ` +
+        `to become finer than the heading.`,
+    );
+  }
+  return button.first();
+}
+
+/* ------------------------------------------------------------------------ *
+ * SCORING ONE TOOL'S OUTCOME FROM THE APP'S OWN LOG.
+ *
+ * Extracted from admin-persona-gates so the three states can be proven by a
+ * fixture instead of by a live run. THE `crash` STATE IS THE POINT: on 13.7.0
+ * `getAuditRecords` threw
+ *   [Tools] Error in getAuditRecords(recent): Error: You must create your route
+ *   using the 'route' export from '@forge/api'.
+ * before any request left the app. That line carries no HTTP status and no
+ * " failed:", so a scorer that only knows "failed" and "not failed" found
+ * neither, fell through to "it was called at all" and recorded **200** for a
+ * tool that has never once answered. A table that scores a crash as a success
+ * is worse than no table.
+ * ------------------------------------------------------------------------ */
+
+export type ToolOutcome = {
+  /**
+   * `"200"` · `"crash"` · `"withheld"` · an HTTP status · `"error"` ·
+   * `"not-called"`. Five distinct answers to "what happened", and every one of
+   * them has been mistaken for one of the others at least once.
+   */
+  status: string;
+  called: boolean;
+  /** Failures from a SUB-request the handler absorbed, e.g. an optional draft. */
+  subRequestFailures: number;
+  evidence: string;
+};
+
+export function scoreToolOutcome(tool: string, lines: string[]): ToolOutcome {
+  // STRING PREDICATES, NOT CONSTRUCTED REGEXES. Every earlier version of this
+  // built patterns out of template literals, and the escaping is a trap: a
+  // `\[` inside a template literal is just `[`, so `new RegExp("^\[Tools\] …")`
+  // silently becomes a character class and an unterminated group. The shapes
+  // being matched are fixed prefixes, so there is nothing a regex buys here.
+  const PREFIX = "[Tools] ";
+  const ERROR_PREFIX = `${PREFIX}Error in ${tool}`;
+
+  /** The text after `[Tools] <tool>`, or null when the line is another tool's. */
+  const tail = (line: string): string | null => {
+    if (!line.startsWith(PREFIX + tool)) return null;
+    const rest = line.slice(PREFIX.length + tool.length);
+    // A word boundary, so `getOrgUser` never matches `getOrgUserAccess`.
+    if (rest !== "" && !" (:".includes(rest[0])) return null;
+    return rest;
+  };
+
+  // WITHHELD IS NOT CALLED. `executor.js` prints the refusal on the same
+  // `[Tools] <name>` prefix, so a prefix match counts a closed gate as a call —
+  // the opposite of what every closed-gate assertion is asking.
+  const reached = lines.filter((t) => tail(t) !== null && !t.includes("is withheld this turn"));
+  const withheld = lines.filter((t) => tail(t) !== null && t.includes("is withheld this turn"));
+  // REACHED FOR IS NOT RUN. `executor.js` logs the invocation and THEN the
+  // refusal, on the same prefix, so a closed gate leaves both lines behind. The
+  // question every closed-gate assertion asks is "did it run", and the answer
+  // is no — `withheld` is its own state so that "the model tried and was
+  // stopped" is never confused with "the model never tried" or with a 200.
+  const called = withheld.length ? [] : reached;
+  const threw = lines.filter((t) => t.startsWith(ERROR_PREFIX));
+
+  // A SUB-REQUEST'S FAILURE IS NOT THE TOOL'S STATUS. `getWorkflowScheme` asks
+  // for an optional draft and prints `… draft failed: 404` one line above its
+  // own successful outcome; `getFieldContexts` does the same with `options
+  // failed: 400` for a numeric field. A naive "contains failed:" match recorded
+  // both as dead reads that the model then reported correctly.
+  const failed = lines.filter(
+    (t) => t.startsWith(PREFIX) && t.includes(tool) && t.includes(" failed:"),
+  );
+  /** `<tool> failed:` or `<tool>(…) failed:` — the WHOLE tool, not a part of it. */
+  const wholeToolFailed = failed.filter((t) => {
+    const rest = tail(t);
+    if (rest === null) return false;
+    const afterParens = rest.startsWith("(") ? rest.slice(rest.indexOf(")") + 1) : rest;
+    return afterParens.startsWith(" failed:");
+  });
+  /** `<tool>(…): …` or `<tool>: …` with no failure — the tool's own answer. */
+  const outcome = lines.filter((t) => {
+    if (t.startsWith(ERROR_PREFIX) || t.includes(" failed:")) return false;
+    const rest = tail(t);
+    if (rest === null) return false;
+    const afterParens = rest.startsWith("(") ? rest.slice(rest.indexOf(")") + 1) : rest;
+    return afterParens.startsWith(":");
+  });
+
+  const statusIn = (line: string) => (line.match(/failed:\s*(\d{3})/) || [])[1] || "error";
+
+  const status = withheld.length
+    ? "withheld"
+    : threw.length
+    ? "crash"
+    : outcome.length
+      ? "200"
+      : wholeToolFailed.length
+        ? statusIn(wholeToolFailed[0])
+        : failed.length
+          ? statusIn(failed[0])
+          : called.length
+            ? "200"
+            : "not-called";
+
+  return {
+    status,
+    called: called.length > 0,
+    subRequestFailures: failed.length - wholeToolFailed.length,
+    evidence: (withheld[0] || threw[0] || outcome[0] || wholeToolFailed[0] || failed[0] || reached[0] || "").slice(0, 220),
+  };
+}
+
 /** Render a log slice for an assertion message. */
 export function describeLogs(lines: LogLine[]): string {
   return lines.map((l) => `${new Date(l.at).toISOString()} ${l.text}`).join("\n") || "(nothing)";

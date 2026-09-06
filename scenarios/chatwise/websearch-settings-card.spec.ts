@@ -40,7 +40,16 @@ import { test, expect } from "../../fixtures/forge";
 import type { Page, FrameLocator, Locator } from "@playwright/test";
 import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";
-import { GLOBAL_APP, callResolver, openGlobalPage, waitForChatApp } from "./chatwise-support";
+import {
+  GLOBAL_APP,
+  assertCardButton,
+  callResolver,
+  openGlobalPage,
+  waitForChatApp,
+} from "./chatwise-support";
+
+/** The heading this card is anchored by. Kept beside the spec that uses it. */
+const WEB_SEARCH_CARD_HEADING = "Web search";
 
 const T = getTarget("chatwise-admin");
 const CHAT = getTarget("chatwise-global");
@@ -88,26 +97,15 @@ async function openOdometer(page: Page) {
 
 
 /**
- * A button that belongs to THIS card, found from one of the card's own fields.
+ * THE CARD-SCOPED BUTTON IS SHARED NOW — see `assertCardButton` in
+ * chatwise-support.ts.
  *
- * ⚠️ "Save key", "Test key" and "Remove key" are on the web-search card AND on
- * the organisation admin key card — measured 6 Sep 2026, when this spec went
- * red with `strict mode violation: getByRole('button', { name: /save key/i })
- * resolved to 2 elements`. The organisation card did not exist when this file
- * was written. `.first()` is not the fix: it silently depends on which card
- * paints first, and on the credential cards that exact assumption pressed the
- * wrong Save while the other card's fields sat filled and unsaved.
- *
- * The anchor is the field, because a card's own input is the one thing that
- * cannot belong to a different card.
+ * This file went red the day the organisation admin key card shipped, with
+ * `strict mode violation: getByRole('button', { name: /save key/i }) resolved
+ * to 2 elements`. It was correct when it was written and had no way to know a
+ * second card would take its labels. That is the argument for one helper rather
+ * than three: the spec that breaks is never the spec that changed.
  */
-function cardButtonNear(root: any, fieldIdSuffix: string, label: string) {
-  return root.locator(
-    `xpath=//input[contains(@id,"${fieldIdSuffix}")]/ancestor::*[.//button[normalize-space(.)="${label}"]][1]` +
-      `//button[normalize-space(.)="${label}"]`,
-  );
-}
-
 test.describe.configure({ timeout: 420_000 });
 
 test("the card states the egress cost, refuses the switch without a key, and never reads the key back", async ({
@@ -186,7 +184,7 @@ test("the card states the egress cost, refuses the switch without a key, and nev
 
     // ---- Save a key THROUGH THE UI ----------------------------------------
     await keyField.fill(CANARY);
-    await cardButtonNear(root, "webSearchKey", "Save key").first().click();
+    await (await assertCardButton(root, WEB_SEARCH_CARD_HEADING, "Save key")).click();
     keySaved = true;
 
     await expect(
@@ -262,7 +260,7 @@ test("the card states the egress cost, refuses the switch without a key, and nev
     expect(polOn.policy.allowAgile).toBe(policyBefore.policy.allowAgile);
 
     // ---- Remove the key: the app's OWN dialog, and the switch goes with it -
-    await cardButtonNear(root2, "webSearchKey", "Remove key").first().click();
+    await (await assertCardButton(root2, WEB_SEARCH_CARD_HEADING, "Remove key")).click();
     await expect(
       root2.getByText(/The stored key is deleted and web search is switched off/i),
       "the removal confirmation dialog did not open",

@@ -17,6 +17,7 @@
 // the probe calls a resolver that only exists from 13.0.0 and reads the answer.
 // The marker is logged beside it for the record, never asserted on.
 import { test } from "@playwright/test";
+import { assertCardButton } from "./chatwise-support";
 import type { Page, FrameLocator } from "@playwright/test";
 
 export type Root = Page | FrameLocator;
@@ -157,12 +158,8 @@ export async function cardState(root: Root, card: any): Promise<string> {
  */
 export async function removeCredentialViaCard(root: Root, card: any): Promise<boolean> {
   if ((await cardState(root, card)) === "unconfigured") return true;
-  const open = cardButton(root, card, card.buttons.remove).first();
-  const there = await open
-    .waitFor({ state: "visible", timeout: 8_000 })
-    .then(() => true)
-    .catch(() => false);
-  if (!there) {
+  const open = await assertCardButton(root, card.heading, card.buttons.remove, 8_000).catch(() => null);
+  if (!open) {
     console.warn(`[restore] no "${card.buttons.remove}" control on "${card.heading}"`);
     return false;
   }
@@ -311,31 +308,17 @@ export async function openAdminSettings(page: Page, deepLink: string): Promise<R
  * fails here rather than silently filling nothing. THE VALUES ARE NEVER LOGGED.
  */
 /**
- * A button that belongs to THIS card, not to whichever card painted first.
+ * THE CARD-SCOPED BUTTON NOW LIVES IN `chatwise-support.ts`.
  *
- * ⚠️ "Save key", "Test key" and "Remove key" are the labels on BOTH the
- * web-search card and the organisation card (measured 6 Sep 2026: the Settings
- * tab carries `Save key, Test key, Remove key, Save token, Test token, Remove
- * token, Save key, Test key, Remove key`). A page-wide `getByRole("button",
- * { name: "Save key" })` is therefore a strict-mode violation, and `.first()`
- * — which is what a harness reaches for to silence that — presses the WEB
- * SEARCH card's Save while the organisation fields sit there filled and
- * unsaved. The spec then reports "the card does not show the key as stored"
- * and the finger points at the product.
- *
- * So the button is found FROM THE CARD'S OWN FIELD: the nearest ancestor of one
- * of this card's inputs that contains a button with that label. No ordering
- * assumption, no `.first()`, and it fails loudly if the card ever loses its
- * field.
+ * It was here, anchored on the card's last FIELD, and that was one home too few
+ * and one anchor too narrow: `websearch-settings-card.spec.ts` hit the same
+ * "Save key" collision from outside this module and could not reach it, and the
+ * ledger card has buttons and no fields at all. The shared version anchors on
+ * the HEADING — a card is the thing that has that heading — and `assertCardButton`
+ * additionally proves the ancestor walk did not climb past the card into a
+ * container holding somebody else's.
  */
-export function cardButton(root: Root, card: any, label: string) {
-  const anchorId = card.fields?.[card.fields.length - 1]?.id;
-  if (!anchorId) throw new Error(`"${card.heading}" declares no fields to anchor its buttons on`);
-  return root.locator(
-    `xpath=//input[contains(@id,"${anchorId}")]/ancestor::*[.//button[normalize-space(.)="${label}"]][1]` +
-      `//button[normalize-space(.)="${label}"]`,
-  );
-}
+export { cardButton, assertCardButton, SETTINGS_CARD_HEADINGS } from "./chatwise-support";
 
 export async function storeCredentialViaCard(
   root: Root,
@@ -349,7 +332,7 @@ export async function storeCredentialViaCard(
     await loc.waitFor({ state: "visible", timeout: 30_000 });
     await loc.fill(value);
   }
-  await cardButton(root, card, card.buttons.save).first().click();
+  await (await assertCardButton(root, card.heading, card.buttons.save)).click();
   await root
     .getByText(card.savedLozenge, { exact: true })
     .first()

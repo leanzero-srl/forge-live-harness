@@ -29,7 +29,8 @@ import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";
 import { GLOBAL_APP, callResolver, openGlobalPage, waitForChatApp } from "./chatwise-support";
 import {
-  cardButton,
+  SETTINGS_CARD_HEADINGS,
+  assertCardButton,
   cardState,
   hasSecret,
   loadCredentialCopy,
@@ -154,7 +155,7 @@ test("both credential cards say exactly what the app says they say, and never gi
     );
     await siteEmail.fill(secret(".site_email"));
     await siteToken.fill(secret(".site_token"));
-    await cardButton(root, SITE, SITE.buttons.save).first().click();
+    await (await assertCardButton(root, SITE.heading, SITE.buttons.save)).click();
     stored.push("SITE_TOKEN");
     await expect(
       root.getByText(SITE.savedLozenge, { exact: true }).first(),
@@ -176,7 +177,7 @@ test("both credential cards say exactly what the app says they say, and never gi
     // CAPTURED FIRST, THEN ASSERTED. A bare assertion on `testPass` reports
     // "Test is broken" without saying what the card DID say, which is the
     // difference between a bug report and one somebody can act on.
-    await cardButton(root, SITE, SITE.buttons.test).first().click();
+    await (await assertCardButton(root, SITE.heading, SITE.buttons.test)).click();
     await page.waitForTimeout(20_000);
     const afterTest = await page.evaluate(() => document.body.innerText);
     const near = afterTest
@@ -222,7 +223,7 @@ test("both credential cards say exactly what the app says they say, and never gi
 
     // A second press, far enough apart that a to-the-minute stamp must differ.
     await page.waitForTimeout(65_000);
-    await cardButton(root, SITE, SITE.buttons.test).first().click();
+    await (await assertCardButton(root, SITE.heading, SITE.buttons.test)).click();
     await page.waitForTimeout(20_000);
     const secondStamp = await readLastAccepted();
     console.log(`[admin-creds] after Test #2 the card says: "${secondStamp}"`);
@@ -296,14 +297,14 @@ test("both credential cards say exactly what the app says they say, and never gi
       const orgKey2 = root2.locator(fid(ORG, "key")).first();
       await orgId2.fill(secret(".org_id"));
       await orgKey2.fill(secret(".org_key"));
-      await cardButton(root2, ORG, ORG.buttons.save).first().click();
+      await (await assertCardButton(root2, ORG.heading, ORG.buttons.save)).click();
       stored.push("ORG_KEY");
       await expect(
         root2.getByText(ORG.savedLozenge, { exact: true }).first(),
         "no acknowledgement that the org key was stored",
       ).toBeVisible({ timeout: 30_000 });
       expect(await cardState(root2, ORG), "the card does not show the key as stored").toBe("configured");
-      await cardButton(root2, ORG, ORG.buttons.test).first().click();
+      await (await assertCardButton(root2, ORG.heading, ORG.buttons.test)).click();
       await expect(
         root2.getByText(ORG.testPass, { exact: false }).first(),
         "Test did not report Atlassian accepting the org key",
@@ -313,7 +314,7 @@ test("both credential cards say exactly what the app says they say, and never gi
     }
 
     // ---- REMOVE, THROUGH THE APP'S OWN DIALOG -----------------------------
-    await cardButton(root2, SITE, SITE.buttons.remove).first().click();
+    await (await assertCardButton(root2, SITE.heading, SITE.buttons.remove)).click();
     await expect(
       root2.getByText(SITE.remove.title, { exact: true }).first(),
       "the removal confirmation dialog did not open",
@@ -388,4 +389,78 @@ test("an unknown credential kind is refused by name, and the non-admin refusal i
       "credentials (HANDOFF §7), so only the ALLOW side is reachable. An allow proves nothing " +
       "about a gate.",
   );
+});
+
+/**
+ * THE CARD ANCHOR REFUSES TO CLICK ANOTHER CARD'S BUTTON.
+ *
+ * The whole point of `assertCardButton` is the case where a card does NOT have
+ * the control being asked for: the XPath walks up from the heading looking for
+ * an ancestor that contains one, and without a guard it keeps walking until it
+ * finds SOMEBODY ELSE'S. That is not hypothetical — it is what `.first()` did
+ * on this very page: pressed the web-search card's "Save key" while the
+ * organisation card's fields sat filled and unsaved, and the spec reported "the
+ * card does not show the key as stored" as if the product were broken.
+ *
+ * So this asks the LEDGER card — which has no fields and no Save — for a
+ * "Save key", and requires a throw. A helper whose guard has never been seen to
+ * fire is a helper nobody knows the shape of.
+ */
+test("a card is never handed another card's button", async ({ page }) => {
+  test.skip(!T.envId, "env ids unresolved — run `npm run discover`.");
+  const copy: any = await loadCredentialCopy();
+  await assertLoggedIn(page);
+  await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
+  const root = await resolveAdminRoot(page);
+  await tabLocator(root, "Settings").click();
+  await skipUntilCardsPresent(root, [copy.ORG_KEY_CARD.heading]);
+
+  // TWO CARDS REALLY DO SHARE THE LABEL — asserted through the helper itself,
+  // on each of them, rather than by counting.
+  //
+  // A bare `.count()` here was racy and gave 0, then 1, then 2 on three runs of
+  // the same page: `.count()` does not wait, and the web-search card's button
+  // paints before the organisation card's. Resolving each card's own button is
+  // deterministic AND proves the happy path in the same breath — the helper
+  // hands back a DIFFERENT element for each card.
+  const webSave = await assertCardButton(root, "Web search", "Save key", 30_000);
+  const orgSave = await assertCardButton(root, copy.ORG_KEY_CARD.heading, "Save key", 30_000);
+
+  /** Which card is this button actually inside? Asked of the DOM, not inferred. */
+  const cardOf = (btn: Locator) =>
+    btn.evaluate((el: Element, headings: string[]) => {
+      let box: Element | null = el;
+      while (box?.parentElement) {
+        box = box.parentElement;
+        const text = (box as HTMLElement).innerText || "";
+        const hit = headings.find((h) => text.includes(h));
+        if (hit) return hit;
+      }
+      return "(none)";
+    }, SETTINGS_CARD_HEADINGS);
+
+  expect(
+    await cardOf(webSave),
+    `the "Save key" handed back for the web-search card is not inside it`,
+  ).toBe("Web search");
+  expect(
+    await cardOf(orgSave),
+    `the "Save key" handed back for "${copy.ORG_KEY_CARD.heading}" is not inside it — which is ` +
+      `exactly the wrong-card click this helper replaced, and it would have pressed Save on the ` +
+      `web-search card while the organisation fields sat filled and unsaved.`,
+  ).toBe(copy.ORG_KEY_CARD.heading);
+
+  let threw = "";
+  try {
+    await assertCardButton(root, copy.CHANGES_CARD.heading, "Save key", 4_000);
+  } catch (e) {
+    threw = (e as Error).message;
+  }
+  console.log(`[card-anchor] asking the ledger card for a "Save key" threw: ${threw || "(nothing)"}`);
+  expect(
+    threw,
+    `assertCardButton HANDED BACK A BUTTON for a card that has none. It walked up from the ` +
+      `"${copy.CHANGES_CARD.heading}" heading until it found some other card's "Save key", which ` +
+      `is exactly the silent wrong-card click this helper replaced.`,
+  ).not.toBe("");
 });

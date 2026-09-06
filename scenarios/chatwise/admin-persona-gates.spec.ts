@@ -24,6 +24,7 @@ import {
   describeLogs,
   logWindow,
   openGlobalPage,
+  scoreToolOutcome,
   skipIfQuotaBlocked,
   waitForChatApp,
 } from "./chatwise-support";
@@ -163,72 +164,16 @@ test("the admin gates open for the admin persona only, and the eight asUser read
         table.push({ tool, status: "SKIPPED (quota)", called: false });
         continue;
       }
-      // WITHHELD IS NOT CALLED. `executor.js` prints the refusal on the same
-      // `[Tools] <name>` prefix, so a naive match would record a closed gate as
-      // a 200 — the one mistake that would make this whole table a lie.
-      const called = r.win.filter(
-        (l: any) =>
-          new RegExp(`^\\[Tools\\] ${tool}\\b`).test(l.text) && !/is withheld this turn/.test(l.text),
-      );
-      /**
-       * A SUB-REQUEST'S 404 IS NOT THE TOOL'S STATUS — measured 6 Sep 2026 and
-       * it corrupted the first run of this table.
-       *
-       * `getWorkflowScheme` asks for the scheme AND, optionally, its draft.
-       * WFH has no draft, so Jira answers 404 to the second call and the
-       * handler absorbs it and prints
-       *   `[Tools] getWorkflowScheme(WFH) draft failed: 404 …`
-       * one line above its own successful outcome
-       *   `[Tools] getWorkflowScheme(WFH): 1 issue-type mapping(s), draft=false`.
-       * A naive `.*failed:` match recorded 404 for a read that returned exactly
-       * what the model then reported correctly — which is the whole table
-       * lying in the direction of "asUser does not survive", the one
-       * conclusion this spec exists to establish.
-       *
-       * So: an OUTCOME line (the tool's own name followed by `:` or `(...):`
-       * and no "failed") settles the row as 200; only when there is no outcome
-       * line does a failure line decide it.
-       */
-      // ⚠️ AND AN EXCEPTION IS NOT AN OUTCOME. Measured on 13.7.0: the audit
-      // fix built its query correctly and passed it to Forge as a PLAIN STRING,
-      // so `getAuditRecords` threw
-      //   `Error in getAuditRecords(recent): Error: You must create your route
-      //    using the 'route' export from '@forge/api'.`
-      // before any request left the app. That line contains neither ` failed:`
-      // nor a status, so the first version of this scorer found no failure,
-      // found no outcome either, fell through to `called.length` and recorded
-      // **200** for a tool that has never once answered. A table that scores a
-      // crash as a success is worse than no table.
-      const threw = r.win.filter((l: any) =>
-        new RegExp(`^\\[Tools\\] Error in ${tool}\\b`).test(l.text));
-      const outcome = r.win.filter(
-        (l: any) =>
-          new RegExp(`^\\[Tools\\] ${tool}(\\(|:)`).test(l.text) &&
-          !/ failed:/.test(l.text) &&
-          !/^\[Tools\] Error in /.test(l.text),
-      );
-      const failed = r.win.filter((l: any) => new RegExp(`^\\[Tools\\] .*${tool}.*failed:`).test(l.text));
-      const wholeToolFailed = failed.filter((l: any) =>
-        new RegExp(`^\\[Tools\\] ${tool}(\\([^)]*\\))? failed:`).test(l.text),
-      );
-      const status = threw.length
-        ? "threw"
-        : outcome.length
-        ? "200"
-        : wholeToolFailed.length
-          ? (wholeToolFailed[0].text.match(/failed:\s*(\d{3})/) || [])[1] || "error"
-          : failed.length
-            ? (failed[0].text.match(/failed:\s*(\d{3})/) || [])[1] || "error"
-            : called.length
-              ? "200"
-              : "not-called";
-      table.push({
-        tool,
-        status,
-        called: called.length > 0,
-        subRequestFailures: failed.length - wholeToolFailed.length,
-        evidence: (threw[0]?.text || outcome[0]?.text || wholeToolFailed[0]?.text || failed[0]?.text || called[0]?.text || "").slice(0, 220),
-      });
+      // ONE SCORER, PROVEN BY A FIXTURE. It lived here as four hand-rolled
+      // filters and was wrong twice in opposite directions — an absorbed
+      // sub-request 404 scored as a dead read, and an exception before the
+      // request left the app scored as 200. Both were caught by a live run
+      // rather than by a test, which is the wrong way round for the thing that
+      // decides what this table SAYS. `_stub/tool-outcome-scoring.spec.ts`
+      // pins all five states against real log lines and needs no tenant.
+      const scored = scoreToolOutcome(tool, r.win.map((l: any) => l.text));
+      const { status } = scored;
+      table.push({ tool, ...scored });
       console.log(`[asUser] ${tool} -> ${status}`);
       fs.writeFileSync(OUT, JSON.stringify(table, null, 2));
       if (i < EIGHT.length - 1) await page.waitForTimeout(GAP_MS);
