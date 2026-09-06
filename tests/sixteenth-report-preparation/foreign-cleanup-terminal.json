@@ -1,0 +1,21 @@
+{
+  "observedAt": "2026-09-06T05:39:40.245897+00:00",
+  "exactOwnerPids": [
+    3031,
+    6889
+  ],
+  "exactOwnerPsExit": 1,
+  "exactOwnerPsOutput": "",
+  "matchingActualOwnerLaunches": [],
+  "terminalLog": "/private/tmp/claude-501/-Users-mihaiperdum-Projects-ChatWise/6fbc7d3d-08a3-41d3-9673-62eea36d3527/scratchpad/ownerA/run2.txt",
+  "terminalLogSha256": "9e4ccec0c036110d369f319628190c9ee618494837b4ccdcfa2349c026b95444",
+  "logModifiedAt": "2026-09-06T05:15:27.819705+00:00",
+  "terminalLines": [
+    "[restore] allowDestructive=false",
+    "[restore] issues left in WFH from this run: none",
+    "  1 failed",
+    "EXIT=1"
+  ],
+  "readOnly": true,
+  "liveTestsExecuted": false
+}
