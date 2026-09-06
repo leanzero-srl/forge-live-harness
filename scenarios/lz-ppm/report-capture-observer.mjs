@@ -5,8 +5,18 @@ const writes=new Set(['captureSponsorReport','advanceSponsorReportCapture','canc
 const calls=new Set([...writes,'getSponsorReportCapture']);
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 /** Independent recorder of real UI calls. It never advances, retries or repairs a job. */
-export function createReportCaptureObserver({planId,onState=(_state)=>{},now=()=>Date.now()}) {
+export function createReportCaptureObserver({planId,onState=(_state)=>{},now=()=>Date.now(),initialJob=null}) {
  const events=[],pending=new Map(),waiters=new Set();let job=null,report=null,error=null,begin=null,writePending=null;
+ if(initialJob!==null){
+  assert.ok(initialJob&&typeof initialJob==='object'&&!Array.isArray(initialJob));
+  for(const key of ['id','requestId','reportId','name','stageLabel'])assert.ok(typeof initialJob[key]==='string'&&initialJob[key]);
+  assert.equal(initialJob.state,'active');assert.equal(initialJob.cleanupDone,false);
+  for(const key of ['checkpoint','completedUnits','totalUnits'])assert.ok(Number.isSafeInteger(initialJob[key])&&initialJob[key]>=0);
+  assert.ok(initialJob.completedUnits<=initialJob.totalUnits);
+  for(const key of ['createdAt','expiresAt'])assert.ok(typeof initialJob[key]==='string'&&Number.isFinite(Date.parse(initialJob[key])));
+  assert.ok(Date.parse(initialJob.expiresAt)>Date.parse(initialJob.createdAt));
+  job=structuredClone(initialJob);events.push({type:'admitted-existing-job',job:structuredClone(job),at:now()});
+ }
  const snapshot=()=>({planId,job,report,error:error?{name:error.name,message:error.message}:null,begin,events:[...events]});
  const notify=()=>{onState(snapshot());for(const w of [...waiters])w();};
  const fail=cause=>{error??=cause instanceof Error?cause:new Error(String(cause));notify();};
@@ -15,6 +25,7 @@ export function createReportCaptureObserver({planId,onState=(_state)=>{},now=()=
   try{
    const {functionKey:key,payload}=call;
    if(key==='captureSponsorReport'){
+    assert.equal(initialJob,null,'A resumed capture observer cannot accept a begin');
     assert.equal(begin,null,'A capture observer cannot silently accept a second begin');
     assert.equal(typeof payload.requestId,'string');assert.ok(payload.requestId);
     begin={requestId:payload.requestId,name:payload.name,inputHash:hash(payload),at:now()};
@@ -38,7 +49,7 @@ export function createReportCaptureObserver({planId,onState=(_state)=>{},now=()=
    assert.ok(next.completedUnits<=next.totalUnits);assert.equal(typeof next.cleanupDone,'boolean');assert.equal(typeof next.stageLabel,'string');
    assert.ok(next.state!=='active'||!next.cleanupDone,'An active job cannot be cleaned');
    if(begin){assert.equal(next.requestId,begin.requestId);assert.equal(next.name,begin.name);}
-   if(job){assert.equal(next.id,job.id);assert.equal(next.requestId,job.requestId);assert.equal(next.createdAt,job.createdAt);assert.equal(next.expiresAt,job.expiresAt);assert.ok(next.checkpoint>=job.checkpoint,'Checkpoint regressed');
+   if(job){assert.equal(next.id,job.id);assert.equal(next.requestId,job.requestId);assert.equal(next.name,job.name);if(job.reportId!=null)assert.equal(next.reportId,job.reportId,'Known report identity changed');assert.equal(next.createdAt,job.createdAt);assert.equal(next.expiresAt,job.expiresAt);assert.ok(next.checkpoint>=job.checkpoint,'Checkpoint regressed');
     if(call.key==='advanceSponsorReportCapture'&&next.state==='active')assert.ok(next.checkpoint>job.checkpoint,'Advance made no acknowledged progress');
     if(call.key==='cancelSponsorReportCapture'&&!next.cleanupDone)assert.ok(next.checkpoint>job.checkpoint,'Cleanup made no acknowledged progress');
     if(job.state==='complete')assert.equal(next.state,'complete','Private cleanup must preserve publication');

@@ -8,8 +8,8 @@ import {createReportCaptureObserver} from './report-capture-observer.mjs';
 const sessionsByPage=new WeakMap<any,Map<string,any[]>>();
 
 /** Install before the UI click. Only observe actual UI work; no polling advances. */
-export function observeReportCapture(page:any,planId:string,info:any,label='report-capture') {
- const recorder=createReportCaptureObserver({planId,onState:state=>fs.writeFileSync(info.outputPath(`${label}-protocol.json`),JSON.stringify(state,null,2))});
+export function observeReportCapture(page:any,planId:string,info:any,label='report-capture',initialJob:any=null) {
+ const recorder=createReportCaptureObserver({planId,initialJob,onState:state=>fs.writeFileSync(info.outputPath(`${label}-protocol.json`),JSON.stringify(state,null,2))});
  const requests=new Set<any>();let queue=Promise.resolve();
  const enqueue=(work:()=>any)=>{queue=queue.then(work).catch(error=>recorder.fail(error));};
  const request=(req:any)=>{const call=callOf(req);if(call?.payload?.planId!==planId||!['captureSponsorReport','advanceSponsorReportCapture','getSponsorReportCapture','cancelSponsorReportCapture'].includes(call.functionKey))return;requests.add(req);enqueue(()=>recorder.request(req,call));};
@@ -21,7 +21,7 @@ export function observeReportCapture(page:any,planId:string,info:any,label='repo
  });};
  const failed=(req:any)=>{if(requests.has(req))enqueue(()=>recorder.transportFailure(req,new Error(`Capture request failed: ${req.failure()?.errorText||'unknown transport error'}`)));};
  page.on('request',request);page.on('response',response);page.on('requestfailed',failed);
- const rpc=currentUserResolver(page,c=>c?.functionKey==='captureSponsorReport'&&c.payload?.planId===planId);
+ const rpc=currentUserResolver(page,c=>(c?.functionKey==='captureSponsorReport'||(initialJob&&c?.functionKey==='getSponsorReportCapture'))&&c.payload?.planId===planId);
  const session={recorder,invoke:rpc.invoke,settle:()=>queue,stop:()=>{page.off('request',request);page.off('response',response);page.off('requestfailed',failed);rpc.stop();recorder.dispose();}};
  let plans=sessionsByPage.get(page);if(!plans){plans=new Map();sessionsByPage.set(page,plans);}plans.set(planId,[...(plans.get(planId)||[]),session]);return session;
 }
