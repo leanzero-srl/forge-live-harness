@@ -1,0 +1,20 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Original private consumer requires null after actual hook serialized undefined
++ actual - expected
+
++ undefined
+- null
+
+    at file:///private/tmp/lz-private-plan-absence-20260906/tests/private-plan-absence/red.mjs:5:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: null,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.5.0

@@ -1,3 +1,5 @@
+import {privateRetentionMode} from './private-retention-mode.mjs';
+import {proveDeletedPlanTwice} from './deleted-plan-absence.mjs';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
@@ -13,6 +15,7 @@ import {admitPackedFixture} from './report-packed-upgrade-contract.mjs';
 import {admitPrivatePhase,privateAccount,privateHash,verifyPrivateSnapshot,privateReportOracle,privateDeletedState,privateCleanupStep,finishPrivateWitness} from './private-report-witness-contract.mjs';
 import {privateWitnessSession} from './private-report-witness-session';
 const enabled=admitPrivatePhase(process.env.LZ_PRIVATE_REPORT_PHASE);
+const retain=privateRetentionMode(process.env.LZ_PRIVATE_RETAIN_MODE);
 const originals=[LZPT_PLAN,'plan-mta3aw3t-6dyijd','plan-mtbrlh8n-7ghw8u'].sort();
 const sha=(value:any)=>createHash('sha256').update(value).digest('hex');
 test.describe.configure({retries:0,timeout:900000});
@@ -26,7 +29,7 @@ test('private staged report owner: genuine fork, all report fields and immutable
  // Request/response credentials are retained only in memory; explicit evidence is strictly sanitized.
  await page.context().tracing.stop();
  fs.mkdirSync(info.outputDir,{recursive:true});const marker=Date.now().toString(36),sourceName=`[harness-test] Private report source ${marker}`,privateName=`[harness-test] Private report model ${marker}`,captureName='Private report source snapshot',reportName='Private owner immutable report';
- const journal:any={schema:1,phase:'owner',sourceName,privateName,receipt,settings,events:[],owned:{},completed:false,jiraWrites:0,physicalKvsVerified:false,secondPrincipalVerified:false};
+ const journal:any={schema:1,phase:'owner',...(retain?{retentionMode:'retain'}:{}),sourceName,privateName,receipt,settings,events:[],owned:{},completed:false,jiraWrites:0,physicalKvsVerified:false,secondPrincipalVerified:false};
  const persist=()=>fs.writeFileSync(info.outputPath('private-report-witness.json'),JSON.stringify(journal,null,2));
  const record=(stage:string,value:any)=>{journal.events.push({stage,atMs:Date.now(),value});persist();};persist();
  const session=privateWitnessSession(page,{record});let originalSource:any,source:any,snapshot:any,owner:any,summary:any,finalJob:any,bodyFailed=false,documentPage:any;
@@ -67,13 +70,22 @@ test('private staged report owner: genuine fork, all report fields and immutable
   record('private-document-step',{step:'close',event:'start'});await documentPage.close();documentPage=null;record('private-document-step',{step:'close',event:'complete'});
   frame=await openOwned(privateName);work=await planning(frame);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();report=work.locator('[data-testid="sponsor-reports"]');await report.getByRole('navigation',{name:'Retained sponsor reports'}).getByRole('button').filter({hasText:reportName}).click();expect((await read('getSponsorReport',{planId:owner.planId,reportId:summary.id})).report).toEqual(summary);await pages();await download('private-owner-report-reopened.html');
   await sourceUnchanged();await privateUnchanged();await issue();await standing();expect(await read('getCapacitySettings')).toEqual(settings);await principal();await session.stop();
+  // Retention keeps the exact verified source, snapshot, model and report for subsequent inspection.
+  if(retain){
+   await drafts(source.meta.id);await drafts(owner.planId);
+   expect(await read('getSponsorReportCapture',{planId:owner.planId,jobId:finalJob.id})).toEqual({success:true,job:finalJob,report:summary});
+   expect((await read('getSponsorReport',{planId:owner.planId,reportId:summary.id})).report).toEqual(summary);await pages();
+   journal.retained={sourcePlanId:source.meta.id,snapshotId:snapshot.id,snapshotHash:snapshot.hash,privatePlanId:owner.planId,generationId:owner.plan.simulationGeneration,reportId:summary.id,reportHash:summary.hash,jobId:finalJob.id,checkpoint:finalJob.checkpoint,settingsVersion:settings.version};
+   journal.completed=true;persist();
+  }else{
   // Mutations below happen once, after full positive ownership and public-output proof.
   expect(await session.invoke('deleteSponsorReport',{planId:owner.planId,reportId:summary.id},true)).toEqual({success:true,deleted:true});journal.reportDeleted=true;persist();
   const deletedState=await read('getSponsorReportCapture',{planId:owner.planId,jobId:finalJob.id});let cleaned=privateDeletedState(finalJob,deletedState.job);expect(deletedState).toEqual({success:true,job:cleaned});journal.deletedState=deletedState;persist();for(let n=0;n<20&&!cleaned.cleanupDone;n++){const result=await session.invoke('cancelSponsorReportCapture',{planId:owner.planId,jobId:finalJob.id},true);const next=privateCleanupStep(cleaned,result.job);expect(result).toEqual({success:true,job:next});cleaned=next;journal.cleaned=cleaned;persist();}expect(cleaned.cleanupDone).toBe(true);
   for(let n=0;n<2;n++){await privateUnchanged();expect(await read('getSponsorReportCapture',{planId:owner.planId,jobId:finalJob.id})).toEqual({success:true,job:cleaned});expect(await session.invoke('getSponsorReport',{planId:owner.planId,reportId:summary.id})).toEqual({success:false,error:'This sponsor report was deleted or is unavailable'});expect(await session.invoke('getSponsorReportPage',{planId:owner.planId,reportId:summary.id,section:'timeline',page:0})).toEqual({success:false,error:'This report is unavailable'});const listed=await read('listSponsorReports',{planId:owner.planId});expect(listed.entries).toEqual([]);expect(listed.cursor??null).toBeNull();}journal.publicAbsenceTwice=true;persist();
   frame=await openPlans(page);const card=frame.locator('.lz-card').filter({hasText:privateName});await expect(card.locator('[data-testid="plan-card-simulation"]')).toHaveText('Private simulation');await card.getByRole('button',{name:'More',exact:true}).click();await card.getByRole('button',{name:'Delete plan',exact:true}).click();expect(await perform('deletePlan',owner.planId,()=>frame.getByRole('dialog',{name:'Delete Plan',exact:true}).getByRole('button',{name:'Delete',exact:true}).click())).toEqual({success:true});await expect(card).toHaveCount(0);
   for(let n=0;n<2;n++){expect(await session.invoke('getPlan',{planId:owner.planId})).toEqual({success:false,error:'Plan not found'});await registry([...originals,source.meta.id]);}journal.privateDeleted=true;persist();
-  await sourceUnchanged();await session.stop();await hook({what:'clearDrafts',planId:source.meta.id});expect(await hook({what:'deleteFixture',planId:source.meta.id})).toEqual({deleted:source.meta.id,registryRemoved:true});for(let n=0;n<2;n++){expect((await hook({what:'plan',planId:source.meta.id})).meta).toBeNull();await registry(originals);}journal.sourceDeleted=true;journal.completed=true;persist();
+  await sourceUnchanged();await session.stop();await hook({what:'clearDrafts',planId:source.meta.id});expect(await hook({what:'deleteFixture',planId:source.meta.id})).toEqual({deleted:source.meta.id,registryRemoved:true});await proveDeletedPlanTwice({planId:source.meta.id,expectedRegistry:originals,readPlan:(planId:string)=>hook({what:'plan',planId}),readRegistry:async()=>{const result=await hook({what:'plans'});return result.plans.map((p:any)=>p.id);}});journal.sourceDeleted=true;journal.completed=true;persist();
+  }
  }catch{bodyFailed=true;journal.failure='Private owner witness failed; exact known resources retained without retry';persist();throw new Error(journal.failure);}
  finally{
   const audits=[async()=>{if(documentPage&&!documentPage.isClosed())await documentPage.close();},principal,standing,issue,issue,async()=>{expect(await read('getCapacitySettings')).toEqual(settings);},async()=>{for(const id of originals)await drafts(id);},async()=>{const ids=[...originals,...(journal.owned.sourcePlanId&&!journal.sourceDeleted?[journal.owned.sourcePlanId]:[]),...(journal.observedPrivatePlanId&&!journal.privateDeleted?[journal.observedPrivatePlanId]:[])];await registry(ids);}];

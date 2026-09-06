@@ -1,0 +1,25 @@
+Listing tests:
+Total: 0 tests in 0 files
+
+AssertionError: Unknown private content disposition
++ actual - expected
+
++ 'unknown'
+- 'retain'
+
+
+   at scenarios/lz-ppm/private-retention-mode.mjs:5
+
+  3 | export function privateRetentionMode(value) {
+  4 |  if(value===undefined||value==='') return false;
+> 5 |  assert.equal(value,'retain','Unknown private content disposition');
+    |         ^
+  6 |  return true;
+  7 | }
+  8 |
+    at privateRetentionMode (/private/tmp/lz-private-plan-absence-20260906/scenarios/lz-ppm/private-retention-mode.mjs:5:9)
+    at /private/tmp/lz-private-plan-absence-20260906/scenarios/lz-ppm/campaign-private-staged-report.spec.ts:18:14
+
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.

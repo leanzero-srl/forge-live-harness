@@ -1,0 +1,13 @@
+✔ complete deployed producer serializes missing metadata and null without discarding issue rows (85.608791ms)
+✔ wrong metadata, missing rows, ambiguous body and unadvertised fields fail closed (3.67975ms)
+✔ two independent plan/registry pairs required in exact order (0.133583ms)
+✔ first/second rows or registry resurrection and duplicates refuse without retry (0.318917ms)
+✔ rejected second read retains error identity and never converts to empty (0.17175ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 240.426375

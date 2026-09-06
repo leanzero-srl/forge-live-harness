@@ -1,3 +1,4 @@
+import {withoutRetention} from '../private-retention-mode/source.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {execFileSync} from 'node:child_process';import ts from 'typescript';
 import {settledScreenshot} from '../../scenarios/lz-ppm/settled-screenshot.mjs';
 const source=process.env.LZ_PRIVATE_OLD_SCREENSHOT==='1'?execFileSync('git',['show','ff48d10:scenarios/lz-ppm/campaign-private-staged-report.spec.ts'],{encoding:'utf8'}):fs.readFileSync('scenarios/lz-ppm/campaign-private-staged-report.spec.ts','utf8');
@@ -24,6 +25,9 @@ test('compiled document flow records only fixed phase boundaries and stops at ea
  for(const fault of steps){const r=await runDocument(fault);assert.equal(r.thrown,r.error);assert.deepEqual(r.events.at(-1),{stage:'private-document-step',value:{step:fault,event:'start'}});assert.equal(r.calls.at(-1),fault);assert(!JSON.stringify(r.events).includes('opaque-secret-sentinel'));assert(r.events.every(e=>Object.keys(e.value).sort().join(',')==='event,step'));}
 });
 test('all original business expectations and waits remain exact; screenshot changes only explicit intended body',()=>{
- const collect=text=>{const ast=ts.createSourceFile('spec.ts',text,ts.ScriptTarget.Latest,true),calls=[];function walk(n){if(ts.isCallExpression(n)&&(/^(await )?expect\(/.test(n.getText(ast))||/\.wait(?:For|\b)/.test(n.expression.getText(ast))))calls.push(n.getText(ast));ts.forEachChild(n,walk);}walk(ast);return calls;};assert.deepEqual(collect(source),collect(original));
+ const collect=text=>{const ast=ts.createSourceFile('spec.ts',text,ts.ScriptTarget.Latest,true),calls=[];function walk(n){if(ts.isCallExpression(n)&&(/^(await )?expect\(/.test(n.getText(ast))||/\.wait(?:For|\b)/.test(n.expression.getText(ast))))calls.push(n.getText(ast));ts.forEachChild(n,walk);}walk(ast);return calls;};// The separately proved deletion-consumer correction replaces only the obsolete null assertion.
+ const newAbsence="await proveDeletedPlanTwice({planId:source.meta.id,expectedRegistry:originals,readPlan:(planId:string)=>hook({what:'plan',planId}),readRegistry:async()=>{const result=await hook({what:'plans'});return result.plans.map((p:any)=>p.id);}});";
+ const inventorySource=(source.includes('const retain=privateRetentionMode')?withoutRetention(source):source).replace(newAbsence,"for(let n=0;n<2;n++){expect((await hook({what:'plan',planId:source.meta.id})).meta).toBeNull();await registry(originals);}");
+ assert.deepEqual(collect(inventorySource),collect(original));
  assert(original.includes(call.replace("subject:documentPage.locator('body'),",'')));
 });
