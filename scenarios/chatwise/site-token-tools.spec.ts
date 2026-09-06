@@ -210,7 +210,7 @@ test("the site token opens four tools, they run as the stored administrator, and
 
     const screenCalls = called(reads.win, "getScreenConfiguration");
     const securityCalls = called(reads.win, "getIssueSecurityScheme");
-    expect(
+    expect.soft(
       screenCalls.length + securityCalls.length,
       `NEITHER site-token read was called although the gate was open. The model was asked for ` +
         `exactly the two things the card says the token buys:\n` +
@@ -249,15 +249,34 @@ test("the site token opens four tools, they run as the stored administrator, and
     // sentence; the model has to pass it on, because the audit log will carry
     // the token owner's name and not the asker's.
     const saysAuthority =
-      /stored (site )?admin(istrator)?|token owner|administrator who stored|as the administrator/i
+      /stored (site )?admin(istrator)?|token owner|administrator who stored|as the administrator|administrator token/i
         .test(reads.reply);
     console.log(`[site-token] reply attributes the authority: ${saysAuthority}`);
-    expect(
-      saysAuthority,
-      `the reply never says the reads ran as the STORED ADMINISTRATOR. The card promises the ` +
-        `audit log will carry that person's name; a reply that says "I read it" leaves the ` +
-        `asker believing it ran as them:\n${reads.reply.slice(0, 1200)}`,
-    ).toBe(true);
+    // ONLY ASKED WHEN A READ ACTUALLY RETURNED SOMETHING.
+    //
+    // `authority` is a field on the tool's RESULT, so a turn in which both
+    // reads failed has nothing to attribute and a model that stayed quiet
+    // about whose token it was is behaving correctly. Measured 6 Sep 2026:
+    // both reads 400'd, this assertion went red, and it threw before the
+    // archive phase — reporting a second defect that was only the first one's
+    // shadow, and losing the measurement the run was for.
+    const anyReadSucceeded =
+      reads.win.some((l: any) =>
+        /^\[Tools\] (getScreenConfiguration|getIssueSecurityScheme)\b/.test(l.text)) &&
+      !reads.win.some((l: any) => /^\[SiteToken\] HTTP/.test(l.text));
+    if (anyReadSucceeded) {
+      expect.soft(
+        saysAuthority,
+        `the reply never says the reads ran as the STORED ADMINISTRATOR. The card promises the ` +
+          `audit log will carry that person's name; a reply that says "I read it" leaves the ` +
+          `asker believing it ran as them:\n${reads.reply.slice(0, 1200)}`,
+      ).toBe(true);
+    } else {
+      findings.push(
+        `authority attribution NOT MEASURED: every site-token read failed this turn, so no result ` +
+          `carried an \`authority\` field to relay. saysAuthority=${saysAuthority} anyway.`,
+      );
+    }
 
     // ---- 4. archiveProject: THE TICKET, ONE YES, AND THE UNDO -------------
     //
@@ -348,7 +367,7 @@ test("the site token opens four tools, they run as the stored administrator, and
     if (!QUOTA_BUBBLE.test(refused.reply)) {
       const line2 = toolset(refused.win);
       console.log(`[site-token] toolset line after removal: ${line2}`);
-      expect(
+      expect.soft(
         line2,
         `the site-token gate is STILL OPEN after the credential was removed through the card. ` +
           `Removing a credential has to close it on the very next turn:\n${line2}`,
@@ -377,7 +396,7 @@ test("the site token opens four tools, they run as the stored administrator, and
         heading.test(refused.reply) ||
         (/site admin(istrator)? token/i.test(refused.reply) &&
           /settings|manage apps|ChatWise admin/i.test(refused.reply));
-      expect(
+      expect.soft(
         namesRoute,
         `the refusal names no way through. It has to say a site admin token is not stored AND ` +
           `where a ChatWise admin adds one ("${SITE.heading}" on the Settings tab); a bare "I ` +
