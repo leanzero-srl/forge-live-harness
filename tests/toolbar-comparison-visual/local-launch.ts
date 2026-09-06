@@ -1,0 +1,3 @@
+import {chromium} from '@playwright/test';
+import {createPortableLauncher} from '../../forge/portable-browser.mjs';
+export async function launchHarnessContext(options:any={}) {return createPortableLauncher({chromium,readAdmission:()=>({cookies:[],origins:[]}),installHostFlagSuppressor:async()=>{},verifyIdentity:async(context:any)=>{await context.route('**/*',(r:any)=>r.abort());const page=await context.newPage();await page.goto('about:blank');await page.close();}})({mode:'portable-chrome152',headed:false,viewport:{width:1600,height:1100},expected:{accountId:'local-no-site',uiVersion:'4.58.589'},...options});}

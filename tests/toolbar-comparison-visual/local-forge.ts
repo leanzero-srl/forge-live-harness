@@ -23,10 +23,10 @@
 import { test as base, expect } from "@playwright/test";
 import type { BrowserContext } from "@playwright/test";
 import path from "node:path";
-import {createCloseJournal,closePhase} from "../forge/close-diagnostics.mjs";
-import { launchHarnessContext } from "../forge/browser";
-import { Recorder, RecorderStepError } from "../capture/recorder";
-import { writeEvidenceBundle } from "../capture/evidence";
+import {createCloseJournal,closePhase} from "../../forge/close-diagnostics.mjs";
+import { launchHarnessContext } from "./local-launch";
+import { Recorder, RecorderStepError } from "../../capture/recorder";
+import { writeEvidenceBundle } from "../../capture/evidence";
 
 const closeFile = process.env.LZ_BROWSER_CLOSE_RECEIPT;
 if (closeFile && (process.env.LZ_TOOLBAR_VISUAL_PHASE !== 'readonly' || !path.isAbsolute(closeFile))) throw new Error('Explicit toolbar witness close receipt required');

@@ -18,6 +18,8 @@ import {
 } from "../config/env";
 
 export interface LaunchOpts {
+  /** Optional content-free close observer for an explicitly dispatched witness. */
+  observeClose?: (phase: string, event: string) => unknown;
   /** Force headed (auth) / headless. Default: follow HEADLESS env. */
   headed?: boolean;
   /** Explicit opt-in only; runner environment remains authoritative. */
@@ -74,7 +76,7 @@ export async function launchHarnessContext(opts: LaunchOpts = {}): Promise<Brows
     if (opts.expectedAccountId && process.env.LZ_EXPECTED_ACCOUNT_ID !== undefined && opts.expectedAccountId !== process.env.LZ_EXPECTED_ACCOUNT_ID) throw new Error("BROWSER_PRINCIPAL_BINDING_MISMATCH");
     if (opts.expectedUiVersion && process.env.LZ_EXPECTED_UI_VERSION !== undefined && opts.expectedUiVersion !== process.env.LZ_EXPECTED_UI_VERSION) throw new Error("BROWSER_UI_BINDING_MISMATCH");
     const context = await createPortableLauncher({ chromium, installHostFlagSuppressor })({
-      mode, headed: !headless, authFlow: opts.authFlow, viewport: VIEWPORT, recordVideoDir: opts.recordVideoDir,
+      mode, ...(opts.observeClose ? {observeClose: opts.observeClose} : {}), headed: !headless, authFlow: opts.authFlow, viewport: VIEWPORT, recordVideoDir: opts.recordVideoDir,
       expected: { accountId: process.env.LZ_EXPECTED_ACCOUNT_ID ?? opts.expectedAccountId ?? "", uiVersion: process.env.LZ_EXPECTED_UI_VERSION ?? opts.expectedUiVersion ?? "" },
     });
     const receipt = getPortableReceipt(context);

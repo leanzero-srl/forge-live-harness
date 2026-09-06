@@ -1,3 +1,4 @@
+import {closePhase} from './close-diagnostics.mjs';
 // Explicit portable-session adapter. The shared persistent profile is never opened or changed.
 import fs from 'node:fs';
 import {installPortableViewportSizing} from './portable-viewport.mjs';
@@ -103,8 +104,8 @@ export function createPortableLauncher({chromium, installHostFlagSuppressor, rea
         intentional = true;
         closing = (async () => {
           const errors = [...unexpected];
-          if (originalClose) try { await originalClose(closeOptions); } catch (error) { errors.push(error); }
-          if (browser) try { await browser.close(); } catch (error) { errors.push(error); }
+          if (originalClose) try { await closePhase(options.observeClose, 'portable-context-close', () => originalClose(closeOptions)); } catch (error) { errors.push(error); }
+          if (browser) try { await closePhase(options.observeClose, 'browser-close', () => browser.close()); } catch (error) { errors.push(error); }
           aggregate(errors,'Portable context and owned browser cleanup failed; all causes retained');
         })();
       }
@@ -115,7 +116,13 @@ export function createPortableLauncher({chromium, installHostFlagSuppressor, rea
       browser.once('disconnected', () => { if (!intentional) unexpected.push(new PortableBrowserError('PORTABLE_BROWSER_LOST')); });
       if (browser.version() !== VERSION) refuse('PORTABLE_VERSION_MISMATCH');
       context = await browser.newContext({storageState:state,viewport:options.viewport,acceptDownloads:true,...(options.recordVideoDir ? {recordVideo:{dir:options.recordVideoDir,size:options.viewport}} : {})});
-      installPortableViewportSizing(context);
+      if (options.observeClose) {
+        for (const [target, method, phase] of [[context.request,'dispose','request-dispose'],[context.tracing,'stop','trace-stop'],[context.tracing,'stopChunk','trace-stop-chunk']]) {
+          const original = target[method].bind(target);
+          target[method] = (...args) => closePhase(options.observeClose, phase, () => original(...args));
+        }
+      }
+      installPortableViewportSizing(context, options.observeClose);
       originalClose = context.close.bind(context);
       context.close = close;
       // auth.setup uses this API: refuse both memory export and file export in portable mode.
