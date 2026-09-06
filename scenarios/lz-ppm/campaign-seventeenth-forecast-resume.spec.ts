@@ -34,8 +34,8 @@ test('seventeenth forecast resume: same retained5300 job completes exact40-run r
  const rawInvoke=async(key:string,payload:any={})=>{
   expect(allowed.has(key)).toBe(true);expect(wire).toBeTruthy();
   const envelope=structuredClone(wire.data);envelope.variables.input.payload.call={functionKey:key,payload};
-  try{const response=await page.request.post(wire.url,{headers:replayHeaders(await wire.headers),data:JSON.stringify(envelope),maxRetries:0,timeout:60000});const text=await response.text();let data:any;try{data=JSON.parse(text);}catch{data=null;}
-   const extension=data?.data?.invokeExtension;const observed={httpStatus:response.status(),outerSuccess:extension?.success??null,body:extension?.response?.body??null,errors:extension?.errors??data?.errors??null,...(!data?{nonJson:{bytes:Buffer.byteLength(text),sha256:sha(text)}}:{}),traceId:response.headers()['atl-traceid']??null};record(key,observed);return observed;
+  const startedMs=Date.now();try{const response=await page.request.post(wire.url,{headers:replayHeaders(await wire.headers),data:JSON.stringify(envelope),maxRetries:0,maxRedirects:0,timeout:60000});const text=await response.text();let data:any;try{data=JSON.parse(text);}catch{data=null;}
+   const returnedMs=Date.now(),extension=data?.data?.invokeExtension;const observed={startedMs,returnedMs,elapsedMs:returnedMs-startedMs,...(key==='advanceSponsorReportCapture'?{raw:text,responseBytes:Buffer.byteLength(text),responseSha256:sha(text)}:{}),httpStatus:response.status(),outerSuccess:extension?.success??null,body:extension?.response?.body??null,errors:extension?.errors??data?.errors??null,...(!data?{nonJson:{bytes:Buffer.byteLength(text),sha256:sha(text)}}:{}),traceId:response.headers()['atl-traceid']??null};record(key,observed);return observed;
   }catch(error){record('transport-error',{key,message:String(error)});throw error;}
  };
  const invoke=async(key:string,payload:any={})=>{const result=await rawInvoke(key,payload);expect(result.httpStatus).toBe(200);expect(result.outerSuccess).toBe(true);expect(result.body).toBeTruthy();return result.body;};

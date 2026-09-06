@@ -1,0 +1,23 @@
+[
+  {
+    "gate": "typecheck",
+    "command": [
+      "npx",
+      "tsc",
+      "--noEmit"
+    ],
+    "exitCode": 2
+  },
+  {
+    "gate": "discovery",
+    "command": [
+      "npx",
+      "playwright",
+      "test",
+      "scenarios/lz-ppm/campaign-seventeenth-forecast-resume.spec.ts",
+      "--project=chromium",
+      "--list"
+    ],
+    "exitCode": 0
+  }
+]
