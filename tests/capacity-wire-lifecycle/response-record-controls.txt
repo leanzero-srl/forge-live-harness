@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: stores sanitized JSON with separate exact original and retained hashes/bytes; full business body and errors unchanged
+ok 1 - stores sanitized JSON with separate exact original and retained hashes/bytes; full business body and errors unchanged
+  ---
+  duration_ms: 0.993542
+  type: 'test'
+  ...
+# Subtest: outer refusal and app refusal retain exact safe error evidence without implying success
+ok 2 - outer refusal and app refusal retain exact safe error evidence without implying success
+  ---
+  duration_ms: 0.205333
+  type: 'test'
+  ...
+# Subtest: malformed JSON records only original digest/bytes and refuses without raw echo
+ok 3 - malformed JSON records only original digest/bytes and refuses without raw echo
+  ---
+  duration_ms: 0.278958
+  type: 'test'
+  ...
+# Subtest: known response/request token echoes in business data/errors/keys fail rather than changing the business result
+ok 4 - known response/request token echoes in business data/errors/keys fail rather than changing the business result
+  ---
+  duration_ms: 0.286375
+  type: 'test'
+  ...
+# Subtest: credential headers, individual cookies and unknown credential locations never reach retained content
+ok 5 - credential headers, individual cookies and unknown credential locations never reach retained content
+  ---
+  duration_ms: 0.370458
+  type: 'test'
+  ...
+# Subtest: unknown JWT-shaped echo and malformed transport token refuse, while body numeric/null/arrays retain exact values
+ok 6 - unknown JWT-shaped echo and malformed transport token refuse, while body numeric/null/arrays retain exact values
+  ---
+  duration_ms: 0.1255
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 34.042833

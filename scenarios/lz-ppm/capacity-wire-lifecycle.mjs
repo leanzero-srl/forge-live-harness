@@ -43,7 +43,7 @@ export function assertCapacityWireFresh(wire, { tokenOf, now = Date.now(), margi
  * No response contextToken is used. No request credential is ever synthesized.
  */
 export function createCapacityWireLifecycle({ acquire, expected, identityOf, tokenOf, now = Date.now,
-  marginMs = CAPACITY_WIRE_MARGIN_MS, maxUnsentRequeues = 2, onEvent = () => {} }) {
+  marginMs = CAPACITY_WIRE_MARGIN_MS, maxUnsentRequeues = 2, onEvent = (_event) => {} }) {
   requireValue(typeof acquire === 'function' && typeof identityOf === 'function' && typeof tokenOf === 'function', 'OPTIONS_INVALID');
   requireValue(expected && typeof expected.accountId === 'string' && expected.accountId.length > 0
     && expected.identity && expected.preferences && typeof expected.endpoint === 'string', 'EXPECTED_INVALID');
