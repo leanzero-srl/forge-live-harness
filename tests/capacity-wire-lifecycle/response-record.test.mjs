@@ -59,13 +59,35 @@ test('known response/request token echoes in business data/errors/keys fail rath
 
 test('credential headers, individual cookies and unknown credential locations never reach retained content', () => {
   for (const [value, options] of [['AUTH-CREDENTIAL', { requestHeaders: { Authorization: 'Bearer AUTH-CREDENTIAL' } }],
-    ['COOKIE-CREDENTIAL', { requestHeaders: { Cookie: 'a=COOKIE-CREDENTIAL; b=SECOND-COOKIE' } }]]) {
+    ['COOKIE-CREDENTIAL', { requestHeaders: { Cookie: 'session=COOKIE-CREDENTIAL; b=SECOND-COOKIE' } }]]) {
     const data = original(); data.data.invokeExtension.errors = [{ message: value }];
     refused(JSON.stringify(data), options, 'credential-echo');
   }
   for (const key of ['contextToken', 'Authorization', 'Set-Cookie', 'access_token', 'refresh_token', 'x-api-key']) {
     const data = original(); data.data.invokeExtension.response.body[key] = 'other-private-value';
     refused(JSON.stringify(data), {}, 'credential-location');
+  }
+});
+
+test('actual returned {jwt,expiresAt} transport object is removed; its echoed jwt still refuses', () => {
+  const data = original();
+  data.data.invokeExtension.contextToken = { jwt: token, expiresAt: '2026-09-06T13:20:35.000Z' };
+  const before = structuredClone(data); delete before.data.invokeExtension.contextToken;
+  assert.deepEqual(serializeForgeResponse(JSON.stringify(data)).data, before);
+  data.data.invokeExtension.response.body.note = token;
+  refused(JSON.stringify(data), {}, 'credential-echo');
+  delete data.data.invokeExtension.response.body.note;
+  data.data.invokeExtension.contextToken.extra = 'not-approved';
+  refused(JSON.stringify(data), {}, 'context-token-shape');
+});
+
+test('trivial preference cookies do not censor ordinary issue fields; session and full-header echoes refuse', () => {
+  const data = original(), options = { requestHeaders: { Cookie: 'feature=1; preference=true; session=long-secret-session-value' } };
+  data.data.invokeExtension.response.body.rows = [{ key: 'LZPP-1', date: '2052-03-14', text: 'true', duration: 1 }];
+  assert.deepEqual(serializeForgeResponse(JSON.stringify(data), options).data.data.invokeExtension.response.body, data.data.invokeExtension.response.body);
+  for (const value of ['long-secret-session-value', options.requestHeaders.Cookie]) {
+    data.data.invokeExtension.response.body.note = value;
+    refused(JSON.stringify(data), options, 'credential-echo');
   }
 });
 

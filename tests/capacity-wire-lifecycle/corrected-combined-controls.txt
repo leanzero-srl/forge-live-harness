@@ -1,0 +1,148 @@
+TAP version 13
+# Subtest: only completed exact Capacity observation promotes a single atomic wire generation
+ok 1 - only completed exact Capacity observation promotes a single atomic wire generation
+  ---
+  duration_ms: 1.571708
+  type: 'test'
+  ...
+# Subtest: request creation alone cannot promote; concurrent callers share one completed acquisition
+ok 2 - request creation alone cannot promote; concurrent callers share one completed acquisition
+  ---
+  duration_ms: 0.334125
+  type: 'test'
+  ...
+# Subtest: mismatched principal, endpoint, identity, preferences or unsuccessful response fail closed
+ok 3 - mismatched principal, endpoint, identity, preferences or unsuccessful response fail closed
+  ---
+  duration_ms: 1.1325
+  type: 'test'
+  ...
+# Subtest: expiry and claim errors never fabricate or adopt a returned replacement token
+ok 4 - expiry and claim errors never fabricate or adopt a returned replacement token
+  ---
+  duration_ms: 0.723959
+  type: 'test'
+  ...
+# Subtest: queued RPC aging refreshes outside budget and preserves the charged unsent reservation
+ok 5 - queued RPC aging refreshes outside budget and preserves the charged unsent reservation
+  ---
+  duration_ms: 1.313
+  type: 'test'
+  ...
+# Subtest: actual UI route freshness check rejects a request aged while its own route was queued
+ok 6 - actual UI route freshness check rejects a request aged while its own route was queued
+  ---
+  duration_ms: 0.22275
+  type: 'test'
+  ...
+# Subtest: no retry of any actual dispatched rejection, unknown response, or outer token refusal
+ok 7 - no retry of any actual dispatched rejection, unknown response, or outer token refusal
+  ---
+  duration_ms: 0.273209
+  type: 'test'
+  ...
+# Subtest: repeated local queue aging is bounded with zero dispatches
+ok 8 - repeated local queue aging is bounded with zero dispatches
+  ---
+  duration_ms: 0.235792
+  type: 'test'
+  ...
+# Subtest: forced refresh rejects a nonextending expired captured token even if the UI response carries a new one
+ok 9 - forced refresh rejects a nonextending expired captured token even if the UI response carries a new one
+  ---
+  duration_ms: 0.229667
+  type: 'test'
+  ...
+# Subtest: export forces genuine acquisition first, forbids refresh/navigation and RPC until settled
+ok 10 - export forces genuine acquisition first, forbids refresh/navigation and RPC until settled
+  ---
+  duration_ms: 0.694708
+  type: 'test'
+  ...
+# Subtest: active dispatch prevents export or stale refresh; failed export releases exclusion without swallowing original error
+ok 11 - active dispatch prevents export or stale refresh; failed export releases exclusion without swallowing original error
+  ---
+  duration_ms: 0.319834
+  type: 'test'
+  ...
+# Subtest: final audits acquire fresh wire using the same lifecycle, without resetting budget
+ok 12 - final audits acquire fresh wire using the same lifecycle, without resetting budget
+  ---
+  duration_ms: 0.575334
+  type: 'test'
+  ...
+# Subtest: clock regressions and malformed time fail closed before further dispatch
+ok 13 - clock regressions and malformed time fail closed before further dispatch
+  ---
+  duration_ms: 0.341541
+  type: 'test'
+  ...
+# Subtest: a slow promotion journal cannot make an aged wire eligible for dispatch
+ok 14 - a slow promotion journal cannot make an aged wire eligible for dispatch
+  ---
+  duration_ms: 0.09625
+  type: 'test'
+  ...
+# Subtest: export requires its full declared duration plus dispatch margin before UI work starts
+ok 15 - export requires its full declared duration plus dispatch margin before UI work starts
+  ---
+  duration_ms: 0.165458
+  type: 'test'
+  ...
+# Subtest: stores sanitized JSON with separate exact original and retained hashes/bytes; full business body and errors unchanged
+ok 16 - stores sanitized JSON with separate exact original and retained hashes/bytes; full business body and errors unchanged
+  ---
+  duration_ms: 1.229541
+  type: 'test'
+  ...
+# Subtest: outer refusal and app refusal retain exact safe error evidence without implying success
+ok 17 - outer refusal and app refusal retain exact safe error evidence without implying success
+  ---
+  duration_ms: 0.23375
+  type: 'test'
+  ...
+# Subtest: malformed JSON records only original digest/bytes and refuses without raw echo
+ok 18 - malformed JSON records only original digest/bytes and refuses without raw echo
+  ---
+  duration_ms: 0.30725
+  type: 'test'
+  ...
+# Subtest: known response/request token echoes in business data/errors/keys fail rather than changing the business result
+ok 19 - known response/request token echoes in business data/errors/keys fail rather than changing the business result
+  ---
+  duration_ms: 0.302417
+  type: 'test'
+  ...
+# Subtest: credential headers, individual cookies and unknown credential locations never reach retained content
+ok 20 - credential headers, individual cookies and unknown credential locations never reach retained content
+  ---
+  duration_ms: 0.489708
+  type: 'test'
+  ...
+# Subtest: actual returned {jwt,expiresAt} transport object is removed; its echoed jwt still refuses
+ok 21 - actual returned {jwt,expiresAt} transport object is removed; its echoed jwt still refuses
+  ---
+  duration_ms: 0.633791
+  type: 'test'
+  ...
+# Subtest: trivial preference cookies do not censor ordinary issue fields; session and full-header echoes refuse
+ok 22 - trivial preference cookies do not censor ordinary issue fields; session and full-header echoes refuse
+  ---
+  duration_ms: 0.363334
+  type: 'test'
+  ...
+# Subtest: unknown JWT-shaped echo and malformed transport token refuse, while body numeric/null/arrays retain exact values
+ok 23 - unknown JWT-shaped echo and malformed transport token refuse, while body numeric/null/arrays retain exact values
+  ---
+  duration_ms: 0.188083
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 44.868208

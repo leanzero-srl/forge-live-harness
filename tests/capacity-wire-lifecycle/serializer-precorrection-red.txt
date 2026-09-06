@@ -1,0 +1,89 @@
+Archived serializer c1b0f34; current unchanged eight assertions. Exit 1
+TAP version 13
+# Subtest: stores sanitized JSON with separate exact original and retained hashes/bytes; full business body and errors unchanged
+ok 1 - stores sanitized JSON with separate exact original and retained hashes/bytes; full business body and errors unchanged
+  ---
+  duration_ms: 1.246084
+  type: 'test'
+  ...
+# Subtest: outer refusal and app refusal retain exact safe error evidence without implying success
+ok 2 - outer refusal and app refusal retain exact safe error evidence without implying success
+  ---
+  duration_ms: 0.214375
+  type: 'test'
+  ...
+# Subtest: malformed JSON records only original digest/bytes and refuses without raw echo
+ok 3 - malformed JSON records only original digest/bytes and refuses without raw echo
+  ---
+  duration_ms: 0.31425
+  type: 'test'
+  ...
+# Subtest: known response/request token echoes in business data/errors/keys fail rather than changing the business result
+ok 4 - known response/request token echoes in business data/errors/keys fail rather than changing the business result
+  ---
+  duration_ms: 0.300583
+  type: 'test'
+  ...
+# Subtest: credential headers, individual cookies and unknown credential locations never reach retained content
+ok 5 - credential headers, individual cookies and unknown credential locations never reach retained content
+  ---
+  duration_ms: 0.418458
+  type: 'test'
+  ...
+# Subtest: actual returned {jwt,expiresAt} transport object is removed; its echoed jwt still refuses
+not ok 6 - actual returned {jwt,expiresAt} transport object is removed; its echoed jwt still refuses
+  ---
+  duration_ms: 0.081708
+  type: 'test'
+  location: '/private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-wire-precorrection-e7nq69vk/response.test.mjs:72:1'
+  failureType: 'testCodeFailure'
+  error: 'FORGE_RESPONSE_RECORD_CONTEXT_TOKEN_SHAPE'
+  code: 'ERR_TEST_FAILURE'
+  name: 'ForgeResponseRecordError'
+  stack: |-
+    refuse (file:///private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-wire-precorrection-e7nq69vk/serializer.mjs:26:36)
+    serializeForgeResponse (file:///private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-wire-precorrection-e7nq69vk/serializer.mjs:46:88)
+    TestContext.<anonymous> (file:///private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-wire-precorrection-e7nq69vk/response.test.mjs:76:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: trivial preference cookies do not censor ordinary issue fields; session and full-header echoes refuse
+not ok 7 - trivial preference cookies do not censor ordinary issue fields; session and full-header echoes refuse
+  ---
+  duration_ms: 0.121083
+  type: 'test'
+  location: '/private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-wire-precorrection-e7nq69vk/response.test.mjs:84:1'
+  failureType: 'testCodeFailure'
+  error: 'FORGE_RESPONSE_RECORD_CREDENTIAL_ECHO'
+  code: 'ERR_TEST_FAILURE'
+  name: 'ForgeResponseRecordError'
+  stack: |-
+    refuse (file:///private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-wire-precorrection-e7nq69vk/serializer.mjs:26:36)
+    serializeForgeResponse (file:///private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-wire-precorrection-e7nq69vk/serializer.mjs:55:63)
+    TestContext.<anonymous> (file:///private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/lz-wire-precorrection-e7nq69vk/response.test.mjs:87:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: unknown JWT-shaped echo and malformed transport token refuse, while body numeric/null/arrays retain exact values
+ok 8 - unknown JWT-shaped echo and malformed transport token refuse, while body numeric/null/arrays retain exact values
+  ---
+  duration_ms: 0.126416
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 6
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 38.46875

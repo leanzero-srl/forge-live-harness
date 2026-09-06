@@ -38,13 +38,25 @@ export function serializeForgeResponse(raw, { requestToken, requestHeaders = {} 
     secret(value);
     if (/^(?:proxy-)?authorization$/i.test(key)) secret(value.replace(/^(?:Bearer|Basic)\s+/i, ''));
     if (key.toLowerCase() === 'cookie') for (const entry of value.split(';')) {
-      const separator = entry.indexOf('='); if (separator >= 0) secret(entry.slice(separator + 1).trim());
+      const separator = entry.indexOf('=');
+      const name = separator >= 0 ? entry.slice(0, separator).trim() : '';
+      // Preference/analytics cookies may be "1" or an ordinary user ID. The
+      // complete Cookie header remains protected; individual auth values are
+      // selected by credential purpose rather than every incidental substring.
+      if (separator >= 0 && /session|token|auth|jwt|(?:^|[._-])sid(?:$|[._-])/i.test(name)) secret(entry.slice(separator + 1).trim());
     }
   }
   const extension = data.data?.invokeExtension;
   if (object(extension) && Object.hasOwn(extension, 'contextToken')) {
-    if (typeof extension.contextToken !== 'string' && extension.contextToken !== null) refuse('context-token-shape');
-    secret(extension.contextToken);
+    const context = extension.contextToken;
+    if (object(context)) {
+      if (Object.keys(context).sort().join(',') !== 'expiresAt,jwt' || typeof context.jwt !== 'string'
+        || !context.jwt.length || typeof context.expiresAt !== 'string') refuse('context-token-shape');
+      secret(context.jwt);
+    } else {
+      if (typeof context !== 'string' && context !== null) refuse('context-token-shape');
+      secret(context);
+    }
     delete extension.contextToken;
   }
   // Inspect values, not just encoded raw text: JSON escaping cannot hide an echo.
