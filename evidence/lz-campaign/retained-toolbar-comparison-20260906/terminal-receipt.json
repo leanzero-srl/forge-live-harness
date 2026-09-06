@@ -1,0 +1,55 @@
+{
+  "schema": "toolbar-comparison-terminal-v1",
+  "status": "closed",
+  "outcome": "body-geometry-refusal-and-worker-teardown-failure",
+  "checkedAt": "2026-09-06T21:05:22.845427+00:00",
+  "observedPids": [
+    5682,
+    5720,
+    5722
+  ],
+  "alivePids": [],
+  "process": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-comparison-20260906/process.json",
+    "sha256": "6a0bd50f8e5f66cbb69eeb95c7a739b3686c91a7914eec5260ad403e7d00f2e0",
+    "bytes": 1232
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-comparison-20260906/command.json",
+    "sha256": "19d4107f603a61947164647d757339bc872aa57fdb3a6be54b54dc0e06007dba",
+    "bytes": 3267
+  },
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-comparison-20260906/launch.json",
+    "sha256": "2a616379cd7a1b64fbd7868fc25c256deda9fb947cecbb24ad93349b956d833b",
+    "bytes": 391
+  },
+  "closePhases": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-comparison-20260906/close-phases.json",
+    "sha256": "64d2be1312d96bfe0766e02ca54ec56284fefb4b3e1ab5f992c01bdcb52cd3c1",
+    "bytes": 1287
+  },
+  "report": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-comparison-20260906/report.json",
+    "sha256": "af58fe59172ac6904623940676fa25c9aad00c57b028cacc3932111e4bf3ce61",
+    "bytes": 13101
+  },
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-comparison-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/comparison-visual.json",
+    "sha256": "c1dcc6ae5eb26107a8d9f5b69d8766d0b626c1c5343bd3737318b64351ef5495",
+    "bytes": 298735
+  },
+  "departure": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-comparison-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/report-departure.json",
+    "sha256": "d2cc546e176f699b2f2cbf698cdb96ef16b2af94eadf190f18d1bc20592f9a95",
+    "bytes": 20632
+  },
+  "images": [],
+  "localOnlyExcludedArchives": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-comparison-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/trace.zip",
+      "sha256": "bb9b2f4ec0dfe3c4c97c016ec2b67c39fe0c975b1220d71ef24e09cc3554b11e",
+      "bytes": 21712577
+    }
+  ]
+}

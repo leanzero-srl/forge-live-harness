@@ -1,0 +1,31 @@
+{
+  "status": "terminal",
+  "supervisorPid": 5682,
+  "supervisorStart": "Sun Sep  6 23:58:30 2026",
+  "startedAt": "2026-09-06T20:58:30.895322+00:00",
+  "actualHarnessCommit": "3506aaf9af2475e956976cbbbb247721fbacc877",
+  "instrumentHash": "518cc5c2770995b57c23484c3301546b0a66ddfa4b4128621ae1169dbb41af91",
+  "rootDispatchCommit": "67a342f0289436d29e8e08bb05cd16480998ce13",
+  "commandSha256": "19d4107f603a61947164647d757339bc872aa57fdb3a6be54b54dc0e06007dba",
+  "childPid": 5720,
+  "childStart": "Sun Sep  6 23:58:30 2026",
+  "heartbeatAt": "2026-09-06T21:00:47.113423+00:00",
+  "finishedAt": "2026-09-06T21:00:57.144614+00:00",
+  "processResult": {
+    "exit": 1
+  },
+  "testResult": {
+    "status": "failed",
+    "ordinaryPasses": [],
+    "expectedDefectWitnesses": [],
+    "reasons": [
+      "nonpassing test: {\"expected\": \"passed\", \"file\": \"scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts\", \"last\": \"failed\", \"status\": \"unexpected\", \"title\": \"read-only retained ordinary and private toolbar plus complete comparison\"}",
+      "Playwright exit 1",
+      "insufficient passing tests or explicitly allowed defect witnesses"
+    ],
+    "testCount": 1,
+    "process": {
+      "exit": 1
+    }
+  }
+}

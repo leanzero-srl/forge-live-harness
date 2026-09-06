@@ -1,0 +1,257 @@
+{
+  "schema": "toolbar-observed-terminal-v1",
+  "status": "closed",
+  "outcome": "test-passed-independent-review-pending",
+  "checkedAt": "2026-09-06T21:42:17.015144+00:00",
+  "observedPids": [
+    60410,
+    60422,
+    60424,
+    60425
+  ],
+  "alivePids": [],
+  "process": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/process.json",
+    "sha256": "4b6d393e7612dc9e453fb56fe17b4fa10052c755cbf4ffa2712986183e9a337d",
+    "bytes": 947
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/command.json",
+    "sha256": "20d4986d05badeed0e0cdd5db31d7b49776edef65351954b87beeba3ec00e994",
+    "bytes": 3584
+  },
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/launch.json",
+    "sha256": "461c86b914f8cfd3e37682889740227c61060ef7a13bbbee7085166297201028",
+    "bytes": 304
+  },
+  "closePhases": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/close-phases.json",
+    "sha256": "4b23e018a7d43fa735e0939cb27d932c76a3f8b403c083879b934f61b6ec8d43",
+    "bytes": 1509
+  },
+  "browserProcess": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/browser-process-60424.json",
+    "sha256": "02f681ba72bd1ffa12c45c5283744fc783a94c40fee29b3cd199663eea532fc4",
+    "bytes": 1569
+  },
+  "report": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/report.json",
+    "sha256": "97655cdb105958b7c201483c69ec97c5b3d77368018c97fa2e44a3c181d2d6ae",
+    "bytes": 4578
+  },
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/comparison-visual.json",
+    "sha256": "045e2db9e56ae2a744d0fd7a3a8d3480cfc95607b7e78b28b5084a3a23d12178",
+    "bytes": 1196188
+  },
+  "departure": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/report-departure.json",
+    "sha256": "9137c579d5c33236f3596fb17bf41c77c6e8d84548d075c2bbf464e82809626c",
+    "bytes": 78297
+  },
+  "images": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/comparison-1100-changes.png",
+      "sha256": "f81590fccf88a79e92491b8395b85f5208d2c5f4375a3e11c5ebfdbd33c7ac65",
+      "bytes": 220033
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/comparison-1100-forecast.png",
+      "sha256": "655657ebcae373a94c2fd4562704ff527cc5338bd1ce3ecf5905a2060c951ee4",
+      "bytes": 215809
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/comparison-1100-overview.png",
+      "sha256": "a50ba2d1e8691e5ad24b51711e41af3b8eb31fdce9f0fcc4158466620e842667",
+      "bytes": 219117
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/comparison-1440-changes.png",
+      "sha256": "26f611ac02e5843ddcc0b832c3a6c8ec06b181c7b0c0b3e612813cc1e840f70b",
+      "bytes": 240737
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/comparison-1440-forecast.png",
+      "sha256": "a04b04457ccde6f2f0f869516e363b0ca3d9435a4577a0c976d1643da6be9093",
+      "bytes": 228507
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/comparison-1440-overview.png",
+      "sha256": "c73836a36aa6dc572bb1f0448933dbc09a74a6ce840d0bdd11c242b282d3b310",
+      "bytes": 253661
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1100-dashboard.png",
+      "sha256": "cd7c7875d18f97509bb57399a78d1c7ed7767d135433ec65ad6404d43ba35240",
+      "bytes": 175283
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1100-gantt.png",
+      "sha256": "4abf859a2c9468034cbbc9922922b75c7ebb3e59cbba042427b634c04e8b5c7c",
+      "bytes": 171730
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1100-permissions.png",
+      "sha256": "beb7f03b70948f3e656444bea13c461d9ed33b77558350cdb0af86b4460e53aa",
+      "bytes": 166738
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1100-planning.png",
+      "sha256": "c05cbf087b15f2334911c2f1f40f56d2731bfece1d1e10f74564d077228aa43c",
+      "bytes": 197834
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1100-schedule.png",
+      "sha256": "37923fdfe9ad4b538e353b09165b799bb327bc18b964c95f787e364e561a8d81",
+      "bytes": 156758
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1100-table.png",
+      "sha256": "b73c35cfee935afa32bca583def022361eae17cb8c2b701725d61abc690ab94c",
+      "bytes": 173246
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1440-dashboard.png",
+      "sha256": "aa08f321173c7eac8298fb4befdc54c20edc22cf992710900e9736a59482f6d0",
+      "bytes": 206288
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1440-gantt.png",
+      "sha256": "6278deafc2edbe91304600f65cfaae19fba4385e2c7b8e21fc9d18e4e633e058",
+      "bytes": 185700
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1440-permissions.png",
+      "sha256": "9a403b9121f9d332394a795cb604457ac2d22c729d78a34f6376d6c6947663d4",
+      "bytes": 172063
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1440-planning.png",
+      "sha256": "794a9f756dc0622c4a5448311caaddec11e0953cc4014d9db1938095c1283e7d",
+      "bytes": 212344
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1440-schedule.png",
+      "sha256": "9b7d0633defafa7dbe889af207ea2bf42589c755b357fc1c82c76daa375a330b",
+      "bytes": 161614
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1440-table.png",
+      "sha256": "0115d716f01b3d9046f10064e8d28993d911242fc5990668d8f56a15e8f46e62",
+      "bytes": 205379
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1600-dashboard.png",
+      "sha256": "012271771e8b60b5995e003d3929308c3462dc3bcc70fd63c8ace38f2c174bb8",
+      "bytes": 208025
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1600-gantt.png",
+      "sha256": "f80f4313f7acabebb21557889e813e3b2a77cfbf1205c734244f43f08744096e",
+      "bytes": 185520
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1600-permissions.png",
+      "sha256": "160d1fd8dcdfafb99838798f9733ad2d6edc21e11b31a84b52ba7ecbc940eae5",
+      "bytes": 173162
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1600-planning.png",
+      "sha256": "02215ad5072328ea54b88acaa5a4b1504e1d0416d557192f4e922fb4f0648937",
+      "bytes": 211328
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1600-schedule.png",
+      "sha256": "4d67032413bbf54a2eaa85f382c9788b42c4fd9e8a5bb6715f318e142101ad6a",
+      "bytes": 164518
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-ordinary-1600-table.png",
+      "sha256": "d388188ebb06a9b6619c6e730043192d5badeed9fb9f5802d6c76ba288e4cb5c",
+      "bytes": 212079
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1100-dashboard.png",
+      "sha256": "37a190bc238df59785c15e2cb3865a12ebf58fcc474885cf0229b8ab97380be7",
+      "bytes": 181743
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1100-gantt.png",
+      "sha256": "45678501eca7b55ca6459b1e58bc22965bc0fada95a0adbf974ae341c11b37b7",
+      "bytes": 148825
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1100-planning.png",
+      "sha256": "d85270be4352dde0cff1c57dd34d8069c988ed98e7120e1753e757936149105f",
+      "bytes": 199486
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1100-schedule.png",
+      "sha256": "6ce8ba00896efa8ca46f19b0140793d19eaa03f5553e7e73122de86d19c90d13",
+      "bytes": 140465
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1100-table.png",
+      "sha256": "1837dc3c71d423e45aa7c083eeb14f6f89723527746ece6948708fc196bed752",
+      "bytes": 151620
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1440-dashboard.png",
+      "sha256": "342baeff44ef3eb4631a91dc2bc085485f140c5d980bff72fa28f720b790fdb1",
+      "bytes": 206463
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1440-gantt.png",
+      "sha256": "1adc3936e2bf41bcf9c6b0b4a49f20b18a8c17757fdc44cac8234669eeb0f6c7",
+      "bytes": 157033
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1440-planning.png",
+      "sha256": "622575cd51561519706056a77277075cf6ae0575d8976e618901b867e2b7cd3b",
+      "bytes": 202035
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1440-schedule.png",
+      "sha256": "a4b0eac677e7d0430fbf2ca463663d4764d5f93b7a9945fb094eeef501976f1e",
+      "bytes": 146176
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1440-table.png",
+      "sha256": "cdb93a11046c3b1a32c8713c7b80d1482f8560b7f63f9360f5743b5c943cd42e",
+      "bytes": 158162
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1600-dashboard.png",
+      "sha256": "df8be3d6f61c42010af70cd2a46747683ff62716f5175273f8786898eedabbf7",
+      "bytes": 209724
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1600-gantt.png",
+      "sha256": "4dc8064a742e3cbb56b7d529781f6b0ce3d3d42ebf6e535209ee711a59240d63",
+      "bytes": 157959
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1600-planning.png",
+      "sha256": "f7950d810f22c2a0291d5f59aa917b058076b9ec6422be48c66c20a409ff058e",
+      "bytes": 207501
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1600-schedule.png",
+      "sha256": "aeeda7022b6bec2df77cbe0d859980b701601527705dd78cad931573afb01c6a",
+      "bytes": 148362
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/header-private-1600-table.png",
+      "sha256": "09f6e25f71d961904a125ac33939ed96dfa0d21338fe03b748af6cae3d46149a",
+      "bytes": 160429
+    }
+  ],
+  "localOnlyExcludedArchives": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/trace.zip",
+      "sha256": "bb4bd7bdcde509204878381ad43a557b937c90eb46c48e9d5cbd1ccf56bff805",
+      "bytes": 146169350
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-09-06T21:00:26.381008+00:00",
+  "ownedRootPids": [
+    5682,
+    5720
+  ],
+  "processes": [
+    {
+      "pid": 5682,
+      "ppid": 1,
+      "start": "Sun Sep 6 23:58:30 2026",
+      "executable": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 5720,
+      "ppid": 5682,
+      "start": "Sun Sep 6 23:58:30 2026",
+      "executable": "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node"
+    },
+    {
+      "pid": 5722,
+      "ppid": 5720,
+      "start": "Sun Sep 6 23:58:31 2026",
+      "executable": "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node"
+    }
+  ]
+}

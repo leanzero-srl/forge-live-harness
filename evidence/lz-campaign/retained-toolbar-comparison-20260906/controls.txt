@@ -1,0 +1,320 @@
+TAP version 13
+# Subtest: no implicit opt-in or auth-flow admission; no state read or launch
+ok 1 - no implicit opt-in or auth-flow admission; no state read or launch
+  ---
+  duration_ms: 0.92175
+  type: 'test'
+  ...
+# Subtest: pinned executable, ephemeral state object, video/viewport and actual suppressor precede identity
+ok 2 - pinned executable, ephemeral state object, video/viewport and actual suppressor precede identity
+  ---
+  duration_ms: 1.233666
+  type: 'test'
+  ...
+# Subtest: runtime mismatch closes browser before any credential context exists
+ok 3 - runtime mismatch closes browser before any credential context exists
+  ---
+  duration_ms: 0.656041
+  type: 'test'
+  ...
+# Subtest: missing state refuses before launch
+ok 4 - missing state refuses before launch
+  ---
+  duration_ms: 0.125458
+  type: 'test'
+  ...
+# Subtest: launch failure retains original error; does not attempt a fallback
+ok 5 - launch failure retains original error; does not attempt a fallback
+  ---
+  duration_ms: 0.134125
+  type: 'test'
+  ...
+# Subtest: newContext failure still closes owned browser and preserves both errors
+ok 6 - newContext failure still closes owned browser and preserves both errors
+  ---
+  duration_ms: 0.101
+  type: 'test'
+  ...
+# Subtest: principal/app rejection and both cleanup errors are all retained
+ok 7 - principal/app rejection and both cleanup errors are all retained
+  ---
+  duration_ms: 0.149792
+  type: 'test'
+  ...
+# Subtest: host suppressor failure cannot return an admitted context
+ok 8 - host suppressor failure cannot return an admitted context
+  ---
+  duration_ms: 0.089291
+  type: 'test'
+  ...
+# Subtest: unexpected context close closes owned browser and is not mistaken for success
+ok 9 - unexpected context close closes owned browser and is not mistaken for success
+  ---
+  duration_ms: 0.322292
+  type: 'test'
+  ...
+# Subtest: browser death remains visible at cleanup
+ok 10 - browser death remains visible at cleanup
+  ---
+  duration_ms: 0.279459
+  type: 'test'
+  ...
+# Subtest: malformed state does not expose JSON secret fragments
+ok 11 - malformed state does not expose JSON secret fragments
+  ---
+  duration_ms: 0.206416
+  type: 'test'
+  ...
+# Subtest: actual identity verifier requires exact active account, correct route/stamp and visible Plans
+ok 12 - actual identity verifier requires exact active account, correct route/stamp and visible Plans
+  ---
+  duration_ms: 0.395375
+  type: 'test'
+  ...
+# Subtest: actual verifier rejects login, forbidden principal, inactive account and stale/wrong app
+ok 13 - actual verifier rejects login, forbidden principal, inactive account and stale/wrong app
+  ---
+  duration_ms: 0.203833
+  type: 'test'
+  ...
+# Subtest: missing and unknown modes fail before any dependency; explicit mode forwards owned lifecycle
+ok 14 - missing and unknown modes fail before any dependency; explicit mode forwards owned lifecycle
+  ---
+  duration_ms: 1.994042
+  type: 'test'
+  ...
+# Subtest: every early failure preserves original cause and closes each already-created resource
+ok 15 - every early failure preserves original cause and closes each already-created resource
+  ---
+  duration_ms: 0.446291
+  type: 'test'
+  ...
+# Subtest: local readiness failure plus both independent cleanup faults retain all three causes
+ok 16 - local readiness failure plus both independent cleanup faults retain all three causes
+  ---
+  duration_ms: 0.483458
+  type: 'test'
+  ...
+# Subtest: late-created context after browser disconnect is never returned and is still closed
+ok 17 - late-created context after browser disconnect is never returned and is still closed
+  ---
+  duration_ms: 1.816541
+  type: 'test'
+  ...
+# Subtest: unexpected returned-context loss closes owned browser and remains a failure
+ok 18 - unexpected returned-context loss closes owned browser and remains a failure
+  ---
+  duration_ms: 0.144708
+  type: 'test'
+  ...
+# Subtest: simultaneous repeated close shares one rejection and executes both cleanup attempts exactly once
+ok 19 - simultaneous repeated close shares one rejection and executes both cleanup attempts exactly once
+  ---
+  duration_ms: 0.165792
+  type: 'test'
+  ...
+# Subtest: receipt exists only after completed local readiness and exposes no raw fixture configuration
+ok 20 - receipt exists only after completed local readiness and exposes no raw fixture configuration
+  ---
+  duration_ms: 0.31925
+  type: 'test'
+  ...
+# Subtest: actual portable admission installs awaited sizing before readiness and preserves browser teardown
+ok 21 - actual portable admission installs awaited sizing before readiness and preserves browser teardown
+  ---
+  duration_ms: 2.095625
+  type: 'test'
+  ...
+# Subtest: same requested CSS size is preserved; envelope protects both pages
+ok 22 - same requested CSS size is preserved; envelope protects both pages
+  ---
+  duration_ms: 1.131709
+  type: 'test'
+  ...
+# Subtest: same-size resize still restores physical contents
+ok 23 - same-size resize still restores physical contents
+  ---
+  duration_ms: 0.121208
+  type: 'test'
+  ...
+# Subtest: actual separate browser windows use separate envelopes
+ok 24 - actual separate browser windows use separate envelopes
+  ---
+  duration_ms: 0.135166
+  type: 'test'
+  ...
+# Subtest: concurrent public resize and close serialize before resolving
+ok 25 - concurrent public resize and close serialize before resolving
+  ---
+  duration_ms: 0.197958
+  type: 'test'
+  ...
+# Subtest: close failure and restore failure both retained; other cleanup remains usable
+ok 26 - close failure and restore failure both retained; other cleanup remains usable
+  ---
+  duration_ms: 0.26975
+  type: 'test'
+  ...
+# Subtest: failed new-page sizing closes the unreturned owned page
+ok 27 - failed new-page sizing closes the unreturned owned page
+  ---
+  duration_ms: 0.093958
+  type: 'test'
+  ...
+# Subtest: failed new-page sizing and failed owned cleanup retain all causes
+ok 28 - failed new-page sizing and failed owned cleanup retain all causes
+  ---
+  duration_ms: 0.4925
+  type: 'test'
+  ...
+# Subtest: protocol cleanup errors retained after primary error
+ok 29 - protocol cleanup errors retained after primary error
+  ---
+  duration_ms: 0.15925
+  type: 'test'
+  ...
+# Subtest: context teardown skips repair and rejects new work
+ok 30 - context teardown skips repair and rejects new work
+  ---
+  duration_ms: 0.33325
+  type: 'test'
+  ...
+# Subtest: installation is idempotent and existing pages get public wrappers
+ok 31 - installation is idempotent and existing pages get public wrappers
+  ---
+  duration_ms: 0.293792
+  type: 'test'
+  ...
+# Subtest: context close during pending new page cannot return an admitted page
+ok 32 - context close during pending new page cannot return an admitted page
+  ---
+  duration_ms: 0.1295
+  type: 'test'
+  ...
+# (node:2751) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/utils/target-scope.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual retained admission binds fresh private generation and current own document without a source Create transition
+ok 33 - actual retained admission binds fresh private generation and current own document without a source Create transition
+  ---
+  duration_ms: 11.126792
+  type: 'test'
+  ...
+# Subtest: retained mode forbids new fork and capture before any action
+ok 34 - retained mode forbids new fork and capture before any action
+  ---
+  duration_ms: 5.439208
+  type: 'test'
+  ...
+# Subtest: retained candidate is readonly and mutation cannot dispatch before private promotion
+ok 35 - retained candidate is readonly and mutation cannot dispatch before private promotion
+  ---
+  duration_ms: 4.826375
+  type: 'test'
+  ...
+# Subtest: foreign generation, missing candidate and changed fresh model refuse retained owner without mutation
+ok 36 - foreign generation, missing candidate and changed fresh model refuse retained owner without mutation
+  ---
+  duration_ms: 19.096708
+  type: 'test'
+  ...
+# Subtest: wrong mount, wrong private principal and stale request document poison retained promotion
+ok 37 - wrong mount, wrong private principal and stale request document poison retained promotion
+  ---
+  duration_ms: 11.974916
+  type: 'test'
+  ...
+# Subtest: missing current beat and existing mounted source cannot satisfy retained admission
+ok 38 - missing current beat and existing mounted source cannot satisfy retained admission
+  ---
+  duration_ms: 12.908875
+  type: 'test'
+  ...
+# Subtest: unknown UI result drains before retained cleanup dispatch and keeps the acknowledged owner
+ok 39 - unknown UI result drains before retained cleanup dispatch and keeps the acknowledged owner
+  ---
+  duration_ms: 3.660541
+  type: 'test'
+  ...
+# Subtest: absent observer preserves exact return/throw and work call once
+ok 40 - absent observer preserves exact return/throw and work call once
+  ---
+  duration_ms: 0.4335
+  type: 'test'
+  ...
+# Subtest: actual wrapper exposes native wait before browser close, preserving default order and repeated close identity
+ok 41 - actual wrapper exposes native wait before browser close, preserving default order and repeated close identity
+  ---
+  duration_ms: 3.515875
+  type: 'test'
+  ...
+# Subtest: hostile observer outcomes cannot change original result or rejection
+ok 42 - hostile observer outcomes cannot change original result or rejection
+  ---
+  duration_ms: 0.275083
+  type: 'test'
+  ...
+# Subtest: journal is fixed bounded content-free and recording faults remain failing evidence
+ok 43 - journal is fixed bounded content-free and recording faults remain failing evidence
+  ---
+  duration_ms: 0.640042
+  type: 'test'
+  ...
+# Subtest: missing starts, duplicates and failed then completed evidence cannot pass
+ok 44 - missing starts, duplicates and failed then completed evidence cannot pass
+  ---
+  duration_ms: 0.236208
+  type: 'test'
+  ...
+# Subtest: local actual worker fixture preserves every statement including the cache CDP session
+ok 45 - local actual worker fixture preserves every statement including the cache CDP session
+  ---
+  duration_ms: 0.155333
+  type: 'test'
+  ...
+# Subtest: optional tracing observations must form complete pairs too
+ok 46 - optional tracing observations must form complete pairs too
+  ---
+  duration_ms: 0.273125
+  type: 'test'
+  ...
+# Subtest: retained exact private and ordinary sources are accepted with distinct known read scope
+ok 47 - retained exact private and ordinary sources are accepted with distinct known read scope
+  ---
+  duration_ms: 5.316167
+  type: 'test'
+  ...
+# Subtest: actual long-title overlap, offcenter and missing narrow row fail while valid two-row geometry passes
+ok 48 - actual long-title overlap, offcenter and missing narrow row fail while valid two-row geometry passes
+  ---
+  duration_ms: 0.594416
+  type: 'test'
+  ...
+# Subtest: combined source keeps exact view matrix, six comparison slices and immutable bookends without creates or cleanup
+ok 49 - combined source keeps exact view matrix, six comparison slices and immutable bookends without creates or cleanup
+  ---
+  duration_ms: 0.232291
+  type: 'test'
+  ...
+# Subtest: actual old ordinary guard rejects both private owners and midjourney retargeting; new witness keeps sessions separate
+ok 50 - actual old ordinary guard rejects both private owners and midjourney retargeting; new witness keeps sessions separate
+  ---
+  duration_ms: 35.20675
+  type: 'test'
+  ...
+# Subtest: actual retained fork/source/snapshot/model producer shape independently admits exact prior owner
+ok 51 - actual retained fork/source/snapshot/model producer shape independently admits exact prior owner
+  ---
+  duration_ms: 3.947792
+  type: 'test'
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 51
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 307.703458

@@ -1,0 +1,264 @@
+{
+  "runId": "retained-toolbar-comparison-20260906",
+  "traceSha256": "bb9b2f4ec0dfe3c4c97c016ec2b67c39fe0c975b1220d71ef24e09cc3554b11e",
+  "evidenceKind": "Exact retained trace returns, no network or request content",
+  "geometryReturns": [
+    {
+      "callId": "call@285",
+      "geometry": {
+        "top": 102,
+        "left": 332,
+        "right": 706,
+        "bottom": 202,
+        "width": 374,
+        "height": 100,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@295",
+      "geometry": {
+        "top": 208,
+        "left": 376.171875,
+        "right": 1043.828125,
+        "bottom": 237,
+        "width": 667.65625,
+        "height": 29,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@305",
+      "geometry": {
+        "top": 138.5,
+        "left": 775.03125,
+        "right": 1088,
+        "bottom": 165.5,
+        "width": 312.96875,
+        "height": 27,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@319",
+      "geometry": {
+        "top": 102,
+        "left": 332,
+        "right": 368.03125,
+        "bottom": 127,
+        "width": 36.03125,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@331",
+      "geometry": {
+        "top": 182.5,
+        "left": 594.09375,
+        "right": 645.28125,
+        "bottom": 200.5,
+        "width": 51.1875,
+        "height": 18,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@343",
+      "geometry": {
+        "top": 209,
+        "left": 378.171875,
+        "right": 452.421875,
+        "bottom": 234,
+        "width": 74.25,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@355",
+      "geometry": {
+        "top": 210,
+        "left": 456.421875,
+        "right": 530.734375,
+        "bottom": 235,
+        "width": 74.3125,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@367",
+      "geometry": {
+        "top": 210,
+        "left": 534.734375,
+        "right": 643.3125,
+        "bottom": 235,
+        "width": 108.578125,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@379",
+      "geometry": {
+        "top": 210,
+        "left": 647.3125,
+        "right": 746.15625,
+        "bottom": 235,
+        "width": 98.84375,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@391",
+      "geometry": {
+        "top": 210,
+        "left": 750.15625,
+        "right": 828.8125,
+        "bottom": 235,
+        "width": 78.65625,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@403",
+      "geometry": {
+        "top": 210,
+        "left": 832.8125,
+        "right": 949.890625,
+        "bottom": 235,
+        "width": 117.078125,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@415",
+      "geometry": {
+        "top": 210,
+        "left": 959.890625,
+        "right": 1043.828125,
+        "bottom": 235,
+        "width": 83.9375,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@427",
+      "geometry": {
+        "top": 138.5,
+        "left": 840.40625,
+        "right": 906.328125,
+        "bottom": 165.5,
+        "width": 65.921875,
+        "height": 27,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@439",
+      "geometry": {
+        "top": 139.5,
+        "left": 914.328125,
+        "right": 978.65625,
+        "bottom": 164.5,
+        "width": 64.328125,
+        "height": 25,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@451",
+      "geometry": {
+        "top": 138.5,
+        "left": 986.65625,
+        "right": 1069,
+        "bottom": 165.5,
+        "width": 82.34375,
+        "height": 27,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@463",
+      "geometry": {
+        "top": 133,
+        "left": 332,
+        "right": 646.59375,
+        "bottom": 175,
+        "width": 314.59375,
+        "height": 42,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": true
+      }
+    },
+    {
+      "callId": "call@479",
+      "geometry": {
+        "top": 96,
+        "left": 320,
+        "right": 1100,
+        "bottom": 244,
+        "width": 780,
+        "height": 148,
+        "viewportWidth": 1100,
+        "viewportHeight": 1000,
+        "visible": true,
+        "clear": false
+      }
+    }
+  ],
+  "finding": "Only whole-toolbar final host hit test clear=false; earlier groups, buttons and full title visible/clear. Exact occluder and product-versus-instrument classification pending.",
+  "originalRunRemainsFailed": true
+}

@@ -1,0 +1,84 @@
+TAP version 13
+# Subtest: matching spawn preserves receiver, arguments, exact child and existing listeners; records no data
+not ok 1 - matching spawn preserves receiver, arguments, exact child and existing listeners; records no data
+  ---
+  duration_ms: 1.114208
+  type: 'test'
+  location: '/private/tmp/lz-browser-process-observation-20260906/tests/browser-process-observation/observation.test.cjs:13:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    15 !== 16
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 16
+  actual: 15
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/private/tmp/lz-browser-process-observation-20260906/tests/browser-process-observation/observation.test.cjs:19:71)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: wrong executable is entirely ignored; original synchronous spawn failure retains identity
+ok 2 - wrong executable is entirely ignored; original synchronous spawn failure retains identity
+  ---
+  duration_ms: 0.475666
+  type: 'test'
+  ...
+# Subtest: unarmed and wrong launch shapes never become a passing process witness
+not ok 3 - unarmed and wrong launch shapes never become a passing process witness
+  ---
+  duration_ms: 0.246916
+  type: 'test'
+  location: '/private/tmp/lz-browser-process-observation-20260906/tests/browser-process-observation/observation.test.cjs:27:1'
+  failureType: 'testCodeFailure'
+  error: 'options.stdio?.join is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    Object.observeSpawn (/private/tmp/lz-browser-process-observation-20260906/forge/browser-process-observation.cjs:32:310)
+    TestContext.<anonymous> (/private/tmp/lz-browser-process-observation-20260906/tests/browser-process-observation/observation.test.cjs:30:39)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: missing pipe close, missing channel completion and duplicate process each refuse
+ok 4 - missing pipe close, missing channel completion and duplicate process each refuse
+  ---
+  duration_ms: 0.475334
+  type: 'test'
+  ...
+# Subtest: arbitrary log/error/header/argument text is never retained and failing sink cannot alter events
+ok 5 - arbitrary log/error/header/argument text is never retained and failing sink cannot alter events
+  ---
+  duration_ms: 0.300584
+  type: 'test'
+  ...
+# Subtest: original event listeners retain order and exceptions; observer does not add an error handler
+ok 6 - original event listeners retain order and exceptions; observer does not add an error handler
+  ---
+  duration_ms: 0.332917
+  type: 'test'
+  ...
+# Subtest: actual owned Node child exit precedes inherited stdio close; missing close stays red until natural EOF
+ok 7 - actual owned Node child exit precedes inherited stdio close; missing close stays red until natural EOF
+  ---
+  duration_ms: 2416.672792
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 5
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2454.295333

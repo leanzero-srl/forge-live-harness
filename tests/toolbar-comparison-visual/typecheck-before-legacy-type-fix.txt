@@ -1,0 +1,5 @@
+scenarios/lz-ppm/campaign-uat-comparison-visual.spec.ts(6,77): error TS2339: Property 'journal' does not exist on type '{}'.
+scenarios/lz-ppm/campaign-uat-comparison-visual.spec.ts(6,91): error TS2339: Property 'audit' does not exist on type '{}'.
+scenarios/sentinel-vault/my-work-page.spec.ts(80,27): error TS7006: Parameter 't' implicitly has an 'any' type.
+scenarios/sentinel-vault/steward-console-deep.spec.ts(31,140): error TS2339: Property 'replace' does not exist on type 'string | number'.
+  Property 'replace' does not exist on type 'number'.

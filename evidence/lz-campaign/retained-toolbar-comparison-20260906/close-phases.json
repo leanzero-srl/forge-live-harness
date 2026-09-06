@@ -1,0 +1,65 @@
+{
+  "schema": "browser-close-phases-v1",
+  "events": [
+    {
+      "phase": "trace-stop-chunk",
+      "event": "start",
+      "atMs": 32341.831042
+    },
+    {
+      "phase": "trace-stop-chunk",
+      "event": "complete",
+      "atMs": 32859.670667
+    },
+    {
+      "phase": "fixture-context-close",
+      "event": "start",
+      "atMs": 32866.887084
+    },
+    {
+      "phase": "portable-context-close",
+      "event": "start",
+      "atMs": 32866.989375
+    },
+    {
+      "phase": "viewport-close-queue",
+      "event": "start",
+      "atMs": 32867.042709
+    },
+    {
+      "phase": "native-context-close",
+      "event": "start",
+      "atMs": 32867.099667
+    },
+    {
+      "phase": "request-dispose",
+      "event": "start",
+      "atMs": 32867.1655
+    },
+    {
+      "phase": "request-dispose",
+      "event": "complete",
+      "atMs": 32867.405584
+    },
+    {
+      "phase": "native-context-close",
+      "event": "complete",
+      "atMs": 32870.907959
+    },
+    {
+      "phase": "viewport-close-queue",
+      "event": "complete",
+      "atMs": 32871.032834
+    },
+    {
+      "phase": "portable-context-close",
+      "event": "complete",
+      "atMs": 32871.205959
+    },
+    {
+      "phase": "browser-close",
+      "event": "start",
+      "atMs": 32871.30025
+    }
+  ]
+}

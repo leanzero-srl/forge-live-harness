@@ -1,0 +1,1992 @@
+[
+  {
+    "stage": "report-departure-owner",
+    "time": "2026-09-06T21:39:16.025Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "name": "[harness-test] UAT 20260906 October release decisions"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:39:16.037Z",
+    "value": {
+      "epoch": 0,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "owned-departure-blank",
+    "time": "2026-09-06T21:39:16.039Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "mounted": false
+    }
+  },
+  {
+    "stage": "report-document-boundary",
+    "time": "2026-09-06T21:39:16.072Z",
+    "value": {
+      "epoch": 1,
+      "reason": "main-document-request"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:39:16.219Z",
+    "value": {
+      "epoch": 1,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:39:16.862Z",
+    "value": {
+      "epoch": 1,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-boundary",
+    "time": "2026-09-06T21:39:17.470Z",
+    "value": {
+      "epoch": 2,
+      "reason": "main-document-request"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:39:17.522Z",
+    "value": {
+      "epoch": 2,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:39:17.541Z",
+    "value": {
+      "epoch": 2,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:39:17.615Z",
+    "value": {
+      "epoch": 2,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-boundary",
+    "time": "2026-09-06T21:39:18.526Z",
+    "value": {
+      "epoch": 3,
+      "reason": "app-document-request"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:39:18.538Z",
+    "value": {
+      "epoch": 3,
+      "scope": "app",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:21.909Z",
+    "value": {
+      "requestId": 1,
+      "key": "listPlans",
+      "planId": null,
+      "requestedAtMs": 1788730758769,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730758769,
+      "completedAtMs": 1788730761909,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:22.374Z",
+    "value": {
+      "requestId": 3,
+      "key": "getPlan",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762015,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762015,
+      "completedAtMs": 1788730762374,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:22.422Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 10,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:22.569Z",
+    "value": {
+      "requestId": 2,
+      "key": "checkUserRole",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762011,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762011,
+      "completedAtMs": 1788730762569,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:22.777Z",
+    "value": {
+      "requestId": 7,
+      "key": "getPlanCalendar",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762381,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762381,
+      "completedAtMs": 1788730762777,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:23.078Z",
+    "value": {
+      "requestId": 6,
+      "key": "getAllIssues",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762378,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762378,
+      "completedAtMs": 1788730763078,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:23.994Z",
+    "value": {
+      "requestId": 14,
+      "key": "getPlanAssets",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730763109,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730763109,
+      "completedAtMs": 1788730763994,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:24.202Z",
+    "value": {
+      "requestId": 8,
+      "key": "getNotifications",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762384,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762384,
+      "completedAtMs": 1788730764202,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:24.269Z",
+    "value": {
+      "requestId": 5,
+      "key": "getWritability",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762017,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762017,
+      "completedAtMs": 1788730764269,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:24.332Z",
+    "value": {
+      "requestId": 13,
+      "key": "getAssetsFields",
+      "planId": null,
+      "requestedAtMs": 1788730762572,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762572,
+      "completedAtMs": 1788730764332,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:24.429Z",
+    "value": {
+      "requestId": 4,
+      "key": "getBaseline",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762016,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762016,
+      "completedAtMs": 1788730764429,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:24.564Z",
+    "value": {
+      "requestId": 11,
+      "key": "getNotifications",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762392,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762392,
+      "completedAtMs": 1788730764564,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:24.628Z",
+    "value": {
+      "requestId": 12,
+      "key": "getNotifications",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762394,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762394,
+      "completedAtMs": 1788730764628,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:24.770Z",
+    "value": {
+      "requestId": 9,
+      "key": "getWritability",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762386,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762386,
+      "completedAtMs": 1788730764770,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:24.912Z",
+    "value": {
+      "requestId": 10,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730762388,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730762388,
+      "completedAtMs": 1788730764905,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "7be596b5cff8b8834de8048c7579a1e7ddadbcfc3412b2bf70b8bc002f80e90d",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"displayName\":\"Mihai Perdum\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"view\":\"gantt\",\"ts\":1788730764597}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730762,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "2ed4c30577a57b49ed135bafdc40a020fe27c2ceb95aeea8699dfb4b0f5b906b",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "displayName": "Mihai Perdum",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "view": "gantt",
+            "ts": 1788730764597
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:25.148Z",
+    "value": {
+      "requestId": 15,
+      "key": "getDraft",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730763110,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730763110,
+      "completedAtMs": 1788730765148,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:25.180Z",
+    "value": {
+      "requestId": 16,
+      "key": "getPresence",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730764817,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730764817,
+      "completedAtMs": 1788730765180,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:25.434Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 18,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:25.758Z",
+    "value": {
+      "requestId": 17,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730765415,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730765415,
+      "completedAtMs": 1788730765758,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:26.235Z",
+    "value": {
+      "requestId": 18,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730765418,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730765418,
+      "completedAtMs": 1788730766225,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "8ceedcdf5955aafb6fb644abc61baee655294b6f06520c2ec9070b6bf190eed1",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730765880,\"view\":\"table\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730765,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "f1cadfac286320e71ccf6143d87ed4baec6f932393b4999362236a9b0e76621b",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730765880,
+            "view": "table"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:39:28.034Z",
+    "value": {
+      "epoch": 3,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:30.239Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 20,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:30.723Z",
+    "value": {
+      "requestId": 19,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730770217,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730770217,
+      "completedAtMs": 1788730770723,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:31.158Z",
+    "value": {
+      "requestId": 20,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730770220,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730770220,
+      "completedAtMs": 1788730771154,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "e45205b98507f998397122827ee5b506a8d4f7a8a3a64fbebef6b949db620656",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730770611,\"view\":\"gantt\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730770,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "2cf2e27da5b10634550ca3f43eb3a5c84541669c6ed8818bd3eb31a394e90e56",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730770611,
+            "view": "gantt"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:31.726Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 22,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:32.203Z",
+    "value": {
+      "requestId": 21,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730771711,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730771711,
+      "completedAtMs": 1788730772203,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:32.501Z",
+    "value": {
+      "requestId": 22,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730771713,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730771713,
+      "completedAtMs": 1788730772488,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "f21075987bf8f1e70158c9fec813b7cbb0ee99e284c9794e406e85428481e80d",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730772182,\"view\":\"table\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730771,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "84bde3356c9ed5c5049e90e337b85123391b6cb86aa972fac6776b0a8ebeb6c3",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730772182,
+            "view": "table"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:33.113Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 25,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:33.456Z",
+    "value": {
+      "requestId": 23,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730773097,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730773097,
+      "completedAtMs": 1788730773456,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:33.677Z",
+    "value": {
+      "requestId": 24,
+      "key": "getBaseline",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730773099,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730773099,
+      "completedAtMs": 1788730773677,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:34.129Z",
+    "value": {
+      "requestId": 25,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730773100,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730773100,
+      "completedAtMs": 1788730774123,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "da740fa5e6ebe7c0a9aa1d28a79c50318709ec7330412e626e416def6cabfd40",
+      "responseBytes": 2635,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730773666,\"view\":\"dashboard\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730773,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "1574157d9c1e6cee8445d95e30c85768adb5e71eb7088473855023d4afbf5aba",
+      "retainedResponseBytes": 592,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730773666,
+            "view": "dashboard"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:34.840Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 27,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:35.239Z",
+    "value": {
+      "requestId": 26,
+      "key": "getPlanSchedule",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730774824,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730774824,
+      "completedAtMs": 1788730775239,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:35.560Z",
+    "value": {
+      "requestId": 27,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730774827,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730774827,
+      "completedAtMs": 1788730775556,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "9b00465aa013f29d16953153874007c1ffedaef524592d86ceb3fcefa4d1eed9",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730775247,\"view\":\"schedule\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730774,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "48279ec7c62cc3c70c0d7a8d58dcc272d5a7683312302d6f649b0d5b08896068",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730775247,
+            "view": "schedule"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:35.758Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 30,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:36.114Z",
+    "value": {
+      "requestId": 28,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730775741,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730775741,
+      "completedAtMs": 1788730776114,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:36.280Z",
+    "value": {
+      "requestId": 29,
+      "key": "listSnapshots",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730775743,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730775743,
+      "completedAtMs": 1788730776280,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:36.421Z",
+    "value": {
+      "requestId": 30,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730775745,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730775745,
+      "completedAtMs": 1788730776416,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "cff5840f8c3b50438e6d5e03471dace1c8e76d0456050ccea1135040b37e31f2",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730776134,\"view\":\"planning\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730775,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "04f5c5ec72af5c9880f7145e3425aef56652b78304463faa0eaebd5838fc6eb3",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730776134,
+            "view": "planning"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:37.121Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 32,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:37.582Z",
+    "value": {
+      "requestId": 31,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730777107,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730777107,
+      "completedAtMs": 1788730777582,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:37.803Z",
+    "value": {
+      "requestId": 32,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730777109,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730777109,
+      "completedAtMs": 1788730777795,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "d8435d084da299c47e324b8ff191b142c60facb21345cb83dc3fab7d01bbba98",
+      "responseBytes": 2637,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730777497,\"view\":\"permissions\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730777,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "d1c0ebb4f6ac6060104be030de1f93d9cab670c169aa37c4be2cc6b83bbeb6a8",
+      "retainedResponseBytes": 594,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730777497,
+            "view": "permissions"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:38.523Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 34,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:38.973Z",
+    "value": {
+      "requestId": 33,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730778502,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730778502,
+      "completedAtMs": 1788730778973,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:39.272Z",
+    "value": {
+      "requestId": 34,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730778504,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730778504,
+      "completedAtMs": 1788730779261,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "d795802452d935a0936efdb0b2a225883f3ec76bda521845b2f4636e36f2a917",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730778961,\"view\":\"gantt\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730778,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "8eb820adef26cb9d2456d8e8ec184de34c88a3f8bed62fa116c6cccf40384d3a",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730778961,
+            "view": "gantt"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:40.009Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 36,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:40.354Z",
+    "value": {
+      "requestId": 35,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730779994,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730779994,
+      "completedAtMs": 1788730780354,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:40.800Z",
+    "value": {
+      "requestId": 36,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730779996,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730779996,
+      "completedAtMs": 1788730780792,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "2ed3e59057765d3ab321f6ad06cf63b8e566576d7ca8ea18aadf357c63c04d6e",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730780351,\"view\":\"table\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730780,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "389d1b03333ed9682bbfe21bc8aa34883f93397841db04af8cd964aa45083c49",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730780351,
+            "view": "table"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:41.442Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 39,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:41.851Z",
+    "value": {
+      "requestId": 37,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730781427,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730781427,
+      "completedAtMs": 1788730781851,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:41.957Z",
+    "value": {
+      "requestId": 38,
+      "key": "getBaseline",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730781429,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730781429,
+      "completedAtMs": 1788730781957,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:42.208Z",
+    "value": {
+      "requestId": 39,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730781430,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730781430,
+      "completedAtMs": 1788730782200,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "ef8410677dd7950fab0ebb3d25baaf06abb020d56f33deffb560a0f9c3ce3e16",
+      "responseBytes": 2635,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730781901,\"view\":\"dashboard\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730781,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "f7259d255c2f2eaf1365d4a94c2f18de16f3e17a91959b2d186359f25eb87031",
+      "retainedResponseBytes": 592,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730781901,
+            "view": "dashboard"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:43.220Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 41,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:43.676Z",
+    "value": {
+      "requestId": 40,
+      "key": "getPlanSchedule",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730783206,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730783206,
+      "completedAtMs": 1788730783676,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:43.873Z",
+    "value": {
+      "requestId": 41,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730783209,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730783209,
+      "completedAtMs": 1788730783867,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "7bc09da839c559e01fea12bbc59a90a44f8a99f323ba18691a49afabcab3e380",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730783582,\"view\":\"schedule\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730783,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "a68700b45a3d47549d2f6fd1f61a81a5a3ff392bc7943e17307c08622c811596",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730783582,
+            "view": "schedule"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:44.142Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 44,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:44.486Z",
+    "value": {
+      "requestId": 42,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730784125,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730784125,
+      "completedAtMs": 1788730784486,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:44.637Z",
+    "value": {
+      "requestId": 43,
+      "key": "listSnapshots",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730784127,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730784127,
+      "completedAtMs": 1788730784637,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:44.836Z",
+    "value": {
+      "requestId": 44,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730784129,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730784129,
+      "completedAtMs": 1788730784829,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "145f4844d2f44975b1f5675621fb5d8b97ae611bbaf551308bc573db5d1730de",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730784562,\"view\":\"planning\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730784,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "5a4adb6ef8c6c826d9a9098e641242b1a7197c6125917238cc3541de61e657c3",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730784562,
+            "view": "planning"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:45.588Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 46,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:46.031Z",
+    "value": {
+      "requestId": 45,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730785574,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730785574,
+      "completedAtMs": 1788730786031,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:46.243Z",
+    "value": {
+      "requestId": 46,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730785576,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730785576,
+      "completedAtMs": 1788730786236,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "cd7e69987d4f4b263f9f4fa4c933b30a81e3258296e633d72d13fcc1b0e8103c",
+      "responseBytes": 2637,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730785941,\"view\":\"permissions\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730785,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "3be2be2b4376f5212e71ff59548aa6999287e41b9145fed19ebf8128e2ad2481",
+      "retainedResponseBytes": 594,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730785941,
+            "view": "permissions"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:47.023Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 48,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:47.498Z",
+    "value": {
+      "requestId": 47,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730786999,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730786999,
+      "completedAtMs": 1788730787498,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:47.765Z",
+    "value": {
+      "requestId": 48,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730787001,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730787001,
+      "completedAtMs": 1788730787757,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "d9dc9e09fd2e73c047b4ca095520073e76e0f01c05b315bfb02b8bc15c28832b",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730787455,\"view\":\"gantt\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730787,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "8de3d85ee9087d57cf7c4a9392640319a13ed84168febd38527473d28e92a012",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730787455,
+            "view": "gantt"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:48.525Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 50,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:48.861Z",
+    "value": {
+      "requestId": 49,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730788509,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730788509,
+      "completedAtMs": 1788730788861,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:49.293Z",
+    "value": {
+      "requestId": 50,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730788512,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730788512,
+      "completedAtMs": 1788730789287,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "f5b50c860d3f0bf7c50c231bbccb178bf5dc20db95d8e4b38335318f7a5b6bf0",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730788859,\"view\":\"table\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730788,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "a36b51ba62dadd5503de4a3ec7c3f146843287508c07c6fe5d85d0581c93fa5b",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730788859,
+            "view": "table"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:49.978Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 53,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:50.396Z",
+    "value": {
+      "requestId": 51,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730789960,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730789960,
+      "completedAtMs": 1788730790396,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:50.496Z",
+    "value": {
+      "requestId": 52,
+      "key": "getBaseline",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730789963,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730789963,
+      "completedAtMs": 1788730790496,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:50.636Z",
+    "value": {
+      "requestId": 53,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730789965,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730789965,
+      "completedAtMs": 1788730790629,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "2ae88d9c9232a92a73bca157d282f9de8ba20d8b6d241b40c6c7c9ede37bbed6",
+      "responseBytes": 2635,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730790357,\"view\":\"dashboard\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730790,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "af6e464cc63943eb414ef3320e59659d8a1a655125fe7bb78a12aa566fe9c1de",
+      "retainedResponseBytes": 592,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730790357,
+            "view": "dashboard"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:51.787Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 55,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:52.171Z",
+    "value": {
+      "requestId": 54,
+      "key": "getPlanSchedule",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730791773,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730791773,
+      "completedAtMs": 1788730792171,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:52.391Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 56,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:52.476Z",
+    "value": {
+      "requestId": 55,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730791775,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730791775,
+      "completedAtMs": 1788730792471,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "2c6d48d16285e1f2458bafdace10bc821bb02be01d3f0b7da4be77d5ddb894db",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730792201,\"view\":\"schedule\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730791,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "0ab2bb5a9577c3b26d68dbaf5dc2376b4b8bb3a78862fd55d269fe3c88463f96",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730792201,
+            "view": "schedule"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:52.791Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 59,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:53.158Z",
+    "value": {
+      "requestId": 56,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730792381,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730792381,
+      "completedAtMs": 1788730793152,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "0708c8f28c4ca4fc8e5fc1672da10bb597cae8b72dadebea1d83bf96e5a7dd9a",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730792749,\"view\":\"schedule\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730792,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "3b9918f89f4d7e4cdd13e293eb18c9202d4282220d4f850f1464822f62af2e95",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730792749,
+            "view": "schedule"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:53.306Z",
+    "value": {
+      "requestId": 58,
+      "key": "listSnapshots",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730792777,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730792777,
+      "completedAtMs": 1788730793306,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:53.424Z",
+    "value": {
+      "requestId": 57,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730792775,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730792775,
+      "completedAtMs": 1788730793424,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:53.642Z",
+    "value": {
+      "requestId": 59,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730792779,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730792779,
+      "completedAtMs": 1788730793638,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "e4dc6c1b11e1668906f493168c4800911bfb64089ef0a0c99e8113699ff7c411",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730793235,\"view\":\"planning\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730792,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "2461343898575f65e7de66ef3e93ed2155e9d68d28615901769f21abefe3062c",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730793235,
+            "view": "planning"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:54.255Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 61,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:54.663Z",
+    "value": {
+      "requestId": 60,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730794240,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730794240,
+      "completedAtMs": 1788730794663,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:54.933Z",
+    "value": {
+      "requestId": 61,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730794243,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730794243,
+      "completedAtMs": 1788730794924,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "548cda04656fc2738a4a20264fe8f8fb7485b6e93433757224ab11f28fe70141",
+      "responseBytes": 2637,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730794614,\"view\":\"permissions\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730794,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "00049a433613afad14f78bec76aaa128c5aeea022ffceaa40785082cdc11352e",
+      "retainedResponseBytes": 594,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730794614,
+            "view": "permissions"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T21:39:55.671Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 64,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:56.028Z",
+    "value": {
+      "requestId": 62,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730795657,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730795657,
+      "completedAtMs": 1788730796028,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:56.159Z",
+    "value": {
+      "requestId": 63,
+      "key": "listSnapshots",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730795660,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730795660,
+      "completedAtMs": 1788730796159,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:56.435Z",
+    "value": {
+      "requestId": 64,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730795661,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730795661,
+      "completedAtMs": 1788730796428,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "046646476f80f0ebdadb13272be820cb1e64944ec9d2fa8dace1ca9e5081cb37",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788730796138,\"view\":\"planning\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730795,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "33dc720fc8437d3caaf469d25d372cd3d4192b20c5114d8d22d4ec7ac43af173",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788730796138,
+            "view": "planning"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:57.125Z",
+    "value": {
+      "requestId": 65,
+      "key": "getSnapshot",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730796540,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730796540,
+      "completedAtMs": 1788730797125,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:39:57.703Z",
+    "value": {
+      "requestId": 66,
+      "key": "getSnapshot",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730797205,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730797205,
+      "completedAtMs": 1788730797703,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-admission",
+    "time": "2026-09-06T21:40:04.562Z",
+    "value": {
+      "phase": "presence-document-admission",
+      "nextId": 66,
+      "documentEpoch": 3,
+      "beatRequestId": 64,
+      "checks": {
+        "sameFrame": true,
+        "currentDocument": true,
+        "exactOwner": true,
+        "finished": true,
+        "http200": true,
+        "outerSuccess": true,
+        "errorsEmpty": true,
+        "exactPrincipal": true
+      }
+    }
+  },
+  {
+    "stage": "owned-departure-before-back",
+    "time": "2026-09-06T21:40:04.563Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "armedAtMs": 1788730804563
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:40:05.356Z",
+    "value": {
+      "requestId": 68,
+      "key": "listPlans",
+      "planId": null,
+      "requestedAtMs": 1788730804612,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730804612,
+      "completedAtMs": 1788730805356,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T21:40:05.387Z",
+    "value": {
+      "requestId": 67,
+      "key": "presenceLeave",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788730804608,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788730804608,
+      "completedAtMs": 1788730805386,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "0a7b3e90a9174f1560dddf836295b8aabe3d2e706bfbb5c1e5915c1b39cbbdf6",
+      "responseBytes": 2236,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"success\":true}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788730804,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "c68449a859b13b310dfd4108a957a39aafc0c4db4bdbd383d0007cbfc2b47483",
+      "retainedResponseBytes": 193,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "success": true
+      }
+    }
+  },
+  {
+    "stage": "owned-departure-leave-observed",
+    "time": "2026-09-06T21:40:05.388Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestId": 67,
+      "armedAtMs": 1788730804563,
+      "requestedAtMs": 1788730804608,
+      "dispatchedAtMs": 1788730804608,
+      "completedAtMs": 1788730805386
+    }
+  },
+  {
+    "stage": "owned-departure-all-leaves",
+    "time": "2026-09-06T21:40:05.397Z",
+    "value": [
+      67
+    ]
+  },
+  {
+    "stage": "owned-departure-unmounted",
+    "time": "2026-09-06T21:40:05.398Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestId": 67
+    }
+  },
+  {
+    "stage": "report-document-boundary",
+    "time": "2026-09-06T21:40:05.405Z",
+    "value": {
+      "epoch": 4,
+      "reason": "app-frame-detached"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T21:40:05.405Z",
+    "value": {
+      "epoch": 4,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "owned-departure-postblank-leaves",
+    "time": "2026-09-06T21:40:05.410Z",
+    "value": [
+      67
+    ]
+  },
+  {
+    "stage": "owned-departure-blank",
+    "time": "2026-09-06T21:40:05.410Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "mounted": true
+    }
+  },
+  {
+    "stage": "report-departure-disposed",
+    "time": "2026-09-06T21:40:08.605Z",
+    "value": {
+      "owner": {
+        "planId": "plan-test-mtq7hsun-koj1jf",
+        "name": "[harness-test] UAT 20260906 October release decisions"
+      },
+      "receipts": 68
+    }
+  }
+]

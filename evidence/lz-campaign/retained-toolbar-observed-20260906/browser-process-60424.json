@@ -1,0 +1,83 @@
+{
+  "schema": "owned-browser-process-v1",
+  "runId": "retained-toolbar-observed-20260906",
+  "workerPid": 60424,
+  "parentPid": 60422,
+  "browserPid": 60425,
+  "failed": false,
+  "events": [
+    {
+      "kind": "armed",
+      "atMs": 432.409917
+    },
+    {
+      "kind": "spawn-returned",
+      "atMs": 438.135292,
+      "pid": 60425
+    },
+    {
+      "kind": "process-spawn",
+      "atMs": 438.935667
+    },
+    {
+      "kind": "browser-attached",
+      "atMs": 715.102875,
+      "connected": true
+    },
+    {
+      "kind": "browser-close-start",
+      "atMs": 106203.478875,
+      "connected": true
+    },
+    {
+      "kind": "channel-close-start",
+      "atMs": 106203.882375
+    },
+    {
+      "kind": "stdio-close",
+      "atMs": 106219.669959,
+      "stream": 3
+    },
+    {
+      "kind": "stdio-close",
+      "atMs": 106235.696084,
+      "stream": 4
+    },
+    {
+      "kind": "browser-disconnected",
+      "atMs": 106253.864834,
+      "connected": false
+    },
+    {
+      "kind": "stdio-close",
+      "atMs": 106268.346667,
+      "stream": 1
+    },
+    {
+      "kind": "process-exit",
+      "atMs": 106268.5685,
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "kind": "process-close",
+      "atMs": 106342.456667,
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "kind": "stdio-close",
+      "atMs": 106342.821917,
+      "stream": 2
+    },
+    {
+      "kind": "channel-close-complete",
+      "atMs": 106350.785959
+    },
+    {
+      "kind": "browser-close-complete",
+      "atMs": 106350.967209,
+      "connected": false
+    }
+  ]
+}

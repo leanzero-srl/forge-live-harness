@@ -1,0 +1,29 @@
+{
+  "status": "terminal",
+  "supervisorPid": 60410,
+  "supervisorStart": "Mon Sep  7 00:39:07 2026",
+  "startedAt": "2026-09-06T21:39:07.426365+00:00",
+  "actualHarnessCommit": "7c09c7b1e6302a4d3537e8e46a155a62813dee45",
+  "instrumentHash": "b8ac6fcfeaf60427c031bf2e3757ac7506e44502850f4f51172bb5f2bb5f661a",
+  "rootDispatchCommit": "331268fbaafb90b118d480e1490e65ea48ac35c9",
+  "commandSha256": "20d4986d05badeed0e0cdd5db31d7b49776edef65351954b87beeba3ec00e994",
+  "childPid": 60422,
+  "childStart": "Mon Sep  7 00:39:07 2026",
+  "heartbeatAt": "2026-09-06T21:40:53.303420+00:00",
+  "finishedAt": "2026-09-06T21:40:54.577342+00:00",
+  "processResult": {
+    "exit": 0
+  },
+  "testResult": {
+    "status": "passed",
+    "ordinaryPasses": [
+      "read-only retained ordinary and private toolbar plus complete comparison"
+    ],
+    "expectedDefectWitnesses": [],
+    "reasons": [],
+    "testCount": 1,
+    "process": {
+      "exit": 0
+    }
+  }
+}

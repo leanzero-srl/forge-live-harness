@@ -1,3 +1,4 @@
+import {closePhase} from './close-diagnostics.mjs';
 // Install only on the owned ephemeral Chromium context. Its caller retains the
 // browser lifecycle and admission gates. No persistent profile or app DOM access.
 const installed = new WeakSet();
@@ -10,7 +11,7 @@ function dimensions(page) {
   if (!value || !Number.isSafeInteger(value.width) || value.width < 1 || !Number.isSafeInteger(value.height) || value.height < 1) throw new Error('PORTABLE_VIEWPORT_SIZE_REQUIRED');
   return value;
 }
-export function installPortableViewportSizing(context) {
+export function installPortableViewportSizing(context, observe) {
   if (installed.has(context)) return;
   installed.add(context);
   let tail = Promise.resolve(), teardown = false;
@@ -83,6 +84,6 @@ export function installPortableViewportSizing(context) {
   });
   context.close = options => {
     teardown = true; // Do not issue window repair while context shutdown is requested.
-    return enqueue(() => originalContextClose(options));
+    return closePhase(observe, 'viewport-close-queue', () => enqueue(() => closePhase(observe, 'native-context-close', () => originalContextClose(options))));
   };
 }

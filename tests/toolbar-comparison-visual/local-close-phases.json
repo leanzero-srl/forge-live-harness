@@ -1,0 +1,75 @@
+{
+  "schema": "browser-close-phases-v1",
+  "events": [
+    {
+      "phase": "trace-stop-chunk",
+      "event": "start",
+      "atMs": 956.229834
+    },
+    {
+      "phase": "trace-stop-chunk",
+      "event": "complete",
+      "atMs": 964.008417
+    },
+    {
+      "phase": "fixture-context-close",
+      "event": "start",
+      "atMs": 966.803042
+    },
+    {
+      "phase": "portable-context-close",
+      "event": "start",
+      "atMs": 966.897917
+    },
+    {
+      "phase": "viewport-close-queue",
+      "event": "start",
+      "atMs": 966.953125
+    },
+    {
+      "phase": "native-context-close",
+      "event": "start",
+      "atMs": 967.004167
+    },
+    {
+      "phase": "request-dispose",
+      "event": "start",
+      "atMs": 967.06975
+    },
+    {
+      "phase": "request-dispose",
+      "event": "complete",
+      "atMs": 967.358334
+    },
+    {
+      "phase": "native-context-close",
+      "event": "complete",
+      "atMs": 969.779875
+    },
+    {
+      "phase": "viewport-close-queue",
+      "event": "complete",
+      "atMs": 970.010584
+    },
+    {
+      "phase": "portable-context-close",
+      "event": "complete",
+      "atMs": 970.10125
+    },
+    {
+      "phase": "browser-close",
+      "event": "start",
+      "atMs": 970.159584
+    },
+    {
+      "phase": "browser-close",
+      "event": "complete",
+      "atMs": 1103.155709
+    },
+    {
+      "phase": "fixture-context-close",
+      "event": "complete",
+      "atMs": 1103.266834
+    }
+  ]
+}

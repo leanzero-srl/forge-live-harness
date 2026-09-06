@@ -1,0 +1,53 @@
+{
+  "status": "authorized",
+  "runId": "retained-toolbar-observed-20260906",
+  "command": [
+    "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/artifacts"
+  ],
+  "timeoutSeconds": 600,
+  "appSourceCommit": "40577cbfadf794ede8a8f184292e2b73a4ed7f89",
+  "forgeVersion": "6.27.0",
+  "uiVersion": "4.58.589",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "rootDispatchCommit": "331268fbaafb90b118d480e1490e65ea48ac35c9",
+  "harnessSourceCommit": "237105742d69fb2f4ac177dfa97ab16e1d43b12e",
+  "instrumentHash": "b8ac6fcfeaf60427c031bf2e3757ac7506e44502850f4f51172bb5f2bb5f661a",
+  "supervisorSha256": "cfde79ef3ae79ef6724b16bcf7310a3c572835a184a8dd1f290f4d3271da030e",
+  "sourceHashes": {
+    "scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts": "f047972b5a08cc54605f133f99965c624389cf54f1a363fbdb870db27251437e",
+    "scenarios/lz-ppm/toolbar-comparison-visual.mjs": "04c435a0a90bbb4c242ab7c491f4eea00429cad756eb3195d178103669e6a2f1",
+    "scenarios/lz-ppm/toolbar-visual-checks.ts": "b9a74ffbda78e915fbe2dee3bef808da5c0bfb93d0ae3eb3cc3daf55e002afeb",
+    "fixtures/forge.ts": "aa9d6f6d15adb3162e48d111677030caa443cb9e5105b04c00543dc7afa20165",
+    "forge/browser.ts": "ca9177312051bc0b1f37f5c70ff718766da0c21b0772b911ec1a93a38d7c0ed5",
+    "forge/portable-browser.mjs": "1f06bc4d95f2bbe7403d75c755e79c7e2ec86b81605a83e4d98833b9f3d68fcd",
+    "forge/portable-viewport.mjs": "5ebbe58a1077865d79b12660585b37245ff21f2fe17ffb7de66607c7736a3e2d",
+    "forge/close-diagnostics.mjs": "b1660914c1098a8d850daa28885a360c5b2ace98d3fe0f89370100deb754a72d",
+    "scenarios/lz-ppm/report-departure.ts": "ceda5140e8d62110e9690cbecbace10287f1895ed35ba07280653556bf1dfc8c",
+    "scenarios/lz-ppm/private-report-witness-session.ts": "c24b03c98ca3b9641f9be1ab595a46eaddcb98ba05e98f0038dce6cba717fdee",
+    "scenarios/lz-ppm/private-report-witness-contract.mjs": "3b5d3527f4e571993e0e7bf2d698b42f4b66e4eab70f9abdea83a5eb3ddcf491",
+    "scenarios/lz-ppm/campaign-ui.ts": "a012f713b2d6522eff9c541978d879dae0b8e082eb995fa7f69466f45e7fd0be",
+    "scenarios/lz-ppm/settled-screenshot.mjs": "78d8bdd5a10648061c5ac5b84e868e67cd249c3e6b3860703831b61634f7dba3",
+    "scripts/lz-campaign.py": "b2951157a16d458523ff3abeb1ed54f8243644a9a2de1f18b9c6dda2ce49bf6c",
+    "forge/browser-process-observation.cjs": "c18747e1554b425f0dfa026a3def0a9785a36ec16df05554ea1c80815eecbe91"
+  },
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0",
+    "LZ_HARNESS_BROWSER_MODE": "portable-chrome152",
+    "LZ_EXPECTED_ACCOUNT_ID": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "LZ_EXPECTED_UI_VERSION": "4.58.589",
+    "LZ_TOOLBAR_VISUAL_PHASE": "readonly",
+    "LZ_BROWSER_CLOSE_RECEIPT": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/close-phases.json",
+    "PLAYWRIGHT_JSON_OUTPUT_NAME": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906/report.json",
+    "LZ_BROWSER_PROCESS_OBSERVATION_DIR": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-toolbar-observed-20260906",
+    "NODE_OPTIONS": "--require=/Users/mihaiperdum/Projects/forge-live-harness/forge/browser-process-observation.cjs"
+  }
+}

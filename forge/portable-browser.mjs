@@ -1,3 +1,5 @@
+import {closePhase} from './close-diagnostics.mjs';
+import {beginObservation} from './browser-process-observation.cjs';
 // Explicit portable-session adapter. The shared persistent profile is never opened or changed.
 import fs from 'node:fs';
 import {installPortableViewportSizing} from './portable-viewport.mjs';
@@ -94,6 +96,7 @@ export function createPortableLauncher({chromium, installHostFlagSuppressor, rea
     if (!options.viewport || !Number.isSafeInteger(options.viewport.width) || options.viewport.width < 1 || !Number.isSafeInteger(options.viewport.height) || options.viewport.height < 1) refuse('PORTABLE_VIEWPORT_REQUIRED');
     if (typeof installHostFlagSuppressor !== 'function') refuse('PORTABLE_HOST_SUPPRESSOR_REQUIRED');
     const state = readAdmission(); // Read once, in memory. Never pass the live file path to a mutable consumer.
+    const processObservation = beginObservation(EXECUTABLE);
     let browser, context, closing;
     let intentional = false;
     const unexpected = [];
@@ -103,19 +106,31 @@ export function createPortableLauncher({chromium, installHostFlagSuppressor, rea
         intentional = true;
         closing = (async () => {
           const errors = [...unexpected];
-          if (originalClose) try { await originalClose(closeOptions); } catch (error) { errors.push(error); }
-          if (browser) try { await browser.close(); } catch (error) { errors.push(error); }
+          if (originalClose) try { await closePhase(options.observeClose, 'portable-context-close', () => originalClose(closeOptions)); } catch (error) { errors.push(error); }
+          if (browser) try {
+            processObservation?.closing(browser,'browser-close-start');
+            await closePhase(options.observeClose, 'browser-close', () => browser.close());
+            processObservation?.closing(browser,'browser-close-complete');
+          } catch (error) { processObservation?.closing(browser,'browser-close-failed'); errors.push(error); }
+          if (processObservation) try { processObservation.check(); } catch (error) { errors.push(error); }
           aggregate(errors,'Portable context and owned browser cleanup failed; all causes retained');
         })();
       }
       return closing;
     };
     try {
-      browser = await chromium.launch({executablePath:EXECUTABLE,headless:options.headed !== true,args:['--no-first-run','--no-default-browser-check']});
+      browser = await chromium.launch({executablePath:EXECUTABLE,headless:options.headed !== true,args:['--no-first-run','--no-default-browser-check'],...(processObservation?{logger:processObservation.logger}:{})});
+      processObservation?.attach(browser);
       browser.once('disconnected', () => { if (!intentional) unexpected.push(new PortableBrowserError('PORTABLE_BROWSER_LOST')); });
       if (browser.version() !== VERSION) refuse('PORTABLE_VERSION_MISMATCH');
       context = await browser.newContext({storageState:state,viewport:options.viewport,acceptDownloads:true,...(options.recordVideoDir ? {recordVideo:{dir:options.recordVideoDir,size:options.viewport}} : {})});
-      installPortableViewportSizing(context);
+      if (options.observeClose) {
+        for (const [target, method, phase] of [[context.request,'dispose','request-dispose'],[context.tracing,'stop','trace-stop'],[context.tracing,'stopChunk','trace-stop-chunk']]) {
+          const original = target[method].bind(target);
+          target[method] = (...args) => closePhase(options.observeClose, phase, () => original(...args));
+        }
+      }
+      installPortableViewportSizing(context, options.observeClose);
       originalClose = context.close.bind(context);
       context.close = close;
       // auth.setup uses this API: refuse both memory export and file export in portable mode.

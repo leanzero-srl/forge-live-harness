@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-09-06T21:39:45.740304+00:00",
+  "actualOwnedBrowserPid": 60425,
+  "processes": [
+    {
+      "pid": 60410,
+      "ppid": 1,
+      "start": "Mon Sep 7 00:39:07 2026",
+      "executable": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python"
+    },
+    {
+      "pid": 60422,
+      "ppid": 60410,
+      "start": "Mon Sep 7 00:39:07 2026",
+      "executable": "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node"
+    },
+    {
+      "pid": 60424,
+      "ppid": 60422,
+      "start": "Mon Sep 7 00:39:07 2026",
+      "executable": "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node"
+    },
+    {
+      "pid": 60425,
+      "ppid": 60424,
+      "start": "Mon Sep 7 00:39:08 2026",
+      "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    }
+  ]
+}

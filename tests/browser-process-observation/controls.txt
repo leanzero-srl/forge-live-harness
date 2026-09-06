@@ -1,0 +1,364 @@
+TAP version 13
+# Subtest: matching spawn preserves receiver, arguments, exact child and existing listeners; records no data
+ok 1 - matching spawn preserves receiver, arguments, exact child and existing listeners; records no data
+  ---
+  duration_ms: 1.040708
+  type: 'test'
+  ...
+# Subtest: wrong executable is entirely ignored; original synchronous spawn failure retains identity
+ok 2 - wrong executable is entirely ignored; original synchronous spawn failure retains identity
+  ---
+  duration_ms: 0.360083
+  type: 'test'
+  ...
+# Subtest: unarmed and wrong launch shapes never become a passing process witness
+ok 3 - unarmed and wrong launch shapes never become a passing process witness
+  ---
+  duration_ms: 0.199334
+  type: 'test'
+  ...
+# Subtest: missing pipe close, missing channel completion and duplicate process each refuse
+ok 4 - missing pipe close, missing channel completion and duplicate process each refuse
+  ---
+  duration_ms: 0.48425
+  type: 'test'
+  ...
+# Subtest: arbitrary log/error/header/argument text is never retained and failing sink cannot alter events
+ok 5 - arbitrary log/error/header/argument text is never retained and failing sink cannot alter events
+  ---
+  duration_ms: 0.30975
+  type: 'test'
+  ...
+# Subtest: original event listeners retain order and exceptions; observer does not add an error handler
+ok 6 - original event listeners retain order and exceptions; observer does not add an error handler
+  ---
+  duration_ms: 0.420375
+  type: 'test'
+  ...
+# Subtest: rejecting and nonsettling evidence sinks do not affect event dispatch and cannot pass
+ok 7 - rejecting and nonsettling evidence sinks do not affect event dispatch and cannot pass
+  ---
+  duration_ms: 2.751667
+  type: 'test'
+  ...
+# Subtest: actual portable integration keeps held close pending and exact launch options apart from logger
+ok 8 - actual portable integration keeps held close pending and exact launch options apart from logger
+  ---
+  duration_ms: 31.466958
+  type: 'test'
+  ...
+# Subtest: actual Node preload observes the installed Playwright launchProcess reference and native events
+ok 9 - actual Node preload observes the installed Playwright launchProcess reference and native events
+  ---
+  duration_ms: 677.759125
+  type: 'test'
+  ...
+# Subtest: actual owned Node child exit precedes inherited stdio close; missing close stays red until natural EOF
+ok 10 - actual owned Node child exit precedes inherited stdio close; missing close stays red until natural EOF
+  ---
+  duration_ms: 2431.087375
+  type: 'test'
+  ...
+# Subtest: no implicit opt-in or auth-flow admission; no state read or launch
+ok 11 - no implicit opt-in or auth-flow admission; no state read or launch
+  ---
+  duration_ms: 2.182833
+  type: 'test'
+  ...
+# Subtest: pinned executable, ephemeral state object, video/viewport and actual suppressor precede identity
+ok 12 - pinned executable, ephemeral state object, video/viewport and actual suppressor precede identity
+  ---
+  duration_ms: 1.417958
+  type: 'test'
+  ...
+# Subtest: runtime mismatch closes browser before any credential context exists
+ok 13 - runtime mismatch closes browser before any credential context exists
+  ---
+  duration_ms: 0.293375
+  type: 'test'
+  ...
+# Subtest: missing state refuses before launch
+ok 14 - missing state refuses before launch
+  ---
+  duration_ms: 0.126708
+  type: 'test'
+  ...
+# Subtest: launch failure retains original error; does not attempt a fallback
+ok 15 - launch failure retains original error; does not attempt a fallback
+  ---
+  duration_ms: 0.128292
+  type: 'test'
+  ...
+# Subtest: newContext failure still closes owned browser and preserves both errors
+ok 16 - newContext failure still closes owned browser and preserves both errors
+  ---
+  duration_ms: 0.104958
+  type: 'test'
+  ...
+# Subtest: principal/app rejection and both cleanup errors are all retained
+ok 17 - principal/app rejection and both cleanup errors are all retained
+  ---
+  duration_ms: 0.155167
+  type: 'test'
+  ...
+# Subtest: host suppressor failure cannot return an admitted context
+ok 18 - host suppressor failure cannot return an admitted context
+  ---
+  duration_ms: 0.095125
+  type: 'test'
+  ...
+# Subtest: unexpected context close closes owned browser and is not mistaken for success
+ok 19 - unexpected context close closes owned browser and is not mistaken for success
+  ---
+  duration_ms: 0.31825
+  type: 'test'
+  ...
+# Subtest: browser death remains visible at cleanup
+ok 20 - browser death remains visible at cleanup
+  ---
+  duration_ms: 0.287083
+  type: 'test'
+  ...
+# Subtest: malformed state does not expose JSON secret fragments
+ok 21 - malformed state does not expose JSON secret fragments
+  ---
+  duration_ms: 0.201042
+  type: 'test'
+  ...
+# Subtest: actual identity verifier requires exact active account, correct route/stamp and visible Plans
+ok 22 - actual identity verifier requires exact active account, correct route/stamp and visible Plans
+  ---
+  duration_ms: 0.397125
+  type: 'test'
+  ...
+# Subtest: actual verifier rejects login, forbidden principal, inactive account and stale/wrong app
+ok 23 - actual verifier rejects login, forbidden principal, inactive account and stale/wrong app
+  ---
+  duration_ms: 0.203792
+  type: 'test'
+  ...
+# Subtest: missing and unknown modes fail before any dependency; explicit mode forwards owned lifecycle
+ok 24 - missing and unknown modes fail before any dependency; explicit mode forwards owned lifecycle
+  ---
+  duration_ms: 2.336416
+  type: 'test'
+  ...
+# Subtest: every early failure preserves original cause and closes each already-created resource
+ok 25 - every early failure preserves original cause and closes each already-created resource
+  ---
+  duration_ms: 1.159334
+  type: 'test'
+  ...
+# Subtest: local readiness failure plus both independent cleanup faults retain all three causes
+ok 26 - local readiness failure plus both independent cleanup faults retain all three causes
+  ---
+  duration_ms: 0.14125
+  type: 'test'
+  ...
+# Subtest: late-created context after browser disconnect is never returned and is still closed
+ok 27 - late-created context after browser disconnect is never returned and is still closed
+  ---
+  duration_ms: 1.856042
+  type: 'test'
+  ...
+# Subtest: unexpected returned-context loss closes owned browser and remains a failure
+ok 28 - unexpected returned-context loss closes owned browser and remains a failure
+  ---
+  duration_ms: 0.150459
+  type: 'test'
+  ...
+# Subtest: simultaneous repeated close shares one rejection and executes both cleanup attempts exactly once
+ok 29 - simultaneous repeated close shares one rejection and executes both cleanup attempts exactly once
+  ---
+  duration_ms: 0.1585
+  type: 'test'
+  ...
+# Subtest: receipt exists only after completed local readiness and exposes no raw fixture configuration
+ok 30 - receipt exists only after completed local readiness and exposes no raw fixture configuration
+  ---
+  duration_ms: 0.332333
+  type: 'test'
+  ...
+# Subtest: default complete wrapper retains persistent reservation and existing launch options
+ok 31 - default complete wrapper retains persistent reservation and existing launch options
+  ---
+  duration_ms: 0.901292
+  type: 'test'
+  ...
+# Subtest: explicit wrapper composes real adapter receipt, video and full owned cleanup
+ok 32 - explicit wrapper composes real adapter receipt, video and full owned cleanup
+  ---
+  duration_ms: 1.585208
+  type: 'test'
+  ...
+# Subtest: wrapper never labels or returns failed local adapter admission and keeps cleanup causes
+ok 33 - wrapper never labels or returns failed local adapter admission and keeps cleanup causes
+  ---
+  duration_ms: 0.381041
+  type: 'test'
+  ...
+# Subtest: unknown modes and conflicting explicit choices fail before fake read or either launch
+ok 34 - unknown modes and conflicting explicit choices fail before fake read or either launch
+  ---
+  duration_ms: 0.333375
+  type: 'test'
+  ...
+# Subtest: missing mode preserves existing persistent reservation and export
+ok 35 - missing mode preserves existing persistent reservation and export
+  ---
+  duration_ms: 0.914834
+  type: 'test'
+  ...
+# Subtest: unknown/empty/conflicting mode rejects before either browser path
+ok 36 - unknown/empty/conflicting mode rejects before either browser path
+  ---
+  duration_ms: 0.532583
+  type: 'test'
+  ...
+# Subtest: portable forwards authoritative identity/video/viewport and never reserves profile
+ok 37 - portable forwards authoritative identity/video/viewport and never reserves profile
+  ---
+  duration_ms: 0.189
+  type: 'test'
+  ...
+# Subtest: auth setup opt-in and mismatched account/version reject before launch
+ok 38 - auth setup opt-in and mismatched account/version reject before launch
+  ---
+  duration_ms: 0.252
+  type: 'test'
+  ...
+# Subtest: unattested portable context is closed and never returned or labelled successful
+ok 39 - unattested portable context is closed and never returned or labelled successful
+  ---
+  duration_ms: 0.653
+  type: 'test'
+  ...
+# Subtest: missing receipt and cleanup failure retain both causes
+ok 40 - missing receipt and cleanup failure retain both causes
+  ---
+  duration_ms: 0.1725
+  type: 'test'
+  ...
+# Subtest: actual portable admission installs awaited sizing before readiness and preserves browser teardown
+ok 41 - actual portable admission installs awaited sizing before readiness and preserves browser teardown
+  ---
+  duration_ms: 1.976666
+  type: 'test'
+  ...
+# Subtest: same requested CSS size is preserved; envelope protects both pages
+ok 42 - same requested CSS size is preserved; envelope protects both pages
+  ---
+  duration_ms: 1.405792
+  type: 'test'
+  ...
+# Subtest: same-size resize still restores physical contents
+ok 43 - same-size resize still restores physical contents
+  ---
+  duration_ms: 0.129916
+  type: 'test'
+  ...
+# Subtest: actual separate browser windows use separate envelopes
+ok 44 - actual separate browser windows use separate envelopes
+  ---
+  duration_ms: 0.148333
+  type: 'test'
+  ...
+# Subtest: concurrent public resize and close serialize before resolving
+ok 45 - concurrent public resize and close serialize before resolving
+  ---
+  duration_ms: 0.207125
+  type: 'test'
+  ...
+# Subtest: close failure and restore failure both retained; other cleanup remains usable
+ok 46 - close failure and restore failure both retained; other cleanup remains usable
+  ---
+  duration_ms: 0.28
+  type: 'test'
+  ...
+# Subtest: failed new-page sizing closes the unreturned owned page
+ok 47 - failed new-page sizing closes the unreturned owned page
+  ---
+  duration_ms: 0.092916
+  type: 'test'
+  ...
+# Subtest: failed new-page sizing and failed owned cleanup retain all causes
+ok 48 - failed new-page sizing and failed owned cleanup retain all causes
+  ---
+  duration_ms: 0.588834
+  type: 'test'
+  ...
+# Subtest: protocol cleanup errors retained after primary error
+ok 49 - protocol cleanup errors retained after primary error
+  ---
+  duration_ms: 0.16075
+  type: 'test'
+  ...
+# Subtest: context teardown skips repair and rejects new work
+ok 50 - context teardown skips repair and rejects new work
+  ---
+  duration_ms: 0.341875
+  type: 'test'
+  ...
+# Subtest: installation is idempotent and existing pages get public wrappers
+ok 51 - installation is idempotent and existing pages get public wrappers
+  ---
+  duration_ms: 0.288042
+  type: 'test'
+  ...
+# Subtest: context close during pending new page cannot return an admitted page
+ok 52 - context close during pending new page cannot return an admitted page
+  ---
+  duration_ms: 0.126458
+  type: 'test'
+  ...
+# Subtest: absent observer preserves exact return/throw and work call once
+ok 53 - absent observer preserves exact return/throw and work call once
+  ---
+  duration_ms: 0.455084
+  type: 'test'
+  ...
+# Subtest: actual wrapper exposes native wait before browser close, preserving default order and repeated close identity
+ok 54 - actual wrapper exposes native wait before browser close, preserving default order and repeated close identity
+  ---
+  duration_ms: 3.674042
+  type: 'test'
+  ...
+# Subtest: hostile observer outcomes cannot change original result or rejection
+ok 55 - hostile observer outcomes cannot change original result or rejection
+  ---
+  duration_ms: 0.256541
+  type: 'test'
+  ...
+# Subtest: journal is fixed bounded content-free and recording faults remain failing evidence
+ok 56 - journal is fixed bounded content-free and recording faults remain failing evidence
+  ---
+  duration_ms: 0.622
+  type: 'test'
+  ...
+# Subtest: missing starts, duplicates and failed then completed evidence cannot pass
+ok 57 - missing starts, duplicates and failed then completed evidence cannot pass
+  ---
+  duration_ms: 0.241833
+  type: 'test'
+  ...
+# Subtest: local actual worker fixture preserves every statement including the cache CDP session
+ok 58 - local actual worker fixture preserves every statement including the cache CDP session
+  ---
+  duration_ms: 0.171417
+  type: 'test'
+  ...
+# Subtest: optional tracing observations must form complete pairs too
+ok 59 - optional tracing observations must form complete pairs too
+  ---
+  duration_ms: 0.26725
+  type: 'test'
+  ...
+1..59
+# tests 59
+# suites 0
+# pass 59
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3185.589542

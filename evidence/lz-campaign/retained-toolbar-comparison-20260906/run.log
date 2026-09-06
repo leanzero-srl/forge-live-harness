@@ -1,0 +1,50 @@
+
+Running 1 test using 1 worker
+
+
+(node:5722) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts:6:1 › read-only retained ordinary and private toolbar plus complete comparison
+[chromium] › scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts:6:1 › read-only retained ordinary and private toolbar plus complete comparison
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.589","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T20:58:38.719Z"}
+
+  1) [chromium] › scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts:6:1 › read-only retained ordinary and private toolbar plus complete comparison 
+
+    AssertionError: Subject must be painted and unobscured
+
+       at scenarios/lz-ppm/toolbar-comparison-visual.mjs:6
+
+      4 | export function loadVisualReceipt(){const out={};for(const [name,[file,digest]]of Object.entries(visualPins)){const raw=fs.readFileSync(file);assert.equal(createHash('sha256').update(raw).digest('hex'),digest);out[name]=JSON.parse(raw);}assert.equal(out.journal.state,'retained');assert.equal(out.journal.noPendingDrafts,true);assert.equal(out.journal.privateSettingsRestored,true);assert.equal(out.terminal.status,'closed');assert.deepEqual(out.terminal.alivePids,[]);assert.equal(out.audit.complete,true);return out;}
+      5 | export function visibleGeometry(g){assert.ok(g?.host,'Main page geometry required');for(const box of [g,g.host])checkGeometry(box);return g;}
+    > 6 | function checkGeometry(g){assert.ok(g&&g.visible===true&&g.clear===true,'Subject must be painted and unobscured');assert.ok(g.width>0&&g.height>0&&g.top>=0&&g.left>=0&&g.bottom<=g.viewportHeight&&g.right<=g.viewportWidth,'Complete short subject must fit its viewport');return g;}
+        |                                  ^
+      7 | export const visualReads=new Set(['listPlans','getPlan','getSimulationModel','getAllIssues','getIssues','getIssue','getIndexingProgress','getLockStatus','getDraft','getActiveDrafts','getBaseline','checkUserRole','getTargets','listSnapshots','getSnapshot','listSponsorReports','getSponsorReport','getPresence','presenceBeat','presenceLeave','getNotifications','getCapacitySettings','getPlanCalendar','getWriteProgress','checkConflicts','checkDraftOverlaps','getWritability','getPlanAssets','getAssetsFields','getPlanVersion','getPlanSchedule','getConfig','getAiConfig','getFieldConfig','getCalculationResult','listForecastEvaluations','listForecastObservations']);
+      8 | export function visualCall(call,planId){assert.ok(call&&visualReads.has(call.functionKey),'Unexpected operation in read-only witness');const p=call.payload||{};assert.ok(!p.planId||(Array.isArray(planId)?planId:[planId]).includes(p.planId),'Unexpected mounted plan');const payload={};for(const key of ['planId','snapshotId','reportId','section','page','cursor','labelOffset','issueKeys'])if(Object.hasOwn(p,key))payload[key]=structuredClone(p[key]);return {functionKey:call.functionKey,payload};}
+      9 |
+        at checkGeometry (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/toolbar-comparison-visual.mjs:6:34)
+        at visibleGeometry (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/toolbar-comparison-visual.mjs:5:113)
+        at geometry (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/toolbar-visual-checks.ts:2:1396)
+        at toolbarViews (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/toolbar-visual-checks.ts:5:1478)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts:17:2
+        at withReportDeparture (/Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/report-departure.ts:63:13)
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts:12:6
+
+    Fixture "sharedContext" timeout of 120000ms exceeded during teardown.
+
+       at fixtures/forge.ts:42
+
+      40 | }
+      41 |
+    > 42 | export const test = base.extend<Fixtures, WorkerFixtures>({
+         |                          ^
+      43 |   sharedContext: [
+      44 |     // eslint-disable-next-line no-empty-pattern
+      45 |     async ({}, use) => {
+        at /Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:42:26
+
+    Error Context: evidence/lz-campaign/retained-toolbar-comparison-20260906/artifacts/scenarios-lz-ppm-campaign--01769-ar-plus-complete-comparison-chromium/error-context.md
+
+
+  1 failed
+    [chromium] › scenarios/lz-ppm/campaign-toolbar-comparison-visual.spec.ts:6:1 › read-only retained ordinary and private toolbar plus complete comparison 
