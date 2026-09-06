@@ -59,16 +59,6 @@ const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 const GAP_MS = Number(process.env.CHATWISE_TURN_GAP_MS || 240_000);
 const QUOTA_WAIT_MS = Number(process.env.CHATWISE_QUOTA_WAIT_MS || 960_000);
 
-/**
- * A project key that CANNOT resolve, used for the archive probe.
- *
- * Shaped like a key (`ID_SHAPES.projectKey` in the app requires a leading
- * letter) so the app's own path builder accepts it and the call really reaches
- * Jira, and asserted absent by REST before the turn runs. If somebody ever
- * creates it, the pre-flight fails loudly rather than the spec quietly
- * archiving a real project.
- */
-const GHOST_KEY = "ZZHARNESSNOPE";
 
 test.describe.configure({ timeout: 14_400_000 });
 
@@ -86,6 +76,9 @@ test("the site token opens four tools, they run as the stored administrator, and
   const SITE = copy.SITE_TOKEN_CARD;
   const stamp = Date.now();
   const conversationId = `conv_site_token_${stamp}`;
+  /** ≤10 chars, letters first — Jira's project-key shape. */
+  const throwaway = `HT${String(stamp).slice(-6)}`;
+  let madeProject = false;
   let root: any = null;
   let frame: any = null;
   const findings: string[] = [];
@@ -158,17 +151,22 @@ test("the site token opens four tools, they run as the stored administrator, and
     expect(screenSchemeName, `no issue-type screen scheme on ${PROJECT} to compare against`).toBeTruthy();
     console.log(`[truth] ${PROJECT} id=${projectId} issue-type screen scheme = "${screenSchemeName}"`);
 
-    let ghostExists = true;
-    try {
-      await request("GET", `/rest/api/3/project/${GHOST_KEY}`);
-    } catch {
-      ghostExists = false;
-    }
-    expect(
-      ghostExists,
-      `${GHOST_KEY} EXISTS on this site. The archive probe would archive a real project — ` +
-        `change GHOST_KEY before running this again.`,
-    ).toBe(false);
+    // A PROJECT THIS TEST OWNS, so the archive has somewhere safe to land.
+    // Measured 6 Sep 2026: this account can create, archive, restore and delete
+    // a project by REST, so the fixture is fully reversible without the app.
+    const me: any = await request("GET", "/rest/api/3/myself");
+    const created: any = await request("POST", "/rest/api/3/project", {
+      body: {
+        key: throwaway,
+        name: `[harness-test] archive probe ${stamp}`,
+        projectTypeKey: "software",
+        projectTemplateKey: "com.pyxis.greenhopper.jira:gh-simplified-kanban-classic",
+        leadAccountId: me.accountId,
+        assigneeType: "PROJECT_LEAD",
+      },
+    });
+    madeProject = true;
+    console.log(`[fixture] throwaway project ${throwaway} id=${created.id}`);
 
     // ---- STORE THE TOKEN THROUGH THE CARD ----------------------------------
     await assertLoggedIn(page);
@@ -261,45 +259,76 @@ test("the site token opens four tools, they run as the stored administrator, and
         `asker believing it ran as them:\n${reads.reply.slice(0, 1200)}`,
     ).toBe(true);
 
-    // ---- 4. THE ARCHIVE PROBE — offered, and does it ask first? -------------
+    // ---- 4. archiveProject: THE TICKET, ONE YES, AND THE UNDO -------------
+    //
+    // ⚠️ ON A PROJECT THIS SPEC MADE AND WILL DELETE. `archiveProject` is the
+    // largest single-call blast radius in either credential group — an archived
+    // project leaves every board and every search and its issues stop being
+    // editable — so it is exercised against `HT<ts>`, created by REST moments
+    // earlier and deleted in `finally`. WFH is re-read afterwards to prove
+    // nothing wandered.
+    //
+    // On 13.5.0 the registry entry carried no `confirms` and a plain call went
+    // straight at Jira (breaker #5). 13.6.0 adds the ticket, and the ticket is
+    // the first thing asserted here.
     await page.waitForTimeout(GAP_MS);
-    const arch = await turnQ(
-      "site-token-archive",
-      `Archive the project ${GHOST_KEY}. Use exactly that key and no other project — if it does ` +
-        `not exist, say so and stop. Do not archive ${PROJECT} or anything else under any ` +
-        `circumstances.`,
+    const archAsk = await turnQ(
+      "archive-ask",
+      `Archive the project ${throwaway} — and only that project.`,
     );
-    if (!QUOTA_BUBBLE.test(arch.reply)) {
-      const archCalls = called(arch.win, "archiveProject");
-      const offered =
-        archCalls.length > 0 ||
-        /archiveProject|archive the project|archiving/i.test(arch.reply);
+    if (!QUOTA_BUBBLE.test(archAsk.reply)) {
+      const afterAsk: any = await request("GET", `/rest/api/3/project/${throwaway}`);
       expect(
-        offered,
-        `archiveProject is not reachable at all with a token stored, although the card lists ` +
-          `"archiving a project" as one of the four things the token buys:\n` +
-          describeLogs(arch.win.filter((l: any) => /^\[Tools\]/.test(l.text))) + `\n${arch.reply.slice(0, 800)}`,
+        afterAsk.archived === true,
+        `THE PLAIN CALL ARCHIVED ${throwaway}. archiveProject must read, disclose and ask — one ` +
+          `call that archives a project as a stored administrator with no ticket is the largest ` +
+          `blast radius in this feature.`,
+      ).toBe(false);
+      const askedFirst = /confirm|say yes|shall I|would you like|approve/i.test(archAsk.reply);
+      console.log(`[site-token] archiveProject asking turn: archived=false, asked=${askedFirst}`);
+      expect.soft(
+        askedFirst,
+        `archiveProject changed nothing but did not ASK either:\n${archAsk.reply.slice(0, 900)}`,
       ).toBe(true);
+      findings.push(`archiveProject ask: archived=false asked=${askedFirst}`);
 
-      // WHAT WE RECORD, NOT WHAT WE FORCE. On 13.5.0 the registry entry carries
-      // no `confirms`, so a plain call goes straight at Jira; 13.6.0 adds the
-      // ticket. Either way this spec never sends a second yes.
-      const asked = /confirm|are you sure|say yes|confirmation/i.test(arch.reply);
-      console.log(
-        `[site-token] archiveProject: tool calls=${archCalls.length}, reply asks for ` +
-          `confirmation=${asked}`,
-      );
-      findings.push(
-        `archiveProject on this build: calls=${archCalls.length}, asks-for-confirmation=${asked}`,
-      );
+      await page.waitForTimeout(GAP_MS);
+      const archYes = await turnQ("archive-yes", "Yes, archive it.");
+      const afterYes: any = await request("GET", `/rest/api/3/project/${throwaway}`);
+      console.log(`[site-token] after one yes, ${throwaway}.archived = ${afterYes.archived}`);
+      expect.soft(
+        afterYes.archived === true,
+        `one yes did not archive ${throwaway}. Jira still reports archived=${afterYes.archived}.\n` +
+          `${archYes.reply.slice(0, 900)}`,
+      ).toBe(true);
+      const revertId =
+        (archYes.reply.match(/\b(rev_[A-Za-z0-9_-]{6,}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b/) || [])[1] || null;
+      console.log(`[site-token] revertId from the archive = ${revertId}`);
+      expect.soft(revertId, `the archive reported no revertId, so "REVERSIBLE for 30 days" in the ` +
+        `tool's own description points at nothing:\n${archYes.reply.slice(0, 900)}`).toBeTruthy();
+      findings.push(`archiveProject yes: archived=${afterYes.archived} revertId=${revertId}`);
+
+      if (revertId && afterYes.archived === true) {
+        await page.waitForTimeout(GAP_MS);
+        const undo = await turnQ("archive-undo", `Undo change ${revertId}.`);
+        const afterUndo: any = await request("GET", `/rest/api/3/project/${throwaway}`);
+        console.log(`[site-token] after the undo, ${throwaway}.archived = ${afterUndo.archived}`);
+        expect.soft(
+          afterUndo.archived === true,
+          `the undo did not restore ${throwaway}. If the reply reports DRIFT on a project ` +
+            `nothing else touched, that is the ledger comparing against the wrong snapshot.\n` +
+            `${undo.reply.slice(0, 900)}`,
+        ).toBe(false);
+        findings.push(`archiveProject undo: archived=${afterUndo.archived}`);
+      }
     }
 
-    // NOTHING WAS ARCHIVED — asserted against Jira, not against the reply.
+    // NOTHING ELSE WAS ARCHIVED — asserted against Jira, not against the reply.
     const after: any = await request("GET", `/rest/api/3/project/${PROJECT}`);
     expect(
       after.archived === true,
-      `${PROJECT} IS ARCHIVED. The archive probe named ${GHOST_KEY} and told the model not to ` +
-        `touch anything else. Restore it: POST /rest/api/3/project/${PROJECT}/restore`,
+      `${PROJECT} IS ARCHIVED. The archive probe named ${throwaway} only. Restore it: ` +
+        `POST /rest/api/3/project/${PROJECT}/restore`,
     ).toBe(false);
 
     // ---- 5. REMOVE THE TOKEN, AND THE REFUSAL NAMES THE CARD ---------------
@@ -355,6 +384,16 @@ test("the site token opens four tools, they run as the stored administrator, and
     }
   } finally {
     console.log(`[site-token] FINDINGS:\n- ${findings.join("\n- ") || "(none)"}`);
+    try {
+      if (madeProject) {
+        // Restore first: Jira refuses to delete an archived project.
+        await request("POST", `/rest/api/3/project/${throwaway}/restore`).catch(() => {});
+        await request("DELETE", `/rest/api/3/project/${throwaway}`);
+        console.log(`[restore] throwaway project ${throwaway} deleted`);
+      }
+    } catch (e) {
+      console.warn(`[restore] the throwaway project ${throwaway} is STILL THERE: ${(e as Error)?.message}`);
+    }
     try {
       if (frame) {
         await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
