@@ -245,8 +245,13 @@ test("the card states the egress cost, refuses the switch without a key, and nev
       root2.getByText(/The stored key is deleted and web search is switched off/i),
       "the removal confirmation dialog did not open",
     ).toBeVisible({ timeout: 15_000 });
-    // The confirm button inside the modal is the LAST "Remove key" control.
-    await root2.getByRole("button", { name: /remove key/i }).last().click();
+    // THE CONFIRM NO LONGER SHARES THE CARD'S LABEL. It used to be a second
+    // "Remove key" and this line took `.last()` to tell them apart — which is
+    // the ambiguity that, on the credential cards, made a confirm click land
+    // back on the opener and leave a real site-admin token stored (6 Sep 2026).
+    // The dialog now confirms with "Yes, remove it", so the locator names the
+    // one control that can only be the modal's.
+    await root2.getByRole("button", { name: "Yes, remove it", exact: true }).first().click();
 
     await expect(
       root2.getByText("Not configured", { exact: true }),

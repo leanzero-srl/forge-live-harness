@@ -167,21 +167,29 @@ export async function removeCredentialViaCard(root: Root, card: any): Promise<bo
     return false;
   }
   await open.click().catch(() => {});
-  // ⚠️ WAIT FOR THE DIALOG BEFORE CHOOSING `.last()`, AND THIS IS NOT
-  // DEFENSIVENESS — IT IS THE BUG THAT LEFT A REAL SITE-ADMIN TOKEN ON A SHARED
-  // TENANT (measured 6 Sep 2026).
+  // ⚠️ WAIT FOR THE DIALOG BY ITS TITLE, THEN CONFIRM BY A LABEL ONLY THE
+  // DIALOG HAS. This is the shape of a bug that left a real site-admin token on
+  // a shared tenant (measured 6 Sep 2026), and it is worth keeping the history:
   //
-  // The card's own control and the modal's confirm carry the SAME LABEL
-  // ("Remove token" is both `buttons.remove` and `remove.confirm`). Before the
-  // modal paints there is exactly ONE button with that name, so `.last()`
-  // resolves to the CARD'S button and the confirm click lands back on the
-  // opener — the dialog toggles and nothing is removed. Playwright reports the
-  // click delivered, `.catch(() => {})` swallows nothing because nothing threw,
-  // and the only symptom is a card that still says "Token saved" ten polls
-  // later. Measured: 1 matching button before the dialog, 2 after ~4s.
+  // The card's control and the modal's confirm used to carry the SAME LABEL —
+  // "Remove token" was both `buttons.remove` and `remove.confirm`. Before the
+  // modal painted there was exactly ONE button with that name, so the confirm
+  // click landed back on the OPENER: the dialog toggled shut and nothing was
+  // removed. Playwright reported the click delivered, the `.catch(() => {})`
+  // swallowed nothing because nothing threw, and the only symptom was a card
+  // still saying "Token saved" ten polls later. Measured: 1 matching button
+  // before the dialog, 2 after ~4s.
   //
-  // The dialog TITLE is the thing to wait on — it is unique to the modal, where
-  // the button label is not.
+  // THE APP FIXED THE AMBIGUITY rather than leaving the harness to work around
+  // it: the confirm now reads "Yes, remove it" and ChatWise's own
+  // credentialSettings suite asserts, over its copy module, that no card's
+  // opener can ever share a label with its own confirmation again. So
+  // `card.remove.confirm` is now unique on the page and `.first()` is exact.
+  //
+  // Both guards stay anyway. The title wait is what proves the dialog is UP —
+  // clicking a confirm that has not rendered is a different failure with the
+  // same silent symptom — and reading both labels from the copy module means a
+  // wording change lands here without an edit.
   const dialogUp = await root
     .getByText(card.remove.title, { exact: true })
     .first()
@@ -191,9 +199,12 @@ export async function removeCredentialViaCard(root: Root, card: any): Promise<bo
   if (!dialogUp) {
     console.warn(`[restore] the "${card.remove.title}" dialog never opened`);
   }
+  // ONE button carries this name now, and it is the modal's. `.first()` rather
+  // than `.last()` because with a unique label they are the same locator, and
+  // `.first()` does not quietly depend on DOM order the way `.last()` did.
   await root
     .getByRole("button", { name: card.remove.confirm, exact: true })
-    .last()
+    .first()
     .click({ timeout: 15_000 })
     .catch(() => {});
   for (let i = 0; i < 10; i++) {
