@@ -1,0 +1,42 @@
+{
+  "status": "authorized",
+  "runId": "retained-uat-comparison-visual-20260906",
+  "command": [
+    "/Users/mihaiperdum/.nvm/versions/node/v22.22.0/bin/node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "scenarios/lz-ppm/campaign-uat-comparison-visual.spec.ts",
+    "--project=chromium",
+    "--workers=1",
+    "--retries=0",
+    "--reporter=line,json",
+    "--output=/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts"
+  ],
+  "timeoutSeconds": 600,
+  "appSourceCommit": "f4d87d058ed78946bc89817dbf5f2d24b97d1536",
+  "forgeVersion": "6.26.0",
+  "uiVersion": "4.58.588",
+  "expectedAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "rootDispatchCommit": "b6317a9c6f6c66aa9724d4d17c7b14751c725f21",
+  "harnessSourceCommit": "b483f468a638318f83d11c6d82c4cc8a8f8de8f3",
+  "instrumentHash": "39c54a7271668d278a1ab214b7401efe33b3cd14efae880d81f20266269d5f19",
+  "supervisorSha256": "32dd4a1d931dfb115ea3a5ba3d26cb8a7fe3e6ef08cc94bce5305cb30960ff69",
+  "sourceHashes": {
+    "scenarios/lz-ppm/campaign-uat-comparison-visual.spec.ts": "f5450093a607a484864abc7877ef1da678156bb19796fa4e318e3f32ca0ff58b",
+    "scenarios/lz-ppm/uat-comparison-visual.mjs": "4596ba4d0e266b3c7c894f1d229b28c052019b846193f12b3a3635f3b05dfeb5",
+    "scenarios/lz-ppm/report-departure.ts": "ceda5140e8d62110e9690cbecbace10287f1895ed35ba07280653556bf1dfc8c",
+    "scenarios/lz-ppm/campaign-ui.ts": "a012f713b2d6522eff9c541978d879dae0b8e082eb995fa7f69466f45e7fd0be",
+    "scenarios/lz-ppm/settled-screenshot.mjs": "78d8bdd5a10648061c5ac5b84e868e67cd249c3e6b3860703831b61634f7dba3",
+    "scripts/lz-campaign.py": "b2951157a16d458523ff3abeb1ed54f8243644a9a2de1f18b9c6dda2ce49bf6c"
+  },
+  "environment": {
+    "HEADLESS": "1",
+    "HARNESS_VIDEO": "0",
+    "LZ_HARNESS_BROWSER_MODE": "portable-chrome152",
+    "LZ_EXPECTED_ACCOUNT_ID": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "LZ_EXPECTED_UI_VERSION": "4.58.588",
+    "LZ_UAT_COMPARISON_PHASE": "readonly",
+    "PLAYWRIGHT_JSON_OUTPUT_NAME": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/report.json"
+  },
+  "authorizedAt": "2026-09-06T20:22:08.185157+00:00"
+}

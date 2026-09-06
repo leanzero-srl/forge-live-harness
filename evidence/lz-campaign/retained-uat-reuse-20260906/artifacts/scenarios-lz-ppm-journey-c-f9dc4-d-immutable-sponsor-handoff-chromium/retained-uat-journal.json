@@ -1,0 +1,3836 @@
+{
+  "schema": 1,
+  "retentionPolicy": "retain-experiments",
+  "oracleSha256": "487ac1e69615a8bf56bc30c89eccd42968ac982edef3afd3d1caaae85932da2e",
+  "state": "retained",
+  "startedAt": "2026-09-06T19:58:07.953Z",
+  "ledgerPath": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-retained-uat-reuse-20260906/ownership.json",
+  "runId": null,
+  "unitDir": null,
+  "beforeIdentitySha256": null,
+  "optionalLedger": null,
+  "noPendingDrafts": true,
+  "issues": {
+    "E": {
+      "summary": "[harness-test] LZ retained UAT 20260906 October release",
+      "type": "10000",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25229",
+      "key": "WFH-2997"
+    },
+    "A": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25230",
+      "key": "WFH-2998"
+    },
+    "B": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25231",
+      "key": "WFH-2999"
+    },
+    "L": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25232",
+      "key": "WFH-3000"
+    }
+  },
+  "plans": {
+    "main": {
+      "name": "[harness-test] UAT 20260906 October release decisions",
+      "state": "created",
+      "id": "plan-test-mtq7hsun-koj1jf"
+    },
+    "mirror": {
+      "name": "[harness-test] UAT 20260906 October capacity mirror",
+      "state": "created",
+      "id": "plan-test-mtq7hwv8-sk47wf"
+    }
+  },
+  "steps": [
+    {
+      "name": "mirror actual Assets index",
+      "data": {
+        "fields": [
+          "customfield_11148",
+          "customfield_11149"
+        ],
+        "rows": [
+          {
+            "key": "WFH-2997",
+            "objects": {
+              "customfield_11148": [],
+              "customfield_11149": []
+            }
+          },
+          {
+            "key": "WFH-2998",
+            "objects": {
+              "customfield_11148": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "411"
+                },
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "412"
+                }
+              ],
+              "customfield_11149": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "411"
+                }
+              ]
+            }
+          },
+          {
+            "key": "WFH-2999",
+            "objects": {
+              "customfield_11148": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "412"
+                }
+              ],
+              "customfield_11149": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "413"
+                }
+              ]
+            }
+          },
+          {
+            "key": "WFH-3000",
+            "objects": {
+              "customfield_11148": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "413"
+                }
+              ],
+              "customfield_11149": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "413"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "at": "2026-09-06T19:58:41.102Z"
+    },
+    {
+      "name": "explicit label-only response injection",
+      "data": {
+        "requests": 1,
+        "identity": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+        "realValuesPreserved": true,
+        "notAlternateIdentityProof": true
+      },
+      "at": "2026-09-06T19:59:12.455Z"
+    },
+    {
+      "name": "target",
+      "data": {
+        "date": "2026-10-16",
+        "id": "64242405-81d7-496f-b7ef-65affaa262f5",
+        "name": "UAT October 16 commitment",
+        "scope": {
+          "id": "25229",
+          "memberKeys": [
+            "WFH-2998",
+            "WFH-2999"
+          ],
+          "type": "epic"
+        },
+        "coverage": {
+          "available": true,
+          "reason": null,
+          "memberKeys": [
+            "WFH-2998",
+            "WFH-2999"
+          ],
+          "memberCount": 2,
+          "scopeLabel": "WFH-2997 · [harness-test] LZ retained UAT 20260906 October release"
+        }
+      },
+      "at": "2026-09-06T19:59:19.985Z"
+    },
+    {
+      "name": "baseline and original",
+      "data": {
+        "baseline": {
+          "assets": {
+            "fieldIds": [
+              "customfield_11148",
+              "customfield_11149"
+            ]
+          },
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "chunkCount": 1,
+          "chunkHashes": [
+            "2be4d6c8ee25d3e49096167ab23671654cdd621795393348abbf574ffd3c8088"
+          ],
+          "consistency": {
+            "basisHash": "e82084b07ccb9a00502c6fc46a8f70b2288aaacddaccd7bd8e8a89c8279a4bee",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T19:59:21.184Z"
+          },
+          "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "fieldOverrides": {},
+          "hash": "8598f80a7afb2a5ec28c00a7f814161ad23eade2140e7939457e79be90bb00de",
+          "id": "48fcd38f-26e8-4490-ae7e-9ba3248226fd",
+          "issueCount": 4,
+          "kind": "baseline",
+          "milestones": [
+            {
+              "date": "2026-10-16",
+              "id": "64242405-81d7-496f-b7ef-65affaa262f5",
+              "name": "UAT October 16 commitment",
+              "scope": {
+                "id": "25229",
+                "memberKeys": [
+                  "WFH-2998",
+                  "WFH-2999"
+                ],
+                "type": "epic"
+              }
+            }
+          ],
+          "name": "UAT 00 Original baseline",
+          "planId": "plan-test-mtq7hsun-koj1jf",
+          "schemaVersion": 1,
+          "sourceVersion": 10,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+              "type": "jql"
+            }
+          ],
+          "state": "complete",
+          "takenAt": "2026-09-06T19:59:21.185Z",
+          "uncertainty": "low",
+          "workingChangeCount": 0,
+          "issues": [
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-10-16",
+                "duration": 10,
+                "predecessors": [],
+                "startDate": "2026-10-05",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-10-16",
+              "duration": 10,
+              "fixVersions": [],
+              "hierarchyLevel": 1,
+              "id": "25229",
+              "key": "WFH-2997",
+              "labels": [
+                "lz-retained-uat-20260906"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k2f:",
+              "remainingEstimateSeconds": 0,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-10-05",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] LZ retained UAT 20260906 October release",
+              "type": "Epic",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-10-09",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-10-05",
+                "successors": [
+                  "WFH-2999"
+                ]
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "durationExplicitlyCleared": false,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25230",
+              "key": "WFH-2998",
+              "labels": [
+                "lz-retained-uat-20260906"
+              ],
+              "orphanParentKey": null,
+              "parentKey": "WFH-2997",
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k2n:",
+              "remainingEstimateSeconds": 28800,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-10-05",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [
+                "WFH-2999"
+              ],
+              "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-10-16",
+                "duration": 5,
+                "predecessors": [
+                  "WFH-2998"
+                ],
+                "startDate": "2026-10-12",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-10-16",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25231",
+              "key": "WFH-2999",
+              "labels": [
+                "lz-retained-uat-20260906"
+              ],
+              "orphanParentKey": null,
+              "parentKey": "WFH-2997",
+              "predecessors": [
+                "WFH-2998"
+              ],
+              "priority": "Medium",
+              "rank": "0|i01k2v:",
+              "remainingEstimateSeconds": 0,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-10-12",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-10-30",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-10-26",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-10-30",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25232",
+              "key": "WFH-3000",
+              "labels": [
+                "lz-retained-uat-20260906"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k33:",
+              "remainingEstimateSeconds": 28800,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-10-26",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            }
+          ],
+          "assetsReadState": "requires-current-user-read"
+        },
+        "base": {
+          "assets": {
+            "fieldIds": [
+              "customfield_11148",
+              "customfield_11149"
+            ]
+          },
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "chunkCount": 1,
+          "chunkHashes": [
+            "2be4d6c8ee25d3e49096167ab23671654cdd621795393348abbf574ffd3c8088"
+          ],
+          "consistency": {
+            "basisHash": "e82084b07ccb9a00502c6fc46a8f70b2288aaacddaccd7bd8e8a89c8279a4bee",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T19:59:24.313Z"
+          },
+          "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "fieldOverrides": {},
+          "hash": "900109f8a119fa79cd05aa4e56b81bc47dfc6bfd3a066228af4017b51bd74dea",
+          "id": "63c93220-1120-440f-9c17-11a31aad8c4a",
+          "issueCount": 4,
+          "kind": "scenario",
+          "milestones": [
+            {
+              "date": "2026-10-16",
+              "id": "64242405-81d7-496f-b7ef-65affaa262f5",
+              "name": "UAT October 16 commitment",
+              "scope": {
+                "id": "25229",
+                "memberKeys": [
+                  "WFH-2998",
+                  "WFH-2999"
+                ],
+                "type": "epic"
+              }
+            }
+          ],
+          "name": "UAT 01 Original low",
+          "planId": "plan-test-mtq7hsun-koj1jf",
+          "schemaVersion": 1,
+          "sourceVersion": 10,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+              "type": "jql"
+            }
+          ],
+          "state": "complete",
+          "takenAt": "2026-09-06T19:59:24.313Z",
+          "uncertainty": "low",
+          "workingChangeCount": 0,
+          "issues": [
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-10-16",
+                "duration": 10,
+                "predecessors": [],
+                "startDate": "2026-10-05",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-10-16",
+              "duration": 10,
+              "fixVersions": [],
+              "hierarchyLevel": 1,
+              "id": "25229",
+              "key": "WFH-2997",
+              "labels": [
+                "lz-retained-uat-20260906"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k2f:",
+              "remainingEstimateSeconds": 0,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-10-05",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] LZ retained UAT 20260906 October release",
+              "type": "Epic",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-10-09",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-10-05",
+                "successors": [
+                  "WFH-2999"
+                ]
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "durationExplicitlyCleared": false,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25230",
+              "key": "WFH-2998",
+              "labels": [
+                "lz-retained-uat-20260906"
+              ],
+              "orphanParentKey": null,
+              "parentKey": "WFH-2997",
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k2n:",
+              "remainingEstimateSeconds": 28800,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-10-05",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [
+                "WFH-2999"
+              ],
+              "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-10-16",
+                "duration": 5,
+                "predecessors": [
+                  "WFH-2998"
+                ],
+                "startDate": "2026-10-12",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-10-16",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25231",
+              "key": "WFH-2999",
+              "labels": [
+                "lz-retained-uat-20260906"
+              ],
+              "orphanParentKey": null,
+              "parentKey": "WFH-2997",
+              "predecessors": [
+                "WFH-2998"
+              ],
+              "priority": "Medium",
+              "rank": "0|i01k2v:",
+              "remainingEstimateSeconds": 0,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-10-12",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            },
+            {
+              "_original": {
+                "buffer": "No",
+                "dueDate": "2026-10-30",
+                "duration": 5,
+                "predecessors": [],
+                "startDate": "2026-10-26",
+                "successors": []
+              },
+              "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "assigneeName": "Mihai Perdum",
+              "assigneeState": "assigned",
+              "buffer": "No",
+              "children": [],
+              "created": "2026-09-06",
+              "dueDate": "2026-10-30",
+              "duration": 5,
+              "fixVersions": [],
+              "hierarchyLevel": 0,
+              "id": "25232",
+              "key": "WFH-3000",
+              "labels": [
+                "lz-retained-uat-20260906"
+              ],
+              "orphanParentKey": null,
+              "parentKey": null,
+              "predecessors": [],
+              "priority": "Medium",
+              "rank": "0|i01k33:",
+              "remainingEstimateSeconds": 28800,
+              "reporter": "Mihai Perdum",
+              "resolution": null,
+              "startDate": "2026-10-26",
+              "status": "New",
+              "statusCategory": "new",
+              "storyPoints": null,
+              "successors": [],
+              "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+              "type": "Work package",
+              "updated": "2026-09-06"
+            }
+          ],
+          "assetsReadState": "requires-current-user-read"
+        }
+      },
+      "at": "2026-09-06T19:59:25.020Z"
+    },
+    {
+      "name": "saved alternative",
+      "data": {
+        "assets": {
+          "fieldIds": [
+            "customfield_11148",
+            "customfield_11149"
+          ]
+        },
+        "calendar": {
+          "calendarName": "Alternative to Standard (Mon-Fri)",
+          "holidays": [],
+          "workingDays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "chunkCount": 1,
+        "chunkHashes": [
+          "34d2f2dfc12251f9977b1b3cb13a7f870982b4d71ebe1b7c312dadc77bd44657"
+        ],
+        "createdBy": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+        "fieldOverrides": {},
+        "hash": "2674d0e052172bbb7930b1da34e2ec22c6a0cdcb01e153e4f873969fa50296c8",
+        "id": "728b41e7-ad2b-4e6a-b6e4-369c58080638",
+        "issueCount": 4,
+        "kind": "scenario",
+        "milestones": [
+          {
+            "date": "2026-10-16",
+            "id": "64242405-81d7-496f-b7ef-65affaa262f5",
+            "name": "UAT October 16 commitment",
+            "scope": {
+              "id": "25229",
+              "memberKeys": [
+                "WFH-2998",
+                "WFH-2999"
+              ],
+              "type": "epic"
+            }
+          }
+        ],
+        "name": "UAT 02 Fixed reserve high",
+        "planId": "plan-test-mtq7hsun-koj1jf",
+        "provenance": {
+          "baseHash": "900109f8a119fa79cd05aa4e56b81bc47dfc6bfd3a066228af4017b51bd74dea",
+          "baseSnapshotId": "63c93220-1120-440f-9c17-11a31aad8c4a",
+          "baseSourceVersion": 10,
+          "baseTakenAt": "2026-09-06T19:59:24.313Z",
+          "dependencyChanges": [],
+          "excludedLeafKeys": [],
+          "kind": "saved-scenario-variant",
+          "removedBoundaryLinks": [],
+          "selectedLeafKeys": [
+            "WFH-2998",
+            "WFH-2999",
+            "WFH-3000"
+          ],
+          "targetScopesRefreshed": false
+        },
+        "schemaVersion": 1,
+        "sourceVersion": 10,
+        "sources": [
+          {
+            "boardId": null,
+            "id": "src-0",
+            "label": "harness",
+            "projectKey": null,
+            "query": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+            "type": "jql"
+          }
+        ],
+        "state": "complete",
+        "takenAt": "2026-09-06T19:59:27.022Z",
+        "targetAvailability": [
+          {
+            "available": true,
+            "id": "64242405-81d7-496f-b7ef-65affaa262f5",
+            "memberCount": 2,
+            "memberKeys": [
+              "WFH-2998",
+              "WFH-2999"
+            ],
+            "name": "UAT October 16 commitment",
+            "reason": null,
+            "scopeLabel": "WFH-2997 · [harness-test] LZ retained UAT 20260906 October release"
+          }
+        ],
+        "uncertainty": "high",
+        "workingChangeCount": 1,
+        "issues": [
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-16",
+              "duration": 10,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-06",
+            "dueDate": "2026-10-16",
+            "duration": 10,
+            "fixVersions": [],
+            "hierarchyLevel": 1,
+            "id": "25229",
+            "key": "WFH-2997",
+            "labels": [
+              "lz-retained-uat-20260906"
+            ],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessorLags": {},
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k2f:",
+            "remainingEstimateSeconds": 0,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] LZ retained UAT 20260906 October release",
+            "type": "Epic",
+            "updated": "2026-09-06"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-05",
+              "successors": [
+                "WFH-2999"
+              ]
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-06",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "durationExplicitlyCleared": false,
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25230",
+            "key": "WFH-2998",
+            "labels": [
+              "lz-retained-uat-20260906"
+            ],
+            "orphanParentKey": null,
+            "parentKey": "WFH-2997",
+            "predecessorLags": {},
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k2n:",
+            "remainingEstimateSeconds": 28800,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-05",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [
+              "WFH-2999"
+            ],
+            "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-16",
+              "duration": 5,
+              "predecessors": [
+                "WFH-2998"
+              ],
+              "startDate": "2026-10-12",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "Yes",
+            "children": [],
+            "created": "2026-09-06",
+            "dueDate": "2026-10-16",
+            "duration": 5,
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25231",
+            "key": "WFH-2999",
+            "labels": [
+              "lz-retained-uat-20260906"
+            ],
+            "orphanParentKey": null,
+            "parentKey": "WFH-2997",
+            "predecessorLags": {
+              "WFH-2998": 0
+            },
+            "predecessors": [
+              "WFH-2998"
+            ],
+            "priority": "Medium",
+            "rank": "0|i01k2v:",
+            "remainingEstimateSeconds": 0,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-12",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          },
+          {
+            "_original": {
+              "buffer": "No",
+              "dueDate": "2026-10-30",
+              "duration": 5,
+              "predecessors": [],
+              "startDate": "2026-10-26",
+              "successors": []
+            },
+            "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "assigneeName": "Mihai Perdum",
+            "assigneeState": "assigned",
+            "buffer": "No",
+            "children": [],
+            "created": "2026-09-06",
+            "dueDate": "2026-10-30",
+            "duration": 5,
+            "fixVersions": [],
+            "hierarchyLevel": 0,
+            "id": "25232",
+            "key": "WFH-3000",
+            "labels": [
+              "lz-retained-uat-20260906"
+            ],
+            "orphanParentKey": null,
+            "parentKey": null,
+            "predecessorLags": {},
+            "predecessors": [],
+            "priority": "Medium",
+            "rank": "0|i01k33:",
+            "remainingEstimateSeconds": 28800,
+            "reporter": "Mihai Perdum",
+            "resolution": null,
+            "startDate": "2026-10-26",
+            "status": "New",
+            "statusCategory": "new",
+            "storyPoints": null,
+            "successors": [],
+            "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+            "type": "Work package",
+            "updated": "2026-09-06"
+          }
+        ],
+        "assetsReadState": "requires-current-user-read"
+      },
+      "at": "2026-09-06T19:59:27.599Z"
+    },
+    {
+      "name": "independent expected before calculation",
+      "data": {
+        "order": "A,B,L",
+        "expected": {
+          "sampledLeafOrder": "A,B,L",
+          "original": {
+            "p50": "2026-10-30",
+            "p80": "2026-10-30",
+            "p90": "2026-10-30",
+            "scoped": {
+              "p50": "2026-10-16",
+              "p80": "2026-10-16",
+              "p90": "2026-10-19"
+            },
+            "targetHits": 261,
+            "runs": 300,
+            "displayedTargetPercent": 87
+          },
+          "alternative": {
+            "p50": "2026-11-02",
+            "p80": "2026-11-02",
+            "p90": "2026-11-03",
+            "scoped": {
+              "p50": "2026-10-16",
+              "p80": "2026-10-16",
+              "p90": "2026-10-16"
+            },
+            "targetHits": 300,
+            "runs": 300,
+            "displayedTargetPercent": 100
+          }
+        }
+      },
+      "at": "2026-09-06T19:59:37.078Z"
+    },
+    {
+      "name": "cancel kept owned working schedule and draft unchanged",
+      "data": {
+        "draft": null,
+        "activeDrafts": {},
+        "rows": [
+          {
+            "key": "WFH-2997",
+            "startDate": "2026-10-05",
+            "dueDate": "2026-10-16",
+            "duration": 10,
+            "buffer": "No"
+          },
+          {
+            "key": "WFH-2998",
+            "startDate": "2026-10-05",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "buffer": "No"
+          },
+          {
+            "key": "WFH-2999",
+            "startDate": "2026-10-12",
+            "dueDate": "2026-10-16",
+            "duration": 5,
+            "buffer": "No"
+          },
+          {
+            "key": "WFH-3000",
+            "startDate": "2026-10-26",
+            "dueDate": "2026-10-30",
+            "duration": 5,
+            "buffer": "No"
+          }
+        ]
+      },
+      "at": "2026-09-06T19:59:53.559Z"
+    },
+    {
+      "name": "capacity exact dedup and profile",
+      "data": {
+        "capacity": {
+          "startDate": "2026-10-05",
+          "endDate": "2026-10-30",
+          "asOfDate": "2026-09-06",
+          "weeks": [
+            {
+              "key": "2026-10-05",
+              "startDate": "2026-10-05",
+              "endDate": "2026-10-11"
+            },
+            {
+              "key": "2026-10-12",
+              "startDate": "2026-10-12",
+              "endDate": "2026-10-18"
+            },
+            {
+              "key": "2026-10-19",
+              "startDate": "2026-10-19",
+              "endDate": "2026-10-25"
+            },
+            {
+              "key": "2026-10-26",
+              "startDate": "2026-10-26",
+              "endDate": "2026-10-30"
+            }
+          ],
+          "people": [
+            {
+              "id": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "name": "Mihai Perdum",
+              "issueCount": 4,
+              "unknownWork": 0,
+              "buckets": [
+                {
+                  "week": "2026-10-05",
+                  "demandHours": 8,
+                  "unknownEffortCount": 0,
+                  "availableDays": 4,
+                  "capacityHours": 12,
+                  "utilizationPct": 66.66666666666666,
+                  "status": "available"
+                },
+                {
+                  "week": "2026-10-12",
+                  "demandHours": 0,
+                  "unknownEffortCount": 0,
+                  "availableDays": 5,
+                  "capacityHours": 15,
+                  "utilizationPct": 0,
+                  "status": "available"
+                },
+                {
+                  "week": "2026-10-19",
+                  "demandHours": 0,
+                  "unknownEffortCount": 0,
+                  "availableDays": 5,
+                  "capacityHours": 15,
+                  "utilizationPct": 0,
+                  "status": "available"
+                },
+                {
+                  "week": "2026-10-26",
+                  "demandHours": 8,
+                  "unknownEffortCount": 0,
+                  "availableDays": 5,
+                  "capacityHours": 15,
+                  "utilizationPct": 53.333333333333336,
+                  "status": "available"
+                }
+              ]
+            }
+          ],
+          "conflicts": [],
+          "alternatives": [],
+          "unallocated": [],
+          "coverage": {
+            "selectedPlans": 2,
+            "uniqueIssues": 4,
+            "sharedDuplicatesRemoved": 4,
+            "completedIssues": 0,
+            "missingEffort": 0,
+            "unassignedIssues": 0,
+            "unavailableAssignee": 0,
+            "unavailableStatus": 0,
+            "conflictingIssues": 0,
+            "unallocatedIssues": 0,
+            "unavailableIssueCount": 0
+          },
+          "totals": {
+            "knownEffortHours": 16,
+            "allocatedHours": 15.999999999999998,
+            "outsideWindowHours": 0,
+            "unallocatedHours": 0
+          },
+          "assumptions": "Current Jira remaining effort is distributed evenly over remaining plan working dates from the as-of date. Each Jira issue is counted once. Availability is your private planning assumption; it does not move tasks. Overdue or unscheduled effort remains unallocated."
+        },
+        "profile": {
+          "hoursPerDay": 8,
+          "partTimePct": 50,
+          "reservePct": 25,
+          "workingDays": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "leaveDates": [
+            "2026-10-07"
+          ]
+        },
+        "expectedBuckets": [
+          {
+            "week": "2026-10-05",
+            "demandHours": 8,
+            "capacityHours": 12,
+            "unknownEffortCount": 0,
+            "availableDays": 4,
+            "utilizationPct": 66.66666666666666,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-12",
+            "demandHours": 0,
+            "capacityHours": 15,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-19",
+            "demandHours": 0,
+            "capacityHours": 15,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "week": "2026-10-26",
+            "demandHours": 8,
+            "capacityHours": 15,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "utilizationPct": 53.333333333333336,
+            "status": "available"
+          }
+        ]
+      },
+      "at": "2026-09-06T20:00:24.513Z"
+    },
+    {
+      "name": "retained sponsor report",
+      "data": {
+        "summary": {
+          "id": "ddf33279-0c10-4ee7-8ce7-0080234f064d",
+          "hash": "53f89fc1fc036a0581f2d5bc367b1750ac0ff7b44b01e7191637bff795b94af1",
+          "name": "UAT October fixed reserve decision",
+          "planName": "[harness-test] UAT 20260906 October release decisions",
+          "takenAt": "2026-09-06T20:00:36.261Z",
+          "sourceVersion": 11,
+          "workingChangeCount": 0,
+          "calendar": {
+            "calendarName": "Standard (Mon-Fri)",
+            "holidays": [],
+            "workingDays": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "forecast": {
+            "coverage": {
+              "datedLeaves": 3,
+              "invalidBaselines": 0,
+              "invalidDates": 0,
+              "invertedDates": 0,
+              "missingDates": 0,
+              "sampledLeaves": 2,
+              "totalLeaves": 3
+            },
+            "inputHash": "d02cf90ccc5852ef070db4aab7f700a5b49eb7bcee20089f99aee0721bb22c5b",
+            "modelVersion": "duration-triangular-fs-v1",
+            "onPlannedFinish": 0.44333333333333336,
+            "p50": "2026-11-02",
+            "p80": "2026-11-02",
+            "p90": "2026-11-03",
+            "reason": null,
+            "runs": 300,
+            "seed": 42,
+            "state": "available",
+            "uncertainty": "high"
+          },
+          "capacity": {
+            "asOfDate": "2026-09-06",
+            "assumptions": "This captured plan only, not the selected portfolio. Remaining Jira effort is spread over its remaining working dates; personal leave reduces capacity, not demand. The author explicitly included these saved availability assumptions in this shared report. No tasks are moved.",
+            "coverage": {
+              "completedIssues": 0,
+              "conflictingIssues": 0,
+              "missingEffort": 0,
+              "selectedPlans": 1,
+              "sharedDuplicatesRemoved": 0,
+              "unallocatedIssues": 0,
+              "unassignedIssues": 0,
+              "unavailableAssignee": 0,
+              "unavailableIssueCount": 0,
+              "unavailableStatus": 0,
+              "uniqueIssues": 4
+            },
+            "endDate": "2026-10-30",
+            "inputHash": "0f2181d3740bb88a55f5dedd241aae40ceed9bc373763a5dddb45d919bafbc1a",
+            "profileVersion": 70,
+            "readAt": "2026-09-06T20:01:18.147Z",
+            "readStartedAt": "2026-09-06T20:01:12.223Z",
+            "reason": null,
+            "scope": "captured-plan",
+            "sourceVersion": 11,
+            "startDate": "2026-10-05",
+            "state": "available",
+            "totals": {
+              "allocatedHours": 15.999999999999998,
+              "knownEffortHours": 16,
+              "outsideWindowHours": 0,
+              "unallocatedHours": 0
+            }
+          },
+          "uncertainty": "high",
+          "consistency": {
+            "basisHash": "e3dda586c23d05050194d7cde034775e385c5f747272f1f708620effe36144e3",
+            "method": "two-matching-reads",
+            "observedAt": "2026-09-06T20:00:39.389Z",
+            "verifiedAfterAnalysisAt": "2026-09-06T20:01:25.257Z"
+          },
+          "baseline": {
+            "coverageNote": null,
+            "hash": "633e62c7957e89bc8bdf2381c33f4e08ddb228fd50012550a42410fc3c72e975",
+            "id": "ddf33279-0c10-4ee7-8ce7-0080234f064d",
+            "issueCount": 4,
+            "name": "UAT 00 Original baseline",
+            "sourceSnapshotId": "48fcd38f-26e8-4490-ae7e-9ba3248226fd",
+            "takenAt": "2026-09-06T19:59:21.185Z"
+          },
+          "counts": {
+            "timeline": 4,
+            "targets": 1,
+            "changes": 1,
+            "capacity": 4,
+            "availability": 1,
+            "unallocated": 0
+          },
+          "pages": {
+            "timeline": 1,
+            "targets": 1,
+            "changes": 1,
+            "capacity": 1,
+            "availability": 1,
+            "unallocated": 0
+          },
+          "document": {
+            "availability": {
+              "hashes": [
+                "a4280204d6b9f6deb4ada3d465aeb28c52157e1e0310b2e24c57764522c0854e"
+              ],
+              "sizes": [
+                1
+              ],
+              "total": 1
+            },
+            "capacity": {
+              "hashes": [
+                "6565d49bc29b9fa3b7203d4b04d4dac7bb518e1197232663920ebb620493c23c"
+              ],
+              "sizes": [
+                4
+              ],
+              "total": 4
+            },
+            "changes": {
+              "hashes": [
+                "b300929cf47ecfc2bd508af2ed43b20c4694db2282d61c7d761ceedb39ea76ee"
+              ],
+              "sizes": [
+                1
+              ],
+              "total": 1
+            },
+            "targets": {
+              "hashes": [
+                "fadf5bf36632844f81cc3d57af6e8c22f03d4e04460fc296260d3eacac661af6"
+              ],
+              "sizes": [
+                1
+              ],
+              "total": 1
+            },
+            "timeline": {
+              "hashes": [
+                "5e6c870ac594a4ad74d02641c8ddb443a15a22d6b0a95bac6b259910002ff512"
+              ],
+              "sizes": [
+                4
+              ],
+              "total": 4
+            },
+            "unallocated": {
+              "hashes": [],
+              "sizes": [],
+              "total": 0
+            }
+          },
+          "pageSize": 50,
+          "coverage": {
+            "leafTasks": 3,
+            "unscheduledOrInvalidLeaves": 0,
+            "validRows": 4,
+            "unavailableRows": 0
+          },
+          "span": {
+            "start": "2026-10-05",
+            "finish": "2026-10-30"
+          },
+          "plannedFinish": "2026-10-30",
+          "changeCounts": {
+            "added": 0,
+            "removed": 0,
+            "changed": 1
+          }
+        },
+        "pages": {
+          "timeline": [
+            {
+              "buffer": "No",
+              "dueDate": "2026-10-16",
+              "duration": 10,
+              "key": "WFH-2997",
+              "parentKey": null,
+              "startDate": "2026-10-05",
+              "statusCategory": "new",
+              "summary": "[harness-test] LZ retained UAT 20260906 October release"
+            },
+            {
+              "buffer": "No",
+              "dueDate": "2026-10-09",
+              "duration": 5,
+              "key": "WFH-2998",
+              "parentKey": "WFH-2997",
+              "startDate": "2026-10-05",
+              "statusCategory": "new",
+              "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation"
+            },
+            {
+              "buffer": "Yes",
+              "dueDate": "2026-10-16",
+              "duration": 5,
+              "key": "WFH-2999",
+              "parentKey": "WFH-2997",
+              "startDate": "2026-10-12",
+              "statusCategory": "new",
+              "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve"
+            },
+            {
+              "buffer": "No",
+              "dueDate": "2026-10-30",
+              "duration": 5,
+              "key": "WFH-3000",
+              "parentKey": null,
+              "startDate": "2026-10-26",
+              "statusCategory": "new",
+              "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work"
+            }
+          ],
+          "targets": [
+            {
+              "date": "2026-10-16",
+              "forecastReason": null,
+              "forecastState": "available",
+              "key": "64242405-81d7-496f-b7ef-65affaa262f5",
+              "memberCount": 2,
+              "name": "UAT October 16 commitment",
+              "p50": "2026-10-16",
+              "p80": "2026-10-16",
+              "p90": "2026-10-16",
+              "plannedFinish": "2026-10-16",
+              "probability": 1,
+              "reason": null,
+              "scopeId": "25229",
+              "scopeLabel": "WFH-2997 · [harness-test] LZ retained UAT 20260906 October release",
+              "scopeType": "epic",
+              "state": "Within target"
+            }
+          ],
+          "changes": [
+            {
+              "change": "Schedule changed",
+              "from": {
+                "buffer": "No",
+                "dueDate": "2026-10-16",
+                "duration": 5,
+                "startDate": "2026-10-12"
+              },
+              "key": "WFH-2999",
+              "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+              "to": {
+                "buffer": "Yes",
+                "dueDate": "2026-10-16",
+                "duration": 5,
+                "startDate": "2026-10-12"
+              }
+            }
+          ],
+          "capacity": [
+            {
+              "availableDays": 4,
+              "capacityHours": 12,
+              "demandHours": 8,
+              "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-10-05",
+              "name": "Mihai Perdum",
+              "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "status": "available",
+              "unknownEffortCount": 0,
+              "utilizationPct": 66.66666666666666,
+              "week": "2026-10-05"
+            },
+            {
+              "availableDays": 5,
+              "capacityHours": 15,
+              "demandHours": 0,
+              "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-10-12",
+              "name": "Mihai Perdum",
+              "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "status": "available",
+              "unknownEffortCount": 0,
+              "utilizationPct": 0,
+              "week": "2026-10-12"
+            },
+            {
+              "availableDays": 5,
+              "capacityHours": 15,
+              "demandHours": 0,
+              "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-10-19",
+              "name": "Mihai Perdum",
+              "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "status": "available",
+              "unknownEffortCount": 0,
+              "utilizationPct": 0,
+              "week": "2026-10-19"
+            },
+            {
+              "availableDays": 5,
+              "capacityHours": 15,
+              "demandHours": 8,
+              "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-10-26",
+              "name": "Mihai Perdum",
+              "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "status": "available",
+              "unknownEffortCount": 0,
+              "utilizationPct": 53.333333333333336,
+              "week": "2026-10-26"
+            }
+          ],
+          "availability": [
+            {
+              "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+              "name": "Mihai Perdum",
+              "profile": {
+                "hoursPerDay": 8,
+                "leaveDates": [
+                  "2026-10-07"
+                ],
+                "partTimePct": 50,
+                "reservePct": 25,
+                "workingDays": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            }
+          ]
+        },
+        "expectedTimeline": [
+          {
+            "key": "WFH-2997",
+            "summary": "[harness-test] LZ retained UAT 20260906 October release",
+            "startDate": "2026-10-05",
+            "dueDate": "2026-10-16",
+            "duration": 10,
+            "buffer": "No",
+            "statusCategory": "new",
+            "parentKey": null
+          },
+          {
+            "key": "WFH-2998",
+            "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+            "startDate": "2026-10-05",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "buffer": "No",
+            "statusCategory": "new",
+            "parentKey": "WFH-2997"
+          },
+          {
+            "key": "WFH-2999",
+            "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+            "startDate": "2026-10-12",
+            "dueDate": "2026-10-16",
+            "duration": 5,
+            "buffer": "Yes",
+            "statusCategory": "new",
+            "parentKey": "WFH-2997"
+          },
+          {
+            "key": "WFH-3000",
+            "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+            "startDate": "2026-10-26",
+            "dueDate": "2026-10-30",
+            "duration": 5,
+            "buffer": "No",
+            "statusCategory": "new",
+            "parentKey": null
+          }
+        ],
+        "expectedTarget": {
+          "key": "64242405-81d7-496f-b7ef-65affaa262f5",
+          "name": "UAT October 16 commitment",
+          "date": "2026-10-16",
+          "scopeType": "epic",
+          "scopeId": "25229",
+          "scopeLabel": "WFH-2997 · [harness-test] LZ retained UAT 20260906 October release",
+          "memberCount": 2,
+          "plannedFinish": "2026-10-16",
+          "state": "Within target",
+          "reason": null,
+          "forecastState": "available",
+          "forecastReason": null,
+          "probability": 1,
+          "p50": "2026-10-16",
+          "p80": "2026-10-16",
+          "p90": "2026-10-16"
+        },
+        "expectedCapacity": [
+          {
+            "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-10-05",
+            "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "week": "2026-10-05",
+            "demandHours": 8,
+            "capacityHours": 12,
+            "unknownEffortCount": 0,
+            "availableDays": 4,
+            "utilizationPct": 66.66666666666666,
+            "status": "available"
+          },
+          {
+            "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-10-12",
+            "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "week": "2026-10-12",
+            "demandHours": 0,
+            "capacityHours": 15,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-10-19",
+            "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "week": "2026-10-19",
+            "demandHours": 0,
+            "capacityHours": 15,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "utilizationPct": 0,
+            "status": "available"
+          },
+          {
+            "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086:2026-10-26",
+            "personId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "week": "2026-10-26",
+            "demandHours": 8,
+            "capacityHours": 15,
+            "unknownEffortCount": 0,
+            "availableDays": 5,
+            "utilizationPct": 53.333333333333336,
+            "status": "available"
+          }
+        ],
+        "expectedChanges": [
+          {
+            "key": "WFH-2999",
+            "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+            "change": "Schedule changed",
+            "from": {
+              "startDate": "2026-10-12",
+              "dueDate": "2026-10-16",
+              "duration": 5,
+              "buffer": "No"
+            },
+            "to": {
+              "startDate": "2026-10-12",
+              "dueDate": "2026-10-16",
+              "duration": 5,
+              "buffer": "Yes"
+            }
+          }
+        ],
+        "expectedAvailability": [
+          {
+            "key": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "name": "Mihai Perdum",
+            "profile": {
+              "hoursPerDay": 8,
+              "partTimePct": 50,
+              "reservePct": 25,
+              "workingDays": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "leaveDates": [
+                "2026-10-07"
+              ]
+            }
+          }
+        ]
+      },
+      "at": "2026-09-06T20:01:47.992Z"
+    },
+    {
+      "name": "download completed",
+      "data": {
+        "name": "retained-uat-report.html",
+        "elapsedMs": 2446,
+        "bytes": 10474
+      },
+      "at": "2026-09-06T20:01:50.442Z"
+    },
+    {
+      "name": "download completed",
+      "data": {
+        "name": "retained-uat-report-after-discard.html",
+        "elapsedMs": 2760,
+        "bytes": 10474
+      },
+      "at": "2026-09-06T20:02:17.337Z"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "owned source and standing schedule unchanged",
+      "ok": true
+    },
+    {
+      "name": "registry exact retained delta",
+      "ok": true
+    },
+    {
+      "name": "standing schedule unchanged",
+      "ok": true
+    }
+  ],
+  "reuseReceipt": {
+    "journalSha256": "088895c999101331b39830bacc147470035faa02d52176f21f08a6fa247e6896",
+    "terminalSha256": "83d48866f87c7fd88be29ac9ae86966f9a72f97d26533b34e8561c82c4b03a6a",
+    "originalLedgerSha256": "088895c999101331b39830bacc147470035faa02d52176f21f08a6fa247e6896"
+  },
+  "registry": [
+    "plan-msq9dg8l-gz6mz1",
+    "plan-mta3aw3t-6dyijd",
+    "plan-mtbrlh8n-7ghw8u",
+    "plan-test-mtq75tk1-49uuzd",
+    "sim-e84e4730-e7f4-421b-8582-dc17a564697b"
+  ],
+  "standingSchedule": [
+    {
+      "key": "LZPT-186",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-06-17",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-187",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-188",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-10-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-189",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-190",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-191",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-06-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-192",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-201"
+      ],
+      "successors": [
+        "LZPT-193"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-193",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-192"
+      ],
+      "successors": [
+        "LZPT-194"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-194",
+      "startDate": "2026-05-18",
+      "dueDate": "2026-05-22",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-193"
+      ],
+      "successors": [
+        "LZPT-195"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-195",
+      "startDate": "2026-05-25",
+      "dueDate": "2026-05-29",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-194"
+      ],
+      "successors": [
+        "LZPT-196"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-196",
+      "startDate": "2026-06-01",
+      "dueDate": "2026-06-05",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-195"
+      ],
+      "successors": [
+        "LZPT-217"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-197",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-198",
+        "LZPT-199"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-198",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-197"
+      ],
+      "successors": [
+        "LZPT-200"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-199",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-197"
+      ],
+      "successors": [
+        "LZPT-200"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-200",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-19",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-198",
+        "LZPT-199"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-201",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-05-01",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-192"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-202",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-204"
+      ],
+      "successors": [
+        "LZPT-203"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-203",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-202"
+      ],
+      "successors": [
+        "LZPT-204"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-204",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-203"
+      ],
+      "successors": [
+        "LZPT-202"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-205",
+      "startDate": "2026-09-23",
+      "dueDate": "2026-10-02",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-206",
+        "LZPT-207",
+        "LZPT-208",
+        "LZPT-209"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-206",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-07",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-207",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-208",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-09",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-209",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-210",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-189"
+    },
+    {
+      "key": "LZPT-211",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-189"
+    },
+    {
+      "key": "LZPT-212",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-213",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-214",
+      "startDate": "2026-05-20",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-215",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-06-30",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-216",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-217",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-04",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-196"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-218",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-05",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-219",
+      "startDate": "2026-05-06",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-220",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-07",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-221",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-222",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-223",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-224",
+      "startDate": "2026-05-13",
+      "dueDate": "2026-05-13",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-225",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-226",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-227",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-210"
+    },
+    {
+      "key": "LZPT-228",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-210"
+    },
+    {
+      "key": "LZPT-229",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-211"
+    },
+    {
+      "key": "LZPT-230",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-211"
+    }
+  ],
+  "admittedJira": [
+    {
+      "role": "E",
+      "id": "25229",
+      "key": "WFH-2997",
+      "fields": {
+        "summary": "[harness-test] LZ retained UAT 20260906 October release",
+        "issuetype": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10000",
+          "id": "10000",
+          "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/issuetypes/epic.svg",
+          "name": "Epic",
+          "subtask": false,
+          "hierarchyLevel": 1
+        },
+        "customfield_10180": 10,
+        "customfield_10181": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/customFieldOption/10243",
+          "value": "No",
+          "id": "10243"
+        },
+        "project": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+          "id": "10001",
+          "key": "WFH",
+          "name": "WORK FOR HIRE",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+            "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+            "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+            "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+          }
+        },
+        "customfield_10015": "2026-10-05",
+        "customfield_11148": [],
+        "labels": [
+          "lz-retained-uat-20260906"
+        ],
+        "customfield_11149": [],
+        "timeestimate": 0,
+        "duedate": "2026-10-16",
+        "issuelinks": [],
+        "assignee": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "emailAddress": "mihai@wolfaenpak.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+          },
+          "displayName": "Mihai Perdum",
+          "active": true,
+          "timeZone": "Europe/Bucharest",
+          "accountType": "atlassian"
+        },
+        "status": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+          "description": "",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+          "name": "New",
+          "id": "10006",
+          "statusCategory": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        }
+      }
+    },
+    {
+      "role": "A",
+      "id": "25230",
+      "key": "WFH-2998",
+      "fields": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+        "issuetype": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+          "id": "10004",
+          "description": "Functionality or a feature expressed as a user goal.",
+          "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+          "name": "Work package",
+          "subtask": false,
+          "avatarId": 10552,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "25229",
+          "key": "WFH-2997",
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25229",
+          "fields": {
+            "summary": "[harness-test] LZ retained UAT 20260906 October release",
+            "status": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+              "description": "",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+              "name": "New",
+              "id": "10006",
+              "statusCategory": {
+                "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "customfield_10180": 5,
+        "customfield_10181": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/customFieldOption/10243",
+          "value": "No",
+          "id": "10243"
+        },
+        "project": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+          "id": "10001",
+          "key": "WFH",
+          "name": "WORK FOR HIRE",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+            "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+            "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+            "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+          }
+        },
+        "customfield_10015": "2026-10-05",
+        "customfield_11148": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+            "objectId": "411"
+          },
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+            "objectId": "412"
+          }
+        ],
+        "labels": [
+          "lz-retained-uat-20260906"
+        ],
+        "customfield_11149": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+            "objectId": "411"
+          }
+        ],
+        "timeestimate": 28800,
+        "duedate": "2026-10-09",
+        "issuelinks": [
+          {
+            "id": "15328",
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issueLink/15328",
+            "type": {
+              "id": "10000",
+              "name": "Blocks",
+              "inward": "is blocked by",
+              "outward": "blocks",
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issueLinkType/10000"
+            },
+            "outwardIssue": {
+              "id": "25231",
+              "key": "WFH-2999",
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25231",
+              "fields": {
+                "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+                "status": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+                  "description": "",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+                  "name": "New",
+                  "id": "10006",
+                  "statusCategory": {
+                    "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+                    "id": 2,
+                    "key": "new",
+                    "colorName": "blue-gray",
+                    "name": "To Do"
+                  }
+                },
+                "priority": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/priority/3",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/priorities/medium_new.svg",
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+                  "id": "10004",
+                  "description": "Functionality or a feature expressed as a user goal.",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+                  "name": "Work package",
+                  "subtask": false,
+                  "avatarId": 10552,
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          }
+        ],
+        "assignee": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "emailAddress": "mihai@wolfaenpak.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+          },
+          "displayName": "Mihai Perdum",
+          "active": true,
+          "timeZone": "Europe/Bucharest",
+          "accountType": "atlassian"
+        },
+        "status": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+          "description": "",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+          "name": "New",
+          "id": "10006",
+          "statusCategory": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        }
+      }
+    },
+    {
+      "role": "B",
+      "id": "25231",
+      "key": "WFH-2999",
+      "fields": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+        "issuetype": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+          "id": "10004",
+          "description": "Functionality or a feature expressed as a user goal.",
+          "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+          "name": "Work package",
+          "subtask": false,
+          "avatarId": 10552,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "25229",
+          "key": "WFH-2997",
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25229",
+          "fields": {
+            "summary": "[harness-test] LZ retained UAT 20260906 October release",
+            "status": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+              "description": "",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+              "name": "New",
+              "id": "10006",
+              "statusCategory": {
+                "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "customfield_10180": 5,
+        "customfield_10181": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/customFieldOption/10243",
+          "value": "No",
+          "id": "10243"
+        },
+        "project": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+          "id": "10001",
+          "key": "WFH",
+          "name": "WORK FOR HIRE",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+            "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+            "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+            "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+          }
+        },
+        "customfield_10015": "2026-10-12",
+        "customfield_11148": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+            "objectId": "412"
+          }
+        ],
+        "labels": [
+          "lz-retained-uat-20260906"
+        ],
+        "customfield_11149": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413",
+            "objectId": "413"
+          }
+        ],
+        "timeestimate": 0,
+        "duedate": "2026-10-16",
+        "issuelinks": [
+          {
+            "id": "15328",
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issueLink/15328",
+            "type": {
+              "id": "10000",
+              "name": "Blocks",
+              "inward": "is blocked by",
+              "outward": "blocks",
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issueLinkType/10000"
+            },
+            "inwardIssue": {
+              "id": "25230",
+              "key": "WFH-2998",
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25230",
+              "fields": {
+                "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+                "status": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+                  "description": "",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+                  "name": "New",
+                  "id": "10006",
+                  "statusCategory": {
+                    "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+                    "id": 2,
+                    "key": "new",
+                    "colorName": "blue-gray",
+                    "name": "To Do"
+                  }
+                },
+                "priority": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/priority/3",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/priorities/medium_new.svg",
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+                  "id": "10004",
+                  "description": "Functionality or a feature expressed as a user goal.",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+                  "name": "Work package",
+                  "subtask": false,
+                  "avatarId": 10552,
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          }
+        ],
+        "assignee": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "emailAddress": "mihai@wolfaenpak.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+          },
+          "displayName": "Mihai Perdum",
+          "active": true,
+          "timeZone": "Europe/Bucharest",
+          "accountType": "atlassian"
+        },
+        "status": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+          "description": "",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+          "name": "New",
+          "id": "10006",
+          "statusCategory": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        }
+      }
+    },
+    {
+      "role": "L",
+      "id": "25232",
+      "key": "WFH-3000",
+      "fields": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+        "issuetype": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+          "id": "10004",
+          "description": "Functionality or a feature expressed as a user goal.",
+          "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+          "name": "Work package",
+          "subtask": false,
+          "avatarId": 10552,
+          "hierarchyLevel": 0
+        },
+        "customfield_10180": 5,
+        "customfield_10181": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/customFieldOption/10243",
+          "value": "No",
+          "id": "10243"
+        },
+        "project": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+          "id": "10001",
+          "key": "WFH",
+          "name": "WORK FOR HIRE",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+            "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+            "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+            "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+          }
+        },
+        "customfield_10015": "2026-10-26",
+        "customfield_11148": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413",
+            "objectId": "413"
+          }
+        ],
+        "labels": [
+          "lz-retained-uat-20260906"
+        ],
+        "customfield_11149": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413",
+            "objectId": "413"
+          }
+        ],
+        "timeestimate": 28800,
+        "duedate": "2026-10-30",
+        "issuelinks": [],
+        "assignee": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "emailAddress": "mihai@wolfaenpak.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+          },
+          "displayName": "Mihai Perdum",
+          "active": true,
+          "timeZone": "Europe/Bucharest",
+          "accountType": "atlassian"
+        },
+        "status": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+          "description": "",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+          "name": "New",
+          "id": "10006",
+          "statusCategory": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        }
+      }
+    }
+  ],
+  "jql": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+  "person": {
+    "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "displayName": "Mihai Perdum"
+  },
+  "reusePlans": {
+    "main": {
+      "meta": {
+        "assets": {
+          "fieldIds": [
+            "customfield_11148",
+            "customfield_11149"
+          ]
+        },
+        "calendarKey": "standard",
+        "contentHash": "4:1818aa43",
+        "createdAt": "2026-09-06T19:30:06.286Z",
+        "createdBy": "harness",
+        "createdByName": "harness",
+        "defaultAccess": "none",
+        "holidayYears": [
+          2026,
+          2027
+        ],
+        "id": "plan-test-mtq7hsun-koj1jf",
+        "issueCount": 4,
+        "lastIndexedAt": "2026-09-06T19:30:34.470Z",
+        "members": [],
+        "milestones": [],
+        "name": "[harness-test] UAT 20260906 October release decisions",
+        "protectionEnabled": false,
+        "shardCount": 1,
+        "sources": [
+          {
+            "boardId": null,
+            "id": "src-0",
+            "label": "harness",
+            "projectKey": null,
+            "query": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+            "type": "jql"
+          }
+        ],
+        "status": "indexed",
+        "statusMessage": null,
+        "updatedAt": "2026-09-06T19:30:57.366Z",
+        "version": 6,
+        "writability": {
+          "blocked": 0,
+          "byReason": {},
+          "checks": {
+            "backfilled": 0,
+            "permissionsChecked": true,
+            "statusChecked": true,
+            "statusGroups": 1
+          },
+          "computedAt": "2026-09-06T19:30:34.212Z",
+          "partial": 0,
+          "refusedByProject": null,
+          "sample": [],
+          "total": 4
+        }
+      },
+      "issues": [
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-16",
+            "duration": 10,
+            "predecessors": [],
+            "startDate": "2026-10-05",
+            "successors": []
+          },
+          "assets": {
+            "customfield_11148": {
+              "state": "empty"
+            },
+            "customfield_11149": {
+              "state": "empty"
+            }
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-06",
+          "dueDate": "2026-10-16",
+          "duration": 10,
+          "fieldAvail": {
+            "buffer": true,
+            "dueDate": true,
+            "duration": true,
+            "startDate": true
+          },
+          "fixVersions": [],
+          "hierarchyLevel": 1,
+          "id": "25229",
+          "key": "WFH-2997",
+          "labels": [
+            "lz-retained-uat-20260906"
+          ],
+          "orphanParentKey": null,
+          "parentKey": null,
+          "predecessors": [],
+          "priority": "Medium",
+          "rank": "0|i01k2f:",
+          "remainingEstimateSeconds": 0,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-05",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [],
+          "summary": "[harness-test] LZ retained UAT 20260906 October release",
+          "type": "Epic",
+          "updated": "2026-09-06"
+        },
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "predecessors": [],
+            "startDate": "2026-10-05",
+            "successors": [
+              "WFH-2999"
+            ]
+          },
+          "assets": {
+            "customfield_11148": {
+              "objects": [
+                {
+                  "objectId": "411",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                },
+                {
+                  "objectId": "412",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            },
+            "customfield_11149": {
+              "objects": [
+                {
+                  "objectId": "411",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            }
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-06",
+          "dueDate": "2026-10-09",
+          "duration": 5,
+          "durationExplicitlyCleared": false,
+          "fieldAvail": {
+            "buffer": true,
+            "dueDate": true,
+            "duration": true,
+            "startDate": true
+          },
+          "fixVersions": [],
+          "hierarchyLevel": 0,
+          "id": "25230",
+          "key": "WFH-2998",
+          "labels": [
+            "lz-retained-uat-20260906"
+          ],
+          "orphanParentKey": null,
+          "parentKey": "WFH-2997",
+          "predecessors": [],
+          "priority": "Medium",
+          "rank": "0|i01k2n:",
+          "remainingEstimateSeconds": 28800,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-05",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [
+            "WFH-2999"
+          ],
+          "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+          "type": "Work package",
+          "updated": "2026-09-06"
+        },
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-16",
+            "duration": 5,
+            "predecessors": [
+              "WFH-2998"
+            ],
+            "startDate": "2026-10-12",
+            "successors": []
+          },
+          "assets": {
+            "customfield_11148": {
+              "objects": [
+                {
+                  "objectId": "412",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            },
+            "customfield_11149": {
+              "objects": [
+                {
+                  "objectId": "413",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            }
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-06",
+          "dueDate": "2026-10-16",
+          "duration": 5,
+          "fieldAvail": {
+            "buffer": true,
+            "dueDate": true,
+            "duration": true,
+            "startDate": true
+          },
+          "fixVersions": [],
+          "hierarchyLevel": 0,
+          "id": "25231",
+          "key": "WFH-2999",
+          "labels": [
+            "lz-retained-uat-20260906"
+          ],
+          "orphanParentKey": null,
+          "parentKey": "WFH-2997",
+          "predecessors": [
+            "WFH-2998"
+          ],
+          "priority": "Medium",
+          "rank": "0|i01k2v:",
+          "remainingEstimateSeconds": 0,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-12",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [],
+          "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+          "type": "Work package",
+          "updated": "2026-09-06"
+        },
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-30",
+            "duration": 5,
+            "predecessors": [],
+            "startDate": "2026-10-26",
+            "successors": []
+          },
+          "assets": {
+            "customfield_11148": {
+              "objects": [
+                {
+                  "objectId": "413",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            },
+            "customfield_11149": {
+              "objects": [
+                {
+                  "objectId": "413",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            }
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-06",
+          "dueDate": "2026-10-30",
+          "duration": 5,
+          "fieldAvail": {
+            "buffer": true,
+            "dueDate": true,
+            "duration": true,
+            "startDate": true
+          },
+          "fixVersions": [],
+          "hierarchyLevel": 0,
+          "id": "25232",
+          "key": "WFH-3000",
+          "labels": [
+            "lz-retained-uat-20260906"
+          ],
+          "orphanParentKey": null,
+          "parentKey": null,
+          "predecessors": [],
+          "priority": "Medium",
+          "rank": "0|i01k33:",
+          "remainingEstimateSeconds": 28800,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-26",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [],
+          "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+          "type": "Work package",
+          "updated": "2026-09-06"
+        }
+      ]
+    },
+    "mirror": {
+      "meta": {
+        "assets": {
+          "fieldIds": [
+            "customfield_11148",
+            "customfield_11149"
+          ]
+        },
+        "calendarKey": "standard",
+        "contentHash": "4:1818aa43",
+        "createdAt": "2026-09-06T19:30:11.492Z",
+        "createdBy": "harness",
+        "createdByName": "harness",
+        "defaultAccess": "none",
+        "holidayYears": [
+          2026,
+          2027
+        ],
+        "id": "plan-test-mtq7hwv8-sk47wf",
+        "issueCount": 4,
+        "lastIndexedAt": "2026-09-06T19:30:41.265Z",
+        "members": [],
+        "milestones": [],
+        "name": "[harness-test] UAT 20260906 October capacity mirror",
+        "protectionEnabled": false,
+        "shardCount": 1,
+        "sources": [
+          {
+            "boardId": null,
+            "id": "src-0",
+            "label": "harness",
+            "projectKey": null,
+            "query": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+            "type": "jql"
+          }
+        ],
+        "status": "indexed",
+        "statusMessage": null,
+        "updatedAt": "2026-09-06T19:30:41.265Z",
+        "version": 5,
+        "writability": {
+          "blocked": 0,
+          "byReason": {},
+          "checks": {
+            "backfilled": 0,
+            "permissionsChecked": true,
+            "statusChecked": true,
+            "statusGroups": 1
+          },
+          "computedAt": "2026-09-06T19:30:41.046Z",
+          "partial": 0,
+          "refusedByProject": null,
+          "sample": [],
+          "total": 4
+        }
+      },
+      "issues": [
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-16",
+            "duration": 10,
+            "predecessors": [],
+            "startDate": "2026-10-05",
+            "successors": []
+          },
+          "assets": {
+            "customfield_11148": {
+              "state": "empty"
+            },
+            "customfield_11149": {
+              "state": "empty"
+            }
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-06",
+          "dueDate": "2026-10-16",
+          "duration": 10,
+          "fieldAvail": {
+            "buffer": true,
+            "dueDate": true,
+            "duration": true,
+            "startDate": true
+          },
+          "fixVersions": [],
+          "hierarchyLevel": 1,
+          "id": "25229",
+          "key": "WFH-2997",
+          "labels": [
+            "lz-retained-uat-20260906"
+          ],
+          "orphanParentKey": null,
+          "parentKey": null,
+          "predecessors": [],
+          "priority": "Medium",
+          "rank": "0|i01k2f:",
+          "remainingEstimateSeconds": 0,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-05",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [],
+          "summary": "[harness-test] LZ retained UAT 20260906 October release",
+          "type": "Epic",
+          "updated": "2026-09-06"
+        },
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-09",
+            "duration": 5,
+            "predecessors": [],
+            "startDate": "2026-10-05",
+            "successors": [
+              "WFH-2999"
+            ]
+          },
+          "assets": {
+            "customfield_11148": {
+              "objects": [
+                {
+                  "objectId": "411",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                },
+                {
+                  "objectId": "412",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            },
+            "customfield_11149": {
+              "objects": [
+                {
+                  "objectId": "411",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            }
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-06",
+          "dueDate": "2026-10-09",
+          "duration": 5,
+          "fieldAvail": {
+            "buffer": true,
+            "dueDate": true,
+            "duration": true,
+            "startDate": true
+          },
+          "fixVersions": [],
+          "hierarchyLevel": 0,
+          "id": "25230",
+          "key": "WFH-2998",
+          "labels": [
+            "lz-retained-uat-20260906"
+          ],
+          "orphanParentKey": null,
+          "parentKey": "WFH-2997",
+          "predecessors": [],
+          "priority": "Medium",
+          "rank": "0|i01k2n:",
+          "remainingEstimateSeconds": 28800,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-05",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [
+            "WFH-2999"
+          ],
+          "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+          "type": "Work package",
+          "updated": "2026-09-06"
+        },
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-16",
+            "duration": 5,
+            "predecessors": [
+              "WFH-2998"
+            ],
+            "startDate": "2026-10-12",
+            "successors": []
+          },
+          "assets": {
+            "customfield_11148": {
+              "objects": [
+                {
+                  "objectId": "412",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            },
+            "customfield_11149": {
+              "objects": [
+                {
+                  "objectId": "413",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            }
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-06",
+          "dueDate": "2026-10-16",
+          "duration": 5,
+          "fieldAvail": {
+            "buffer": true,
+            "dueDate": true,
+            "duration": true,
+            "startDate": true
+          },
+          "fixVersions": [],
+          "hierarchyLevel": 0,
+          "id": "25231",
+          "key": "WFH-2999",
+          "labels": [
+            "lz-retained-uat-20260906"
+          ],
+          "orphanParentKey": null,
+          "parentKey": "WFH-2997",
+          "predecessors": [
+            "WFH-2998"
+          ],
+          "priority": "Medium",
+          "rank": "0|i01k2v:",
+          "remainingEstimateSeconds": 0,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-12",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [],
+          "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+          "type": "Work package",
+          "updated": "2026-09-06"
+        },
+        {
+          "_original": {
+            "buffer": "No",
+            "dueDate": "2026-10-30",
+            "duration": 5,
+            "predecessors": [],
+            "startDate": "2026-10-26",
+            "successors": []
+          },
+          "assets": {
+            "customfield_11148": {
+              "objects": [
+                {
+                  "objectId": "413",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            },
+            "customfield_11149": {
+              "objects": [
+                {
+                  "objectId": "413",
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417"
+                }
+              ],
+              "state": "present"
+            }
+          },
+          "assigneeAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "assigneeName": "Mihai Perdum",
+          "assigneeState": "assigned",
+          "buffer": "No",
+          "children": [],
+          "created": "2026-09-06",
+          "dueDate": "2026-10-30",
+          "duration": 5,
+          "fieldAvail": {
+            "buffer": true,
+            "dueDate": true,
+            "duration": true,
+            "startDate": true
+          },
+          "fixVersions": [],
+          "hierarchyLevel": 0,
+          "id": "25232",
+          "key": "WFH-3000",
+          "labels": [
+            "lz-retained-uat-20260906"
+          ],
+          "orphanParentKey": null,
+          "parentKey": null,
+          "predecessors": [],
+          "priority": "Medium",
+          "rank": "0|i01k33:",
+          "remainingEstimateSeconds": 28800,
+          "reporter": "Mihai Perdum",
+          "resolution": null,
+          "startDate": "2026-10-26",
+          "status": "New",
+          "statusCategory": "new",
+          "storyPoints": null,
+          "successors": [],
+          "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+          "type": "Work package",
+          "updated": "2026-09-06"
+        }
+      ]
+    }
+  },
+  "observedUiVersion": "4.58.588",
+  "stage": "download-save:retained-uat-report-after-discard.html",
+  "stageStartedAt": "2026-09-06T20:02:17.307Z",
+  "reuseActor": {
+    "success": true,
+    "role": "admin",
+    "isAdmin": true,
+    "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+  },
+  "reuseSettings": {
+    "success": true,
+    "version": 68,
+    "settings": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  },
+  "reuseReadiness": {
+    "main": {
+      "plan": {
+        "success": true,
+        "plan": {
+          "assets": {
+            "fieldIds": [
+              "customfield_11148",
+              "customfield_11149"
+            ]
+          },
+          "calendarKey": "standard",
+          "contentHash": "4:1818aa43",
+          "createdAt": "2026-09-06T19:30:06.286Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtq7hsun-koj1jf",
+          "issueCount": 4,
+          "lastIndexedAt": "2026-09-06T19:30:34.470Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] UAT 20260906 October release decisions",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T19:30:57.366Z",
+          "version": 6,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T19:30:34.212Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 4
+          }
+        }
+      },
+      "draft": {
+        "success": true,
+        "draft": null
+      },
+      "active": {
+        "success": true,
+        "drafts": {}
+      },
+      "listSnapshots": {
+        "success": true,
+        "entries": [],
+        "nextCursor": null
+      },
+      "listSponsorReports": {
+        "success": true,
+        "entries": [],
+        "nextCursor": null
+      },
+      "targets": {
+        "success": true,
+        "targets": [],
+        "scopeOptions": [
+          {
+            "value": "plan",
+            "label": "Whole plan",
+            "scope": {
+              "type": "plan"
+            }
+          },
+          {
+            "value": "epic:25229",
+            "label": "Epic · WFH-2997 [harness-test] LZ retained UAT 20260906 October release",
+            "scope": {
+              "type": "epic",
+              "id": "25229"
+            }
+          }
+        ],
+        "version": 6
+      },
+      "baseline": {
+        "baseline": null
+      }
+    },
+    "mirror": {
+      "plan": {
+        "success": true,
+        "plan": {
+          "assets": {
+            "fieldIds": [
+              "customfield_11148",
+              "customfield_11149"
+            ]
+          },
+          "calendarKey": "standard",
+          "contentHash": "4:1818aa43",
+          "createdAt": "2026-09-06T19:30:11.492Z",
+          "createdBy": "harness",
+          "createdByName": "harness",
+          "defaultAccess": "none",
+          "holidayYears": [
+            2026,
+            2027
+          ],
+          "id": "plan-test-mtq7hwv8-sk47wf",
+          "issueCount": 4,
+          "lastIndexedAt": "2026-09-06T19:30:41.265Z",
+          "members": [],
+          "milestones": [],
+          "name": "[harness-test] UAT 20260906 October capacity mirror",
+          "protectionEnabled": false,
+          "shardCount": 1,
+          "sources": [
+            {
+              "boardId": null,
+              "id": "src-0",
+              "label": "harness",
+              "projectKey": null,
+              "query": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+              "type": "jql"
+            }
+          ],
+          "status": "indexed",
+          "statusMessage": null,
+          "updatedAt": "2026-09-06T19:30:41.265Z",
+          "version": 5,
+          "writability": {
+            "blocked": 0,
+            "byReason": {},
+            "checks": {
+              "backfilled": 0,
+              "permissionsChecked": true,
+              "statusChecked": true,
+              "statusGroups": 1
+            },
+            "computedAt": "2026-09-06T19:30:41.046Z",
+            "partial": 0,
+            "refusedByProject": null,
+            "sample": [],
+            "total": 4
+          }
+        }
+      },
+      "draft": {
+        "success": true,
+        "draft": null
+      },
+      "active": {
+        "success": true,
+        "drafts": {}
+      },
+      "listSnapshots": {
+        "success": true,
+        "entries": [],
+        "nextCursor": null
+      },
+      "listSponsorReports": {
+        "success": true,
+        "entries": [],
+        "nextCursor": null
+      },
+      "targets": {
+        "success": true,
+        "targets": [],
+        "scopeOptions": [
+          {
+            "value": "plan",
+            "label": "Whole plan",
+            "scope": {
+              "type": "plan"
+            }
+          },
+          {
+            "value": "epic:25229",
+            "label": "Epic · WFH-2997 [harness-test] LZ retained UAT 20260906 October release",
+            "scope": {
+              "type": "epic",
+              "id": "25229"
+            }
+          }
+        ],
+        "version": 5
+      },
+      "baseline": {
+        "baseline": null
+      }
+    }
+  },
+  "reuseAdmissionComplete": true,
+  "originalPrivateSettings": {
+    "selectedPlanIds": [],
+    "profiles": {},
+    "issueChoices": {}
+  },
+  "privateSettingsOwnership": {
+    "initialized": true,
+    "original": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "lastOwned": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    },
+    "version": 71,
+    "pending": null,
+    "restored": true,
+    "history": [
+      {
+        "name": "admitted",
+        "time": "2026-09-06T20:00:18.736Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T20:00:19.327Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T20:00:20.337Z"
+      },
+      {
+        "name": "write-intent",
+        "time": "2026-09-06T20:00:22.232Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T20:00:22.980Z"
+      },
+      {
+        "name": "restore-intent",
+        "time": "2026-09-06T20:02:27.920Z"
+      },
+      {
+        "name": "write-acknowledged",
+        "time": "2026-09-06T20:02:28.269Z"
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-06T20:02:28.588Z",
+        "read": 1,
+        "version": 71
+      },
+      {
+        "name": "restore-readback",
+        "time": "2026-09-06T20:02:28.817Z",
+        "read": 2,
+        "version": 71
+      },
+      {
+        "name": "restored",
+        "time": "2026-09-06T20:02:28.818Z"
+      }
+    ]
+  },
+  "handoff": {
+    "oracleSha256": "487ac1e69615a8bf56bc30c89eccd42968ac982edef3afd3d1caaae85932da2e",
+    "plans": {
+      "main": {
+        "name": "[harness-test] UAT 20260906 October release decisions",
+        "state": "created",
+        "id": "plan-test-mtq7hsun-koj1jf"
+      },
+      "mirror": {
+        "name": "[harness-test] UAT 20260906 October capacity mirror",
+        "state": "created",
+        "id": "plan-test-mtq7hwv8-sk47wf"
+      }
+    },
+    "issues": {
+      "E": {
+        "summary": "[harness-test] LZ retained UAT 20260906 October release",
+        "type": "10000",
+        "state": "created",
+        "httpStatus": 201,
+        "id": "25229",
+        "key": "WFH-2997"
+      },
+      "A": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+        "type": "10004",
+        "state": "created",
+        "httpStatus": 201,
+        "id": "25230",
+        "key": "WFH-2998"
+      },
+      "B": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+        "type": "10004",
+        "state": "created",
+        "httpStatus": 201,
+        "id": "25231",
+        "key": "WFH-2999"
+      },
+      "L": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+        "type": "10004",
+        "state": "created",
+        "httpStatus": 201,
+        "id": "25232",
+        "key": "WFH-3000"
+      }
+    },
+    "target": {
+      "date": "2026-10-16",
+      "id": "64242405-81d7-496f-b7ef-65affaa262f5",
+      "name": "UAT October 16 commitment",
+      "scope": {
+        "id": "25229",
+        "memberKeys": [
+          "WFH-2998",
+          "WFH-2999"
+        ],
+        "type": "epic"
+      },
+      "coverage": {
+        "available": true,
+        "reason": null,
+        "memberKeys": [
+          "WFH-2998",
+          "WFH-2999"
+        ],
+        "memberCount": 2,
+        "scopeLabel": "WFH-2997 · [harness-test] LZ retained UAT 20260906 October release"
+      }
+    },
+    "baselineId": "48fcd38f-26e8-4490-ae7e-9ba3248226fd",
+    "originalId": "63c93220-1120-440f-9c17-11a31aad8c4a",
+    "alternativeId": "728b41e7-ad2b-4e6a-b6e4-369c58080638",
+    "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d",
+    "reportHtmlHash": "517b2e32c16506f22f5f3d270321afa78880b64e6c785aad2a7d9139960c5799",
+    "oracleOrder": "A,B,L",
+    "expected": {
+      "sampledLeafOrder": "A,B,L",
+      "original": {
+        "p50": "2026-10-30",
+        "p80": "2026-10-30",
+        "p90": "2026-10-30",
+        "scoped": {
+          "p50": "2026-10-16",
+          "p80": "2026-10-16",
+          "p90": "2026-10-19"
+        },
+        "targetHits": 261,
+        "runs": 300,
+        "displayedTargetPercent": 87
+      },
+      "alternative": {
+        "p50": "2026-11-02",
+        "p80": "2026-11-02",
+        "p90": "2026-11-03",
+        "scoped": {
+          "p50": "2026-10-16",
+          "p80": "2026-10-16",
+          "p90": "2026-10-16"
+        },
+        "targetHits": 300,
+        "runs": 300,
+        "displayedTargetPercent": 100
+      }
+    },
+    "capacity": {
+      "uniqueIssues": 4,
+      "duplicatesRemoved": 4,
+      "buckets": [
+        {
+          "week": "2026-10-05",
+          "demandHours": 8,
+          "capacityHours": 12
+        },
+        {
+          "week": "2026-10-12",
+          "demandHours": 0,
+          "capacityHours": 15
+        },
+        {
+          "week": "2026-10-19",
+          "demandHours": 0,
+          "capacityHours": 15
+        },
+        {
+          "week": "2026-10-26",
+          "demandHours": 8,
+          "capacityHours": 15
+        }
+      ],
+      "totals": {
+        "knownEffortHours": 16,
+        "allocatedHours": 15.999999999999998,
+        "outsideWindowHours": 0,
+        "unallocatedHours": 0
+      },
+      "totalCapacityHours": 57
+    },
+    "humanInspection": "Pending independent inspection of screenshots and every PDF page; not user UAT acknowledgement"
+  },
+  "privateSettingsRestored": true,
+  "finishedAt": "2026-09-06T20:02:31.572Z"
+}

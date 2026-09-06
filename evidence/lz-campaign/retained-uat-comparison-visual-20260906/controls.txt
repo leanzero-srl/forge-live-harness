@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: actual previously observed ordinary getAiConfig read is admitted
+ok 1 - actual previously observed ordinary getAiConfig read is admitted
+  ---
+  duration_ms: 1.079666
+  type: 'test'
+  ...
+# Subtest: known business mutations and foreign owned-plan reads remain refused
+ok 2 - known business mutations and foreign owned-plan reads remain refused
+  ---
+  duration_ms: 0.864917
+  type: 'test'
+  ...
+# Subtest: iframe-local visibility cannot certify a clipped or obscured Page screenshot
+ok 3 - iframe-local visibility cannot certify a clipped or obscured Page screenshot
+  ---
+  duration_ms: 0.136333
+  type: 'test'
+  ...
+# Subtest: both coordinate spaces must pass; valid nested witness preserves measurements
+ok 4 - both coordinate spaces must pass; valid nested witness preserves measurements
+  ---
+  duration_ms: 0.080417
+  type: 'test'
+  ...
+# Subtest: actual retained handoff binds saved captures and exact successful source proof
+ok 5 - actual retained handoff binds saved captures and exact successful source proof
+  ---
+  duration_ms: 2.004
+  type: 'test'
+  ...
+# Subtest: actual requested identity retained; unknown or mutation refused
+ok 6 - actual requested identity retained; unknown or mutation refused
+  ---
+  duration_ms: 0.408167
+  type: 'test'
+  ...
+# Subtest: geometry rejects cut-off and covered subjects
+ok 7 - geometry rejects cut-off and covered subjects
+  ---
+  duration_ms: 0.245
+  type: 'test'
+  ...
+# Subtest: witness preserves six real viewport images and client-only comparison action
+ok 8 - witness preserves six real viewport images and client-only comparison action
+  ---
+  duration_ms: 0.189292
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 35.162666

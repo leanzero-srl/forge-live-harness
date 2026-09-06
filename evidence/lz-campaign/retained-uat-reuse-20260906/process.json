@@ -1,0 +1,29 @@
+{
+  "status": "terminal",
+  "supervisorPid": 80646,
+  "supervisorStart": "Sun Sep  6 22:57:56 2026",
+  "startedAt": "2026-09-06T19:57:56.500107+00:00",
+  "actualHarnessCommit": "4e15e4fb7be1584ae2f0b76aa93b82b88ce4f7f3",
+  "instrumentHash": "49ad1d06b47c1fcc5a562c83fcbe009d8214c6b1815c9ae4321e2ac9c759c250",
+  "rootDispatchCommit": "c6eb6488c3179aa219ddf6d4d156c330117b7147",
+  "commandSha256": "3b2fb893418d6921e5545b6c011ed8f64c2dd964749482e12c51726285a61a39",
+  "childPid": 80658,
+  "childStart": "Sun Sep  6 22:57:56 2026",
+  "heartbeatAt": "2026-09-06T20:02:28.557911+00:00",
+  "finishedAt": "2026-09-06T20:02:39.989999+00:00",
+  "processResult": {
+    "exit": 0
+  },
+  "testResult": {
+    "status": "passed",
+    "ordinaryPasses": [
+      "retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff"
+    ],
+    "expectedDefectWitnesses": [],
+    "reasons": [],
+    "testCount": 1,
+    "process": {
+      "exit": 0
+    }
+  }
+}

@@ -1,0 +1,1852 @@
+{
+  "planId": "plan-test-mtq7hsun-koj1jf",
+  "job": {
+    "id": "942324b9-7e57-445b-b673-38da9bff329d",
+    "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+    "name": "UAT October fixed reserve decision",
+    "createdAt": "2026-09-06T20:00:36.604Z",
+    "expiresAt": "2026-09-07T20:00:36.604Z",
+    "checkpoint": 53,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 53,
+    "totalUnits": 53,
+    "cleanupDone": true,
+    "forecastRuns": {
+      "completed": 300,
+      "total": 300
+    },
+    "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+  },
+  "report": {
+    "baseline": {
+      "coverageNote": null,
+      "hash": "633e62c7957e89bc8bdf2381c33f4e08ddb228fd50012550a42410fc3c72e975",
+      "id": "ddf33279-0c10-4ee7-8ce7-0080234f064d",
+      "issueCount": 4,
+      "name": "UAT 00 Original baseline",
+      "sourceSnapshotId": "48fcd38f-26e8-4490-ae7e-9ba3248226fd",
+      "takenAt": "2026-09-06T19:59:21.185Z"
+    },
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "capacity": {
+      "asOfDate": "2026-09-06",
+      "assumptions": "This captured plan only, not the selected portfolio. Remaining Jira effort is spread over its remaining working dates; personal leave reduces capacity, not demand. The author explicitly included these saved availability assumptions in this shared report. No tasks are moved.",
+      "coverage": {
+        "completedIssues": 0,
+        "conflictingIssues": 0,
+        "missingEffort": 0,
+        "selectedPlans": 1,
+        "sharedDuplicatesRemoved": 0,
+        "unallocatedIssues": 0,
+        "unassignedIssues": 0,
+        "unavailableAssignee": 0,
+        "unavailableIssueCount": 0,
+        "unavailableStatus": 0,
+        "uniqueIssues": 4
+      },
+      "endDate": "2026-10-30",
+      "inputHash": "0f2181d3740bb88a55f5dedd241aae40ceed9bc373763a5dddb45d919bafbc1a",
+      "profileVersion": 70,
+      "readAt": "2026-09-06T20:01:18.147Z",
+      "readStartedAt": "2026-09-06T20:01:12.223Z",
+      "reason": null,
+      "scope": "captured-plan",
+      "sourceVersion": 11,
+      "startDate": "2026-10-05",
+      "state": "available",
+      "totals": {
+        "allocatedHours": 15.999999999999998,
+        "knownEffortHours": 16,
+        "outsideWindowHours": 0,
+        "unallocatedHours": 0
+      }
+    },
+    "changeCounts": {
+      "added": 0,
+      "changed": 1,
+      "removed": 0
+    },
+    "consistency": {
+      "basisHash": "e3dda586c23d05050194d7cde034775e385c5f747272f1f708620effe36144e3",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T20:00:39.389Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T20:01:25.257Z"
+    },
+    "counts": {
+      "availability": 1,
+      "capacity": 4,
+      "changes": 1,
+      "targets": 1,
+      "timeline": 4,
+      "unallocated": 0
+    },
+    "coverage": {
+      "leafTasks": 3,
+      "unavailableRows": 0,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 4
+    },
+    "document": {
+      "availability": {
+        "hashes": [
+          "a4280204d6b9f6deb4ada3d465aeb28c52157e1e0310b2e24c57764522c0854e"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "capacity": {
+        "hashes": [
+          "6565d49bc29b9fa3b7203d4b04d4dac7bb518e1197232663920ebb620493c23c"
+        ],
+        "sizes": [
+          4
+        ],
+        "total": 4
+      },
+      "changes": {
+        "hashes": [
+          "b300929cf47ecfc2bd508af2ed43b20c4694db2282d61c7d761ceedb39ea76ee"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "targets": {
+        "hashes": [
+          "fadf5bf36632844f81cc3d57af6e8c22f03d4e04460fc296260d3eacac661af6"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "timeline": {
+        "hashes": [
+          "5e6c870ac594a4ad74d02641c8ddb443a15a22d6b0a95bac6b259910002ff512"
+        ],
+        "sizes": [
+          4
+        ],
+        "total": 4
+      },
+      "unallocated": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      }
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 3,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 2,
+        "totalLeaves": 3
+      },
+      "inputHash": "d02cf90ccc5852ef070db4aab7f700a5b49eb7bcee20089f99aee0721bb22c5b",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.44333333333333336,
+      "p50": "2026-11-02",
+      "p80": "2026-11-02",
+      "p90": "2026-11-03",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "high"
+    },
+    "hash": "53f89fc1fc036a0581f2d5bc367b1750ac0ff7b44b01e7191637bff795b94af1",
+    "id": "ddf33279-0c10-4ee7-8ce7-0080234f064d",
+    "name": "UAT October fixed reserve decision",
+    "pageSize": 50,
+    "pages": {
+      "availability": 1,
+      "capacity": 1,
+      "changes": 1,
+      "targets": 1,
+      "timeline": 1,
+      "unallocated": 0
+    },
+    "planName": "[harness-test] UAT 20260906 October release decisions",
+    "plannedFinish": "2026-10-30",
+    "sourceVersion": 11,
+    "span": {
+      "finish": "2026-10-30",
+      "start": "2026-10-05"
+    },
+    "takenAt": "2026-09-06T20:00:36.261Z",
+    "uncertainty": "high",
+    "workingChangeCount": 0
+  },
+  "error": null,
+  "begin": {
+    "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+    "name": "UAT October fixed reserve decision",
+    "inputHash": "523e51b1c38d432d6ae6c2fcc7bedfb0cd23ca3826ea7855540beafb89161ae5",
+    "at": 1788724835518
+  },
+  "events": [
+    {
+      "type": "request",
+      "key": "captureSponsorReport",
+      "jobId": null,
+      "expectedCheckpoint": null,
+      "at": 1788724835518
+    },
+    {
+      "type": "response",
+      "key": "captureSponsorReport",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 0,
+        "state": "active",
+        "stageLabel": "Checking the plan",
+        "completedUnits": 0,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724836751,
+      "elapsedMs": 1233
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 0,
+      "at": 1788724836752
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724838256,
+      "elapsedMs": 1504
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 1,
+      "at": 1788724838256
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 2,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 2,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724839552,
+      "elapsedMs": 1296
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 2,
+      "at": 1788724839552
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 3,
+        "state": "active",
+        "stageLabel": "Retaining the captured schedule",
+        "completedUnits": 3,
+        "totalUnits": 17,
+        "cleanupDone": false,
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724840803,
+      "elapsedMs": 1251
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 3,
+      "at": 1788724840803
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 4,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 4,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724841808,
+      "elapsedMs": 1005
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 4,
+      "at": 1788724841808
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 5,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 5,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724842926,
+      "elapsedMs": 1118
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 5,
+      "at": 1788724842927
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 6,
+        "state": "active",
+        "stageLabel": "Calculating the forecast",
+        "completedUnits": 6,
+        "totalUnits": 19,
+        "cleanupDone": false,
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724844019,
+      "elapsedMs": 1092
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 6,
+      "at": 1788724844020
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 7,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 7,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 0,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724845418,
+      "elapsedMs": 1398
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 7,
+      "at": 1788724845418
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 8,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 8,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 25,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724846629,
+      "elapsedMs": 1211
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 8,
+      "at": 1788724846630
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 9,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 9,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 50,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724847908,
+      "elapsedMs": 1278
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 9,
+      "at": 1788724847908
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 10,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 10,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 75,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724849190,
+      "elapsedMs": 1282
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 10,
+      "at": 1788724849190
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 11,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 11,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 100,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724850370,
+      "elapsedMs": 1180
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 11,
+      "at": 1788724850370
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 12,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 12,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 125,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724851593,
+      "elapsedMs": 1223
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 12,
+      "at": 1788724851594
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 13,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 13,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 150,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724852886,
+      "elapsedMs": 1292
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 13,
+      "at": 1788724852887
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 14,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 14,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 175,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724854248,
+      "elapsedMs": 1361
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 14,
+      "at": 1788724854248
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 15,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 15,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 200,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724855463,
+      "elapsedMs": 1215
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 15,
+      "at": 1788724855464
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 16,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 16,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 225,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724856754,
+      "elapsedMs": 1290
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 16,
+      "at": 1788724856754
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 17,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 17,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 250,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724857947,
+      "elapsedMs": 1193
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 17,
+      "at": 1788724857948
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 18,
+        "state": "active",
+        "stageLabel": "Calculating forecast runs",
+        "completedUnits": 18,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 275,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724859150,
+      "elapsedMs": 1202
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 18,
+      "at": 1788724859150
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 19,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 19,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724860651,
+      "elapsedMs": 1501
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 19,
+      "at": 1788724860651
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 20,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 20,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724861982,
+      "elapsedMs": 1331
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 20,
+      "at": 1788724861982
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 21,
+        "state": "active",
+        "stageLabel": "Combining forecast runs",
+        "completedUnits": 21,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724863487,
+      "elapsedMs": 1505
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 21,
+      "at": 1788724863487
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 22,
+        "state": "active",
+        "stageLabel": "Verifying forecast results",
+        "completedUnits": 22,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724864829,
+      "elapsedMs": 1342
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 22,
+      "at": 1788724864830
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 23,
+        "state": "active",
+        "stageLabel": "Preparing forecast results",
+        "completedUnits": 23,
+        "totalUnits": 26,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724866152,
+      "elapsedMs": 1322
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 23,
+      "at": 1788724866153
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 24,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 24,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724867338,
+      "elapsedMs": 1185
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 24,
+      "at": 1788724867338
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 25,
+        "state": "active",
+        "stageLabel": "Preparing forecast results",
+        "completedUnits": 25,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724868496,
+      "elapsedMs": 1158
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 25,
+      "at": 1788724868496
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 26,
+        "state": "active",
+        "stageLabel": "Retaining the selected baseline",
+        "completedUnits": 26,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724869802,
+      "elapsedMs": 1306
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 26,
+      "at": 1788724869802
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 27,
+        "state": "active",
+        "stageLabel": "Reading availability assumptions",
+        "completedUnits": 27,
+        "totalUnits": 27,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724871293,
+      "elapsedMs": 1491
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 27,
+      "at": 1788724871293
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 28,
+        "state": "active",
+        "stageLabel": "Reading current Jira effort",
+        "completedUnits": 28,
+        "totalUnits": 28,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724872425,
+      "elapsedMs": 1132
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 28,
+      "at": 1788724872426
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 29,
+        "state": "active",
+        "stageLabel": "Reading current Jira effort",
+        "completedUnits": 29,
+        "totalUnits": 29,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724873765,
+      "elapsedMs": 1339
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 29,
+      "at": 1788724873765
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 30,
+        "state": "active",
+        "stageLabel": "Calculating capacity",
+        "completedUnits": 30,
+        "totalUnits": 30,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724874922,
+      "elapsedMs": 1157
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 30,
+      "at": 1788724874923
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 31,
+        "state": "active",
+        "stageLabel": "Preparing the retained schedule",
+        "completedUnits": 31,
+        "totalUnits": 31,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724875904,
+      "elapsedMs": 981
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 31,
+      "at": 1788724875905
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 32,
+        "state": "active",
+        "stageLabel": "Calculating capacity",
+        "completedUnits": 32,
+        "totalUnits": 32,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724877101,
+      "elapsedMs": 1196
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 32,
+      "at": 1788724877102
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 33,
+        "state": "active",
+        "stageLabel": "Preparing the report",
+        "completedUnits": 33,
+        "totalUnits": 33,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724878402,
+      "elapsedMs": 1300
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 33,
+      "at": 1788724878402
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 34,
+        "state": "active",
+        "stageLabel": "Retaining report pages",
+        "completedUnits": 34,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724879871,
+      "elapsedMs": 1469
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 34,
+      "at": 1788724879872
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 35,
+        "state": "active",
+        "stageLabel": "Retaining report pages",
+        "completedUnits": 35,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724881298,
+      "elapsedMs": 1426
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 35,
+      "at": 1788724881298
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 36,
+        "state": "active",
+        "stageLabel": "Checking for plan changes",
+        "completedUnits": 36,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724882664,
+      "elapsedMs": 1366
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 36,
+      "at": 1788724882664
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 37,
+        "state": "active",
+        "stageLabel": "Confirming the plan is unchanged",
+        "completedUnits": 37,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724884004,
+      "elapsedMs": 1340
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 37,
+      "at": 1788724884004
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 38,
+        "state": "active",
+        "stageLabel": "Recording capture provenance",
+        "completedUnits": 38,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724885407,
+      "elapsedMs": 1403
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 38,
+      "at": 1788724885408
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 39,
+        "state": "active",
+        "stageLabel": "Checking every report page",
+        "completedUnits": 39,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724886865,
+      "elapsedMs": 1457
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 39,
+      "at": 1788724886866
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 40,
+        "state": "active",
+        "stageLabel": "Checking the retained schedule",
+        "completedUnits": 40,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724888068,
+      "elapsedMs": 1202
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 40,
+      "at": 1788724888068
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 41,
+        "state": "active",
+        "stageLabel": "Checking the retained baseline",
+        "completedUnits": 41,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724889309,
+      "elapsedMs": 1241
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 41,
+      "at": 1788724889310
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 42,
+        "state": "active",
+        "stageLabel": "Publishing the verified report",
+        "completedUnits": 42,
+        "totalUnits": 42,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724890528,
+      "elapsedMs": 1218
+    },
+    {
+      "type": "request",
+      "key": "advanceSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": 42,
+      "at": 1788724890528
+    },
+    {
+      "type": "response",
+      "key": "advanceSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 43,
+        "state": "complete",
+        "stageLabel": "Report ready",
+        "completedUnits": 43,
+        "totalUnits": 43,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724892265,
+      "elapsedMs": 1737
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724892266
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 44,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 44,
+        "totalUnits": 44,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724893467,
+      "elapsedMs": 1201
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724893467
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 45,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 45,
+        "totalUnits": 45,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724894529,
+      "elapsedMs": 1062
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724894529
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 46,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 46,
+        "totalUnits": 46,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724895569,
+      "elapsedMs": 1040
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724895569
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 47,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 47,
+        "totalUnits": 47,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724896551,
+      "elapsedMs": 982
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724896552
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 48,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 48,
+        "totalUnits": 48,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724897567,
+      "elapsedMs": 1015
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724897567
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 49,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 49,
+        "totalUnits": 49,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724898518,
+      "elapsedMs": 951
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724898518
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 50,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 50,
+        "totalUnits": 50,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724899547,
+      "elapsedMs": 1029
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724899547
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 51,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 51,
+        "totalUnits": 51,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724900519,
+      "elapsedMs": 972
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724900519
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 52,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 52,
+        "totalUnits": 52,
+        "cleanupDone": false,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724901542,
+      "elapsedMs": 1023
+    },
+    {
+      "type": "request",
+      "key": "cancelSponsorReportCapture",
+      "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+      "expectedCheckpoint": null,
+      "at": 1788724901543
+    },
+    {
+      "type": "response",
+      "key": "cancelSponsorReportCapture",
+      "job": {
+        "id": "942324b9-7e57-445b-b673-38da9bff329d",
+        "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+        "name": "UAT October fixed reserve decision",
+        "createdAt": "2026-09-06T20:00:36.604Z",
+        "expiresAt": "2026-09-07T20:00:36.604Z",
+        "checkpoint": 53,
+        "state": "complete",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 53,
+        "totalUnits": 53,
+        "cleanupDone": true,
+        "forecastRuns": {
+          "completed": 300,
+          "total": 300
+        },
+        "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+      },
+      "at": 1788724902484,
+      "elapsedMs": 941
+    }
+  ]
+}

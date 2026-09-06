@@ -1,0 +1,32 @@
+{
+  "status": "terminal",
+  "supervisorPid": 44027,
+  "supervisorStart": "Sun Sep  6 23:22:08 2026",
+  "startedAt": "2026-09-06T20:22:08.465111+00:00",
+  "actualHarnessCommit": "961984992620fc45736691b185c582ae121496e2",
+  "instrumentHash": "39c54a7271668d278a1ab214b7401efe33b3cd14efae880d81f20266269d5f19",
+  "rootDispatchCommit": "b6317a9c6f6c66aa9724d4d17c7b14751c725f21",
+  "commandSha256": "9880aefe26833ec6a71b14f51916b35a170de806672196f2cdbdf710dcccbd24",
+  "childPid": 44041,
+  "childStart": "Sun Sep  6 23:22:08 2026",
+  "heartbeatAt": "2026-09-06T20:24:39.943432+00:00",
+  "finishedAt": "2026-09-06T20:24:40.454797+00:00",
+  "processResult": {
+    "exit": 1
+  },
+  "testResult": {
+    "status": "failed",
+    "ordinaryPasses": [
+      "read-only retained UAT comparison viewport proof at 1100 and 1440"
+    ],
+    "expectedDefectWitnesses": [],
+    "reasons": [
+      "Playwright exit 1",
+      "Playwright top-level errors"
+    ],
+    "testCount": 1,
+    "process": {
+      "exit": 1
+    }
+  }
+}

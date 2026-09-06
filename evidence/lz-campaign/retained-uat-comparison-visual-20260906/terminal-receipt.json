@@ -1,0 +1,83 @@
+{
+  "schema": "uat-comparison-visual-terminal-v1",
+  "status": "closed",
+  "checkedAt": "2026-09-06T20:26:32.139286+00:00",
+  "observedPids": [
+    44027,
+    44041,
+    44069
+  ],
+  "alivePids": [],
+  "process": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/process.json",
+    "sha256": "74595cb7c87575d0713ddc96da68f0b2f87458bdc4a09ab4d8986c3698fa8745",
+    "bytes": 1008
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/command.json",
+    "sha256": "9880aefe26833ec6a71b14f51916b35a170de806672196f2cdbdf710dcccbd24",
+    "bytes": 2242
+  },
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/launch.json",
+    "sha256": "5d43ccab08e58cad5be8f262a182bc08cbef707801874ca077ef5dd886685a44",
+    "bytes": 392
+  },
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts/scenarios-lz-ppm-campaign--22754-port-proof-at-1100-and-1440-chromium/comparison-visual.json",
+    "sha256": "5a63899350467cb4cadd0463d75b6104cebf6bc3fc7a99524786a64cd6fdd05f",
+    "bytes": 344919
+  },
+  "report": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/report.json",
+    "sha256": "b8663b01142680f058e764f9d9baed9dc9ed1acb3624bf98034987fe162572bd",
+    "bytes": 5727
+  },
+  "departure": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts/scenarios-lz-ppm-campaign--22754-port-proof-at-1100-and-1440-chromium/report-departure.json",
+    "sha256": "9a61f620072b61296e0403fbe28aecfc1f1b0e76517039404c4a70fd71c4ed83",
+    "bytes": 22480
+  },
+  "outcome": "test-body-passed-worker-teardown-failed",
+  "failure": "Fixture sharedContext timeout of120000ms during teardown",
+  "images": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts/scenarios-lz-ppm-campaign--22754-port-proof-at-1100-and-1440-chromium/comparison-1100-changes.png",
+      "sha256": "c7559e697edd3a075f861a8f1647fc0bb2783e70ea6def6cec2d17088942467e",
+      "bytes": 213887
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts/scenarios-lz-ppm-campaign--22754-port-proof-at-1100-and-1440-chromium/comparison-1100-forecast.png",
+      "sha256": "cb078029301f3e6097b3400c00cee331d1d8c7744621821a2f474c62cdb295fa",
+      "bytes": 210699
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts/scenarios-lz-ppm-campaign--22754-port-proof-at-1100-and-1440-chromium/comparison-1100-overview.png",
+      "sha256": "0db701de370474472853fe87c5add254f812d1970fee9f6901f08cd5fbbeb22c",
+      "bytes": 210209
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts/scenarios-lz-ppm-campaign--22754-port-proof-at-1100-and-1440-chromium/comparison-1440-changes.png",
+      "sha256": "126e37065ef370e40e61f7320a084b164df551f0b7139ec117fea8b4d8cf12d1",
+      "bytes": 232305
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts/scenarios-lz-ppm-campaign--22754-port-proof-at-1100-and-1440-chromium/comparison-1440-forecast.png",
+      "sha256": "02139320576c292b8c2ded58dbc7cefcd201a003de7248ec344c4876b91f0acd",
+      "bytes": 225723
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-comparison-visual-20260906/artifacts/scenarios-lz-ppm-campaign--22754-port-proof-at-1100-and-1440-chromium/comparison-1440-overview.png",
+      "sha256": "24bddb324e5a2bddc575a90f901ca7a840de4d5aeb5b257b9381fc01dec2be67",
+      "bytes": 253441
+    }
+  ],
+  "imagesPersonallyViewed": 6,
+  "comparisonSubjectsReadable": true,
+  "separateProductFinding": "At1100 viewport long plan title overlaps centered tabs; not corrected in this witness.",
+  "readCount": 31,
+  "requestCount": 25,
+  "retainedContent": true,
+  "rawTraceLocalOnly": true,
+  "noRetry": true
+}

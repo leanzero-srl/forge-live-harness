@@ -1,0 +1,575 @@
+{
+  "job": {
+    "id": "942324b9-7e57-445b-b673-38da9bff329d",
+    "requestId": "bdc83d52-e6a7-40b5-9956-740ff6bdd30a",
+    "name": "UAT October fixed reserve decision",
+    "createdAt": "2026-09-06T20:00:36.604Z",
+    "expiresAt": "2026-09-07T20:00:36.604Z",
+    "checkpoint": 53,
+    "state": "complete",
+    "stageLabel": "Cleaning up temporary data",
+    "completedUnits": 53,
+    "totalUnits": 53,
+    "cleanupDone": true,
+    "forecastRuns": {
+      "completed": 300,
+      "total": 300
+    },
+    "reportId": "ddf33279-0c10-4ee7-8ce7-0080234f064d"
+  },
+  "report": {
+    "id": "ddf33279-0c10-4ee7-8ce7-0080234f064d",
+    "hash": "53f89fc1fc036a0581f2d5bc367b1750ac0ff7b44b01e7191637bff795b94af1",
+    "name": "UAT October fixed reserve decision",
+    "planName": "[harness-test] UAT 20260906 October release decisions",
+    "takenAt": "2026-09-06T20:00:36.261Z",
+    "sourceVersion": 11,
+    "workingChangeCount": 0,
+    "calendar": {
+      "calendarName": "Standard (Mon-Fri)",
+      "holidays": [],
+      "workingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "forecast": {
+      "coverage": {
+        "datedLeaves": 3,
+        "invalidBaselines": 0,
+        "invalidDates": 0,
+        "invertedDates": 0,
+        "missingDates": 0,
+        "sampledLeaves": 2,
+        "totalLeaves": 3
+      },
+      "inputHash": "d02cf90ccc5852ef070db4aab7f700a5b49eb7bcee20089f99aee0721bb22c5b",
+      "modelVersion": "duration-triangular-fs-v1",
+      "onPlannedFinish": 0.44333333333333336,
+      "p50": "2026-11-02",
+      "p80": "2026-11-02",
+      "p90": "2026-11-03",
+      "reason": null,
+      "runs": 300,
+      "seed": 42,
+      "state": "available",
+      "uncertainty": "high"
+    },
+    "capacity": {
+      "asOfDate": "2026-09-06",
+      "assumptions": "This captured plan only, not the selected portfolio. Remaining Jira effort is spread over its remaining working dates; personal leave reduces capacity, not demand. The author explicitly included these saved availability assumptions in this shared report. No tasks are moved.",
+      "coverage": {
+        "completedIssues": 0,
+        "conflictingIssues": 0,
+        "missingEffort": 0,
+        "selectedPlans": 1,
+        "sharedDuplicatesRemoved": 0,
+        "unallocatedIssues": 0,
+        "unassignedIssues": 0,
+        "unavailableAssignee": 0,
+        "unavailableIssueCount": 0,
+        "unavailableStatus": 0,
+        "uniqueIssues": 4
+      },
+      "endDate": "2026-10-30",
+      "inputHash": "0f2181d3740bb88a55f5dedd241aae40ceed9bc373763a5dddb45d919bafbc1a",
+      "profileVersion": 70,
+      "readAt": "2026-09-06T20:01:18.147Z",
+      "readStartedAt": "2026-09-06T20:01:12.223Z",
+      "reason": null,
+      "scope": "captured-plan",
+      "sourceVersion": 11,
+      "startDate": "2026-10-05",
+      "state": "available",
+      "totals": {
+        "allocatedHours": 15.999999999999998,
+        "knownEffortHours": 16,
+        "outsideWindowHours": 0,
+        "unallocatedHours": 0
+      }
+    },
+    "uncertainty": "high",
+    "consistency": {
+      "basisHash": "e3dda586c23d05050194d7cde034775e385c5f747272f1f708620effe36144e3",
+      "method": "two-matching-reads",
+      "observedAt": "2026-09-06T20:00:39.389Z",
+      "verifiedAfterAnalysisAt": "2026-09-06T20:01:25.257Z"
+    },
+    "baseline": {
+      "coverageNote": null,
+      "hash": "633e62c7957e89bc8bdf2381c33f4e08ddb228fd50012550a42410fc3c72e975",
+      "id": "ddf33279-0c10-4ee7-8ce7-0080234f064d",
+      "issueCount": 4,
+      "name": "UAT 00 Original baseline",
+      "sourceSnapshotId": "48fcd38f-26e8-4490-ae7e-9ba3248226fd",
+      "takenAt": "2026-09-06T19:59:21.185Z"
+    },
+    "counts": {
+      "timeline": 4,
+      "targets": 1,
+      "changes": 1,
+      "capacity": 4,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "pages": {
+      "timeline": 1,
+      "targets": 1,
+      "changes": 1,
+      "capacity": 1,
+      "availability": 1,
+      "unallocated": 0
+    },
+    "document": {
+      "availability": {
+        "hashes": [
+          "a4280204d6b9f6deb4ada3d465aeb28c52157e1e0310b2e24c57764522c0854e"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "capacity": {
+        "hashes": [
+          "6565d49bc29b9fa3b7203d4b04d4dac7bb518e1197232663920ebb620493c23c"
+        ],
+        "sizes": [
+          4
+        ],
+        "total": 4
+      },
+      "changes": {
+        "hashes": [
+          "b300929cf47ecfc2bd508af2ed43b20c4694db2282d61c7d761ceedb39ea76ee"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "targets": {
+        "hashes": [
+          "fadf5bf36632844f81cc3d57af6e8c22f03d4e04460fc296260d3eacac661af6"
+        ],
+        "sizes": [
+          1
+        ],
+        "total": 1
+      },
+      "timeline": {
+        "hashes": [
+          "5e6c870ac594a4ad74d02641c8ddb443a15a22d6b0a95bac6b259910002ff512"
+        ],
+        "sizes": [
+          4
+        ],
+        "total": 4
+      },
+      "unallocated": {
+        "hashes": [],
+        "sizes": [],
+        "total": 0
+      }
+    },
+    "pageSize": 50,
+    "coverage": {
+      "leafTasks": 3,
+      "unscheduledOrInvalidLeaves": 0,
+      "validRows": 4,
+      "unavailableRows": 0
+    },
+    "span": {
+      "start": "2026-10-05",
+      "finish": "2026-10-30"
+    },
+    "plannedFinish": "2026-10-30",
+    "changeCounts": {
+      "added": 0,
+      "removed": 0,
+      "changed": 1
+    }
+  },
+  "freshRetainedRead": true,
+  "physicalCleanup": {
+    "planId": "plan-test-mtq7hsun-koj1jf",
+    "jobId": "942324b9-7e57-445b-b673-38da9bff329d",
+    "registryMember": true,
+    "state": "complete",
+    "checkpoint": 53,
+    "cleanupDone": true,
+    "privateManifestHash": "250482daaea72f13d92ffe1c9523b7f082f6a0ea8e1de9b2a5d55e698ff1e89d",
+    "publicManifestHash": "948b1b1289c3752acdca35544533cce3d2077da1865915499d0dda05d11765e3",
+    "privateArtifacts": [
+      {
+        "keyHash": "781fda693c500e3d7ef9d1a379521fcac271ab6226bea8b13e3cce6c8fdb0e56",
+        "expectedHash": "c33c1bc441f046e12bd985c2c8b33064b2a7faf67d37e8173b36272bd3ce458e",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "77e9486ac99abc3cbbcd22dd0be3584b685cb44d5459a43ae674be5222c6895f",
+        "expectedHash": "1766656cd3b0ae14dc98fd7ab0019e6b7bab648706e32534d7da4ed9b11b6e54",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "44b0ab6226a1a93100d4852c92f31d718f3121b140a1b909809be68fde2db47c",
+        "expectedHash": "a4280204d6b9f6deb4ada3d465aeb28c52157e1e0310b2e24c57764522c0854e",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "c5e70807a84d545939a3104abb0d9598d32c2149761cb1bc0319a1543bd1a316",
+        "expectedHash": "704ea86192a74135c6183ee537ed8e61deead20bf8ced4e6dae9365aa1bd6cfd",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "5fa125a7bc1fef9415a09e068981bffcdd04187f783bca4cd843019ecb2c96a5",
+        "expectedHash": "2def8f52c9ac874d9ffed728451bc15273ff6a05d2ca07af5cf5dc495c93f829",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "e213b0229ffa77596cdb131a50d80700aa1c84b0baf68347f456556001b98bbe",
+        "expectedHash": "5b7873654df0e63ad48fa04346c613b7a4b3ce359078c2e0957ab408d391207c",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "2f9014987b321d3b33ee5e6cc7af69d65e161f7c082217b979a2099ca0874088",
+        "expectedHash": "6565d49bc29b9fa3b7203d4b04d4dac7bb518e1197232663920ebb620493c23c",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "c8026b61869cf31572021b8beb757fba916ed2a4ebdae58a67b110ed4284bc89",
+        "expectedHash": "d65b86ffd3d3e179918ceb86be1f1b41bba044c06880339fa3f564f8e0cf865b",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "0bc4cafa83cab500eaa8b7c0d58ecdc63465fade37cecafddf90dd65c4d45116",
+        "expectedHash": "5e6c870ac594a4ad74d02641c8ddb443a15a22d6b0a95bac6b259910002ff512",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "1e252ca7c8cb569ed1128f7afae3920e3d86a493c242c029b6c15bf65e2f5c12",
+        "expectedHash": "83bdce3f827f658dd11e5b002cf454df3b0011b64871a94c5b71c01bc78ff6fc",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "6081bfe3995e0555ea0c887adc3fbed21b8a071e16dba12f30a827cae5c3f842",
+        "expectedHash": "f1a9d7f4c8268079ed19147b6bee82debd54d90c1465154716649a65d8608d14",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "7838fde5cfc185e0a602148c9fed43ab04202ced77e8e74996be8cda48906bf7",
+        "expectedHash": "5dab214bea1a69e58fef62ce3d48eb335e143f414f122b42c4814988e32f468b",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "4e2cf37de972a0b2673eaae445eb0152ceb23c24c413e65cb3ebbac63abecc6e",
+        "expectedHash": "d9c6364ec477d5cf06481e53c2f1e7840f4e126ee363462a32c39cd564805c92",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "9744440a276a31d0407afca9de388a91071f0b45269d1982e85dc6bc509589c5",
+        "expectedHash": "20de47b3c00ffff4de88d05e163b3b8f9e0f0550cf2b6a53ed6c2466d85296c4",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "3d0285d2defe46c9de10b1c46263b5822055464ae1444cd1a1bdea67a383c21e",
+        "expectedHash": "5ede4d4a3e3e73db2c8fda4f43ef0652fe28ff5a31f794b3e7533232a1de1afe",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "8cab57a7da8df59d26563f92a67f173c8b298ad022ab6f8dfb640ab3ef4ca494",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "a939ea4c137cfec5a15b565d54c5601f589f49c9ba6b8fe0dbcdfce3d3c67ca3",
+        "expectedHash": "78dfd50e70eb3744833feb548bc87ff95174925c0b5ad501848b750fb8f5a41d",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "0326816280ee026047c7dd16fdd6993a61da08b62edad1364d9536899f479b0d",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "33a9b4ee7c2e3712f2c6da58ac71f9340441c6b824ca1d7af9b7253e55daf0da",
+        "expectedHash": "9e4e2a71834b8b3f4b9e1e22c93134e0d97aacae093cea8ae935c5f2929a1e83",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "9294106d7b5a04c779854f88fe21ced2127993e792ad7c308bfbb6158e80aaec",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "34a48e81dd77838dabdfa422725eb9ac8f12f2ec3d7a18a17d1f51c71c6a00b5",
+        "expectedHash": "328050ebd0d133233fc5c28505006f5573be3dbe3731988738828af82ad7ccd5",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "68a97e04178c8a10e0b79f3d87aee47ab9151819e1f372c682b1bc138d9036c4",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "0f707ce0dab45cac031d32e3bd63dac2d568d9b41110004282f1a9e392346263",
+        "expectedHash": "fa530b00a9f58bd54dd0a9f145e7f0fe95fc546843410c045f8d1df808e57243",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "a2dcdde05d44193ce970d3ec1a4bf564f7276b33dd400706a16adf1528cf6880",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "1c86a8b2a8db036c76302123a29ec511e5ce363bc51b8527d46d2a32d0b70c72",
+        "expectedHash": "41c1a9166effd9da22078df44aa099edec50b41ea0c4867ef159dc5833f93f77",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "dda79240c3251c253fc848bae4d2c421a79f4c1d3864441c207feb4e893916bd",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "b02d0f30442ca7e8f83bbbd788bedc57a54a9f84167a422a3f27071dba4ac571",
+        "expectedHash": "5c0b91303c1c119868aa22410314f4d13d04122d145fb7b50779763630afee1a",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "ea00893ff7c2cb49e2140dffa027affd1b51631142d900c1865891ad2a34b233",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "a484c49b1919b39210f35f3416e6cc7831cf2d8d89d99141ae4809283689deb8",
+        "expectedHash": "60558328b8544e62f0e4c079456758e452d7297c687fe82fe09a6c01bedf5b5d",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "b741087e7907ba9d22cccc8dd2acd18e548609969253d67ee4de9e49706a7cd0",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "d9e05be4cc13403e4e9c98269de3a79f234c80354953cc2671fed9bda049f1f6",
+        "expectedHash": "afea202cb5e2c9039f8384ad65b55c820d57189cfb5d0ebf19f168dc4d00c589",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "4b3e05f41eef349fc605fc98773c8c47dceb9ee0fa715a561f78274e6cbaeefe",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "651abfd553c03d0314d6d22171e47f436770c095a5eee9a9571503b9dfc5dd41",
+        "expectedHash": "78f6cd2a30a265e82c8af04218796382f82ae7484ee8c3a3f8bfa6bb2a1acc90",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "e1d70cb1323b18d7b3c7c363aac6f7b9d437e1af762e86ee6d6cffac16f025ad",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "fe73c4d5e28a63edeab983bd9f7977b6ab01c0d97d434ea96e7591bd0e5895d8",
+        "expectedHash": "972660544641a5cb49bf55722d7b726b54c3be9fdd0749bcfb51c5c6b7ee9b46",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "10d1998bb17e6b131e6af23fe5ddcc6b1c954717a27e1334084c70652a832620",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "4498ad8c37bf7ca44b58825c78b776b1217e2924050eadb3b7b3718516c31727",
+        "expectedHash": "aa676a80e41d36643059dcb53ecaf8e700f5de68306e3e5d0a59b3fce9f8e5a6",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "76e3023455614c583c2529ac4db7ee64da7e5829177de1f6737575c2c33be054",
+        "expectedHash": "906cf8d6316c02706557d06a78fecdb5735ab9d6a3b8ec127d41b3690fada36f",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "310eb44759e08a38309678efab28552045853b039ca14863be82a4583b28119e",
+        "expectedHash": "5cc181980a0f4db0ff397bb9f6e911b28d8846cbc4691b987ce1bd0bc5398551",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "db6310a392d8c0199d96b7250209adad06bb17b279e179f3f6abf42fa6df6dc6",
+        "expectedHash": "5c3c6952ec329d65c9061af80e79646a368de9c44813d62cfd01c24e68367fdc",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "274e96ea863c97af46e006dc1d5d3f6c919ce1177bcba8771987dd49bb9679a6",
+        "expectedHash": "d3ff44834244444049c9c343d70a535801c36e92870088cdebd1654a806b8313",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "69484fc3e6ac125cd6621954b00a6ba3493901c65bdacd5b306f5ba592d86fda",
+        "expectedHash": "0ad0de1b3a20bd55b5a2b3f0ca9a20c8dcc11188b1dc3af72537abfc61fd855c",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "33b14363a99615f4887a509e7c8543f599d8b1a41e9d80ae030135b953442c76",
+        "expectedHash": "69841909e7ab0cb6367552852eb448292e7ef49d0b93fe7159cb7614e42105c1",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "9fb1a264de7760034525aae0736dca04e6d1040f51af23e7b3c364f44aff54fa",
+        "expectedHash": "83e20831409535f86bc51ac5a232b4b1288f83c289eb400e90b872703dccdba2",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "20eade65604a2534ca863709e94618160ec914cbc873778c5b7cca2342aa8723",
+        "expectedHash": "131b6eb7becafdeb7646ac70653f2095450b21d191a4d7d88bfa46a1c1282728",
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "06273e5ae6856af32a4e546e52f409e79dcff2a94c616cd5406265492a28d640",
+        "expectedHash": "eb6ce6119ea16ec0a2761a22eb17648f0c6ff7e60ceb72ca19b2ded3ca3708c4",
+        "present": false,
+        "actualHash": null
+      }
+    ],
+    "publicArtifacts": [
+      {
+        "keyHash": "66d9b98e6bc377366f369d0444b72376baec1ac1f9b4ae73931d02fb3b9551b1",
+        "role": "descriptor",
+        "collection": "baseline",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "c25ec8aabecb1feae3f516bcc17926375a1d0f01b5d2b36132014d8e77277fbe"
+      },
+      {
+        "keyHash": "02db9f2a2ad203d5c847c259ce4ae56d5170a2f0d75e4507df75bb297d38190e",
+        "role": "chunk",
+        "collection": "baseline",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "1766656cd3b0ae14dc98fd7ab0019e6b7bab648706e32534d7da4ed9b11b6e54"
+      },
+      {
+        "keyHash": "0d7a060e0a1569fa39eba2548fa76b304fd4151f6dcd215845b327bf72294844",
+        "role": "descriptor",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "a1bddcdefd6b29ac46504ea17dc04d8ca9457bdbcd2e63ef4757d2daff80f610"
+      },
+      {
+        "keyHash": "eb14a9ee60d3bf050fea65bbfcb2e473a7632310de61312f1439221b7b3d95fa",
+        "role": "chunk",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "5e6c870ac594a4ad74d02641c8ddb443a15a22d6b0a95bac6b259910002ff512"
+      },
+      {
+        "keyHash": "9e664619dce4fe1c09556078a847ca6bca307ca4a815537da3a28acdc2d85a5e",
+        "role": "page",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "5e6c870ac594a4ad74d02641c8ddb443a15a22d6b0a95bac6b259910002ff512"
+      },
+      {
+        "keyHash": "ae952199901a1cd631cffc56791ce2546355fc5430fb65bb2886d0744ef77ef4",
+        "role": "page",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "fadf5bf36632844f81cc3d57af6e8c22f03d4e04460fc296260d3eacac661af6"
+      },
+      {
+        "keyHash": "432db5960eb02c61ab20007424205ef01e3af059a3a690e2f297690da9566164",
+        "role": "page",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "b300929cf47ecfc2bd508af2ed43b20c4694db2282d61c7d761ceedb39ea76ee"
+      },
+      {
+        "keyHash": "bf6157019acb37b46dab8f76450b2aaf6985957641de0dcd2361448dff974dbb",
+        "role": "page",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "6565d49bc29b9fa3b7203d4b04d4dac7bb518e1197232663920ebb620493c23c"
+      },
+      {
+        "keyHash": "9a8f1225036a07e8dd6e069a0991a3e073b79312d069268df37d6eaf8a1cd8e5",
+        "role": "page",
+        "collection": "current",
+        "expectedPresent": true,
+        "present": true,
+        "actualHash": "a4280204d6b9f6deb4ada3d465aeb28c52157e1e0310b2e24c57764522c0854e"
+      },
+      {
+        "keyHash": "c6e1b876ed93ba4b716584832d97433fc62ac1fc4b3d267f14f4f9cd6a5d4153",
+        "role": "deletion-marker",
+        "collection": "current",
+        "expectedPresent": false,
+        "present": false,
+        "actualHash": null
+      },
+      {
+        "keyHash": "a60445cd83e93c7ba1e170daf750e2d7fd5d9950574769dd955d333373b936b6",
+        "role": "deletion-marker",
+        "collection": "baseline",
+        "expectedPresent": false,
+        "present": false,
+        "actualHash": null
+      }
+    ]
+  }
+}

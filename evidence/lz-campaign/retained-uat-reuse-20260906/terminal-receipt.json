@@ -1,0 +1,128 @@
+{
+  "schema": "retained-uat-reuse-terminal-v1",
+  "status": "closed",
+  "outcome": "test-passed-independent-review-pending",
+  "process": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/process.json",
+    "sha256": "9e1484958dbbeba761320e53d9dafb62aa4054b43c632fa3a4dc50ad889dcf8f",
+    "bytes": 1032
+  },
+  "journal": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/retained-uat-journal.json",
+    "sha256": "ba69c5dad8d735ee1fd2ee23adbd1befd9f1432b034e97a97fdb291f40d6adb2",
+    "bytes": 120730
+  },
+  "command": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/command.json",
+    "sha256": "3b2fb893418d6921e5545b6c011ed8f64c2dd964749482e12c51726285a61a39",
+    "bytes": 3119
+  },
+  "launch": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/launch.json",
+    "sha256": "2cfeffcaa2d1956cec8647d41ae6ca2c37bac6284dabe196049cb4c5e039b4cf",
+    "bytes": 392
+  },
+  "finalReadOnly": {
+    "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/final-readonly.json",
+    "sha256": "83ae5aba81b447c3446c8ca6899e228fa9b21e110b1b1c3fe1375fae0f91073a",
+    "bytes": 126807
+  },
+  "pidCheckedAt": "2026-09-06T20:04:25.007560+00:00",
+  "checkedPids": [
+    80646,
+    80658
+  ],
+  "alivePids": [],
+  "originalJournalSha256": "088895c999101331b39830bacc147470035faa02d52176f21f08a6fa247e6896",
+  "screenshots": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-adopted-buffer-draft.png",
+      "sha256": "2036ed8acdc6fe60f4275e06a5c85fd494295465f9c3c0f7ce6669a5cbe15970",
+      "bytes": 21987
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-assets-context.png",
+      "sha256": "c5656a73e85e0a78e7bde379b350daf3e321c2469d61a1dbf99a9dde730f866d",
+      "bytes": 50106
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-assets503-clears-old-data.png",
+      "sha256": "516290389ddce1e58813526d82200f82da1a912cf9c64c1a933f5e68ebcde7dc",
+      "bytes": 48418
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-buffer-high-preview.png",
+      "sha256": "a0c6ec8af1bb919770a3634e086c39b9768013ae26d02d5ab2f2162176bb07a9",
+      "bytes": 29659
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-comparison-1100.png",
+      "sha256": "76c9b148cfd769aedfb2c55ba9b779d98d28be374f5e6979f36d1d63ac3fca68",
+      "bytes": 89655
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-comparison-1440.png",
+      "sha256": "ca625021179f414b213035236b0cc638e37e006952ea947e8ee53b0e932f45f0",
+      "bytes": 129394
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-complete-report.png",
+      "sha256": "bb85470871d4a32c8a199bfeb35c50b4913225345dc183f224756d63de331a06",
+      "bytes": 371947
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-exact-saved-decision-comparison.png",
+      "sha256": "73f322a669dc337d2c53a4f6c85930a8a2bdefec18177d9bd949d95c0182e116",
+      "bytes": 139018
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-filtered-bulk-review.png",
+      "sha256": "e9e856a704afacea93e67455cc7bf1b97f279ff5cc4615b7926415013c8acdef",
+      "bytes": 22075
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-four-week-capacity.png",
+      "sha256": "ee0d979a177d5e61295ac9b14835abf55eaf6d5fee91327406412e43418c2717",
+      "bytes": 31399
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-gantt-context.png",
+      "sha256": "75b41086e72a212f02df2e3f04ad77a2868b7b1fd81fa531384b34e3b5adfb57",
+      "bytes": 235130
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-immutable-report-after-discard.png",
+      "sha256": "48ecca723b18b55733922b44369b733b982c9ff75cd9a29e40f80b7e67320d79",
+      "bytes": 167320
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/uat-label-unavailable-filter.png",
+      "sha256": "e863a8afa01da44c572ee7d4a2b109a71c57990ebffe54c3c8e546455a65ef32",
+      "bytes": 60539
+    }
+  ],
+  "exports": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/retained-uat-report-after-discard.html",
+      "sha256": "517b2e32c16506f22f5f3d270321afa78880b64e6c785aad2a7d9139960c5799",
+      "bytes": 10474
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/retained-uat-report.html",
+      "sha256": "517b2e32c16506f22f5f3d270321afa78880b64e6c785aad2a7d9139960c5799",
+      "bytes": 10474
+    },
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/retained-uat-report.pdf",
+      "sha256": "d330542a12e1cf29f1e4e1588c4cb6388cdcff6cf8ea141b9edb07da2288a1cc",
+      "bytes": 211394
+    }
+  ],
+  "visualLimit": "Three comparison screenshots incompletely framed; separate read-only visual witness required.",
+  "rawTraceArchivesLocalOnly": [
+    {
+      "path": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-reuse-20260906/artifacts/scenarios-lz-ppm-journey-c-f9dc4-d-immutable-sponsor-handoff-chromium/trace.zip",
+      "bytes": 363630101
+    }
+  ]
+}

@@ -1,0 +1,701 @@
+[
+  {
+    "stage": "report-departure-owner",
+    "time": "2026-09-06T20:22:17.316Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "name": "[harness-test] UAT 20260906 October release decisions"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:17.324Z",
+    "value": {
+      "epoch": 0,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "owned-departure-blank",
+    "time": "2026-09-06T20:22:17.327Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "mounted": false
+    }
+  },
+  {
+    "stage": "report-document-boundary",
+    "time": "2026-09-06T20:22:17.364Z",
+    "value": {
+      "epoch": 1,
+      "reason": "main-document-request"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:17.615Z",
+    "value": {
+      "epoch": 1,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:18.301Z",
+    "value": {
+      "epoch": 1,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:18.889Z",
+    "value": {
+      "epoch": 1,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:18.890Z",
+    "value": {
+      "epoch": 1,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-boundary",
+    "time": "2026-09-06T20:22:18.966Z",
+    "value": {
+      "epoch": 2,
+      "reason": "main-document-request"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:19.124Z",
+    "value": {
+      "epoch": 2,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-boundary",
+    "time": "2026-09-06T20:22:20.052Z",
+    "value": {
+      "epoch": 3,
+      "reason": "app-document-request"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:20.065Z",
+    "value": {
+      "epoch": 3,
+      "scope": "app",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:21.162Z",
+    "value": {
+      "requestId": 1,
+      "key": "listPlans",
+      "planId": null,
+      "requestedAtMs": 1788726140328,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726140328,
+      "completedAtMs": 1788726141162,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:22.232Z",
+    "value": {
+      "requestId": 3,
+      "key": "getPlan",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726141357,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726141357,
+      "completedAtMs": 1788726142232,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T20:22:22.272Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 10,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:22.757Z",
+    "value": {
+      "requestId": 4,
+      "key": "getBaseline",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726141358,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726141358,
+      "completedAtMs": 1788726142757,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:22.759Z",
+    "value": {
+      "requestId": 7,
+      "key": "getPlanCalendar",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726142237,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726142237,
+      "completedAtMs": 1788726142759,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:23.283Z",
+    "value": {
+      "requestId": 11,
+      "key": "getNotifications",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726142245,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726142245,
+      "completedAtMs": 1788726143283,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:23.807Z",
+    "value": {
+      "requestId": 2,
+      "key": "checkUserRole",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726141354,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726141354,
+      "completedAtMs": 1788726143807,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:24.332Z",
+    "value": {
+      "requestId": 5,
+      "key": "getWritability",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726141359,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726141359,
+      "completedAtMs": 1788726144332,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:24.333Z",
+    "value": {
+      "requestId": 6,
+      "key": "getAllIssues",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726142234,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726142234,
+      "completedAtMs": 1788726144333,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:24.333Z",
+    "value": {
+      "requestId": 13,
+      "key": "getAssetsFields",
+      "planId": null,
+      "requestedAtMs": 1788726143809,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726143809,
+      "completedAtMs": 1788726144333,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:24.352Z",
+    "value": {
+      "requestId": 8,
+      "key": "getNotifications",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726142240,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726142240,
+      "completedAtMs": 1788726144352,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:24.388Z",
+    "value": {
+      "requestId": 12,
+      "key": "getNotifications",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726142247,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726142247,
+      "completedAtMs": 1788726144388,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:24.851Z",
+    "value": {
+      "requestId": 9,
+      "key": "getWritability",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726142242,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726142242,
+      "completedAtMs": 1788726144851,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:24.853Z",
+    "value": {
+      "requestId": 15,
+      "key": "getDraft",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726144359,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726144359,
+      "completedAtMs": 1788726144853,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:24.858Z",
+    "value": {
+      "requestId": 10,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726142243,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726142243,
+      "completedAtMs": 1788726144851,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "a5907e3510842ef5b3dbcb9d9322b6d49d5b88028943631fdd01f1f1f4e23791",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"displayName\":\"Mihai Perdum\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"view\":\"gantt\",\"ts\":1788726144466}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":98,\"rateLimitReset\":1788726142,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "dcc9c01708c9a8c436d7c643921b72eaf13e6bf3c9728c4efacfcada4d4ceb18",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "displayName": "Mihai Perdum",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "view": "gantt",
+            "ts": 1788726144466
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T20:22:25.239Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 18,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:25.377Z",
+    "value": {
+      "requestId": 16,
+      "key": "getPresence",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726144852,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726144852,
+      "completedAtMs": 1788726145377,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:25.378Z",
+    "value": {
+      "requestId": 14,
+      "key": "getPlanAssets",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726144357,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726144357,
+      "completedAtMs": 1788726145378,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:25.904Z",
+    "value": {
+      "requestId": 17,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726145225,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726145225,
+      "completedAtMs": 1788726145904,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:26.434Z",
+    "value": {
+      "requestId": 18,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726145227,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726145227,
+      "completedAtMs": 1788726146429,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "4db575555ca2f7368be1bf8517865325b4c8b353682242e549967b38ab388220",
+      "responseBytes": 2631,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788726145777,\"view\":\"table\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":98,\"rateLimitReset\":1788726145,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "1464d5235c686f4a50e2988a28ba36b34776b9f15c20bc6070d130910ca43ca1",
+      "retainedResponseBytes": 588,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788726145777,
+            "view": "table"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:29.573Z",
+    "value": {
+      "epoch": 3,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "report-document-capture",
+    "time": "2026-09-06T20:22:30.346Z",
+    "value": {
+      "epoch": 3,
+      "requestId": 21,
+      "uniqueAppFrame": true,
+      "requestEpoch": 3,
+      "valid": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:30.957Z",
+    "value": {
+      "requestId": 20,
+      "key": "listSnapshots",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726150332,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726150332,
+      "completedAtMs": 1788726150957,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:30.957Z",
+    "value": {
+      "requestId": 19,
+      "key": "getPlanVersion",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726150328,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726150328,
+      "completedAtMs": 1788726150957,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:31.320Z",
+    "value": {
+      "requestId": 21,
+      "key": "presenceBeat",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726150333,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726150333,
+      "completedAtMs": 1788726151316,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "e9c09ad5f093841dc2d4146dbde4d01c5955afaf948df8508cc7524710401149",
+      "responseBytes": 2634,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"roster\":{\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\":{\"accountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\",\"avatarUrl\":\"https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24\",\"displayName\":\"Mihai Perdum\",\"ts\":1788726150920,\"view\":\"planning\"}},\"selfAccountId\":\"712020:937bc860-eec2-4294-a65d-8e0fe7c45086\"}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788726150,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "6d052afa8e8b349e0918a2c8427e0fc34128ab8153871b10de79901697ab0eab",
+      "retainedResponseBytes": 591,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "roster": {
+          "712020:937bc860-eec2-4294-a65d-8e0fe7c45086": {
+            "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+            "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "displayName": "Mihai Perdum",
+            "ts": 1788726150920,
+            "view": "planning"
+          }
+        },
+        "selfAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "documentEpoch": 3,
+      "currentDocument": true
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:31.689Z",
+    "value": {
+      "requestId": 22,
+      "key": "getSnapshot",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726151215,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726151215,
+      "completedAtMs": 1788726151689,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:32.277Z",
+    "value": {
+      "requestId": 23,
+      "key": "getSnapshot",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726151770,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726151770,
+      "completedAtMs": 1788726152277,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-admission",
+    "time": "2026-09-06T20:22:38.925Z",
+    "value": {
+      "phase": "presence-document-admission",
+      "nextId": 23,
+      "documentEpoch": 3,
+      "beatRequestId": 21,
+      "checks": {
+        "sameFrame": true,
+        "currentDocument": true,
+        "exactOwner": true,
+        "finished": true,
+        "http200": true,
+        "outerSuccess": true,
+        "errorsEmpty": true,
+        "exactPrincipal": true
+      }
+    }
+  },
+  {
+    "stage": "owned-departure-before-back",
+    "time": "2026-09-06T20:22:38.925Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "armedAtMs": 1788726158925
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:39.770Z",
+    "value": {
+      "requestId": 25,
+      "key": "listPlans",
+      "planId": null,
+      "requestedAtMs": 1788726158970,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726158970,
+      "completedAtMs": 1788726159770,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed"
+    }
+  },
+  {
+    "stage": "report-departure-request-terminal",
+    "time": "2026-09-06T20:22:39.867Z",
+    "value": {
+      "requestId": 24,
+      "key": "presenceLeave",
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestedAtMs": 1788726158968,
+      "ownerAtRequest": "plan-test-mtq7hsun-koj1jf",
+      "dispatchedAtMs": 1788726158968,
+      "completedAtMs": 1788726159866,
+      "state": "finished",
+      "dispatchTiming": "request-event-observed",
+      "httpStatus": 200,
+      "rawEncoding": "forge-response-context-token-redacted-v1",
+      "responseSha256": "5fa46ccaf07189a4574b31cdb5c980c503214ef3557909ebcef0d0d7110a4472",
+      "responseBytes": 2236,
+      "raw": "{\"data\":{\"invokeExtension\":{\"success\":true,\"response\":{\"body\":{\"success\":true}},\"rateLimitProperties\":{\"rateLimitRemaining\":99,\"rateLimitReset\":1788726159,\"rateLimitValue\":300},\"errors\":null}}}",
+      "retainedResponseSha256": "8fbeba8b4532aaf204d1ebddec9a223eb26fe1c9d2b23b8f9a3520f60b3a550a",
+      "retainedResponseBytes": 193,
+      "outerSuccess": true,
+      "errors": null,
+      "body": {
+        "success": true
+      }
+    }
+  },
+  {
+    "stage": "owned-departure-leave-observed",
+    "time": "2026-09-06T20:22:39.868Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestId": 24,
+      "armedAtMs": 1788726158925,
+      "requestedAtMs": 1788726158968,
+      "dispatchedAtMs": 1788726158968,
+      "completedAtMs": 1788726159866
+    }
+  },
+  {
+    "stage": "owned-departure-all-leaves",
+    "time": "2026-09-06T20:22:39.876Z",
+    "value": [
+      24
+    ]
+  },
+  {
+    "stage": "owned-departure-unmounted",
+    "time": "2026-09-06T20:22:39.877Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "requestId": 24
+    }
+  },
+  {
+    "stage": "report-document-boundary",
+    "time": "2026-09-06T20:22:39.884Z",
+    "value": {
+      "epoch": 4,
+      "reason": "app-frame-detached"
+    }
+  },
+  {
+    "stage": "report-document-navigation-observed",
+    "time": "2026-09-06T20:22:39.884Z",
+    "value": {
+      "epoch": 4,
+      "scope": "host",
+      "invalidated": false
+    }
+  },
+  {
+    "stage": "owned-departure-postblank-leaves",
+    "time": "2026-09-06T20:22:39.889Z",
+    "value": [
+      24
+    ]
+  },
+  {
+    "stage": "owned-departure-blank",
+    "time": "2026-09-06T20:22:39.890Z",
+    "value": {
+      "planId": "plan-test-mtq7hsun-koj1jf",
+      "mounted": true
+    }
+  },
+  {
+    "stage": "report-departure-disposed",
+    "time": "2026-09-06T20:22:42.891Z",
+    "value": {
+      "owner": {
+        "planId": "plan-test-mtq7hsun-koj1jf",
+        "name": "[harness-test] UAT 20260906 October release decisions"
+      },
+      "receipts": 25
+    }
+  }
+]

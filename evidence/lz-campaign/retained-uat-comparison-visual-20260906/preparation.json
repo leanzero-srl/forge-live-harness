@@ -1,0 +1,11 @@
+{
+  "preparedAt": "2026-09-06T20:20:10.002421+00:00",
+  "unchangedPriorTrackedFiles": 4695,
+  "sourceCommit": "b483f468a638318f83d11c6d82c4cc8a8f8de8f3",
+  "instrumentHash": "39c54a7271668d278a1ab214b7401efe33b3cd14efae880d81f20266269d5f19",
+  "commandSha256": "41e8158779952864669f3727aa7030906492564a5edb12ff88a4d4acc9532c75",
+  "supervisorSha256": "32dd4a1d931dfb115ea3a5ba3d26cb8a7fe3e6ef08cc94bce5305cb30960ff69",
+  "controls": 8,
+  "discovery": 1,
+  "liveStarted": false
+}

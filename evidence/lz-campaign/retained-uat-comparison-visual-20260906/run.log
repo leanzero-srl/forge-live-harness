@@ -1,0 +1,29 @@
+
+Running 1 test using 1 worker
+
+
+(node:44069) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/1] [chromium] › scenarios/lz-ppm/campaign-uat-comparison-visual.spec.ts:5:1 › read-only retained UAT comparison viewport proof at 1100 and 1440
+[chromium] › scenarios/lz-ppm/campaign-uat-comparison-visual.spec.ts:5:1 › read-only retained UAT comparison viewport proof at 1100 and 1440
+HARNESS_BROWSER_RECEIPT {"mode":"portable-chrome152","browserVersion":"152.0.7977.76","principalSha256":"b4cb5211a5e4d44c9f3a6bc909588c2fe62162358d4b0c04da52aa6977433769","uiVersion":"4.58.588","appUrl":"https://wolfaenpak.atlassian.net/jira/apps/087a8e18-d45a-4cb7-9d87-3e84101ac4f3/d6096af9-3082-4ee1-a05e-f8b61d766b77","executableSha256":"755178ee89130a6f1c94cc4ecb2289fe74240db3e7efe9ec69a6cfcd4b93a6ee","frameworkSha256":"bfea9981cc61dfa72d847c920f274e4e96e362954f451198d8ee1650cbefb2e6","admittedAt":"2026-09-06T20:22:12.826Z"}
+
+Fixture "sharedContext" timeout of 120000ms exceeded during teardown.
+
+Failed worker ran 1 test:
+[chromium] › scenarios/lz-ppm/campaign-uat-comparison-visual.spec.ts:5:1 › read-only retained UAT comparison viewport proof at 1100 and 1440
+
+   at fixtures/forge.ts:39
+
+  37 | }
+  38 |
+> 39 | export const test = base.extend<Fixtures, WorkerFixtures>({
+     |                          ^
+  40 |   sharedContext: [
+  41 |     // eslint-disable-next-line no-empty-pattern
+  42 |     async ({}, use) => {
+    at /Users/mihaiperdum/Projects/forge-live-harness/fixtures/forge.ts:39:26
+
+  1 passed (2.5m)
+  1 error was not a part of any test, see above for details
