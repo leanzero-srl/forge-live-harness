@@ -149,7 +149,16 @@ test("the site token opens four tools, they run as the stored administrator, and
     );
     const screenSchemeName = itss?.values?.[0]?.issueTypeScreenScheme?.name || "";
     expect(screenSchemeName, `no issue-type screen scheme on ${PROJECT} to compare against`).toBeTruthy();
-    console.log(`[truth] ${PROJECT} id=${projectId} issue-type screen scheme = "${screenSchemeName}"`);
+    // The OTHER read's object, by the numeric id these endpoints address a
+    // project by — the whole of what was wrong on 13.6.0.
+    const sec: any = await request(
+      "GET", `/rest/api/3/issuesecurityschemes/project?projectId=${projectId}`,
+    ).catch(() => null);
+    const secRows = sec?.values?.length ?? -1;
+    console.log(
+      `[truth] ${PROJECT} id=${projectId} issue-type screen scheme = "${screenSchemeName}"; ` +
+        `issuesecurityschemes/project rows = ${secRows}`,
+    );
 
     // A PROJECT THIS TEST OWNS, so the archive has somewhere safe to land.
     // Measured 6 Sep 2026: this account can create, archive, restore and delete
@@ -219,6 +228,22 @@ test("the site token opens four tools, they run as the stored administrator, and
 
     // THE STATUSES, from the app's own failure line. A 400 here is a FINDING to
     // report with its body, not a reason to stop measuring the rest.
+    // ⚠️ THE STATUS ASSERTION, which is the point of this half on 13.7.0.
+    // `[SiteToken] HTTP <n>` is printed by the credential client for every
+    // non-2xx; on 13.6.0 there was one per read, every time.
+    const siteTokenErrors = reads.win.filter((l: any) => /^\[SiteToken\] HTTP/.test(l.text));
+    console.log(
+      `[site-token] SiteToken HTTP errors this turn: ${siteTokenErrors.length}` +
+        (siteTokenErrors.length ? ` -> ${siteTokenErrors.map((l: any) => l.text).join(" | ").slice(0, 400)}` : ""),
+    );
+    expect.soft(
+      siteTokenErrors.map((l: any) => l.text),
+      `the site-token reads are still failing. On 13.6.0 both interpolated the project KEY into a ` +
+        `numeric projectId parameter and Jira answered "WFH is not a valid value. projectId must ` +
+        `be zero or a positive integer" — and the id could not be passed instead, because ` +
+        `ID_SHAPES.projectKey requires a leading letter.`,
+    ).toEqual([]);
+
     for (const [tool, calls] of [
       ["getScreenConfiguration", screenCalls],
       ["getIssueSecurityScheme", securityCalls],
@@ -324,9 +349,19 @@ test("the site token opens four tools, they run as the stored administrator, and
       // the scheme ids sitting in the same paragraph (measured on the org run).
       const revertId =
         (archYes.reply.match(/\b(rv_[a-z0-9]+_[a-z0-9]{6,})\b/) || [])[1] || null;
-      console.log(`[site-token] revertId from the archive = ${revertId}`);
-      expect.soft(revertId, `the archive reported no revertId, so "REVERSIBLE for 30 days" in the ` +
-        `tool's own description points at nothing:\n${archYes.reply.slice(0, 900)}`).toBeTruthy();
+      console.log(`[site-token] revertId stated in the reply = ${revertId}`);
+      // ⚠️ STATED IN THE REPLY, not merely recorded. Measured on 13.6.0: the
+      // archive landed, the model said "I have the record needed to restore
+      // it" — and gave no id. The changes card's own instruction is "Ask the
+      // Organisation Administrator assistant: undo change {id}", so an undo the
+      // user is told about but cannot address is not an undo. 13.7.0 puts
+      // "STATE THIS UNDO ID IN THE REPLY, exactly: rv_…" in the tool result.
+      expect.soft(
+        revertId,
+        `the archive did not STATE its undo id. The tool's description promises "REVERSIBLE for ` +
+          `30 days" and the settings card tells an administrator to ask for "undo change {id}" — ` +
+          `an id that never appears in the conversation:\n${archYes.reply.slice(0, 900)}`,
+      ).toBeTruthy();
       findings.push(`archiveProject yes: archived=${afterYes.archived} revertId=${revertId}`);
 
       if (revertId && afterYes.archived === true) {
@@ -334,11 +369,16 @@ test("the site token opens four tools, they run as the stored administrator, and
         const undo = await turnQ("archive-undo", `Undo change ${revertId}.`);
         const afterUndo: any = await request("GET", `/rest/api/3/project/${throwaway}`);
         console.log(`[site-token] after the undo, ${throwaway}.archived = ${afterUndo.archived}`);
+        const claimedDrift = /changed since|drift|no longer matches|someone else/i.test(undo.reply);
         expect.soft(
           afterUndo.archived === true,
-          `the undo did not restore ${throwaway}. If the reply reports DRIFT on a project ` +
-            `nothing else touched, that is the ledger comparing against the wrong snapshot.\n` +
-            `${undo.reply.slice(0, 900)}`,
+          `the undo did not restore ${throwaway} — Jira still reports archived=${afterUndo.archived}.` +
+            `${claimedDrift ? " It reported DRIFT on a project nothing else touched, which is the " +
+              "ledger comparing against the wrong snapshot." : ""}\n${undo.reply.slice(0, 900)}`,
+        ).toBe(false);
+        expect.soft(
+          claimedDrift,
+          `the undo complained about drift on an object nothing else touched:\n${undo.reply.slice(0, 600)}`,
         ).toBe(false);
         findings.push(`archiveProject undo: archived=${afterUndo.archived}`);
       }

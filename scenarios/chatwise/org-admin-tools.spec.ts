@@ -47,12 +47,20 @@ import {
 // eslint-disable-next-line
 import { request } from "../../data/jira.mjs";
 
+/** The harness account, resolved once — the lockout case is about THIS id. */
+const CALLER_ID = process.env.CHATWISE_CALLER_ID || "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
+
 const T = getTarget("chatwise-admin");
 const CHAT = getTarget("chatwise-global");
 const GAP_MS = Number(process.env.CHATWISE_TURN_GAP_MS || 240_000);
 const QUOTA_WAIT_MS = Number(process.env.CHATWISE_QUOTA_WAIT_MS || 960_000);
 
 /** The reason every write case below carries, so it is one string and not six. */
+/** The rows of a v2 directory groups answer, whatever it is wrapped in. */
+function realGroupsOf(res: any): any[] {
+  return (res?.body?.data || []) as any[];
+}
+
 /** Executed, not merely reached for — `executor.js` prints both on one prefix. */
 function called(win: any[], tool: string) {
   return win.filter(
@@ -165,6 +173,21 @@ test("the organisation reads return what the organisation actually contains", as
     const realGroups = (dirGroups.body?.data || []) as any[];
     const v1Users = await org("/v1/orgs/{org}/users?limit=50");
     const v1UserCount = (v1Users.body?.data || []).length;
+    // The group whose membership is a KNOWN, SMALL, non-trivial number — the
+    // one 13.6.0 answered "15" for (the whole directory) and Jira says three.
+    const siteAdmins = realGroupsOf(dirGroups).find((g: any) => g.name === "site-admins");
+    const saTruth = siteAdmins
+      ? await org(`/v2/orgs/{org}/directories/${directoryId}/users?groupIds=${siteAdmins.id}&limit=100`)
+      : { status: 0, body: null };
+    const saMembers = ((saTruth.body?.data || []) as any[]).map((u: any) => String(u.name));
+    const meTruth = await org(`/v2/orgs/{org}/directories/${directoryId}/users/${CALLER_ID}`);
+    const myRoles: string[] = Array.isArray(meTruth.body?.data?.platformRoles)
+      ? meTruth.body.data.platformRoles.map(String)
+      : [];
+    console.log(
+      `[truth] site-admins members (groupIds=) = ${saMembers.length}: ${saMembers.join(", ")} | ` +
+        `caller platformRoles = ${myRoles.join(", ") || "(none)"}`,
+    );
     const policies = await org("/v1/orgs/{org}/policies");
     const realPolicies = (policies.body?.data || []) as any[];
     const events = await org("/v1/orgs/{org}/events?limit=50");
@@ -257,6 +280,15 @@ test("the organisation reads return what the organisation actually contains", as
         `${t1.reply.slice(0, 1200)}`,
     ).toBeGreaterThan(0);
 
+    // THE COUNT ITSELF. 13.6.0 read `/admin/v1/orgs/{o}/users`, which answers
+    // 200 with an EMPTY array on this organisation; 13.7.0 reads the v2
+    // directory, which is where the 15 people actually are.
+    expect.soft(
+      t1.reply,
+      `the reply does not carry the real number of people in the directory (${realUsers.length}). ` +
+        `On 13.6.0 it said "0 accounts".\n${t1.reply.slice(0, 900)}`,
+    ).toContain(String(realUsers.length));
+
     // ---- 2. GROUPS + MEMBERS ----------------------------------------------
     await page.waitForTimeout(GAP_MS);
     // A group the directory really has, chosen from ground truth so the ask
@@ -265,7 +297,9 @@ test("the organisation reads return what the organisation actually contains", as
     const t2 = await turnQ(
       "org-groups-members",
       `List this organisation's groups and say which of them are managed by an identity ` +
-        `provider. Then list who is in the group "${probeGroup?.name}".`,
+        `provider. Then list exactly who is in the group "${probeGroup?.name}" and how many there ` +
+        `are. Also tell me what my own account ${CALLER_ID} can reach and which organisation ` +
+        `roles it holds.`,
     );
     if (!QUOTA_BUBBLE.test(t2.reply)) {
       expect.soft(
@@ -284,8 +318,13 @@ test("the organisation reads return what the organisation actually contains", as
       // MEMBERSHIP, against the read that actually answers on this API: the
       // directory's user list FILTERED BY GROUP. Four other membership paths
       // 404 here, which is why the app moved to this one.
+      // ⚠️ `groupIds`, PLURAL. Measured 6 Sep 2026: the singular `groupId=` is
+      // accepted and SILENTLY IGNORED — it returned all 15 directory users for
+      // an empty group, for no filter, for an all-zeros UUID and for
+      // site-admins. `groupIds=` honours it: 3 for site-admins, 0 for the
+      // all-zeros id. A harness on the singular form agrees with a broken tool.
       const memberTruth = await org(
-        `/v2/orgs/{org}/directories/${directoryId}/users?groupId=${encodeURIComponent(probeGroup?.id)}&limit=50`,
+        `/v2/orgs/{org}/directories/${directoryId}/users?groupIds=${encodeURIComponent(probeGroup?.id)}&limit=100`,
       );
       const realMembers = (memberTruth.body?.data || []) as any[];
       console.log(
@@ -295,6 +334,26 @@ test("the organisation reads return what the organisation actually contains", as
       const membersCalled = called(t2.win, "getOrgGroupMembers").length;
       if (!membersCalled) {
         findings.push(`getOrgGroupMembers was not called for an explicit "who is in group X"`);
+      }
+      // THE NUMBER, not just a name. "15" for a three-person group is the
+      // defect this replaced, and one matching name would not have caught it.
+      expect.soft(
+        t2.reply,
+        `the reply does not carry the real member count of "${probeGroup?.name}" ` +
+          `(${realMembers.length}). On 13.6.0 the tool answered with the whole 15-person ` +
+          `directory for every group on the organisation.\n${t2.reply.slice(0, 1000)}`,
+      ).toContain(String(realMembers.length));
+      // getOrgUserAccess must now carry the ORG ROLES, not only product access.
+      const roleCalls = called(t2.win, "getOrgUserAccess").length;
+      console.log(`[org] getOrgUserAccess called ${roleCalls}x; truth roles = ${myRoles.join(", ")}`);
+      if (roleCalls && myRoles.length) {
+        const shown = myRoles.filter((r) => t2.reply.includes(r) || t2.reply.includes(r.split("/").pop() || r));
+        expect.soft(
+          shown.length,
+          `the reply names none of the caller's real organisation roles (${myRoles.join(", ")}). ` +
+            `last-active-dates carries product access and NOTHING about roles, which is why a ` +
+            `second read of the directory user was added.\n${t2.reply.slice(0, 1000)}`,
+        ).toBeGreaterThan(0);
       }
       if (realMembers.length > 0) {
         const named = realMembers.filter((m: any) => m.name && t2.reply.includes(String(m.name))).length;
@@ -554,6 +613,14 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     return ((r?.values || []) as any[]).map((u: any) => String(u.accountId));
   }
 
+  /** The SAME question asked of the organisation API, with the plural parameter. */
+  async function orgMembersOf(gid: string, directoryId: string): Promise<string[]> {
+    const r = await org(
+      `/v2/orgs/{org}/directories/${directoryId}/users?groupIds=${encodeURIComponent(gid)}&limit=100`,
+    );
+    return ((r.body?.data || []) as any[]).map((u: any) => String(u.accountId));
+  }
+
   try {
     // ---- GROUND TRUTH AND FIXTURES ----------------------------------------
     const dirs = await org("/v2/orgs/{org}/directories");
@@ -562,6 +629,14 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
 
     const me: any = await request("GET", "/rest/api/3/myself");
     const callerId = String(me.accountId);
+    // The caller's ORGANISATION roles, straight from the directory. The values
+    // are namespaced (`atlassian/org-admin`), which is what makes the
+    // assignOrgRole probe below worth one turn.
+    const meRow = await org(`/v2/orgs/{org}/directories/${directoryId}/users/${callerId}`);
+    const myRoles: string[] = Array.isArray(meRow.body?.data?.platformRoles)
+      ? meRow.body.data.platformRoles.map(String)
+      : [];
+    console.log(`[truth] caller ${callerId} platformRoles = ${myRoles.join(", ") || "(none)"}`);
     const dirUsers = await org(`/v2/orgs/{org}/directories/${directoryId}/users?limit=50`);
     const others = ((dirUsers.body?.data || []) as any[]).filter(
       (u: any) => String(u.accountId) !== callerId && u.accountStatus === "active",
@@ -717,9 +792,18 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
     // ================= PHASE 3 — CREATE A POLICY ==========================
     const policiesBefore = ((await org("/v1/orgs/{org}/policies")).body?.data || []) as any[];
     await page.waitForTimeout(GAP_MS);
+    // ⚠️ THE FIVE FIELDS ARE NAMED IN THE ASK, and that is not the harness
+    // doing the tool's job. Measured 6 Sep 2026: Atlassian's create endpoint
+    // rejects anything short of type+name+status+rule+resources with a bare
+    // `400 Bad Request` carrying no field detail — type+name 400, +status 400,
+    // +rule 400, all five 202. 13.7.0 makes the tool ask for them and name the
+    // missing ones, so this ask supplies them the way a user who had been told
+    // would. Whether the tool ASKS when they are absent is the separate claim
+    // below.
     const polAsk = await turnQ(
       "policy-ask",
-      `Create a data-residency policy named "${POLICY_NAME}" with no resources.`,
+      `Create a data-residency policy named "${POLICY_NAME}", status enabled, rule {"in":["eu"]}, ` +
+        `and no resources.`,
     );
     const policiesAfterAsk = ((await org("/v1/orgs/{org}/policies")).body?.data || []) as any[];
     expect(
@@ -765,13 +849,19 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
       const one = await org(`/v1/orgs/{org}/policies/${createdPolicyId}`);
       const status = one.body?.data?.attributes?.status;
       console.log(`[org-write] after the undo, policy ${createdPolicyId} status = ${status}`);
+      const drift2 = /changed since|drift|no longer matches|someone else/i.test(undo2.reply);
       expect.soft(
         status,
         `the undo did not disable the created policy — Atlassian still reports status ` +
-          `"${status}". If the reply mentions drift, that is breaker #2 on a fresh row.\n` +
+          `"${status}".${drift2 ? " It complained about DRIFT on a row created minutes earlier, " +
+          "which is drift measured against `before` instead of `after`." : ""}\n` +
           `${undo2.reply.slice(0, 900)}`,
       ).toBe("disabled");
-      table.push({ phase: "createPolicy", step: "undo", status });
+      expect.soft(
+        drift2,
+        `the undo complained about drift on a policy nothing else touched:\n${undo2.reply.slice(0, 700)}`,
+      ).toBe(false);
+      table.push({ phase: "createPolicy", step: "undo", status, claimedDrift: drift2 });
     }
 
     // ================= PHASE 4 — THE TWO REFUSALS =========================
@@ -858,7 +948,59 @@ test("every organisation write: the ticket, the one yes, the ledger row and the 
       `the ledger listing carried ${leaked.length} directory email address(es) into the model's ` +
         `answer. describeRevert is supposed to drop the bodies.`,
     ).toEqual([]);
-    table.push({ phase: "listRecentChanges", called: ledgerCalled, carriedRevertId: rev1 ? led.reply.includes(rev1) : null });
+    // AND IT RETURNS ROWS. On 13.6.0 this was WITHHELD whenever only one
+    // credential was stored — `withdrawnToolSentences` looped every CLOSED gate
+    // and withdrew every tool in its groups without checking whether an OPEN
+    // gate also added that group, and `admin-ledger` is added by BOTH. The
+    // symptom was an organisation admin being told to go and store a SITE token.
+    const ledgerWithheld = led.win.filter((l: any) =>
+      /^\[Tools\] listRecentChanges\b.*is withheld this turn/.test(l.text));
+    console.log(`[org-write] listRecentChanges withheld lines: ${ledgerWithheld.length}`);
+    expect.soft(
+      ledgerWithheld.map((l: any) => l.text),
+      `listRecentChanges was WITHHELD although allowOrgAdmin is open. Both credential gates add ` +
+        `the admin-ledger group and the toolset honours that; the withdrawal side did not, so the ` +
+        `ledger reader was unreachable on every single-credential installation — which is every ` +
+        `realistic one.`,
+    ).toEqual([]);
+    expect.soft(
+      /rv_[a-z0-9]+_[a-z0-9]{6,}/.test(led.reply) || /no changes|nothing/i.test(led.reply),
+      `the ledger listing carries neither an undo id nor an honest empty state:\n` +
+        `${led.reply.slice(0, 1000)}`,
+    ).toBe(true);
+    table.push({
+      phase: "listRecentChanges",
+      called: ledgerCalled,
+      withheld: ledgerWithheld.length > 0,
+      carriedRevertId: rev1 ? led.reply.includes(rev1) : null,
+    });
+
+    // ================= PHASE 6 — THE ORGANISATION ROLE ====================
+    //
+    // ONE assignOrgRole, and the point of it is the VALUE. The directory
+    // reports this account's roles as `atlassian/org-admin` and
+    // `atlassian/site-admin` (measured), so a tool that sends the bare
+    // `org-admin` is addressing a role name that does not exist here. A
+    // REJECTED write settles that as well as an accepted one, and is safer:
+    // the role asked for is the one the account ALREADY holds, so the only two
+    // outcomes are "refused" and "no change".
+    await page.waitForTimeout(GAP_MS);
+    const roleAsk = await turnQ(
+      "org-role-ask",
+      `What organisation roles does account ${CALLER_ID} hold, and can you assign it the ` +
+        `organisation role it already has? Do not remove anything.`,
+    );
+    const roleCalls2 = called(roleAsk.win, "applyOrgChange").filter((l: any) => /assignOrgRole/.test(l.text));
+    const roleErr = roleAsk.win.filter((l: any) => /^\[OrgAdmin\] HTTP/.test(l.text));
+    console.log(
+      `[org-write] assignOrgRole: calls=${roleCalls2.length} errors=${roleErr.map((l: any) => l.text).join(" | ") || "(none)"}`,
+    );
+    findings.push(
+      `assignOrgRole: calls=${roleCalls2.length}; ` +
+        `errors=${roleErr.map((l: any) => l.text.slice(0, 120)).join(" | ") || "none"}; ` +
+        `truth platformRoles=${myRoles.join(", ") || "(unread)"}`,
+    );
+    table.push({ phase: "assignOrgRole", calls: roleCalls2.length, errors: roleErr.length });
   } finally {
     console.table(table);
     console.log(`[org-write] FINDINGS:\n- ${findings.join("\n- ") || "(none)"}`);

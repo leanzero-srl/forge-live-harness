@@ -225,8 +225,27 @@ test("the admin persona reads configuration ON REQUEST, and never on an ordinary
  * worth nothing to it, and a change it makes reaches every product at once from
  * a surface whose whole frame is one ticket.
  */
-test("jira-org-admin is not offered on the issue panel", async ({ page }) => {
-  test.setTimeout(600_000);
+/**
+ * THE PANEL ROSTER — four rows, and the filter is SERVER-SIDE now.
+ *
+ * MEASURED 6 Sep 2026 on 13.6.0: the panel served the same six personas as the
+ * global page. `Constants.js` had excluded `jira-org-admin` in writing the
+ * whole time and a unit test over that constant was green — the partition was
+ * applied only by a filter in the BROWSER, so the constant was right, the test
+ * was right, and production ignored both. 13.7.0 moved it into `getPersonas`.
+ *
+ * SO THIS ASSERTS TWO DIFFERENT THINGS, and the order matters:
+ *   1. what a PERSON SEES in the panel's own dropdown — the user-visible
+ *      outcome, which needs the bundle to send `surface` AND the route to act
+ *      on it. This is the one that would have caught the 13.6.0 defect.
+ *   2. the ROUTE asked directly, with and without `surface`. Without it the
+ *      roster is deliberately full — `rosterForSurface` fails OPEN, because
+ *      this is a decision about what suits a narrow sidebar and never a
+ *      permission. A harness that only called the route with `surface` set
+ *      would be testing the half that was never broken.
+ */
+test("the issue panel offers four personas, and the filter is on the route", async ({ page }) => {
+  test.setTimeout(900_000);
   const stamp = Date.now();
   let seeded: string | null = null;
   try {
@@ -241,15 +260,44 @@ test("jira-org-admin is not offered on the issue panel", async ({ page }) => {
     seeded = made.key;
     const frame = await openPanel(page, T, seeded!);
     await waitForChatApp(page, frame, PANEL_APP, 120_000);
-    const personas: any = await callResolver(frame, PANEL_APP, "getPersonas", {});
-    const ids = (personas?.personas || []).map((p: any) => p.id);
-    console.log(`[panel] roster: ${ids.join(", ")}`);
+
+    // ---- 1. WHAT A PERSON SEES ------------------------------------------
+    await frame.locator("#dropdownSelected").click();
+    await expect(frame.locator("#dropdownOptions")).toHaveClass(/open/);
+    const shown = (
+      await frame.locator("#dropdownOptions .dropdown-option .option-text").allTextContents()
+    ).map((t) => t.trim());
+    await frame.locator("#dropdownSelected").click();
+    console.log(`[panel] the dropdown offers: ${shown.join(" | ")}`);
     expect(
-      ids,
-      `jira-org-admin is IN the panel roster. There is no per-surface roster mechanism in the app ` +
-        `at all — getPersonas takes no surface and both surfaces call the same route — so this is ` +
-        `a capability that was never built rather than one that regressed.`,
+      shown,
+      `the panel's own dropdown does not offer exactly the four personas an issue sidebar is for. ` +
+        `The Organisation Administrator answers questions about accounts, directories, groups and ` +
+        `policies across every product and every site, so the one thing the panel adds — an issue ` +
+        `in context — is worth nothing to it; Coffee Break AI has no Jira work to do here.`,
+    ).toEqual(["JIRA Scrubber", "Epic Master", "Product Owner", "Jira Administrator"]);
+
+    // ---- 2. THE ROUTE, BOTH WAYS ----------------------------------------
+    const withSurface: any = await callResolver(frame, PANEL_APP, "getPersonas", { surface: "issue-panel" });
+    const idsWith = (withSurface?.personas || []).map((p: any) => p.id);
+    console.log(`[panel] getPersonas({surface:"issue-panel"}): ${idsWith.join(", ")}`);
+    expect(
+      idsWith,
+      `the ROUTE still returns jira-org-admin for surface "issue-panel". On 13.6.0 the partition ` +
+        `lived only in the browser, so any caller that got the list another way — a stale bundle, ` +
+        `a cached iframe, a direct invoke — received everything.`,
     ).not.toContain("jira-org-admin");
+    expect(idsWith).toEqual(["jira-scrubber", "epic-master", "product-owner", "jira-admin"]);
+
+    const noSurface: any = await callResolver(frame, PANEL_APP, "getPersonas", {});
+    const idsNone = (noSurface?.personas || []).map((p: any) => p.id);
+    console.log(`[panel] getPersonas({}) — no surface named: ${idsNone.join(", ")}`);
+    expect(
+      idsNone.length,
+      `a caller that names NO surface should get the full roster — failing open is right here and ` +
+        `only here, because this is a roster decision about what suits a sidebar and never a ` +
+        `permission. resolvePersonaForTurn is the guarantee about who may USE a persona.`,
+    ).toBeGreaterThan(idsWith.length);
   } finally {
     await deleteFixtures([seeded], "admin-persona-panel/roster");
   }

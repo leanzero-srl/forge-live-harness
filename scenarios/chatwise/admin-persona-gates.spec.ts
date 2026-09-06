@@ -58,7 +58,12 @@ const EIGHT: Array<{ tool: string; ask: string }> = [
   { tool: "getNotificationScheme", ask: `What notification scheme does ${PROJECT} use?` },
   { tool: "getFieldContexts", ask: `What contexts exist on the Story Points custom field?` },
   { tool: "getSchemeUsage", ask: `What else uses ${PROJECT}'s permission scheme? Give me the blast radius.` },
-  { tool: "listGroupsAndMembers", ask: `List the Jira groups on this site with their members.` },
+  // NAMED, because the tool changed shape. On 13.6.0 this answered
+  // "50 group(s), 0 member(s)" for a site whose `site-admins` group has three
+  // people; 13.7.0 reads members only when ONE exact group name is given. So
+  // the ask names one, and the assertion below is that its real members come
+  // back — a group list with nobody in it is what it used to do.
+  { tool: "listGroupsAndMembers", ask: `Who is in the Jira group "site-admins" on this site? Name them.` },
   { tool: "getAuditRecords", ask: `Show me the last few entries in the Jira audit log.` },
 ];
 
@@ -73,6 +78,8 @@ test("the admin gates open for the admin persona only, and the eight asUser read
   const scrubberConv = `conv_admin_gates_scrub_${stamp}`;
   let frame: any = null;
   const table: Array<Record<string, unknown>> = [];
+  /** Every turn by tool, so an assertion after the loop can read its reply. */
+  const turns = new Map<string, { reply: string; win: any[] }>();
 
   async function turn(convId: string, personaId: string, label: string, message: string) {
     const t0 = Date.now();
@@ -151,6 +158,7 @@ test("the admin gates open for the admin persona only, and the eight asUser read
     for (let i = 0; i < EIGHT.length; i++) {
       const { tool, ask } = EIGHT[i];
       const r = i === 0 ? first : await turnQ(conversationId, "jira-admin", `asUser-${tool}`, ask);
+      turns.set(tool, r);
       if (QUOTA_BUBBLE.test(r.reply)) {
         table.push({ tool, status: "SKIPPED (quota)", called: false });
         continue;
@@ -181,15 +189,31 @@ test("the admin gates open for the admin persona only, and the eight asUser read
        * and no "failed") settles the row as 200; only when there is no outcome
        * line does a failure line decide it.
        */
+      // ⚠️ AND AN EXCEPTION IS NOT AN OUTCOME. Measured on 13.7.0: the audit
+      // fix built its query correctly and passed it to Forge as a PLAIN STRING,
+      // so `getAuditRecords` threw
+      //   `Error in getAuditRecords(recent): Error: You must create your route
+      //    using the 'route' export from '@forge/api'.`
+      // before any request left the app. That line contains neither ` failed:`
+      // nor a status, so the first version of this scorer found no failure,
+      // found no outcome either, fell through to `called.length` and recorded
+      // **200** for a tool that has never once answered. A table that scores a
+      // crash as a success is worse than no table.
+      const threw = r.win.filter((l: any) =>
+        new RegExp(`^\\[Tools\\] Error in ${tool}\\b`).test(l.text));
       const outcome = r.win.filter(
         (l: any) =>
-          new RegExp(`^\\[Tools\\] ${tool}(\\(|:)`).test(l.text) && !/ failed:/.test(l.text),
+          new RegExp(`^\\[Tools\\] ${tool}(\\(|:)`).test(l.text) &&
+          !/ failed:/.test(l.text) &&
+          !/^\[Tools\] Error in /.test(l.text),
       );
       const failed = r.win.filter((l: any) => new RegExp(`^\\[Tools\\] .*${tool}.*failed:`).test(l.text));
       const wholeToolFailed = failed.filter((l: any) =>
         new RegExp(`^\\[Tools\\] ${tool}(\\([^)]*\\))? failed:`).test(l.text),
       );
-      const status = outcome.length
+      const status = threw.length
+        ? "threw"
+        : outcome.length
         ? "200"
         : wholeToolFailed.length
           ? (wholeToolFailed[0].text.match(/failed:\s*(\d{3})/) || [])[1] || "error"
@@ -203,13 +227,45 @@ test("the admin gates open for the admin persona only, and the eight asUser read
         status,
         called: called.length > 0,
         subRequestFailures: failed.length - wholeToolFailed.length,
-        evidence: (outcome[0]?.text || wholeToolFailed[0]?.text || failed[0]?.text || called[0]?.text || "").slice(0, 220),
+        evidence: (threw[0]?.text || outcome[0]?.text || wholeToolFailed[0]?.text || failed[0]?.text || called[0]?.text || "").slice(0, 220),
       });
       console.log(`[asUser] ${tool} -> ${status}`);
       fs.writeFileSync(OUT, JSON.stringify(table, null, 2));
       if (i < EIGHT.length - 1) await page.waitForTimeout(GAP_MS);
     }
     console.table(table);
+
+    // ---- 2b. THE TWO ROWS THAT WERE RED ON 13.5.0 -------------------------
+    //
+    // Kept as their own named assertions rather than left inside the table,
+    // because "the table has eight rows" is exactly the kind of green count
+    // that hides two dead endpoints.
+    const auditRow = table.find((r) => r.tool === "getAuditRecords");
+    expect.soft(
+      auditRow?.status,
+      `getAuditRecords is still not answering. On 13.5.0 it sent empty filter/from/to on every ` +
+        `call and Jira replied 400 "Invalid date format for ''" — every time, with and without a ` +
+        `date. Evidence this run: ${auditRow?.evidence}`,
+    ).toBe("200");
+    const groupsRow = table.find((r) => r.tool === "listGroupsAndMembers");
+    expect.soft(groupsRow?.status, `listGroupsAndMembers: ${groupsRow?.evidence}`).toBe("200");
+
+    // AND THE MEMBERS ARE REAL. Ground truth is read here, from Jira, not
+    // pinned — the group is a live one and somebody may join it.
+    const truth: any = await get(`/rest/api/3/group/member?groupname=site-admins&maxResults=50`);
+    const realMembers = (truth?.values || []).map((u: any) => String(u.displayName));
+    console.log(`[truth] site-admins has ${realMembers.length}: ${realMembers.join(", ")}`);
+    const groupTurn = turns.get("listGroupsAndMembers");
+    if (groupTurn && !QUOTA_BUBBLE.test(groupTurn.reply)) {
+      const named = realMembers.filter((n: string) => groupTurn.reply.includes(n));
+      console.log(`[gates] the reply names ${named.length} of ${realMembers.length} real members`);
+      expect.soft(
+        named.length,
+        `the reply names NONE of the ${realMembers.length} people Jira puts in site-admins ` +
+          `(${realMembers.join(", ")}). On 13.6.0 this tool reported "0 member(s)" for every ` +
+          `group on the site.\n${groupTurn.reply.slice(0, 1000)}`,
+      ).toBeGreaterThan(0);
+    }
 
     // A 403 is a FINDING to report, not a reason to fail the run — the point of
     // the table is to say which of the eight survive impersonation. What DOES
