@@ -1,0 +1,10 @@
+✔ two measured complete native fixture responses admit exact read-only source (0.703584ms)
+✔ changed native value, field omission, dates, status, parent, issue identity or ownership refuses (3.19575ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45.060667

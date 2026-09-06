@@ -1,0 +1,181 @@
+{
+  "readAt": "2026-09-06T07:04:18.557Z",
+  "principal": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "fields": "project,issuetype,summary,description,labels,status,parent,issuelinks,customfield_10015,duedate,customfield_10180,customfield_10181,customfield_11148,customfield_11149,updated",
+  "first": {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_11148.cmdb.label,customfield_11148.cmdb.objectKey,customfield_11148.cmdb.attributes,customfield_11149.cmdb.label,customfield_11149.cmdb.objectKey,customfield_11149.cmdb.attributes",
+    "id": "25020",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25020",
+    "key": "WFH-2820",
+    "fields": {
+      "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+      "issuetype": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+        "id": "10004",
+        "description": "Functionality or a feature expressed as a user goal.",
+        "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+        "name": "Work package",
+        "subtask": false,
+        "avatarId": 10552,
+        "hierarchyLevel": 0
+      },
+      "customfield_10180": 5,
+      "customfield_10181": null,
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "lz-assets-owned-20260905-wfh"
+              }
+            ]
+          }
+        ]
+      },
+      "project": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+        "id": "10001",
+        "key": "WFH",
+        "name": "WORK FOR HIRE",
+        "projectTypeKey": "software",
+        "simplified": false,
+        "avatarUrls": {
+          "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+          "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+          "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+          "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+        }
+      },
+      "customfield_10015": "2026-10-05",
+      "customfield_11148": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        },
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+          "objectId": "412"
+        }
+      ],
+      "labels": [],
+      "customfield_11149": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        }
+      ],
+      "duedate": "2026-10-09",
+      "issuelinks": [],
+      "updated": "2026-09-06T00:02:58.048+0300",
+      "status": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+        "description": "",
+        "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+        "name": "New",
+        "id": "10006",
+        "statusCategory": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  },
+  "second": {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_11148.cmdb.label,customfield_11148.cmdb.objectKey,customfield_11148.cmdb.attributes,customfield_11149.cmdb.label,customfield_11149.cmdb.objectKey,customfield_11149.cmdb.attributes",
+    "id": "25020",
+    "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25020",
+    "key": "WFH-2820",
+    "fields": {
+      "summary": "[harness-test] LZ Assets owned 20260905 WFH positive control",
+      "issuetype": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+        "id": "10004",
+        "description": "Functionality or a feature expressed as a user goal.",
+        "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+        "name": "Work package",
+        "subtask": false,
+        "avatarId": 10552,
+        "hierarchyLevel": 0
+      },
+      "customfield_10180": 5,
+      "customfield_10181": null,
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "lz-assets-owned-20260905-wfh"
+              }
+            ]
+          }
+        ]
+      },
+      "project": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+        "id": "10001",
+        "key": "WFH",
+        "name": "WORK FOR HIRE",
+        "projectTypeKey": "software",
+        "simplified": false,
+        "avatarUrls": {
+          "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+          "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+          "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+          "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+        }
+      },
+      "customfield_10015": "2026-10-05",
+      "customfield_11148": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        },
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+          "objectId": "412"
+        }
+      ],
+      "labels": [],
+      "customfield_11149": [
+        {
+          "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+          "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+          "objectId": "411"
+        }
+      ],
+      "duedate": "2026-10-09",
+      "issuelinks": [],
+      "updated": "2026-09-06T00:02:58.048+0300",
+      "status": {
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+        "description": "",
+        "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+        "name": "New",
+        "id": "10006",
+        "statusCategory": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+          "id": 2,
+          "key": "new",
+          "colorName": "blue-gray",
+          "name": "To Do"
+        }
+      }
+    }
+  }
+}

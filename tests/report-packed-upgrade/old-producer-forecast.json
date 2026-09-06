@@ -1,0 +1,48 @@
+{
+  "oldSource": "34372ae3f9cb12b1ff94a58dbda313a6deab6f03",
+  "verifiedProducerFiles": [
+    "src/services/capacity-fields.mjs",
+    "src/services/immutable-io.mjs",
+    "src/services/plan-snapshot-data.mjs",
+    "src/services/plan-snapshot-store.mjs",
+    "src/services/schedule-state.mjs",
+    "src/services/sponsor-report-analytics.mjs",
+    "static/ppm-ui/src/hooks/cascade-core.js",
+    "static/ppm-ui/src/utils/capacity-model.js",
+    "static/ppm-ui/src/utils/cascade-provenance.js",
+    "static/ppm-ui/src/utils/date-utils.js",
+    "static/ppm-ui/src/utils/duration-normalize.js",
+    "static/ppm-ui/src/utils/forecast-model-config.js",
+    "static/ppm-ui/src/utils/issue-utils.js",
+    "static/ppm-ui/src/utils/milestone.js",
+    "static/ppm-ui/src/utils/schedule-forecast-inputs.js",
+    "static/ppm-ui/src/utils/schedule-simulation.js",
+    "static/ppm-ui/src/utils/snapshot-comparison.js",
+    "static/ppm-ui/src/utils/sponsor-report.js",
+    "static/ppm-ui/src/utils/target-scope.js"
+  ],
+  "forecast": {
+    "state": "available",
+    "reason": null,
+    "modelVersion": "duration-triangular-fs-v1",
+    "runs": 300,
+    "seed": 42,
+    "uncertainty": "medium",
+    "inputHash": "658af458be75fbbe5366ccd8d844a277737375fa40fdce19204549da6e7cbe62",
+    "p50": "2026-10-09",
+    "p80": "2026-10-12",
+    "p90": "2026-10-12",
+    "onPlannedFinish": 0.6566666666666666,
+    "coverage": {
+      "totalLeaves": 1,
+      "datedLeaves": 1,
+      "sampledLeaves": 1,
+      "missingDates": 0,
+      "invalidDates": 0,
+      "invertedDates": 0,
+      "invalidBaselines": 0
+    }
+  },
+  "fullInputHashPreserved": true,
+  "changedUnprojectedFieldRejected": true
+}
