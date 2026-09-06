@@ -71,6 +71,25 @@ class Selection(unittest.TestCase):
    for c in [{k:v for k,v in config.items() if k!='features'},{**config,'features':None}]:
     result=self.summarize(root,c);self.assertEqual(result['selectedRun']['featureIds'],[f['id'] for f in features]);self.assertEqual(result['selectedRun']['complete'],result['complete']);self.assertFalse(result['complete'])
    self.assertFalse(self.summarize(root,{**config,'features':['named-scenarios']})['selectedRun']['complete'])
+ def test_default_all_passed_inventory_still_completes_and_explicit_order_is_canonical(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);self.fixture(root);ready=[f for f in features if f['id'] in config['features']]
+   result=m.summarize({**config,'features':None},ready,root,instrument);self.assertTrue(result['complete']);self.assertTrue(result['selectedRun']['complete'])
+   ordered=m.summarize({**config,'features':list(reversed(config['features']))},ready,root,instrument);self.assertEqual(ordered['selectedRun']['featureIds'],config['features'])
+ def test_actual_run_refuses_entry_failure_and_final_instrument_change_even_with_all_selected_pass_receipts(self):
+  for fault in ['entry','instrument']:
+   with self.subTest(fault=fault),tempfile.TemporaryDirectory() as d:
+    root=Path(d);c=self.fixture(root)
+    def phase(config,feature,name,attempt,heartbeat):
+     self.assertEqual(name,'before');m.atomic(attempt/'before-identity.json',{'sourceFingerprint':c['sourceFingerprint']});return {'status':'failed' if fault=='entry' else 'passed'}
+    calls=0
+    def observed():
+     nonlocal calls
+     calls+=1
+     # Initial hash and both selected-unit checks agree; final hash changes.
+     return 'changed' if fault=='instrument' and calls>3 else instrument
+    with patch.object(m,'ROOT',root),patch.object(m,'validate_manifest',return_value=features),patch.object(m,'instrument_hash',side_effect=observed),patch.object(m,'lock_acquire',return_value={}),patch.object(m,'run_phase',side_effect=phase),patch.object(m,'STOP_NOW',False),contextlib.redirect_stdout(io.StringIO()):self.assertEqual(m.run(c,root),2)
+    self.assertFalse(m.read(root/'summary.json')['selectedRun']['complete']);self.assertNotEqual(m.read(root/'state.json')['status'],'complete')
  def test_stale_status_display_clears_both_flags_without_rewriting_history(self):
   with tempfile.TemporaryDirectory() as d:
    root=Path(d);run=root/'evidence/lz-campaign'/config['runId'];run.mkdir(parents=True);c=self.fixture(run);self.summarize(run,c);before=(run/'summary.json').read_bytes();out=io.StringIO()

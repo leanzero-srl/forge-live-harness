@@ -1,0 +1,11 @@
+test_actual_run_phase_all_three_phases_bind_mode_and_skip_only_shared_profile_wait (__main__.Binding.test_actual_run_phase_all_three_phases_bind_mode_and_skip_only_shared_profile_wait) ... ok
+test_default_missing_unknown_modes (__main__.Binding.test_default_missing_unknown_modes) ... ok
+test_inherited_mode_and_identity_never_win (__main__.Binding.test_inherited_mode_and_identity_never_win) ... ok
+test_mode_and_identity_change_result_reuse_stamp (__main__.Binding.test_mode_and_identity_change_result_reuse_stamp) ... ok
+test_portable_requires_known_identity (__main__.Binding.test_portable_requires_known_identity) ... ok
+test_resume_preserves_and_rejects_mismatch (__main__.Binding.test_resume_preserves_and_rejects_mismatch) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+OK

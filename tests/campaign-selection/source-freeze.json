@@ -1,0 +1,9 @@
+{
+  "base": "22f6541681f8be17acf2b2540fc544ddd9a70398",
+  "red": "541f75b",
+  "source": "scripts/lz-campaign.py",
+  "sha256": "7ad992b9694e0676b66a3f1a0bfb87da626e1365cfb76def60ba707d73e046db",
+  "controls": 42,
+  "originalEvidenceUnchanged": true,
+  "liveExecuted": false
+}
