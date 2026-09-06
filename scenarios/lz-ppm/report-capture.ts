@@ -1,3 +1,4 @@
+import {stopReportUi} from './report-departure';
 import {observeCall} from './report-throughput-observer.mjs';
 import fs from 'node:fs';
 import {expect} from '../../fixtures/forge';
@@ -42,7 +43,7 @@ export async function captureReport(page:any,report:any,planId:string,info:any,{
  }catch(error){
   observeCall(observer,'mark','failure-cleanup');
   const observed=session.recorder.snapshot();
-  if(observed.begin){try{await cleanReportCapture({planId,requestId:observed.begin.requestId,jobId:observed.job?.id,invoke:session.invoke,probe:(planId:string,jobId:string)=>getTestState('lz-ppm',{what:'reportCaptureState',planId,jobId},observer),stopUi:async()=>{if(!page.isClosed())await page.goto('about:blank');await session.settle();},onState:(state:any)=>fs.writeFileSync(info.outputPath(`${label}-cleanup.json`),JSON.stringify(state,null,2))});}
+  if(observed.begin){try{await cleanReportCapture({planId,requestId:observed.begin.requestId,jobId:observed.job?.id,invoke:session.invoke,probe:(planId:string,jobId:string)=>getTestState('lz-ppm',{what:'reportCaptureState',planId,jobId},observer),stopUi:async()=>{await stopReportUi(page,async()=>{if(!page.isClosed())await page.goto('about:blank');});await session.settle();},onState:(state:any)=>fs.writeFileSync(info.outputPath(`${label}-cleanup.json`),JSON.stringify(state,null,2))});}
    catch(cleanupError){onRecovery(cleanupError);throw new AggregateError([error,cleanupError],'Report capture and cleanup failed; exact owned resources retained');}}
   throw error;
  }finally{session.stop();}
@@ -56,7 +57,7 @@ export async function cleanupOwnedReportCaptures(page:any,planId:string,info:any
   const observed=session.recorder.snapshot();session.stop();if(!observed.begin)continue;
   const history:any[]=[];const save=(state:any)=>{history.push(state);fs.writeFileSync(info.outputPath(`report-owned-cleanup-${index}.json`),JSON.stringify(history,null,2));};
   try{
-   const options={planId,requestId:observed.begin.requestId,jobId:observed.job?.id,invoke:session.invoke,probe,stopUi:async()=>{if(!page.isClosed())await page.goto('about:blank');await session.settle();},onState:save};
+   const options={planId,requestId:observed.begin.requestId,jobId:observed.job?.id,invoke:session.invoke,probe,stopUi:async()=>{await stopReportUi(page,async()=>{if(!page.isClosed())await page.goto('about:blank');});await session.settle();},onState:save};
    const cleaned:any=await cleanReportCapture(options);
    if(cleaned.job?.state==='complete'&&!retainPublished){
     const read=await session.invoke('getSponsorReport',{planId,reportId:cleaned.job.reportId});expect(read.success).toBe(true);expect(read.report.id).toBe(cleaned.job.reportId);if(observed.report)expect(read.report).toEqual(observed.report);

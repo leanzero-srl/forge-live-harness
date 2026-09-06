@@ -1,3 +1,4 @@
+import {withReportDeparture,setReportDepartureOwner,stopReportUi} from './report-departure';
 import fs from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {test,expect} from '../../fixtures/forge';
@@ -11,6 +12,7 @@ import {settledScreenshot} from './settled-screenshot.mjs';
 test.describe.configure({retries:0,timeout:900000});
 const cases=[['resume','report jobs: paused source checkpoint survives reload and final publication pause, then full retained HTML'],['cancel','report jobs: cancellation during held real advance removes staged keys and refuses stale advance'],['source-drift','report jobs: changed owned source during pause refuses publication and cleans exact staging'],['baseline-drift','report jobs: changed active baseline during pause refuses publication and preserves original baseline']] as const;
 for(const [kind,title]of cases)test(title,async({page},info)=>{
+ await withReportDeparture(page,info,async()=>{
  await withOwnedSchedule(page,info,[{label:`report job ${kind}`,start:'2026-10-05',due:'2026-10-09',duration:5}],async(f)=>{
   const journal:any={kind,events:[]},retain=()=>fs.writeFileSync(info.outputPath('report-job-journal.json'),JSON.stringify(journal,null,2));
   const event=(e:any)=>{journal.events.push(e);retain();};let session:any,held:any,finalHeld:any,bodyError:any;
@@ -57,5 +59,6 @@ for(const [kind,title]of cases)test(title,async({page},info)=>{
    if(session)try{await cleanupOwnedReportCaptures(page,f.planId,info,{onRecovery:f.retainForRecovery});journal.captureCleanupVerified=true;}catch(e){errors.push(e);}
    retain();if(errors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...errors],'Report job body/cleanup failure; exact recovery state retained');
   }
+ });
  });
 });

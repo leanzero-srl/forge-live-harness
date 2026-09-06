@@ -1,3 +1,4 @@
+import {setReportDepartureOwner,stopReportUi,reportDepartureFailure} from './report-departure';
 import {waitForAppReady} from './settled-screenshot.mjs';
 import fs from 'node:fs';
 import { expect } from '../../fixtures/forge';
@@ -66,7 +67,7 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
     },{timeout:60000,intervals:[500,1000,2000],message:'new fixture is searchable with complete seeded schedule'}).toEqual(indexedExpected);
     journal.searchIndexVerified = indexedExpected; persist();
     let created = await getTestState('lz-ppm', { what: 'createFixture', name, jql: fixtureJql });
-    journal.planId = created.planId; persist();
+    journal.planId = created.planId; persist();setReportDepartureOwner(page,journal.planId,name);
     const indexedShape=(rows:any[])=>rows.map((i:any)=>({key:i.key,start:i.startDate,due:i.dueDate,duration:i.duration})).sort((a:any,b:any)=>a.key.localeCompare(b.key));
     journal.forgeIndexObservations=[indexedShape(created.issues)]; persist();
     if (JSON.stringify(indexedShape(created.issues)) !== JSON.stringify(indexedExpected)) {
@@ -95,7 +96,8 @@ export async function withOwnedSchedule(page: any, info: any, seeds: Seed[], wor
     };
     // Independent owned resources must still be cleaned if a sibling fails.
     // Every issue retains its own positive ownership check before deletion.
-    await attempt('stop-owned-ui',async()=>{if(!page.isClosed())await page.goto('about:blank').catch(async(error:any)=>{await page.close().catch(()=>{});if(!page.isClosed())throw error;journal.browserAlreadyClosedDuringCleanup=String(error.message);persist();});});
+    await attempt('stop-owned-ui',async()=>stopReportUi(page,async()=>{if(!page.isClosed())await page.goto('about:blank').catch(async(error:any)=>{await page.close().catch(()=>{});if(!page.isClosed())throw error;journal.browserAlreadyClosedDuringCleanup=String(error.message);persist();});}));
+    const departureFailure=reportDepartureFailure(page);if(departureFailure){recoveryRetention={...recoveryRetention,reason:departureFailure.message,code:departureFailure.code,reportState:departureFailure.reportState,additionalPlans:recoveryRetention?.additionalPlans||[],causes:[...(recoveryRetention?.causes||[]),{code:departureFailure.code,reason:departureFailure.message}],time:new Date().toISOString()};journal.recoveryRetention=recoveryRetention;persist();}
     if(recoveryRetention){
       const retainedPlans=[{id:journal.planId,name},...recoveryRetention.additionalPlans];
       for(const item of retainedPlans)await attempt(`verify-retained-plan:${item.id}`,async()=>{const current=await getTestState('lz-ppm',{what:'plan',planId:item.id});expect(current.meta.name).toBe(item.name);});

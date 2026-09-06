@@ -1,3 +1,4 @@
+import {beforeReportNavigation} from './report-departure';
 import { expect } from '../../fixtures/forge';
 import { getTarget } from '../../config/targets';
 import { assertLoggedIn } from '../../forge/browser';
@@ -16,6 +17,7 @@ export function scheduleFields(issues: any[]) {
 }
 
 export async function openPlans(page: any) {
+  await beforeReportNavigation(page);
   await page.setViewportSize({ width: 1600, height: 1100 });
   await assertLoggedIn(page);
   await page.goto(target.deepLink(target.envId)!, { waitUntil: 'domcontentloaded' });

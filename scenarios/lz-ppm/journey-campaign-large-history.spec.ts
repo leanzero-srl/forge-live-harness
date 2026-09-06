@@ -1,3 +1,4 @@
+import {withReportDeparture,setReportDepartureOwner,stopReportUi,reportDepartureFailure} from './report-departure';
 import {createReportThroughputObserver,observeCall} from './report-throughput-observer.mjs';
 import {getTarget} from '../../config/targets';
 import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
@@ -14,6 +15,7 @@ test.describe.configure({retries:0,timeout:1800000});
 const rowFields=(rows:any[])=>rows.map(i=>({key:i.key,id:i.id,summary:i.summary,statusCategory:i.statusCategory??'unknown',startDate:i.startDate??null,dueDate:i.dueDate??null,duration:i.duration??null,buffer:i.buffer||'No',parentKey:i.parentKey??null,predecessors:[...(i.predecessors||[])].sort(),successors:[...(i.successors||[])].sort()})).sort((a,b)=>a.key.localeCompare(b.key));
 
 test('large history and report: existing >2000 Jira issues retain every captured field, complete HTML and terminal rows without mutating the source',async({page},info)=>{
+ await withReportDeparture(page,info,async()=>{
  fs.mkdirSync(info.outputDir,{recursive:true});
  const target=getTarget('lz-ppm-dashboard'),appId=target.appId.split('/').at(-1)!;
  const throughput=createReportThroughputObserver({page,extensionId:`ari:cloud:ecosystem::extension/${appId}/${target.envId}/static/ppm-dashboard`,
@@ -31,7 +33,7 @@ test('large history and report: existing >2000 Jira issues retain every captured
  fs.mkdirSync(info.outputDir,{recursive:true});const retain=()=>fs.writeFileSync(info.outputPath('large-history-journal.json'),JSON.stringify(journal,null,2));retain();
  const rpc=currentUserResolver(page,c=>c?.functionKey==='captureSnapshot'&&c.payload?.planId===planId,{observer:throughput});
  try{
-  const start=Date.now(),made=await getTestState('lz-ppm',{what:'createFixture',name,jql:'project = LZPP ORDER BY key ASC'});planId=made.planId;journal.planId=planId;journal.metrics.indexMs=Date.now()-start;retain();
+  const start=Date.now(),made=await getTestState('lz-ppm',{what:'createFixture',name,jql:'project = LZPP ORDER BY key ASC'});planId=made.planId;setReportDepartureOwner(page,planId!,name);journal.planId=planId;journal.metrics.indexMs=Date.now()-start;retain();
   expect(made.meta.mode).toBeUndefined();expect(made.meta.calendarKey).toBe('standard');
   expect(made.issues.map((i:any)=>i.key).sort()).toEqual(keys);
   const originalByKey=new Map(population.rows.map((i:any)=>[i.key,i]));
@@ -102,7 +104,8 @@ test('large history and report: existing >2000 Jira issues retain every captured
  }catch(error){bodyError=error;journal.bodyError={name:(error as any)?.name,message:String((error as any)?.message||error)};retain();throw error;}finally{
   observeCall(throughput,'mark','final-cleanup');
   rpc.stop();const cleanupErrors:any[]=[];const attempt=async(stage:string,work:()=>Promise<void>)=>{try{await work();}catch(error){cleanupErrors.push(error);journal.cleanupErrors??=[];journal.cleanupErrors.push({stage,message:String((error as any)?.message||error)});retain();}};
-  await attempt('stop-owned-ui',async()=>{if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());});
+  await attempt('stop-owned-ui',async()=>stopReportUi(page,async()=>{if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());}));
+  const departureFailure=reportDepartureFailure(page);if(departureFailure){reportRecovery=departureFailure;journal.reportRecovery=departureFailure.reportState;retain();}
   await attempt('resolve-owned-plan',async()=>{if(!planId)planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
   if(planId)await attempt('report-job-cleanup',async()=>{await cleanupOwnedReportCaptures(page,planId!,info,{observer:throughput,onRecovery:(e:any)=>{reportRecovery=e;journal.reportRecovery=e.reportState;retain();}});});
   if(planId&&!reportRecovery)await attempt('delete-owned-plan',async()=>{const current=await getTestState('lz-ppm',{what:'plan',planId:planId!});expect(current.meta.name).toBe(name);await getTestState('lz-ppm',{what:'clearDrafts',planId:planId!});await getTestState('lz-ppm',{what:'deleteFixture',planId:planId!});journal.ownedPlanCleaned=true;retain();});
@@ -115,4 +118,5 @@ test('large history and report: existing >2000 Jira issues retain every captured
   const observed=await throughput.finish({requireCapture:true});fs.writeFileSync(info.outputPath('large-throughput-final.json'),JSON.stringify(observed,null,2));
   if(!observed.complete)throw new AggregateError([...(originalFailed?[originalFailure]:[]),new Error('Passive throughput observation recorded failures or incomplete requests; inspect retained events')],'Large history and throughput evidence failures');
  }
+ });
 });

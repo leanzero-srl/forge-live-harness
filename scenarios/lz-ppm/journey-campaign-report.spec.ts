@@ -1,3 +1,4 @@
+import {withReportDeparture,setReportDepartureOwner,stopReportUi,reportDepartureFailure} from './report-departure';
 import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
 import {settledScreenshot,waitForAppReady} from './settled-screenshot.mjs';
 import {fixtureReportRows} from './report-fixture-oracle.mjs';
@@ -14,11 +15,12 @@ const result=(page:any,name:string,planId:string)=>page.waitForResponse((r:any)=
 const planning=async(frame:any)=>{await frame.getByRole('button',{name:/^Planning/i}).first().click();await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);return frame.locator('[data-testid="planning-workspace"]');};
 
 test('reports: complete actual paged HTML and printed PDF retain all source rows and independent deleted-baseline copy',async({page},info)=>{
+ await withReportDeparture(page,info,async()=>{
  const source=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});const keys=source.issues.map((i:any)=>i.key).sort();expect(keys,'standing source is the exact original45 after foreign cleanup').toEqual(Array.from({length:45},(_,n)=>`LZPT-${186+n}`).sort());
  const registry=(await getTestState('lz-ppm',{what:'plans'})).plans.map((p:any)=>p.id).sort();const name=`[harness-test] Report proof ${Date.now().toString(36)}`;let planId:string|undefined,bodyFailure:any,reportRecovery:any;
  const journal:any={name,sourceKeys:keys,sourceCount:keys.length};fs.mkdirSync(info.outputDir,{recursive:true});const persist=()=>fs.writeFileSync(info.outputPath('report-journal.json'),JSON.stringify(journal,null,2));persist();
  try{
-  const created=await getTestState('lz-ppm',{what:'createFixture',name,jql:`key in (${keys.join(',')}) ORDER BY key`});planId=created.planId;if(typeof planId!=='string'||!planId)throw new Error('Report fixture creation returned no plan ID');journal.planId=planId;persist();expect(created.issues.map((i:any)=>i.key).sort()).toEqual(keys);
+  const created=await getTestState('lz-ppm',{what:'createFixture',name,jql:`key in (${keys.join(',')}) ORDER BY key`});planId=created.planId;if(typeof planId!=='string'||!planId)throw new Error('Report fixture creation returned no plan ID');journal.planId=planId;persist();setReportDepartureOwner(page,planId,name);expect(created.issues.map((i:any)=>i.key).sort()).toEqual(keys);
   let frame=await openPlan(page,name),work=await planning(frame);
   const capture=async(label:string)=>{await work.getByLabel('Capture name').fill(label);await work.locator('form').getByRole('combobox').first().click();await frame.getByRole('option',{name:'Baseline',exact:true}).click();const response=result(page,'getSnapshot',planId!);await work.getByRole('button',{name:'Capture working plan',exact:true}).click();await expect(work.locator('[data-testid="snapshot-detail"] h3').first()).toHaveText(label);const snapshot=(await response).snapshot;await work.getByRole('button',{name:'Use as baseline',exact:true}).click();await expect(work).toContainText(`Baseline set to ${label}`);return snapshot;};
   const original=await capture('Report original baseline');expect(original.issues).toHaveLength(keys.length);expect(original.mode).not.toBe('simulation');expect(original.workingChangeCount).toBe(0);expect(scheduleFields(original.issues)).toEqual(scheduleFields(created.issues));journal.originalBaseline={id:original.id,hash:original.hash};persist();
@@ -52,7 +54,8 @@ test('reports: complete actual paged HTML and printed PDF retain all source rows
  }finally{
   const failures:any[]=[];journal.cleanup=[];
   const clean=async(label:string,action:()=>Promise<void>)=>{try{await action();journal.cleanup.push({label,ok:true});}catch(error){failures.push(error);journal.cleanup.push({label,ok:false,error:String(error)});}persist();};
-  await clean('stop owned UI',async()=>{if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());});
+  await clean('stop owned UI',async()=>stopReportUi(page,async()=>{if(!page.isClosed())await page.goto('about:blank').catch(()=>page.close());}));
+  const departureFailure=reportDepartureFailure(page);if(departureFailure){reportRecovery=departureFailure;journal.reportRecovery=departureFailure.reportState;persist();}
   await clean('identify owned plan',async()=>{if(!planId)planId=(await getTestState('lz-ppm',{what:'plans'})).plans.find((p:any)=>p.name===name)?.id;});
   if(planId)await clean('report job cleanup',async()=>{await cleanupOwnedReportCaptures(page,planId!,info,{onRecovery:(e:any)=>{reportRecovery=e;journal.reportRecovery=e.reportState;persist();}});});
   if(planId&&!reportRecovery){const ownedPlanId=planId;await clean('clear owned drafts',async()=>{await getTestState('lz-ppm',{what:'clearDrafts',planId:ownedPlanId});});await clean('delete owned plan',async()=>{expect(await getTestState('lz-ppm',{what:'deleteFixture',planId:ownedPlanId})).toEqual({deleted:ownedPlanId,registryRemoved:true});});}
@@ -61,4 +64,5 @@ test('reports: complete actual paged HTML and printed PDF retain all source rows
   if(reportRecovery){journal.retainedForRecovery={planId,reason:reportRecovery.message};failures.push(reportRecovery);}journal.cleanupVerified=failures.length===0;persist();
   if(failures.length)throw new AggregateError([...(bodyFailure?[bodyFailure]:[]),...failures],'Report test and/or cleanup failed; original evidence retained');
  }
+ });
 });

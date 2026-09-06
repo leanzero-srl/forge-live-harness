@@ -1,3 +1,4 @@
+import {withReportDeparture,setReportDepartureOwner,stopReportUi} from './report-departure';
 import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
 import {createCapacityPreferences} from './capacity-preferences.mjs';
 import {settledScreenshot} from './settled-screenshot.mjs';
@@ -13,6 +14,7 @@ const add=(date:string,n:number)=>new Date(Date.parse(date+'T00:00:00Z')+n*86400
 function monday(){const now=new Date();return add(now.toISOString().slice(0,10),(8-now.getUTCDay())%7||7);}
 
 test('report analytics: actual capture retains exact seeded quantiles, scoped probabilities and 20h versus 12h overload despite later schedule, effort and profile changes',async({page},info)=>{
+ await withReportDeparture(page,info,async()=>{
  const M=monday(),due=add(M,4),leave=add(M,3),late=add(M,11),p50=add(M,7),p90=add(M,8);
  await withOwnedSchedule(page,info,[{label:'numeric report 20h',duration:5,start:M,due,release:true}],async(f)=>{
   const key=f.keys[0],me=await get('/rest/api/3/myself'),originalDates=await f.read(key);
@@ -80,5 +82,6 @@ test('report analytics: actual capture retains exact seeded quantiles, scoped pr
    finally{rpc.stop();journal.originalPrivateSettingsRestored=restored;retain();page.off('crash',crashed);page.off('close',closed);page.context().off('close',contextClosed);}
    if(cleanupErrors.length)throw new AggregateError([...(bodyError?[bodyError]:[]),...cleanupErrors],'Numeric report body and independent cleanup failures');
   }
+ });
  });
 });
