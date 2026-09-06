@@ -54,7 +54,8 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
   const status=typeof response.status==='function'?response.status():response.status;record.status=status;
   const headers=typeof response.headers==='function'?response.headers():response.headers;
   const traceId=headers?.get?headers.get('atl-traceid'):headers?.['atl-traceid']??null;
-  event(record,api?'api-response-available':'response-headers-observed',at,{httpStatus:status,traceId});
+  const trace=typeof saveResponse==='function'?{traceId:null,...(typeof traceId==='string'?{traceIdSha256:hash(traceId),traceIdBytes:Buffer.byteLength(traceId)}:{})}:{traceId};
+  event(record,api?'api-response-available':'response-headers-observed',at,{httpStatus:status,...trace});
   const work=(async()=>{
    try{
     const raw=await (clone?response.clone():response).text();const terminal=stamp();record.bodyTerminal=terminal;
