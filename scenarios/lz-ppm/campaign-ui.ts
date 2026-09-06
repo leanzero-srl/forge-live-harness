@@ -30,7 +30,7 @@ export function currentUserResolver(page:any,filter:(call:any)=>boolean,{observe
       const headers=replayHeaders(await wire.headers);
       if(!observer){const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});expect(res.status()).toBe(200);const body=await bodyOf(res);expect(body).toBeTruthy();return body;}
       const observed=observeCall(observer,'beginExternal','rpc',functionKey,payload);let failed=false,cause:any;
-      try{const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});observeCall(observer,'externalResponse',observed,res);expect(res.status()).toBe(200);const body=await bodyOf(res);expect(body).toBeTruthy();return body;}
+      try{const res=await page.request.post(wire.url,{headers,data:JSON.stringify(data)});observeCall(observer,'externalResponse',observed,res,{requestToken:data.variables.input.payload.contextToken,requestHeaders:headers});expect(res.status()).toBe(200);const body=await bodyOf(res);expect(body).toBeTruthy();return body;}
       catch(error){failed=true;cause=error;throw error;}finally{observeCall(observer,'endExternal',observed,cause,failed);}
     },
   };

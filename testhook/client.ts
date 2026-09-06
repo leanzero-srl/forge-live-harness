@@ -27,7 +27,7 @@ export async function getTestState(app: keyof typeof URLS | string, query: Recor
   const observed=observeCall(observer,'beginExternal','hook',query.what||'unknown',query);let failed=false,cause:any;
   try {
     const res=await fetch(u.toString(), { headers: { Authorization: `Bearer ${SECRET}` } });
-    observeCall(observer,'externalResponse',observed,res);
+    observeCall(observer,'externalResponse',observed,res,{requestHeaders:{Authorization:`Bearer ${SECRET}`}});
     if (!res.ok) throw new Error(`testState ${app} -> ${res.status}: ${(await res.text()).slice(0, 300)}`);
     return await res.json();
   } catch(error) { failed=true;cause=error;throw error; }

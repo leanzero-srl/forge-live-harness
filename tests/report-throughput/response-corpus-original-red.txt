@@ -1,0 +1,110 @@
+TAP version 13
+# Subtest: full hook source and RPC pages survive exact dual-digest receipt
+not ok 1 - full hook source and RPC pages survive exact dual-digest receipt
+  ---
+  duration_ms: 8.398417
+  type: 'test'
+  location: '/private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 2
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:11:588)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: actual UI begin call is retained as a separately validated call receipt without transport
+not ok 2 - actual UI begin call is retained as a separately validated call receipt without transport
+  ---
+  duration_ms: 0.407709
+  type: 'test'
+  location: '/private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:12:784)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: known opaque secret echo, unsafe credential key and unknown JWT refuse evidence without changing business outcome
+not ok 3 - known opaque secret echo, unsafe credential key and unknown JWT refuse evidence without changing business outcome
+  ---
+  duration_ms: 0.30325
+  type: 'test'
+  location: '/private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:13:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:13:478)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: held evidence sink never holds later request dispatch or body timestamps
+ok 4 - held evidence sink never holds later request dispatch or body timestamps
+  ---
+  duration_ms: 2.264
+  type: 'test'
+  ...
+# Subtest: throwing and rejected response sinks fail evidence grade with safe fixed diagnostics
+not ok 5 - throwing and rejected response sinks fail evidence grade with safe fixed diagnostics
+  ---
+  duration_ms: 0.14325
+  type: 'test'
+  location: '/private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:15:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:15:337)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: absent optional sink preserves prior response behavior and does not inspect private request headers
+ok 6 - absent optional sink preserves prior response behavior and does not inspect private request headers
+  ---
+  duration_ms: 0.291417
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 2
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42.492875

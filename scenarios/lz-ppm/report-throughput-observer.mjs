@@ -1,5 +1,6 @@
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
+import {serializeForgeResponse,ForgeResponseRecordError} from './forge-response-record.mjs';
 
 const phases=new Set(['preparation','capture','post-capture-audit','direct-page-audit','ui-download','source-checks','failure-cleanup','final-cleanup']);
 const hash=raw=>createHash('sha256').update(raw).digest('hex');
@@ -26,9 +27,9 @@ export function observeCall(observer,method,...args){
 }
 
 /** Passive event receiver. It owns no transport, route, retry or rate policy. */
-export function createReportThroughputObserver({page,extensionId,emit=(_event)=>{},saveFailure=(_id,_raw)=>{},now=()=>performance.now(),wall=()=>Date.now(),maxRecords=10000}){
+export function createReportThroughputObserver({page,extensionId,emit=(_event)=>{},saveFailure=(_id,_raw)=>{},saveResponse,now=()=>performance.now(),wall=()=>Date.now(),maxRecords=10000}){
  if(!/^ari:cloud:ecosystem::extension\/[\w-]+\/[\w-]+\/static\/ppm-dashboard$/.test(extensionId))throw new Error('Exact dashboard extension identity required');
- const records=new Map(),byRequest=new Map(),pending=new Set(),errors=[];let nextId=0,lastClock=-Infinity,phase='preparation',closed=false,recordCount=0;
+ const records=new Map(),byRequest=new Map(),requestEvidence=new WeakMap(),pending=new Set(),errors=[];let nextId=0,lastClock=-Infinity,phase='preparation',closed=false,recordCount=0;
  const recordObserverFailure=error=>{errors.push({kind:'observer',...errorData(error)});};
  const safe=(work)=>{try{return work();}catch(error){recordObserverFailure(error);return undefined;}};
  const stamp=()=>{
@@ -44,7 +45,7 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
  function selectedCall(call){const p=call?.payload;return {planId:typeof p?.planId==='string'?p.planId:null,jobId:typeof p?.jobId==='string'?p.jobId:null,expectedCheckpoint:Number.isSafeInteger(p?.expectedCheckpoint)?p.expectedCheckpoint:null};}
  function readTiming(request){return safe(()=>{const t=request.timing();return Object.fromEntries(['startTime','domainLookupStart','domainLookupEnd','connectStart','secureConnectionStart','connectEnd','requestStart','responseStart','responseEnd'].map(k=>[k,Number.isFinite(t[k])?t[k]:null]));});}
  function jobSummary(job){if(!job||typeof job!=='object')return null;return Object.fromEntries(['id','checkpoint','state','cleanupDone','stageLabel','completedUnits','totalUnits','forecastRuns'].filter(k=>Object.hasOwn(job,k)).map(k=>[k,job[k]]));}
- function responseBody(record,response,at,{api=false,hook=false,clone=false}={}){
+ function responseBody(record,response,at,{api=false,hook=false,clone=false,privacy={},requestCall}={}){
   const status=typeof response.status==='function'?response.status():response.status;record.status=status;
   const headers=typeof response.headers==='function'?response.headers():response.headers;
   const traceId=headers?.get?headers.get('atl-traceid'):headers?.['atl-traceid']??null;
@@ -60,10 +61,33 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
     if(hook&&(!parsed||typeof parsed!=='object'))failures.push('hook-body');
     record.outcome=failures.length||record.outcome==='failed'?'failed':'success';
     const summary={outcome:record.outcome,failures,responseSha256:hash(raw),responseBytes:Buffer.byteLength(raw),outerSuccess:outer?.success??null,bodySuccess:body?.success??null,job:jobSummary(body?.job)};
+    let receipt,evidenceRefusal;
+    if(typeof saveResponse==='function'){
+     try{
+      const options=typeof privacy==='function'?await privacy():privacy;
+      const {data,...safeReceipt}=serializeForgeResponse(raw,options);receipt=safeReceipt;
+      if(requestCall){const {data:callData,...callReceipt}=serializeForgeResponse(JSON.stringify(requestCall),options);receipt.requestCall=callReceipt;}
+     }catch(error){receipt=null;evidenceRefusal=error instanceof ForgeResponseRecordError?error.receipt:{refusal:'response-evidence-unavailable'};}
+    }
     if(failures.length){errors.push({kind:'response',id:record.id,failures});
-     const evidence=JSON.stringify(failureEvidence(raw)),file=saveFailure(record.id,evidence);if(file?.then)await file;summary.failureEvidence={schema:'sanitized-rpc-failure-v1',sha256:hash(evidence),bytes:Buffer.byteLength(evidence),originalRawRetained:false};
+     // The optional strict corpus also fences the older failure sink: it must
+     // never publish an opaque request credential echoed by an error response.
+     const failure=typeof saveResponse!=='function'?failureEvidence(raw):{
+      schema:'sanitized-rpc-failure-v1',originalSha256:hash(raw),originalBytes:Buffer.byteLength(raw),originalRawRetained:false,
+      ...(receipt?{format:'json',envelope:JSON.parse(receipt.raw),removedFields:Object.hasOwn(parsed?.data?.invokeExtension??{},'contextToken')?['$.data.invokeExtension.contextToken']:[]}:{format:'withheld',contentOmitted:true,refusal:evidenceRefusal?.refusal}),
+     };
+     const evidence=JSON.stringify(failure),file=saveFailure(record.id,evidence);if(file?.then)await file;summary.failureEvidence={schema:'sanitized-rpc-failure-v1',sha256:hash(evidence),bytes:Buffer.byteLength(evidence),originalRawRetained:false};
     }
     event(record,'body-terminal',terminal,summary);
+    // Optional full evidence is local work after the original body timing.
+    // It neither changes a business outcome nor adds/awaits any product request.
+    if(typeof saveResponse==='function'){
+     if(receipt){try{
+      await saveResponse(record.id,{...receipt,observerId:record.id,kind:record.kind,key:record.key,planId:record.meta.planId});
+      event(record,'response-evidence-retained',stamp(),{responseSha256:receipt.responseSha256,retainedResponseSha256:receipt.retainedResponseSha256,retainedResponseBytes:receipt.retainedResponseBytes});
+     }catch{evidenceRefusal={refusal:'response-evidence-sink-failed'};}}
+     if(evidenceRefusal){errors.push({kind:'response-evidence',id:record.id,...evidenceRefusal});event(record,'response-evidence-refused',stamp(),evidenceRefusal);}
+    }
    }catch(error){record.bodyTerminal=stamp();record.outcome='unknown';errors.push({kind:'body',id:record.id,...errorData(error)});event(record,'body-read-failed',record.bodyTerminal,{error:errorData(error)});}
   })();track(work);
  }
@@ -74,8 +98,12 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
   const input=envelope?.variables?.input;if(input?.extensionId!==extensionId)return;
   const call=input?.payload?.call;if(typeof call?.functionKey!=='string'||!call.functionKey){errors.push({kind:'unclassified-app-rpc'});event(null,'unclassified-app-rpc',at);return;}
   const record=start('ui',call.functionKey,selectedCall(call),at);byRequest.set(req,record);
+  if(typeof saveResponse==='function')requestEvidence.set(req,{
+   privacy:async()=>({requestToken:input.payload?.contextToken,requestHeaders:await req.allHeaders()}),
+   requestCall:['captureSponsorReport','captureSnapshot'].includes(call.functionKey)?call:undefined,
+  });
  });
- const response=res=>safe(()=>{const at=stamp(),record=byRequest.get(res.request());if(record)responseBody(record,res,at);});
+ const response=res=>safe(()=>{const at=stamp(),req=res.request(),record=byRequest.get(req);if(record){const evidence=requestEvidence.get(req);requestEvidence.delete(req);responseBody(record,res,at,evidence);}});
  const finished=req=>safe(()=>{const at=stamp(),record=byRequest.get(req);if(!record)return;record.networkTerminal=at;event(record,'network-finished',at,{timing:readTiming(req)});});
  const failed=req=>safe(()=>{const at=stamp(),record=byRequest.get(req);if(!record)return;record.networkTerminal=at;record.outcome='failed';errors.push({kind:'transport',id:record.id,...errorData(req.failure()?.errorText)});event(record,'network-failed',at,{error:errorData(req.failure()?.errorText),timing:readTiming(req)});});
  page.on('request',request);page.on('response',response);page.on('requestfinished',finished);page.on('requestfailed',failed);
@@ -85,7 +113,7 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
   recordObserverFailure,
   mark(next){safe(()=>{if(!phases.has(next))throw new Error('Unknown throughput phase');phase=next;event(null,'phase',stamp());});},
   beginExternal(kind,key,meta={}){return safe(()=>{if(closed)throw new Error('Observer closed');if(!['rpc','hook'].includes(kind))throw new Error('Unknown external kind');return start(kind,key,{planId:typeof meta.planId==='string'?meta.planId:null},stamp()).id;});},
-  externalResponse(id,response){safe(()=>{const record=records.get(id);if(!record)throw new Error('Unknown external response');responseBody(record,response,stamp(),{api:record.kind==='rpc',hook:record.kind==='hook',clone:record.kind==='hook'});});},
+  externalResponse(id,response,privacy={}){safe(()=>{const record=records.get(id);if(!record)throw new Error('Unknown external response');responseBody(record,response,stamp(),{api:record.kind==='rpc',hook:record.kind==='hook',clone:record.kind==='hook',privacy});});},
   endExternal(id,error,failedCall=false){safe(()=>{const record=records.get(id);if(!record)throw new Error('Unknown external terminal');record.networkTerminal=stamp();
    if(failedCall){errors.push({kind:'external-operation',id,...errorData(error)});record.outcome='failed';}
    event(record,'external-consumer-terminal',record.networkTerminal,{failed:failedCall,...(failedCall?{error:errorData(error)}:{})});

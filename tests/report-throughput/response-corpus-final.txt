@@ -1,0 +1,388 @@
+TAP version 13
+# Subtest: actual adapter serializes response parsing before following request validation
+ok 1 - actual adapter serializes response parsing before following request validation
+  ---
+  duration_ms: 6.53575
+  type: 'test'
+  ...
+# Subtest: actual outer Forge timeout is retained rather than undefined-body success
+ok 2 - actual outer Forge timeout is retained rather than undefined-body success
+  ---
+  duration_ms: 1.132375
+  type: 'test'
+  ...
+# Subtest: requestfailed is an error, not permission to repeat begin
+ok 3 - requestfailed is an error, not permission to repeat begin
+  ---
+  duration_ms: 0.61975
+  type: 'test'
+  ...
+# Subtest: unrelated owner-discovery before click does not admit a foreign prior job
+ok 4 - unrelated owner-discovery before click does not admit a foreign prior job
+  ---
+  duration_ms: 0.35175
+  type: 'test'
+  ...
+# Subtest: actual cleanup retains exact manifest before and verifies two strong absence reads
+ok 5 - actual cleanup retains exact manifest before and verifies two strong absence reads
+  ---
+  duration_ms: 1.569625
+  type: 'test'
+  ...
+# Subtest: foreign owner request cannot be adopted for cleanup
+ok 6 - foreign owner request cannot be adopted for cleanup
+  ---
+  duration_ms: 0.583125
+  type: 'test'
+  ...
+# Subtest: failed or ambiguous cancel is never retried and exact state survives
+ok 7 - failed or ambiguous cancel is never retried and exact state survives
+  ---
+  duration_ms: 0.227
+  type: 'test'
+  ...
+# Subtest: false cleanupDone while keys still present cannot pass
+ok 8 - false cleanupDone while keys still present cannot pass
+  ---
+  duration_ms: 0.166209
+  type: 'test'
+  ...
+# Subtest: missing manifest entries after cancellation is not proof of removal
+ok 9 - missing manifest entries after cancellation is not proof of removal
+  ---
+  duration_ms: 0.124917
+  type: 'test'
+  ...
+# Subtest: cleanup after complete keeps all public report objects
+ok 10 - cleanup after complete keeps all public report objects
+  ---
+  duration_ms: 0.306209
+  type: 'test'
+  ...
+# Subtest: zero-progress cleanup refused rather than infinite retry
+ok 11 - zero-progress cleanup refused rather than infinite retry
+  ---
+  duration_ms: 0.122875
+  type: 'test'
+  ...
+# Subtest: failed physical proof is retained before assertion, without deleting or marking clean
+ok 12 - failed physical proof is retained before assertion, without deleting or marking clean
+  ---
+  duration_ms: 0.143167
+  type: 'test'
+  ...
+# Subtest: shared observation callback retains exact response before caller validation throws
+ok 13 - shared observation callback retains exact response before caller validation throws
+  ---
+  duration_ms: 0.233209
+  type: 'test'
+  ...
+# Subtest: content cannot be excused by relabeling it as a deletion marker
+ok 14 - content cannot be excused by relabeling it as a deletion marker
+  ---
+  duration_ms: 0.325583
+  type: 'test'
+  ...
+# Subtest: held step executes backend once and delivers the identical response only after release
+ok 15 - held step executes backend once and delivers the identical response only after release
+  ---
+  duration_ms: 1.5825
+  type: 'test'
+  ...
+# Subtest: unrelated plan cannot be held by fixture control
+ok 16 - unrelated plan cannot be held by fixture control
+  ---
+  duration_ms: 0.14775
+  type: 'test'
+  ...
+# Subtest: real shape full lifecycle requires cleanup and preserves immutable report
+ok 17 - real shape full lifecycle requires cleanup and preserves immutable report
+  ---
+  duration_ms: 1.276917
+  type: 'test'
+  ...
+# Subtest: progress alone is not completion and bounded timeout stays failure
+ok 18 - progress alone is not completion and bounded timeout stays failure
+  ---
+  duration_ms: 7.464917
+  type: 'test'
+  ...
+# Subtest: begin request nonce mismatch refused
+ok 19 - begin request nonce mismatch refused
+  ---
+  duration_ms: 0.762791
+  type: 'test'
+  ...
+# Subtest: foreign plan ignored and different job cannot replace admitted job
+ok 20 - foreign plan ignored and different job cannot replace admitted job
+  ---
+  duration_ms: 0.264791
+  type: 'test'
+  ...
+# Subtest: overlapping mutations fail even if eventual outcomes look successful
+ok 21 - overlapping mutations fail even if eventual outcomes look successful
+  ---
+  duration_ms: 0.223083
+  type: 'test'
+  ...
+# Subtest: wrong expected checkpoint refused before accepting later result
+ok 22 - wrong expected checkpoint refused before accepting later result
+  ---
+  duration_ms: 0.153834
+  type: 'test'
+  ...
+# Subtest: unchanged active checkpoint cannot be graded as progress
+ok 23 - unchanged active checkpoint cannot be graded as progress
+  ---
+  duration_ms: 0.145542
+  type: 'test'
+  ...
+# Subtest: terminal cleanup cannot erase a completed report
+ok 24 - terminal cleanup cannot erase a completed report
+  ---
+  duration_ms: 0.15475
+  type: 'test'
+  ...
+# Subtest: wrong report hash/identity refused
+ok 25 - wrong report hash/identity refused
+  ---
+  duration_ms: 0.39625
+  type: 'test'
+  ...
+# Subtest: unknown transport outcome preserves original error and last acknowledged job
+ok 26 - unknown transport outcome preserves original error and last acknowledged job
+  ---
+  duration_ms: 0.38375
+  type: 'test'
+  ...
+# Subtest: failed terminal state retained for explicit refusal assertions, not coerced complete
+ok 27 - failed terminal state retained for explicit refusal assertions, not coerced complete
+  ---
+  duration_ms: 0.098083
+  type: 'test'
+  ...
+# Subtest: second begin cannot silently replace first job after a lost result
+ok 28 - second begin cannot silently replace first job after a lost result
+  ---
+  duration_ms: 0.370917
+  type: 'test'
+  ...
+# Subtest: actual compiled fixture retains report staging and original failure without deleting
+ok 29 - actual compiled fixture retains report staging and original failure without deleting
+  ---
+  duration_ms: 56.628
+  type: 'test'
+  ...
+# Subtest: actual compiled fixture retains report staging and both independent recovery causes without deleting
+ok 30 - actual compiled fixture retains report staging and both independent recovery causes without deleting
+  ---
+  duration_ms: 23.67525
+  type: 'test'
+  ...
+# Subtest: actual shared fixture finally retains owned plan/issues on departure failure and still reads registry/source
+ok 31 - actual shared fixture finally retains owned plan/issues on departure failure and still reads registry/source
+  ---
+  duration_ms: 28.640333
+  type: 'test'
+  ...
+# Subtest: actual full45 and large custom finalizers poison-dependent deletion but preserve independent audits
+ok 32 - actual full45 and large custom finalizers poison-dependent deletion but preserve independent audits
+  ---
+  duration_ms: 7.404459
+  type: 'test'
+  ...
+# Subtest: both actual shared report cleanup stop callbacks use adapter and settle before existing RPC continuation
+ok 33 - both actual shared report cleanup stop callbacks use adapter and settle before existing RPC continuation
+  ---
+  duration_ms: 0.191625
+  type: 'test'
+  ...
+# Subtest: actual usePresence original unload abort is reproduced; held real leave must finish before navigation
+ok 34 - actual usePresence original unload abort is reproduced; held real leave must finish before navigation
+  ---
+  duration_ms: 4.4495
+  type: 'test'
+  ...
+# Subtest: actual usePresence wrong/missing/failed/HTTP/body/errors/duplicate leaves poison session without repeated Back or blank
+ok 35 - actual usePresence wrong/missing/failed/HTTP/body/errors/duplicate leaves poison session without repeated Back or blank
+  ---
+  duration_ms: 105.20125
+  type: 'test'
+  ...
+# Subtest: actual adapter identifies Capacity/list/blank without PlanView leave and refuses unknown surface
+ok 36 - actual adapter identifies Capacity/list/blank without PlanView leave and refuses unknown surface
+  ---
+  duration_ms: 0.456708
+  type: 'test'
+  ...
+# Subtest: no opt-in keeps exact default calls/results/errors and disposal removes listeners
+ok 37 - no opt-in keeps exact default calls/results/errors and disposal removes listeners
+  ---
+  duration_ms: 0.159667
+  type: 'test'
+  ...
+# Subtest: literal intentional mounted lifecycle reload and all preexisting seven expectations remain unchanged
+ok 38 - literal intentional mounted lifecycle reload and all preexisting seven expectations remain unchanged
+  ---
+  duration_ms: 80.032417
+  type: 'test'
+  ...
+# Subtest: observed intentional document reload cannot reuse a previous mount presence beat
+ok 39 - observed intentional document reload cannot reuse a previous mount presence beat
+  ---
+  duration_ms: 1.217208
+  type: 'test'
+  ...
+# Subtest: actual direct RPC seam dispatches once and preserves values/default body consumption
+ok 40 - actual direct RPC seam dispatches once and preserves values/default body consumption
+  ---
+  duration_ms: 6.96925
+  type: 'test'
+  ...
+# Subtest: actual direct RPC rejection identity and falsy exception survive observation
+ok 41 - actual direct RPC rejection identity and falsy exception survive observation
+  ---
+  duration_ms: 1.55875
+  type: 'test'
+  ...
+# Subtest: actual hook optional seam consumes same result and raw HTTP failure without extra fetch
+ok 42 - actual hook optional seam consumes same result and raw HTTP failure without extra fetch
+  ---
+  duration_ms: 2.915667
+  type: 'test'
+  ...
+# Subtest: observer callback exception is isolated from original helper success and recorded
+ok 43 - observer callback exception is isolated from original helper success and recorded
+  ---
+  duration_ms: 0.586709
+  type: 'test'
+  ...
+# Subtest: held body never serializes later dispatch/header/terminal timestamps
+ok 44 - held body never serializes later dispatch/header/terminal timestamps
+  ---
+  duration_ms: 1.720584
+  type: 'test'
+  ...
+# Subtest: all exact-app keys including no-plan reads are observed; foreign extension excluded
+ok 45 - all exact-app keys including no-plan reads are observed; foreign extension excluded
+  ---
+  duration_ms: 0.667542
+  type: 'test'
+  ...
+# Subtest: HTTP, outer and body refusals retain exact raw/hash and phase without interrupting other calls
+ok 46 - HTTP, outer and body refusals retain exact raw/hash and phase without interrupting other calls
+  ---
+  duration_ms: 1.00275
+  type: 'test'
+  ...
+# Subtest: malformed JSON, body rejection and requestfailed remain distinct failures
+ok 47 - malformed JSON, body rejection and requestfailed remain distinct failures
+  ---
+  duration_ms: 0.310625
+  type: 'test'
+  ...
+# Subtest: finish retains unresolved work and detaches; it never claims timeout completion
+ok 48 - finish retains unresolved work and detaches; it never claims timeout completion
+  ---
+  duration_ms: 12.16575
+  type: 'test'
+  ...
+# Subtest: throwing/rejected/terminal sinks fail final grade but cannot block dispatch or replace falsy errors
+ok 49 - throwing/rejected/terminal sinks fail final grade but cannot block dispatch or replace falsy errors
+  ---
+  duration_ms: 0.887208
+  type: 'test'
+  ...
+# Subtest: nonmonotonic clocks and malformed same-app calls cannot silently disappear
+ok 50 - nonmonotonic clocks and malformed same-app calls cannot silently disappear
+  ---
+  duration_ms: 0.191167
+  type: 'test'
+  ...
+# Subtest: hook clone and API body are independent observed terminal surfaces, never extra transports
+ok 51 - hook clone and API body are independent observed terminal surfaces, never extra transports
+  ---
+  duration_ms: 7.265084
+  type: 'test'
+  ...
+# Subtest: wrong app filter or only direct audit success cannot pass large capture coverage
+ok 52 - wrong app filter or only direct audit success cannot pass large capture coverage
+  ---
+  duration_ms: 0.395167
+  type: 'test'
+  ...
+# Subtest: real-shaped outer-success/body-failure cannot persist response credentials or echoed header values
+ok 53 - real-shaped outer-success/body-failure cannot persist response credentials or echoed header values
+  ---
+  duration_ms: 0.8155
+  type: 'test'
+  ...
+# Subtest: nonarray outer/top-level errors are failures even when success and body are true
+ok 54 - nonarray outer/top-level errors are failures even when success and body are true
+  ---
+  duration_ms: 0.23575
+  type: 'test'
+  ...
+# Subtest: actual persisted-query URL observes exact-extension capture and background traffic
+ok 55 - actual persisted-query URL observes exact-extension capture and background traffic
+  ---
+  duration_ms: 0.235959
+  type: 'test'
+  ...
+# Subtest: full hook source and RPC pages survive exact dual-digest receipt
+ok 56 - full hook source and RPC pages survive exact dual-digest receipt
+  ---
+  duration_ms: 10.423167
+  type: 'test'
+  ...
+# Subtest: actual UI begin call is retained as a separately validated call receipt without transport
+ok 57 - actual UI begin call is retained as a separately validated call receipt without transport
+  ---
+  duration_ms: 0.658791
+  type: 'test'
+  ...
+# Subtest: known opaque secret echo, unsafe credential key and unknown JWT refuse evidence without changing business outcome
+ok 58 - known opaque secret echo, unsafe credential key and unknown JWT refuse evidence without changing business outcome
+  ---
+  duration_ms: 1.019917
+  type: 'test'
+  ...
+# Subtest: held evidence sink never holds later request dispatch or body timestamps
+ok 59 - held evidence sink never holds later request dispatch or body timestamps
+  ---
+  duration_ms: 1.966083
+  type: 'test'
+  ...
+# Subtest: throwing and rejected response sinks fail evidence grade with safe fixed diagnostics
+ok 60 - throwing and rejected response sinks fail evidence grade with safe fixed diagnostics
+  ---
+  duration_ms: 0.541708
+  type: 'test'
+  ...
+# Subtest: absent optional sink preserves prior response behavior and does not inspect private request headers
+ok 61 - absent optional sink preserves prior response behavior and does not inspect private request headers
+  ---
+  duration_ms: 0.314667
+  type: 'test'
+  ...
+# Subtest: an opaque credential echoed by a failed response is withheld from both evidence sinks
+ok 62 - an opaque credential echoed by a failed response is withheld from both evidence sinks
+  ---
+  duration_ms: 0.216833
+  type: 'test'
+  ...
+# Subtest: every preexisting large-unit and shared-capture expectation is unchanged
+ok 63 - every preexisting large-unit and shared-capture expectation is unchanged
+  ---
+  duration_ms: 56.742625
+  type: 'test'
+  ...
+1..63
+# tests 63
+# suites 0
+# pass 63
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 634.807875

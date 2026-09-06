@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: held body never serializes later dispatch/header/terminal timestamps
+ok 1 - held body never serializes later dispatch/header/terminal timestamps
+  ---
+  duration_ms: 1.422167
+  type: 'test'
+  ...
+# Subtest: all exact-app keys including no-plan reads are observed; foreign extension excluded
+ok 2 - all exact-app keys including no-plan reads are observed; foreign extension excluded
+  ---
+  duration_ms: 0.5235
+  type: 'test'
+  ...
+# Subtest: HTTP, outer and body refusals retain exact raw/hash and phase without interrupting other calls
+ok 3 - HTTP, outer and body refusals retain exact raw/hash and phase without interrupting other calls
+  ---
+  duration_ms: 0.864
+  type: 'test'
+  ...
+# Subtest: malformed JSON, body rejection and requestfailed remain distinct failures
+ok 4 - malformed JSON, body rejection and requestfailed remain distinct failures
+  ---
+  duration_ms: 0.265125
+  type: 'test'
+  ...
+# Subtest: finish retains unresolved work and detaches; it never claims timeout completion
+ok 5 - finish retains unresolved work and detaches; it never claims timeout completion
+  ---
+  duration_ms: 12.369125
+  type: 'test'
+  ...
+# Subtest: throwing/rejected/terminal sinks fail final grade but cannot block dispatch or replace falsy errors
+ok 6 - throwing/rejected/terminal sinks fail final grade but cannot block dispatch or replace falsy errors
+  ---
+  duration_ms: 1.095333
+  type: 'test'
+  ...
+# Subtest: nonmonotonic clocks and malformed same-app calls cannot silently disappear
+ok 7 - nonmonotonic clocks and malformed same-app calls cannot silently disappear
+  ---
+  duration_ms: 0.241875
+  type: 'test'
+  ...
+# Subtest: hook clone and API body are independent observed terminal surfaces, never extra transports
+ok 8 - hook clone and API body are independent observed terminal surfaces, never extra transports
+  ---
+  duration_ms: 6.244792
+  type: 'test'
+  ...
+# Subtest: wrong app filter or only direct audit success cannot pass large capture coverage
+ok 9 - wrong app filter or only direct audit success cannot pass large capture coverage
+  ---
+  duration_ms: 0.397334
+  type: 'test'
+  ...
+# Subtest: real-shaped outer-success/body-failure cannot persist response credentials or echoed header values
+ok 10 - real-shaped outer-success/body-failure cannot persist response credentials or echoed header values
+  ---
+  duration_ms: 0.367542
+  type: 'test'
+  ...
+# Subtest: nonarray outer/top-level errors are failures even when success and body are true
+ok 11 - nonarray outer/top-level errors are failures even when success and body are true
+  ---
+  duration_ms: 0.233625
+  type: 'test'
+  ...
+# Subtest: actual persisted-query URL observes exact-extension capture and background traffic
+ok 12 - actual persisted-query URL observes exact-extension capture and background traffic
+  ---
+  duration_ms: 0.200416
+  type: 'test'
+  ...
+# Subtest: full hook source and RPC pages survive exact dual-digest receipt
+not ok 13 - full hook source and RPC pages survive exact dual-digest receipt
+  ---
+  duration_ms: 9.108708
+  type: 'test'
+  location: '/private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'abcb31a418a0661802dde6c92c5e9efac3f1457b37d8025286f30b05566fb1ae'
+    - '88188734d64ad1112617a6495bb0f7991f4c7e1ffa848242a61f7e7a28429cd8'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '88188734d64ad1112617a6495bb0f7991f4c7e1ffa848242a61f7e7a28429cd8'
+  actual: 'abcb31a418a0661802dde6c92c5e9efac3f1457b37d8025286f30b05566fb1ae'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-report-safe-body-corpus-20260906/tests/report-throughput/response-corpus.test.mjs:11:689)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: actual UI begin call is retained as a separately validated call receipt without transport
+ok 14 - actual UI begin call is retained as a separately validated call receipt without transport
+  ---
+  duration_ms: 0.639042
+  type: 'test'
+  ...
+# Subtest: known opaque secret echo, unsafe credential key and unknown JWT refuse evidence without changing business outcome
+ok 15 - known opaque secret echo, unsafe credential key and unknown JWT refuse evidence without changing business outcome
+  ---
+  duration_ms: 0.853209
+  type: 'test'
+  ...
+# Subtest: held evidence sink never holds later request dispatch or body timestamps
+ok 16 - held evidence sink never holds later request dispatch or body timestamps
+  ---
+  duration_ms: 2.014083
+  type: 'test'
+  ...
+# Subtest: throwing and rejected response sinks fail evidence grade with safe fixed diagnostics
+ok 17 - throwing and rejected response sinks fail evidence grade with safe fixed diagnostics
+  ---
+  duration_ms: 0.445708
+  type: 'test'
+  ...
+# Subtest: absent optional sink preserves prior response behavior and does not inspect private request headers
+ok 18 - absent optional sink preserves prior response behavior and does not inspect private request headers
+  ---
+  duration_ms: 0.274709
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 17
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 56.530459
