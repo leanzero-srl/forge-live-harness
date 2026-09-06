@@ -35,6 +35,21 @@ const T = getTarget("chatwise-global");
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 const OUT = `${SECRETS_DIR}/asuser-table.json`;
 
+/**
+ * THE SPACING IS THE MEASUREMENT'S BIGGEST ENEMY, AND IT IS NOT A PRODUCT FACT.
+ *
+ * `jira-admin` runs on claude-sonnet-5 and the tenant's Forge LLM allowance is
+ * 50,000 tokens per model tier on a ~15-minute ROLLING window. One admin turn
+ * costs 15k-45k (the frame measured ~14,800/iteration), so eight back-to-back
+ * turns exhaust Sonnet after the second and the remaining six rows of the table
+ * would read "SKIPPED (quota)" — a table that measured nothing while looking
+ * complete. So: a gap between turns, and on a quota bubble ONE wait-and-retry.
+ * Both are environment knobs, because the right value depends on who else is
+ * driving the tenant at the time.
+ */
+const GAP_MS = Number(process.env.CHATWISE_TURN_GAP_MS || 240_000);
+const QUOTA_WAIT_MS = Number(process.env.CHATWISE_QUOTA_WAIT_MS || 960_000);
+
 /** The eight jira-admin-config reads, and the ask that drives each one. */
 const EIGHT: Array<{ tool: string; ask: string }> = [
   { tool: "getProjectConfiguration", ask: `Read the full configuration of project ${PROJECT}.` },
@@ -47,12 +62,12 @@ const EIGHT: Array<{ tool: string; ask: string }> = [
   { tool: "getAuditRecords", ask: `Show me the last few entries in the Jira audit log.` },
 ];
 
-test.describe.configure({ timeout: 5_400_000 });
+test.describe.configure({ timeout: 14_400_000 });
 
 test("the admin gates open for the admin persona only, and the eight asUser reads are measured", async ({
   page,
 }) => {
-  test.setTimeout(5_400_000);
+  test.setTimeout(14_400_000);
   const stamp = Date.now();
   const conversationId = `conv_admin_gates_${stamp}`;
   const scrubberConv = `conv_admin_gates_scrub_${stamp}`;
@@ -83,6 +98,21 @@ test("the admin gates open for the admin persona only, and the eight asUser read
     return { reply, win, data };
   }
 
+  /**
+   * The same turn, but a quota bubble is retried ONCE after the rolling window
+   * has had time to clear. A row that says "SKIPPED (quota)" is honest but
+   * useless, and the whole point of this spec is the eight-row table.
+   */
+  async function turnQ(convId: string, personaId: string, label: string, message: string) {
+    let r = await turn(convId, personaId, label, message);
+    if (QUOTA_BUBBLE.test(r.reply)) {
+      console.log(`[quota] ${label} was quota-blocked; waiting ${Math.round(QUOTA_WAIT_MS / 1000)}s and retrying once`);
+      await page.waitForTimeout(QUOTA_WAIT_MS);
+      r = await turn(convId, personaId, `${label}-retry`, message);
+    }
+    return r;
+  }
+
   try {
     frame = await openGlobalPage(page, T);
     await waitForChatApp(page, frame, GLOBAL_APP, 120_000);
@@ -99,7 +129,7 @@ test("the admin gates open for the admin persona only, and the eight asUser read
     });
 
     // ---- 1. THE ADMIN PERSONA GETS THE ADMIN GROUPS ----------------------
-    const first = await turn(conversationId, "jira-admin", "gates-1", EIGHT[0].ask);
+    const first = await turnQ(conversationId, "jira-admin", "gates-1", EIGHT[0].ask);
     skipIfQuotaBlocked(first.reply, "admin-persona-gates");
     const toolsetLine = first.win.find((l: any) => /^\[Consumer\] toolset:/.test(l.text))?.text || "";
     console.log(`[gates] toolset line: ${toolsetLine}`);
@@ -120,7 +150,7 @@ test("the admin gates open for the admin persona only, and the eight asUser read
     // the app's own log rather than inferred from prose.
     for (let i = 0; i < EIGHT.length; i++) {
       const { tool, ask } = EIGHT[i];
-      const r = i === 0 ? first : await turn(conversationId, "jira-admin", `asUser-${tool}`, ask);
+      const r = i === 0 ? first : await turnQ(conversationId, "jira-admin", `asUser-${tool}`, ask);
       if (QUOTA_BUBBLE.test(r.reply)) {
         table.push({ tool, status: "SKIPPED (quota)", called: false });
         continue;
@@ -133,7 +163,7 @@ test("the admin gates open for the admin persona only, and the eight asUser read
       table.push({ tool, status, called: called.length > 0, evidence: (failed[0]?.text || called[0]?.text || "").slice(0, 220) });
       console.log(`[asUser] ${tool} -> ${status}`);
       fs.writeFileSync(OUT, JSON.stringify(table, null, 2));
-      if (i < EIGHT.length - 1) await page.waitForTimeout(60_000);
+      if (i < EIGHT.length - 1) await page.waitForTimeout(GAP_MS);
     }
     console.table(table);
 
@@ -152,7 +182,8 @@ test("the admin gates open for the admin persona only, and the eight asUser read
     await callResolver(frame, GLOBAL_APP, "createConversation", {
       conversationId: scrubberConv, title: "[harness-test] admin gates scrubber", personaId: "jira-scrubber",
     });
-    const scrub = await turn(scrubberConv, "jira-scrubber", "gates-scrubber", EIGHT[0].ask);
+    await page.waitForTimeout(GAP_MS);
+    const scrub = await turnQ(scrubberConv, "jira-scrubber", "gates-scrubber", EIGHT[0].ask);
     skipIfQuotaBlocked(scrub.reply, "admin-persona-gates/scrubber");
     const scrubLine = scrub.win.find((l: any) => /^\[Consumer\] toolset:/.test(l.text))?.text || "";
     console.log(`[gates] scrubber toolset line: ${scrubLine}`);

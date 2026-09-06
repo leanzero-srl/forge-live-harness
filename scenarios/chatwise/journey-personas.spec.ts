@@ -102,7 +102,7 @@ async function expectPinnedModelOrDisclosedFallback(frame: any, pinned: string) 
   console.log(`[quota] ${pinned} did not serve this turn; the fallback was disclosed. meta="${meta}"`);
 }
 
-test("the global page offers exactly the five factory personas", async ({ page }) => {
+test("the global page offers exactly the six factory personas", async ({ page }) => {
   test.skip(!G.envId, "env unresolved");
   const frame = await openGlobalPage(page, G);
   await waitForChatApp(page, frame, GLOBAL_APP);
@@ -121,7 +121,43 @@ test("the global page offers exactly the five factory personas", async ({ page }
   // persona-unavailable-row.spec.ts, not this test.
   expect(names, `roster drifted: ${names.join(" | ")}`).toEqual([
     "Coffee Break AI", "JIRA Scrubber", "Epic Master", "Product Owner", "Jira Administrator",
+    "Organisation Administrator",
   ]);
+
+  // AND THE MODEL EACH ADMIN PERSONA IS PINNED TO.
+  //
+  // Both administration personas were given claude-sonnet-5 deliberately and
+  // the reasoning is in the factory file: an access answer resolves through
+  // account, directory, group, role and licence before it has an answer, and
+  // the Organisation Administrator is the persona whose wrong answer locks
+  // somebody out of every product at once. A roster row that arrived on the
+  // cheap tier would be a silent downgrade of exactly the two personas where
+  // it matters most, and the dropdown does not show a model — so this reads
+  // the persona rows the surface was served.
+  const served: any = await callResolver(frame, GLOBAL_APP, "getPersonas", {});
+  const byId = Object.fromEntries((served?.personas || []).map((p: any) => [p.id, p]));
+  for (const id of ["jira-admin", "jira-org-admin"]) {
+    expect(byId[id], `${id} is not in the roster the surface was served`).toBeTruthy();
+    expect(
+      byId[id]?.modelSettings?.defaultModel,
+      `${id} is not pinned to claude-sonnet-5 any more; it was served ` +
+        `"${byId[id]?.modelSettings?.defaultModel}". Configuration and access answers are ` +
+        `multi-step reasoning over evidence and a cheaper tier here buys nothing.`,
+    ).toBe("claude-sonnet-5");
+    // The visibility field is what makes the row appear for everyone and be
+    // refused for a non-admin; a row that quietly lost it would be offered to
+    // people Jira will then say no to on every call.
+    expect(
+      byId[id]?.requiresSiteAdmin,
+      `${id} no longer declares requiresSiteAdmin, so it is offered to everybody`,
+    ).toBe(true);
+  }
+  console.log(
+    `[personas] admin rows: ` +
+      ["jira-admin", "jira-org-admin"]
+        .map((id) => `${id} -> ${byId[id]?.modelSettings?.defaultModel} available=${byId[id]?.available}`)
+        .join(" | "),
+  );
 });
 
 test("Coffee Break AI: casual chat on ITS model, no Jira machinery", async ({ page }) => {

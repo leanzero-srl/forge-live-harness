@@ -221,3 +221,75 @@ export async function skipUntilAdminPersonas(
   console.log(`[admin-creds] persona roster: ${ids.join(", ") || "(none)"} -> 13.x=${ok}`);
   test.skip(!ok, NOT_APPROVED);
 }
+
+/* ------------------------------------------------------------------------ *
+ * DRIVING THE ADMIN PAGE FROM A SPEC THAT IS NOT ABOUT THE ADMIN PAGE.
+ *
+ * `site-token-tools` and `org-admin-tools` both have to STORE a real credential
+ * before they can measure anything and REMOVE it afterwards, and the only route
+ * to either is the card: `registerCredentialRoutes` is on the admin resolver,
+ * and the UI Kit 2 surface exposes no bridge handle. These three helpers were
+ * copied out of `admin-credentials-settings.spec.ts` the moment the second
+ * caller appeared, because a second hand-rolled copy of "find the admin root"
+ * is how the two specs come to disagree about what the page looks like.
+ * ------------------------------------------------------------------------ */
+
+/** The tab that is on the admin page in every version, used to find the root. */
+export const ADMIN_PROBE_TAB = "Beta access";
+
+export function adminTab(root: Root, name: string) {
+  return root.getByRole("tab", { name, exact: true }).first();
+}
+
+/**
+ * The admin page renders in the HOST DOM on some builds and inside an iframe on
+ * others, so this asks both rather than assuming. `isVisible()` is used with an
+ * explicit short timeout INSIDE a loop that owns the waiting — the option on
+ * `isVisible` itself is inert.
+ */
+export async function resolveAdminRoot(page: Page, timeout = 60_000): Promise<Root> {
+  const deadline = Date.now() + timeout;
+  for (;;) {
+    if (await adminTab(page, ADMIN_PROBE_TAB).isVisible({ timeout: 500 }).catch(() => false)) return page;
+    const frames = await page.locator("iframe").count().catch(() => 0);
+    for (let i = 0; i < frames; i++) {
+      const fl = page.locator("iframe").nth(i).contentFrame();
+      if (await adminTab(fl, ADMIN_PROBE_TAB).isVisible({ timeout: 500 }).catch(() => false)) return fl;
+    }
+    if (Date.now() > deadline) throw new Error("admin page never rendered its tabs");
+    await page.waitForTimeout(500);
+  }
+}
+
+/** Open the admin page's Settings tab and return whatever root it lives in. */
+export async function openAdminSettings(page: Page, deepLink: string): Promise<Root> {
+  await page.goto(deepLink, { waitUntil: "domcontentloaded" });
+  const root = await resolveAdminRoot(page);
+  await adminTab(root, "Settings").click();
+  return root;
+}
+
+/**
+ * Store a credential THROUGH THE CARD and prove the card agrees.
+ *
+ * `values` is keyed by the copy module's field `key`, so a renamed field id
+ * fails here rather than silently filling nothing. THE VALUES ARE NEVER LOGGED.
+ */
+export async function storeCredentialViaCard(
+  root: Root,
+  card: any,
+  values: Record<string, string>,
+): Promise<void> {
+  for (const [key, value] of Object.entries(values)) {
+    const field = card.fields.find((f: any) => f.key === key);
+    if (!field) throw new Error(`"${card.heading}" has no field with key "${key}"`);
+    const loc = root.locator(`input[id$="${field.id}"]`).first();
+    await loc.waitFor({ state: "visible", timeout: 30_000 });
+    await loc.fill(value);
+  }
+  await root.getByRole("button", { name: card.buttons.save, exact: true }).first().click();
+  await root
+    .getByText(card.savedLozenge, { exact: true })
+    .first()
+    .waitFor({ state: "visible", timeout: 60_000 });
+}

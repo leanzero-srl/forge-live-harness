@@ -112,6 +112,22 @@ test("the admin Skills tab lists every built-in skill the backend reports", asyn
     "diconium-brand is not in the built-in roster",
   ).toContain("diconium-brand");
 
+  // THE TWO ADMINISTRATION SKILLS ARE THE COST GATE, NOT DECORATION.
+  //
+  // `allowJiraAdminTools` is decided from the built-in admin skill a persona
+  // BINDS (ADMIN_BUILTIN_SKILL_IDS), never from a persona field — so a skill
+  // that fell out of the built-in roster would close the admin tool surface on
+  // both admin personas and the only symptom would be a persona that answers
+  // configuration questions from memory. The organisation skill is the newer of
+  // the two and carries four references; both must be here.
+  for (const id of ["chatwise-jira-administration", "chatwise-jira-org-administration"]) {
+    expect(
+      builtins.map((s) => s.id),
+      `${id} is not in the built-in skill roster. The admin capability gate is derived from the ` +
+        `bound built-in skill id, so a missing skill silently closes the admin tools.`,
+    ).toContain(id);
+  }
+
   const root = await openSkillsTab(page);
   for (const s of builtins) {
     await expect(
