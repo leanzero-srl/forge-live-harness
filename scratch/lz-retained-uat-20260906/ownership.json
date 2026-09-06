@@ -1,0 +1,1284 @@
+{
+  "schema": 1,
+  "retentionPolicy": "retain-experiments",
+  "oracleSha256": "487ac1e69615a8bf56bc30c89eccd42968ac982edef3afd3d1caaae85932da2e",
+  "state": "retained-after-failure",
+  "startedAt": "2026-09-06T19:29:52.673Z",
+  "ledgerPath": "/Users/mihaiperdum/Projects/forge-live-harness/scratch/lz-retained-uat-20260906/ownership.json",
+  "runId": "retained-uat-acceptance-20260906",
+  "unitDir": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001",
+  "beforeIdentitySha256": "d8e42ad38416103e2186de8264aad9745c01672e4295bd22a5eef3c44fc5657b",
+  "optionalLedger": "/Users/mihaiperdum/Projects/forge-live-harness/evidence/lz-campaign/retained-uat-acceptance-20260906/retained-uat-live/attempt-001/retained-uat-ledger.json",
+  "noPendingDrafts": false,
+  "issues": {
+    "E": {
+      "summary": "[harness-test] LZ retained UAT 20260906 October release",
+      "type": "10000",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25229",
+      "key": "WFH-2997"
+    },
+    "A": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25230",
+      "key": "WFH-2998"
+    },
+    "B": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25231",
+      "key": "WFH-2999"
+    },
+    "L": {
+      "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+      "type": "10004",
+      "state": "created",
+      "httpStatus": 201,
+      "id": "25232",
+      "key": "WFH-3000"
+    }
+  },
+  "plans": {
+    "main": {
+      "name": "[harness-test] UAT 20260906 October release decisions",
+      "state": "created",
+      "id": "plan-test-mtq7hsun-koj1jf"
+    },
+    "mirror": {
+      "name": "[harness-test] UAT 20260906 October capacity mirror",
+      "state": "created",
+      "id": "plan-test-mtq7hwv8-sk47wf"
+    }
+  },
+  "steps": [
+    {
+      "name": "mirror actual Assets index",
+      "data": {
+        "fields": [
+          "customfield_11148",
+          "customfield_11149"
+        ],
+        "rows": [
+          {
+            "key": "WFH-2997",
+            "objects": {
+              "customfield_11148": [],
+              "customfield_11149": []
+            }
+          },
+          {
+            "key": "WFH-2998",
+            "objects": {
+              "customfield_11148": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "411"
+                },
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "412"
+                }
+              ],
+              "customfield_11149": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "411"
+                }
+              ]
+            }
+          },
+          {
+            "key": "WFH-2999",
+            "objects": {
+              "customfield_11148": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "412"
+                }
+              ],
+              "customfield_11149": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "413"
+                }
+              ]
+            }
+          },
+          {
+            "key": "WFH-3000",
+            "objects": {
+              "customfield_11148": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "413"
+                }
+              ],
+              "customfield_11149": [
+                {
+                  "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+                  "objectId": "413"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "at": "2026-09-06T19:30:42.178Z"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "reconcile uncertain issue creates",
+      "ok": true
+    },
+    {
+      "name": "reconcile plan IDs",
+      "ok": true
+    },
+    {
+      "name": "retain owned plan plan-test-mtq7hsun-koj1jf",
+      "ok": true
+    },
+    {
+      "name": "retain owned plan plan-test-mtq7hwv8-sk47wf",
+      "ok": true
+    },
+    {
+      "name": "retain L",
+      "ok": true
+    },
+    {
+      "name": "retain B",
+      "ok": true
+    },
+    {
+      "name": "retain A",
+      "ok": true
+    },
+    {
+      "name": "retain E",
+      "ok": true
+    },
+    {
+      "name": "registry exact retained delta",
+      "ok": true
+    },
+    {
+      "name": "standing schedule unchanged",
+      "ok": true
+    }
+  ],
+  "standingSchedule": [
+    {
+      "key": "LZPT-186",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-06-17",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-187",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-188",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-10-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-189",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-190",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-191",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-06-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": null
+    },
+    {
+      "key": "LZPT-192",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-201"
+      ],
+      "successors": [
+        "LZPT-193"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-193",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-192"
+      ],
+      "successors": [
+        "LZPT-194"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-194",
+      "startDate": "2026-05-18",
+      "dueDate": "2026-05-22",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-193"
+      ],
+      "successors": [
+        "LZPT-195"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-195",
+      "startDate": "2026-05-25",
+      "dueDate": "2026-05-29",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-194"
+      ],
+      "successors": [
+        "LZPT-196"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-196",
+      "startDate": "2026-06-01",
+      "dueDate": "2026-06-05",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-195"
+      ],
+      "successors": [
+        "LZPT-217"
+      ],
+      "parentKey": "LZPT-186"
+    },
+    {
+      "key": "LZPT-197",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-198",
+        "LZPT-199"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-198",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-197"
+      ],
+      "successors": [
+        "LZPT-200"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-199",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-197"
+      ],
+      "successors": [
+        "LZPT-200"
+      ],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-200",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-19",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-198",
+        "LZPT-199"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-187"
+    },
+    {
+      "key": "LZPT-201",
+      "startDate": "2026-04-27",
+      "dueDate": "2026-05-01",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-192"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-202",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-204"
+      ],
+      "successors": [
+        "LZPT-203"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-203",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-202"
+      ],
+      "successors": [
+        "LZPT-204"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-204",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-203"
+      ],
+      "successors": [
+        "LZPT-202"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-205",
+      "startDate": "2026-09-23",
+      "dueDate": "2026-10-02",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [
+        "LZPT-206",
+        "LZPT-207",
+        "LZPT-208",
+        "LZPT-209"
+      ],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-206",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-07",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-207",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-208",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-09",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-209",
+      "startDate": "2026-10-05",
+      "dueDate": "2026-10-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-205"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-188"
+    },
+    {
+      "key": "LZPT-210",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-189"
+    },
+    {
+      "key": "LZPT-211",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-189"
+    },
+    {
+      "key": "LZPT-212",
+      "startDate": null,
+      "dueDate": null,
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-213",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-214",
+      "startDate": "2026-05-20",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-215",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-06-30",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-216",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-190"
+    },
+    {
+      "key": "LZPT-217",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-04",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [
+        "LZPT-196"
+      ],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-218",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-05",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-219",
+      "startDate": "2026-05-06",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-220",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-07",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-221",
+      "startDate": "2026-05-08",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-222",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-223",
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-12",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-224",
+      "startDate": "2026-05-13",
+      "dueDate": "2026-05-13",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-225",
+      "startDate": "2026-05-14",
+      "dueDate": "2026-05-14",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-226",
+      "startDate": "2026-05-15",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-191"
+    },
+    {
+      "key": "LZPT-227",
+      "startDate": "2026-05-04",
+      "dueDate": "2026-05-06",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-210"
+    },
+    {
+      "key": "LZPT-228",
+      "startDate": "2026-05-07",
+      "dueDate": "2026-05-11",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-210"
+    },
+    {
+      "key": "LZPT-229",
+      "startDate": "2026-05-05",
+      "dueDate": "2026-05-08",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-211"
+    },
+    {
+      "key": "LZPT-230",
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-15",
+      "duration": null,
+      "buffer": "No",
+      "predecessors": [],
+      "successors": [],
+      "parentKey": "LZPT-211"
+    }
+  ],
+  "registry": [
+    "plan-msq9dg8l-gz6mz1",
+    "plan-mta3aw3t-6dyijd",
+    "plan-mtbrlh8n-7ghw8u",
+    "plan-test-mtq75tk1-49uuzd",
+    "sim-e84e4730-e7f4-421b-8582-dc17a564697b"
+  ],
+  "person": {
+    "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+    "displayName": "Mihai Perdum"
+  },
+  "linkIntent": {
+    "from": "WFH-2998",
+    "to": "WFH-2999",
+    "type": "10000"
+  },
+  "admittedJira": [
+    {
+      "role": "E",
+      "id": "25229",
+      "key": "WFH-2997",
+      "fields": {
+        "summary": "[harness-test] LZ retained UAT 20260906 October release",
+        "issuetype": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10000",
+          "id": "10000",
+          "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/issuetypes/epic.svg",
+          "name": "Epic",
+          "subtask": false,
+          "hierarchyLevel": 1
+        },
+        "customfield_10180": 10,
+        "customfield_10181": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/customFieldOption/10243",
+          "value": "No",
+          "id": "10243"
+        },
+        "project": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+          "id": "10001",
+          "key": "WFH",
+          "name": "WORK FOR HIRE",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+            "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+            "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+            "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+          }
+        },
+        "customfield_10015": "2026-10-05",
+        "customfield_11148": [],
+        "labels": [
+          "lz-retained-uat-20260906"
+        ],
+        "customfield_11149": [],
+        "timeestimate": 0,
+        "duedate": "2026-10-16",
+        "issuelinks": [],
+        "assignee": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "emailAddress": "mihai@wolfaenpak.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+          },
+          "displayName": "Mihai Perdum",
+          "active": true,
+          "timeZone": "Europe/Bucharest",
+          "accountType": "atlassian"
+        },
+        "status": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+          "description": "",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+          "name": "New",
+          "id": "10006",
+          "statusCategory": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        }
+      }
+    },
+    {
+      "role": "A",
+      "id": "25230",
+      "key": "WFH-2998",
+      "fields": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+        "issuetype": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+          "id": "10004",
+          "description": "Functionality or a feature expressed as a user goal.",
+          "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+          "name": "Work package",
+          "subtask": false,
+          "avatarId": 10552,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "25229",
+          "key": "WFH-2997",
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25229",
+          "fields": {
+            "summary": "[harness-test] LZ retained UAT 20260906 October release",
+            "status": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+              "description": "",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+              "name": "New",
+              "id": "10006",
+              "statusCategory": {
+                "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "customfield_10180": 5,
+        "customfield_10181": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/customFieldOption/10243",
+          "value": "No",
+          "id": "10243"
+        },
+        "project": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+          "id": "10001",
+          "key": "WFH",
+          "name": "WORK FOR HIRE",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+            "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+            "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+            "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+          }
+        },
+        "customfield_10015": "2026-10-05",
+        "customfield_11148": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+            "objectId": "411"
+          },
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+            "objectId": "412"
+          }
+        ],
+        "labels": [
+          "lz-retained-uat-20260906"
+        ],
+        "customfield_11149": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:411",
+            "objectId": "411"
+          }
+        ],
+        "timeestimate": 28800,
+        "duedate": "2026-10-09",
+        "issuelinks": [
+          {
+            "id": "15328",
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issueLink/15328",
+            "type": {
+              "id": "10000",
+              "name": "Blocks",
+              "inward": "is blocked by",
+              "outward": "blocks",
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issueLinkType/10000"
+            },
+            "outwardIssue": {
+              "id": "25231",
+              "key": "WFH-2999",
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25231",
+              "fields": {
+                "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+                "status": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+                  "description": "",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+                  "name": "New",
+                  "id": "10006",
+                  "statusCategory": {
+                    "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+                    "id": 2,
+                    "key": "new",
+                    "colorName": "blue-gray",
+                    "name": "To Do"
+                  }
+                },
+                "priority": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/priority/3",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/priorities/medium_new.svg",
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+                  "id": "10004",
+                  "description": "Functionality or a feature expressed as a user goal.",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+                  "name": "Work package",
+                  "subtask": false,
+                  "avatarId": 10552,
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          }
+        ],
+        "assignee": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "emailAddress": "mihai@wolfaenpak.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+          },
+          "displayName": "Mihai Perdum",
+          "active": true,
+          "timeZone": "Europe/Bucharest",
+          "accountType": "atlassian"
+        },
+        "status": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+          "description": "",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+          "name": "New",
+          "id": "10006",
+          "statusCategory": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        }
+      }
+    },
+    {
+      "role": "B",
+      "id": "25231",
+      "key": "WFH-2999",
+      "fields": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+        "issuetype": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+          "id": "10004",
+          "description": "Functionality or a feature expressed as a user goal.",
+          "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+          "name": "Work package",
+          "subtask": false,
+          "avatarId": 10552,
+          "hierarchyLevel": 0
+        },
+        "parent": {
+          "id": "25229",
+          "key": "WFH-2997",
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25229",
+          "fields": {
+            "summary": "[harness-test] LZ retained UAT 20260906 October release",
+            "status": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+              "description": "",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+              "name": "New",
+              "id": "10006",
+              "statusCategory": {
+                "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "To Do"
+              }
+            },
+            "priority": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/priority/3",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/priorities/medium_new.svg",
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10000",
+              "id": "10000",
+              "description": "A big user story that needs to be broken down. Created by Jira Software - do not edit or delete.",
+              "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/issuetypes/epic.svg",
+              "name": "Epic",
+              "subtask": false,
+              "hierarchyLevel": 1
+            }
+          }
+        },
+        "customfield_10180": 5,
+        "customfield_10181": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/customFieldOption/10243",
+          "value": "No",
+          "id": "10243"
+        },
+        "project": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+          "id": "10001",
+          "key": "WFH",
+          "name": "WORK FOR HIRE",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+            "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+            "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+            "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+          }
+        },
+        "customfield_10015": "2026-10-12",
+        "customfield_11148": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:412",
+            "objectId": "412"
+          }
+        ],
+        "labels": [
+          "lz-retained-uat-20260906"
+        ],
+        "customfield_11149": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413",
+            "objectId": "413"
+          }
+        ],
+        "timeestimate": 0,
+        "duedate": "2026-10-16",
+        "issuelinks": [
+          {
+            "id": "15328",
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/issueLink/15328",
+            "type": {
+              "id": "10000",
+              "name": "Blocks",
+              "inward": "is blocked by",
+              "outward": "blocks",
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issueLinkType/10000"
+            },
+            "inwardIssue": {
+              "id": "25230",
+              "key": "WFH-2998",
+              "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/25230",
+              "fields": {
+                "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+                "status": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+                  "description": "",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+                  "name": "New",
+                  "id": "10006",
+                  "statusCategory": {
+                    "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+                    "id": 2,
+                    "key": "new",
+                    "colorName": "blue-gray",
+                    "name": "To Do"
+                  }
+                },
+                "priority": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/priority/3",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/priorities/medium_new.svg",
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+                  "id": "10004",
+                  "description": "Functionality or a feature expressed as a user goal.",
+                  "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+                  "name": "Work package",
+                  "subtask": false,
+                  "avatarId": 10552,
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          }
+        ],
+        "assignee": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "emailAddress": "mihai@wolfaenpak.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+          },
+          "displayName": "Mihai Perdum",
+          "active": true,
+          "timeZone": "Europe/Bucharest",
+          "accountType": "atlassian"
+        },
+        "status": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+          "description": "",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+          "name": "New",
+          "id": "10006",
+          "statusCategory": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        }
+      }
+    },
+    {
+      "role": "L",
+      "id": "25232",
+      "key": "WFH-3000",
+      "fields": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+        "issuetype": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/issuetype/10004",
+          "id": "10004",
+          "description": "Functionality or a feature expressed as a user goal.",
+          "iconUrl": "https://wolfaenpak.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10552?size=medium",
+          "name": "Work package",
+          "subtask": false,
+          "avatarId": 10552,
+          "hierarchyLevel": 0
+        },
+        "customfield_10180": 5,
+        "customfield_10181": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/customFieldOption/10243",
+          "value": "No",
+          "id": "10243"
+        },
+        "project": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+          "id": "10001",
+          "key": "WFH",
+          "name": "WORK FOR HIRE",
+          "projectTypeKey": "software",
+          "simplified": false,
+          "avatarUrls": {
+            "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+            "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+            "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+            "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+          }
+        },
+        "customfield_10015": "2026-10-26",
+        "customfield_11148": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413",
+            "objectId": "413"
+          }
+        ],
+        "labels": [
+          "lz-retained-uat-20260906"
+        ],
+        "customfield_11149": [
+          {
+            "workspaceId": "be9cca2f-5f41-446f-8f5c-76cda0be8417",
+            "id": "be9cca2f-5f41-446f-8f5c-76cda0be8417:413",
+            "objectId": "413"
+          }
+        ],
+        "timeestimate": 28800,
+        "duedate": "2026-10-30",
+        "issuelinks": [],
+        "assignee": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/user?accountId=712020%3A937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+          "emailAddress": "mihai@wolfaenpak.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:937bc860-eec2-4294-a65d-8e0fe7c45086/027ebed2-c8ad-4f25-981b-66069ec099e4/32"
+          },
+          "displayName": "Mihai Perdum",
+          "active": true,
+          "timeZone": "Europe/Bucharest",
+          "accountType": "atlassian"
+        },
+        "status": {
+          "self": "https://wolfaenpak.atlassian.net/rest/api/3/status/10006",
+          "description": "",
+          "iconUrl": "https://wolfaenpak.atlassian.net/images/icons/statuses/generic.png",
+          "name": "New",
+          "id": "10006",
+          "statusCategory": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        }
+      }
+    }
+  ],
+  "jql": "key IN (WFH-2997,WFH-2998,WFH-2999,WFH-3000) ORDER BY key ASC",
+  "observedUiVersion": "4.58.588",
+  "stage": "Assets context and failure recovery",
+  "stageStartedAt": "2026-09-06T19:30:19.002Z",
+  "failure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2998\"]').locator('[data-field-id=\"customfield_11148\"]')\nExpected substring: \u001b[32m\"411 · label unavailable\"\u001b[39m\nReceived string:    \u001b[31m\"Object 411 (unavailable); CRT-412 · [harness-test] LZ Assets owned 20260905 B\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('iframe[data-testid=\"hosted-resources-iframe\"]').first().contentFrame().locator('[data-testid=\"table-row\"][data-row-key=\"WFH-2998\"]').locator('[data-field-id=\"customfield_11148\"]')\u001b[22m\n\u001b[2m    34 × locator resolved to <div data-testid=\"table-asset-value\" data-field-id=\"customfield_11148\">Object 411 (unavailable); CRT-412 · [harness-test…</div>\u001b[22m\n\u001b[2m       - unexpected value \"Object 411 (unavailable); CRT-412 · [harness-test] LZ Assets owned 20260905 B\"\u001b[22m\n",
+  "privateSettingsRestored": true,
+  "retainedExperiments": {
+    "plans": {
+      "main": {
+        "name": "[harness-test] UAT 20260906 October release decisions",
+        "state": "created",
+        "id": "plan-test-mtq7hsun-koj1jf"
+      },
+      "mirror": {
+        "name": "[harness-test] UAT 20260906 October capacity mirror",
+        "state": "created",
+        "id": "plan-test-mtq7hwv8-sk47wf"
+      }
+    },
+    "issues": {
+      "E": {
+        "summary": "[harness-test] LZ retained UAT 20260906 October release",
+        "type": "10000",
+        "state": "created",
+        "httpStatus": 201,
+        "id": "25229",
+        "key": "WFH-2997"
+      },
+      "A": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Delivery preparation",
+        "type": "10004",
+        "state": "created",
+        "httpStatus": 201,
+        "id": "25230",
+        "key": "WFH-2998"
+      },
+      "B": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Planned reserve",
+        "type": "10004",
+        "state": "created",
+        "httpStatus": 201,
+        "id": "25231",
+        "key": "WFH-2999"
+      },
+      "L": {
+        "summary": "[harness-test] LZ retained UAT 20260906 Unrelated late work",
+        "type": "10004",
+        "state": "created",
+        "httpStatus": 201,
+        "id": "25232",
+        "key": "WFH-3000"
+      }
+    },
+    "reason": "failed-admission-or-journey"
+  },
+  "finishedAt": "2026-09-06T19:31:29.274Z"
+}
