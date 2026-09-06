@@ -68,7 +68,7 @@ export function createReportThroughputObserver({page,extensionId,emit=(_event)=>
   })();track(work);
  }
  const request=req=>safe(()=>{
-  const at=stamp();const url=new URL(req.url());if(!url.pathname.endsWith('/gateway/api/graphql'))return;
+  const at=stamp();const url=new URL(req.url());if(!/^\/gateway\/api\/graphql(?:\/pq\/[a-fA-F0-9]{64})?$/.test(url.pathname))return;
   let envelope;try{let raw=req.postDataBuffer();if(!raw)return;if(raw[0]===31&&raw[1]===139)raw=gunzipSync(raw);envelope=JSON.parse(raw.toString());}
   catch(error){errors.push({kind:'unclassified-graphql',...errorData(error)});event(null,'unclassified-graphql',at);return;}
   const input=envelope?.variables?.input;if(input?.extensionId!==extensionId)return;

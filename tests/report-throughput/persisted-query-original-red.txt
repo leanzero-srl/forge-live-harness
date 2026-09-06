@@ -1,0 +1,35 @@
+✖ actual persisted-query URL observes exact-extension capture and background traffic (1.577459ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 41.742083
+
+✖ failing tests:
+
+test at tests/report-throughput/observer.test.mjs:70:1
+✖ actual persisted-query URL observes exact-extension capture and background traffic (1.577459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'captureSponsorReport',
+  -   'advanceSponsorReportCapture',
+  -   'presenceBeat',
+  -   'getNotifications'
+  - ]
+  
+      at TestContext.<anonymous> (file:///private/tmp/lz-report-product-throughput-20260906/tests/report-throughput/observer.test.mjs:75:83)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'captureSponsorReport', 'advanceSponsorReportCapture', 'presenceBeat', 'getNotifications' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

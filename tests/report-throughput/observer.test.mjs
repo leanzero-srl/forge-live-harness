@@ -66,3 +66,11 @@ test('real-shaped outer-success/body-failure cannot persist response credentials
 test('nonarray outer/top-level errors are failures even when success and body are true',async()=>{
  for(const placement of ['outer','top']){const f=fixture(),r=req();const value=JSON.parse(outer({success:true}));if(placement==='outer')value.data.invokeExtension.errors={message:'RATE_LIMIT_EXCEEDED'};else value.errors={message:'RATE_LIMIT_EXCEEDED'};dispatch(f,r);complete(f,r,response(r,JSON.stringify(value)));const result=await f.observer.finish();assert.equal(result.complete,false);assert.equal(f.raws.length,1);assert.ok(result.errors.some(e=>e.kind==='response'));}
 });
+
+test('actual persisted-query URL observes exact-extension capture and background traffic',async()=>{
+ const endpoint='https://wolfaenpak.atlassian.net/gateway/api/graphql/pq/17357ad13472c97d7073c2a1eb4b600d98011b17893ba0a316e9e5de283bfc82?operation=useInvokeExtensionRelayMutation';
+ const f=fixture();for(const key of ['captureSponsorReport','advanceSponsorReportCapture','presenceBeat','getNotifications']){const r=req(key);r.url=()=>endpoint;dispatch(f,r);complete(f,r);}
+ for(const url of [endpoint.replace('/graphql/pq/','/other/pq/'),endpoint.replace('17357ad13472c97d7073c2a1eb4b600d98011b17893ba0a316e9e5de283bfc82','bad'),endpoint.replace('/graphql/pq/','/graphql-extra/pq/')]){const r=req();r.url=()=>url;dispatch(f,r);complete(f,r);}
+ const foreign=req('presenceBeat',extensionId.replace('/app/','/foreign/'));foreign.url=()=>endpoint;dispatch(f,foreign);complete(f,foreign);
+ const result=await f.observer.finish();assert.equal(result.complete,true);assert.deepEqual(result.records.map(r=>r.key),['captureSponsorReport','advanceSponsorReportCapture','presenceBeat','getNotifications']);
+});
