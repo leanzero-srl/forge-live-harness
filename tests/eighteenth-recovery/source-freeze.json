@@ -1,0 +1,19 @@
+{
+  "status": "local-only-source-freeze",
+  "baseHarness": "52396e1c1da44aaf7470538422069a150aab2ed1",
+  "sourceSha256": {
+    "scenarios/lz-ppm/campaign-eighteenth-recovery.spec.ts": "59e8b696a247f7f4b3f5d4a9e9334d1fd667699eaa70dad494f1ee330cb95605",
+    "scenarios/lz-ppm/eighteenth-recovery-contract.mjs": "4f5448ba725c53ca9dd219d1b65db179b6543e3977527cc15c7b22951300a96e",
+    "tests/eighteenth-recovery/pinned.json": "4f95b5accf1ddbc91bba05b9ccb3b598f892a2e03cd183433b341b3a023f37ed"
+  },
+  "terminalSha256": "e2e11ed4c90045f35d5f0f9bffa06c672af1ba5853177dc7607fb6826c869701",
+  "pinSha256": "4f95b5accf1ddbc91bba05b9ccb3b598f892a2e03cd183433b341b3a023f37ed",
+  "liveCalls": 0,
+  "sourceControls": 22,
+  "mutationBound": {
+    "cancel": 2,
+    "normalUiPlanDelete": 3,
+    "ownedJiraDelete": 3
+  },
+  "requiredRootApproval": "external, not authored by this test author"
+}

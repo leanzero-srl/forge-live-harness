@@ -1,0 +1,203 @@
+{
+  "schema": "eighteenth-recovery-pin-v1",
+  "terminalSha256": "e2e11ed4c90045f35d5f0f9bffa06c672af1ba5853177dc7607fb6826c869701",
+  "summarySha256": "aa5f0caf7c05aa5c48e39b7f730c6c5a9857ef5caa40158348aaf3d7c0cb4a86",
+  "principal": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "sourceFingerprint": "2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104",
+  "originals": [
+    "plan-msq9dg8l-gz6mz1",
+    "plan-mta3aw3t-6dyijd",
+    "plan-mtbrlh8n-7ghw8u"
+  ],
+  "preferences": {
+    "success": true,
+    "version": 65,
+    "settings": {
+      "selectedPlanIds": [],
+      "profiles": {},
+      "issueChoices": {}
+    }
+  },
+  "fixtures": [
+    {
+      "kind": "resume",
+      "planId": "plan-test-mtpzm3tg-kkqxi5",
+      "name": "[harness-test] lz-norm-mtpzm0tl",
+      "marker": "lz-norm-mtpzm0tl",
+      "issue": "WFH-2978",
+      "seed": {
+        "label": "report job resume",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      },
+      "job": {
+        "id": "c7d819cd-6617-4fd7-8300-306dbb8f53c2",
+        "requestId": "1abcab40-62e9-40f8-877a-5fa8dee86108",
+        "name": "Bounded resume report",
+        "createdAt": "2026-09-06T15:49:43.184Z",
+        "expiresAt": "2026-09-07T15:49:43.184Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "ce793979-81a8-4e89-890e-5ada9d8cbce7"
+      },
+      "probe": {
+        "planId": "plan-test-mtpzm3tg-kkqxi5",
+        "jobId": "c7d819cd-6617-4fd7-8300-306dbb8f53c2",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 1,
+        "cleanupDone": false,
+        "privateManifestHash": "5ac1e88cf8080674e6b0e33285b9b7fd5343a72e2cc5ac7c99c5ebbe7fbe3831",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "7f1277878bd63eb9a2b0543781337409c3953298180cf7672422176c5cb8d3f1",
+            "expectedHash": "0c1a9674dabeeccd2a76dfe90ecdc8d928823a8ecf03c2abe4a83692dd8e4ee2",
+            "present": true,
+            "actualHash": "0c1a9674dabeeccd2a76dfe90ecdc8d928823a8ecf03c2abe4a83692dd8e4ee2"
+          }
+        ],
+        "publicArtifacts": []
+      },
+      "evidence": [
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-26aea-use-then-full-retained-HTML-chromium/fixture-journal.json",
+          "sha256": "f016760ab1491c3740be83da82d31d1b0404b7aaaf0157930507b05ab12771f0"
+        },
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-26aea-use-then-full-retained-HTML-chromium/report-job-journal.json",
+          "sha256": "fbaf26b0559a0fc3543ccc3dda64350906227ccb3f76c4ea14f9c2911e50fb46"
+        },
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-26aea-use-then-full-retained-HTML-chromium/job-resume-protocol.json",
+          "sha256": "05ebc86ab4b701afcbae9f6df89a827125c46241927c7bf98a07fb81f804a6b8"
+        }
+      ]
+    },
+    {
+      "kind": "cancel",
+      "planId": "plan-test-mtpzn218-4ref5x",
+      "name": "[harness-test] lz-norm-mtpzn01w",
+      "marker": "lz-norm-mtpzn01w",
+      "issue": "WFH-2979",
+      "seed": {
+        "label": "report job cancel",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      },
+      "job": {
+        "id": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+        "requestId": "c09c1776-0b8e-4198-8850-3f05fbe29511",
+        "name": "Bounded cancel report",
+        "createdAt": "2026-09-06T15:50:26.011Z",
+        "expiresAt": "2026-09-07T15:50:26.011Z",
+        "checkpoint": 2,
+        "state": "cancelled",
+        "stageLabel": "Cleaning up temporary data",
+        "completedUnits": 2,
+        "totalUnits": 16,
+        "cleanupDone": true,
+        "reportId": "39ae3502-5676-4f38-a836-9f4a9bd9457d"
+      },
+      "probe": {
+        "planId": "plan-test-mtpzn218-4ref5x",
+        "jobId": "91cb982f-fcc4-4bac-992e-15439a8ca8f4",
+        "registryMember": true,
+        "state": "cancelled",
+        "checkpoint": 2,
+        "cleanupDone": true,
+        "privateManifestHash": "136927317181cf2f5d978ad9191da7176f58117c41a1dad1d2b0fabaea5d09ce",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "2cdc947a8cb32e98d55f44fb4ad95ef74b8a218d87dabbbeaa6c63f647e51766",
+            "expectedHash": "f11de1567574f5c04c5729435fba27df438c9c2574eadea2b179345df995032a",
+            "present": false,
+            "actualHash": null
+          }
+        ],
+        "publicArtifacts": []
+      },
+      "evidence": [
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2ca7a-s-and-refuses-stale-advance-chromium/fixture-journal.json",
+          "sha256": "177f611d3fa14024d0bdf1c056cc79034d4f406a137de9b8410bb8f7e072fafd"
+        },
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2ca7a-s-and-refuses-stale-advance-chromium/report-job-journal.json",
+          "sha256": "1abad17c0b4d56a59d022989b3c7e98c042e681586298fada5b85bfd168093ed"
+        },
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-2ca7a-s-and-refuses-stale-advance-chromium/job-cancel-protocol.json",
+          "sha256": "6b64c1cf6c2dcee100309f814c03ec11b5ce1cf1525e29b5f97ea5cb555baf40"
+        }
+      ]
+    },
+    {
+      "kind": "source-drift",
+      "planId": "plan-test-mtpzo368-x4846f",
+      "name": "[harness-test] lz-norm-mtpzo0q6",
+      "marker": "lz-norm-mtpzo0q6",
+      "issue": "WFH-2980",
+      "seed": {
+        "label": "report job source-drift",
+        "start": "2026-10-05",
+        "due": "2026-10-09",
+        "duration": 5
+      },
+      "job": {
+        "id": "0f0a4f1b-a6ed-4eee-a881-ba676a7247b8",
+        "requestId": "cb556d3b-3270-49ef-a7fa-f656982fcc1b",
+        "name": "Bounded source-drift report",
+        "createdAt": "2026-09-06T15:51:14.254Z",
+        "expiresAt": "2026-09-07T15:51:14.254Z",
+        "checkpoint": 1,
+        "state": "active",
+        "stageLabel": "Confirming the complete plan",
+        "completedUnits": 1,
+        "totalUnits": 16,
+        "cleanupDone": false,
+        "reportId": "a25250ea-42df-4321-815f-6e5e0ac62444"
+      },
+      "probe": {
+        "planId": "plan-test-mtpzo368-x4846f",
+        "jobId": "0f0a4f1b-a6ed-4eee-a881-ba676a7247b8",
+        "registryMember": true,
+        "state": "active",
+        "checkpoint": 1,
+        "cleanupDone": false,
+        "privateManifestHash": "542c42c7ce6aa4549fabc94000ee7cb2e9e6e858cf15b62791249e4fe70edd7e",
+        "publicManifestHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "privateArtifacts": [
+          {
+            "keyHash": "6c525577f2a3638cd7c41e5428deb88a1a3b7922a0e5de79d788dc95b430e649",
+            "expectedHash": "9775bb2a95011f6f1c53ba085e52601e3c4fb5e11f9637fdf28a6a9407d3f266",
+            "present": true,
+            "actualHash": "9775bb2a95011f6f1c53ba085e52601e3c4fb5e11f9637fdf28a6a9407d3f266"
+          }
+        ],
+        "publicArtifacts": []
+      },
+      "evidence": [
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-fd1f8-on-and-cleans-exact-staging-chromium/fixture-journal.json",
+          "sha256": "7ffc0441d5ed3343d55c1834571bed35e9afaa5d22bf54a5ca62dd8f00c2bc3e"
+        },
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-fd1f8-on-and-cleans-exact-staging-chromium/report-job-journal.json",
+          "sha256": "028fcd94bfba2d7da0d3b98af7dc01b6c34ad495ea2f0fed034b9b9dbcb2ce5c"
+        },
+        {
+          "path": "report-capture-jobs-live/attempt-001/tests-artifacts/scenarios-lz-ppm-journey-c-fd1f8-on-and-cleans-exact-staging-chromium/job-source-drift-protocol.json",
+          "sha256": "5847400d90ce0fdc7903b816a4fb68d2c602ca756eb985d677707a9bd6e6a0ca"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+✔ actual CLI discovery without phase registers exactly one inert test (326.158542ms)
+✔ actual absent-phase execution is skipped and does not launch browser (266.956833ms)
+✔ actual explicit unsupported phase refuses collection (270.087917ms)
+✔ actual explicit phase without approval refuses before registration (267.422459ms)
+✔ actual exact pinned files plus test-only approval permit list; wrong digest blocks it (545.723125ms)
+✔ actual pinned protocols: two cancels, all three full payload checks, three plans/three issues, no cancelled-job retry (2.8235ms)
+✔ wrong principal refuses before ANY mutation (0.528834ms)
+✔ changed prefs refuses before ANY mutation (0.322375ms)
+✔ foreign registry refuses before ANY mutation (0.153458ms)
+✔ changed job checkpoint refuses before ANY mutation (0.301875ms)
+✔ missing private artifact refuses before ANY mutation (0.170209ms)
+✔ source duration drift refuses before ANY mutation (0.166334ms)
+✔ positive issue GET404 refuses before ANY mutation (0.114459ms)
+✔ foreign issue label refuses before ANY mutation (0.168ms)
+✔ cancel generic refusal never retries or deletes plan/issue (0.375125ms)
+✔ lost plan-delete acknowledgement stops exact flow, no Jira DELETE or replay (0.823083ms)
+✔ lost issue-delete acknowledgement stops, no retry and no next plan deletion (0.453542ms)
+✔ reported cleanupDone with physically present artifact prevents all plan deletes (0.271625ms)
+✔ Jira additional dependency is refused, no deleteSubtasks capability (0.136167ms)
+✔ UI allows exact armed plan delete only; all begin/advance/presence/save/foreign/delete-report blocked (0.075042ms)
+✔ discovery inert absent phase; unsupported/missing explicit approval fails without site access (0.145084ms)
+✔ actual nine evidence files + terminal/summary validate with explicit root receipt; changed approval refuses (2.757542ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1715.574583
