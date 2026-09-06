@@ -91,44 +91,55 @@ test("realm console: the Activity tab renders, filters, and Export CSV downloads
   for (const c of others) { await report.locator(`[data-testid="sv-activity-filter-${c}"]`).click(); await page.waitForTimeout(300); } // back to all
   await page.waitForTimeout(1000);
 
-  // Export CSV. The kit builds a Blob and clicks an anchor; the browser's download plumbing in a
-  // headless persistent context has proven flaky (the download event fires, then saveAs reports
-  // the context closed), so the CSV is captured at the source: URL.createObjectURL is wrapped
-  // inside the iframe BEFORE the click and the Blob's text is read from there. The download
-  // event is still awaited best-effort for the filename.
+  // Export CSV. The kit builds a Blob, names an anchor and clicks it. A REAL download must not
+  // happen here: in the headless persistent context the download event fires and then the
+  // browser context CLOSES (it68, reproduced three times — "Target page, context or browser has
+  // been closed" right after `download.path()`), which also loses the profile reservation and
+  // fails every later spec in the batch. So the CSV is captured at the source instead: inside the
+  // iframe, URL.createObjectURL is wrapped to read the Blob's text and the anchor click for a
+  // `download` anchor is swallowed (its filename recorded). Forge iframes REMOUNT after the chip
+  // clicks above (harness canon), and a remount between the hook install and the click loses
+  // the hook — so the marker is checked after the click and the attempt is repeated on the
+  // fresh frame, up to three times.
   const exportBtn = report.locator('[data-testid="sv-activity-export"]');
   await expect(exportBtn, "Export CSV present").toBeVisible();
-  // Forge iframes REMOUNT after tab/chip clicks (harness canon); a handle taken a moment ago can
-  // die with "context closed" — so the hook install is retried on a freshly resolved frame.
-  for (let attempt = 0; ; attempt++) {
-    try {
-      await app.locator("body").evaluate(() => {
-        (window as any).__svCsv = null;
-        const orig = URL.createObjectURL.bind(URL);
-        URL.createObjectURL = (b: Blob) => { b.text().then((t) => { (window as any).__svCsv = t; }); return orig(b); };
-      });
-      break;
-    } catch (e) {
-      if (attempt >= 3) throw e;
-      await page.waitForTimeout(1500);
+  const status = report.locator(".sv-activity-status");
+  const installHook = () => app.locator("body").evaluate(() => {
+    const w = window as any;
+    w.__svCsv = null; w.__svName = null; w.__svHook = "installed";
+    const orig = URL.createObjectURL.bind(URL);
+    URL.createObjectURL = (b: Blob) => { b.text().then((t) => { w.__svCsv = t; }); return orig(b); };
+    const origClick = HTMLElement.prototype.click;
+    HTMLElement.prototype.click = function (this: HTMLElement) {
+      if (this instanceof HTMLAnchorElement && this.hasAttribute("download")) { w.__svName = this.getAttribute("download"); return; }
+      return origClick.call(this);
+    };
+  });
+  const readHook = async () => {
+    try { return await app.locator("body").evaluate(() => ({ hook: (window as any).__svHook || null, csv: (window as any).__svCsv || "", name: (window as any).__svName || "" })); }
+    catch (_) { return { hook: null, csv: "", name: "" }; }
+  };
+  let csv = ""; let filename = "";
+  for (let attempt = 1; attempt <= 3 && !csv; attempt++) {
+    await expect(exportBtn, "Export CSV enabled").toBeEnabled({ timeout: 20_000 });
+    for (let hook = 0; ; hook++) {
+      try { await installHook(); break; } catch (e) { if (hook >= 3) throw e; await page.waitForTimeout(1500); }
     }
-  }
-  const downloadP = page.waitForEvent("download", { timeout: 45_000 }).catch(() => null);
-  await exportBtn.click();
-  let csv = "";
-  const download = await downloadP;
-  if (download) {
-    try { const p = await download.path(); if (p) csv = readFileSync(p, "utf8"); } catch (_) { /* fall through to the Blob hook */ }
-  }
-  if (!csv) {
+    await exportBtn.click();
+    let note = ""; let lost = false;
     await expect.poll(async () => {
-      try { csv = (await app.locator("body").evaluate(() => (window as any).__svCsv)) || ""; } catch (_) { /* remount mid-call; retry */ }
-      return csv.length;
-    }, { timeout: 60_000, message: "the export produced a CSV (download file or Blob hook)" }).toBeGreaterThan(0);
+      const h = await readHook();
+      if (h.hook !== "installed") { lost = true; return true; } // the frame remounted under us
+      csv = h.csv; filename = h.name;
+      note = (await status.textContent().catch(() => "")) || "";
+      return csv.length > 0;
+    }, { timeout: 60_000, message: `export attempt ${attempt}: the Blob hook received the CSV` }).toBe(true).catch(() => null);
+    console.log(`### export attempt ${attempt}: csv=${csv.length} name="${filename}" hookLost=${lost} status="${note.trim()}"`);
+    if (!csv) await page.waitForTimeout(2000);
   }
-  const filename = download?.suggestedFilename() || "";
+  expect(csv.length, "the export produced a CSV (Blob hook)").toBeGreaterThan(0);
   const lines = csv.split(/\r?\n/).filter(Boolean);
-  console.log(`### CSV: ${filename || "(no download event)"} — ${lines.length - 1} data rows; header: ${lines[0]}`);
+  console.log(`### CSV: ${filename || "(no anchor name)"} — ${lines.length - 1} data rows; header: ${lines[0]}`);
   if (filename) expect(filename, "file is named for the space").toMatch(/^activity-WFH\.csv$/i);
   expect(lines[0].replace(/"/g, ""), "CSV header carries the promised columns").toMatch(/^ts,type,category,pageId,pageTitle,actorAccountId/);
   expect(lines.length - 1, "CSV has at least as many rows as the report showed").toBeGreaterThanOrEqual(Math.min(total, 1));
