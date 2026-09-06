@@ -1,0 +1,92 @@
+TAP version 13
+# Subtest: actual admission failure retains its positively owned issue under explicit preference
+not ok 1 - actual admission failure retains its positively owned issue under explicit preference
+  ---
+  duration_ms: 39.934166
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-retention/retention.test.mjs:9:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   [
+    +     'DELETE',
+    +     '/rest/api/3/issue/WFH-1'
+    +   ]
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      0: 'DELETE'
+      1: '/rest/api/3/issue/WFH-1'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-retention/retention.test.mjs:9:262)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: unknown create retains intent and original refusal, never retries or deletes
+ok 2 - unknown create retains intent and original refusal, never retries or deletes
+  ---
+  duration_ms: 20.596417
+  type: 'test'
+  ...
+# Subtest: actual failed finish preserves both plans, every issue and independent exact guards
+not ok 3 - actual failed finish preserves both plans, every issue and independent exact guards
+  ---
+  duration_ms: 1.887334
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-retention/retention.test.mjs:13:1'
+  failureType: 'testCodeFailure'
+  error: 'Retained UAT cleanup/admission guard failed; exact journal retained'
+  code: 'ERR_TEST_FAILURE'
+  name: 'AggregateError'
+  stack: |-
+    eval (eval at <anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-retention/retention.test.mjs:12:14), <anonymous>:58:11)
+    async TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-retention/retention.test.mjs:17:2)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: actual failed scenario finalizer never dispatches report cleanup and still restores/audits
+not ok 4 - actual failed scenario finalizer never dispatches report cleanup and still restores/audits
+  ---
+  duration_ms: 2.198292
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-retention/retention.test.mjs:21:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert(!calls.includes('report-cleanup'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-retention/retention.test.mjs:21:598)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: all original UAT business actions, assertions and deliberate duplicate deletion remain byte-exact
+ok 5 - all original UAT business actions, assertions and deliberate duplicate deletion remain byte-exact
+  ---
+  duration_ms: 27.183083
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 2
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 369.186625

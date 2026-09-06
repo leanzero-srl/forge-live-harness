@@ -1,3 +1,4 @@
+import {withReportDeparture,setReportDepartureOwner,stopReportUi,reportDepartureFailure} from './report-departure';
 import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
 import fs from 'node:fs';
 import {pathToFileURL} from 'node:url';
@@ -19,9 +20,10 @@ const originalName='UAT 01 Original low',alternativeName='UAT 02 Fixed reserve h
 const comparisonRows=(snapshot:any)=>snapshot.issues.map((i:any)=>({key:i.key,start:i.startDate,due:i.dueDate,duration:i.duration,buffer:i.buffer,parent:i.parentKey||null,predecessors:i.predecessors||[],successors:i.successors||[],original:i._original}));
 
 test('retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff',async({page},info)=>{
+ await withReportDeparture(page,info,async()=>{
  const expectedVersion=process.env.LZ_EXPECTED_UI_VERSION;expect(expectedVersion,'a concrete deployed build is required before retained fixture writes').toMatch(/^\d+\.\d+\.\d+$/);const admissionFrame=await openPlans(page);const actualVersion=(await admissionFrame.locator('body').innerText()).match(/REV\s+V(\d+\.\d+\.\d+)/i)?.[1];expect(actualVersion).toBe(expectedVersion);await expect(admissionFrame.locator('.lz-card',{hasText:'LZPT Scenarios'}).first()).toContainText(/0\s*DRAFTS/i);
  const sourceGuard=async()=>{const detail=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});expect(detail.issues.map((i:any)=>i.key).sort()).toEqual(Array.from({length:45},(_,n)=>`LZPT-${186+n}`).sort());const source={issues:scheduleFields(detail.issues),sources:detail.meta.sources,calendarKey:detail.meta.calendarKey,holidayYears:detail.meta.holidayYears,milestones:detail.meta.milestones,protectionEnabled:detail.meta.protectionEnabled};expect(hash(JSON.stringify(source))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');};await sourceGuard();
- const f=await createRetainedUat(info),{E,A,B,L}=f.keys;f.journal.observedUiVersion=actualVersion;f.persist();
+ const f=await createRetainedUat(info,{retainExperiments:true}),{E,A,B,L}=f.keys;f.journal.observedUiVersion=actualVersion;f.persist();setReportDepartureOwner(page,f.planId,f.names.main);
  const rpc=currentUserResolver(page,c=>c?.payload?.planId===f.planId||c?.functionKey==='getCapacitySettings');
  let originalSettings:any,settingsRestored=false,passed=false,routeHandler:any,documentPage:any,priorError:any;
  const checked=async(name:string,payload:any={})=>{const r=await rpc.invoke(name,payload);expect(r.success).toBe(true);return r;};
@@ -120,13 +122,15 @@ test('retained UAT: native Assets context and recovery, exact saved buffer/uncer
  }catch(error){priorError=error;f.journal.failure=String(error);f.persist();throw error;
  }finally{
   const errors:any[]=[];try{if(routeHandler)await page.unroute(graph,routeHandler);}catch(e){errors.push(e);}try{if(documentPage&&!documentPage.isClosed())await documentPage.close();}catch(e){errors.push(e);}
-  try{await cleanupOwnedReportCaptures(page,f.planId,info,{retainPublished:passed,onRecovery:(e:any)=>{f.journal.reportRecovery=e.reportState;f.persist();}});}catch(e){errors.push(e);}
+  try{if(!reportDepartureFailure(page)&&(!f.retainExperiments||passed&&!errors.length))await cleanupOwnedReportCaptures(page,f.planId,info,{retainPublished:passed,onRecovery:(e:any)=>{f.journal.reportRecovery=e.reportState;f.persist();}});}catch(e){errors.push(e);}
   try{if(originalSettings){const restored=await preferences.restore();expect(restored.restored).toBe(true);}settingsRestored=true;}catch(e){errors.push(e);f.journal.settingsRestorationFailure=String(e);}f.journal.privateSettingsRestored=settingsRestored;f.persist();rpc.stop();page.off('crash',crash);
-  try{if(!page.isClosed())await page.goto('about:blank');}catch(e){errors.push(e);}
-  // If private preferences could still reference these IDs, retain their exact
-  // ledger for recovery instead of deleting plans and creating dangling choices.
+  try{await stopReportUi(page,async()=>{if(!page.isClosed())await page.goto('about:blank');});}catch(e){errors.push(e);}
+  const departureFailure=reportDepartureFailure(page);if(departureFailure){f.journal.reportRecovery=departureFailure.reportState;f.journal.retainedForRecovery={plans:f.journal.plans,issues:f.journal.issues,departure:departureFailure.reportState};f.persist();if(!errors.includes(departureFailure))errors.push(departureFailure);}
+  // Retain the exact two-plan/issue ledger after uncertain departure or private
+  // preference recovery; independent source audits still run before disposition.
   try{await sourceGuard();}catch(e){errors.push(e);}
   if(settingsRestored&&!f.journal.reportRecovery)try{await f.finish(passed&&!errors.length);}catch(e){errors.push(e);}else{f.journal.state='recovery-required';f.persist();}
   if(errors.length)throw new AggregateError([...(priorError?[priorError]:[]),...errors],'Retained UAT failed or recovery is incomplete; ownership/settings evidence preserved');
  }
+ });
 });

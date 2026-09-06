@@ -1,0 +1,348 @@
+TAP version 13
+# Subtest: actual UAT finalizer retains both plans/issues after prior departure failure even without registered capture
+not ok 1 - actual UAT finalizer retains both plans/issues after prior departure failure even without registered capture
+  ---
+  duration_ms: 3.154292
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:27:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert(f.error instanceof AggregateError)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    retained (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:26:22)
+    TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:27:166)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: actual final safe departure failure retains successful UAT and keeps independent audits
+not ok 2 - actual final safe departure failure retains successful UAT and keeps independent audits
+  ---
+  duration_ms: 0.233708
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:28:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert(f.error instanceof AggregateError)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    retained (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:26:22)
+    TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:28:158)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: cleanup-triggered departure failure stays poisoned through final stop
+not ok 3 - cleanup-triggered departure failure stays poisoned through final stop
+  ---
+  duration_ms: 0.235708
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:29:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'plans')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    retained (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:26:292)
+    TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:29:87)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: original body error and departure error are both retained in AggregateError
+not ok 4 - original body error and departure error are both retained in AggregateError
+  ---
+  duration_ms: 0.108917
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:30:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert(f.error instanceof AggregateError)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    retained (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:26:22)
+    TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:30:189)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: preference failure still audits source and retains ownership
+ok 5 - preference failure still audits source and retains ownership
+  ---
+  duration_ms: 0.142
+  type: 'test'
+  ...
+# Subtest: safe successful departure preserves retained handoff and exact preference/source order
+not ok 6 - safe successful departure preserves retained handoff and exact preference/source order
+  ---
+  duration_ms: 0.463417
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:32:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert(f.calls.indexOf('preferences')<f.calls.indexOf('safe-stop'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:32:270)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ordinary body failure without uncertain departure keeps original authorized failure cleanup
+ok 7 - ordinary body failure without uncertain departure keeps original authorized failure cleanup
+  ---
+  duration_ms: 0.137709
+  type: 'test'
+  ...
+# Subtest: original UAT body, expectations, wait budgets, 503 injection and UI interactions remain exact
+ok 8 - original UAT body, expectations, wait budgets, 503 injection and UI interactions remain exact
+  ---
+  duration_ms: 71.903834
+  type: 'test'
+  ...
+# Subtest: UAT alone opts in and binds actual admitted main identity before first Table
+not ok 9 - UAT alone opts in and binds actual admitted main identity before first Table
+  ---
+  duration_ms: 0.858458
+  type: 'test'
+  location: '/private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:40:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /await withReportDeparture\(page,info,async\(\)=>\{/. Input:
+    
+    "import {captureReport,cleanupOwnedReportCaptures} from './report-capture';\n" +
+      "import fs from 'node:fs';\n" +
+      "import {pathToFileURL} from 'node:url';\n" +
+      "import {createHash} from 'node:crypto';\n" +
+      "import {test,expect} from '../../fixtures/forge';\n" +
+      "import {getTestState} from '../../testhook/client';\n" +
+      "import {table,row,save,discard,review} from './normalization-owned-fixture';\n" +
+      "import {openPlans,scheduleFields,LZPT_PLAN} from './forecast-fixture';\n" +
+      "import {actualResponse,observedResponse,currentUserResolver,planning,chooseDate,callOf} from './campaign-ui';\n" +
+      "import {createCapacityPreferences} from './capacity-preferences.mjs';\n" +
+      "import {assetsConfigured} from './assets-readiness';\n" +
+      "import {replayHeaders} from './replay-headers.mjs';\n" +
+      "import {settledScreenshot,waitForAppReady} from './settled-screenshot.mjs';\n" +
+      "import {createRetainedUat,ASSET_FIELDS,ASSET_NAMES,ASSET_WORKSPACE,profile,oracle,roles} from './retained-uat-fixture';\n" +
+      'test.describe.configure({retries:0,timeout:1800000});\n' +
+      "const graph='**/gateway/api/graphql**';\n" +
+      "const hash=(text:string)=>createHash('sha256').update(text).digest('hex');\n" +
+      "const originalName='UAT 01 Original low',alternativeName='UAT 02 Fixed reserve high',targetName='UAT October 16 commitment';\n" +
+      'const comparisonRows=(snapshot:any)=>snapshot.issues.map((i:any)=>({key:i.key,start:i.startDate,due:i.dueDate,duration:i.duration,buffer:i.buffer,parent:i.parentKey||null,predecessors:i.predecessors||[],successors:i.successors||[],original:i._original}));\n' +
+      '\n' +
+      "test('retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff',async({page},info)=>{\n" +
+      " const expectedVersion=process.env.LZ_EXPECTED_UI_VERSION;expect(expectedVersion,'a concrete deployed build is required before retained fixture writes').toMatch(/^\\d+\\.\\d+\\.\\d+$/);const admissionFrame=await openPlans(page);const actualVersion=(await admissionFrame.locator('body').innerText()).match(/REV\\s+V(\\d+\\.\\d+\\.\\d+)/i)?.[1];expect(actualVersion).toBe(expectedVersion);await expect(admissionFrame.locator('.lz-card',{hasText:'LZPT Scenarios'}).first()).toContainText(/0\\s*DRAFTS/i);\n" +
+      " const sourceGuard=async()=>{const detail=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});expect(detail.issues.map((i:any)=>i.key).sort()).toEqual(Array.from({length:45},(_,n)=>`LZPT-${186+n}`).sort());const source={issues:scheduleFields(detail.issues),sources:detail.meta.sources,calendarKey:detail.meta.calendarKey,holidayYears:detail.meta.holidayYears,milestones:detail.meta.milestones,protectionEnabled:detail.meta.protectionEnabled};expect(hash(JSON.stringify(source))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');};await sourceGuard();\n" +
+      ' const f=await createRetainedUat(info),{E,A,B,L}=f.keys;f.journal.observedUiVersion=actualVersion;f.persist();\n' +
+      " const rpc=currentUserResolver(page,c=>c?.payload?.planId===f.planId||c?.functionKey==='getCapacitySettings');\n" +
+      ' let originalSettings:any,settingsRestored=false,passed=false,routeHandler:any,documentPage:any,priorError:any;\n' +
+      ' const checked=async(name:string,payload:any={})=>{const r=await rpc.invoke(name,payload);expect(r.success).toBe(true);return r;};\n' +
+      ' const preferences=createCapacityPreferences({invoke:checked,observe:(name:string)=>observedResponse(page,name),onState:(state:any)=>{originalSettings=state.original;f.journal.originalPrivateSettings=state.original;f.journal.privateSettingsOwnership=state;f.persist();}});\n' +
+      ' const log=(name:string,data:any)=>{f.journal.steps.push({name,data,at:new Date().toISOString()});f.persist();};\n' +
+      ' const screenshot=async(subject:any,name:string)=>settledScreenshot(subject,{path:info.outputPath(`${name}.png`)});\n' +
+      " const crash=()=>{f.journal.browserCrash={stage:f.journal.stage||'unknown',at:new Date().toISOString()};f.persist();};page.on('crash',crash);\n" +
+      ' const stage=(name:string)=>{f.journal.stage=name;f.journal.stageStartedAt=new Date().toISOString();f.persist();};\n' +
+      ` const assertRows=async(frame:any,keys:string[])=>expect.poll(()=>frame.locator('[data-testid="table-row"]').evaluateAll((elements:any[])=>elements.map(e=>e.getAttribute('data-row-key')).sort())).toEqual([...keys].sort());\n` +
+      ' try{\n' +
+      `  stage('Assets context and failure recovery');let frame=await table(page,f.names.main),bar=frame.locator('[data-testid="assets-filter-bar"]');\n` +
+      "  await bar.getByRole('button',{name:'Configure fields',exact:true}).click();for(const field of ASSET_NAMES)await bar.getByTitle(`Configure ${field}`,{exact:true}).click();await bar.getByRole('button',{name:'Save fields',exact:true}).click();await assetsConfigured(frame,bar,2);\n" +
+      "  await checked('updatePlan',{planId:f.mirrorId,changes:{assets:{fieldIds:ASSET_FIELDS}}});\n" +
+      "  expect((await getTestState('lz-ppm',{what:'refreshPlan',planId:f.mirrorId})).refreshed).toBe(f.mirrorId);\n" +
+      '  const expectedMirror=roles.map(role=>({key:f.keys[role],objects:Object.fromEntries(ASSET_FIELDS.map(id=>[id,(f.journal.admittedJira.find((i:any)=>i.key===f.keys[role]).fields[id]||[]).map((r:any)=>({workspaceId:r.workspaceId,objectId:r.objectId})).sort((a:any,b:any)=>a.objectId.localeCompare(b.objectId))]))})).sort((a,b)=>a.key.localeCompare(b.key));\n' +
+      "  await expect.poll(async()=>{const mirror=await getTestState('lz-ppm',{what:'plan',planId:f.mirrorId});return {status:mirror.meta.status,pending:mirror.meta.assetsIndexPending===true,fields:mirror.meta.assets?.fieldIds,rows:mirror.issues.map((i:any)=>({key:i.key,objects:Object.fromEntries(ASSET_FIELDS.map(id=>[id,i.assets?.[id]?.objects||[]]))})).sort((a:any,b:any)=>a.key.localeCompare(b.key))};},{timeout:120000}).toEqual({status:'indexed',pending:false,fields:ASSET_FIELDS,rows:expectedMirror});\n" +
+      "  const indexedMirror=await getTestState('lz-ppm',{what:'plan',planId:f.mirrorId});for(const issue of indexedMirror.issues)for(const id of ASSET_FIELDS){if(issue.key===E)expect(['empty','unavailable']).toContain(issue.assets[id].state);else expect(issue.assets[id].state).toBe('present');}log('mirror actual Assets index',{fields:indexedMirror.meta.assets.fieldIds,rows:expectedMirror});\n" +
+      `  frame=await table(page,f.names.main);bar=frame.locator('[data-testid="assets-filter-bar"]');await bar.getByRole('button',{name:/^Assets/}).first().click();\n` +
+      "  const field=()=>bar.locator('.lz-assets-field').filter({hasText:ASSET_NAMES[0]});\n" +
+      "  const mode=async(name:string)=>{await field().getByRole('combobox').click();await frame.getByRole('option',{name,exact:true}).click();};\n" +
+      '  const object=async(id:string)=>field().getByTitle(new RegExp(`^Filter .*${ASSET_WORKSPACE}:${id}$`)).click();\n' +
+      `  await mode('Any selected object');await object('412');await assertRows(frame,[E,A,B]);await expect(bar.locator('[data-testid="assets-match-count"]')).toHaveText('2 matching tasks of 3');\n` +
+      "  await expect(row(frame,E)).toContainText('Context');await expect(row(frame,E).getByRole('checkbox')).toHaveCount(0);for(const index of[3,4,5,6]){await row(frame,E).locator(':scope > div').nth(index).click();await expect(row(frame,E).locator('input')).toHaveCount(0);await expect(frame.locator('.lz-datepicker')).toHaveCount(0);}\n" +
+      "  const keyboardObject=field().getByTitle(new RegExp(`^Filter .*${ASSET_WORKSPACE}:411$`));await keyboardObject.focus();await expect(keyboardObject).toBeFocused();await keyboardObject.press('Space');await expect(keyboardObject).toHaveAttribute('aria-checked','true');await keyboardObject.press('Enter');await expect(keyboardObject).toHaveAttribute('aria-checked','false');await assertRows(frame,[E,A,B]);await screenshot(row(frame,E).locator('..'), 'uat-assets-context');\n" +
+      '  await frame.getByRole(\'button\',{name:/^Gantt/i}).first().click();await expect(frame.locator(\'[data-testid="tab-loading-overlay"]\')).toHaveCount(0);await expect(frame.locator(\'.lz-gantt-brow\').filter({has:frame.locator(`[data-testid="gantt-row"][data-row-key="${E}"]`)})).toContainText(\'Context\');await expect(frame.locator(\'[data-testid="gantt-row"]\')).toHaveCount(3);await screenshot(frame.locator(\'.lz-gantt-brow\').first().locator(\'..\'),\'uat-gantt-context\');\n' +
+      `  await frame.getByRole('button',{name:/^Table/i}).first().click();await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);await frame.getByTitle('Select all visible rows',{exact:true}).click();await expect(frame.getByText('2 selected',{exact:true})).toBeVisible();\n` +
+      "  await object('411');await object('412');await assertRows(frame,[E,A]);await expect(frame.getByText('1 selected',{exact:true})).toBeVisible();await frame.getByRole('button',{name:'Yes',exact:true}).click();await expect(row(frame,A).locator(':scope > div').nth(6)).toHaveText('Buffer');\n" +
+      `  let modal=await review(frame);await expect(modal.locator('[data-testid="apply-change-row"]')).toHaveCount(1);await expect(modal.locator('[data-testid="apply-change-row"]')).toContainText(A);await screenshot(modal,'uat-filtered-bulk-review');await modal.getByRole('button',{name:'Discard All',exact:true}).click();await expect(modal).toHaveCount(0);\n` +
+      `  frame=await table(page,f.names.main);bar=frame.locator('[data-testid="assets-filter-bar"]');await bar.getByRole('button',{name:/^Assets/}).first().click();await assertRows(frame,[E,A]);await expect(frame.locator('[data-testid="plan-save-btn"]')).toHaveAttribute('data-has-changes','0');await expect(frame.getByRole('button',{name:/^Apply \\d+ change/})).toHaveCount(0);await f.verifySource();\n` +
+      "  const native=await checked('getPlanAssets',{planId:f.planId,issueKeys:roles.map(role=>f.keys[role]),labelOffset:0});const identity=`${ASSET_WORKSPACE}:411`,originalLabel=native.labels[identity];expect(originalLabel.state).toBe('available');expect(originalLabel.label).toBeTruthy();\n" +
+      "  let injected=0;routeHandler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getPlanAssets'||c.payload.planId!==f.planId)return route.continue();injected++;const res=await route.fetch({headers:replayHeaders(await route.request().allHeaders())});expect(res.status()).toBe(200);const body=await res.json(),actual=body.data.invokeExtension.response.body;expect(actual."... 28337 more characters
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    import {captureReport,cleanupOwnedReportCaptures} from './report-capture';
+    import fs from 'node:fs';
+    import {pathToFileURL} from 'node:url';
+    import {createHash} from 'node:crypto';
+    import {test,expect} from '../../fixtures/forge';
+    import {getTestState} from '../../testhook/client';
+    import {table,row,save,discard,review} from './normalization-owned-fixture';
+    import {openPlans,scheduleFields,LZPT_PLAN} from './forecast-fixture';
+    import {actualResponse,observedResponse,currentUserResolver,planning,chooseDate,callOf} from './campaign-ui';
+    import {createCapacityPreferences} from './capacity-preferences.mjs';
+    import {assetsConfigured} from './assets-readiness';
+    import {replayHeaders} from './replay-headers.mjs';
+    import {settledScreenshot,waitForAppReady} from './settled-screenshot.mjs';
+    import {createRetainedUat,ASSET_FIELDS,ASSET_NAMES,ASSET_WORKSPACE,profile,oracle,roles} from './retained-uat-fixture';
+    test.describe.configure({retries:0,timeout:1800000});
+    const graph='**/gateway/api/graphql**';
+    const hash=(text:string)=>createHash('sha256').update(text).digest('hex');
+    const originalName='UAT 01 Original low',alternativeName='UAT 02 Fixed reserve high',targetName='UAT October 16 commitment';
+    const comparisonRows=(snapshot:any)=>snapshot.issues.map((i:any)=>({key:i.key,start:i.startDate,due:i.dueDate,duration:i.duration,buffer:i.buffer,parent:i.parentKey||null,predecessors:i.predecessors||[],successors:i.successors||[],original:i._original}));
+    
+    test('retained UAT: native Assets context and recovery, exact saved buffer/uncertainty decision, deliberate draft, portfolio capacity and immutable sponsor handoff',async({page},info)=>{
+     const expectedVersion=process.env.LZ_EXPECTED_UI_VERSION;expect(expectedVersion,'a concrete deployed build is required before retained fixture writes').toMatch(/^\d+\.\d+\.\d+$/);const admissionFrame=await openPlans(page);const actualVersion=(await admissionFrame.locator('body').innerText()).match(/REV\s+V(\d+\.\d+\.\d+)/i)?.[1];expect(actualVersion).toBe(expectedVersion);await expect(admissionFrame.locator('.lz-card',{hasText:'LZPT Scenarios'}).first()).toContainText(/0\s*DRAFTS/i);
+     const sourceGuard=async()=>{const detail=await getTestState('lz-ppm',{what:'plan',planId:LZPT_PLAN});expect(detail.issues.map((i:any)=>i.key).sort()).toEqual(Array.from({length:45},(_,n)=>`LZPT-${186+n}`).sort());const source={issues:scheduleFields(detail.issues),sources:detail.meta.sources,calendarKey:detail.meta.calendarKey,holidayYears:detail.meta.holidayYears,milestones:detail.meta.milestones,protectionEnabled:detail.meta.protectionEnabled};expect(hash(JSON.stringify(source))).toBe('2d5c1ea0d3e742ff61ae47701ab6a391d0cbe6f0238e9415fb73b38e8f21f104');};await sourceGuard();
+     const f=await createRetainedUat(info),{E,A,B,L}=f.keys;f.journal.observedUiVersion=actualVersion;f.persist();
+     const rpc=currentUserResolver(page,c=>c?.payload?.planId===f.planId||c?.functionKey==='getCapacitySettings');
+     let originalSettings:any,settingsRestored=false,passed=false,routeHandler:any,documentPage:any,priorError:any;
+     const checked=async(name:string,payload:any={})=>{const r=await rpc.invoke(name,payload);expect(r.success).toBe(true);return r;};
+     const preferences=createCapacityPreferences({invoke:checked,observe:(name:string)=>observedResponse(page,name),onState:(state:any)=>{originalSettings=state.original;f.journal.originalPrivateSettings=state.original;f.journal.privateSettingsOwnership=state;f.persist();}});
+     const log=(name:string,data:any)=>{f.journal.steps.push({name,data,at:new Date().toISOString()});f.persist();};
+     const screenshot=async(subject:any,name:string)=>settledScreenshot(subject,{path:info.outputPath(`${name}.png`)});
+     const crash=()=>{f.journal.browserCrash={stage:f.journal.stage||'unknown',at:new Date().toISOString()};f.persist();};page.on('crash',crash);
+     const stage=(name:string)=>{f.journal.stage=name;f.journal.stageStartedAt=new Date().toISOString();f.persist();};
+     const assertRows=async(frame:any,keys:string[])=>expect.poll(()=>frame.locator('[data-testid="table-row"]').evaluateAll((elements:any[])=>elements.map(e=>e.getAttribute('data-row-key')).sort())).toEqual([...keys].sort());
+     try{
+      stage('Assets context and failure recovery');let frame=await table(page,f.names.main),bar=frame.locator('[data-testid="assets-filter-bar"]');
+      await bar.getByRole('button',{name:'Configure fields',exact:true}).click();for(const field of ASSET_NAMES)await bar.getByTitle(`Configure ${field}`,{exact:true}).click();await bar.getByRole('button',{name:'Save fields',exact:true}).click();await assetsConfigured(frame,bar,2);
+      await checked('updatePlan',{planId:f.mirrorId,changes:{assets:{fieldIds:ASSET_FIELDS}}});
+      expect((await getTestState('lz-ppm',{what:'refreshPlan',planId:f.mirrorId})).refreshed).toBe(f.mirrorId);
+      const expectedMirror=roles.map(role=>({key:f.keys[role],objects:Object.fromEntries(ASSET_FIELDS.map(id=>[id,(f.journal.admittedJira.find((i:any)=>i.key===f.keys[role]).fields[id]||[]).map((r:any)=>({workspaceId:r.workspaceId,objectId:r.objectId})).sort((a:any,b:any)=>a.objectId.localeCompare(b.objectId))]))})).sort((a,b)=>a.key.localeCompare(b.key));
+      await expect.poll(async()=>{const mirror=await getTestState('lz-ppm',{what:'plan',planId:f.mirrorId});return {status:mirror.meta.status,pending:mirror.meta.assetsIndexPending===true,fields:mirror.meta.assets?.fieldIds,rows:mirror.issues.map((i:any)=>({key:i.key,objects:Object.fromEntries(ASSET_FIELDS.map(id=>[id,i.assets?.[id]?.objects||[]]))})).sort((a:any,b:any)=>a.key.localeCompare(b.key))};},{timeout:120000}).toEqual({status:'indexed',pending:false,fields:ASSET_FIELDS,rows:expectedMirror});
+      const indexedMirror=await getTestState('lz-ppm',{what:'plan',planId:f.mirrorId});for(const issue of indexedMirror.issues)for(const id of ASSET_FIELDS){if(issue.key===E)expect(['empty','unavailable']).toContain(issue.assets[id].state);else expect(issue.assets[id].state).toBe('present');}log('mirror actual Assets index',{fields:indexedMirror.meta.assets.fieldIds,rows:expectedMirror});
+      frame=await table(page,f.names.main);bar=frame.locator('[data-testid="assets-filter-bar"]');await bar.getByRole('button',{name:/^Assets/}).first().click();
+      const field=()=>bar.locator('.lz-assets-field').filter({hasText:ASSET_NAMES[0]});
+      const mode=async(name:string)=>{await field().getByRole('combobox').click();await frame.getByRole('option',{name,exact:true}).click();};
+      const object=async(id:string)=>field().getByTitle(new RegExp(`^Filter .*${ASSET_WORKSPACE}:${id}$`)).click();
+      await mode('Any selected object');await object('412');await assertRows(frame,[E,A,B]);await expect(bar.locator('[data-testid="assets-match-count"]')).toHaveText('2 matching tasks of 3');
+      await expect(row(frame,E)).toContainText('Context');await expect(row(frame,E).getByRole('checkbox')).toHaveCount(0);for(const index of[3,4,5,6]){await row(frame,E).locator(':scope > div').nth(index).click();await expect(row(frame,E).locator('input')).toHaveCount(0);await expect(frame.locator('.lz-datepicker')).toHaveCount(0);}
+      const keyboardObject=field().getByTitle(new RegExp(`^Filter .*${ASSET_WORKSPACE}:411$`));await keyboardObject.focus();await expect(keyboardObject).toBeFocused();await keyboardObject.press('Space');await expect(keyboardObject).toHaveAttribute('aria-checked','true');await keyboardObject.press('Enter');await expect(keyboardObject).toHaveAttribute('aria-checked','false');await assertRows(frame,[E,A,B]);await screenshot(row(frame,E).locator('..'), 'uat-assets-context');
+      await frame.getByRole('button',{name:/^Gantt/i}).first().click();await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);await expect(frame.locator('.lz-gantt-brow').filter({has:frame.locator(`[data-testid="gantt-row"][data-row-key="${E}"]`)})).toContainText('Context');await expect(frame.locator('[data-testid="gantt-row"]')).toHaveCount(3);await screenshot(frame.locator('.lz-gantt-brow').first().locator('..'),'uat-gantt-context');
+      await frame.getByRole('button',{name:/^Table/i}).first().click();await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);await frame.getByTitle('Select all visible rows',{exact:true}).click();await expect(frame.getByText('2 selected',{exact:true})).toBeVisible();
+      await object('411');await object('412');await assertRows(frame,[E,A]);await expect(frame.getByText('1 selected',{exact:true})).toBeVisible();await frame.getByRole('button',{name:'Yes',exact:true}).click();await expect(row(frame,A).locator(':scope > div').nth(6)).toHaveText('Buffer');
+      let modal=await review(frame);await expect(modal.locator('[data-testid="apply-change-row"]')).toHaveCount(1);await expect(modal.locator('[data-testid="apply-change-row"]')).toContainText(A);await screenshot(modal,'uat-filtered-bulk-review');await modal.getByRole('button',{name:'Discard All',exact:true}).click();await expect(modal).toHaveCount(0);
+      frame=await table(page,f.names.main);bar=frame.locator('[data-testid="assets-filter-bar"]');await bar.getByRole('button',{name:/^Assets/}).first().click();await assertRows(frame,[E,A]);await expect(frame.locator('[data-testid="plan-save-btn"]')).toHaveAttribute('data-has-changes','0');await expect(frame.getByRole('button',{name:/^Apply \d+ change/})).toHaveCount(0);await f.verifySource();
+      const native=await checked('getPlanAssets',{planId:f.planId,issueKeys:roles.map(role=>f.keys[role]),labelOffset:0});const identity=`${ASSET_WORKSPACE}:411`,originalLabel=native.labels[identity];expect(originalLabel.state).toBe('available');expect(originalLabel.label).toBeTruthy();
+      let injected=0;routeHandler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getPlanAssets'||c.payload.planId!==f.planId)return route.continue();injected++;const res=await route.fetch({headers:replayHeaders(await route.request().allHeaders())});expect(res.status()).toBe(200);const body=await res.json(),actual=body.data.invokeExtension.response.body;expect(actual.success).toBe(true);expect(actual.labels[identity].state).toBe('available');actual.labels[identity]={state:'unavailable'};await route.fulfill({response:res,json:body});};
+      await page.route(graph,routeHandler);await bar.getByRole('button',{name:'Refresh Assets',exact:true}).click();await assertRows(frame,[E,A]);await expect(row(frame,A).locator(`[data-field-id="${ASSET_FIELDS[0]}"]`)).toContainText('411 · label unavailable');await expect(row(frame,A)).not.toContainText(originalLabel.label);expect(injected).toBe(1);await screenshot(bar,'uat-label-unavailable-filter');
+      await mode('Empty field');await assertRows(frame,[]);await mode('Value unavailable');await assertRows(frame,[]);await mode('Any selected object');await object('411');
+      await page.unroute(graph,routeHandler);routeHandler=null;await bar.getByRole('button',{name:'Refresh Assets',exact:true}).click();await assertRows(frame,[E,A]);await expect(row(frame,A)).toContainText(originalLabel.label);log('explicit label-only response injection',{requests:injected,identity,realValuesPreserved:true,notAlternateIdentityProof:true});
+      injected=0;routeHandler=async(route:any)=>{const c=callOf(route.request());if(injected||c?.functionKey!=='getPlanAssets'||c.payload.planId!==f.planId)return route.continue();injected++;await route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Harness simulated Assets read failure'})});};
+      await page.route(graph,routeHandler);await bar.getByRole('button',{name:'Refresh Assets',exact:true}).click();await expect(bar.getByRole('alert')).toBeVisible();await expect(bar.locator('[data-testid="assets-match-count"]')).toHaveText('Waiting for complete Assets read…');await assertRows(frame,[]);await expect(bar).not.toContainText(originalLabel.label);expect(injected).toBe(1);await screenshot(bar,'uat-assets503-clears-old-data');await page.unroute(graph,routeHandler);routeHandler=null;await bar.getByRole('button',{name:'Refresh Assets',exact:true}).click();await assertRows(frame,[E,A]);await expect(row(frame,A)).toContainText(originalLabel.label);await expect(bar.getByRole('alert')).toHaveCount(0);await bar.getByRole('button',{name:'Clear Assets filters',exact:true}).click();await assertRows(frame,[E,A,B,L]);await f.verifySource();
+    
+      stage('scoped target and saved alternatives');let work=await planning(frame);await waitForAppReady(work);const keyboardTargets=work.getByRole('button',{name:'Targets',exact:true});await keyboardTargets.focus();await expect(keyboardTargets).toBeFocused();await keyboardTargets.press('Enter');const targets=frame.locator('[data-testid="targets-editor"]');await targets.getByRole('button',{name:'Add target',exact:true}).click();const targetForm=targets.locator('form');await targetForm.getByLabel('Target name',{exact:true}).fill(targetName);await chooseDate(frame,targetForm,'Target date','2026-10-16');await targetForm.getByRole('combobox').click();await frame.getByRole('option',{name:`Epic · ${E} ${f.journal.issues.E.summary}`,exact:true}).click();await targetForm.getByRole('button',{name:'Save target',exact:true}).click();await expect(targetForm).toHaveCount(0);const target=(await checked('getTargets',{planId:f.planId})).targets[0];expect(target.scope).toEqual({type:'epic',id:f.journal.issues.E.id,memberKeys:[A,B].sort()});log('target',target);
+      await work.getByRole('button',{name:'Scenarios & history',exact:true}).click();
+      const capture=async(name:string,kind='Scenario')=>{const form=work.locator('form.lz-planning-capture');await form.getByLabel('Capture name',{exact:true}).fill(name);await form.getByRole('combobox').nth(0).click();await frame.getByRole('option',{name:kind,exact:true}).click();await form.getByRole('combobox').nth(1).click();await frame.getByRole('option',{name:'Low',exact:true}).click();const pending=actualResponse(page,'getSnapshot',f.planId);await form.getByRole('button',{name:'Capture working plan',exact:true}).click();const snapshot=(await pending).snapshot;expect(snapshot.issues.map((i:any)=>i.key).sort()).toEqual([E,A,B,L].sort());return snapshot;};
+      const baseline=await capture('UAT 00 Original baseline','Baseline');await work.getByRole('button',{name:'Use as baseline',exact:true}).click();await expect(work).toContainText('Baseline set to UAT 00 Original baseline.');const base=await capture(originalName);expect(base.uncertainty).toBe('low');expect(base.calendar.workingDays).toEqual([1,2,3,4,5]);expect(base.calendar.holidays).toEqual([]);expect(base.milestones[0].scope).toEqual(target.scope);log('baseline and original',{baseline,base});
+      await work.getByRole('button',{name:'Create alternative',exact:true}).click();const editor=work.locator('[data-testid="scenario-editor"]');await editor.getByLabel('Alternative name',{exact:true}).fill(alternativeName);const bufferToggle=editor.getByRole('checkbox',{name:`${B} buffer`,exact:true});await bufferToggle.focus();await expect(bufferToggle).toBeFocused();await bufferToggle.press('Space');await expect(bufferToggle).toHaveAttribute('aria-checked','true');await editor.getByRole('combobox').first().click();await frame.getByRole('option',{name:'High −20% / +60%',exact:true}).click();await editor.getByRole('button',{name:'Preview alternative',exact:true}).click();const preview=editor.locator('[data-testid="scenario-preview"]');await expect(preview.locator('tbody tr')).toHaveCount(4);const previewB=preview.locator('tbody tr').filter({hasText:B});for(const[text,n]of[['2026-10-12',1],['2026-10-16',2],['5',3],['Yes',4]] as const)await expect(previewB.locator('td').nth(n)).toHaveText(text);await screenshot(preview,'uat-buffer-high-preview');
+      let pending=actualResponse(page,'getSnapshot',f.planId);await editor.getByRole('button',{name:'Save new scenario',exact:true}).click();const alternative=(await pending).snapshot;expect(alternative.uncertainty).toBe('high');expect(alternative.calendar.workingDays).toEqual(base.calendar.workingDays);expect(alternative.calendar.holidays).toEqual(base.calendar.holidays);expect(alternative.milestones).toEqual(base.milestones);
+      for(const source of base.issues){const copy=alternative.issues.find((i:any)=>i.key===source.key);expect(comparisonRows({issues:[{...copy,buffer:source.buffer}]})).toEqual(comparisonRows({issues:[source]}));expect([...(copy.children||[])].sort()).toEqual([...(source.children||[])].sort());expect(copy.buffer).toBe(source.key===B?'Yes':source.buffer);for(const[key,lag]of Object.entries(copy.predecessorLags||{})){expect(copy.key).toBe(B);expect(key).toBe(A);expect(lag).toBe(0);}}
+      log('saved alternative',alternative);
+      frame=await table(page,f.names.main);work=await planning(frame);const choose=async(snapshot:any)=>{const next=actualResponse(page,'getSnapshot',f.planId);await work.getByRole('navigation',{name:'Retained captures'}).getByRole('button').filter({hasText:snapshot.name}).click();expect((await next).snapshot).toEqual(snapshot);};
+      await choose(base);await work.getByRole('button',{name:'Use as comparison basis',exact:true}).click();await choose(alternative);const comp=work.locator('[data-testid="scenario-comparison"]');await expect(comp).toContainText('0 added, 0 removed, 1 changed rows.');for(const[label,a,b]of[['Stored buffer working days','0','5'],['Duration uncertainty','low','high'],['Scheduled finish','2026-10-30','2026-10-30']]){const cells=comp.locator('tr').filter({hasText:label}).locator('td');await expect(cells.nth(0)).toHaveText(a);await expect(cells.nth(1)).toHaveText(b);}
+      const order=base.issues.filter((i:any)=>i.key!==E).map((i:any)=>roles.find(role=>f.keys[role]===i.key)).join(',');const expected=oracle.outputs.find((o:any)=>o.sampledLeafOrder===order);expect(expected,'exact independent oracle for captured order').toBeTruthy();log('independent expected before calculation',{order,expected});
+      await comp.getByRole('button',{name:'Calculate both forecasts',exact:true}).click();for(const p of ['p50','p80','p90']){const cells=comp.locator('tr').filter({hasText:new RegExp(`^${p.toUpperCase()}`)}).locator('td');await expect(cells.nth(0)).toHaveText(expected.original[p]);await expect(cells.nth(1)).toHaveText(expected.alternative[p]);}await expect(comp).toContainText(`${targetName}: ${expected.original.displayedTargetPercent}% of runs finish by 2026-10-16`);await expect(comp).toContainText(`${targetName}: 100% of runs finish by 2026-10-16`);await screenshot(comp,'uat-exact-saved-decision-comparison');const initialViewport=page.viewportSize();for(const width of [1100,1440]){await page.setViewportSize({width,height:1000});await waitForAppReady(comp);const overflow=await comp.evaluate((el:any)=>el.ownerDocument.documentElement.scrollWidth-el.ownerDocument.documentElement.clientWidth);expect(overflow,'Planning body cannot horizontally overflow; table scrollers are allowed').toBeLessThanOrEqual(1);await screenshot(comp,`uat-comparison-${width}`);}if(initialViewport)await page.setViewportSize(initialViewport);
+      const duplicate=await capture(originalName);expect(duplicate.id).not.toBe(base.id);expect(comparisonRows(duplicate)).toEqual(comparisonRows(base));await work.getByRole('button',{name:'Delete capture',exact:true}).click();await frame.getByRole('dialog',{name:'Delete capture',exact:true}).getByRole('button',{name:'Delete capture',exact:true}).click();await expect(work.getByRole('navigation',{name:'Retained captures'}).getByRole('button').filter({hasText:originalName})).toHaveCount(1);expect((await checked('getSnapshot',{planId:f.planId,snapshotId:duplicate.id})).snapshot).toBeNull();expect((await checked('getSnapshot',{planId:f.planId,snapshotId:base.id})).snapshot).toEqual(base);
+      await choose(alternative);await work.getByRole('button',{name:'Adopt schedule…',exact:true}).click();let dialog=frame.getByRole('dialog',{name:'Adopt scenario',exact:true});await dialog.getByRole('button',{name:'Cancel',exact:true}).click();await f.verifySource();
+      expect((await checked('getDraft',{planId:f.planId})).draft).toBeNull();expect((await checked('getActiveDrafts',{planId:f.planId})).drafts).toEqual({});
+      frame=await table(page,f.names.main);await assertRows(frame,[E,A,B,L]);await expect(row(frame,B).locator(':scope > div').nth(6)).toHaveText('No');await expect(frame.locator('[data-testid="plan-save-btn"]')).toHaveAttribute('data-has-changes','0');await expect(frame.getByRole('button',{name:/^Apply \d+ change/})).toHaveCount(0);
+      const cancelled=await checked('getAllIssues',{planId:f.planId});expect(cancelled.issues.map((i:any)=>({key:i.key,startDate:i.startDate,dueDate:i.dueDate,duration:i.duration,buffer:i.buffer})).sort((a:any,b:any)=>a.key.localeCompare(b.key))).toEqual(base.issues.map((i:any)=>({key:i.key,startDate:i.startDate,dueDate:i.dueDate,duration:i.duration,buffer:i.buffer})).sort((a:any,b:any)=>a.key.localeCompare(b.key)));
+      log('cancel kept owned working schedule and draft unchanged',{draft:null,activeDrafts:{},rows:cancelled.issues.map((i:any)=>({key:i.key,startDate:i.startDate,dueDate:i.dueDate,duration:i.duration,buffer:i.buffer}))});work=await planning(frame);await choose(alternative);
+      await work.getByRole('button',{name:'Adopt schedule…',exact:true}).click();dialog=frame.getByRole('dialog',{name:'Adopt scenario',exact:true});pending=actualResponse(page,'saveDraft',f.planId);await dialog.getByRole('button',{name:'Create working draft',exact:true}).click();await pending;await expect(work).toContainText('Scenario adopted into your working draft.');
+      await frame.getByRole('button',{name:/^Table/i}).first().click();await expect(frame.locator('[data-testid="tab-loading-overlay"]')).toHaveCount(0);await save(frame);frame=await table(page,f.names.main);await expect(row(frame,B).locator(':scope > div').nth(6)).toHaveText('Buffer');modal=await review(frame);await expect(modal.locator('[data-testid="apply-change-row"]')).toHaveCount(1);await expect(modal.locator('[data-testid="apply-change-row"]')).toContainText(B);await screenshot(modal,'uat-adopted-buffer-draft');await modal.getByRole('button',{name:'Cancel',exact:true}).click();await f.verifySource();
+    
+      stage('capacity and private settings');frame=await openPlans(page);pending=actualResponse(page,'getCapacitySettings');await frame.getByRole('button',{name:'Capacity',exact:true}).click();preferences.admit(await pending);let cap=frame.locator('[data-testid="capacity-view"]');await expect(cap.getByRole('status')).toHaveCount(0,{timeout:120000});for(const box of await cap.getByRole('checkbox').all()){const title=await box.getAttribute('title'),wanted=[`Include ${f.names.main}`,`Include ${f.names.mirror}`].includes(title||'');if((await box.getAttribute('aria-checked')==='true')!==wanted)await box.click();}
+      await chooseDate(frame,cap,'Report starts','2026-10-05');await chooseDate(frame,cap,'Report ends','2026-10-30');let capacity=(await preferences.calculate(()=>cap.getByRole('button',{name:'Save selection and calculate',exact:true}).click())).report;expect(capacity.coverage).toMatchObject({uniqueIssues:4,sharedDuplicatesRemoved:4,conflictingIssues:0,missingEffort:0});
+      await cap.locator(`tbody tr[data-person-id="${f.person.accountId}"]`).getByRole('button',{name:/availability/}).click();const availability=cap.getByRole('form');for(const[label,value]of[['Hours per full working day','8'],['Part-time percent','50'],['Operational reserve percent','25']])await availability.getByLabel(label,{exact:true}).fill(value);for(const day of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']){const box=availability.getByRole('checkbox',{name:`Works ${day}`,exact:true}),wanted=!['Sun','Sat'].includes(day);if((await box.getAttribute('aria-checked')==='true')!==wanted)await box.click();}while(await availability.getByRole('button',{name:/Remove date off/}).count())await availability.getByRole('button',{name:/Remove date off/}).first().click();await chooseDate(frame,availability,'Leave or holiday','2026-10-07');await availability.getByRole('button',{name:'Add date off',exact:true}).click();capacity=(await preferences.calculate(()=>availability.getByRole('button',{name:'Save availability and calculate',exact:true}).click())).report;
+      const expectedBuckets=oracle.capacity.buckets.map((bucket:any,n:number)=>({...bucket,unknownEffortCount:0,availableDays:n===0?4:5,utilizationPct:bucket.demandHours/bucket.capacityHours*100,status:'available'}));
+      expect(capacity.coverage).toMatchObject({selectedPlans:2,uniqueIssues:4,sharedDuplicatesRemoved:4,conflictingIssues:0,missingEffort:0,unallocatedIssues:0});expect(capacity.people).toHaveLength(1);expect(capacity.people[0]).toMatchObject({id:f.person.accountId,accountId:f.person.accountId,name:f.person.displayName});expect(capacity.people[0].buckets).toEqual(expectedBuckets);
+      const capacityTable=cap.getByRole('table',{name:'Weekly capacity'});await expect(capacityTable.locator('tbody tr')).toHaveCount(1);await expect(capacityTable.locator('tbody tr th')).toContainText(f.person.displayName);await expect(capacityTable.locator('tbody tr th')).toContainText(f.person.accountId);
+      for(const [n,dates]of ['2026-10-05 to 2026-10-11','2026-10-12 to 2026-10-18','2026-10-19 to 2026-10-25','2026-10-26 to 2026-10-30'].entries())await expect(capacityTable.locator('thead th').nth(n+1)).toHaveText(new RegExp('^'+dates.replace(' to ','\\s*to\\s*')+'$'));
+      for(const bucket of expectedBuckets){const cell=cap.locator(`[data-testid="capacity-cell"][data-person-id="${f.person.accountId}"][data-week="${bucket.week}"]`);await expect(cell).toHaveAttribute('data-status','available');await expect(cell).toContainText(`${bucket.demandHours}h / ${bucket.capacityHours}h`);await expect(cell).toContainText(`${Math.round(bucket.utilizationPct*10)/10}%`);await expect(cell).toContainText('Within assumed capacity');await expect(cell).not.toContainText('work item(s) not fully allocated');}
+      expect(capacity.totals).toMatchObject({knownEffortHours:16,outsideWindowHours:0,unallocatedHours:0});expect(capacity.totals.allocatedHours).toBeCloseTo(16,8);expect(capacity.unallocated).toEqual([]);log('capacity exact dedup and profile',{capacity,profile,expectedBuckets});await screenshot(cap.getByRole('table',{name:'Weekly capacity'}),'uat-four-week-capacity');
+      frame=await table(page,f.names.main);work=await planning(frame);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();let report=work.locator('[data-testid="sponsor-reports"]');await report.getByLabel('Report name',{exact:true}).fill('UAT October fixed reserve decision');await report.locator('form').getByRole('combobox').click();await frame.getByRole('option',{name:'High −20% / +60%',exact:true}).click();await report.getByRole('checkbox',{name:'Include captured plan capacity',exact:true}).click();await chooseDate(frame,report,'Report capacity starts','2026-10-05');await chooseDate(frame,report,'Report capacity ends','2026-10-30');const summary=await captureReport(page,report,f.planId,info,{onRecovery:(error:any)=>{f.journal.reportRecovery=error.reportState;f.persist();}});expect(summary.forecast).toMatchObject({state:'available',runs:300,uncertainty:'high',p50:'2026-11-02',p80:'2026-11-02',p90:'2026-11-03'});expect(summary.counts).toMatchObject({timeline:4,targets:1,changes:1,capacity:4,availability:1});expect(summary.capacity.coverage.selectedPlans).toBe(1);expect(summary.capacity.totals.allocatedHours).toBeCloseTo(16,8);
+      const expectedTimeline=f.journal.admittedJira.map((issue:any)=>({key:issue.key,summary:issue.fields.summary,startDate:issue.fields.customfield_10015,dueDate:issue.fields.duedate,duration:issue.fields.customfield_10180,buffer:issue.key===B?'Yes':issue.fields.customfield_10181.value,statusCategory:issue.fields.status.statusCategory.key,parentKey:issue.fields.parent?.key||null})).sort((a:any,b:any)=>a.key.localeCompare(b.key));
+      const bBefore=expectedTimeline.find((i:any)=>i.key===B),schedule=(i:any)=>({startDate:i.startDate,dueDate:i.dueDate,duration:i.duration,buffer:i.buffer});
+      const expectedChanges=[{key:B,summary:bBefore.summary,change:'Schedule changed',from:{...schedule(bBefore),buffer:'No'},to:schedule(bBefore)}];
+      const expectedTarget={key:target.id,name:targetName,date:'2026-10-16',scopeType:'epic',scopeId:f.journal.issues.E.id,scopeLabel:`${E} · ${f.journal.issues.E.summary}`,memberCount:2,plannedFinish:'2026-10-16',state:'Within target',reason:null,forecastState:'available',forecastReason:null,probability:1,p50:'2026-10-16',p80:'2026-10-16',p90:'2026-10-16'};
+      const expectedCapacity=expectedBuckets.map((bucket:any)=>({key:`${f.person.accountId}:${bucket.week}`,personId:f.person.accountId,name:f.person.displayName,...bucket}));
+      const expectedAvailability=[{key:f.person.accountId,name:f.person.displayName,profile}];
+      const pages:any={};for(const section of ['timeline','targets','changes','capacity','availability']){const pageResult=(await checked('getSponsorReportPage',{planId:f.planId,reportId:summary.id,section,page:0})).page;expect(pageResult).toMatchObject({reportId:summary.id,hash:summary.hash,section,page:0,pageCount:1,total:summary.counts[section]});pages[section]=pageResult.rows;}
+      expect([...pages.timeline].sort((a:any,b:any)=>a.key.localeCompare(b.key))).toEqual(expectedTimeline);expect(pages.targets).toEqual([expectedTarget]);expect(pages.changes).toEqual(expectedChanges);expect(pages.capacity).toEqual(expectedCapacity);expect(pages.availability).toEqual(expectedAvailability);
+      expect(summary.baseline).toMatchObject({name:baseline.name,takenAt:baseline.takenAt,sourceSnapshotId:baseline.id,issueCount:4});expect((await checked('getSnapshot',{planId:f.planId,snapshotId:baseline.id})).snapshot).toEqual(baseline);
+      expect(summary.capacity).toMatchObject({state:'available',scope:'captured-plan',reason:null,startDate:'2026-10-05',endDate:'2026-10-30',coverage:{selectedPlans:1,uniqueIssues:4,sharedDuplicatesRemoved:0,conflictingIssues:0,missingEffort:0,unallocatedIssues:0,unavailableIssueCount:0},totals:{knownEffortHours:16,outsideWindowHours:0,unallocatedHours:0}});
+      expect(summary).toMatchObject({plannedFinish:'2026-10-30',uncertainty:'high',span:{start:'2026-10-05',finish:'2026-10-30'},coverage:{leafTasks:3,unscheduledOrInvalidLeaves:0,validRows:4,unavailableRows:0},changeCounts:{added:0,removed:0,changed:1}});
+      expect(summary.forecast).toMatchObject({reason:null,seed:42,coverage:{totalLeaves:3,datedLeaves:3,sampledLeaves:2,missingDates:0,invalidDates:0,invertedDates:0,invalidBaselines:0}});log('retained sponsor report',{summary,pages,expectedTimeline,expectedTarget,expectedCapacity,expectedChanges,expectedAvailability});
+      const download=async(name:string)=>{stage(`download-click:${name}`);const started=Date.now();const event=page.waitForEvent('download',{timeout:180000});await report.getByRole('button',{name:'Download complete HTML report',exact:true}).click();const artifact=await event;stage(`download-save:${name}`);expect(artifact.suggestedFilename()).toBe(`sponsor-report-${summary.id}.html`);const target=info.outputPath(name);await artifact.saveAs(target);expect(await artifact.failure()).toBeNull();log('download completed',{name,elapsedMs:Date.now()-started,bytes:fs.statSync(target).size});return target;};
+      const first=await download('retained-uat-report.html');documentPage=await page.context().newPage();const external:string[]=[];documentPage.on('request',(r:any)=>{if(/^https?:/.test(r.url()))external.push(r.url());});stage('report-local-html-navigation');documentPage.on('crash',crash);await documentPage.goto(pathToFileURL(first).href);await expect(documentPage.locator('script,iframe,img,link')).toHaveCount(0);expect(external).toEqual([]);await expect(documentPage.locator('tr[data-issue-key]')).toHaveCount(4);
+      for(const i of expectedTimeline){const cells=documentPage.locator(`tr[data-issue-key="${i.key}"] td`);await expect(cells).toHaveCount(7);for(const [n,value] of [i.key,i.summary,i.startDate,i.dueDate,String(i.duration),i.statusCategory].entries())await expect(cells.nth(n)).toHaveText(value as string);const bar=cells.nth(6).locator('.bar');await expect(bar).toHaveCount(1);const days=(iso:string)=>Date.parse(iso)/86400000;expect(await bar.getAttribute('style')).toBe(`margin-left:${((days(i.startDate)-days('2026-10-05'))/26*100).toFixed(3)}%;width:${((days(i.dueDate)-days(i.startDate)+1)/26*100).toFixed(3)}%`);}
+      const targetCells=documentPage.locator('tr[data-target-key] td');await expect(documentPage.locator('tr[data-target-key]')).toHaveCount(1);for(const [n,value]of [`${targetName} · 2026-10-16`,`${expectedTarget.scopeLabel} (epic ${expectedTarget.scopeId}) · 2 tasks`,'2026-10-16','2026-10-16 / 2026-10-16 / 2026-10-16','100%','Within target'].entries())await expect(targetCells.nth(n)).toHaveText(value);
+      await expect(documentPage.locator('tr[data-capacity-key]')).toHaveCount(4);for(const b of expectedCapacity){const cells=documentPage.locator(`tr[data-capacity-key="${b.key}"] td`);await expect(cells).toHaveCount(6);for(const[n,value]of[`${f.person.displayName} (${f.person.accountId})`,b.week,String(b.demandHours),String(b.capacityHours),'0','available'].entries())await expect(cells.nth(n)).toHaveText(value);}
+      const section=(heading:string)=>documentPage.locator('section.report-section').filter({has:documentPage.getByRole('heading',{name:heading,exact:true})});
+      const availabilityCells=section('Included availability assumptions').locator('tbody tr td');await expect(availabilityCells).toHaveCount(2);await expect(availabilityCells.nth(0)).toHaveText(`${f.person.displayName} (${f.person.accountId})`);await expect(availabilityCells.nth(1)).toHaveText('8h/day × 50% part-time × 75% after reserve; weekdays Mon, Tue, Wed, Thu, Fri; leave 2026-10-07');
+      const changeCells=section('Baseline changes').locator('tbody tr td');await expect(changeCells).toHaveCount(5);for(const[n,value]of[B,bBefore.summary,'Schedule changed','2026-10-12 → 2026-10-16; duration 5; buffer No','2026-10-12 → 2026-10-16; duration 5; buffer Yes'].entries())await expect(changeCells.nth(n)).toHaveText(value);
+      for(const text of['Planned leaf finish: 2026-10-30','0 of 3 leaf tasks have missing, invalid or inverted dates','P50 2026-11-02 · P80 2026-11-02 · P90 2026-11-03','Duration uncertainty: high','seed 42, 300 simulated finishes',`Compared with the retained copy of ${baseline.name} captured ${baseline.takenAt}; 4 baseline issues`,'0 added · 0 removed · 1 schedules changed','0 missing estimates; 0 unreadable issues. Known effort 16h; allocated 16h; outside window 0h; unallocated 0h.'])await expect(documentPage.locator('body')).toContainText(text);
+      await expect(section('Captured capacity context')).toContainText(summary.capacity.assumptions);await expect(documentPage.locator('body')).not.toContainText('CRT-411');await expect(documentPage.locator('body')).not.toContainText(f.names.mirror);await screenshot(documentPage.locator('body'),'uat-complete-report');stage('report-pdf');await documentPage.pdf({path:info.outputPath('retained-uat-report.pdf'),printBackground:true,preferCSSPageSize:true});await documentPage.close();documentPage=null;
+      frame=await table(page,f.names.main);await discard(frame);frame=await table(page,f.names.main);await expect(row(frame,B).locator(':scope > div').nth(6)).toHaveText('No');await expect(frame.locator('[data-testid="plan-save-btn"]')).toHaveAttribute('data-has-changes','0');await expect(frame.getByRole('button',{name:/^Apply \d+ change/})).toHaveCount(0);await f.verifySource();
+      work=await planning(frame);await work.getByRole('button',{name:'Sponsor reports',exact:true}).click();report=work.locator('[data-testid="sponsor-reports"]');await report.getByRole('navigation',{name:'Retained sponsor reports'}).getByRole('button').filter({hasText:summary.name}).click();expect((await checked('getSponsorReport',{planId:f.planId,reportId:summary.id})).report).toEqual(summary);const second=await download('retained-uat-report-after-discard.html');expect(fs.readFileSync(second,'utf8')).toBe(fs.readFileSync(first,'utf8'));await screenshot(report,'uat-immutable-report-after-discard');
+      for(const snap of [base,alternative,baseline])expect((await checked('getSnapshot',{planId:f.planId,snapshotId:snap.id})).snapshot).toEqual(snap);
+      for(const planId of [f.planId,f.mirrorId]){await expect.poll(async()=>({draft:(await checked('getDraft',{planId})).draft,registry:(await checked('getActiveDrafts',{planId})).drafts}),{timeout:30000}).toEqual({draft:null,registry:{}});}f.journal.noPendingDrafts=true;f.persist();
+      f.journal.handoff={oracleSha256:f.journal.oracleSha256,plans:f.journal.plans,issues:f.journal.issues,target,baselineId:baseline.id,originalId:base.id,alternativeId:alternative.id,reportId:summary.id,reportHtmlHash:hash(fs.readFileSync(first,'utf8')),oracleOrder:order,expected,capacity:oracle.capacity,humanInspection:'Pending independent inspection of screenshots and every PDF page; not user UAT acknowledgement'};f.persist();await sourceGuard();passed=true;
+     }catch(error){priorError=error;f.journal.failure=String(error);f.persist();throw error;
+     }finally{
+      const errors:any[]=[];try{if(routeHandler)await page.unroute(graph,routeHandler);}catch(e){errors.push(e);}try{if(documentPage&&!documentPage.isClosed())await documentPage.close();}catch(e){errors.push(e);}
+      try{await cleanupOwnedReportCaptures(page,f.planId,info,{retainPublished:passed,onRecovery:(e:any)=>{f.journal.reportRecovery=e.reportState;f.persist();}});}catch(e){errors.push(e);}
+      try{if(originalSettings){const restored=await preferences.restore();expect(restored.restored).toBe(true);}settingsRestored=true;}catch(e){errors.push(e);f.journal.settingsRestorationFailure=String(e);}f.journal.privateSettingsRestored=settingsRestored;f.persist();rpc.stop();page.off('crash',crash);
+      try{if(!page.isClosed())await page.goto('about:blank');}catch(e){errors.push(e);}
+      // If private preferences could still reference these IDs, retain their exact
+      // ledger for recovery instead of deleting plans and creating dangling choices.
+      try{await sourceGuard();}catch(e){errors.push(e);}
+      if(settingsRestored&&!f.journal.reportRecovery)try{await f.finish(passed&&!errors.length);}catch(e){errors.push(e);}else{f.journal.state='recovery-required';f.persist();}
+      if(errors.length)throw new AggregateError([...(priorError?[priorError]:[]),...errors],'Retained UAT failed or recovery is incomplete; ownership/settings evidence preserved');
+     }
+    });
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/lz-retained-uat-departure-20260906/tests/retained-uat-departure/finalizer.test.mjs:40:97)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 3
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 307.714917

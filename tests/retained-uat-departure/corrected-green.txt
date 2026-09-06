@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: actual UAT finalizer retains both plans/issues after prior departure failure even without registered capture
+ok 1 - actual UAT finalizer retains both plans/issues after prior departure failure even without registered capture
+  ---
+  duration_ms: 1.06825
+  type: 'test'
+  ...
+# Subtest: actual final safe departure failure retains successful UAT and keeps independent audits
+ok 2 - actual final safe departure failure retains successful UAT and keeps independent audits
+  ---
+  duration_ms: 0.119208
+  type: 'test'
+  ...
+# Subtest: cleanup-triggered departure failure stays poisoned through final stop
+ok 3 - cleanup-triggered departure failure stays poisoned through final stop
+  ---
+  duration_ms: 0.15025
+  type: 'test'
+  ...
+# Subtest: original body error and departure error are both retained in AggregateError
+ok 4 - original body error and departure error are both retained in AggregateError
+  ---
+  duration_ms: 0.078792
+  type: 'test'
+  ...
+# Subtest: preference failure still audits source and retains ownership
+ok 5 - preference failure still audits source and retains ownership
+  ---
+  duration_ms: 0.141083
+  type: 'test'
+  ...
+# Subtest: safe successful departure preserves retained handoff and exact preference/source order
+ok 6 - safe successful departure preserves retained handoff and exact preference/source order
+  ---
+  duration_ms: 0.224125
+  type: 'test'
+  ...
+# Subtest: ordinary body failure without uncertain departure keeps original authorized failure cleanup
+ok 7 - ordinary body failure without uncertain departure keeps original authorized failure cleanup
+  ---
+  duration_ms: 0.158042
+  type: 'test'
+  ...
+# Subtest: original UAT body, expectations, wait budgets, 503 injection and UI interactions remain exact
+ok 8 - original UAT body, expectations, wait budgets, 503 injection and UI interactions remain exact
+  ---
+  duration_ms: 70.554334
+  type: 'test'
+  ...
+# Subtest: UAT alone opts in and binds actual admitted main identity before first Table
+ok 9 - UAT alone opts in and binds actual admitted main identity before first Table
+  ---
+  duration_ms: 1.06125
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 305.718583
