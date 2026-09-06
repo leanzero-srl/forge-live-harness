@@ -1,0 +1,67 @@
+fatal: cannot change to '/private/tmp/axpo-license-manager': No such file or directory
+
+AssertionError: LZ_CLEANUP_COMPLETED_JOURNAL required before test registration
+
+   at scenarios/lz-ppm/seventeenth-owner-cleanup-contract.mjs:46
+
+  44 |  return {journal:j,inspection:i,journalSha256,inspectionSha256,refreshedFailureSha256};
+  45 | }
+> 46 | export function loadOwnerCleanupAdmission(env=process.env){for(const k of ['LZ_CLEANUP_COMPLETED_JOURNAL','LZ_CLEANUP_COMPLETED_SHA256','LZ_CLEANUP_ROOT_INSPECTION','LZ_CLEANUP_ROOT_INSPECTION_SHA256','LZ_CLEANUP_REFRESHED_FAILURE_JOURNAL','LZ_CLEANUP_REFRESHED_FAILURE_SHA256'])assert.ok(env[k],`${k} required before test registration`);return admitOwnerCleanup({journalBytes:fs.readFileSync(env.LZ_CLEANUP_COMPLETED_JOURNAL),journalSha256:env.LZ_CLEANUP_COMPLETED_SHA256,inspectionBytes:fs.readFileSync(env.LZ_CLEANUP_ROOT_INSPECTION),inspectionSha256:env.LZ_CLEANUP_ROOT_INSPECTION_SHA256,refreshedFailureBytes:fs.readFileSync(env.LZ_CLEANUP_REFRESHED_FAILURE_JOURNAL),refreshedFailureSha256:env.LZ_CLEANUP_REFRESHED_FAILURE_SHA256});}
+     |                                                                                                                                                                                                                                                                                               ^
+  47 |
+  48 | /** Finite progression, no mutation retries. Acknowledged false-cleanup is continuation, not retry.
+  49 |  * Transport allowance60s + one61s rolling-window wait per call, plus two10-minute
+    at loadOwnerCleanupAdmission (/private/tmp/lz-harness-retained-cleanup-20260906/scenarios/lz-ppm/seventeenth-owner-cleanup-contract.mjs:46:287)
+    at /private/tmp/lz-harness-retained-cleanup-20260906/scenarios/lz-ppm/campaign-seventeenth-owner-cleanup.spec.ts:25:18
+Listing tests:
+
+Error: test file "scenarios/lz-ppm/_restore-lzpt-bed.spec.ts" should not import test file "scenarios/lz-ppm/_seed-lzpt.spec.ts"
+
+   at scenarios/lz-ppm/_restore-lzpt-bed.spec.ts:1
+
+> 1 | // LZPT BED RESTORE — put the project back to exactly what _seed-lzpt declares,
+    | ^
+  2 | // WITHOUT recreating anything.
+  3 | //
+  4 | // Why this exists: the exact-count journeys (status groups, risk RAG, health
+Total: 0 tests in 0 files
+
+Error: test file "scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts" should not import test file "scenarios/lz-ppm/campaign-portable-diagnostic-identity.spec.ts"
+
+   at scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts:1
+
+> 1 | // Intentional exact4→3 cleanup after accepted actual report/PDF. Not a generic guard exception.
+    | ^
+  2 | import './campaign-portable-diagnostic-identity.spec';
+  3 | import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+  4 | import {test,expect} from '../../fixtures/forge';import {getTestState} from '../../testhook/client';
+
+Error: test file "scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts" should not import test file "scenarios/lz-ppm/campaign-diagnostic-identity.spec.ts"
+
+   at scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts:1
+
+> 1 | // Intentional exact4→3 cleanup after accepted actual report/PDF. Not a generic guard exception.
+    | ^
+  2 | import './campaign-portable-diagnostic-identity.spec';
+  3 | import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+  4 | import {test,expect} from '../../fixtures/forge';import {getTestState} from '../../testhook/client';
+
+Error: test file "scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts" should not import test file "scenarios/lz-ppm/campaign-identity.spec.ts"
+
+   at scenarios/lz-ppm/campaign-cleanup-sixth-diagnostic.spec.ts:1
+
+> 1 | // Intentional exact4→3 cleanup after accepted actual report/PDF. Not a generic guard exception.
+    | ^
+  2 | import './campaign-portable-diagnostic-identity.spec';
+  3 | import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+  4 | import {test,expect} from '../../fixtures/forge';import {getTestState} from '../../testhook/client';
+
+Error: test file "scenarios/lz-ppm/campaign-confirm-sixth-cleanup.spec.ts" should not import test file "scenarios/lz-ppm/campaign-identity.spec.ts"
+
+   at scenarios/lz-ppm/campaign-confirm-sixth-cleanup.spec.ts:1
+
+> 1 | // Read-only completion after exact four deletions; no repeated mutation.
+    | ^
+  2 | import './campaign-identity.spec';
+  3 | import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+  4 | import {test,expect} from '../../fixtures/forge';import {getTestState} from '../../testhook/client';

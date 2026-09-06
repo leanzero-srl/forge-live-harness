@@ -45,6 +45,13 @@ export function admitOwnerCleanup({journalBytes,journalSha256,inspectionBytes,in
 }
 export function loadOwnerCleanupAdmission(env=process.env){for(const k of ['LZ_CLEANUP_COMPLETED_JOURNAL','LZ_CLEANUP_COMPLETED_SHA256','LZ_CLEANUP_ROOT_INSPECTION','LZ_CLEANUP_ROOT_INSPECTION_SHA256','LZ_CLEANUP_REFRESHED_FAILURE_JOURNAL','LZ_CLEANUP_REFRESHED_FAILURE_SHA256'])assert.ok(env[k],`${k} required before test registration`);return admitOwnerCleanup({journalBytes:fs.readFileSync(env.LZ_CLEANUP_COMPLETED_JOURNAL),journalSha256:env.LZ_CLEANUP_COMPLETED_SHA256,inspectionBytes:fs.readFileSync(env.LZ_CLEANUP_ROOT_INSPECTION),inspectionSha256:env.LZ_CLEANUP_ROOT_INSPECTION_SHA256,refreshedFailureBytes:fs.readFileSync(env.LZ_CLEANUP_REFRESHED_FAILURE_JOURNAL),refreshedFailureSha256:env.LZ_CLEANUP_REFRESHED_FAILURE_SHA256});}
 
+/** Ordinary discovery is inert. Any explicitly requested cleanup phase remains fail-closed before registration. */
+export function ownerCleanupAdmissionForPhase(env=process.env){
+ const phase=env.LZ_SEVENTEENTH_CLEANUP_PHASE;if(phase==null||phase==='')return null;
+ assert.equal(phase,'approved-cleanup','Unsupported explicit owner cleanup phase');
+ return loadOwnerCleanupAdmission(env);
+}
+
 /** Finite progression, no mutation retries. Acknowledged false-cleanup is continuation, not retry.
  * Transport allowance60s + one61s rolling-window wait per call, plus two10-minute
  * acquisition allowances. This is a stopping deadline, never a latency guarantee. */

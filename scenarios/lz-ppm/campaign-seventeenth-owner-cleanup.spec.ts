@@ -20,9 +20,10 @@ import {admitRefreshedResume,continueRefreshedReport} from './seventeenth-refres
 import {createCapacityWireLifecycle,assertCapacityWireFresh} from './capacity-wire-lifecycle.mjs';
 import {capacityWireIdentity,capacityWireToken,expectedCapacityWire,verifiedAcquisition,guardedCapacityRoute,settledRequest,safeTransportFailure,browserPrincipal} from './seventeenth-wire-acquisition.mjs';
 import {serializeForgeResponse,ForgeResponseRecordError} from './forge-response-record.mjs';
-import {loadOwnerCleanupAdmission,cleanupReadCost,cleanExactOwner,cleanupUiRequestClass} from './seventeenth-owner-cleanup-contract.mjs';
+import {ownerCleanupAdmissionForPhase,cleanupReadCost,cleanExactOwner,cleanupUiRequestClass} from './seventeenth-owner-cleanup-contract.mjs';
 import {departOwnedPlan,armPresenceLeave} from './owned-plan-departure.mjs';
-const acceptance=loadOwnerCleanupAdmission(); // Fail before test registration, not after opening the browser.
+const acceptance=ownerCleanupAdmissionForPhase(); // Ordinary discovery skips; explicit cleanup validates before registration.
+const cleanupTest=acceptance?test:test.skip;
 const expect=baseExpect.configure({timeout:600000});
 const sleep=(ms:number)=>new Promise(resolve=>setTimeout(resolve,ms));
 // These local UI helpers preserve the original surface/semantic gates with an explicit ten-minute queue allowance.
@@ -39,7 +40,8 @@ const canonical=(x:any):any=>Array.isArray(x)?x.map(canonical):x&&typeof x==='ob
 const fields=(rows:any[])=>rows.map(i=>({key:i.key,id:i.id,summary:i.summary,statusCategory:i.statusCategory??'unknown',startDate:i.startDate??null,dueDate:i.dueDate??null,duration:i.duration??null,buffer:i.buffer||'No',parentKey:i.parentKey??null,predecessors:[...(i.predecessors||[])].sort(),successors:[...(i.successors||[])].sort()})).sort((a,b)=>a.key.localeCompare(b.key));
 const expectedPrefs={success:true,version:65,settings:{selectedPlanIds:[],profiles:{},issueChoices:{}}};
 test.describe.configure({retries:0,timeout:10800000});
-test('seventeenth owner cleanup: approved report private and public payloads absent before exact normal UI plan deletion',async({page},info)=>{
+cleanupTest('seventeenth owner cleanup: approved report private and public payloads absent before exact normal UI plan deletion',async({page},info)=>{
+ if(!acceptance)throw new Error('Explicit approved owner cleanup admission is required');
  await page.context().tracing.stop(); // Discard recorder network credentials before any new UI acquisition; explicit evidence below remains.
  expect(process.env.LZ_SEVENTEENTH_CLEANUP_PHASE).toBe('approved-cleanup');
  expect(BASE).toBe('https://wolfaenpak.atlassian.net');const fixtureBytes=fs.readFileSync(path.resolve('tests/report-packed-upgrade/fixture-read.json'));expect(sha(fixtureBytes)).toBe('bac0f90bddbe0d6b368564c929e3931044a590113a2250dec04a3e3db6fd5d1a');const fixture=JSON.parse(fixtureBytes.toString());expect(fixture.first).toEqual(fixture.second);
