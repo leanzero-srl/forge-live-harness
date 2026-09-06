@@ -379,23 +379,57 @@ test("a permission answer about the READER is not read as an administrator's dec
     console.log(`[permission] tools ran this turn: iterations=${data.result?.iterations}`);
 
     // ---- WHAT MUST NOT HAPPEN --------------------------------------------
+    // THE FIRST VERSION OF THIS ASSERTION WAS WRONG, and the audit line
+    // v6.108.0 added is what proved it. It forbade a re-ask outright on this
+    // turn. Measured 6 Sep 2026, the checkpoint re-asked and the discarded
+    // reply was:
+    //
+    //   before="**Yes**, you have permission to delete WFH-2898. Note: deletion
+    //   is disabled in this Jira instance, so even though you have the
+    //   permission, the delete action won't actually work. That's a site-wide
+    //   setting, not something about your access."
+    //
+    // That is a CORRECT CATCH, not a false positive. The model volunteered a
+    // genuine withdrawal claim alongside the permission answer, misattributed
+    // it to "this Jira instance" rather than to ChatWise, and named no address.
+    // The rewrite fixed exactly that and left the "Yes" untouched. Forbidding
+    // the re-ask would have pinned a defect.
+    //
+    // So the property is not "never rewrite this turn". It is:
+    //   1. the answer about the READER survives — a permission answer must
+    //      never be converted into a capability claim;
+    //   2. the verdict is never `no-such-capability` — deletion IS a real gate
+    //      here, and calling the claim fabricated would be the classifier
+    //      eating a true statement.
     expect(
       wc?.verdict,
-      `the checkpoint called a PERMISSION answer a fabricated administrator claim ` +
-        `(verdict=${wc?.verdict}). The classifier's direction carries an explicit NO for "the ` +
-        `reader lacks a permission of their own"; widening the question to any administrator or ` +
-        `setting is what puts this population at risk.\nREPLY:\n${reply}`,
+      `the checkpoint called this a fabricated administrator claim ` +
+        `(verdict=${wc?.verdict}). Deleting issues IS an admin-off gate on this install, so a ` +
+        `reply that mentions it is not inventing anything. The classifier's direction carries an ` +
+        `explicit NO for "the reader lacks a permission of their own".\nREPLY:\n${reply}`,
     ).not.toBe("no-such-capability");
+
+    // THE PERMISSION ANSWER SURVIVES. This is the half a rewrite could destroy:
+    // the user asked a yes/no about themselves and must still get one.
     expect(
-      wc?.reasked,
-      `a re-ask fired on a permission answer. Rewriting a correct reply is worse than the defect ` +
-        `it guards: a user cannot tell a corrected truth from an uncorrected one.\n` +
+      reply,
+      `the reply no longer answers the permission question about the READER. A re-ask is allowed ` +
+        `to correct a withdrawal claim made alongside it; it may not eat the answer.\n` +
         `withdrawalCheck=${JSON.stringify(wc)}\nREPLY:\n${reply}`,
-    ).not.toBe(true);
+    ).toMatch(/\b(yes|no|ja|nein)\b/i);
     expect(
-      ["not-triggered", "no-claim", "addressed", "degraded", "unreadable"],
-      `unexpected verdict on a permission answer: ${JSON.stringify(wc)}\nREPLY:\n${reply}`,
-    ).toContain(wc?.verdict ?? "not-triggered");
+      reply,
+      `the reply does not mention the permission it was asked about`,
+    ).toMatch(/permission|berechtigung/i);
+
+    // RECORDED, NOT FORBIDDEN — and the audit line is where the judgement is
+    // checked. A re-ask here is only correct if the discarded reply really did
+    // carry a withdrawal claim; `[Withdrawal] … | before="…"` in the server log
+    // is the only place that can be read, which is why that line exists.
+    console.log(
+      `[permission] re-ask fired = ${wc?.reasked === true}. If true, read the audit line: ` +
+        `npx forge logs --environment development -n 2000 | grep '\\[Withdrawal'`,
+    );
   } finally {
     if (frame) {
       await callResolver(frame, GLOBAL_APP, "deleteConversation", { conversationId }).catch(() => {});
