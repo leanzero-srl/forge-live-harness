@@ -182,14 +182,27 @@ test('private simulation: scope, holiday and lag survive model save/reopen; excl
 
       // Same authenticated owner is allowed to model but forbidden to sync,
       // replace sources, or share. These real denials do not prove AUTH-1.
+      const beforeDenials=await invoke('getSimulationModel',{planId:simId});
+      expect(beforeDenials.success).toBe(true);
+      expect(beforeDenials.version).toBe(saved.version);
+      expect(beforeDenials.model).toEqual(saved.model);
+      expect(beforeDenials.scopeBasis).toEqual(saved.scopeBasis);
       for (const [name,payload] of [
         ['startWrite',{planId:simId}], ['indexPlan',{planId:simId}],
-        ['updatePlan',{planId:simId,sources:[{type:'project',projectKey:'WFH'}]}],
+        ['updatePlan',{planId:simId,expectedVersion:beforeDenials.version,
+          changes:{sources:[{type:'project',projectKey:'WFH'}]}}],
         ['updatePlanAccess',{planId:simId,defaultAccess:'edit'}],
       ] as const) {
         const denied=await invoke(name,payload); expect(denied.success).toBe(false);
         expect(denied.error).toContain('private simulation'); journal.steps.push({name,denied}); retain();
       }
+      const afterDenials=await invoke('getSimulationModel',{planId:simId});
+      expect(afterDenials.success).toBe(true);
+      expect(afterDenials.version).toBe(beforeDenials.version);
+      expect(afterDenials.model).toEqual(beforeDenials.model);
+      expect(afterDenials.scopeBasis).toEqual(beforeDenials.scopeBasis);
+      journal.steps.push({name:'all-four-denials-preserve-entire-model-and-scope',
+        before:beforeDenials,after:afterDenials}); retain();
       const stale=await invoke('saveSimulationModel',{planId:simId,expectedVersion:initial.version,name:simName,
         selectedLeafKeys:[pred,succ],changes:[],calendar:saved.model.calendar,uncertainty:'medium',dependencyChanges:[]});
       expect(stale.success).toBe(false); expect(stale.error).toContain('Reload before saving');
