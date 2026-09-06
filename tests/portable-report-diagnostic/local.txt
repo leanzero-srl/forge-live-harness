@@ -1,0 +1,20 @@
+✔ exact independently pinned installed receipt accepted (0.44425ms)
+✔ mode mismatch refused (0.566542ms)
+✔ browserVersion mismatch refused (0.106333ms)
+✔ principalSha256 mismatch refused (0.09025ms)
+✔ uiVersion mismatch refused (0.06325ms)
+✔ executableSha256 mismatch refused (0.066875ms)
+✔ frameworkSha256 mismatch refused (0.066959ms)
+✔ appUrl mismatch refused (0.090667ms)
+✔ admittedAt mismatch refused (0.094542ms)
+✔ missing, future or stale receipt refused (0.100166ms)
+✔ missing, future or stale receipt refused (0.066291ms)
+✔ missing, future or stale receipt refused (0.050291ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42.916208
