@@ -1,0 +1,46 @@
+✔ actual successful source-return receipt admits exact active78/full134 baseline (14.022875ms)
+✔ wrong receipt, unknown prior call, mutation, failed integrity or changed manifest refuse (664.002666ms)
+✔ acknowledgement rejects changed owner identities, names, checkpoint skips and failed states (0.527083ms)
+✔ original full physical history must remain exactly present as new immutable artifacts appear (0.973959ms)
+✔ serial continuation requires each fresh status and physical probe before next RPC and reaches publication (0.263875ms)
+✔ unknown/timeout/refused/malformed/failed response stops after one actual call without retry (0.319459ms)
+✔ fresh saved-state mismatch or physical corruption stops before second advance (0.2095ms)
+✔ finite checkpoint budget stops acknowledged active job without manufactured publication (0.193709ms)
+✖ UI route allows only exact-owned presence bookkeeping alongside real reads (0.189208ms)
+✔ all18 pure producer blobs equal exact old6.23 source fence (86.009167ms)
+✔ complete old40 seeded runs reproduce exact full retained input and every forecast field (3524.656709ms)
+✔ full published summary/hash and all106 every-field pages use original producer and independent source (59.471791ms)
+✔ any full forecast/provenance/manifest/row mutation or stale source verification fails (216.844916ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4153.481125
+
+✖ failing tests:
+
+test at tests/seventeenth-forecast-resume/contracts.test.mjs:15:1
+✖ UI route allows only exact-owned presence bookkeeping alongside real reads (0.189208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'read'
+  - 'forbidden'
+  
+      at TestContext.<anonymous> (file:///Users/mihaiperdum/Projects/forge-live-harness/tests/seventeenth-forecast-resume/contracts.test.mjs:15:695)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'read',
+    expected: 'forbidden',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
