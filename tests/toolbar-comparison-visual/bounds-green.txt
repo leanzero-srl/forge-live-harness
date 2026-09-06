@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: actual host resize-handle overlap on structural container edge does not reject unobscured contents
+ok 1 - actual host resize-handle overlap on structural container edge does not reject unobscured contents
+  ---
+  duration_ms: 0.899583
+  type: 'test'
+  ...
+# Subtest: same host obstruction still refuses each content class and malformed or clipped structural bounds
+ok 2 - same host obstruction still refuses each content class and malformed or clipped structural bounds
+  ---
+  duration_ms: 0.99625
+  type: 'test'
+  ...
+# Subtest: retained exact private and ordinary sources are accepted with distinct known read scope
+ok 3 - retained exact private and ordinary sources are accepted with distinct known read scope
+  ---
+  duration_ms: 4.8325
+  type: 'test'
+  ...
+# Subtest: actual long-title overlap, offcenter and missing narrow row fail while valid two-row geometry passes
+ok 4 - actual long-title overlap, offcenter and missing narrow row fail while valid two-row geometry passes
+  ---
+  duration_ms: 0.650125
+  type: 'test'
+  ...
+# Subtest: combined source keeps exact view matrix, six comparison slices and immutable bookends without creates or cleanup
+ok 5 - combined source keeps exact view matrix, six comparison slices and immutable bookends without creates or cleanup
+  ---
+  duration_ms: 0.188917
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 35.941917
