@@ -1,34 +1,35 @@
+import {createReportDocumentIdentity} from '../../scenarios/lz-ppm/report-document-identity.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import ts from 'typescript';import {EventEmitter} from 'node:events';import {execFileSync} from 'node:child_process';
 import {departOwnedPlan,armPresenceLeave} from '../../scenarios/lz-ppm/owned-plan-departure.mjs';
 import {serializeForgeResponse,ForgeResponseRecordError} from '../../scenarios/lz-ppm/forge-response-record.mjs';
-const file='scenarios/lz-ppm/report-departure.ts',source=fs.readFileSync(file,'utf8');
+const file='scenarios/lz-ppm/report-departure.ts',source=process.env.LZ_OLD_REPORT_DEPARTURE==='1'?execFileSync('git',['show','30df830:'+file],{encoding:'utf8'}):fs.readFileSync(file,'utf8');
 const compiled=ts.transpileModule(source.replace(/^import .*;\n/gm,'').replace(/export /g,''),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
 const expect=value=>({toHaveLength:n=>assert.equal(value.length,n),toBe:n=>assert.equal(value,n),toHaveCount:async n=>assert.equal(await value.count(),n),toBeVisible:async()=>assert.equal(await value.isVisible(),true)});
-function module(){return new Function('fs','expect','callEnvelope','getTarget','departOwnedPlan','armPresenceLeave','serializeForgeResponse','ForgeResponseRecordError',compiled+';return {installReportDeparture,setReportDepartureOwner,beforeReportNavigation,stopReportUi,reportDepartureFailure};')({},expect,r=>JSON.parse(r.postDataBuffer()),()=>({appId:'app',envId:'env'}),departOwnedPlan,armPresenceLeave,serializeForgeResponse,ForgeResponseRecordError);}
+function module(){return new Function('fs','expect','callEnvelope','getTarget','departOwnedPlan','armPresenceLeave','serializeForgeResponse','ForgeResponseRecordError','createReportDocumentIdentity',compiled+';return {installReportDeparture,setReportDepartureOwner,beforeReportNavigation,stopReportUi,reportDepartureFailure};')({},expect,r=>JSON.parse(r.postDataBuffer()),()=>({appId:'app',envId:'env'}),departOwnedPlan,armPresenceLeave,serializeForgeResponse,ForgeResponseRecordError,createReportDocumentIdentity);}
 const usePresenceSource=fs.readFileSync('/Users/mihaiperdum/Projects/lz-ppm-forge/static/ppm-ui/src/hooks/usePresence.js','utf8');
 function target(){const listeners=new Map();return{addEventListener(k,fn){if(!listeners.has(k))listeners.set(k,new Set());listeners.get(k).add(fn);},removeEventListener(k,fn){listeners.get(k)?.delete(fn);},emit(k){for(const fn of [...(listeners.get(k)||[])])fn();},count(k){return listeners.get(k)?.size||0;}};}
 const turn=()=>new Promise(resolve=>setImmediate(resolve));
 async function fixture({fault=null,held=false,surface='plan'}={}){
- const m=module(),page=new EventEmitter(),events=[],log=[],window=target(),document={...target(),visibilityState:'visible'};let current='blank',url='about:blank',cleanup,backClicks=0,gotos=0;const waiting=[];
+ const m=module(),page=new EventEmitter(),events=[],log=[],window=target(),document={...target(),visibilityState:'visible'};let current='blank',url='about:blank',documentId={},cleanup,backClicks=0,gotos=0;const waiting=[];
  const planId='plan-test-local',name='[harness-test] exact owner';
  const terminal=(req,body,status=200,failed=false)=>{req.result={status:()=>status,text:async()=>JSON.stringify({data:{invokeExtension:{success:true,response:{body},errors:fault==='errors'&&req.key==='presenceLeave'?{}:null,contextToken:{jwt:'fresh-secret',expiresAt:'date'}}}})};page.emit(failed?'requestfailed':'requestfinished',req);};
  const callResolver=(key,payload)=>{
   if(key==='presenceLeave'&&fault==='missing')return Promise.resolve({success:true});
   const actual={...payload,...(key==='presenceLeave'&&fault==='foreign'?{planId:'foreign'}:{})};
   const envelope={variables:{input:{extensionId:'ari:cloud:ecosystem::extension/app/env/static/ppm-dashboard',payload:{contextToken:'fresh-secret',call:{functionKey:key,payload:actual}}}}};
-  const req={key,postDataBuffer:()=>Buffer.from(JSON.stringify(envelope)),allHeaders:async()=>({}),response:async()=>req.result};page.emit('request',req);
+  const req={key,isNavigationRequest:()=>false,postDataBuffer:()=>Buffer.from(JSON.stringify(envelope)),allHeaders:async()=>({}),response:async()=>req.result};page.emit('request',req);
   return new Promise((resolve,reject)=>{const done=()=>{const body=key==='presenceBeat'?{roster:{},selfAccountId:'owner'}:{success:fault!=='bodyfalse'};const bad=key==='presenceLeave'&&fault==='abort';terminal(req,body,key==='presenceLeave'&&fault==='http403'?403:key==='presenceLeave'&&fault==='http503'?503:200,bad);bad?reject(Error('network aborted')):resolve(body);};if(key==='presenceLeave'&&held)waiting.push({done,req,reject});else queueMicrotask(done);});
  };
  function loc(kind){return{count:async()=>kind==='back'?(current==='plan'?1:0):kind==='capacity'?(current==='capacity'?1:0):kind==='name'?(current==='plan'?1:0):kind==='list'?(current==='list'?1:0):0,isVisible:async()=>await loc(kind).count()>0,first(){return this;},getByRole(){return this;},click:async()=>{backClicks++;log.push('back');cleanup();current='list';if(fault==='duplicate')callResolver('presenceLeave',{planId});}};}
- const frame={locator:s=>loc(s==='button[aria-label="Back to plans"][title="Back to plans"]'?'back':s==='[data-testid="capacity-view"]'?'capacity':'none'),getByText:text=>loc(text===name?'name':text==='LZPT Scenarios'?'list':'none')};
- page.frames=()=>[frame];page.mainFrame=()=>frame;page.url=()=>url;page.isClosed=()=>false;page.goto=async()=>{gotos++;log.push('goto');window.emit('beforeunload');window.emit('pagehide');if(current==='plan')for(const w of waiting.splice(0)){terminal(w.req,null,0,true);w.reject(Error('document destroyed'));}current='blank';url='about:blank';};
+ const frame={url:()=> 'https://local.cdn.prod.atlassian-dev.net/app/env/build/ppm-ui/',evaluateHandle:async()=>{const id=documentId;return{evaluate:async()=>id===documentId,dispose:async()=>{}};},frameElement:async()=>({getAttribute:async()=> 'hosted-resources-iframe',dispose:async()=>{}}),locator:s=>loc(s==='button[aria-label="Back to plans"][title="Back to plans"]'?'back':s==='[data-testid="capacity-view"]'?'capacity':'none'),getByText:text=>loc(text===name?'name':text==='LZPT Scenarios'?'list':'none')};
+ page.frames=()=>[frame];page.mainFrame=()=>frame;page.url=()=>url;page.isClosed=()=>false;page.goto=async()=>{gotos++;log.push('goto');page.emit('request',{isNavigationRequest:()=>true,frame:()=>frame,url:()=> 'about:blank',postDataBuffer:()=>null});documentId={};window.emit('beforeunload');window.emit('pagehide');if(current==='plan')for(const w of waiting.splice(0)){terminal(w.req,null,0,true);w.reject(Error('document destroyed'));}current='blank';url='about:blank';};
  const session=m.installReportDeparture(page,{accountId:'owner',timeoutMs:100,record:(stage,value)=>events.push({stage,value})});m.setReportDepartureOwner(page,planId,name);
  if(surface==='plan'){
   current='plan';url='https://app.invalid';let effectNo=0;
   const usePresence=new Function('useEffect','useRef','useState','useCallback','callResolver','window','document','setInterval','clearInterval',usePresenceSource.replace(/^import .*;\n/gm,'').replace('export function usePresence','function usePresence')+';return usePresence;')(effect=>{const returned=effect();if(effectNo++===0)cleanup=returned;},value=>({current:value}),value=>[value,()=>{}],fn=>fn,callResolver,window,document,()=>1,()=>log.push('interval-cleared'));
   usePresence(planId,'table',true);await turn();await turn();
  }else{current=surface;url=surface==='blank'?'about:blank':'https://app.invalid';}
- return{m,page,session,events,log,window,document,release(){for(const w of waiting.splice(0))w.done();},get backClicks(){return backClicks;},get gotos(){return gotos;}};
+ return{m,page,session,events,log,window,document,release(){for(const w of waiting.splice(0))w.done();},setSurface(value){current=value;url='https://app.invalid';},get backClicks(){return backClicks;},get gotos(){return gotos;}};
 }
 test('actual usePresence original unload abort is reproduced; held real leave must finish before navigation',async()=>{
  const f=await fixture({held:true});let ended=false;
@@ -43,4 +44,8 @@ test('literal intentional mounted lifecycle reload and all preexisting seven exp
  for(const name of paths){const p='scenarios/lz-ppm/'+name,old=execFileSync('git',['show','975a79a:'+p],{encoding:'utf8'}),now=fs.readFileSync(p,'utf8');assert.deepEqual(calls(now,s=>/^expect(?:\(|\.)/.test(s)),calls(old,s=>/^expect(?:\(|\.)/.test(s)),name);if(name.includes('jobs'))assert.deepEqual(calls(now,s=>/^page\.reload\(/.test(s)),calls(old,s=>/^page\.reload\(/.test(s)));}
 });
 
-test('observed intentional document reload cannot reuse a previous mount presence beat',async()=>{const f=await fixture();f.page.emit('framenavigated',f.page.mainFrame());await assert.rejects(f.session.stop());assert.equal(f.backClicks,0);assert.equal(f.gotos,0);await f.session.dispose();assert.equal(f.page.listenerCount('framenavigated'),0);});
+test('observed intentional document reload cannot reuse a previous mount presence beat',async()=>{const f=await fixture();f.page.emit('request',{isNavigationRequest:()=>true,frame:()=>f.page.mainFrame(),url:()=> 'https://app.invalid',postDataBuffer:()=>null});f.page.emit('framenavigated',f.page.mainFrame());await assert.rejects(f.session.stop());assert.equal(f.backClicks,0);assert.equal(f.gotos,0);await f.session.dispose();assert.equal(f.page.listenerCount('framenavigated'),0);});
+
+test('trace-derived valid owned beat survives host same-document history event',async()=>{const f=await fixture();f.page.emit('framenavigated',f.page.mainFrame());await f.session.stop();assert.equal(f.backClicks,1);assert.equal(f.gotos,1);await f.session.dispose();});
+
+test('post-literal-reload transient surface must become positively ready before ordinary navigation',async()=>{const f=await fixture({surface:'unknown'});const work=f.session.stop();setTimeout(()=>f.setSurface('list'),30);await work;assert.equal(f.backClicks,0);assert.equal(f.gotos,1);await f.session.dispose();});
