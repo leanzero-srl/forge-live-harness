@@ -1,0 +1,15 @@
+test_actual_start_resume_cli_persist_mode_and_refuse_same_id_switch (independent_cli_test.Review.test_actual_start_resume_cli_persist_mode_and_refuse_same_id_switch) ... ok
+test_default_run_phase_overrides_inherited_mode_and_binds_ui (independent_cli_test.Review.test_default_run_phase_overrides_inherited_mode_and_binds_ui) ... ok
+test_invalid_persisted_mode_refuses_before_any_lane_or_child (independent_cli_test.Review.test_invalid_persisted_mode_refuses_before_any_lane_or_child) ... ok
+test_result_reuse_separates_modes_and_expected_configuration (independent_cli_test.Review.test_result_reuse_separates_modes_and_expected_configuration) ... ok
+test_actual_run_phase_all_three_phases_bind_mode_and_skip_only_shared_profile_wait (runner_test.Binding.test_actual_run_phase_all_three_phases_bind_mode_and_skip_only_shared_profile_wait) ... ok
+test_default_missing_unknown_modes (runner_test.Binding.test_default_missing_unknown_modes) ... ok
+test_inherited_mode_and_identity_never_win (runner_test.Binding.test_inherited_mode_and_identity_never_win) ... ok
+test_mode_and_identity_change_result_reuse_stamp (runner_test.Binding.test_mode_and_identity_change_result_reuse_stamp) ... ok
+test_portable_requires_known_identity (runner_test.Binding.test_portable_requires_known_identity) ... ok
+test_resume_preserves_and_rejects_mismatch (runner_test.Binding.test_resume_preserves_and_rejects_mismatch) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.009s
+
+OK

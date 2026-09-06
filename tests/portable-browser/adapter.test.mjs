@@ -6,6 +6,7 @@ const options = () => ({mode:MODE,expected:{accountId:'712020:expected',uiVersio
 function fixture(overrides={}) {
   const calls=[];
   const context=new EventEmitter();
+ context.pages=()=>[];context.newPage=async()=>assert.fail('This fake readiness boundary does not create pages');
   context.close=async opts=>{calls.push(['context-close',opts]);context.emit('close');if(overrides.contextCloseError)throw overrides.contextCloseError;};
   const browser=new EventEmitter();
   browser.version=()=>overrides.version||VERSION;

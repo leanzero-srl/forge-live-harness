@@ -11,6 +11,7 @@ const ts=require('typescript'),source=fs.readFileSync(new URL('../../forge/brows
 const code=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;
 function setup(env,errors={}){
  const context=new EventEmitter(),browser=new EventEmitter(),calls=[];
+ context.pages=()=>[];context.newPage=async()=>assert.fail('This fake readiness boundary does not create pages');
  context.addInitScript=async()=>{calls.push('suppressor');};context.close=async()=>{calls.push('context-close');context.emit('close');if(errors.context)throw errors.context;};context.browser=()=>browser;
  browser.version=()=>adapter.VERSION;browser.newContext=async opts=>{calls.push(['newContext',opts]);return context;};browser.close=async()=>{calls.push('browser-close');browser.emit('disconnected');if(errors.browser)throw errors.browser;};
  const chromium={launch:async opts=>{calls.push(['launch',opts]);return browser;},launchPersistentContext:async(profile,opts)=>{calls.push(['persistent',profile,opts]);return context;}};

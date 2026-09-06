@@ -6,6 +6,7 @@ import {createPortableLauncher,MODE,VERSION,getPortableReceipt} from '../../forg
 const opts={mode:MODE,expected:{accountId:'local-placeholder',uiVersion:'1.2.3'},viewport:{width:800,height:600}};
 function fixture({failAt,contextError,browserError,waitContext}={}){
  const browser=new EventEmitter(),context=new EventEmitter(),calls=[];let resolve;
+ context.pages=()=>[];context.newPage=async()=>assert.fail('This fake readiness boundary does not create pages');
  const original=new Error('original-local-failure');
  browser.version=()=>VERSION;browser.newContext=async()=>{calls.push('newContext');if(failAt==='newContext')throw original;if(waitContext)await new Promise(r=>resolve=r);return context;};
  browser.close=async()=>{calls.push('browser-close');if(browserError)throw browserError;browser.emit('disconnected');};

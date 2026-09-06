@@ -1,5 +1,6 @@
 // Explicit portable-session adapter. The shared persistent profile is never opened or changed.
 import fs from 'node:fs';
+import {installPortableViewportSizing} from './portable-viewport.mjs';
 import os from 'node:os';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
@@ -114,6 +115,7 @@ export function createPortableLauncher({chromium, installHostFlagSuppressor, rea
       browser.once('disconnected', () => { if (!intentional) unexpected.push(new PortableBrowserError('PORTABLE_BROWSER_LOST')); });
       if (browser.version() !== VERSION) refuse('PORTABLE_VERSION_MISMATCH');
       context = await browser.newContext({storageState:state,viewport:options.viewport,acceptDownloads:true,...(options.recordVideoDir ? {recordVideo:{dir:options.recordVideoDir,size:options.viewport}} : {})});
+      installPortableViewportSizing(context);
       originalClose = context.close.bind(context);
       context.close = close;
       // auth.setup uses this API: refuse both memory export and file export in portable mode.
