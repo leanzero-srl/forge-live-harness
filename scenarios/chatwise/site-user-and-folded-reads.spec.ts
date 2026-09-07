@@ -344,13 +344,23 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
        * on this run — after it, nothing could say WHICH of the two did it.
        */
       let gone = false;
-      const deadline = Date.now() + 90_000;
+      let observed = "(never read)";
+      const t0 = Date.now();
+      const deadline = t0 + 90_000;
       for (;;) {
         const row = (await searchByEmail(NEW_EMAIL, createdAccountId)).match;
         gone = !row || row.active === false;
+        observed = row ? `row present, active=${row.active}` : "no row at all";
         if (gone || Date.now() > deadline) break;
         await page.waitForTimeout(5_000);
       }
+      // THE OBSERVATION, NOT JUST THE VERDICT. "gone=true" alone cannot tell a
+      // reader whether the row went inactive or vanished, and the two are
+      // different facts about what the undo did.
+      console.log(
+        `[createuser] the UNDO, measured at +${Math.round((Date.now() - t0) / 1000)}s: ${observed} ` +
+          `-> removed=${gone}. NO REST cleanup has run at this point.`,
+      );
       undoRemovedIt = gone;
       if (gone) createdAccountId = null;
       const undoScore = scoreToolOutcome("revertAdminChange", undo.win.map((l: any) => l.text));
