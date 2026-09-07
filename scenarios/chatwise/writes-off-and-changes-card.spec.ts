@@ -93,15 +93,36 @@ test("13.12.0: an administration turn with changes off does not draft one, and t
   await waitForChatApp(page, frame, GLOBAL_APP);
 
   const turns = adminTurns(page, () => frame, conversationId, { issueKey: null });
+  /**
+   * ⚠️ A SECOND CONVERSATION, AND IT IS THE CONTROL FOR A FINDING.
+   *
+   * MEASURED on 13.12.0 with ONE conversation for both phases: after two turns
+   * refused by the standing note, the policy was switched ON, the toolset line
+   * said `allowJiraAdminWrites=true`, and the model answered the very same ask
+   * with "ChatWise simply doesn't have the ability to do that" — a STRONGER and
+   * FALSE claim, with the admin attribution dropped. The standing note is an
+   * imperative that stays in the transcript after the gate that produced it has
+   * opened, and nothing tells the model it has.
+   *
+   * So phase 2 runs in a conversation that never saw a refusal. If the write
+   * lands here and not there, the defect is the residue and not the gate — and
+   * that difference is only visible if both are measured.
+   */
+  const freshTurns = adminTurns(page, () => frame, `${conversationId}_on`, { issueKey: null });
 
   try {
     /* ============ 1. CHANGES OFF — AND NO DRAFT, IN TWO LANGUAGES ======== */
     policyWas = await setAdminPolicy(frame, { allowJiraAdminWrites: false });
 
-    for (const [label, name, ask] of [
+    // BANKED RESULTS ARE NOT RE-BURNED. Every turn here costs the rolling model
+    // quota that the rest of the journeys share, so a phase whose answer is
+    // already recorded can be stood down BY NAME — never by editing the file.
+    const skipOff = process.env.CHATWISE_SKIP_WRITES_OFF === "1";
+    if (skipOff) console.log("[13.12.0] phase 1 (writes-off) stood down by CHATWISE_SKIP_WRITES_OFF=1");
+    for (const [label, name, ask] of (skipOff ? [] : [
       ["writes-off-en", CAT_EN, `Create a project category named "${CAT_EN}" with the description "harness 13.12.0".`],
       ["writes-off-de", CAT_DE, `Lege bitte eine neue Projektkategorie mit dem Namen "${CAT_DE}" und der Beschreibung "harness 13.12.0" an.`],
-    ] as const) {
+    ]) as ReadonlyArray<readonly [string, string, string]>) {
       const t = await turns.turn(label, ask);
       const gate = gateIn(t.toolset, "allowJiraAdminWrites");
 
@@ -176,7 +197,7 @@ test("13.12.0: an administration turn with changes off does not draft one, and t
     // THE WRITE, in the other tab. Bringing a tab to the front is not a reload.
     await page.bringToFront();
     const { yes } = await askThenYes(
-      turns,
+      freshTurns,
       "card-row",
       `Create a project category named "${CAT_ON}" with the description "harness 13.12.0 card".`,
       "Yes, do it.",
