@@ -359,7 +359,37 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
       conversationId, title: "[harness-test] org write cycle", personaId: "jira-org-admin",
     });
 
+    /**
+     * ⚠️ SECTIONS 1-3 CAN BE STOOD DOWN BY NAME, AND ONLY BY NAME.
+     *
+     * Every turn here costs the rolling model quota this whole journey set
+     * shares, and a run that has already banked sections 1-3 on the build under
+     * test spends twenty-five minutes re-proving them before it reaches the two
+     * steps a new build was deployed for. That is exactly what happened on
+     * 13.13.0: the restore threw forty minutes in and took sections 4 and 4b —
+     * the ones the build changed — with it.
+     *
+     * NOT a `test.skip`, and NOT an edit to the file: an env name, so the
+     * default run is always the whole cycle in order, and a partial run says so
+     * in its own output.
+     */
+    const ONLY_ROLES = process.env.CHATWISE_ORG_ONLY_ROLES === "1";
+    /**
+     * HOISTED, because the ledger section (5) names them. On a partial run they
+     * stay null and section 5 asserts nothing about them — which is right: an
+     * id this run never minted is not a row this run can demand.
+     */
+    let addId: string | null = null;
+    let polId: string | null = null;
+    if (ONLY_ROLES) {
+      console.log(
+        "[cycle] sections 1-3 (add/undo, policy/undo, lockout) STOOD DOWN by " +
+          "CHATWISE_ORG_ONLY_ROLES=1 — their results must already be banked for THIS build",
+      );
+    }
+
     /* ============================ 1. ADD A MEMBER, THEN UNDO IT ============ */
+    if (!ONLY_ROLES) {
     const add1 = await turnQ(
       "add-ask",
       `Add the account ${subject.accountId} to the organisation group "${GROUP_NAME}". ` +
@@ -377,7 +407,7 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     const afterAdd = await membersOf(groupId!);
     const addLanded = afterAdd.includes(String(subject.accountId));
     const addClean = assertNoRadiusDrift(add2.win, "addGroupMember/yes");
-    const addId = undoIdIn(add2.reply);
+    addId = undoIdIn(add2.reply);
     console.log(`[cycle] add: members=${afterAdd.length} landed=${addLanded} undoId=${addId} noDrift=${addClean}`);
     expect.soft(addLanded, `one yes did not add the member.\n${add2.reply.slice(0, 900)}`).toBe(true);
     expect.soft(
@@ -406,11 +436,28 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
           `settles the 13.9.0 sighting as a REAL regression in the drift comparison rather than ` +
           `something about suspended members:\n${add3.reply.slice(0, 700)}`,
       ).toBe(false);
+      /**
+       * ⚠️ NEITHER OUTCOME HERE "SETTLES" ANYTHING, and the two sentences this
+       * used to print both claimed it did — first "REGRESSION CONFIRMED,
+       * general", then "suspended-member drift". BOTH WERE WRONG.
+       *
+       * The cause was proven model-free in
+       * `_stub/membership-after-snapshot-race.mjs`: the directory read is not
+       * consistent for 0.3s to 1s after the membership POST returns 204, and
+       * `recordAfter` re-read inside that window, so the ledger stored the
+       * OPPOSITE of its own change. It is a RACE. A clean run is a run that got
+       * lucky with the window; a dirty one is a run that did not. Reporting
+       * either as a verdict about a BUILD is how this test misled twice.
+       *
+       * From 13.13.0 the poll makes a clean run mean something — but what it
+       * means is "the poll held on this sample", not "the race is gone".
+       */
       findings.push(
-        `DRIFT QUESTION (13.9.0): subject membershipStatus=${subject?.membershipStatus}, ` +
-          `undo complained=${saidDrift} -> ${saidDrift
-            ? "REGRESSION CONFIRMED, general"
-            : "the 13.9.0 sighting was suspended-member drift"}`,
+        `DRIFT (F-LV-6): subject membershipStatus=${subject?.membershipStatus}, undo ` +
+          `complained=${saidDrift} -> ${saidDrift
+            ? "the after-snapshot STILL raced the read on this sample"
+            : "the after-snapshot poll held on this sample; the race itself is a timing window, " +
+              "not a build fact (see _stub/membership-after-snapshot-race.mjs)"}`,
       );
       table.push({ step: "addGroupMember/undo", members: afterUndo.length, noDrift: undoClean });
     }
@@ -440,7 +487,7 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     const pol2 = await turnQ("policy-yes", "Yes, create it.");
     const created = await policyNamed(POLICY_NAME);
     const polClean = assertNoRadiusDrift(pol2.win, "createPolicy/yes");
-    const polId = undoIdIn(pol2.reply);
+    polId = undoIdIn(pol2.reply);
     console.log(
       `[cycle] policy: created=${Boolean(created)} id=${created?.id} status=${created?.attributes?.status} ` +
         `undoId=${polId} noDrift=${polClean}`,
@@ -555,9 +602,36 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
       // to `finally` — the group is deleted there, which would hide a failure
       // to put it back rather than report one.
       if (removed) {
-        await request("POST", `/rest/api/3/group/user?groupId=${encodeURIComponent(groupId!)}`, {
-          body: { accountId: callerId },
-        });
+        /**
+         * ⚠️ "ALREADY A MEMBER" IS A RESTORE THAT SUCCEEDED (F-LV-7, 13.13.0).
+         *
+         * The org-side removal and the JIRA-side group are not consistent in
+         * the same breath — the same read-after-write window that produced the
+         * ledger's false drift accusation. Jira answered
+         *   400 Cannot add user. User is already a member of '{1}'
+         * to a restore of a membership the ORG had just removed, `request`
+         * threw it, and because this call sits in the test BODY the whole run
+         * ABORTED — taking the two steps this build was deployed to prove
+         * (assignOrgRole and grantProductAccess) with it, forty minutes in.
+         *
+         * A restore is IDEMPOTENT BY DEFINITION: the desired end state is "the
+         * caller is in the group", and Jira saying they already are is that
+         * state, not a failure. Only a status that is neither 2xx nor this one
+         * is a real problem, and the POLL below is the actual verdict either
+         * way. NOTHING in a restore path may throw past this point.
+         */
+        try {
+          await request("POST", `/rest/api/3/group/user?groupId=${encodeURIComponent(groupId!)}`, {
+            body: { accountId: callerId },
+          });
+        } catch (e: any) {
+          const already = /already a member/i.test(String(e?.message || ""));
+          console.log(
+            `[restore] the put-back POST answered ${e?.status}: ` +
+              `${already ? "already a member — that IS the end state, polling to confirm" : e?.message}`,
+          );
+          if (!already) console.warn(`[restore] the put-back POST failed and was NOT 'already a member'`);
+        }
         // ⚠️ POLL. The write goes to JIRA and the oracle reads the ORGANISATION
         // directory, and the two do not agree instantly: measured 13.8.0, the
         // add landed and a read taken in the same breath said the caller was
@@ -582,6 +656,8 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
         callerRemovedFromGroup = false;
       }
     }
+
+    } /* end of sections 1-3 */
 
     /* ============================ 4. ONE ROLE GRANT ====================== */
     if (!roleSubject) {
