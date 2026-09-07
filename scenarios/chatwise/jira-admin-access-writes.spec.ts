@@ -85,11 +85,34 @@ test("access: a group into a project role, and the lockout guard on the caller's
     const turns = adminTurns(page, () => frame, conversationId);
 
     /* ============ 1. A GROUP INTO A PROJECT ROLE ======================== */
+    let afterAskActors: string[] = [];
     const role = await askThenYes(
       turns, "role",
       `Add the group "${GROUP}" to the Developers role on project ${PROJECT}.`,
       "Yes, add it.", GAP_MS, page,
+      /**
+       * ⚠️ MEASURED BETWEEN THE TURNS — the same mistake as the field journey's
+       * dead `.toBeNull`, in a second file, and this copy was a HARD expect that
+       * ABORTED journey 2 on its first ever run (13.14.0). It read the role
+       * AFTER `askThenYes`, which includes the yes, so it asserted the role was
+       * unchanged immediately after successfully changing it: guaranteed red on
+       * a HEALTHY run, and it reported "the PLAIN call changed the role" — a P0
+       * headline for the app doing exactly what it should.
+       *
+       * I grepped all twelve `PLAIN call` checks in this directory. The other
+       * eleven follow a single `turns.turn(...)` and are correctly placed; this
+       * was the only one behind an `askThenYes`.
+       */
+      async () => {
+        afterAskActors = await roleActors(devRoleId!);
+        console.log(`[access] after the ASK, before the yes: role actors = ${afterAskActors.join(", ") || "(none)"}`);
+      },
     );
+    expect(
+      afterAskActors.length,
+      `the PLAIN call changed the role. The disclosing turn must read, disclose and ask — ` +
+        `a change that has already happened is not a disclosure.`,
+    ).toBe(before.length);
     // THE TICKET NAMES THE PROJECT. Same role name, different project, different
     // act — and the user is the only one who can catch the wrong one.
     expect.soft(
@@ -97,9 +120,6 @@ test("access: a group into a project role, and the lockout guard on the caller's
       `the ticket does not name the project. "Add the group to the Developers role" is a different ` +
         `change on every project that has one:\n${role.ask.reply.slice(0, 900)}`,
     ).toBe(true);
-    const afterAsk = await roleActors(devRoleId!);
-    expect(afterAsk.length, `the PLAIN call changed the role`).toBe(before.length);
-
     const afterYes = await roleActors(devRoleId!);
     const added = afterYes.includes(GROUP);
     console.log(`[access] role actors after yes: ${afterYes.join(", ")} (added=${added})`);
