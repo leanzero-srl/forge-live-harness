@@ -218,10 +218,21 @@ export async function askThenYes(
   yes = "Yes, do it.",
   gapMs = Number(process.env.CHATWISE_TURN_GAP_MS || 300_000),
   page?: Page,
+  /**
+   * ⚠️ MEASURED BETWEEN THE TWO TURNS, and it exists because the alternative
+   * cannot work. "The asking turn changed NOTHING" is the more important half
+   * of this contract, and it is only true in the window between the ask and the
+   * yes — a caller checking after the yes is asserting the opposite of what it
+   * means. `jira-admin-field-writes` carried exactly that check after the yes,
+   * where it could only ever have been wrong, and it was written `.toBeNull`
+   * with no call, so it never ran and nobody found out.
+   */
+  between?: () => Promise<void>,
 ): Promise<{ ask: AdminTurn; yes: AdminTurn }> {
   const a = await turns.turn(`${label}-ask`, ask);
   const asked = /confirm|say yes|shall I|would you like|go ahead|proceed|do you want/i.test(a.reply);
   expect.soft(asked, `${label}: the asking turn did not ask:\n${a.reply.slice(0, 800)}`).toBe(true);
+  if (between) await between();
   if (page) await page.waitForTimeout(gapMs);
   const y = await turns.turn(`${label}-yes`, yes);
   expect.soft(

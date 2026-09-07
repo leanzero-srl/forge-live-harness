@@ -86,8 +86,18 @@ test("fields: create, trash, restore, and a permanent delete that states its gra
       turns, "create",
       `Create a custom field called "${FIELD_NAME}" of type ${FIELD_TYPE}, described as "PROBE field, harness".`,
       "Yes, create it.", GAP_MS, page,
+      // THE DISCLOSING TURN MUST CHANGE NOTHING, and this is the only moment
+      // that claim is even meaningful.
+      async () => {
+        const early = await findField();
+        console.log(`[fields] after the ASK, before the yes: field exists=${Boolean(early)}`);
+        expect.soft(
+          early,
+          `the asking turn CREATED the field. A disclosure that has already happened is not a ` +
+            `disclosure, and the yes that follows it is decoration.`,
+        ).toBeNull();
+      },
     );
-    expect(await findField(), `the PLAIN call created the field`).toBeNull;
     const created = await findField();
     fieldId = created ? String(created.id) : null;
     console.log(`[fields] created=${Boolean(created)} id=${fieldId} undoId=${create.yes.undoId}`);
