@@ -85,6 +85,11 @@ test("access: a group into a project role, and the lockout guard on the caller's
     const turns = adminTurns(page, () => frame, conversationId);
 
     /* ============ 1. A GROUP INTO A PROJECT ROLE ======================== */
+    // Banked results are not re-burned: the lockout case sits four model turns
+    // behind this section, and a run that only needs the lockout says so by name.
+    const ONLY_LOCKOUT = process.env.CHATWISE_ACCESS_ONLY_LOCKOUT === "1";
+    if (ONLY_LOCKOUT) console.log("[access] section 1 (addRoleActors) stood down by CHATWISE_ACCESS_ONLY_LOCKOUT=1");
+    if (!ONLY_LOCKOUT) {
     let afterAskActors: string[] = [];
     const role = await askThenYes(
       turns, "role",
@@ -138,6 +143,8 @@ test("access: a group into a project role, and the lockout guard on the caller's
       table.push({ step: "addRoleActors/undo", gone });
     }
 
+    } /* end of section 1 */
+
     /* ============ 2. THE LOCKOUT GUARD, ON THE SITE HALF ================ */
     const saGroups: any = await request("GET", "/rest/api/3/groups/picker?query=site-admins&maxResults=10");
     const siteAdmins = (saGroups?.groups || []).find((g: any) => g.name === "site-admins");
@@ -168,7 +175,27 @@ test("access: a group into a project role, and the lockout guard on the caller's
     expect.soft(yes1.drift.map((d) => d.text), `the first yes was refused by a RADIUS mismatch rather than the lockout guard`).toEqual([]);
     table.push({ step: "lockout/yes-1", refused: stillIn, toldItIsThem });
 
-    if (stillIn && toldItIsThem) {
+    /**
+     * ⚠️ GATED ON `stillIn` ALONE, not on the PROSE (13.14.0).
+     *
+     * It was `stillIn && toldItIsThem`, and on the first real run the re-ticket
+     * said only "Please reply with YES" — so the whole removal, the second yes,
+     * and the restore were SKIPPED, and the guard's most important case went
+     * unmeasured because its wording was wrong. Those are two different faults
+     * and the second one is not a reason to stop measuring the first.
+     *
+     * What makes this safe to proceed on is `stillIn`: the first yes did NOT
+     * go through, which is the guard working. The prose failure is reported as
+     * a finding and the run continues into the case it exists for. The restore
+     * has an in-body poll AND a two-minute net in `finally`.
+     */
+    if (!toldItIsThem) {
+      findings.push(
+        "the lockout re-ticket did not say the change includes the caller's own access — " +
+          "proceeding anyway, because the guard itself HELD (the first yes changed nothing)",
+      );
+    }
+    if (stillIn) {
       await page.waitForTimeout(GAP_MS);
       const yes2 = await turns.turn("lockout-yes-2", "Yes, I understand it removes my own access. Go ahead.");
       const out = !(await inSiteAdmins());
