@@ -271,7 +271,32 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
     // for consent to something the user has not been told.
     const saysEmail = /invitation|invite|email/i.test(ask.reply);
     const saysUndoDeletes = /delete|removes? the account|deletes the account/i.test(ask.reply);
-    const saysAuthority = /stored (site )?admin|administrator who stored|administrator token/i.test(ask.reply);
+    /**
+     * ⚠️ MATCHED ON THE CLAIM, NOT ON A REMEMBERED SENTENCE (F-LV-31, mine).
+     *
+     * The old predicate wanted "stored site admin" / "administrator who stored"
+     * / "administrator token". 13.18.0 says it like this:
+     *
+     *   "This runs as **the administrator whose site token is stored in
+     *    ChatWise**, not as you. Your own permissions aren't used, and the
+     *    **audit log will name that administrator** as the person who created
+     *    the account."
+     *
+     * — which is the fact, stated better than my regex imagined it, and I
+     * reported `authority=false` about a turn that carries it. That is the same
+     * mistake as every oracle finding this week: a check that reads a token
+     * rather than the claim.
+     *
+     * The CLAIM has two halves and either one alone is enough to make the point
+     * to a user: that a stored credential is doing this rather than them, or
+     * that the audit log will name somebody else.
+     */
+    const saysAuthority =
+      /stored (site )?admin|administrator who stored|administrator token/i.test(ask.reply) ||
+      /administrator whose (site )?(token|credential)/i.test(ask.reply) ||
+      /\b(token|credential)s? (that is |that's |)stored\b/i.test(ask.reply) ||
+      /audit log will (name|show)/i.test(ask.reply) ||
+      /not as you\b/i.test(ask.reply);
     console.log(
       `[createuser] ask: created=false email-named=${saysEmail} undo-deletes=${saysUndoDeletes} ` +
         `authority=${saysAuthority}`,
