@@ -286,6 +286,17 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
     table.push({ step: "createUser/ask", created: false, saysEmail, saysUndoDeletes, saysAuthority });
 
     /* ================= 3. ONE YES ======================================= */
+    /**
+     * THE ASK ALONE, when that is the only question. 13.18.0 changed ONE thing
+     * on this surface — whether the disclosure carries the "runs as the stored
+     * administrator" sentence — and the create/undo pair below is banked green
+     * and ATTRIBUTED on 13.17.0. Two model turns and a real Atlassian account
+     * are not the price of re-reading one sentence.
+     */
+    if (process.env.CHATWISE_SITEUSER_ASK_ONLY === "1") {
+      console.log("[createuser] stopping after the ASK — CHATWISE_SITEUSER_ASK_ONLY=1 (no account is created)");
+      return;
+    }
     await page.waitForTimeout(GAP_MS);
     const yes = await turnQ("createuser-yes", "Yes, create the account.");
     /**
