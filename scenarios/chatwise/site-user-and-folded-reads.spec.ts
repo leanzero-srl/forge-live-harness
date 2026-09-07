@@ -52,19 +52,42 @@ const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
 const GAP_MS = Number(process.env.CHATWISE_TURN_GAP_MS || 300_000);
 const QUOTA_WAIT_MS = Number(process.env.CHATWISE_QUOTA_WAIT_MS || 960_000);
 
-/** Everyone `/user/search` returns for an address, matched the way the app does. */
-async function searchByEmail(email: string): Promise<{ rows: any[]; match: any }> {
+/**
+ * Everyone `/user/search` returns for an address, and WHICH OF THEM IS THE ONE.
+ *
+ * ⚠️ NOT ON THE ROW COUNT. Measured 7 Sep 2026: `/user/search` with an address
+ * nobody has returns NINETEEN rows on this site — every app and system account.
+ * "rows.length === 0" would call every address taken.
+ *
+ * ⚠️ AND NOT ON THE ADDRESS EITHER, WHICH IS WHAT THIS FILE USED TO DO AND WHY
+ * IT LEFT A REAL ACCOUNT BEHIND (13.14.0). Jira returns `emailAddress` ONLY
+ * when the account's privacy settings allow it, and for a freshly created one
+ * it comes back ABSENT. So the match failed on an account that existed, the
+ * spec reported `created=false`, and the cleanup said "is not a user — nothing
+ * to remove" about an ACTIVE account it had just made. A negative that
+ * authorises skipping a cleanup has to be PROVEN, and that one was merely
+ * observed.
+ *
+ * Two oracles that do answer:
+ *   - the ACCOUNT ID, when the reply stated one — `/user?accountId=` is exact;
+ *   - the DISPLAY NAME, which Atlassian derives from the address's local part
+ *     ("mihai+harness-test-1788756736288") and which IS returned.
+ */
+async function searchByEmail(email: string, accountId?: string | null): Promise<{ rows: any[]; match: any }> {
+  if (accountId) {
+    const exact = await request("GET", `/rest/api/3/user?accountId=${encodeURIComponent(accountId)}`).catch(() => null);
+    if (exact) return { rows: [exact], match: exact };
+  }
+  const local = email.split("@")[0].toLowerCase();
   const rows: any[] = (await request(
     "GET", `/rest/api/3/user/search?query=${encodeURIComponent(email)}`,
   )) || [];
   return {
     rows,
-    // ⚠️ MATCHED ON THE ADDRESS, never on the row count. Measured 7 Sep 2026:
-    // `/user/search` with an address nobody has returns NINETEEN rows on this
-    // site — every app and system account, each with `emailAddress: ""`. A
-    // harness that read "rows.length === 0" as "not a user" would call every
-    // address taken; the app matches on the address itself and so does this.
-    match: rows.find((u: any) => String(u?.emailAddress || "").toLowerCase() === email.toLowerCase()) || null,
+    match:
+      rows.find((u: any) => String(u?.emailAddress || "").toLowerCase() === email.toLowerCase()) ||
+      rows.find((u: any) => String(u?.displayName || "").toLowerCase() === local) ||
+      null,
   };
 }
 
@@ -263,7 +286,17 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
     /* ================= 3. ONE YES ======================================= */
     await page.waitForTimeout(GAP_MS);
     const yes = await turnQ("createuser-yes", "Yes, create the account.");
-    const after = await searchByEmail(NEW_EMAIL);
+    /**
+     * ⚠️ THE REPLY'S OWN ACCOUNT ID IS AN INPUT TO THE CHECK, NOT THE CHECK.
+     * It is not evidence the account exists — `/user?accountId=` is — but it is
+     * the one handle that survives Jira hiding the address, and without it this
+     * spec reported `created=false` about an ACTIVE account it had just made.
+     * A stated id that resolves to nothing is a fabrication and reads as
+     * `match: null` here, which is exactly the right answer.
+     */
+    const statedId = (yes.reply.match(/\b(\d{6}:[0-9a-f-]{36}|[0-9a-f]{24})\b/) || [])[1] || null;
+    console.log(`[createuser] the reply states account id = ${statedId || "(none)"}`);
+    const after = await searchByEmail(NEW_EMAIL, statedId);
     createdAccountId = after.match?.accountId ? String(after.match.accountId) : null;
     const yesScore = scoreToolOutcome("createSiteUser", yes.win.map((l: any) => l.text));
     const undoId = undoIdIn(yes.reply);
@@ -295,7 +328,7 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
       let gone = false;
       const deadline = Date.now() + 90_000;
       for (;;) {
-        gone = !(await searchByEmail(NEW_EMAIL)).match;
+        gone = !(await searchByEmail(NEW_EMAIL, createdAccountId)).match;
         if (gone || Date.now() > deadline) break;
         await page.waitForTimeout(5_000);
       }
@@ -320,10 +353,16 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
 
     // ---- THE ACCOUNT, if the undo did not take it -----------------------
     try {
-      const left = await searchByEmail(NEW_EMAIL);
+      const left = await searchByEmail(NEW_EMAIL, createdAccountId);
       if (left.match?.accountId) {
         await request("DELETE", `/rest/api/3/user?accountId=${encodeURIComponent(String(left.match.accountId))}`);
-        const still = (await searchByEmail(NEW_EMAIL)).match;
+        await new Promise((z) => setTimeout(z, 8_000));
+        const stillRow = (await searchByEmail(NEW_EMAIL, createdAccountId)).match;
+        // ⚠️ `DELETE /rest/api/3/user` REMOVES SITE ACCESS; the row remains with
+        // `active: false`, which is Atlassian's shape for a removed site user
+        // and holds no licence. Treating the row's existence as failure would
+        // send somebody to the admin console for a job already done.
+        const still = stillRow && stillRow.active !== false ? stillRow : null;
         console.log(`[restore] account ${left.match.accountId} deleted by REST; still present = ${Boolean(still)}`);
         if (still) {
           console.warn(
