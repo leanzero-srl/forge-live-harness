@@ -160,9 +160,25 @@ test("access: a group into a project role, and the lockout guard on the caller's
       // ⚠️ RESTORED HERE, IMMEDIATELY, AND PROVEN. This is the harness
       // account's real administration access on a shared tenant.
       if (out) {
-        await request("POST", `/rest/api/3/group/user?groupId=${encodeURIComponent(String(siteAdmins.groupId))}`, {
-          body: { accountId: callerId },
-        });
+        /**
+         * ⚠️ NOTHING IN THIS BLOCK MAY THROW (F-LV-7, measured on the org cycle
+         * 13.13.0). Jira answers `400 Cannot add user. User is already a member`
+         * when the removal has not propagated yet, `request` throws it, and the
+         * throw would skip both the poll AND `removedFromSiteAdmins = false` —
+         * on the one object in this harness that is the operator's REAL
+         * administration access on a shared tenant. "Already a member" is the
+         * end state this is trying to reach, not a failure to reach it.
+         */
+        try {
+          await request("POST", `/rest/api/3/group/user?groupId=${encodeURIComponent(String(siteAdmins.groupId))}`, {
+            body: { accountId: callerId },
+          });
+        } catch (e: any) {
+          console.log(
+            `[restore] the put-back POST answered ${e?.status}: ` +
+              `${/already a member/i.test(String(e?.message || "")) ? "already a member — polling to confirm" : e?.message}`,
+          );
+        }
         let back = false;
         const deadline = Date.now() + 60_000;
         for (;;) {
@@ -178,8 +194,38 @@ test("access: a group into a project role, and the lockout guard on the caller's
   } finally {
     console.table(table);
     console.log(`[access] FINDINGS:\n- ${findings.join("\n- ") || "(none)"}`);
-    if (removedFromSiteAdmins) {
-      console.warn(`[restore] ⚠️ THE CALLER MAY STILL BE OUT OF site-admins — check by hand.`);
+    /**
+     * ⚠️ A WARNING IS NOT A RESTORE. If the in-body put-back did not settle —
+     * because an assertion above it failed, because the run was killed, or
+     * because the read had not caught up — this TRIES AGAIN, for two minutes,
+     * and only then says the thing a human has to act on. The in-body restore
+     * stays where it is because it must run before the group is deleted; this
+     * is the net under it.
+     */
+    if (removedFromSiteAdmins || !(await inSiteAdmins().catch(() => true))) {
+      const sa: any = await request("GET", "/rest/api/3/groups/picker?query=site-admins&maxResults=10").catch(() => null);
+      const gid = (sa?.groups || []).find((g: any) => g.name === "site-admins")?.groupId;
+      let back = false;
+      const deadline = Date.now() + 120_000;
+      for (; gid; ) {
+        try {
+          await request("POST", `/rest/api/3/group/user?groupId=${encodeURIComponent(String(gid))}`, {
+            body: { accountId: callerId },
+          });
+        } catch {
+          /* already a member is the end state; the read below is the verdict */
+        }
+        back = await inSiteAdmins().catch(() => false);
+        if (back || Date.now() > deadline) break;
+        await new Promise((z) => setTimeout(z, 5_000));
+      }
+      console.log(`[restore] site-admins net: caller back in = ${back}`);
+      if (!back) {
+        console.warn(
+          `[restore] ⚠️ THE CALLER IS STILL OUT OF site-admins. Put it back by hand: ` +
+            `POST /rest/api/3/group/user?groupId=<site-admins> {"accountId":"${callerId}"}`,
+        );
+      }
     }
     try {
       if (groupId) {
