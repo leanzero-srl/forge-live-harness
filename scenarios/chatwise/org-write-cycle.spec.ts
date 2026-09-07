@@ -125,6 +125,10 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
   let callerId = "";
   let roleSubject: string | null = null;
   let roleGranted = false;
+  /** A product role this run granted and has NOT taken back — restored in `finally`. */
+  let grantedSubject: string | null = null;
+  let grantedRole: string | null = null;
+  let grantedResource: string | null = null;
   let callerRemovedFromGroup = false;
   const findings: string[] = [];
   const table: Array<Record<string, unknown>> = [];
@@ -729,34 +733,94 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     // which Atlassian can refuse with a 409 when the plan has none free. That
     // is a subscription limit and not a permission, and a refusal that reads as
     // a permission problem is the failure this surface keeps being measured on.
-    if (roleSubject) {
-      const accessBefore = await org(
-        `/v2/orgs/{org}/directories/${directoryId}/users/${roleSubject}/role-assignments`,
+    {
+      /**
+       * ⚠️ THE SUBJECT AND THE ROLE BOTH CHANGED, BECAUSE THE OLD PAIR COULD
+       * NOT MEASURE ANYTHING (13.13.0).
+       *
+       * It asked for "Jira Software access" for an account that ALREADY held
+       * `atlassian/user` on that resource through a group, so the honest answer
+       * was "no change is needed" — the model ran the dry run, said so, and
+       * nothing was sent. Correct behaviour, and it measures NOTHING about the
+       * ask-mints-a-ticket contract or the turns to a landed grant. The same
+       * account was also SUSPENDED, which Atlassian refuses outright.
+       *
+       * So: the ACTIVE subject, and a role they demonstrably do NOT hold on
+       * that resource. `atlassian/user-access-admin` is a real product-level
+       * role on this organisation — the model named it itself when it explained
+       * why the org-wide grant was the wrong shape.
+       *
+       * ⚠️ AND THE ORACLE COUNTS ROLES, NOT ROWS. A second role on a resource
+       * the account already has adds no ROW — `data.length` is unchanged by a
+       * grant that fully succeeded, so the old count could only ever have read
+       * a successful grant as a no-op.
+       */
+      /**
+       * MEASURED 13.13.0, not chosen: of 15 accounts, THREE have an active
+       * membership. Gabriela already holds `atlassian/user-access-admin` (and
+       * org-admin), the caller is the caller, and `712020:cecf4c53…` holds
+       * `atlassian/user` on Jira Software and NOT user-access-admin. It is the
+       * only account on this organisation where this grant is a real change.
+       */
+      const grantSubject = process.env.CHATWISE_GRANT_SUBJECT || "712020:cecf4c53-ae66-45ff-b4b0-de6e2a18a71b";
+      const GRANT_ROLE = "atlassian/user-access-admin";
+      const holdings = async () => {
+        const r = await org(`/v2/orgs/{org}/directories/${directoryId}/users/${grantSubject}/role-assignments`);
+        const rows = (r.body?.data || []) as any[];
+        return {
+          status: r.status,
+          rows: rows.length,
+          roles: rows.reduce((n, x) => n + (Array.isArray(x.roles) ? x.roles.length : 0), 0),
+          hasGrant: rows.some((x) => (x.roles || []).includes(GRANT_ROLE)),
+          where: rows.map((x) => `${x.resourceId}=[${(x.roles || []).join(",")}]`).join(" "),
+        };
+      };
+      const before = await holdings();
+      const countBefore = before.roles;
+      console.log(
+        `[truth] ${grantSubject} BEFORE: rows=${before.rows} roles=${before.roles} ` +
+          `holds ${GRANT_ROLE}=${before.hasGrant} (HTTP ${before.status})\n         ${before.where}`,
       );
-      const countBefore = ((accessBefore.body?.data || []) as any[]).length;
-      console.log(`[truth] ${roleSubject} role-assignments before = ${countBefore} (HTTP ${accessBefore.status})`);
+      expect(
+        before.hasGrant,
+        `the grant subject ALREADY holds ${GRANT_ROLE}, so this step cannot measure a grant. ` +
+          `Pick a role they do not have — a no-op is not a write.`,
+      ).toBe(false);
 
       await page.waitForTimeout(GAP_MS);
       const grantAsk = await turnQ(
         "product-ask",
-        `Give the account ${roleSubject} access to Jira Software on this site. Read what it can ` +
-          `reach first and tell me which workspace or resource you would use.`,
+        `Give the account ${grantSubject} the ${GRANT_ROLE} role on Jira Software on this site. ` +
+          `Read what it can reach first and tell me which resource you would use.`,
       );
-      const midway = await org(
-        `/v2/orgs/{org}/directories/${directoryId}/users/${roleSubject}/role-assignments`,
+      // THE ASK MUST MINT A TICKET AND CHANGE NOTHING — 13.13.0's claim 3, and
+      // both halves are read here rather than inferred from the reply.
+      const midway = await holdings();
+      expect(midway.hasGrant, `the PLAIN call granted product access`).toBe(false);
+      const askMintedATicket = grantAsk.win.some((l: any) =>
+        /^\[Confirmation\] applyOrgChange: no pending ticket for this conversation/.test(l.text),
       );
-      expect(
-        ((midway.body?.data || []) as any[]).length,
-        `the PLAIN call granted product access`,
-      ).toBe(countBefore);
+      const askCalledTheTool = grantAsk.win.some((l: any) =>
+        /^\[Tools\] applyOrgChange .*grantProductAccess/.test(l.text),
+      );
+      console.log(
+        `[13.13.0] product ASK: called the tool=${askCalledTheTool} minted a ticket=${askMintedATicket}`,
+      );
+      expect.soft(
+        askCalledTheTool,
+        `the disclosing turn never called applyOrgChange, so no ticket exists and the user's yes ` +
+          `has nothing to redeem. On 13.11.0 that cost a THIRD turn:\n${grantAsk.reply.slice(0, 900)}`,
+      ).toBe(true);
 
       await page.waitForTimeout(GAP_MS);
       const grantYes = await turnQ("product-yes", "Yes, grant it.");
-      const accessAfter = await org(
-        `/v2/orgs/{org}/directories/${directoryId}/users/${roleSubject}/role-assignments`,
+      const after = await holdings();
+      const countAfter = after.roles;
+      const granted = after.hasGrant;
+      console.log(
+        `[13.13.0] TURNS TO A LANDED GRANT: ${granted ? 2 : "not landed in 2"} ` +
+          `(roles ${countBefore} -> ${countAfter})\n         ${after.where}`,
       );
-      const countAfter = ((accessAfter.body?.data || []) as any[]).length;
-      const granted = countAfter > countBefore;
       const grantErr = grantYes.win.filter((l: any) => /^\[OrgAdmin\] HTTP/.test(l.text));
       const saysLicence = /licence|license|409|subscription|no seats|plan/i.test(grantYes.reply);
       console.log(
@@ -778,16 +842,21 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
       ).toBe(false);
       table.push({ phase: "grantProductAccess", before: countBefore, after: countAfter, granted });
 
+      if (granted) grantedSubject = grantSubject;
+      if (granted) grantedRole = GRANT_ROLE;
+      if (granted) {
+        grantedResource =
+          (after.where.match(/(ari:cloud:jira-software::site\/[0-9a-f-]+)/) || [])[1] || null;
+      }
       const grantUndo = undoIdIn(grantYes.reply);
       if (granted && grantUndo) {
         await page.waitForTimeout(GAP_MS);
         const undo = await turnQ("product-undo", `Undo change ${grantUndo}.`);
-        const back = ((await org(
-          `/v2/orgs/{org}/directories/${directoryId}/users/${roleSubject}/role-assignments`,
-        )).body?.data || []) as any[];
-        console.log(`[org-write] after the product-access undo: ${back.length} (was ${countBefore})`);
-        expect.soft(back.length, `the undo did not take the product access back off`).toBe(countBefore);
-        table.push({ phase: "revokeProductAccess/undo", after: back.length });
+        const back = await holdings();
+        console.log(`[org-write] after the product-access undo: holds ${GRANT_ROLE}=${back.hasGrant} roles=${back.roles} (was ${countBefore})`);
+        expect.soft(back.hasGrant, `the undo did not take the product access back off`).toBe(false);
+        if (!back.hasGrant) { grantedSubject = null; grantedRole = null; }
+        table.push({ phase: "revokeProductAccess/undo", after: back.roles });
       }
     }
 
@@ -845,6 +914,43 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
         console.warn(
           `[restore] ${ROLE} IS STILL ON ${roleSubject}. Revoke it by hand: ` +
             `POST /admin/v1/orgs/{org}/users/${roleSubject}/roles/revoke {"role":"${ROLE}"}`,
+        );
+      }
+    }
+    /**
+     * THE PRODUCT ROLE THIS RUN GRANTED, IF THE UNDO DID NOT TAKE IT BACK.
+     * Never left to the ledger: an undo that failed is exactly the case this
+     * exists for, and a real role on a real account is not something to leave
+     * behind because the feature under test was the thing that broke.
+     */
+    if (grantedSubject && grantedRole && directoryId) {
+      /**
+       * ⚠️ THE ENDPOINT IS THE APP'S OWN, AND IT WAS REHEARSED BEFORE THIS RUN
+       * DEPENDED ON IT. `/v2/…/role-assignments` and `…/role-assignments/grant`
+       * both answer 404 to a POST; the real pair is
+       *   POST /admin/v1/orgs/{org}/users/{id}/roles/assign  {role, resource}
+       *   POST /admin/v1/orgs/{org}/users/{id}/roles/revoke  {role, resource}
+       * — measured 204 on both, with the read lagging the write by TENS OF
+       * SECONDS, which is why the confirmation below polls instead of asking
+       * once. A restore verified by a read taken too early is not verified.
+       */
+      const r = await org(`/v1/orgs/{org}/users/${grantedSubject}/roles/revoke`, {
+        method: "POST",
+        body: { role: grantedRole, resource: grantedResource },
+      }).catch(() => ({ status: 0, body: null }));
+      let has = true;
+      const deadline = Date.now() + 90_000;
+      for (;;) {
+        const still = await org(`/v2/orgs/{org}/directories/${directoryId}/users/${grantedSubject}/role-assignments`);
+        has = ((still.body?.data || []) as any[]).some((x) => (x.roles || []).includes(grantedRole));
+        if (!has || Date.now() > deadline) break;
+        await new Promise((z) => setTimeout(z, 5_000));
+      }
+      console.log(`[restore] revoke ${grantedRole} from ${grantedSubject}: HTTP ${r.status}; still holds=${has}`);
+      if (has) {
+        console.warn(
+          `[restore] ${grantedRole} IS STILL ON ${grantedSubject} — take it off by hand in ` +
+            `admin.atlassian.com. This run granted it and could not take it back.`,
         );
       }
     }
