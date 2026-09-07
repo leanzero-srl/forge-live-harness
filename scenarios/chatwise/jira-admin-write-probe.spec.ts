@@ -442,6 +442,26 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
     }
 
     /* =================== 5. TWO DEGRADED PATHS =========================== */
+    /**
+     * STOOD DOWN BY NAME when the answer is already banked on a LATER build.
+     *
+     * The writes-off half of this section is the 13.10.0 finding that produced
+     * the standing administration note, and it has since been re-measured on
+     * 13.12.0 and 13.13.0 in BOTH English and German by
+     * `writes-off-and-changes-card.spec.ts`, which also carries the
+     * poisoned-conversation control this file does not have. Re-burning two
+     * model turns here to re-answer a newer question worse is the trade this
+     * switch exists to refuse — and it is a switch rather than a deletion
+     * because the unknown-op half has no other home.
+     */
+    if (process.env.CHATWISE_PROBE_SKIP_DEGRADED === "1") {
+      console.log(
+        "[PROBE-0] section 5 (degraded paths) stood down by CHATWISE_PROBE_SKIP_DEGRADED=1 — " +
+          "the writes-off case is banked on 13.12.0 and 13.13.0, EN and DE, in " +
+          "writes-off-and-changes-card.spec.ts",
+      );
+      return;
+    }
     frame = await openGlobalPage(page, CHAT);
     await waitForChatApp(page, frame, GLOBAL_APP, 120_000);
     await page.waitForTimeout(GAP_MS);
