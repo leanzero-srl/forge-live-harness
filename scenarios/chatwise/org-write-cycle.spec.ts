@@ -664,7 +664,17 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
     } /* end of sections 1-3 */
 
     /* ============================ 4. ONE ROLE GRANT ====================== */
-    if (!roleSubject) {
+    const ONLY_PRODUCT = process.env.CHATWISE_ORG_ONLY_PRODUCT === "1";
+    if (ONLY_PRODUCT) {
+      console.log(
+        "[cycle] section 4 (assignOrgRole) STOOD DOWN by CHATWISE_ORG_ONLY_PRODUCT=1 — and this " +
+          "also leaves NO pending ticket from an earlier operation, which is what the product " +
+          "step's redemption collided with on the previous run",
+      );
+    }
+    if (ONLY_PRODUCT) {
+      table.push({ step: "assignOrgRole", skipped: true });
+    } else if (!roleSubject) {
       console.log(
         `[cycle] assignOrgRole SKIPPED: this organisation has no throwaway account — an ` +
           `obviously-disposable address that is not an active member and holds no roles. Every ` +
@@ -775,6 +785,9 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
           where: rows.map((x) => `${x.resourceId}=[${(x.roles || []).join(",")}]`).join(" "),
         };
       };
+      /** The wolfaenpak Jira Software product, named so "this site" cannot be ambiguous. */
+      const JIRA_SOFTWARE_ARI =
+        process.env.CHATWISE_JSW_ARI || "ari:cloud:jira-software::site/049de078-bffa-42d1-bbfb-ad8db9860adb";
       const before = await holdings();
       const countBefore = before.roles;
       console.log(
@@ -790,8 +803,14 @@ test("the organisation write cycle: ask, one yes, the id stated, the undo — an
       await page.waitForTimeout(GAP_MS);
       const grantAsk = await turnQ(
         "product-ask",
-        `Give the account ${grantSubject} the ${GRANT_ROLE} role on Jira Software on this site. ` +
-          `Read what it can reach first and tell me which resource you would use.`,
+        // ⚠️ THE RESOURCE IS NAMED IN FULL, and that is a correction to this
+        // spec rather than a hint to the model. "Jira Software on this site"
+        // does not resolve: this organisation has TWO sites with Jira Software,
+        // and on 13.13.0 the model correctly refused to guess and asked which —
+        // so the turn spent its budget on my ambiguity and measured nothing
+        // about tickets. An ARI is what an administrator would paste.
+        `Give the account ${grantSubject} the ${GRANT_ROLE} role on the Jira Software resource ` +
+          `${JIRA_SOFTWARE_ARI}. Read what it can reach first, then tell me what you would change.`,
       );
       // THE ASK MUST MINT A TICKET AND CHANGE NOTHING — 13.13.0's claim 3, and
       // both halves are read here rather than inferred from the reply.
