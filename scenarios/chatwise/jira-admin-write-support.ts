@@ -73,7 +73,29 @@ export function complainsOfDrift(t: string): boolean {
     // "That membership has actually changed since I made this update" and
     // "The account has been changed since ChatWise created it", both of which
     // still score as complaints.
-    /\bnothing\b[\w\s]{0,25}\b(changed|touched|altered|moved)\b/i.test(t);
+    /\bnothing\b[\w\s]{0,25}\b(changed|touched|altered|moved)\b/i.test(t) ||
+    /**
+     * ⚠️ THE THIRD STATE: "I CANNOT TELL". This predicate was binary — drift or
+     * no drift — and the app has three answers. When Jira ACCEPTS a write and
+     * finishes it in the background there is no after-snapshot, so the undo
+     * says so plainly:
+     *
+     *   "because the original assignment was finished by Jira in the
+     *    background, there was no snapshot taken at the moment it completed …
+     *    so I cannot tell you whether anyone else touched the project's
+     *    security scheme in between."
+     *
+     * That is the `afterPending: ACCEPTED` honesty path — the best behaviour on
+     * this surface — and it contains the word "drift" and no negation, so it
+     * scored as a COMPLAINT. Reporting the app's own honesty as a defect is the
+     * worst direction this predicate can fail in.
+     *
+     * "Cannot tell" is not an accusation. It is only counted as a complaint if
+     * the reply ALSO says something actually moved, which the branches above
+     * already cover.
+     */
+    /\b(cannot|can't|could not|couldn't|unable to) (tell|say|confirm|determine|know)\b/i.test(t) ||
+    /\bno snapshot\b|\bnever (got|took|recorded) a snapshot\b|\bcomparison point[\w\s]{0,20}(now|undo time)\b/i.test(t);
   // "changed THIS since", "changed IT since" — the object between the verb and
   // the preposition is not fixed, and a literal "changed since" missed a real
   // accusation in the stub the first time this was written.
@@ -81,7 +103,21 @@ export function complainsOfDrift(t: string): boolean {
     /\bdrift(ed)?\b/i.test(t) ||
     /\bchanged\b[\w\s]{0,20}\bsince\b/i.test(t) ||
     /no longer matches|someone else (has )?changed|has been modified since/i.test(t);
-  return claims && !negated;
+  /**
+   * ⚠️ AN ACCUSATION OUTRANKS EVERY HEDGE. The negations above are about what
+   * the reply DID NOT find; this is about what it DID. A reply can hold both —
+   * "I cannot confirm the full history, but the account HAS BEEN CHANGED since
+   * ChatWise created it" — and the hedge must not cancel the accusation. My
+   * first cut of the "cannot tell" branch did exactly that, and the stub caught
+   * it before it ever ran live.
+   */
+  const accuses =
+    /\bhas (been )?changed\b[\w\s]{0,20}\bsince\b/i.test(t) ||
+    /\bdrifted\b/i.test(t) ||
+    /no longer matches/i.test(t) ||
+    /someone else (has )?changed/i.test(t) ||
+    /has been modified since/i.test(t);
+  return accuses || (claims && !negated);
 }
 
 /**
