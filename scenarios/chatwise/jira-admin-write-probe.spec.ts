@@ -383,11 +383,16 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
     });
 
     /* =================== 4. THE UNDO ===================================== */
+    let createdIdForCard: string | null = null;
     if (undoId && created) {
       await page.waitForTimeout(GAP_MS);
       const undo = await turnQ("write-undo", `Undo change ${undoId}.`);
       const listAfter = await categories();
       const gone = !listAfter.some((c: any) => c.name === CAT_NAME);
+      // KEPT FOR THE CARD, which is about the ROW and not about the object:
+      // `createdId` is cleared so the cleanup does not chase a category that is
+      // already gone, and the card oracle still needs the id that was made.
+      createdIdForCard = createdId;
       if (gone) createdId = null;
       const negated = /\bno drift\b|nothing else changed/i.test(undo.reply);
       const claims = /\bdrift(ed)?\b|changed since|no longer matches/i.test(undo.reply);
@@ -417,28 +422,55 @@ test("PROBE-0: an administrator changes this site's configuration, and can put i
       findings.push(`ledger row for ${undoId}: present=${led.reply.includes(undoId)} kind-named=${saysKind}`);
       table.push({ step: "4 ledger", carriesId: led.reply.includes(undoId), kindNamed: saysKind });
 
-      // AND THE SETTINGS CARD SHOWS IT, with the sentence that names THIS
-      // assistant. The card fetches its rows after it paints, so this waits.
+      /**
+       * AND THE SETTINGS CARD SHOWS IT.
+       *
+       * ⚠️ NOT MATCHED ON THE UNDO ID (F-LV-23, mine, 13.16.0). The revert id
+       * appears in the card in EXACTLY ONE PLACE — the sentence "Ask the Jira
+       * Administrator assistant: undo change {id}" — and that sentence is only
+       * rendered for a row that can STILL be undone. This step runs AFTER the
+       * undo, so the row is `Reverted` and the id is correctly absent. Matching
+       * on it reported "changes card row: (absent)" about a row that was right
+       * there, on 13.16.0 and on 13.10.0 before it. Dumped the card to settle it:
+       *
+       *   createProjectCategory | 10101 (project-category) | 712020:937bc860…
+       *   | 9/7/2026, 10:29:22 AM | Reverted
+       *   This change was undone. Nothing further to do.
+       *
+       * So the oracle is the OBJECT — the op name and the id this run created —
+       * and the STATE the row must be in. The undo sentence is asserted only on
+       * a row that still has an undo, which is a different row on this card.
+       */
       const r2 = await openAdminSettings(page, T.deepLink(T.envId)!);
       void r2;
+      const rowToken = createdIdForCard ? `${createdIdForCard} (project-category)` : "createProjectCategory";
       let cardText = "";
       const deadline = Date.now() + 45_000;
       for (;;) {
         cardText = await page.evaluate(() => document.body.innerText);
-        if (cardText.includes(undoId) || Date.now() > deadline) break;
+        if (cardText.includes(rowToken) || Date.now() > deadline) break;
         await page.waitForTimeout(2_000);
       }
-      const cardHasRow = cardText.includes(undoId);
-      const cardSentence = (cardText.split("\n").find((l) => l.includes(undoId)) || "").trim();
-      console.log(`[PROBE-0] changes card row: ${cardHasRow ? cardSentence : "(absent)"}`);
-      expect.soft(cardHasRow, `the changes card does not show the row for ${undoId}`).toBe(true);
+      const cardHasRow = cardText.includes(rowToken);
+      const idx = cardText.indexOf(rowToken);
+      const rowBlock = idx >= 0 ? cardText.slice(Math.max(0, idx - 120), idx + 260).replace(/\n+/g, " | ") : "";
+      console.log(`[PROBE-0] changes card row for "${rowToken}": ${cardHasRow ? rowBlock : "(absent)"}`);
+      expect.soft(cardHasRow, `the changes card does not show the row for ${rowToken}`).toBe(true);
+      // The row this run undid must READ as undone. A card that showed it as
+      // still applied would send an administrator to reverse it twice.
+      expect.soft(
+        cardHasRow && /Reverted/i.test(rowBlock),
+        `the changes card does not show this row as Reverted after the undo landed:\n${rowBlock}`,
+      ).toBe(true);
+      // AND the assistant-naming sentence exists on the card for rows that DO
+      // still have an undo — the site half must not send anybody to the
+      // Organisation Administrator.
       expect.soft(
         /Ask the Jira Administrator assistant: undo change/i.test(cardText),
-        `the changes card does not carry the undo sentence naming the JIRA Administrator ` +
-          `assistant. The row was made by the site half, so sending an administrator to the ` +
-          `Organisation Administrator would be the wrong assistant.`,
+        `the changes card carries no undo sentence naming the JIRA Administrator assistant on ANY ` +
+          `row. The site half's rows must not send an administrator to the Organisation one.`,
       ).toBe(true);
-      table.push({ step: "4 card", row: cardHasRow });
+      table.push({ step: "4 card", row: cardHasRow, reverted: /Reverted/i.test(rowBlock) });
     }
 
     /* =================== 5. TWO DEGRADED PATHS =========================== */
