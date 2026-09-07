@@ -28,7 +28,7 @@ import {
   GLOBAL_APP, callResolver, openGlobalPage, waitForChatApp,
 } from "./chatwise-support";
 import {
-  adminTurns, askThenYes, complainsOfDrift, restoreAdminPolicy, setAdminPolicy,
+  adminTurns, askThenYes, complainsOfDrift, restoreAdminPolicy, setAdminPolicy, undoIdIn,
 } from "./jira-admin-write-support";
 // eslint-disable-next-line
 import { request } from "../../data/jira.mjs";
@@ -79,7 +79,16 @@ test("projects: created by the persona, its schemes moved, binned, restored and 
     }
   };
 
+  /**
+   * SECTIONS THAT CAN STAND DOWN BY NAME when their answer is banked on the
+   * build under test or a later one. The scheme sections in the middle are what
+   * 13.17.0 changed; re-burning six model turns on the create-undo and the
+   * bin/purge tail — both PASS on 13.15.0/13.16.0 — is quota this suite shares
+   * with every other journey.
+   */
+  const ONLY_SCHEMES = process.env.CHATWISE_PROJECT_ONLY_SCHEMES === "1";
   try {
+    if (ONLY_SCHEMES) console.log("[projects] create-undo and the bin/purge tail stood down by CHATWISE_PROJECT_ONLY_SCHEMES=1");
     expect(await project(), `a project ${KEY} already exists`).toBeNull();
 
     frame = await openGlobalPage(page, CHAT);
@@ -219,7 +228,78 @@ test("projects: created by the persona, its schemes moved, binned, restored and 
       findings.push("switchWorkflowScheme SKIPPED: this site has only one workflow scheme");
     }
 
+    /* ============ 3b. THE ISSUE SECURITY SCHEME (13.17.0) ================ */
+    /**
+     * A BARE ROW IS NO SCHEME. Measured on a fresh company-managed project:
+     * `GET /project/{key}/issuesecuritylevelscheme` answers with a row that
+     * names no scheme, which is the same "known absence read as unreadable"
+     * shape as the notification 404. The assign is a 303 — Jira ACCEPTS it and
+     * finishes in the background — so the reply must say ACCEPTED, never done,
+     * and the undo clears it with `schemeId: null`.
+     */
+    if (process.env.CHATWISE_PROJECT_SECURITY === "1" && (await project())) {
+      const secOf = async (): Promise<string | null> => {
+        try {
+          const r: any = await request("GET", `/rest/api/3/project/${KEY}/issuesecuritylevelscheme`);
+          return r?.id ? String(r.id) : null;
+        } catch {
+          return null;
+        }
+      };
+      const secBefore = await secOf();
+      const schemes: any = await request("GET", "/rest/api/3/issuesecurityschemes").catch(() => null);
+      const target = ((schemes?.issueSecuritySchemes || []) as any[])[0] || null;
+      console.log(`[truth] ${KEY} issue security before = ${secBefore ?? "(none)"}; target = ${target?.id ?? "(none available)"} "${target?.name ?? ""}"`);
+      if (!target) {
+        findings.push("assignIssueSecurityScheme SKIPPED: this site has no issue security scheme to assign");
+      } else {
+        await page.waitForTimeout(GAP_MS);
+        const sAsk = await turns.turn(
+          "sec-ask",
+          `Put project ${KEY} on the issue security scheme ${target.id} ("${target.name}").`,
+        );
+        const midway = await secOf();
+        expect(midway, `the PLAIN call assigned the issue security scheme`).toBe(secBefore);
+        await page.waitForTimeout(GAP_MS);
+        const sYes = await turns.turn("sec-yes", "Yes, do it.");
+        let secAfter: string | null = null;
+        const dl = Date.now() + 120_000;
+        for (;;) {
+          secAfter = await secOf();
+          if (secAfter === String(target.id) || Date.now() > dl) break;
+          await page.waitForTimeout(10_000);
+        }
+        const assigned = secAfter === String(target.id);
+        const saysAccepted = /accept|in the background|asynchronous|not finished|processing/i.test(sYes.reply);
+        const undoId = undoIdIn(sYes.reply);
+        console.log(`[projects] issue security: ${secBefore ?? "(none)"} -> ${secAfter ?? "(none)"} (assigned=${assigned}) saysAccepted=${saysAccepted} undoId=${undoId}`);
+        expect.soft(assigned, `the issue security scheme was not assigned:\n${sYes.reply.slice(0, 900)}`).toBe(true);
+        expect.soft(
+          saysAccepted,
+          `Jira answers 303 for an issue-security assignment and finishes it in the background; the ` +
+            `reply must say ACCEPTED rather than done:\n${sYes.reply.slice(0, 900)}`,
+        ).toBe(true);
+        table.push({ step: "assignIssueSecurityScheme", assigned, saysAccepted, undoId });
+        if (undoId && assigned) {
+          await page.waitForTimeout(GAP_MS);
+          const sUndo = await turns.turn("sec-undo", `Undo change ${undoId}.`);
+          let cleared = false;
+          const dl2 = Date.now() + 120_000;
+          for (;;) {
+            cleared = (await secOf()) === secBefore;
+            if (cleared || Date.now() > dl2) break;
+            await page.waitForTimeout(10_000);
+          }
+          console.log(`[projects] issue security after the undo: ${(await secOf()) ?? "(none)"} (cleared=${cleared})`);
+          expect.soft(cleared, `the undo did not clear the issue security scheme:\n${sUndo.reply.slice(0, 900)}`).toBe(true);
+          expect.soft(complainsOfDrift(sUndo.reply), `the undo complained about drift on a scheme nothing touched`).toBe(false);
+          table.push({ step: "assignIssueSecurityScheme/undo", cleared });
+        }
+      }
+    }
+
     /* ============ 4. THE RECYCLE BIN, AND NO INVENTED DATE ============== */
+    if (ONLY_SCHEMES) return;
     await page.waitForTimeout(GAP_MS);
     const del = await askThenYes(
       turns, "delete", `Delete project ${KEY}.`, "Yes, delete it.", GAP_MS, page,
