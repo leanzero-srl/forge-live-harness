@@ -64,13 +64,31 @@ export function complainsOfDrift(t: string): boolean {
  * whole surface exists to prevent.
  */
 export function realRadiusDrift(lines: { text: string }[]): { text: string }[] {
-  const BENIGN = new Set(["lockoutAcknowledged", "gravityAcknowledged"]);
+  /**
+   * ⚠️ MATCHED BY SHAPE, NOT BY A LIST OF NAMES (13.13.0).
+   *
+   * The list was `lockoutAcknowledged` and `gravityAcknowledged`, and the
+   * irreversible path logs a THIRD name — plain `acknowledged`:
+   *   [Confirmation] applyIrreversibleJiraConfigChange: blast radius changed
+   *   since approval — refusing (differs: acknowledged)
+   * It is the same self-probe: the executor redeems against the acknowledged
+   * radius first and the plain one second, one of the two is always refused,
+   * and the other lands — `[JiraAdminWrite] deleteCustomField … (HTTP 200)`
+   * two seconds later in the same request id proves it. A closed list reported
+   * that as a P0 on the ONE path where a false P0 costs the most.
+   *
+   * So: any single key that IS or ENDS IN "acknowledged" is the app talking to
+   * itself. A name that means a user's argument moved will not be shaped like
+   * that, and if one ever is, the acknowledgement machinery has bigger problems
+   * than this predicate.
+   */
+  const benign = (k: string) => /(^|[a-z])acknowledged$/i.test(k);
   return lines
     .filter((l) => /^\[Confirmation\].*blast radius changed/.test(l.text))
     .filter((l) => {
       const named = (l.text.match(/differs:\s*([^)]*)/) || [])[1] || "";
       const parts = named.split(/[,\s]+/).filter(Boolean);
-      if (parts.length === 1 && BENIGN.has(parts[0])) return false;
+      if (parts.length === 1 && benign(parts[0])) return false;
       /**
        * ⚠️ A REFUSAL THAT NAMES `op` IS THE GUARD WORKING, NOT THE N1 DEFECT
        * (measured 13.13.0, and this predicate reported it as four P0s).
