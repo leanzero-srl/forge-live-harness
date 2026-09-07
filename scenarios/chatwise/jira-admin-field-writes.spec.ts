@@ -52,17 +52,26 @@ test("fields: create, trash, restore, and a permanent delete that states its gra
   const findings: string[] = [];
   const undoIds: string[] = [];
 
-  /** The field as Jira has it, or null. `/field/search` sees trashed ones too. */
+  /**
+   * The field as Jira has it, or null.
+   *
+   * ⚠️ `/field/search` DOES NOT SEE TRASHED FIELDS, and the comment here said
+   * the opposite for as long as this spec existed. MEASURED on the same field
+   * within one run (13.13.0): present after the create, ABSENT the moment it was
+   * trashed, present again after the restore, with no `trashed` property on the
+   * body in any of those states. So PRESENCE is the oracle and the only oracle —
+   * the old `trashedState()` read `f.trashed ?? f.isLocked`, a field Jira never
+   * returns falling back to one that means something else entirely, and it was
+   * recorded in the table rather than asserted, so it never failed anything.
+   */
   const findField = async (): Promise<any> => {
     const r: any = await request(
       "GET", `/rest/api/3/field/search?query=${encodeURIComponent(FIELD_NAME)}&maxResults=50&expand=isLocked`,
     );
     return (r?.values || []).find((f: any) => f.name === FIELD_NAME) || null;
   };
-  const trashedState = async (): Promise<string | null> => {
-    const f = await findField();
-    return f ? String(f.isLocked !== undefined ? f.trashed ?? f.isLocked : f.trashed) : null;
-  };
+  /** Present in `/field/search` == not in the trash. The measured meaning. */
+  const isVisible = async (): Promise<boolean> => Boolean(await findField());
 
   try {
     expect(await findField(), `a field called ${FIELD_NAME} already exists`).toBeNull();
@@ -112,19 +121,34 @@ test("fields: create, trash, restore, and a permanent delete that states its gra
     const trash = await askThenYes(
       turns, "trash", `Move the custom field ${fieldId} to the trash.`, "Yes, trash it.", GAP_MS, page,
     );
-    console.log(`[fields] after trash: ${JSON.stringify(await findField())?.slice(0, 200)}`);
+    const goneAfterTrash = !(await isVisible());
+    console.log(`[fields] after trash: still visible in /field/search = ${!goneAfterTrash}`);
+    expect.soft(
+      goneAfterTrash,
+      `the reply said the field was trashed and Jira still lists it. A trash that only happened ` +
+        `in the sentence is the worst shape this surface has:\n${trash.yes.reply.slice(0, 700)}`,
+    ).toBe(true);
     expect.soft(trash.yes.undoId, `trashCustomField did not STATE its undo id`).toBeTruthy();
     if (trash.yes.undoId) undoIds.push(trash.yes.undoId);
-    table.push({ step: "trashCustomField", undoId: trash.yes.undoId, trashed: await trashedState() });
+    table.push({ step: "trashCustomField", undoId: trash.yes.undoId, visible: !goneAfterTrash });
 
     /* ============ 3. RESTORE ============================================ */
     await page.waitForTimeout(GAP_MS);
     const restore = await askThenYes(
       turns, "restore", `Restore the custom field ${fieldId} from the trash.`, "Yes, restore it.", GAP_MS, page,
     );
+    const backAfterRestore = await isVisible();
+    console.log(`[fields] after restore: visible in /field/search = ${backAfterRestore}`);
+    expect.soft(
+      backAfterRestore,
+      `the reply said the field was restored and Jira does not list it. This assertion did not ` +
+        `exist until 13.13.0 — the old code RECORDED a trashed state it computed from a property ` +
+        `Jira never returns, so "restored" was taken on the model's word for every run before ` +
+        `this one:\n${restore.yes.reply.slice(0, 700)}`,
+    ).toBe(true);
     expect.soft(restore.yes.undoId, `restoreCustomField did not STATE its undo id`).toBeTruthy();
     if (restore.yes.undoId) undoIds.push(restore.yes.undoId);
-    table.push({ step: "restoreCustomField", undoId: restore.yes.undoId, trashed: await trashedState() });
+    table.push({ step: "restoreCustomField", undoId: restore.yes.undoId, visible: backAfterRestore });
 
     /* ============ 4. THE LEDGER CARRIES ALL THREE ======================= */
     await page.waitForTimeout(GAP_MS);
