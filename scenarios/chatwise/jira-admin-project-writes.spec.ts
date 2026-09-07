@@ -120,7 +120,7 @@ test("projects: created by the persona, its schemes moved, binned, restored and 
 
     // THE UNDO OF A CREATE PUTS IT IN THE BIN — and then this spec puts it
     // back, because everything after here needs the project.
-    if (create.yes.undoId) {
+    if (!ONLY_SCHEMES && create.yes.undoId) {
       await page.waitForTimeout(GAP_MS);
       const undo = await turns.turn("create-undo", `Undo change ${create.yes.undoId}.`);
       const afterUndo = await project();
