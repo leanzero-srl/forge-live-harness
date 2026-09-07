@@ -70,8 +70,37 @@ export function realRadiusDrift(lines: { text: string }[]): { text: string }[] {
     .filter((l) => {
       const named = (l.text.match(/differs:\s*([^)]*)/) || [])[1] || "";
       const parts = named.split(/[,\s]+/).filter(Boolean);
-      return !(parts.length === 1 && BENIGN.has(parts[0]));
+      if (parts.length === 1 && BENIGN.has(parts[0])) return false;
+      /**
+       * ⚠️ A REFUSAL THAT NAMES `op` IS THE GUARD WORKING, NOT THE N1 DEFECT
+       * (measured 13.13.0, and this predicate reported it as four P0s).
+       *
+       * The org cycle's product step found nothing to grant, so its ask minted
+       * no ticket; the yes turn then redeemed against the ticket still pending
+       * from the ROLE step, and the app refused with
+       *   differs: act, act.accountId, act.resource, act.role, op
+       * A ticket raised for `assignOrgRole` must not be spendable on
+       * `grantProductAccess`, and the honest reading of that line is "you are
+       * redeeming a DIFFERENT OPERATION".
+       *
+       * N1 is the opposite shape and only that shape: the SAME operation, with
+       * argument keys the user never saw moving between the disclosing turn and
+       * the redeeming one. `op` in the diff is the discriminator, and without it
+       * every correctly-refused cross-operation redemption reads as a consent
+       * gate eating a yes.
+       */
+      if (parts.includes("op")) return false;
+      return true;
     });
+}
+
+/** The refusals that were CORRECT: a ticket spent on a different operation. */
+export function crossOperationRefusals(lines: { text: string }[]): { text: string }[] {
+  return lines.filter(
+    (l) =>
+      /^\[Confirmation\].*blast radius changed/.test(l.text) &&
+      ((l.text.match(/differs:\s*([^)]*)/) || [])[1] || "").split(/[,\s]+/).includes("op"),
+  );
 }
 
 export interface AdminTurn {
