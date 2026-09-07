@@ -131,7 +131,7 @@ export function adminTurns(
     console.log(
       `\n######## ${label}\nASK: ${message}\nBUBBLE:\n${reply.slice(0, 2000)}\nLOG:\n` +
         describeLogs(win.filter((l: any) =>
-          /^\[Tools\]|^\[Consumer\] toolset|^\[JiraAdmin\]|^\[SiteToken\]|^\[OrgAdmin\]|^\[Confirmation\]|^\[Ledger\]/.test(l.text))),
+          /^\[Tools\]|^\[Consumer\] toolset|^\[JiraAdmin\]|^\[SiteToken\]|^\[OrgAdmin\]|^\[Confirmation\]|^\[Ledger\]|^\[Withdrawal\]|^\[Offer\]/.test(l.text))),
     );
     const drift = realRadiusDrift(win as any);
     if (drift.length) console.log(`[radius] ${label}: REAL DRIFT -> ${drift.map((d) => d.text).join(" | ")}`);

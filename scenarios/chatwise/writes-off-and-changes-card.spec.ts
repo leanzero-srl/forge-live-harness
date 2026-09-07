@@ -109,6 +109,15 @@ test("13.12.0: an administration turn with changes off does not draft one, and t
    * that difference is only visible if both are measured.
    */
   const freshTurns = adminTurns(page, () => frame, `${conversationId}_on`, { issueKey: null });
+  /**
+   * 13.13.0 CLAIM 1: the open-side standing fact is supposed to make the
+   * POISONED conversation work — "changes ARE available this turn ... an earlier
+   * refusal in this chat is out of date". So phase 2 can be pointed back at the
+   * conversation that was refused twice, which is the harder case and the one
+   * that failed on 13.12.0. The fresh conversation stays as the control for a
+   * failure: if BOTH refuse, the defect is not the residue.
+   */
+  const POISONED = process.env.CHATWISE_PHASE2_POISONED === "1";
 
   try {
     /* ============ 1. CHANGES OFF — AND NO DRAFT, IN TWO LANGUAGES ======== */
@@ -196,9 +205,9 @@ test("13.12.0: an administration turn with changes off does not draft one, and t
 
     // THE WRITE, in the other tab. Bringing a tab to the front is not a reload.
     await page.bringToFront();
-    const { yes } = await askThenYes(
-      freshTurns,
-      "card-row",
+    const { ask: askTurn, yes } = await askThenYes(
+      POISONED ? turns : freshTurns,
+      POISONED ? "card-row-poisoned" : "card-row",
       `Create a project category named "${CAT_ON}" with the description "harness 13.12.0 card".`,
       "Yes, do it.",
       GAP_MS,
@@ -207,6 +216,15 @@ test("13.12.0: an administration turn with changes off does not draft one, and t
     const list = await categories();
     const made = list.find((c: any) => c.name === CAT_ON);
     createdId = made?.id ? String(made.id) : null;
+    // 13.13.0 CLAIMS 1 AND 2, READ OFF THE TURN THAT WAS POISONED.
+    const checkpointLines = [...askTurn.win, ...yes.win]
+      .map((l: any) => l.text)
+      .filter((t: string) => /^\[Withdrawal\]|^\[Offer\]/.test(t));
+    console.log(
+      `[13.13.0] conversation=${POISONED ? "POISONED (two refusals first)" : "fresh"} ` +
+        `checkpoint lines=${checkpointLines.length}\n` +
+        (checkpointLines.map((t) => `          ${t}`).join("\n") || "          (none)"),
+    );
     const undoId = yes.undoId;
     console.log(`[13.12.0] write: created=${Boolean(made)} id=${createdId} undoId=${undoId}`);
     expect(made, `the category was not created with changes switched ON:\n${yes.reply.slice(0, 900)}`).toBeTruthy();
