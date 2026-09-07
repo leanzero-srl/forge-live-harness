@@ -122,6 +122,8 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
 
   let frame: any = null;
   let createdAccountId: string | null = null;
+  /** Did the UNDO remove it, or did the cleanup? The run must be able to say. */
+  let undoRemovedIt = false;
   const findings: string[] = [];
   const table: Array<Record<string, unknown>> = [];
 
@@ -325,13 +327,31 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
       await page.waitForTimeout(GAP_MS);
       const undo = await turnQ("createuser-undo", `Undo change ${undoId}.`);
       // Deletion is not always instant; poll rather than read once.
+      /**
+       * ⚠️ "GONE" IS `active === false`, NOT "the row disappeared" (F-LV-24,
+       * mine, 13.17.0).
+       *
+       * `DELETE /rest/api/3/user` removes SITE ACCESS and leaves the row
+       * behind with `active: false` — I established that by hand earlier the
+       * same day, and I fixed the CLEANUP for it and left the poll alone. So
+       * the poll asked `/user?accountId=`, got the inactive row, and reported
+       * `gone=false` for an undo that had done exactly what it said. It would
+       * have read false for a PERFECT deletion, which makes it no evidence
+       * either way — the worst kind of check, because it looks like one.
+       *
+       * The cleanup below is now conditional on this too: firing a DELETE at
+       * an account the undo already removed is what destroyed the attribution
+       * on this run — after it, nothing could say WHICH of the two did it.
+       */
       let gone = false;
       const deadline = Date.now() + 90_000;
       for (;;) {
-        gone = !(await searchByEmail(NEW_EMAIL, createdAccountId)).match;
+        const row = (await searchByEmail(NEW_EMAIL, createdAccountId)).match;
+        gone = !row || row.active === false;
         if (gone || Date.now() > deadline) break;
         await page.waitForTimeout(5_000);
       }
+      undoRemovedIt = gone;
       if (gone) createdAccountId = null;
       const undoScore = scoreToolOutcome("revertAdminChange", undo.win.map((l: any) => l.text));
       const negated = /\bno drift\b|nothing else changed/i.test(undo.reply);
@@ -354,7 +374,12 @@ test("createSiteUser creates a real account, states its undo id, and the undo de
     // ---- THE ACCOUNT, if the undo did not take it -----------------------
     try {
       const left = await searchByEmail(NEW_EMAIL, createdAccountId);
-      if (left.match?.accountId) {
+      // ⚠️ NOT IF THE UNDO ALREADY DID IT. A cleanup that fires anyway makes
+      // the run unable to say which of the two removed the account, which is
+      // exactly what happened on 13.17.0.
+      if (undoRemovedIt) {
+        console.log(`[restore] the UNDO already removed the account — no REST cleanup needed`);
+      } else if (left.match?.accountId && left.match.active !== false) {
         await request("DELETE", `/rest/api/3/user?accountId=${encodeURIComponent(String(left.match.accountId))}`);
         await new Promise((z) => setTimeout(z, 8_000));
         const stillRow = (await searchByEmail(NEW_EMAIL, createdAccountId)).match;
