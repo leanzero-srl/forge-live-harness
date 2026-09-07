@@ -300,15 +300,48 @@ test("projects: created by the persona, its schemes moved, binned, restored and 
   } finally {
     console.table(table);
     console.log(`[projects] FINDINGS:\n- ${findings.join("\n- ") || "(none)"}`);
+    /**
+     * ⚠️ THE BIN IS PART OF THE TENANT (F-LV-18, found 13.15.0 before this spec
+     * ran for the third time).
+     *
+     * `project()` is `GET /rest/api/3/project/{key}`, which 404s for a project
+     * in the RECYCLE BIN. So the old guard `!purged && await project()` was
+     * false in exactly the case the cleanup existed for — a run that binned the
+     * project and then failed before the purge left it in the bin FOREVER, and
+     * reported "readable at the end = false" as if the tenant were clean.
+     *
+     * MEASURED: four of them had accumulated — HT155350, HT166076, HT276359,
+     * HT784073 — over previous runs of this file, every one of which I had
+     * reported as restored. I purged them by hand.
+     *
+     * `DELETE /rest/api/3/project/{key}?enableUndo=false` purges a project that
+     * is ALREADY in the bin (measured 204 on HT155350; a `/restore` first is
+     * not needed and 404s). The sweep is keyed on THIS run's key only — the bin
+     * holds other harnesses' projects and they are not mine to remove.
+     */
     try {
       if (!purged && (await project())) {
-        await request("POST", `/rest/api/3/project/${KEY}/restore`).catch(() => {});
-        await request("DELETE", `/rest/api/3/project/${KEY}`);
+        await request("DELETE", `/rest/api/3/project/${KEY}?enableUndo=false`);
         console.log(`[restore] ${KEY} deleted by REST`);
       }
+      if (!purged) {
+        const bin: any = await request("GET", "/rest/api/3/project/search?status=deleted&maxResults=100").catch(() => null);
+        const inBin = ((bin?.values || []) as any[]).some((x) => x.key === KEY);
+        if (inBin) {
+          await request("DELETE", `/rest/api/3/project/${KEY}?enableUndo=false`).catch(() => {});
+          console.log(`[restore] ${KEY} was in the RECYCLE BIN and has been purged`);
+        }
+      }
+      const bin2: any = await request("GET", "/rest/api/3/project/search?status=deleted&maxResults=100").catch(() => null);
+      const stillBinned = ((bin2?.values || []) as any[]).some((x) => x.key === KEY);
       const left = await project();
-      console.log(`[restore] ${KEY} readable at the end = ${Boolean(left)}`);
-      if (left) console.warn(`[restore] ⚠️ the project ${KEY} IS STILL THERE — remove it by hand.`);
+      console.log(`[restore] ${KEY} at the end: live=${Boolean(left)} inRecycleBin=${stillBinned}`);
+      if (left || stillBinned) {
+        console.warn(
+          `[restore] ⚠️ ${KEY} IS STILL ON THIS SITE (${left ? "live" : "in the recycle bin"}). ` +
+            `Purge it: DELETE /rest/api/3/project/${KEY}?enableUndo=false`,
+        );
+      }
     } catch (e) {
       console.warn(`[restore] could not remove ${KEY}: ${(e as Error)?.message}`);
     }
