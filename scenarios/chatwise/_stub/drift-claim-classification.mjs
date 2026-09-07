@@ -3,8 +3,7 @@ const complains = (t) => {
     /\b(no|without|zero)\s+(drift|changes?)\b/i.test(t) ||
     /\bdrift\b[^.\n]{0,30}\b(none|no)\b/i.test(t) ||
     /\b(none|nothing)\b[^.\n]{0,20}\bdetected\b/i.test(t) ||
-    /nothing else\b[\w\s]{0,20}\bchanged\b/i.test(t) ||
-    /nothing else\b[\w\s]{0,20}\btouched\b/i.test(t);
+    /\bnothing\b[\w\s]{0,25}\b(changed|touched|altered|moved)\b/i.test(t);
   const claims = /\bdrift(ed)?\b/i.test(t) || /\bchanged\b[\w\s]{0,20}\bsince\b/i.test(t) || /no longer matches|someone else (has )?changed|has been modified since/i.test(t);
   return claims && !negated;
 };
@@ -13,6 +12,8 @@ const CASES = [
   [false,"13.17.0 notif","**Drift:** none detected; nothing else had changed since the assignment was made"],
   [false,"plain","No drift was detected."],
   [false,"org phrasing","No drift was found — nothing else changed to this group or account in the meantime."],
+  [false,"13.17.0 site-user undo","**Drift check:** nothing had changed on the account since it was created, so nothing was restored over."],
+  [false,"13.16.0 site-user undo","**No drift reported:** nothing had changed on the account since it was created."],
   [true ,"13.11.0 real drift","That membership has actually changed since I made this update — the group's membership record has drifted from what I last set."],
   [true ,"13.14.0 site-user","The account has been changed since ChatWise created it: its email address no longer matches what ChatWise recorded."],
   [true ,"generic","Somebody else has changed this since ChatWise touched it."],

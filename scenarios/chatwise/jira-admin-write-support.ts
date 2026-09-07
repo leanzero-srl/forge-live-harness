@@ -61,8 +61,19 @@ export function complainsOfDrift(t: string): boolean {
     /\b(no|without|zero)\s+(drift|changes?)\b/i.test(t) ||
     /\bdrift\b[^.\n]{0,30}\b(none|no)\b/i.test(t) ||
     /\b(none|nothing)\b[^.\n]{0,20}\bdetected\b/i.test(t) ||
-    /nothing else\b[\w\s]{0,20}\bchanged\b/i.test(t) ||
-    /nothing else\b[\w\s]{0,20}\btouched\b/i.test(t);
+    // ⚠️ "NOTHING ELSE" WAS TOO NARROW — a fourth phrasing, one commit after
+    // the third: "**Drift check:** nothing HAD changed on the account since it
+    // was created". No "else", so the negation missed it, and because the claim
+    // side had just been widened to "changed … since" this scored as a drift
+    // COMPLAINT on an undo whose own sentence says the opposite. Widening one
+    // side of a two-sided predicate without the other is how this keeps
+    // happening; both sides are now matched on shape.
+    //
+    // A real accusation never contains "nothing … changed": measured against
+    // "That membership has actually changed since I made this update" and
+    // "The account has been changed since ChatWise created it", both of which
+    // still score as complaints.
+    /\bnothing\b[\w\s]{0,25}\b(changed|touched|altered|moved)\b/i.test(t);
   // "changed THIS since", "changed IT since" — the object between the verb and
   // the preposition is not fixed, and a literal "changed since" missed a real
   // accusation in the stub the first time this was written.
