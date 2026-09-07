@@ -206,24 +206,60 @@ test("projects: created by the persona, its schemes moved, binned, restored and 
       ).toBe(true);
       expect(await workflowSchemeId(projectId), `the PLAIN call moved the workflow scheme`).toBe(wfBefore);
 
-      // switchWorkflowScheme is DESTRUCTIVE, so the first yes is set aside.
+      /**
+       * ⚠️ THIS ASSERTION WAS INVERTED, AND IT WAS MY OWN OBSERVATION TURNED
+       * INTO A CONTRACT (13.17.0).
+       *
+       * It read `expect(movedEarly).toBe(false)` — "a destructive workflow
+       * switch must not move on the first yes" — which encoded the 13.15.0
+       * behaviour I had just reported as the F-LV-20 DEFECT: the yes-turn
+       * doubled call minted a fresh ticket instead of redeeming, so the user
+       * paid a third turn. `assignWorkflowScheme` is `risk: "write"`, not
+       * destructive; ONE yes is the contract, and 13.17.0 delivers it. A test
+       * that hardens the bug it just filed will fail the fix.
+       *
+       * So: one yes must move it. The second turn is still SENT, because a
+       * build where the first yes did nothing must still be measured rather
+       * than left hanging — but it is now the fallback, not the expectation.
+       */
       await page.waitForTimeout(GAP_MS);
       const yes1 = await turns.turn("wf-yes-1", "Yes, switch it.");
       const movedEarly = (await workflowSchemeId(projectId)) !== wfBefore;
       const gravityish = /cannot be undone|nothing can undo|permanent|irreversible/i.test(yes1.reply);
       console.log(`[projects] workflow first yes: moved=${movedEarly} gravitySentence=${gravityish}`);
-      expect.soft(movedEarly, `the FIRST yes moved a destructive workflow switch`).toBe(false);
-      await page.waitForTimeout(GAP_MS);
-      const yes2 = await turns.turn("wf-yes-2", "Yes, I understand it cannot be undone. Switch it.");
-      const saysAccepted = /accept|background|in progress|has started|queued/i.test(yes2.reply);
-      const wfAfter = await workflowSchemeId(projectId);
-      console.log(`[projects] workflow after: ${wfAfter} (was ${wfBefore}); saysAccepted=${saysAccepted}`);
       expect.soft(
-        saysAccepted,
-        `Jira answers 303 for a workflow-scheme switch and finishes it in the background; the ` +
-          `reply must say ACCEPTED rather than done:\n${yes2.reply.slice(0, 900)}`,
+        movedEarly,
+        `ONE yes did not switch the workflow scheme. assignWorkflowScheme is a reversible write, ` +
+          `so the second question costs the user a turn for nothing (F-LV-20):\n${yes1.reply.slice(0, 900)}`,
       ).toBe(true);
-      table.push({ step: "switchWorkflowScheme", firstYesHeld: !movedEarly, saysAccepted, after: wfAfter });
+      expect.soft(
+        gravityish,
+        `the reply calls a REVERSIBLE scheme switch irreversible, which is the gravity language ` +
+          `reserved for changes that really cannot be undone:\n${yes1.reply.slice(0, 700)}`,
+      ).toBe(false);
+      let wfAfter = await workflowSchemeId(projectId);
+      let landingReply = yes1.reply;
+      if (!movedEarly) {
+        await page.waitForTimeout(GAP_MS);
+        const yes2 = await turns.turn("wf-yes-2", "Yes, I understand. Switch it.");
+        wfAfter = await workflowSchemeId(projectId);
+        landingReply = yes2.reply;
+      }
+      /**
+       * ⚠️ "SAYS ACCEPTED" IS ONLY REQUIRED IF JIRA ANSWERED 303, and this
+       * harness cannot see the status code. MEASURED 13.17.0: the switch
+       * completed synchronously — REST read back the new scheme immediately —
+       * and the reply said "Done", which is then CORRECT. The neighbouring
+       * `assignIssueSecurityScheme` genuinely is a 303 and said "Jira has
+       * accepted … applying it in the background", so the app can clearly tell
+       * the two apart. Recorded, not asserted, until the status is observable.
+       */
+      const saysAccepted = /accept|background|in progress|has started|queued/i.test(landingReply);
+      console.log(
+        `[projects] workflow after: ${wfAfter} (was ${wfBefore}); turns=${movedEarly ? 1 : 2}; ` +
+          `saysAccepted=${saysAccepted} (recorded, not required — this call completed synchronously)`,
+      );
+      table.push({ step: "switchWorkflowScheme", yesTurns: movedEarly ? 1 : 2, saysAccepted, after: wfAfter });
     } else {
       findings.push("switchWorkflowScheme SKIPPED: this site has only one workflow scheme");
     }

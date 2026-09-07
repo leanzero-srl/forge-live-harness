@@ -44,10 +44,32 @@ export function undoIdIn(text: string): string | null {
  * the tool reporting the opposite. A negated word is not a complaint.
  */
 export function complainsOfDrift(t: string): boolean {
-  const negated = /\b(no|without|zero)\s+(drift|changes?)\b/i.test(t) || /nothing else changed/i.test(t);
+  /**
+   * ⚠️ THE NEGATION IS THE HARD HALF, and it has now been too literal twice.
+   * Measured phrasings that all mean NO drift, from real replies:
+   *   "No drift was found — nothing else touched this membership in between"
+   *   "No drift was detected"
+   *   "**Drift:** none detected; nothing else had changed since"   <- 13.17.0
+   * The last one broke the old predicate twice over: "none detected" is not
+   * "no drift", and "nothing else HAD changed" is not "nothing else changed".
+   * So the negation is matched on the SHAPE — drift near a none-word, or any
+   * "nothing else …changed" with words allowed in between — rather than on a
+   * remembered sentence. A false "the undo complained about drift" is a P0
+   * headline for an undo that worked.
+   */
+  const negated =
+    /\b(no|without|zero)\s+(drift|changes?)\b/i.test(t) ||
+    /\bdrift\b[^.\n]{0,30}\b(none|no)\b/i.test(t) ||
+    /\b(none|nothing)\b[^.\n]{0,20}\bdetected\b/i.test(t) ||
+    /nothing else\b[\w\s]{0,20}\bchanged\b/i.test(t) ||
+    /nothing else\b[\w\s]{0,20}\btouched\b/i.test(t);
+  // "changed THIS since", "changed IT since" — the object between the verb and
+  // the preposition is not fixed, and a literal "changed since" missed a real
+  // accusation in the stub the first time this was written.
   const claims =
     /\bdrift(ed)?\b/i.test(t) ||
-    /changed since|no longer matches|someone else (has )?changed|has been modified since/i.test(t);
+    /\bchanged\b[\w\s]{0,20}\bsince\b/i.test(t) ||
+    /no longer matches|someone else (has )?changed|has been modified since/i.test(t);
   return claims && !negated;
 }
 
