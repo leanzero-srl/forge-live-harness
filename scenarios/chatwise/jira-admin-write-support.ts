@@ -119,7 +119,17 @@ export function realRadiusDrift(lines: { text: string }[]): { text: string }[] {
   return lines
     .filter((l) => /^\[Confirmation\].*blast radius changed/.test(l.text))
     .filter((l) => {
-      const named = (l.text.match(/differs:\s*([^)]*)/) || [])[1] || "";
+      /**
+       * ⚠️ 13.18.0 APPENDED DIAGNOSTICS AFTER THE KEY LIST, and the old capture
+       * `differs:\s*([^)]*)` swallowed them:
+       *   "(differs: acknowledged; NOT ON THIS CALL: acknowledged)"
+       * became four tokens instead of one, so the benign self-probe stopped
+       * matching `parts.length === 1` and scored as REAL DRIFT on a healthy
+       * permanent delete. The key list ends at the first ";" — everything after
+       * it is the new explanation of WHICH SIDE moved, which is exactly what
+       * makes these lines readable and must not be parsed as keys.
+       */
+      const named = ((l.text.match(/differs:\s*([^;)]*)/) || [])[1] || "").trim();
       const parts = named.split(/[,\s]+/).filter(Boolean);
       if (parts.length === 1 && benign(parts[0])) return false;
       /**
