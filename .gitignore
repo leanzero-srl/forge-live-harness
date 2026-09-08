@@ -16,3 +16,4 @@ fixture-app/static/fixture-ui/build/
 *.log
 .DS_Store
 state/
+scratch/
