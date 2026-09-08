@@ -15,7 +15,22 @@ export const WIKI_BASE = `${BASE_URL}/wiki`;
 
 export const AUTH_DIR = path.join(REPO_ROOT, ".auth");
 /** Persistent Chrome profile — preserves device identity so Atlassian doesn't see a "new device". */
-export const USER_DATA_DIR = path.join(AUTH_DIR, "profile");
+export const USER_DATA_DIR = process.env.HARNESS_PROFILE ?? path.join(AUTH_DIR, "profile");
+
+/**
+ * Customer-tenant gate. wolfaenpak is THE testbed (AI-GUIDE rule 1). Pointing the harness at any other
+ * host — e.g. a client's sandbox, first done 2026-09-08 for E.ON — is allowed ONLY for read-only specs
+ * (render, discovery, full-text). A spec that mutates anything must call assertMutationAllowed(), which
+ * refuses on a customer host unless CUSTOMER_SANDBOX_MUTATIONS_OK=1 is set deliberately for that run.
+ */
+export const IS_TESTBED = /(^|\.)wolfaenpak\.atlassian\.net$/.test(SITE_HOST);
+export function assertMutationAllowed(what: string): void {
+  if (IS_TESTBED) return;
+  if (process.env.CUSTOMER_SANDBOX_MUTATIONS_OK === "1") return;
+  throw new Error(
+    `REFUSED: "${what}" would change state on ${SITE_HOST}, which is not the wolfaenpak testbed. ` +
+    `Read-only specs may run here; a mutation needs CUSTOMER_SANDBOX_MUTATIONS_OK=1 set on purpose for this run.`);
+}
 /** Exported storageState (portability / inspection). Primary reuse is the profile above. */
 export const STORAGE_STATE = path.join(AUTH_DIR, "storage-state.json");
 
