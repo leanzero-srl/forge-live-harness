@@ -9,6 +9,7 @@ import { getTarget } from "../../config/targets";
 import { BASE_URL } from "../../config/env";
 import { dumpForgeFrames, enterForgeSurface } from "../../forge/frame";
 import { assertLoggedIn } from "../../forge/browser";
+import { consentIfAsked } from "../../forge/consent";
 
 // Any app: DISCOVER_TARGET=techtime-global npx playwright test scenarios/kantega/settings-discovery.spec.ts
 const T = getTarget(process.env.DISCOVER_TARGET || "kantega-global");
@@ -27,6 +28,10 @@ test(`${T.app}: each navigation screen opens or is recorded as gated`, async ({ 
   await assertLoggedIn(page);
   await recorder.step("open the Kantega global page", async () => { await page.goto(url, { waitUntil: "domcontentloaded" }); },
     { action: "navigate", expectation: { assertion: "loads without redirect to login", narrative: "Kantega's Confluence global page is reachable." } });
+  await recorder.step("per-user consent banner, if the host shows one", async () => {
+    const r = await consentIfAsked(page);
+    test.info().annotations.push({ type: "consent", description: r });
+  }, { expectation: { assertion: "banner accepted on the testbed, or none was shown", narrative: "Apps that act as the user render nothing until consent; recorded either way." } });
   recorder.setFrames(await dumpForgeFrames(page));
   const surface = await enterForgeSurface(page, { surface: "custom" });
   recorder.attachSurface(surface);

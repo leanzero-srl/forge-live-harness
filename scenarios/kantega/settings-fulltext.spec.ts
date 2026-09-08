@@ -6,6 +6,7 @@ import { getTarget } from "../../config/targets";
 import { BASE_URL } from "../../config/env";
 import { dumpForgeFrames, enterForgeSurface } from "../../forge/frame";
 import { assertLoggedIn } from "../../forge/browser";
+import { consentIfAsked } from "../../forge/consent";
 import fs from "node:fs";
 
 const T = getTarget(process.env.DISCOVER_TARGET || "kantega-global");
@@ -19,6 +20,10 @@ test(`${T.app}: full text of "${SCREEN}" captured`, async ({ page, recorder }) =
   await assertLoggedIn(page);
   await recorder.step("open app", async () => { await page.goto(url, { waitUntil: "domcontentloaded" }); }, { action: "navigate", expectation: { assertion: "loads", narrative: "App page reachable." } });
   recorder.setFrames(await dumpForgeFrames(page));
+  await recorder.step("per-user consent banner, if the host shows one", async () => {
+    const r = await consentIfAsked(page);
+    test.info().annotations.push({ type: "consent", description: r });
+  }, { expectation: { assertion: "banner accepted on the testbed, or none was shown", narrative: "Apps that act as the user render nothing until consent; recorded either way." } });
   const surface = await enterForgeSurface(page, { surface: "custom" }); recorder.attachSurface(surface);
   const root = surface.kind === "custom" ? surface.frame : page;
   await expect(root.locator("text=/Loading app/i")).toHaveCount(0, { timeout: 60_000 });

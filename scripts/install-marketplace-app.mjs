@@ -76,6 +76,14 @@ try {
     const mi = page.getByRole("menuitem", { name: want }).first();
     if (await mi.count()) { await mi.click().catch(() => {}); await page.waitForTimeout(6000); const m0 = page.url().match(/\/jira\/apps\/([0-9a-f-]{36})\/([0-9a-f-]{36})/); if (m0) entry = { t: APP, h: page.url().replace(BASE, "") }; }
   }
+  // Resolution's Jira global page is titled "User Manager" — no vendor name anywhere — so a name
+  // match finds nothing. Fallback: any Forge app link whose app UUID is NOT one of our own apps.
+  if (!entry) {
+    const OURS = new Set(["087a8e18-d45a-4cb7-9d87-3e84101ac4f3","36415848-6868-4697-9554-3c3ad87b8da9","c30bf71e-4287-4872-954d-db49cc68f0ff","8513392b-129b-4ad1-9b09-811804ca5705","6b49e96c-37c4-4711-a604-08d8a47c8f1a","97022e0a-df09-4df1-818c-c4593b956122","64d08693-b295-4664-9fda-eba81261160f","f09330db-cac4-4243-938c-42d256fe31c7"]);
+    const foreign = links.filter(l => { const m = l.h.match(/\/apps\/([0-9a-f-]{36})\//); return m && !OURS.has(m[1]); });
+    if (foreign.length === 1) { entry = foreign[0]; L("matched by elimination (only non-LeanZero Forge app in the menu):", entry.t); }
+    else if (foreign.length > 1) L("several non-LeanZero apps in the menu, cannot pick by elimination:", foreign.map(f => f.t).join(" | "));
+  }
   // prefer a GLOBAL page over an admin page when both exist (TechTime has both; the admin one is the
   // landing redirect and is NOT what a globalPage target should deep-link to)
   const global = links.find(l => want.test(l.t + l.h) && /\/apps\/[0-9a-f-]{36}\/[0-9a-f-]{36}\/[^/]*global/i.test(l.h)); if (global) entry = global;
