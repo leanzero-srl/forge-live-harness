@@ -14,9 +14,13 @@
 //   - Forge apps never appear in UPM; verify by the sidebar Apps entry, then discover the deep link.
 //
 //   node scripts/install-marketplace-app.mjs --product confluence --app "Kantega User Management" [--site wolfaenpak]
+//   node scripts/install-marketplace-app.mjs --product confluence --app "User Management for Confluence" --key TECHTIME --sidebar "User Management"
 import { chromium } from "playwright"; import fs from "node:fs";
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i > -1 ? process.argv[i + 1] : d; };
 const PRODUCT = arg("--product", "confluence"), APP = arg("--app"), SITE = arg("--site", "wolfaenpak");
+// --key names the .env variables (KEY_APP_ID/ENV_ID/ROUTE). Defaults to the app's first word, which
+// collides for "User Management for …" apps — pass it explicitly for those.
+const KEY = (arg("--key") || APP?.split(" ")[0] || "APP").toUpperCase().replace(/[^A-Z0-9]/g, "");
 if (!APP) { console.error("--app <name fragment> required"); process.exit(64); }
 const BASE = `https://${SITE}.atlassian.net`, ROOT = PRODUCT === "jira" ? "/jira" : "/wiki";
 const L = (...a) => console.log("[install]", ...a);
@@ -58,16 +62,30 @@ try {
     ok = dlgGone || /installed|trial started|successfully/i.test(txt);
   }
   // verify via the sidebar (the only place a Forge app shows), then discover the deep link
-  await page.goto(`${BASE}${ROOT}/home`, { waitUntil: "domcontentloaded", timeout: 45000 }); await page.waitForTimeout(7000);
+  // Confluence lists Forge global pages in the left sidebar under Apps → Your apps. Jira has no such
+  // sidebar: its global pages hang off the TOP-NAV "Apps" menu as /jira/apps/{uuid}/{env} links.
+  // Learned 2026-09-08 when resolution installed fine and was reported NOT FOUND.
+  const home = PRODUCT === "jira" ? `${BASE}/jira/your-work` : `${BASE}${ROOT}/home`;
+  await page.goto(home, { waitUntil: "domcontentloaded", timeout: 45000 }); await page.waitForTimeout(7000);
   const apps = page.getByRole("button", { name: /^Apps$/i }).first(); if (await apps.count()) { await apps.click().catch(() => {}); await page.waitForTimeout(2500); }
-  const links = await page.$$eval("a[href]", els => els.map(e => ({ t: (e.innerText || "").trim(), h: e.getAttribute("href") || "" })));
-  const entry = links.find(l => new RegExp(APP.split(" ")[0], "i").test(l.t + l.h));
+  let links = await page.$$eval("a[href]", els => els.map(e => ({ t: (e.innerText || "").trim(), h: e.getAttribute("href") || "" })));
+  const want = new RegExp(arg("--sidebar") || APP.split(" ")[0], "i");
+  let entry = links.find(l => want.test(l.t + l.h) && /\/apps\/[0-9a-f-]{36}\//.test(l.h));
+  if (!entry && PRODUCT === "jira") {
+    // Jira: the menu may render the app as a menuitem rather than an anchor — click it and read the URL
+    const mi = page.getByRole("menuitem", { name: want }).first();
+    if (await mi.count()) { await mi.click().catch(() => {}); await page.waitForTimeout(6000); const m0 = page.url().match(/\/jira\/apps\/([0-9a-f-]{36})\/([0-9a-f-]{36})/); if (m0) entry = { t: APP, h: page.url().replace(BASE, "") }; }
+  }
+  // prefer a GLOBAL page over an admin page when both exist (TechTime has both; the admin one is the
+  // landing redirect and is NOT what a globalPage target should deep-link to)
+  const global = links.find(l => want.test(l.t + l.h) && /\/apps\/[0-9a-f-]{36}\/[0-9a-f-]{36}\/[^/]*global/i.test(l.h)); if (global) entry = global;
   L("sidebar entry:", entry ? `${entry.t} -> ${entry.h}` : "NOT FOUND");
   if (entry) {
     await page.goto(BASE + entry.h, { waitUntil: "domcontentloaded", timeout: 45000 }); await page.waitForTimeout(8000);
-    const m = page.url().match(/\/apps\/([0-9a-f-]{36})\/([0-9a-f-]{36})(?:\/([^/?#]+))?/);
+    // take the ids from the SIDEBAR/MENU href, not the landing URL — the landing may redirect to an admin page
+    const m = (entry.h.match(/\/apps\/([0-9a-f-]{36})\/([0-9a-f-]{36})(?:\/([^/?#]+))?/) || page.url().match(/\/apps\/([0-9a-f-]{36})\/([0-9a-f-]{36})(?:\/([^/?#]+))?/));
     L("deep link:", page.url());
-    if (m) { const [, app, env, route] = m; const K = APP.split(" ")[0].toUpperCase().replace(/[^A-Z0-9]/g, "");
+    if (m) { const [, app, env, route] = m; const K = KEY;
       let e = fs.existsSync(".env") ? fs.readFileSync(".env", "utf8") : ""; e = e.replace(new RegExp(`^${K}_(APP_ID|ENV_ID|ROUTE)=.*\\n?`, "gm"), "");
       fs.writeFileSync(".env", e.trimEnd() + `\n${K}_APP_ID=ari:cloud:ecosystem::app/${app}\n${K}_ENV_ID=${env}\n${K}_ROUTE=${route || ""}\n`, { mode: 0o600 });
       L(`wrote .env ${K}_APP_ID/ENV_ID/ROUTE  app=${app} env=${env} route=${route || ""}`); ok = true; }

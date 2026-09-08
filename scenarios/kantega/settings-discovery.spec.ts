@@ -10,14 +10,16 @@ import { BASE_URL } from "../../config/env";
 import { dumpForgeFrames, enterForgeSurface } from "../../forge/frame";
 import { assertLoggedIn } from "../../forge/browser";
 
-const T = getTarget("kantega-global");
+// Any app: DISCOVER_TARGET=techtime-global npx playwright test scenarios/kantega/settings-discovery.spec.ts
+const T = getTarget(process.env.DISCOVER_TARGET || "kantega-global");
+const SCREEN_LIST = process.env.DISCOVER_SCREENS;
 test.describe.configure({ retries: 1 });
-const SCREENS = ["Settings", "Scheduling and Cleanup", "Users", "History", "Dashboard"] as const;
+const SCREENS: readonly string[] = SCREEN_LIST ? SCREEN_LIST.split("|") : ["Settings", "Scheduling and Cleanup", "Users", "History", "Dashboard"];
 const WATCH: [string, RegExp][] = [["self-assign", /self[- ]?assign/i], ["notification", /notif|e-?mail/i],
   ["window", /inactiv|days|months|threshold|last (login|active)/i], ["dry-run", /dry[- ]?run|preview|report/i],
   ["org-api-key", /api[- ]?key|organization id|without scopes/i]];
 
-test("Kantega: each navigation screen opens or is recorded as gated", async ({ page, recorder }) => {
+test(`${T.app}: each navigation screen opens or is recorded as gated`, async ({ page, recorder }) => {
   test.skip(!T.appId || !T.envId, "KANTEGA_APP_ID / KANTEGA_ENV_ID unresolved");
   const url = T.deepLink(T.envId)!;
   recorder.setTarget({ product: T.product, app: T.app, appId: T.appId, module: T.module,
@@ -40,6 +42,7 @@ test("Kantega: each navigation screen opens or is recorded as gated", async ({ p
       const before = await heading();
       // the nav label, visible only — never an SVG <title>
       const item = root.getByText(name, { exact: true }).filter({ visible: true }).last();
+      if (!(await item.count())) { findings.push(`${name}: ABSENT`); test.info().annotations.push({ type: `screen:${name}`, description: "ABSENT" }); return; }
       const dimmed = await item.evaluate((el: HTMLElement) => {
         const n = el.closest("a,button,[role=button],[role=link],li,div") as HTMLElement | null;
         const cs = n ? getComputedStyle(n) : null;
@@ -58,6 +61,6 @@ test("Kantega: each navigation screen opens or is recorded as gated", async ({ p
       expect(txt.trim().length, "surface still renders").toBeGreaterThan(20);
     }, { expectation: { assertion: `"${name}" either opens (heading changes) or is recorded as gated`, narrative: `Whether Kantega's ${name} screen is reachable before credentials are set up.` } });
   }
-  await recorder.step("findings", async () => { console.log("\nKANTEGA SCREENS:\n  " + findings.join("\n  ") + "\n"); },
+  await recorder.step("findings", async () => { console.log(`\n${T.app.toUpperCase()} SCREENS:\n  ` + findings.join("\n  ") + "\n"); },
     { expectation: { assertion: "findings printed", narrative: "One line per screen: OPEN or GATED, and which vendor-question keywords its text contains." } });
 });
