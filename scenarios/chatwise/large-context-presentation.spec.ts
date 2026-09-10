@@ -69,13 +69,15 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   }
   if (prior && process.env.CW_LARGE_RESUME_SAVED === '1') {
     const recovery = process.env.CW_LARGE_RESUME_RECOVERY === '1';
-    expect(process.env.CW_EXPECT_VERSION).toBe(recovery ? 'v6.144.0' : 'v6.143.0');
-    if (recovery) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T19:59:44.753Z');
+    const formatRepair = process.env.CW_LARGE_REPAIR_FORMAT === '1';
+    expect(process.env.CW_EXPECT_VERSION).toBe(formatRepair ? 'v6.145.0' : recovery ? 'v6.144.0' : 'v6.143.0');
+    if (formatRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:06:46.472Z');
+    if (recovery && !formatRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T19:59:44.753Z');
     expect(entry.jobId).toBe('job_1789069156385_xbqa4j602');
-    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(recovery ? 1 : 0);
+    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(formatRepair ? 2 : recovery ? 1 : 0);
     expect(entry.artifact).toBeFalsy();
     const saved = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
-    expect(saved.data.status).toBe(recovery ? 'failed' : 'completed');
+    expect(saved.data.status).toBe(recovery && !formatRepair ? 'failed' : 'completed');
     expect(saved.data.result.presentationResume?.jobId).toBe(entry.jobId);
     expect(saved.data.result.decks || []).toHaveLength(0);
     // Rehydrate a pre-feature terminal message through the normal job monitor,
