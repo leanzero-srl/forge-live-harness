@@ -33,14 +33,16 @@ test('review saved large presentation and download its verified revision', async
   if(process.env.CW_LARGE_REVIEW_RESUME==='1'){
     const budgetCut=process.env.CW_LARGE_REVIEW_BUDGET==='1';
     const outputCut=process.env.CW_LARGE_REVIEW_OUTPUT==='1';
+    const flatClaims=process.env.CW_LARGE_REVIEW_FLAT==='1';
     expect(prior,'Resume requires the existing paid review receipt').toBeTruthy();
-    expect(process.env.CW_EXPECT_VERSION).toBe(outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
-    expect(entry.jobId).toBe(budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
-    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(outputCut?2:budgetCut?1:0);
-    expect(entry.result?.result?.finishedAt).toBe(outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
-    expect(entry.result?.result?.usage?.total_tokens).toBe(outputCut?39003:budgetCut?0:50213);
+    expect(process.env.CW_EXPECT_VERSION).toBe(flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
+    expect(entry.jobId).toBe(flatClaims?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
+    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(flatClaims?3:outputCut?2:budgetCut?1:0);
+    expect(entry.result?.result?.finishedAt).toBe(flatClaims?'2026-09-10T22:23:37.086Z':outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
+    expect(entry.result?.result?.usage?.total_tokens).toBe(flatClaims?15357:outputCut?39003:budgetCut?0:50213);
     if(budgetCut)expect(entry.result.result.response).toContain('estimated 213786 tokens');
     if(outputCut)expect(entry.result.result.response).toContain('register response exhausted');
+    if(flatClaims)expect(entry.result.result.response).toContain('register-cell-0 response exhausted');
     expect(entry.artifact).toBeFalsy();
     const saved=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
     expect(saved.data.status).toBe('completed');
