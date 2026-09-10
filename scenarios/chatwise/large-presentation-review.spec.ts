@@ -37,12 +37,14 @@ test('review saved large presentation and download its verified revision', async
     const steeredClaims=process.env.CW_LARGE_REVIEW_STEERED==='1';
     const normalizedClaims=process.env.CW_LARGE_REVIEW_CLAIMS_NORMALIZED==='1';
     const repairedClaims=process.env.CW_LARGE_REVIEW_CLAIMS_REPAIR==='1';
+    const unitDiagnostics=process.env.CW_LARGE_REVIEW_UNIT_DIAGNOSTICS==='1';
     expect(prior,'Resume requires the existing paid review receipt').toBeTruthy();
-    expect(process.env.CW_EXPECT_VERSION).toBe(repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
-    expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
-    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(repairedClaims?6:normalizedClaims?5:steeredClaims?4:flatClaims?3:outputCut?2:budgetCut?1:0);
-    expect(entry.result?.result?.finishedAt).toBe(repairedClaims?'2026-09-10T23:13:51.577Z':normalizedClaims?'2026-09-10T23:06:03.708Z':steeredClaims?'2026-09-10T22:36:25.223Z':flatClaims?'2026-09-10T22:23:37.086Z':outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
-    expect(entry.result?.result?.usage?.total_tokens).toBe(normalizedClaims||repairedClaims?44249:steeredClaims?30780:flatClaims?15357:outputCut?39003:budgetCut?0:50213);
+    expect(process.env.CW_EXPECT_VERSION).toBe(unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
+    expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
+    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(unitDiagnostics?7:repairedClaims?6:normalizedClaims?5:steeredClaims?4:flatClaims?3:outputCut?2:budgetCut?1:0);
+    expect(entry.result?.result?.finishedAt).toBe(unitDiagnostics?'2026-09-10T23:20:23.282Z':repairedClaims?'2026-09-10T23:13:51.577Z':normalizedClaims?'2026-09-10T23:06:03.708Z':steeredClaims?'2026-09-10T22:36:25.223Z':flatClaims?'2026-09-10T22:23:37.086Z':outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
+    expect(entry.result?.result?.usage?.total_tokens).toBe(unitDiagnostics?61372:normalizedClaims||repairedClaims?44249:steeredClaims?30780:flatClaims?15357:outputCut?39003:budgetCut?0:50213);
+    if(unitDiagnostics)expect(entry.result.result.response).toContain('source facts could not be verified within the bounded correction step');
     if(repairedClaims)expect(entry.result.result.response).toContain('A numeric source claim requires its source unit');
     if(normalizedClaims)expect(entry.result.result.response).toContain('Text claims cannot carry numeric fields');
     if(budgetCut)expect(entry.result.result.response).toContain('estimated 213786 tokens');
@@ -117,6 +119,13 @@ test('review saved large presentation and download its verified revision', async
   }
   const result=entry.result?.result;
   expect(entry.result?.status).toBe('completed');
+  if(process.env.CW_LARGE_REVIEW_UNIT_DIAGNOSTICS==='1'){
+    expect(result?.usage?.total_tokens).toBe(61372);
+    expect(result?.response).toContain('source facts could not be verified within the bounded correction step');
+    expect(result?.decks?.length||0).toBe(0);
+    entry.diagnosticOnly={usageUnchanged:true,artifactAccepted:false,finishedAt:result.finishedAt};save();
+    console.log('CACHED_DIAGNOSTIC_ONLY: no additional inference usage; presentation remains rejected');return;
+  }
   expect(result?.truncated).not.toBe(true);
   expect(result?.decks).toHaveLength(1);
   const deck=result.decks[0];expect(deck.slides).toBe(30);expect(deck.handle).not.toBe(original.artifact.handle);
