@@ -30,7 +30,7 @@ test('saved history loads and recovers visibly from a failed read without infere
     expect(await frame.locator('.conversation-item').count()).toBe(count);
     await expect(frame.getByRole('button',{name:'Retry chat history',exact:true})).toHaveCount(0);
   }
-  const receipt={version:process.env.CW_EXPECT_VERSION,usableMs,historyMs,count,at:new Date().toISOString(),recoveryChecked:process.env.CW_HISTORY_BASELINE!=='1'};
+  const receipt={version:process.env.CW_EXPECT_VERSION,usableMs,historyMs,count,at:new Date().toISOString(),recoveryChecked:process.env.CW_HISTORY_BASELINE!=='1',phases:await readAppState(frame,GLOBAL_APP,'app.startupTimings||null')};
   writeFileSync(`/tmp/cw-history-${process.env.CW_EXPECT_VERSION}.json`,JSON.stringify(receipt,null,2));
   console.log('HISTORY_READ_ONLY',JSON.stringify(receipt));
 });
