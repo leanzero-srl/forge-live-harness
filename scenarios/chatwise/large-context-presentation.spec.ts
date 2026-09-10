@@ -39,6 +39,13 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     await expect.poll(() => readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()'), { timeout: 45000 }).toBe(entry.conversationId);
     await awaitSwapSettled(frame);
   }
+  if (process.env.CW_LARGE_INSPECT_UI === '1') {
+    console.log('SAVED_PRESENTATION_UI', JSON.stringify(await readAppState(frame, GLOBAL_APP,
+      '({streaming:app.components.chat.isStreaming,resuming:app._resumingPresentation,job:app.currentJobId})')));
+    console.log('SAVED_PRESENTATION_ACTION', await frame.locator('.presentation-resume').allTextContents());
+    await page.screenshot({ path: `${folder}/resume-inspection.png`, fullPage: true });
+    return;
+  }
   if (!prior) {
     await frame.locator('#newChatButton').click();
     await awaitSwapSettled(frame);
@@ -73,14 +80,15 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     const slotRepair = process.env.CW_LARGE_SLOT_REPAIR === '1';
     const diagnoseRepair = process.env.CW_LARGE_DIAGNOSE_REPAIR === '1';
     const singleRunRepair = process.env.CW_LARGE_SINGLE_RUN_REPAIR === '1';
+    const resumeDispatch = process.env.CW_LARGE_RESUME_DISPATCH === '1';
     expect(process.env.CW_EXPECT_VERSION).toBe(singleRunRepair ? 'v6.148.0' : diagnoseRepair ? 'v6.147.0' : slotRepair ? 'v6.146.0' : formatRepair ? 'v6.145.0' : recovery ? 'v6.144.0' : 'v6.143.0');
-    if (singleRunRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:37:19.878Z');
+    if (singleRunRepair) expect((entry.result || (resumeDispatch ? entry.lastSnapshot : null))?.result?.finishedAt).toBe('2026-09-10T20:37:19.878Z');
     if (diagnoseRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:32:15.843Z');
     if (slotRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:17:29.045Z');
     if (formatRepair && !slotRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:06:46.472Z');
     if (recovery && !formatRepair && !slotRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T19:59:44.753Z');
     expect(entry.jobId).toBe('job_1789069156385_xbqa4j602');
-    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(singleRunRepair ? 5 : diagnoseRepair ? 4 : slotRepair ? 3 : formatRepair ? 2 : recovery ? 1 : 0);
+    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(resumeDispatch ? 6 : singleRunRepair ? 5 : diagnoseRepair ? 4 : slotRepair ? 3 : formatRepair ? 2 : recovery ? 1 : 0);
     expect(entry.artifact).toBeFalsy();
     const saved = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
     expect(saved.data.status).toBe(recovery && !formatRepair && !slotRepair ? 'failed' : 'completed');
@@ -92,12 +100,15 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
       `(app.services.jobMonitoring.monitorJob(${JSON.stringify(entry.jobId)}, {stateKey: app.sendingStateKey}), true)`);
     const resume = frame.locator('.presentation-resume-btn').last();
     await expect(resume).toBeVisible({ timeout: 60000 });
+    await expect.poll(() => readAppState(frame, GLOBAL_APP, 'app.components.chat.isStreaming'), { timeout: 60000 }).toBe(false);
     await expect(resume).toBeEnabled();
     entry.resumeAttempts = [...(entry.resumeAttempts || []), { result: entry.result, requestedAt: new Date().toISOString(), resumeFrom: saved.data.result.finishedAt }];
     entry.resumeFrom = saved.data.result.finishedAt;
     delete entry.result; delete entry.lastSnapshot;
     entry.state = 'resuming'; entry.visibleProgress = []; save();
     await resume.click();
+    await expect(frame.locator('.presentation-resume-btn')).toHaveCount(0, { timeout: 60000 });
+    entry.resumeAttempts.at(-1).dispatchAcceptedAt = new Date().toISOString(); save();
   }
   const batchRepair = process.env.CW_LARGE_BATCH_REPAIR === '1' &&
     entry.jobId === 'job_1789064750706_p68xxn5zt' && entry.result?.status === 'cancelled';
