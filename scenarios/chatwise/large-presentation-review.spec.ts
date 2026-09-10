@@ -22,6 +22,12 @@ test('review saved large presentation and download its verified revision', async
   const frame=await openGlobalPage(page,getTarget('chatwise-global'));
   await waitForChatApp(page,frame,GLOBAL_APP);
   await expect(frame.locator('body')).toContainText(process.env.CW_EXPECT_VERSION||'v6.149.0');
+  if(process.env.CW_LARGE_REVIEW_CANCEL==='1'){
+    expect(entry.jobId).toBe('job_1789069156385_review955c64c3faacfda0');
+    entry.cancellation={requestedAt:new Date().toISOString(),response:await callResolver<any>(frame,GLOBAL_APP,'cancelJob',{jobId:entry.jobId})};save();
+    const stopped=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
+    entry.cancellation.readback=stopped;save();expect(stopped.data.status).toBe('cancelled');return;
+  }
   await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
   await awaitSwapSettled(frame);
   if(process.env.CW_LARGE_REVIEW_RESUME==='1'){
@@ -48,17 +54,29 @@ test('review saved large presentation and download its verified revision', async
     await expect(frame.locator('.presentation-resume-btn')).toHaveCount(0,{timeout:60000});
     entry.resumeAttempts[0].dispatchAcceptedAt=new Date().toISOString();save();
   }
-  if(!prior){
+  const recoverCancelled=process.env.CW_LARGE_REVIEW_RECOVER_CANCELLED==='1';
+  if(recoverCancelled){
+    expect(process.env.CW_EXPECT_VERSION).toBe('v6.151.0');
+    expect(entry.jobId).toBe('job_1789069156385_review955c64c3faacfda0');
+    expect(entry.cancellation?.readback?.data?.status).toBe('cancelled');
+    expect(entry.recoveryRequestedAt,'Never dispatch a second recovery automatically').toBeFalsy();
+    const current=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
+    expect(current.data.status).toBe('cancelled');
+    writeFileSync(`${folder}/review-cancelled-v6150.json`,JSON.stringify(entry,null,2));
+  }
+  if(!prior||recoverCancelled){
     await readAppState(frame,GLOBAL_APP,`(app.services.jobMonitoring.monitorJob(${JSON.stringify(original.jobId)},{stateKey:app.sendingStateKey}),true)`);
     const button=frame.getByRole('button',{name:'Review presentation',exact:true}).last();
     await expect(button).toBeVisible({timeout:60000});
     await expect.poll(()=>readAppState(frame,GLOBAL_APP,'app.components.chat.isStreaming'),{timeout:60000}).toBe(false);
     await expect(button).toBeEnabled();
+    const previousJobId=entry.jobId;
+    if(recoverCancelled){entry.recoveryRequestedAt=new Date().toISOString();entry.previousJobId=previousJobId;delete entry.result;delete entry.lastSnapshot;delete entry.resumeFrom;}
     entry.state='submitting';entry.requestedAt=new Date().toISOString();save();
     await button.click();
     await expect.poll(async()=>{
       const id=await readAppState(frame,GLOBAL_APP,'app.currentJobId');
-      if(id&&id!==original.jobId){entry.jobId=id;save();return true;}return false;
+      if(id&&id!==original.jobId&&id!==previousJobId){entry.jobId=id;save();return true;}return false;
     },{timeout:60000}).toBe(true);
     entry.dispatchAcceptedAt=new Date().toISOString();entry.state='reviewing';save();
   }
@@ -69,6 +87,11 @@ test('review saved large presentation and download its verified revision', async
     const snapshot=response.data;entry.lastSnapshot=snapshot;save();
     const label=snapshot?.result?.progressNote||snapshot?.status;
     if(label&&label!==lastProgress){console.log('REVIEW_PROGRESS',label);lastProgress=label;}
+    if(existsSync(`${folder}/STOP-REVIEW.txt`)||(/^Reading source section/.test(label||'')&&['processing','retrying'].includes(snapshot?.status))){
+      entry.automaticStop={reason:existsSync(`${folder}/STOP-REVIEW.txt`)?'operator stop':'Review unexpectedly entered source preparation',requestedAt:new Date().toISOString(),response:await callResolver<any>(frame,GLOBAL_APP,'cancelJob',{jobId:entry.jobId})};
+      entry.automaticStop.readback=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});save();
+      throw new Error(entry.automaticStop.reason);
+    }
     if(['completed','failed','cancelled'].includes(snapshot?.status)&&
       !(entry.resumeFrom&&snapshot?.result?.finishedAt===entry.resumeFrom)){entry.result=snapshot;save();break;}
     await page.waitForTimeout(4000);
