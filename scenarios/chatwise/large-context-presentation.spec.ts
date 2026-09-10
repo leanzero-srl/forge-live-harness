@@ -31,6 +31,13 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   expect(entry.sourceSha256, 'Do not swap the source of an existing paid run').toBe(digest);
   const frame = await openGlobalPage(page, getTarget('chatwise-global'));
   await waitForChatApp(page, frame, GLOBAL_APP);
+  if (prior) {
+    // Observation-only reruns must show the real conversation too, not merely
+    // poll its job from an unrelated empty chat.
+    await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
+    await expect.poll(() => readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()'), { timeout: 45000 }).toBe(entry.conversationId);
+    await awaitSwapSettled(frame);
+  }
   if (!prior) {
     await frame.locator('#newChatButton').click();
     await awaitSwapSettled(frame);
@@ -74,9 +81,6 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     // the same owned conversation through the normal composer.
     const previous = JSON.parse(JSON.stringify(entry));
     delete previous.previousAttempts;
-    await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
-    await expect.poll(() => readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()'), { timeout: 45000 }).toBe(entry.conversationId);
-    await awaitSwapSettled(frame);
     await frame.locator('#chatInput').fill(prompt);
     delete entry.result; delete entry.lastSnapshot; delete entry.jobId;
     entry.previousAttempts = [...history, previous]; entry.visibleProgress = [];
