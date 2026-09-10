@@ -93,5 +93,19 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   expect(entry.result?.status, 'No automatic paid retry').toBe('completed');
   expect(result?.decks).toHaveLength(1);
   expect(entry.artifact).toBeTruthy();
+  const coverage = result.sourceCoverage;
+  expect(coverage, 'No measured source-reading record reached the completed job').toBeTruthy();
+  expect(coverage.sourceChars).toBe(entry.sourceChars);
+  expect(coverage.completedChars).toBe(entry.sourceChars);
+  expect(coverage.completedChunks).toBe(coverage.chunks);
+  expect(coverage.extractionTruncated).toBe(false);
+  let end = 0;
+  for (const range of coverage.ranges) {
+    expect(range.fileIndex).toBe(0);
+    expect(range.start).toBe(end);
+    end = range.end;
+  }
+  expect(end).toBe(entry.sourceChars);
+  expect(coverage.usage.prompt_tokens).toBeGreaterThan(0);
   // Factual coverage and rendered layout review are separate acceptance gates.
 });
