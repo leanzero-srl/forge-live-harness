@@ -69,6 +69,10 @@ test('administrator creates a project from a natural request and one confirmatio
     expect(created.projectTypeKey).toBe('software');
     expect(created.simplified).toBe(false);
     expect(created.lead.accountId).toBe(me.accountId);
+    const boards = await request('GET', `/rest/agile/1.0/board?projectKeyOrId=${created.id}`);
+    entry.boardReadback = boards.values.map((board: any) => ({ id: board.id, name: board.name, type: board.type }));
+    save();
+    expect(entry.boardReadback.some((board: any) => board.type === 'scrum'), 'Requested Scrum board is absent').toBe(true);
     expect(entry.turns[1].result.result.response).toContain(entry.key);
   } finally {
     // Delete only the positively identified fixture created by this run.
