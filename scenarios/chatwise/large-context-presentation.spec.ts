@@ -71,6 +71,10 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     entry.jobId === 'job_1789064750706_p68xxn5zt' && entry.result?.status === 'cancelled';
   const boundedRepair = process.env.CW_LARGE_BOUNDED_REPAIR === '1' &&
     entry.jobId === 'job_1789067019118_xi0x1myps' && entry.result?.status === 'cancelled';
+  const planningRepair = process.env.CW_LARGE_PLANNING_REPAIR === '1' &&
+    process.env.CW_EXPECT_VERSION === 'v6.142.0' &&
+    entry.jobId === 'job_1789067655468_rvsqv4fax' && entry.result?.status === 'completed' &&
+    entry.result.result?.truncated === true;
   const incomplete = boundedRepair || batchRepair || entry.result?.status === 'failed' ||
     (entry.result?.status === 'completed' && entry.result.result?.truncated === true);
   if (prior && process.env.CW_LARGE_RETRY_FAILED === '1' && incomplete) {
@@ -79,7 +83,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     if (history.length > 0) {
       // Further attempts require the exact reviewed incomplete job, not a reusable
       // retry switch. No automatic refusal/model-fallback loop is permitted.
-      expect(history.length, 'Paid retry ceiling reached; preserve the result').toBeLessThanOrEqual(boundedRepair ? 4 : batchRepair ? 3 : 2);
+      expect(history.length, 'Paid retry ceiling reached; preserve the result').toBeLessThanOrEqual(planningRepair ? 5 : boundedRepair ? 4 : batchRepair ? 3 : 2);
       expect(process.env.CW_LARGE_REVIEWED_RESUME_JOB, 'Name the reviewed failed job explicitly').toBe(entry.jobId);
     }
     // Explicit repair retry only. Retain the complete failed attempt, and drive
