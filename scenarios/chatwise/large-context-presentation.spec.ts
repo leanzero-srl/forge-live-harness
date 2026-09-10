@@ -66,8 +66,8 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     // the same owned conversation through the normal composer.
     const previous = JSON.parse(JSON.stringify(entry));
     await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
+    await expect.poll(() => readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()'), { timeout: 45000 }).toBe(entry.conversationId);
     await awaitSwapSettled(frame);
-    expect(await readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()')).toBe(entry.conversationId);
     await frame.locator('#chatInput').fill(prompt);
     delete entry.result; delete entry.lastSnapshot; delete entry.jobId;
     entry.previousAttempts = [previous]; entry.visibleProgress = [];
