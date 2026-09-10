@@ -135,6 +135,27 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     expect(slides).toBeLessThanOrEqual(35);
     expect(bytes.length).toBe(deck.sizeBytes);
   }
+  if (entry.artifact) {
+    // Reopen the stored conversation: verify the actual user's card, not just
+    // the job DTO, then exercise its normal browser download gesture.
+    await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
+    await awaitSwapSettled(frame);
+    const card = frame.locator(`.deck-card[data-deck-id="${entry.artifact.handle}"]`);
+    await expect(card).toBeVisible({ timeout: 60000 });
+    await expect(card).toContainText('30 slides');
+    const button = card.getByRole('button', { name: 'Download', exact: true });
+    await expect(button).toBeEnabled({ timeout: 60000 });
+    const downloadEvent = page.waitForEvent('download', { timeout: 60000 });
+    await button.click();
+    const download = await downloadEvent;
+    const downloadedPath = `${folder}/browser-download.pptx`;
+    await download.saveAs(downloadedPath);
+    const downloadedBytes = readFileSync(downloadedPath);
+    const resolverBytes = readFileSync(`${folder}/${entry.artifact.filename}`);
+    expect(downloadedBytes.equals(resolverBytes), 'Browser download differs from the generated file').toBe(true);
+    entry.browserDownload = { filename: download.suggestedFilename(), bytes: downloadedBytes.length, verifiedAt: new Date().toISOString() };
+    save();
+  }
   await page.screenshot({ path: `${folder}/final.png`, fullPage: true });
   expect(entry.result?.status, 'No automatic paid retry').toBe('completed');
   expect(result?.decks || [], 'Completion without a functional presentation does not pass').toHaveLength(1);
