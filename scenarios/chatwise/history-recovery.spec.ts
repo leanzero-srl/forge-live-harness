@@ -16,9 +16,11 @@ test('saved history loads and recovers visibly from a failed read without infere
   await expect(frame.locator('.conversation-item').first()).toBeVisible({timeout:60000});
   const historyMs=Date.now()-start;
   const count=await frame.locator('.conversation-item').count();
+  console.log('HISTORY_INITIAL',JSON.stringify({usableMs,historyMs,count,runtime:await readAppState(frame,GLOBAL_APP,"({state:app.components.conversationList.historyState,loader:typeof app.components.conversationManager.loadConversationHistory,inFlight:!!app.components.conversationManager._historyRequest})")}));
   expect(count).toBeGreaterThan(0);
   if(process.env.CW_HISTORY_BASELINE!=='1') {
-    await readAppState(frame,GLOBAL_APP,`(async()=>{const manager=app.components.conversationManager; const api=manager.api; const original=api.call; api.call=function(name,...args){if(name==='getUserConversations')return Promise.resolve({success:false,error:'Injected read failure'});return original.call(this,name,...args);}; try{return await manager.loadConversations();}finally{api.call=original;}})()`);
+    const fault=await readAppState(frame,GLOBAL_APP,`(async()=>{const manager=app.components.conversationManager; const api=manager.api; const original=api.call; api.call=function(name,...args){if(name==='getUserConversations')return Promise.resolve({success:false,error:'Injected read failure'});return original.call(this,name,...args);}; try{return await manager.loadConversations();}finally{api.call=original;}})()`);
+    console.log('HISTORY_FAULT',JSON.stringify({fault:{success:(fault as any)?.success,error:(fault as any)?.error},runtime:await readAppState(frame,GLOBAL_APP,"({state:app.components.conversationList.historyState,inFlight:!!app.components.conversationManager._historyRequest})")}));
     await expect(frame.getByText('Chat history could not be loaded.',{exact:true})).toBeVisible();
     expect(await frame.locator('.conversation-item').count()).toBe(count);
     await frame.getByRole('button',{name:'Retry chat history',exact:true}).click();
