@@ -3,7 +3,7 @@ import { test, expect } from '../../fixtures/forge';
 import { getTarget } from '../../config/targets';
 import { BASE_URL } from '../../config/env';
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver, awaitSwapSettled, readAppState } from './chatwise-support';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 
 test.describe.configure({ retries: 0 });
 test('review saved large presentation and download its verified revision', async ({ page }) => {
@@ -60,15 +60,17 @@ test('review saved large presentation and download its verified revision', async
     await expect(frame.locator(`[data-message-id="${resumeMessageId}"] .presentation-resume-btn`)).toHaveCount(0,{timeout:60000});
     entry.resumeAttempts.at(-1).dispatchAcceptedAt=new Date().toISOString();save();
   }
-  const recoverCancelled=process.env.CW_LARGE_REVIEW_RECOVER_CANCELLED==='1';
+  const segmentedRecovery=process.env.CW_LARGE_REVIEW_SEGMENTED==='1';
+  const recoverCancelled=process.env.CW_LARGE_REVIEW_RECOVER_CANCELLED==='1'||segmentedRecovery;
   if(recoverCancelled){
-    expect(process.env.CW_EXPECT_VERSION).toBe('v6.151.0');
-    expect(entry.jobId).toBe('job_1789069156385_review955c64c3faacfda0');
-    expect(entry.cancellation?.readback?.data?.status).toBe('cancelled');
-    expect(entry.recoveryRequestedAt,'Never dispatch a second recovery automatically').toBeFalsy();
+    expect(process.env.CW_EXPECT_VERSION).toBe(segmentedRecovery?'v6.154.0':'v6.151.0');
+    expect(entry.jobId).toBe(segmentedRecovery?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
+    expect((segmentedRecovery?entry.automaticStop:entry.cancellation)?.readback?.data?.status).toBe('cancelled');
+    expect(segmentedRecovery?entry.segmentedRecoveryRequestedAt:entry.recoveryRequestedAt,'Never dispatch a second recovery automatically').toBeFalsy();
+    if(segmentedRecovery){expect(entry.automaticStop.requestedAt).toBe('2026-09-10T22:04:36.562Z');expect(entry.resumeAttempts).toHaveLength(3);}
     const current=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
     expect(current.data.status).toBe('cancelled');
-    writeFileSync(`${folder}/review-cancelled-v6150.json`,JSON.stringify(entry,null,2));
+    writeFileSync(`${folder}/review-cancelled-${segmentedRecovery?'v6153':'v6150'}.json`,JSON.stringify(entry,null,2));
   }
   if(!prior||recoverCancelled){
     await readAppState(frame,GLOBAL_APP,`(app.services.jobMonitoring.monitorJob(${JSON.stringify(original.jobId)},{stateKey:app.sendingStateKey}),true)`);
@@ -77,7 +79,11 @@ test('review saved large presentation and download its verified revision', async
     await expect.poll(()=>readAppState(frame,GLOBAL_APP,'app.components.chat.isStreaming'),{timeout:60000}).toBe(false);
     await expect(button).toBeEnabled();
     const previousJobId=entry.jobId;
-    if(recoverCancelled){entry.recoveryRequestedAt=new Date().toISOString();entry.previousJobId=previousJobId;delete entry.result;delete entry.lastSnapshot;delete entry.resumeFrom;}
+    if(recoverCancelled){
+      if(segmentedRecovery){entry.segmentedRecoveryRequestedAt=new Date().toISOString();if(existsSync(`${folder}/STOP-REVIEW.txt`))renameSync(`${folder}/STOP-REVIEW.txt`,`${folder}/STOP-REVIEW-v6153.txt`);}
+      else entry.recoveryRequestedAt=new Date().toISOString();
+      entry.previousJobId=previousJobId;delete entry.result;delete entry.lastSnapshot;delete entry.resumeFrom;
+    }
     entry.state='submitting';entry.requestedAt=new Date().toISOString();save();
     await button.click();
     await expect.poll(async()=>{
