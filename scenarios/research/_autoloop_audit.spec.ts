@@ -17,7 +17,7 @@ test("read audit log", async () => {
     // expand every row
     const rows = page.locator('button[aria-expanded="false"]');
     const n = await rows.count(); console.log("rows to expand:", n);
-    for (let i = 0; i < n; i++) { const r = page.locator('button[aria-expanded="false"]').first(); if (!(await r.count())) break; await r.click({ force: true }); await page.waitForTimeout(800); }
+    for (let pass = 0; pass < 2; pass++) { const all = page.locator('button[aria-expanded="false"]'); const c = await all.count(); for (let i = c - 1; i >= 0; i--) { try { await all.nth(i).click({ force: true, timeout: 3000 }); } catch {} await page.waitForTimeout(300); } await page.waitForTimeout(800); }
     // click any "Show more" links
     for (const t of [/show more/i]) { const b = page.getByRole("button", { name: t }); const c = await b.count(); for (let i = 0; i < c; i++) { try { await b.nth(i).click({ force: true }); } catch {} } }
     await page.waitForTimeout(1500);
