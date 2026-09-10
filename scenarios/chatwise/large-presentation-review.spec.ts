@@ -28,7 +28,17 @@ test('review saved large presentation and download its verified revision', async
     const stopped=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
     entry.cancellation.readback=stopped;save();expect(stopped.data.status).toBe('cancelled');return;
   }
-  await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
+  const savedConversation = frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`);
+  try { await savedConversation.waitFor({state:'visible',timeout:60000}); }
+  catch (error) {
+    const history:any = await callResolver(frame,GLOBAL_APP,'getUserConversations',{});
+    const diagnostic = {at:new Date().toISOString(), success:history?.success,
+      error:history?.error, returnedIds:Array.isArray(history?.data)?history.data.map((c:any)=>c.id):null,
+      app:await readAppState(frame,GLOBAL_APP,'({ids:app.components.conversationManager?.conversations?.map(c=>c.id), current:app.components.conversationManager?.currentConversationId})')};
+    writeFileSync(`${folder}/history-load-diagnostic.json`,JSON.stringify(diagnostic,null,2));
+    throw error;
+  }
+  await savedConversation.click();
   await awaitSwapSettled(frame);
   if(process.env.CW_LARGE_REVIEW_RESUME==='1'){
     const budgetCut=process.env.CW_LARGE_REVIEW_BUDGET==='1';
@@ -38,13 +48,14 @@ test('review saved large presentation and download its verified revision', async
     const normalizedClaims=process.env.CW_LARGE_REVIEW_CLAIMS_NORMALIZED==='1';
     const repairedClaims=process.env.CW_LARGE_REVIEW_CLAIMS_REPAIR==='1';
     const unitDiagnostics=process.env.CW_LARGE_REVIEW_UNIT_DIAGNOSTICS==='1';
+    const unitEquivalent=process.env.CW_LARGE_REVIEW_UNIT_EQUIVALENT==='1';
     expect(prior,'Resume requires the existing paid review receipt').toBeTruthy();
-    expect(process.env.CW_EXPECT_VERSION).toBe(unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
-    expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
-    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(unitDiagnostics?7:repairedClaims?6:normalizedClaims?5:steeredClaims?4:flatClaims?3:outputCut?2:budgetCut?1:0);
-    expect(entry.result?.result?.finishedAt).toBe(unitDiagnostics?'2026-09-10T23:20:23.282Z':repairedClaims?'2026-09-10T23:13:51.577Z':normalizedClaims?'2026-09-10T23:06:03.708Z':steeredClaims?'2026-09-10T22:36:25.223Z':flatClaims?'2026-09-10T22:23:37.086Z':outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
-    expect(entry.result?.result?.usage?.total_tokens).toBe(unitDiagnostics?61372:normalizedClaims||repairedClaims?44249:steeredClaims?30780:flatClaims?15357:outputCut?39003:budgetCut?0:50213);
-    if(unitDiagnostics)expect(entry.result.result.response).toContain('source facts could not be verified within the bounded correction step');
+    expect(process.env.CW_EXPECT_VERSION).toBe(unitEquivalent?'v6.160.0':unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
+    expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics||unitEquivalent?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
+    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(unitEquivalent?8:unitDiagnostics?7:repairedClaims?6:normalizedClaims?5:steeredClaims?4:flatClaims?3:outputCut?2:budgetCut?1:0);
+    expect(entry.result?.result?.finishedAt).toBe(unitEquivalent?'2026-09-10T23:36:07.404Z':unitDiagnostics?'2026-09-10T23:20:23.282Z':repairedClaims?'2026-09-10T23:13:51.577Z':normalizedClaims?'2026-09-10T23:06:03.708Z':steeredClaims?'2026-09-10T22:36:25.223Z':flatClaims?'2026-09-10T22:23:37.086Z':outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
+    expect(entry.result?.result?.usage?.total_tokens).toBe(unitDiagnostics||unitEquivalent?61372:normalizedClaims||repairedClaims?44249:steeredClaims?30780:flatClaims?15357:outputCut?39003:budgetCut?0:50213);
+    if(unitDiagnostics||unitEquivalent)expect(entry.result.result.response).toContain('source facts could not be verified within the bounded correction step');
     if(repairedClaims)expect(entry.result.result.response).toContain('A numeric source claim requires its source unit');
     if(normalizedClaims)expect(entry.result.result.response).toContain('Text claims cannot carry numeric fields');
     if(budgetCut)expect(entry.result.result.response).toContain('estimated 213786 tokens');
