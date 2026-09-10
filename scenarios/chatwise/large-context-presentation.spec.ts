@@ -17,6 +17,9 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   expect(sourcePath).toBeTruthy();
   expect(promptPath).toBeTruthy();
   const source = readFileSync(sourcePath!);
+  // The text extractor removes NULs, trailing horizontal whitespace and outer
+  // whitespace. Compare its complete normalized text, not the final newline.
+  const extractedChars = source.toString('utf8').split('\u0000').join('').replace(/[ \t]+\n/g, '\n').trim().length;
   const prompt = readFileSync(promptPath!, 'utf8');
   const digest = createHash('sha256').update(source).digest('hex');
   const folder = '/tmp/cw-large-context-paid';
@@ -41,7 +44,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     entry.conversationId = await readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()');
     const files = await callResolver<any>(frame, GLOBAL_APP, 'getChatFiles', { conversationId: entry.conversationId });
     const stored = files.files.find((f: any) => f.filename === filename);
-    expect(stored.chars, 'The uploaded source was truncated before inference').toBe(source.toString('utf8').length);
+    expect(stored.chars, 'The uploaded source was truncated before inference').toBe(extractedChars);
     expect(stored.truncated).toBe(false);
     entry.upload = stored;
     await frame.locator('#chatInput').fill(prompt);
@@ -95,8 +98,8 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   expect(entry.artifact).toBeTruthy();
   const coverage = result.sourceCoverage;
   expect(coverage, 'No measured source-reading record reached the completed job').toBeTruthy();
-  expect(coverage.sourceChars).toBe(entry.sourceChars);
-  expect(coverage.completedChars).toBe(entry.sourceChars);
+  expect(coverage.sourceChars).toBe(extractedChars);
+  expect(coverage.completedChars).toBe(extractedChars);
   expect(coverage.completedChunks).toBe(coverage.chunks);
   expect(coverage.extractionTruncated).toBe(false);
   let end = 0;
@@ -105,7 +108,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     expect(range.start).toBe(end);
     end = range.end;
   }
-  expect(end).toBe(entry.sourceChars);
+  expect(end).toBe(extractedChars);
   expect(coverage.usage.prompt_tokens).toBeGreaterThan(0);
   // Factual coverage and rendered layout review are separate acceptance gates.
 });
