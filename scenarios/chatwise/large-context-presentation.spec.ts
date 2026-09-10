@@ -31,6 +31,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   expect(entry.sourceSha256, 'Do not swap the source of an existing paid run').toBe(digest);
   const frame = await openGlobalPage(page, getTarget('chatwise-global'));
   await waitForChatApp(page, frame, GLOBAL_APP);
+  if (process.env.CW_EXPECT_VERSION) await expect(frame.locator('body')).toContainText(process.env.CW_EXPECT_VERSION);
   if (prior) {
     // Observation-only reruns must show the real conversation too, not merely
     // poll its job from an unrelated empty chat.
