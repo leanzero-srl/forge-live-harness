@@ -4,7 +4,7 @@ import { getTarget } from '../../config/targets';
 import { BASE_URL } from '../../config/env';
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver, awaitSwapSettled } from './chatwise-support';
 import { zipEntries, slideFileCount, readEntryText } from '../../data/zip.mjs';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { get } from '../../data/jira.mjs';
 import { secret } from './admin-credentials-support';
 const T = getTarget('chatwise-global');
@@ -23,18 +23,31 @@ test('two-turn reliability acceptance: admin discovery and Product Owner deck', 
   expect(orgResponse.status).toBe(200);
   const orgName = (await orgResponse.json()).data.attributes.name;
   expect(typeof orgName).toBe('string');
-  const evidence: any[] = [];
   const folder = '/tmp/cw-reliability-paid';
   mkdirSync(folder, {recursive:true});
+  const evidencePath = `${folder}/result.json`;
+  const resumePresentation = process.env.CW_RESUME_PRESENTATION === '1';
+  const evidence: any[] = existsSync(evidencePath) ? JSON.parse(readFileSync(evidencePath,'utf8')) : [];
+  if (resumePresentation) {
+    expect(evidence).toHaveLength(1);
+    expect(evidence[0].persona).toBe('jira-admin');
+    expect(evidence[0].result?.status).toBe('completed');
+  } else {
+    expect(evidence, 'An earlier paid run exists. Do not resend completed or uncertain work.').toHaveLength(0);
+  }
   for (const scenario of [
     { persona: 'jira-admin', prompt: 'Read-only check: use discoverAdminCapabilities to discover the documented public Jira getProject operation, then use readJiraApi with that operation to read project WFH. Also use readOrgApi operation getOrgById with empty parameters to read the configured organisation. Report the exact project key and name, and organisation name from the APIs. Do not create, update or delete anything. Keep your answer to two sentences.' },
     { persona: 'product-owner', prompt: 'Create a downloadable PowerPoint now, not an Epic or wizard. Apply the diconium brand skill if available and use the presentation guide. No Jira attachment or Jira writes. Exactly four varied slides: cover titled Delivery confidence; metrics showing 24 delivered, 6 remaining, 80% complete; a comparison of current manual reporting versus automated reporting; and next steps with three milestones. This is illustrative data, not measured Jira data. Give me the file.' },
   ]) {
+    if (resumePresentation && scenario.persona !== 'product-owner') continue;
     await frame.locator('#newChatButton').click();
     await awaitSwapSettled(frame);
     await frame.locator('#dropdownSelected').click();
     await frame.locator(`.dropdown-option[data-persona-id="${scenario.persona}"]`).click();
     await frame.locator('#chatInput').fill(scenario.prompt);
+    const entry: any = {persona:scenario.persona, state:'submitting', submittedAt:new Date().toISOString()};
+    evidence.push(entry);
+    writeFileSync(evidencePath, JSON.stringify(evidence,null,2));
     await frame.locator('#sendButton').click();
     let jobId: string | null = null;
     const queuedDeadline = Date.now() + 45000;
@@ -43,6 +56,8 @@ test('two-turn reliability acceptance: admin discovery and Product Owner deck', 
       if (!jobId) await page.waitForTimeout(300);
     }
     expect(jobId, 'message did not enqueue').toBeTruthy();
+    Object.assign(entry, {jobId, state:'queued'});
+    writeFileSync(evidencePath, JSON.stringify(evidence,null,2));
     const visible = new Set<string>();
     let result: any;
     const deadline = Date.now() + 360000;
@@ -53,8 +68,7 @@ test('two-turn reliability acceptance: admin discovery and Product Owner deck', 
       if (['completed','failed','cancelled'].includes(snapshot.data?.status)) { result = snapshot.data; break; }
       await page.waitForTimeout(2000);
     }
-    const entry: any = {persona:scenario.persona, jobId, visibleProgress:[...visible], result};
-    evidence.push(entry);
+    Object.assign(entry, {visibleProgress:[...visible], result});
     writeFileSync(`${folder}/result.json`, JSON.stringify(evidence,null,2));
     expect(result?.status, 'turn failed or exceeded bounded wait; no paid retry').toBe('completed');
     const events = result.result.progressEvents || [];

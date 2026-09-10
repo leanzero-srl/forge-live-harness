@@ -21,10 +21,10 @@ test('read-only startup and configured capability baseline', async ({ page }) =>
       const apps = page.getByRole('button', { name: /^Apps$/i }).first();
       let started = Date.now();
       let entry = 'direct module navigation';
-      if (await apps.isVisible().catch(() => false)) {
-        await apps.click();
-        const link = page.getByRole('link', { name: /^ChatWise(?: \(development\))?$/i }).first();
-        if (await link.isVisible().catch(() => false)) {
+      if (await apps.waitFor({state:"visible",timeout:10000}).then(() => true).catch(() => false)) {
+        if (await apps.getAttribute("aria-expanded") !== "true") await apps.click();
+        const link = page.getByRole('link', { name: /^ChatWise AI Assistant$/i }).first();
+        if (await link.waitFor({state:"visible",timeout:5000}).then(() => true).catch(() => false)) {
           started = Date.now();
           entry = 'Apps > ChatWise';
           await link.click();
