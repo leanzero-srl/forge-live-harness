@@ -59,6 +59,27 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     entry.state = entry.jobId ? 'queued' : 'submission-uncertain';
     save();
   }
+  if (prior && process.env.CW_LARGE_RETRY_FAILED === '1' && entry.result?.status === 'failed') {
+    expect(entry.result.result?.decks || [], 'Never regenerate completed work').toHaveLength(0);
+    expect(entry.previousAttempts || [], 'Two paid attempts already used; inspect evidence before any further work').toHaveLength(0);
+    // Explicit repair retry only. Retain the complete failed attempt, and drive
+    // the same owned conversation through the normal composer.
+    const previous = JSON.parse(JSON.stringify(entry));
+    await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
+    await awaitSwapSettled(frame);
+    expect(await readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()')).toBe(entry.conversationId);
+    await frame.locator('#chatInput').fill(prompt);
+    delete entry.result; delete entry.lastSnapshot; delete entry.jobId;
+    entry.previousAttempts = [previous]; entry.visibleProgress = [];
+    entry.state = 'submitting'; entry.submittedAt = new Date().toISOString(); save();
+    await frame.locator('#sendButton').click();
+    const deadline = Date.now() + 45000;
+    while (!entry.jobId && Date.now() < deadline) {
+      entry.jobId = await readAppState(frame, GLOBAL_APP, 'app.currentJobId');
+      if (!entry.jobId) await page.waitForTimeout(300);
+    }
+    entry.state = entry.jobId ? 'queued' : 'submission-uncertain'; save();
+  }
   expect(entry.jobId, 'Uncertain submission: inspect saved conversation; never auto-resend').toBeTruthy();
   const progress = new Set<string>(entry.visibleProgress || []);
   const deadline = Date.now() + 1200000;
