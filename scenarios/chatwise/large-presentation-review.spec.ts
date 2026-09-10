@@ -24,6 +24,30 @@ test('review saved large presentation and download its verified revision', async
   await expect(frame.locator('body')).toContainText(process.env.CW_EXPECT_VERSION||'v6.149.0');
   await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
   await awaitSwapSettled(frame);
+  if(process.env.CW_LARGE_REVIEW_RESUME==='1'){
+    expect(prior,'Resume requires the existing paid review receipt').toBeTruthy();
+    expect(process.env.CW_EXPECT_VERSION).toBe('v6.150.0');
+    expect(entry.jobId).toBe('job_1789069156385_review955c64c3faacfda0');
+    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(0);
+    expect(entry.result?.result?.finishedAt).toBe('2026-09-10T21:19:53.138Z');
+    expect(entry.result?.result?.usage?.total_tokens).toBe(50213);
+    expect(entry.artifact).toBeFalsy();
+    const saved=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
+    expect(saved.data.status).toBe('completed');
+    expect(saved.data.result.finishedAt).toBe(entry.result.result.finishedAt);
+    expect(saved.data.result.presentationResume?.jobId).toBe(entry.jobId);
+    await readAppState(frame,GLOBAL_APP,`(app.services.jobMonitoring.monitorJob(${JSON.stringify(entry.jobId)},{stateKey:app.sendingStateKey}),true)`);
+    const resume=frame.locator('.presentation-resume-btn').last();
+    await expect(resume).toBeVisible({timeout:60000});
+    await expect.poll(()=>readAppState(frame,GLOBAL_APP,'app.components.chat.isStreaming'),{timeout:60000}).toBe(false);
+    await expect(resume).toBeEnabled();
+    entry.resumeFrom=saved.data.result.finishedAt;
+    entry.resumeAttempts=[{result:entry.result,requestedAt:new Date().toISOString(),resumeFrom:entry.resumeFrom}];
+    delete entry.result;delete entry.lastSnapshot;entry.state='resuming';save();
+    await resume.click();
+    await expect(frame.locator('.presentation-resume-btn')).toHaveCount(0,{timeout:60000});
+    entry.resumeAttempts[0].dispatchAcceptedAt=new Date().toISOString();save();
+  }
   if(!prior){
     await readAppState(frame,GLOBAL_APP,`(app.services.jobMonitoring.monitorJob(${JSON.stringify(original.jobId)},{stateKey:app.sendingStateKey}),true)`);
     const button=frame.getByRole('button',{name:'Review presentation',exact:true}).last();
@@ -45,7 +69,8 @@ test('review saved large presentation and download its verified revision', async
     const snapshot=response.data;entry.lastSnapshot=snapshot;save();
     const label=snapshot?.result?.progressNote||snapshot?.status;
     if(label&&label!==lastProgress){console.log('REVIEW_PROGRESS',label);lastProgress=label;}
-    if(['completed','failed','cancelled'].includes(snapshot?.status)){entry.result=snapshot;save();break;}
+    if(['completed','failed','cancelled'].includes(snapshot?.status)&&
+      !(entry.resumeFrom&&snapshot?.result?.finishedAt===entry.resumeFrom)){entry.result=snapshot;save();break;}
     await page.waitForTimeout(4000);
   }
   const result=entry.result?.result;
