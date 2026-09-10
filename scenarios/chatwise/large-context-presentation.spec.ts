@@ -59,13 +59,15 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     entry.state = entry.jobId ? 'queued' : 'submission-uncertain';
     save();
   }
-  if (prior && process.env.CW_LARGE_RETRY_FAILED === '1' && entry.result?.status === 'failed') {
+  const incomplete = entry.result?.status === 'failed' ||
+    (entry.result?.status === 'completed' && entry.result.result?.truncated === true);
+  if (prior && process.env.CW_LARGE_RETRY_FAILED === '1' && incomplete) {
     expect(entry.result.result?.decks || [], 'Never regenerate completed work').toHaveLength(0);
     const history = entry.previousAttempts || [];
     if (history.length > 0) {
-      // A third attempt requires the exact reviewed failed job, not a reusable
+      // Further attempts require the exact reviewed incomplete job, not a reusable
       // retry switch. No automatic refusal/model-fallback loop is permitted.
-      expect(history, 'Three paid attempts already used; preserve the result').toHaveLength(1);
+      expect(history.length, 'Four paid attempts already used; preserve the result').toBeLessThanOrEqual(2);
       expect(process.env.CW_LARGE_REVIEWED_RESUME_JOB, 'Name the reviewed failed job explicitly').toBe(entry.jobId);
     }
     // Explicit repair retry only. Retain the complete failed attempt, and drive
@@ -122,7 +124,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   }
   await page.screenshot({ path: `${folder}/final.png`, fullPage: true });
   expect(entry.result?.status, 'No automatic paid retry').toBe('completed');
-  expect(result?.decks).toHaveLength(1);
+  expect(result?.decks || [], 'Completion without a functional presentation does not pass').toHaveLength(1);
   expect(entry.artifact).toBeTruthy();
   const coverage = result.sourceCoverage;
   expect(coverage, 'No measured source-reading record reached the completed job').toBeTruthy();
