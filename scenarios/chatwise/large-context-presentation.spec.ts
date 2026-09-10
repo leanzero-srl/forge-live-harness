@@ -68,12 +68,14 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     save();
   }
   if (prior && process.env.CW_LARGE_RESUME_SAVED === '1') {
-    expect(process.env.CW_EXPECT_VERSION).toBe('v6.143.0');
+    const recovery = process.env.CW_LARGE_RESUME_RECOVERY === '1';
+    expect(process.env.CW_EXPECT_VERSION).toBe(recovery ? 'v6.144.0' : 'v6.143.0');
+    if (recovery) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T19:59:44.753Z');
     expect(entry.jobId).toBe('job_1789069156385_xbqa4j602');
-    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(0);
+    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(recovery ? 1 : 0);
     expect(entry.artifact).toBeFalsy();
     const saved = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
-    expect(saved.data.status).toBe('completed');
+    expect(saved.data.status).toBe(recovery ? 'failed' : 'completed');
     expect(saved.data.result.presentationResume?.jobId).toBe(entry.jobId);
     expect(saved.data.result.decks || []).toHaveLength(0);
     // Rehydrate a pre-feature terminal message through the normal job monitor,
@@ -83,7 +85,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     const resume = frame.locator('.presentation-resume-btn').last();
     await expect(resume).toBeVisible({ timeout: 60000 });
     await expect(resume).toBeEnabled();
-    entry.resumeAttempts = [{ result: entry.result, requestedAt: new Date().toISOString(), resumeFrom: saved.data.result.finishedAt }];
+    entry.resumeAttempts = [...(entry.resumeAttempts || []), { result: entry.result, requestedAt: new Date().toISOString(), resumeFrom: saved.data.result.finishedAt }];
     entry.resumeFrom = saved.data.result.finishedAt;
     delete entry.result; delete entry.lastSnapshot;
     entry.state = 'resuming'; entry.visibleProgress = []; save();
@@ -141,7 +143,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     const snapshot = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
     entry.lastSnapshot = snapshot.data;
     if (['completed', 'failed', 'cancelled'].includes(snapshot.data?.status) &&
-        !(entry.resumeFrom && snapshot.data?.status === 'completed' && snapshot.data?.result?.finishedAt === entry.resumeFrom)) entry.result = snapshot.data;
+        !(entry.resumeFrom && ['completed', 'failed'].includes(snapshot.data?.status) && snapshot.data?.result?.finishedAt === entry.resumeFrom)) entry.result = snapshot.data;
     entry.visibleProgress = [...progress];
     save();
     if (!entry.result) await page.waitForTimeout(3000);
