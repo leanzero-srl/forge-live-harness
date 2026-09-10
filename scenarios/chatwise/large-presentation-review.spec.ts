@@ -55,6 +55,7 @@ test('review saved large presentation and download its verified revision', async
     expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(unitEquivalent?8:unitDiagnostics?7:repairedClaims?6:normalizedClaims?5:steeredClaims?4:flatClaims?3:outputCut?2:budgetCut?1:0);
     expect(entry.result?.result?.finishedAt).toBe(unitEquivalent?'2026-09-10T23:36:07.404Z':unitDiagnostics?'2026-09-10T23:20:23.282Z':repairedClaims?'2026-09-10T23:13:51.577Z':normalizedClaims?'2026-09-10T23:06:03.708Z':steeredClaims?'2026-09-10T22:36:25.223Z':flatClaims?'2026-09-10T22:23:37.086Z':outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
     expect(entry.result?.result?.usage?.total_tokens).toBe(unitDiagnostics||unitEquivalent?61372:normalizedClaims||repairedClaims?44249:steeredClaims?30780:flatClaims?15357:outputCut?39003:budgetCut?0:50213);
+    if(unitEquivalent)expect(entry.diagnosticOnly?.usageUnchanged).toBe(true);
     if(unitDiagnostics||unitEquivalent)expect(entry.result.result.response).toContain('source facts could not be verified within the bounded correction step');
     if(repairedClaims)expect(entry.result.result.response).toContain('A numeric source claim requires its source unit');
     if(normalizedClaims)expect(entry.result.result.response).toContain('Text claims cannot carry numeric fields');
@@ -74,8 +75,8 @@ test('review saved large presentation and download its verified revision', async
     const resumeMessageId=await resume.evaluate(el=>el.closest<HTMLElement>('[data-message-id]')?.dataset.messageId);
     expect(resumeMessageId).toBeTruthy();
     entry.resumeFrom=saved.data.result.finishedAt;
-    entry.resumeAttempts=[...(entry.resumeAttempts||[]),{result:entry.result,requestedAt:new Date().toISOString(),resumeFrom:entry.resumeFrom}];
-    delete entry.result;delete entry.lastSnapshot;entry.state='resuming';save();
+    entry.resumeAttempts=[...(entry.resumeAttempts||[]),{result:entry.result,diagnosticOnly:entry.diagnosticOnly,requestedAt:new Date().toISOString(),resumeFrom:entry.resumeFrom}];
+    delete entry.result;delete entry.lastSnapshot;delete entry.diagnosticOnly;entry.state='resuming';save();
     await resume.click();
     await expect(frame.locator(`[data-message-id="${resumeMessageId}"] .presentation-resume-btn`)).toHaveCount(0,{timeout:60000});
     entry.resumeAttempts.at(-1).dispatchAcceptedAt=new Date().toISOString();save();
