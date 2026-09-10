@@ -61,16 +61,23 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   }
   if (prior && process.env.CW_LARGE_RETRY_FAILED === '1' && entry.result?.status === 'failed') {
     expect(entry.result.result?.decks || [], 'Never regenerate completed work').toHaveLength(0);
-    expect(entry.previousAttempts || [], 'Two paid attempts already used; inspect evidence before any further work').toHaveLength(0);
+    const history = entry.previousAttempts || [];
+    if (history.length > 0) {
+      // A third attempt requires the exact reviewed failed job, not a reusable
+      // retry switch. No automatic refusal/model-fallback loop is permitted.
+      expect(history, 'Three paid attempts already used; preserve the result').toHaveLength(1);
+      expect(process.env.CW_LARGE_REVIEWED_RESUME_JOB, 'Name the reviewed failed job explicitly').toBe(entry.jobId);
+    }
     // Explicit repair retry only. Retain the complete failed attempt, and drive
     // the same owned conversation through the normal composer.
     const previous = JSON.parse(JSON.stringify(entry));
+    delete previous.previousAttempts;
     await frame.locator(`.conversation-item[data-conversation-id="${entry.conversationId}"]`).click();
     await expect.poll(() => readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()'), { timeout: 45000 }).toBe(entry.conversationId);
     await awaitSwapSettled(frame);
     await frame.locator('#chatInput').fill(prompt);
     delete entry.result; delete entry.lastSnapshot; delete entry.jobId;
-    entry.previousAttempts = [previous]; entry.visibleProgress = [];
+    entry.previousAttempts = [...history, previous]; entry.visibleProgress = [];
     entry.state = 'submitting'; entry.submittedAt = new Date().toISOString(); save();
     await frame.locator('#sendButton').click();
     const deadline = Date.now() + 45000;
