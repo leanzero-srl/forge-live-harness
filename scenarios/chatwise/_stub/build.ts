@@ -49,6 +49,7 @@ export const router = { open: () => {} };
   writeFileSync(
     join(OUT, "entry.js"),
     `export { ChatInterface } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/components/ChatInterface.js"))};
+export { JobMonitoringHandler } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/services/JobMonitoringHandler.js"))};
 export { AttachmentController } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/services/AttachmentController.js"))};
 export { DropZone } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/services/DropZone.js"))};
 export { PersonaSelector } from ${JSON.stringify(join(APP_ROOT, "src/chat/shared/components/PersonaSelector.js"))};
@@ -103,6 +104,8 @@ module.exports = {
     // paraphrase here would test a picker that does not ship.
     const persona = sliceElement(html, '<div class="persona-selector-container">');
 
+    const thinking = sliceElement(html, '<div class="thinking-indicator"');
+
     const file = join(OUT, `${surface}.html`);
     writeFileSync(
       file,
@@ -112,6 +115,7 @@ module.exports = {
   <div class="chat-header"></div>
   <div class="stub-persona-bay" style="display:flex;padding:12px;">${persona}</div>
   <div class="chat-messages" id="chatMessages"></div>
+  ${thinking}
   ${composer}
 </div>
 <script>${bundle}</script></body></html>`,
