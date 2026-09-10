@@ -67,6 +67,28 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     entry.state = entry.jobId ? 'queued' : 'submission-uncertain';
     save();
   }
+  if (prior && process.env.CW_LARGE_RESUME_SAVED === '1') {
+    expect(process.env.CW_EXPECT_VERSION).toBe('v6.143.0');
+    expect(entry.jobId).toBe('job_1789069156385_xbqa4j602');
+    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(0);
+    expect(entry.artifact).toBeFalsy();
+    const saved = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
+    expect(saved.data.status).toBe('completed');
+    expect(saved.data.result.presentationResume?.jobId).toBe(entry.jobId);
+    expect(saved.data.result.decks || []).toHaveLength(0);
+    // Rehydrate a pre-feature terminal message through the normal job monitor,
+    // then use the actual product action. No private KVS mutation or inference seam.
+    await readAppState(frame, GLOBAL_APP,
+      `(app.services.jobMonitoring.monitorJob(${JSON.stringify(entry.jobId)}, {stateKey: app.sendingStateKey}), true)`);
+    const resume = frame.locator('.presentation-resume-btn').last();
+    await expect(resume).toBeVisible({ timeout: 60000 });
+    await expect(resume).toBeEnabled();
+    entry.resumeAttempts = [{ result: entry.result, requestedAt: new Date().toISOString(), resumeFrom: saved.data.result.finishedAt }];
+    entry.resumeFrom = saved.data.result.finishedAt;
+    delete entry.result; delete entry.lastSnapshot;
+    entry.state = 'resuming'; entry.visibleProgress = []; save();
+    await resume.click();
+  }
   const batchRepair = process.env.CW_LARGE_BATCH_REPAIR === '1' &&
     entry.jobId === 'job_1789064750706_p68xxn5zt' && entry.result?.status === 'cancelled';
   const boundedRepair = process.env.CW_LARGE_BOUNDED_REPAIR === '1' &&
@@ -117,7 +139,8 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     }
     const snapshot = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
     entry.lastSnapshot = snapshot.data;
-    if (['completed', 'failed', 'cancelled'].includes(snapshot.data?.status)) entry.result = snapshot.data;
+    if (['completed', 'failed', 'cancelled'].includes(snapshot.data?.status) &&
+        !(entry.resumeFrom && snapshot.data?.status === 'completed' && snapshot.data?.result?.finishedAt === entry.resumeFrom)) entry.result = snapshot.data;
     entry.visibleProgress = [...progress];
     save();
     if (!entry.result) await page.waitForTimeout(3000);
