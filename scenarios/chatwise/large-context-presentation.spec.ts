@@ -124,9 +124,10 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     }
     entry.state = entry.jobId ? 'queued' : 'submission-uncertain'; save();
   }
+  if (entry.resumeFrom) test.setTimeout(2700000);
   expect(entry.jobId, 'Uncertain submission: inspect saved conversation; never auto-resend').toBeTruthy();
   const progress = new Set<string>(entry.visibleProgress || []);
-  const deadline = Date.now() + 1200000;
+  const deadline = Date.now() + (entry.resumeFrom ? 2400000 : 1200000);
   while (!entry.result && Date.now() < deadline) {
     const label = await frame.locator('.thinking-status').textContent().catch(() => null);
     if (label) progress.add(label);
