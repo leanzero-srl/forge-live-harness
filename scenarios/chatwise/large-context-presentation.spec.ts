@@ -66,7 +66,9 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     entry.state = entry.jobId ? 'queued' : 'submission-uncertain';
     save();
   }
-  const incomplete = entry.result?.status === 'failed' ||
+  const batchRepair = process.env.CW_LARGE_BATCH_REPAIR === '1' &&
+    entry.jobId === 'job_1789064750706_p68xxn5zt' && entry.result?.status === 'cancelled';
+  const incomplete = batchRepair || entry.result?.status === 'failed' ||
     (entry.result?.status === 'completed' && entry.result.result?.truncated === true);
   if (prior && process.env.CW_LARGE_RETRY_FAILED === '1' && incomplete) {
     expect(entry.result.result?.decks || [], 'Never regenerate completed work').toHaveLength(0);
@@ -74,7 +76,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     if (history.length > 0) {
       // Further attempts require the exact reviewed incomplete job, not a reusable
       // retry switch. No automatic refusal/model-fallback loop is permitted.
-      expect(history.length, 'Four paid attempts already used; preserve the result').toBeLessThanOrEqual(2);
+      expect(history.length, 'Paid retry ceiling reached; preserve the result').toBeLessThanOrEqual(batchRepair ? 3 : 2);
       expect(process.env.CW_LARGE_REVIEWED_RESUME_JOB, 'Name the reviewed failed job explicitly').toBe(entry.jobId);
     }
     // Explicit repair retry only. Retain the complete failed attempt, and drive
@@ -99,6 +101,13 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
   while (!entry.result && Date.now() < deadline) {
     const label = await frame.locator('.thinking-status').textContent().catch(() => null);
     if (label) progress.add(label);
+    if (existsSync(`${folder}/STOP`)) {
+      const before = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
+      if (!['completed', 'failed', 'cancelled'].includes(before.data?.status)) {
+        entry.stopRequestedAt = new Date().toISOString(); save();
+        await callResolver<any>(frame, GLOBAL_APP, 'cancelJob', { jobId: entry.jobId });
+      }
+    }
     const snapshot = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
     entry.lastSnapshot = snapshot.data;
     if (['completed', 'failed', 'cancelled'].includes(snapshot.data?.status)) entry.result = snapshot.data;

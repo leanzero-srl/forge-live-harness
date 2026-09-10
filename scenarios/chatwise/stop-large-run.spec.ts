@@ -1,0 +1,25 @@
+import { test, expect } from '../../fixtures/forge';
+import { BASE_URL } from '../../config/env';
+import { getTarget } from '../../config/targets';
+import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver } from './chatwise-support';
+import { readFileSync, writeFileSync } from 'node:fs';
+test('stop the observed large run without resubmitting it', async ({ page }) => {
+  test.skip(process.env.CW_STOP_LARGE_RUN !== '1', 'Explicit cancellation opt-in required');
+  test.setTimeout(180000);
+  expect(new URL(BASE_URL).hostname).toBe('wolfaenpak.atlassian.net');
+  const path = '/tmp/cw-large-context-paid/result.json';
+  const journal = JSON.parse(readFileSync(path, 'utf8'));
+  if (journal.jobId !== 'job_1789064750706_p68xxn5zt') throw new Error('Unexpected job');
+  const frame = await openGlobalPage(page, getTarget('chatwise-global'));
+  await waitForChatApp(page, frame, GLOBAL_APP);
+  const before = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: journal.jobId });
+  const terminal = ['completed', 'failed', 'cancelled'].includes(before.data?.status);
+  const cancellation = terminal ? null : await callResolver<any>(frame, GLOBAL_APP, 'cancelJob', { jobId: journal.jobId });
+  const after = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: journal.jobId });
+  writeFileSync('/tmp/cw-large-context-paid/stop-record.json', JSON.stringify({ at: new Date().toISOString(), jobId: journal.jobId, before, cancellation, after }, null, 2));
+  journal.result = after.data;
+  journal.lastSnapshot = after.data;
+  journal.stoppedToPreventReplay = !terminal;
+  writeFileSync(path, JSON.stringify(journal, null, 2));
+  if (cancellation && !cancellation.success) throw new Error('Cancellation failed');
+});
