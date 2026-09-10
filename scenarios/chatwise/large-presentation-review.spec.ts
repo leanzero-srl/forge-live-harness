@@ -49,11 +49,13 @@ test('review saved large presentation and download its verified revision', async
     await expect(resume).toBeVisible({timeout:60000});
     await expect.poll(()=>readAppState(frame,GLOBAL_APP,'app.components.chat.isStreaming'),{timeout:60000}).toBe(false);
     await expect(resume).toBeEnabled();
+    const resumeMessageId=await resume.evaluate(el=>el.closest<HTMLElement>('[data-message-id]')?.dataset.messageId);
+    expect(resumeMessageId).toBeTruthy();
     entry.resumeFrom=saved.data.result.finishedAt;
     entry.resumeAttempts=[...(entry.resumeAttempts||[]),{result:entry.result,requestedAt:new Date().toISOString(),resumeFrom:entry.resumeFrom}];
     delete entry.result;delete entry.lastSnapshot;entry.state='resuming';save();
     await resume.click();
-    await expect(frame.locator('.presentation-resume-btn')).toHaveCount(0,{timeout:60000});
+    await expect(frame.locator(`[data-message-id="${resumeMessageId}"] .presentation-resume-btn`)).toHaveCount(0,{timeout:60000});
     entry.resumeAttempts.at(-1).dispatchAcceptedAt=new Date().toISOString();save();
   }
   const recoverCancelled=process.env.CW_LARGE_REVIEW_RECOVER_CANCELLED==='1';
