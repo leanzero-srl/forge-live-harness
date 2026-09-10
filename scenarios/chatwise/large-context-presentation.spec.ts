@@ -72,13 +72,15 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     const formatRepair = process.env.CW_LARGE_REPAIR_FORMAT === '1';
     const slotRepair = process.env.CW_LARGE_SLOT_REPAIR === '1';
     const diagnoseRepair = process.env.CW_LARGE_DIAGNOSE_REPAIR === '1';
-    expect(process.env.CW_EXPECT_VERSION).toBe(diagnoseRepair ? 'v6.147.0' : slotRepair ? 'v6.146.0' : formatRepair ? 'v6.145.0' : recovery ? 'v6.144.0' : 'v6.143.0');
+    const singleRunRepair = process.env.CW_LARGE_SINGLE_RUN_REPAIR === '1';
+    expect(process.env.CW_EXPECT_VERSION).toBe(singleRunRepair ? 'v6.148.0' : diagnoseRepair ? 'v6.147.0' : slotRepair ? 'v6.146.0' : formatRepair ? 'v6.145.0' : recovery ? 'v6.144.0' : 'v6.143.0');
+    if (singleRunRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:37:19.878Z');
     if (diagnoseRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:32:15.843Z');
     if (slotRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:17:29.045Z');
     if (formatRepair && !slotRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T20:06:46.472Z');
     if (recovery && !formatRepair && !slotRepair) expect(entry.result?.result?.finishedAt).toBe('2026-09-10T19:59:44.753Z');
     expect(entry.jobId).toBe('job_1789069156385_xbqa4j602');
-    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(diagnoseRepair ? 4 : slotRepair ? 3 : formatRepair ? 2 : recovery ? 1 : 0);
+    expect(entry.resumeAttempts || [], 'Never repeat a paid resume automatically').toHaveLength(singleRunRepair ? 5 : diagnoseRepair ? 4 : slotRepair ? 3 : formatRepair ? 2 : recovery ? 1 : 0);
     expect(entry.artifact).toBeFalsy();
     const saved = await callResolver<any>(frame, GLOBAL_APP, 'getJobStatus', { jobId: entry.jobId });
     expect(saved.data.status).toBe(recovery && !formatRepair && !slotRepair ? 'failed' : 'completed');
