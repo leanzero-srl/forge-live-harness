@@ -24,6 +24,13 @@ test('review saved large presentation and download its verified revision', async
   await waitForChatApp(page,frame,GLOBAL_APP);
   const usableMs=Date.now()-openingAt;
   await expect(frame.locator('body')).toContainText(process.env.CW_EXPECT_VERSION||'v6.149.0');
+  if(process.env.CW_LARGE_REVIEW_SNAPSHOT==='1'){
+    expect(entry.jobId).toBe('job_1789069156385_review9d3777857a88a085');
+    const current=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
+    expect(current.success).toBe(true);entry.lastSnapshot=current.data;
+    if(['completed','failed','cancelled'].includes(current.data.status)&&current.data.result?.finishedAt!==entry.resumeFrom)entry.result=current.data;
+    entry.readOnlySnapshotAt=new Date().toISOString();save();console.log('READ_ONLY_REVIEW_STATUS',JSON.stringify(current.data));return;
+  }
   if(process.env.CW_LARGE_REVIEW_CANCEL==='1'){
     expect(entry.jobId).toBe('job_1789069156385_review955c64c3faacfda0');
     entry.cancellation={requestedAt:new Date().toISOString(),response:await callResolver<any>(frame,GLOBAL_APP,'cancelJob',{jobId:entry.jobId})};save();
@@ -103,7 +110,13 @@ test('review saved large presentation and download its verified revision', async
     entry.resumeAttempts=[...(entry.resumeAttempts||[]),{result:entry.result,diagnosticOnly:entry.diagnosticOnly,requestedAt:new Date().toISOString(),resumeFrom:entry.resumeFrom}];
     delete entry.result;delete entry.lastSnapshot;delete entry.diagnosticOnly;entry.state='resuming';save();
     await resume.click();
-    await expect(frame.locator(`[data-message-id="${resumeMessageId}"] .presentation-resume-btn`)).toHaveCount(0,{timeout:60000});
+    // A short terminal run can restore the same message's Resume button before
+    // the browser observes its removal. A changed saved job is the acknowledgement.
+    await expect.poll(async()=>{
+      const current=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
+      entry.lastSnapshot=current.data;save();
+      return current.success===true && ['queued','processing','retrying','completed','failed','cancelled'].includes(current.data?.status) && (current.data.status!=='completed'||current.data.result?.finishedAt!==entry.resumeFrom);
+    },{timeout:60000}).toBe(true);
     entry.resumeAttempts.at(-1).dispatchAcceptedAt=new Date().toISOString();save();
   }
   const segmentedRecovery=process.env.CW_LARGE_REVIEW_SEGMENTED==='1';
