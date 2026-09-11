@@ -55,12 +55,13 @@ test('review saved large presentation and download its verified revision', async
     const unitEquivalent=process.env.CW_LARGE_REVIEW_UNIT_EQUIVALENT==='1';
     const savedCorrection=process.env.CW_LARGE_REVIEW_SAVED_CORRECTION==='1';
     const claimDiagnostics=process.env.CW_LARGE_REVIEW_CLAIM_DIAGNOSTICS==='1';
+    const rawPreflight=process.env.CW_LARGE_REVIEW_RAW_PREFLIGHT==='1';
     expect(prior,'Resume requires the existing paid review receipt').toBeTruthy();
-    expect(process.env.CW_EXPECT_VERSION).toBe(claimDiagnostics?'v6.162.0':savedCorrection?'v6.161.0':unitEquivalent?'v6.160.0':unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
-    expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics||unitEquivalent||savedCorrection||claimDiagnostics?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
-    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(claimDiagnostics?10:savedCorrection?9:unitEquivalent?8:unitDiagnostics?7:repairedClaims?6:normalizedClaims?5:steeredClaims?4:flatClaims?3:outputCut?2:budgetCut?1:0);
-    expect(entry.result?.result?.finishedAt).toBe(claimDiagnostics?'2026-09-10T23:53:55.011Z':savedCorrection?'2026-09-10T23:46:49.731Z':unitEquivalent?'2026-09-10T23:36:07.404Z':unitDiagnostics?'2026-09-10T23:20:23.282Z':repairedClaims?'2026-09-10T23:13:51.577Z':normalizedClaims?'2026-09-10T23:06:03.708Z':steeredClaims?'2026-09-10T22:36:25.223Z':flatClaims?'2026-09-10T22:23:37.086Z':outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
-    expect(entry.result?.result?.usage?.total_tokens).toBe(unitDiagnostics||unitEquivalent||savedCorrection||claimDiagnostics?61372:normalizedClaims||repairedClaims?44249:steeredClaims?30780:flatClaims?15357:outputCut?39003:budgetCut?0:50213);
+    expect(process.env.CW_EXPECT_VERSION).toBe(rawPreflight?'v6.163.0':claimDiagnostics?'v6.162.0':savedCorrection?'v6.161.0':unitEquivalent?'v6.160.0':unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
+    expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics||unitEquivalent||savedCorrection||claimDiagnostics||rawPreflight?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
+    expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(rawPreflight?11:claimDiagnostics?10:savedCorrection?9:unitEquivalent?8:unitDiagnostics?7:repairedClaims?6:normalizedClaims?5:steeredClaims?4:flatClaims?3:outputCut?2:budgetCut?1:0);
+    expect(entry.result?.result?.finishedAt).toBe(rawPreflight?'2026-09-11T00:00:14.939Z':claimDiagnostics?'2026-09-10T23:53:55.011Z':savedCorrection?'2026-09-10T23:46:49.731Z':unitEquivalent?'2026-09-10T23:36:07.404Z':unitDiagnostics?'2026-09-10T23:20:23.282Z':repairedClaims?'2026-09-10T23:13:51.577Z':normalizedClaims?'2026-09-10T23:06:03.708Z':steeredClaims?'2026-09-10T22:36:25.223Z':flatClaims?'2026-09-10T22:23:37.086Z':outputCut?'2026-09-10T21:52:44.133Z':budgetCut?'2026-09-10T21:44:30.838Z':'2026-09-10T21:19:53.138Z');
+    expect(entry.result?.result?.usage?.total_tokens).toBe(unitDiagnostics||unitEquivalent||savedCorrection||claimDiagnostics||rawPreflight?61372:normalizedClaims||repairedClaims?44249:steeredClaims?30780:flatClaims?15357:outputCut?39003:budgetCut?0:50213);
     if(savedCorrection)expect(entry.result.result.response).toContain('saved review stage receipt is missing');
     if(unitEquivalent)expect(entry.diagnosticOnly?.usageUnchanged).toBe(true);
     if(unitDiagnostics||unitEquivalent||claimDiagnostics)expect(entry.result.result.response).toContain('source facts could not be verified within the bounded correction step');
@@ -74,6 +75,16 @@ test('review saved large presentation and download its verified revision', async
     expect(saved.data.status).toBe('completed');
     expect(saved.data.result.finishedAt).toBe(entry.result.result.finishedAt);
     expect(saved.data.result.presentationResume?.jobId).toBe(entry.jobId);
+    if(rawPreflight){
+      // Owned existing Review resolves its parent companion without dispatching
+      // a new job. The terminal generation and usage must remain unchanged.
+      const linked=await callResolver<any>(frame,GLOBAL_APP,'reviewPresentationJob',{jobId:original.jobId});
+      expect(linked.success).toBe(true);expect(linked.jobId).toBe(entry.jobId);expect(linked.queueJobId).toBeUndefined();
+      const unchanged=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
+      expect(unchanged.data.result.finishedAt).toBe(saved.data.result.finishedAt);
+      expect(unchanged.data.result.usage.total_tokens).toBe(61372);
+      entry.rawSourceParentLinkedAt=new Date().toISOString();save();
+    }
     await readAppState(frame,GLOBAL_APP,`(app.services.jobMonitoring.monitorJob(${JSON.stringify(entry.jobId)},{stateKey:app.sendingStateKey}),true)`);
     const resume=frame.locator('.presentation-resume-btn').last();
     await expect(resume).toBeVisible({timeout:60000});
@@ -138,6 +149,13 @@ test('review saved large presentation and download its verified revision', async
   }
   const result=entry.result?.result;
   expect(entry.result?.status).toBe('completed');
+  if(process.env.CW_LARGE_REVIEW_RAW_PREFLIGHT==='1'){
+    expect(result?.usage?.total_tokens).toBe(61372);
+    expect(result?.response).toMatch(/workflow budget|source fingerprint|preparation context is unavailable|original presentation job could not be verified/);
+    expect(result?.decks?.length||0).toBe(0);
+    entry.diagnosticOnly={usageUnchanged:true,artifactAccepted:false,originalSourcePreflight:true,finishedAt:result.finishedAt};save();
+    console.log('ORIGINAL_SOURCE_PREFLIGHT_ONLY: no additional inference usage; presentation remains rejected');return;
+  }
   if(process.env.CW_LARGE_REVIEW_UNIT_DIAGNOSTICS==='1'||process.env.CW_LARGE_REVIEW_CLAIM_DIAGNOSTICS==='1'){
     expect(result?.usage?.total_tokens).toBe(61372);
     expect(result?.response).toContain('source facts could not be verified within the bounded correction step');
