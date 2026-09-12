@@ -8,7 +8,7 @@ import { existsSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 test.describe.configure({ retries: 0 });
 test('review saved large presentation and download its verified revision', async ({ page }) => {
   test.skip(process.env.CW_LARGE_REVIEW !== '1', 'Explicit paid review acceptance required');
-  test.setTimeout(1800000);
+  test.setTimeout(process.env.CW_LARGE_REVIEW_DURABLE === '1' ? 5_400_000 : 1_800_000);
   expect(new URL(BASE_URL).hostname).toBe('wolfaenpak.atlassian.net');
   const folder='/tmp/cw-large-context-paid';
   const original=JSON.parse(readFileSync(`${folder}/result.json`,'utf8'));
@@ -65,8 +65,17 @@ test('review saved large presentation and download its verified revision', async
     const rawPreflight=process.env.CW_LARGE_REVIEW_RAW_PREFLIGHT==='1';
     const primaryReview=process.env.CW_LARGE_REVIEW_PRIMARY==='1';
     const citationRepair=process.env.CW_LARGE_REVIEW_CITATION==='1';
+    const durableCorrection=process.env.CW_LARGE_REVIEW_DURABLE==='1';
     expect(primaryReview && rawPreflight, 'Paid primary review and zero-cost preflight are mutually exclusive').toBe(false);
     expect(prior,'Resume requires the existing paid review receipt').toBeTruthy();
+    if(durableCorrection){
+      expect(process.env.CW_EXPECT_VERSION).toBe('v6.169.0');
+      expect(entry.jobId).toBe('job_1789069156385_review9d3777857a88a085');
+      expect(entry.resumeAttempts).toHaveLength(16);
+      expect(entry.result.result.finishedAt).toBe('2026-09-11T01:17:09.946Z');
+      expect(entry.result.result.usage.total_tokens).toBe(61372);
+      expect(entry.result.result.response).toContain('source facts could not be verified within the bounded correction step');
+    }else{
     expect(process.env.CW_EXPECT_VERSION).toBe(citationRepair?'v6.168.0':primaryReview?'v6.167.0':rawPreflight?'v6.166.0':claimDiagnostics?'v6.162.0':savedCorrection?'v6.161.0':unitEquivalent?'v6.160.0':unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
     expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics||unitEquivalent||savedCorrection||claimDiagnostics||rawPreflight||primaryReview||citationRepair?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
     expect(entry.resumeAttempts||[],'Never repeat a paid resume automatically').toHaveLength(citationRepair?15:primaryReview?14:rawPreflight?13:claimDiagnostics?10:savedCorrection?9:unitEquivalent?8:unitDiagnostics?7:repairedClaims?6:normalizedClaims?5:steeredClaims?4:flatClaims?3:outputCut?2:budgetCut?1:0);
@@ -86,6 +95,7 @@ test('review saved large presentation and download its verified revision', async
     if(budgetCut)expect(entry.result.result.response).toContain('estimated 213786 tokens');
     if(outputCut)expect(entry.result.result.response).toContain('register response exhausted');
     if(flatClaims||steeredClaims)expect(entry.result.result.response).toContain('register-cell-0 response exhausted');
+    }
     expect(entry.artifact).toBeFalsy();
     const saved=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
     expect(saved.data.status).toBe('completed');
@@ -154,7 +164,7 @@ test('review saved large presentation and download its verified revision', async
     entry.dispatchAcceptedAt=new Date().toISOString();entry.state='reviewing';save();
   }
   expect(entry.jobId,'An uncertain request must be inspected, never resent').toBeTruthy();
-  let lastProgress='';const deadline=Date.now()+1500000;
+  let lastProgress='';const deadline=Date.now()+(process.env.CW_LARGE_REVIEW_DURABLE==='1'?4_800_000:1_500_000);
   while(Date.now()<deadline){
     const response=await callResolver<any>(frame,GLOBAL_APP,'getJobStatus',{jobId:entry.jobId});
     const snapshot=response.data;entry.lastSnapshot=snapshot;save();
