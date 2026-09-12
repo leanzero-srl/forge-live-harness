@@ -73,7 +73,7 @@ test('review saved large presentation and download its verified revision', async
       const grouped = process.env.CW_LARGE_REVIEW_GROUPED === '1';
       const quotaSized = process.env.CW_LARGE_REVIEW_QUOTA_SIZED === '1';
       expect(quotaSized && (grouped || calibrated), 'Distinct saved generations must never share a paid resume flag').toBe(false);
-      expect(process.env.CW_EXPECT_VERSION).toBe(quotaSized ? 'v6.173.0' : grouped ? 'v6.171.0' : calibrated ? 'v6.170.0' : 'v6.169.0');
+      expect(process.env.CW_EXPECT_VERSION).toBe(quotaSized ? 'v6.174.0' : grouped ? 'v6.171.0' : calibrated ? 'v6.170.0' : 'v6.169.0');
       expect(entry.jobId).toBe('job_1789069156385_review9d3777857a88a085');
       expect(entry.resumeAttempts).toHaveLength(quotaSized ? 19 : grouped ? 18 : calibrated ? 17 : 16);
       expect(entry.result.result.finishedAt).toBe(quotaSized ? '2026-09-12T16:40:16.542Z' : grouped ? '2026-09-12T16:10:06.369Z' : calibrated ? '2026-09-12T15:47:52.210Z' : '2026-09-11T01:17:09.946Z');
