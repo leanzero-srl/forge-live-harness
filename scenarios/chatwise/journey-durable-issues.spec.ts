@@ -12,7 +12,17 @@ test('one delegated project request and one 100-issue request finish without rep
   test.setTimeout(5_400_000);
   expect(new URL(BASE_URL).hostname).toBe('wolfaenpak.atlassian.net');
   expect(process.env.CW_EXPECT_VERSION).toMatch(/^v6\.\d+\.0$/);
-  const folder = '/tmp/cw-durable-issues-20260912';
+  const protocolRepair = process.env.CW_DURABLE_PROTOCOL_REPAIR === '1';
+  if (protocolRepair) {
+    expect(process.env.CW_EXPECT_VERSION).toBe('v6.170.0');
+    const previous = JSON.parse(readFileSync('/tmp/cw-durable-issues-20260912/result.json', 'utf8'));
+    expect(previous.turns).toHaveLength(1);
+    expect(previous.turns[0].jobId).toBe('job_1789228182619_12dzkbsva');
+    expect(previous.turns[0].snapshot.status).toBe('completed');
+    expect(previous.turns[0].snapshot.result.usage.total_tokens).toBe(96273);
+    expect(previous.turns[0].snapshot.result.executedWrites?.length || 0).toBe(0);
+  }
+  const folder = protocolRepair ? '/tmp/cw-durable-issues-20260912-v6170' : '/tmp/cw-durable-issues-20260912';
   mkdirSync(folder, { recursive: true });
   const journal = `${folder}/result.json`;
   const existing = existsSync(journal) ? JSON.parse(readFileSync(journal, 'utf8')) : null;

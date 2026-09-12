@@ -69,12 +69,13 @@ test('review saved large presentation and download its verified revision', async
     expect(primaryReview && rawPreflight, 'Paid primary review and zero-cost preflight are mutually exclusive').toBe(false);
     expect(prior,'Resume requires the existing paid review receipt').toBeTruthy();
     if(durableCorrection){
-      expect(process.env.CW_EXPECT_VERSION).toBe('v6.169.0');
+      const calibrated = process.env.CW_LARGE_REVIEW_CALIBRATION === '1';
+      expect(process.env.CW_EXPECT_VERSION).toBe(calibrated ? 'v6.170.0' : 'v6.169.0');
       expect(entry.jobId).toBe('job_1789069156385_review9d3777857a88a085');
-      expect(entry.resumeAttempts).toHaveLength(16);
-      expect(entry.result.result.finishedAt).toBe('2026-09-11T01:17:09.946Z');
+      expect(entry.resumeAttempts).toHaveLength(calibrated ? 17 : 16);
+      expect(entry.result.result.finishedAt).toBe(calibrated ? '2026-09-12T15:47:52.210Z' : '2026-09-11T01:17:09.946Z');
       expect(entry.result.result.usage.total_tokens).toBe(61372);
-      expect(entry.result.result.response).toContain('source facts could not be verified within the bounded correction step');
+      expect(entry.result.result.response).toContain(calibrated ? 'estimated 505728 tokens plus 30592' : 'source facts could not be verified within the bounded correction step');
     }else{
     expect(process.env.CW_EXPECT_VERSION).toBe(citationRepair?'v6.168.0':primaryReview?'v6.167.0':rawPreflight?'v6.166.0':claimDiagnostics?'v6.162.0':savedCorrection?'v6.161.0':unitEquivalent?'v6.160.0':unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
     expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics||unitEquivalent||savedCorrection||claimDiagnostics||rawPreflight||primaryReview||citationRepair?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
