@@ -7,6 +7,8 @@ test.describe.configure({ retries: 0 });
 test('inspect the retained issue planning response without dispatching work', async ({ page }) => {
   test.skip(process.env.CW_DURABLE_INSPECT !== '1', 'Explicit read-only inspection');
   const folder = '/tmp/cw-durable-issues-20260912-v6170';
+  const batchIndex = Number(process.env.CW_DURABLE_INSPECT_BATCH || '0');
+  expect(Number.isInteger(batchIndex) && batchIndex >= 0 && batchIndex < 20).toBe(true);
   const previous = JSON.parse(readFileSync(`${folder}/result.json`, 'utf8'));
   expect(previous.turns).toHaveLength(2);
   expect(previous.turns[1].jobId).toBe('job_1789229526917_m8vah055a');
@@ -14,14 +16,16 @@ test('inspect the retained issue planning response without dispatching work', as
   const frame = await openGlobalPage(page, getTarget('chatwise-global'));
   await waitForChatApp(page, frame, GLOBAL_APP);
   await expect(frame.locator('body')).toContainText(process.env.CW_EXPECT_VERSION!);
+  const before: any = await callResolver(frame, GLOBAL_APP, 'getJobStatus', { jobId: previous.turns[1].jobId });
+  expect(before.success).toBe(true);
   const response: any = await callResolver(frame, GLOBAL_APP, 'getIssueTaskPlan', {
-    jobId: previous.turns[1].jobId, batchIndex: 0,
+    jobId: previous.turns[1].jobId, batchIndex,
   });
   expect(response.success).toBe(true);
-  writeFileSync(`${folder}/batch0-inspection.json`, JSON.stringify({ observedAt: new Date().toISOString(), response }, null, 2), { flag: 'wx' });
+  writeFileSync(`${folder}/batch${batchIndex}-inspection.json`, JSON.stringify({ observedAt: new Date().toISOString(), response }, null, 2), { flag: 'wx' });
   console.log('SAVED_PLAN_DIAGNOSTICS', JSON.stringify(response.data.diagnostics));
   expect(response.data.expectedCount).toBe(5);
   const after: any = await callResolver(frame, GLOBAL_APP, 'getJobStatus', { jobId: previous.turns[1].jobId });
-  expect(after.data.result.finishedAt).toBe(previous.turns[1].snapshot.result.finishedAt);
-  expect(after.data.result.usage.total_tokens).toBe(66007);
+  expect(after.data.result.finishedAt).toBe(before.data.result.finishedAt);
+  expect(after.data.result.usage).toEqual(before.data.result.usage);
 });
