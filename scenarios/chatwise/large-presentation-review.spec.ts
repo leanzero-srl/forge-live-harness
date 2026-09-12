@@ -71,12 +71,14 @@ test('review saved large presentation and download its verified revision', async
     if(durableCorrection){
       const calibrated = process.env.CW_LARGE_REVIEW_CALIBRATION === '1';
       const grouped = process.env.CW_LARGE_REVIEW_GROUPED === '1';
-      expect(process.env.CW_EXPECT_VERSION).toBe(grouped ? 'v6.171.0' : calibrated ? 'v6.170.0' : 'v6.169.0');
+      const quotaSized = process.env.CW_LARGE_REVIEW_QUOTA_SIZED === '1';
+      expect(quotaSized && (grouped || calibrated), 'Distinct saved generations must never share a paid resume flag').toBe(false);
+      expect(process.env.CW_EXPECT_VERSION).toBe(quotaSized ? 'v6.173.0' : grouped ? 'v6.171.0' : calibrated ? 'v6.170.0' : 'v6.169.0');
       expect(entry.jobId).toBe('job_1789069156385_review9d3777857a88a085');
-      expect(entry.resumeAttempts).toHaveLength(grouped ? 18 : calibrated ? 17 : 16);
-      expect(entry.result.result.finishedAt).toBe(grouped ? '2026-09-12T16:10:06.369Z' : calibrated ? '2026-09-12T15:47:52.210Z' : '2026-09-11T01:17:09.946Z');
-      expect(entry.result.result.usage.total_tokens).toBe(grouped ? 86434 : 61372);
-      expect(entry.result.result.response).toContain(grouped ? 'saved claim-delta-cell-0 response exhausted its single output allowance' : calibrated ? 'estimated 505728 tokens plus 30592' : 'source facts could not be verified within the bounded correction step');
+      expect(entry.resumeAttempts).toHaveLength(quotaSized ? 19 : grouped ? 18 : calibrated ? 17 : 16);
+      expect(entry.result.result.finishedAt).toBe(quotaSized ? '2026-09-12T16:40:16.542Z' : grouped ? '2026-09-12T16:10:06.369Z' : calibrated ? '2026-09-12T15:47:52.210Z' : '2026-09-11T01:17:09.946Z');
+      expect(entry.result.result.usage.total_tokens).toBe(quotaSized || grouped ? 86434 : 61372);
+      expect(entry.result.result.response).toContain(quotaSized ? 'estimated 389045 tokens plus 55654 already used' : grouped ? 'saved claim-delta-cell-0 response exhausted its single output allowance' : calibrated ? 'estimated 505728 tokens plus 30592' : 'source facts could not be verified within the bounded correction step');
     }else{
     expect(process.env.CW_EXPECT_VERSION).toBe(citationRepair?'v6.168.0':primaryReview?'v6.167.0':rawPreflight?'v6.166.0':claimDiagnostics?'v6.162.0':savedCorrection?'v6.161.0':unitEquivalent?'v6.160.0':unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
     expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics||unitEquivalent||savedCorrection||claimDiagnostics||rawPreflight||primaryReview||citationRepair?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
