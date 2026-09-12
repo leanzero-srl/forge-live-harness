@@ -4,6 +4,7 @@ import { getTarget } from '../../config/targets';
 import { BASE_URL } from '../../config/env';
 import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver, awaitSwapSettled, readAppState } from './chatwise-support';
 import { existsSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 
 test.describe.configure({ retries: 0 });
 test('review saved large presentation and download its verified revision', async ({ page }) => {
@@ -15,10 +16,24 @@ test('review saved large presentation and download its verified revision', async
   expect(original.jobId).toBe('job_1789069156385_xbqa4j602');
   expect(original.result.result.finishedAt).toBe('2026-09-10T20:53:44.647Z');
   expect(original.browserDownload.bytes).toBe(157912);
-  const journal=`${folder}/review-result.json`;
-  const prior=existsSync(journal)?JSON.parse(readFileSync(journal,'utf8')):null;
+  const successor=process.env.CW_LARGE_REVIEW_SUCCESSOR==='1';
+  const sourceJournal=`${folder}/review-result.json`;
+  const originalJournalBytes=existsSync(sourceJournal)?readFileSync(sourceJournal):null;
+  const journal=successor?`${folder}/review-result-v6178-attempt21.json`:sourceJournal;
+  const prior=originalJournalBytes?JSON.parse(originalJournalBytes.toString('utf8')):null;
+  if(successor){
+    expect(process.env.CW_EXPECT_VERSION).toBe('v6.178.0');
+    expect(process.env.CW_LARGE_REVIEW_RESUME).toBe('1');expect(process.env.CW_LARGE_REVIEW_DURABLE).toBe('1');
+    const allowed=new Set(['CW_LARGE_REVIEW_RESUME','CW_LARGE_REVIEW_DURABLE','CW_LARGE_REVIEW_SUCCESSOR']);
+    expect(Object.entries(process.env).filter(([key,value])=>key.startsWith('CW_LARGE_REVIEW_')&&value==='1'&&!allowed.has(key))).toEqual([]);
+    expect(existsSync(journal),'Never overwrite or automatically repeat attempt21; inspect its own journal instead').toBe(false);
+    expect(createHash('sha256').update(originalJournalBytes!).digest('hex')).toBe('231f6992d2e5d45cf35c34fcd7be02bede7af14b8450e15b68075c85295f5282');
+    expect(prior.jobId).toBe('job_1789069156385_review9d3777857a88a085');expect(prior.conversationId).toBe('conv_1789061368239_6fi8y9m66');
+    expect(prior.resumeAttempts).toHaveLength(20);expect(prior.result.result.finishedAt).toBe('2026-09-12T18:23:27.452Z');expect(prior.result.result.usage.total_tokens).toBe(86434);
+  }
   const entry:any=prior||{originalJobId:original.jobId,conversationId:original.conversationId,originalArtifact:original.artifact};
-  const save=()=>writeFileSync(journal,JSON.stringify(entry,null,2));
+  if(successor){entry.successor={version:'v6.178.0',attempt:21,sourceJournal,sourceJournalSha256:createHash('sha256').update(originalJournalBytes!).digest('hex'),draftId:'cbf05b7c635ae0b44ee658069d4b3d2f4a6e184f7df4405747f9a3b9fa6fa9e4',corpusHash:'a18875aef38f2655597fa455bbe5681dabf61210de332cc4e87e498b94fb621c'};writeFileSync(journal,JSON.stringify(entry,null,2),{flag:'wx'});}
+  const save=()=>{if(successor)expect(readFileSync(sourceJournal).equals(originalJournalBytes!),'Original20-attempt receipt remains byte-identical').toBe(true);writeFileSync(journal,JSON.stringify(entry,null,2));};
   const openingAt=Date.now();
   const frame=await openGlobalPage(page,getTarget('chatwise-global'));
   await waitForChatApp(page,frame,GLOBAL_APP);
@@ -72,13 +87,14 @@ test('review saved large presentation and download its verified revision', async
       const calibrated = process.env.CW_LARGE_REVIEW_CALIBRATION === '1';
       const grouped = process.env.CW_LARGE_REVIEW_GROUPED === '1';
       const quotaSized = process.env.CW_LARGE_REVIEW_QUOTA_SIZED === '1';
+      expect(successor && (quotaSized || grouped || calibrated), 'Successor must have its own exact generation flag').toBe(false);
       expect(quotaSized && (grouped || calibrated), 'Distinct saved generations must never share a paid resume flag').toBe(false);
-      expect(process.env.CW_EXPECT_VERSION).toBe(quotaSized ? 'v6.174.0' : grouped ? 'v6.171.0' : calibrated ? 'v6.170.0' : 'v6.169.0');
+      expect(process.env.CW_EXPECT_VERSION).toBe(successor ? 'v6.178.0' : quotaSized ? 'v6.174.0' : grouped ? 'v6.171.0' : calibrated ? 'v6.170.0' : 'v6.169.0');
       expect(entry.jobId).toBe('job_1789069156385_review9d3777857a88a085');
-      expect(entry.resumeAttempts).toHaveLength(quotaSized ? 19 : grouped ? 18 : calibrated ? 17 : 16);
-      expect(entry.result.result.finishedAt).toBe(quotaSized ? '2026-09-12T16:40:16.542Z' : grouped ? '2026-09-12T16:10:06.369Z' : calibrated ? '2026-09-12T15:47:52.210Z' : '2026-09-11T01:17:09.946Z');
-      expect(entry.result.result.usage.total_tokens).toBe(quotaSized || grouped ? 86434 : 61372);
-      expect(entry.result.result.response).toContain(quotaSized ? 'estimated 389045 tokens plus 55654 already used' : grouped ? 'saved claim-delta-cell-0 response exhausted its single output allowance' : calibrated ? 'estimated 505728 tokens plus 30592' : 'source facts could not be verified within the bounded correction step');
+      expect(entry.resumeAttempts).toHaveLength(successor ? 20 : quotaSized ? 19 : grouped ? 18 : calibrated ? 17 : 16);
+      expect(entry.result.result.finishedAt).toBe(successor ? '2026-09-12T18:23:27.452Z' : quotaSized ? '2026-09-12T16:40:16.542Z' : grouped ? '2026-09-12T16:10:06.369Z' : calibrated ? '2026-09-12T15:47:52.210Z' : '2026-09-11T01:17:09.946Z');
+      expect(entry.result.result.usage.total_tokens).toBe(successor || quotaSized || grouped ? 86434 : 61372);
+      expect(entry.result.result.response).toContain(successor ? 'A single claim needs more than the bounded source context' : quotaSized ? 'estimated 389045 tokens plus 55654 already used' : grouped ? 'saved claim-delta-cell-0 response exhausted its single output allowance' : calibrated ? 'estimated 505728 tokens plus 30592' : 'source facts could not be verified within the bounded correction step');
     }else{
     expect(process.env.CW_EXPECT_VERSION).toBe(citationRepair?'v6.168.0':primaryReview?'v6.167.0':rawPreflight?'v6.166.0':claimDiagnostics?'v6.162.0':savedCorrection?'v6.161.0':unitEquivalent?'v6.160.0':unitDiagnostics?'v6.159.0':repairedClaims?'v6.158.0':normalizedClaims?'v6.157.0':steeredClaims?'v6.156.0':flatClaims?'v6.155.0':outputCut?'v6.153.0':budgetCut?'v6.152.0':'v6.150.0');
     expect(entry.jobId).toBe(flatClaims||steeredClaims||normalizedClaims||repairedClaims||unitDiagnostics||unitEquivalent||savedCorrection||claimDiagnostics||rawPreflight||primaryReview||citationRepair?'job_1789069156385_review9d3777857a88a085':budgetCut||outputCut?'job_1789069156385_reviewc23ca3b6ee714d07':'job_1789069156385_review955c64c3faacfda0');
@@ -105,6 +121,12 @@ test('review saved large presentation and download its verified revision', async
     expect(saved.data.status).toBe('completed');
     expect(saved.data.result.finishedAt).toBe(entry.result.result.finishedAt);
     expect(saved.data.result.presentationResume?.jobId).toBe(entry.jobId);
+    if(successor){
+      expect(saved.data.result.conversationId).toBe(entry.conversationId);expect(saved.data.result.usage.total_tokens).toBe(86434);expect(saved.data.result.sourceCoverage.corpusHash).toBe(entry.successor.corpusHash);
+      const inspected=await callResolver<any>(frame,GLOBAL_APP,'inspectPresentationReview',{jobId:entry.jobId,cellIndex:0,recordOffset:0});
+      expect(inspected.success).toBe(true);expect(inspected.data.draftId).toBe(entry.successor.draftId);expect(inspected.data.sourceBinding.corpusHash).toBe(entry.successor.corpusHash);expect(inspected.data.slideCount).toBe(30);
+      entry.successor.bindingVerifiedAt=new Date().toISOString();save();
+    }
     if(rawPreflight){
       // Owned existing Review resolves its parent companion without dispatching
       // a new job. The terminal generation and usage must remain unchanged.
