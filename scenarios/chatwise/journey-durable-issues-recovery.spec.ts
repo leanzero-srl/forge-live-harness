@@ -8,8 +8,10 @@ import { verifyDurableIssueReadback } from './durable-issue-readback';
 
 const JOB = 'job_1789229526917_m8vah055a';
 const CONVERSATION = 'conv_1789229496955_nlcs7qbzy';
-const GENERATION = '2026-09-12T16:14:55.214Z';
-const PRIOR_USAGE = 66007;
+const ORIGIN_GENERATION = '2026-09-12T16:14:55.214Z';
+const FIELD_REPAIR = process.env.CW_DURABLE_RECOVER_FIELDS === '1';
+const GENERATION = FIELD_REPAIR ? '2026-09-12T16:56:05.322Z' : ORIGIN_GENERATION;
+const PRIOR_USAGE = FIELD_REPAIR ? 113919 : 66007;
 test.describe.configure({ retries: 0 });
 test('resume owned saved100issue plan once and verify all100 issues', async ({ page }) => {
   test.skip(process.env.CW_DURABLE_RECOVER !== '1', 'Explicit saved-plan acceptance only');
@@ -21,9 +23,17 @@ test('resume owned saved100issue plan once and verify all100 issues', async ({ p
   expect(original.projectKey).toBe('DL9491863');
   expect(original.turns).toHaveLength(2);
   expect(original.turns[1].jobId).toBe(JOB);
-  expect(original.turns[1].snapshot.result.finishedAt).toBe(GENERATION);
-  expect(original.turns[1].snapshot.result.usage.total_tokens).toBe(PRIOR_USAGE);
-  const folder = '/tmp/cw-durable-issues-20260912-saved-plan-recovery';
+  expect(original.turns[1].snapshot.result.finishedAt).toBe(ORIGIN_GENERATION);
+  expect(original.turns[1].snapshot.result.usage.total_tokens).toBe(66007);
+  if (FIELD_REPAIR) {
+    const retained = JSON.parse(readFileSync('/tmp/cw-durable-issues-20260912-saved-plan-recovery/result.json', 'utf8'));
+    expect(retained.jobId).toBe(JOB);
+    expect(retained.snapshot.status).toBe('completed');
+    expect(retained.snapshot.result.finishedAt).toBe(GENERATION);
+    expect(retained.snapshot.result.usage.total_tokens).toBe(PRIOR_USAGE);
+    expect(retained.snapshot.result.response).toContain('unsupported planning fields');
+  }
+  const folder = '/tmp/cw-durable-issues-20260912-saved-plan-recovery' + (FIELD_REPAIR ? '-fields' : '');
   mkdirSync(folder, { recursive: true });
   const journal = folder + '/result.json';
   const observing = process.env.CW_DURABLE_OBSERVE === '1';
