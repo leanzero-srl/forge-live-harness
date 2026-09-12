@@ -10,12 +10,14 @@ const JOB = 'job_1789229526917_m8vah055a';
 const CONVERSATION = 'conv_1789229496955_nlcs7qbzy';
 const ORIGIN_GENERATION = '2026-09-12T16:14:55.214Z';
 const FIELD_REPAIR = process.env.CW_DURABLE_RECOVER_FIELDS === '1';
-const GENERATION = FIELD_REPAIR ? '2026-09-12T16:56:05.322Z' : ORIGIN_GENERATION;
-const PRIOR_USAGE = FIELD_REPAIR ? 113919 : 66007;
+const OUTPUT_REPAIR = process.env.CW_DURABLE_RECOVER_OUTPUT === '1';
+const GENERATION = OUTPUT_REPAIR ? '2026-09-12T18:14:08.601Z' : FIELD_REPAIR ? '2026-09-12T16:56:05.322Z' : ORIGIN_GENERATION;
+const PRIOR_USAGE = OUTPUT_REPAIR ? 199469 : FIELD_REPAIR ? 113919 : 66007;
 test.describe.configure({ retries: 0 });
 test('resume owned saved100issue plan once and verify all100 issues', async ({ page }) => {
   test.skip(process.env.CW_DURABLE_RECOVER !== '1', 'Explicit saved-plan acceptance only');
   test.setTimeout(5_400_000);
+  expect(FIELD_REPAIR && OUTPUT_REPAIR, 'Field repair and output recovery bind different saved generations').toBe(false);
   expect(new URL(BASE_URL).hostname).toBe('wolfaenpak.atlassian.net');
   expect(process.env.CW_EXPECT_VERSION).toMatch(/^v6\.\d+\.0$/);
   const original = JSON.parse(readFileSync('/tmp/cw-durable-issues-20260912-v6170/result.json', 'utf8'));
@@ -25,23 +27,42 @@ test('resume owned saved100issue plan once and verify all100 issues', async ({ p
   expect(original.turns[1].jobId).toBe(JOB);
   expect(original.turns[1].snapshot.result.finishedAt).toBe(ORIGIN_GENERATION);
   expect(original.turns[1].snapshot.result.usage.total_tokens).toBe(66007);
-  if (FIELD_REPAIR) {
-    const retained = JSON.parse(readFileSync('/tmp/cw-durable-issues-20260912-saved-plan-recovery/result.json', 'utf8'));
+  const retainedJournals = new Map<string, string>();
+  if (FIELD_REPAIR || OUTPUT_REPAIR) {
+    const path = '/tmp/cw-durable-issues-20260912-saved-plan-recovery/result.json';
+    const text = readFileSync(path, 'utf8'); retainedJournals.set(path, text);
+    const retained = JSON.parse(text);
     expect(retained.jobId).toBe(JOB);
     expect(retained.snapshot.status).toBe('completed');
-    expect(retained.snapshot.result.finishedAt).toBe(GENERATION);
-    expect(retained.snapshot.result.usage.total_tokens).toBe(PRIOR_USAGE);
+    expect(retained.snapshot.result.finishedAt).toBe('2026-09-12T16:56:05.322Z');
+    expect(retained.snapshot.result.usage.total_tokens).toBe(113919);
     expect(retained.snapshot.result.response).toContain('unsupported planning fields');
   }
-  const folder = '/tmp/cw-durable-issues-20260912-saved-plan-recovery' + (FIELD_REPAIR ? '-fields' : '');
+  if (OUTPUT_REPAIR) {
+    const path = '/tmp/cw-durable-issues-20260912-saved-plan-recovery-fields/result.json';
+    const text = readFileSync(path, 'utf8'); retainedJournals.set(path, text);
+    const retained = JSON.parse(text);
+    expect(retained.jobId).toBe(JOB); expect(retained.conversationId).toBe(CONVERSATION);
+    expect(retained.projectKey).toBe(original.projectKey);
+    expect(retained.snapshot.status).toBe('completed');
+    expect(retained.snapshot.cancellationRequested).toBe(false);
+    expect(retained.snapshot.result.finishedAt).toBe(GENERATION);
+    expect(retained.snapshot.result.usage.total_tokens).toBe(PRIOR_USAGE);
+    expect(retained.snapshot.result.response).toContain('Prepared 60 of 100 issues. Created 0 of 100 issues.');
+    expect(retained.snapshot.result.response).toContain('The saved planning response was incomplete or refused. No issues were created from it.');
+    expect(retained.snapshot.result.executedWrites || []).toHaveLength(0);
+    expect(retained.snapshot.result.issueTaskResume).toEqual({ jobId: JOB, generation: GENERATION, completedCount: 0, total: 100, preparedCount: 60 });
+  }
+  const folder = '/tmp/cw-durable-issues-20260912-saved-plan-recovery' + (OUTPUT_REPAIR ? '-output' : FIELD_REPAIR ? '-fields' : '');
   mkdirSync(folder, { recursive: true });
   const journal = folder + '/result.json';
   const observing = process.env.CW_DURABLE_OBSERVE === '1';
   const previous = existsSync(journal) ? JSON.parse(readFileSync(journal, 'utf8')) : null;
-  if (observing) { expect(previous?.jobId).toBe(JOB); expect(previous?.dispatchIntent).toBeTruthy(); }
+  if (observing) { expect(previous?.jobId).toBe(JOB); expect(previous?.dispatchIntent).toBeTruthy(); expect(previous?.originalGeneration).toBe(GENERATION); expect(previous?.conversationId).toBe(CONVERSATION); expect(previous?.projectKey).toBe(original.projectKey); }
   else expect(previous, 'Existing recovery must be observed, never resent').toBeNull();
   const entry: any = previous || { jobId: JOB, conversationId: CONVERSATION, projectKey: original.projectKey,
     originalGeneration: GENERATION, originalUsage: PRIOR_USAGE, originalTurns: original.turns,
+    ...(OUTPUT_REPAIR ? { recoveryMode: 'saved-output', retainedReceipts: [...retainedJournals].map(([path, text]) => ({ path, receipt: JSON.parse(text) })) } : {}),
     expectedVersion: process.env.CW_EXPECT_VERSION, createdAt: new Date().toISOString() };
   const save = () => { const temp = journal + '.' + process.pid + '.tmp'; writeFileSync(temp, JSON.stringify(entry, null, 2)); renameSync(temp, journal); };
   const frame = await openGlobalPage(page, getTarget('chatwise-global'));
@@ -59,7 +80,12 @@ test('resume owned saved100issue plan once and verify all100 issues', async ({ p
     expect(owned.data.cancellationRequested).toBe(false);
     expect(owned.data.result.finishedAt).toBe(GENERATION);
     expect(owned.data.result.usage.total_tokens).toBe(PRIOR_USAGE);
-    expect(owned.data.result.issueTaskResume).toEqual({ jobId: JOB, generation: GENERATION, completedCount: 0, total: 100 });
+    expect(owned.data.result.issueTaskResume).toEqual({ jobId: JOB, generation: GENERATION, completedCount: 0, total: 100, ...(OUTPUT_REPAIR ? { preparedCount: 60 } : {}) });
+    if (OUTPUT_REPAIR) {
+      expect(owned.data.result.response).toContain('Prepared 60 of 100 issues. Created 0 of 100 issues.');
+      expect(owned.data.result.response).toContain('The saved planning response was incomplete or refused. No issues were created from it.');
+      expect(owned.data.result.executedWrites || []).toHaveLength(0);
+    }
     expect(existsSync(folder + '/STOP.txt')).toBe(false);
     entry.before = owned.data;
     entry.dispatchIntent = { jobId: JOB, generation: GENERATION, at: new Date().toISOString() };
@@ -109,4 +135,5 @@ test('resume owned saved100issue plan once and verify all100 issues', async ({ p
   entry.acceptance = { count: 100, sameJobId: JOB, originalProjectRetained: true, noNewUserPrompt: true,
     allFieldsReadBack: true, reloadedSingleReceipt: true, semanticReviewPending: true };
   save();
+  for (const [path, text] of retainedJournals) expect(readFileSync(path, 'utf8')).toBe(text);
 });
