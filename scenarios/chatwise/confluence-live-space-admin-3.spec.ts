@@ -116,7 +116,7 @@ test('B3: with write:confluence-space granted, the space undo reaches Confluence
     expect.soft(entry.absoluteSpaceUrl, `the landing reply carries no ABSOLUTE https link to ${KEY} (urls seen: ${JSON.stringify(urls)}):\n${yes.reply.slice(0, 1500)}`).toBeTruthy();
     const note = {
       saysDelete: /delet/i.test(yes.reply),
-      saysOnlyWhileEmpty: /empty|no pages|before .*(content|pages)/i.test(yes.reply),
+      saysOnlyWhileEmpty: /empty|no pages|nothing but|only while|before .*(content|pages)|once (someone|somebody|anybody) (adds|writes)/i.test(yes.reply),
       saysUnproven: /unproven|not (yet )?(been )?(proven|verified|confirmed)|may not|might not|cannot be sure|no guarantee/i.test(yes.reply),
     };
     entry.undoNote = note; save();
