@@ -1,0 +1,12 @@
+✔ only one exact next checkpoint succeeds (0.826625ms)
+✔ published outcome is distinct and cannot enter staging cleanup (0.212875ms)
+✔ timeouts and malformed bodies remain unknown, named refusal remains refusal (0.086375ms)
+✔ cleanup requires exact audited receipt and elapsed lease with no public data (3.425125ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39.839917

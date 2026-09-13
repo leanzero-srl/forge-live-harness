@@ -1,0 +1,15 @@
+{
+  "id": "tester-brand-probe",
+  "name": "tester-brand-probe",
+  "description": "diconium brand rules for slides and documents: colours, Campton type, the CAPS and lowercase rules, tone of voice and imagery. Use when creating or restyling any diconium deck or document.",
+  "visibility": "site",
+  "builtin": false,
+  "enabled": true,
+  "templates": [],
+  "referenceCount": 0,
+  "assetCount": 5,
+  "bytes": null,
+  "updatedAt": "2026-09-04T07:54:25.573Z",
+  "ownerAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+  "canEdit": true
+}

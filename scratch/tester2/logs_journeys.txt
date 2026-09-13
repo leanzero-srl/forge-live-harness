@@ -1,0 +1,23 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+INFO    2026-09-04T09:40:29.267Z 57ce5ea4-b6e5-496c-a489-b91855270545 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:41:23.557Z d742cc08-5f25-45d8-92b7-dae2d94ab0d6 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:41:23.558Z d742cc08-5f25-45d8-92b7-dae2d94ab0d6 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:41:23.834Z d742cc08-5f25-45d8-92b7-dae2d94ab0d6 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:42:25.042Z de7eecda-da2d-4725-ab46-125e53598bd8 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:42:25.043Z de7eecda-da2d-4725-ab46-125e53598bd8 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:42:25.279Z de7eecda-da2d-4725-ab46-125e53598bd8 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+WARN    2026-09-04T09:42:25.459Z de7eecda-da2d-4725-ab46-125e53598bd8 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T09:42:39.003Z de7eecda-da2d-4725-ab46-125e53598bd8 [Tools] Created Epic WFH-2238 in WFH
+INFO    2026-09-04T09:42:44.458Z 24fc42fe-dc66-42ba-b182-24dc811fe35a [Service] Deleted conversation conv_1788514466130_lcixvrj1x (28 message rows)
+INFO    2026-09-04T09:43:11.019Z 2461edfb-de40-46a2-bd5f-ce9da1201881 [Metadata] healed listing index: re-added conv_1788514989844_ranlzped5
+INFO    2026-09-04T09:43:13.597Z 88380544-660f-47d6-9b34-f92da0141c7d [Agile] capability from cache: available=true
+INFO    2026-09-04T09:43:13.598Z 88380544-660f-47d6-9b34-f92da0141c7d [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:43:13.781Z 88380544-660f-47d6-9b34-f92da0141c7d [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:43:30.548Z ed84b12b-acc9-455f-bf41-007ace8c5193 [Service] Deleted conversation conv_1788514989844_ranlzped5 (2 message rows)
+INFO    2026-09-04T09:43:31.040Z e950437f-b458-4969-91bc-89fc64cadb73 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:43:31.041Z e950437f-b458-4969-91bc-89fc64cadb73 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:43:31.241Z e950437f-b458-4969-91bc-89fc64cadb73 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:43:38.498Z 9a05faed-1d1b-4486-ac49-78f21b4fc5d9 [Metadata] healed listing index: re-added conv_1788515017260_g3jxj3mhm
+INFO    2026-09-04T09:43:50.303Z 02a30dda-cbd0-499c-9c3f-5840d9f3ca77 [Service] Deleted conversation conv_1788515017260_g3jxj3mhm (0 message rows)

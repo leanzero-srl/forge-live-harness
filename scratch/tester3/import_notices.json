@@ -1,0 +1,17 @@
+[
+  {
+    "text": "reading \"tester-overcap.zip\"…",
+    "cls": "skills-notice is-busy",
+    "at": 1788516252416
+  },
+  {
+    "text": "importing \"tester-overcap.zip\"…",
+    "cls": "skills-notice is-busy",
+    "at": 1788516252420
+  },
+  {
+    "text": "Imported 1 skill from \"tester-overcap.zip\". \"tester-overcap\" is private to you. Not everything was kept: body: truncated to 24000 characters; references/huge.md: truncated to 32000 characters; references/Bad Name.md: path is not references/<name>.md; references/extra03.md: more than 10 references; references/extra07.md: more than 10 references×",
+    "cls": "skills-notice is-ok",
+    "at": 1788516254146
+  }
+]

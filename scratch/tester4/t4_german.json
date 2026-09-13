@@ -1,0 +1,59 @@
+[
+  {
+    "name": "DE-workitem-1",
+    "msg": "hallo, kannst du in meinem Namen ein Arbeitselement anlegen? Du wählst den Bereich aus, die Zusammenfassung soll \"auto created - test\" lauten",
+    "wizardFramed": false,
+    "projectOptions": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "questions": [
+      "Which project should this go in? Showing 4 of 18 — type any other project key in the box if it isn't listed."
+    ],
+    "options": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "response": "Perfekt! Ich habe ein Arbeitselement für dich erstellt:\n\n## TPP-55 — auto created - test\n\n**Details:**\n- **Projekt:** Test Play Project (TPP)\n- **Typ:** Task\n- **Assignee:** dir selbst\n- **Status:** neu erstellt\n\nDas Ticket ist jetzt bereit zur Bearbeitung. Kann ich dir noch dabei helfen?"
+  },
+  {
+    "name": "DE-workitem-2",
+    "msg": "hallo, kannst du in meinem Namen ein Arbeitselement anlegen? Du wählst den Bereich aus, die Zusammenfassung soll \"auto created - test\" lauten",
+    "wizardFramed": false,
+    "projectOptions": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "questions": [
+      "Which project should this go in? Showing 4 of 18 — type any other project key in the box if it isn't listed."
+    ],
+    "options": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "response": "Gerne, ich lege das Arbeitselement mit der Zusammenfassung **\"auto created - test\"** an und weise es dir zu. Da du mir aber die Wahl des Projekts überlässt, brauche ich trotzdem eine kurze Bestätigung, in welchem der folgenden Projekte es entstehen soll – ich möchte hier nicht raten:\n\n- **CGL1** – CogniRunner Rule Lab 1\n- **CGL2** – CogniRunner Rule Lab 2\n- **COGTEST** – CogniRunner Test Harness\n- **BDP** – DEMAND PROCESS\n- **DEMO** – Demo service project\n- **DFD** – Dynamic Form Demo\n- **ES** – EstimatedTimeEpicIssues\n- **FIEL** – FieldsTest\n- **JT** – JSM Test\n- **LZPT** – LZ PPM Harness Test\n- **LZPP** – LZPT Performance\n- **SCRQ** – Screen Enforcement Refutation Probe\n- **TES** – Test Fields\n- **TPP** – Test Play Project\n- **TF** – TEST-FORMULA\n- **TEF** – TestForm\n- **TRAN** – Transition Lab\n- **WFH** – WORK FOR HIRE\n\nDa es sich um einen Test-Eintrag handelt, käme z. B. **COGTEST** oder **TES** in Frage – welches Projekt soll ich verwenden?"
+  },
+  {
+    "name": "DE-epic",
+    "msg": "Ich möchte ein Epic für Lieferanten-Onboarding anlegen",
+    "wizardFramed": true,
+    "projectOptions": [],
+    "questions": [
+      "Wer ist der wichtigste Nutzer dieses Onboarding-Prozesses?"
+    ],
+    "options": [
+      "Die Einkaufs-/Procurement-Abteilung",
+      "Die Lieferanten selbst (Self-Service)",
+      "Compliance-/Rechtsabteilung zur Prüfung"
+    ],
+    "response": "## 🧭 Epic Facilitator\n\nIch habe verstanden, dass wir ein Epic für das Lieferanten-Onboarding aufbauen wollen – vermutlich geht es darum, den Prozess zur Aufnahme neuer Lieferanten (Registrierung, Prüfung, Freigabe, Stammdatenanlage) zu digitalisieren, zu standardisieren oder zu beschleunigen.\n\n**To refine this, a few questions:**\n\n- Wer ist der wichtigste Nutzer dieses Onboarding-Prozesses?\n\n*Korrigiere mich, wo ich falsch liege, dann formen wir gemeinsam das Epic.*"
+  }
+]

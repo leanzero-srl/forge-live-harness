@@ -1,0 +1,53 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+INFO    2026-09-04T09:53:43.307Z 14882328-ed8d-41e5-8f0a-1e259cfab941 [Agent] iteration 2 on claude-haiku-4-5-20251001: in=15428 out=20 (turn so far in=28140 out=144)
+INFO    2026-09-04T10:05:22.561Z e143ba14-4ba6-466d-a38f-220d8fd2d062 [Metadata] healed listing index: re-added conv_1788516318805_cb7x4v2a6
+INFO    2026-09-04T10:05:29.584Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agile] capability from cache: available=true
+INFO    2026-09-04T10:05:29.585Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T10:05:29.886Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Consumer] skills: bound=chatwise-jira-conventions offered=3 directionChars=2423
+INFO    2026-09-04T10:05:31.753Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 1 on claude-haiku-4-5-20251001: in=12708 out=59 (turn so far in=12708 out=59)
+INFO    2026-09-04T10:05:31.754Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Tools] loadSkill { skillId: 'diconium-brand' } (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:05:31.885Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [skills] loaded diconium-brand (+6,001 chars; prompt cache for this turn is now cold)
+INFO    2026-09-04T10:05:36.545Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 2 on claude-haiku-4-5-20251001: in=14382 out=577 (turn so far in=27090 out=636)
+INFO    2026-09-04T10:05:36.546Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Tools] createPresentation {
+  title: 'Tester Slot Probe',
+  skillId: 'diconium-brand',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'section', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:05:41.097Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 3 on claude-haiku-4-5-20251001: in=15238 out=473 (turn so far in=42328 out=1109)
+INFO    2026-09-04T10:05:41.098Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Tools] createPresentation {
+  title: 'Tester Slot Probe',
+  skillId: 'diconium-brand',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'section', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:05:44.490Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 4 on claude-haiku-4-5-20251001: in=16106 out=99 (turn so far in=58434 out=1208)
+INFO    2026-09-04T10:05:44.491Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Tools] readSkillReference { skillId: 'diconium-brand', path: 'references/powerpoint.md' } (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:05:44.710Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [skills] loaded diconium-brand#references/powerpoint.md (+3,821 chars; prompt cache for this turn is now cold)
+WARN    2026-09-04T10:05:44.741Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+INFO    2026-09-04T10:05:58.640Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 5 on claude-opus-5: in=22867 out=1044 (turn so far in=81301 out=2252)
+INFO    2026-09-04T10:05:58.641Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Tools] createPresentation {
+  title: 'Tester Slot Probe',
+  skillId: 'diconium-brand',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'section', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+WARN    2026-09-04T10:05:59.468Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+INFO    2026-09-04T10:06:10.615Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 6 on claude-opus-5: in=23872 out=625 (turn so far in=105173 out=2877)

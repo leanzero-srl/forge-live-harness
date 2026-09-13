@@ -1,0 +1,61 @@
+
+Running 1 test using 1 worker
+
+DEPLOYED BUILD IN THE DOM: v6.92.0
+  VERIFIED WFH-2264 in WFH: "[harness-test] t5 f2 r1"
+--- F2 round 1
+  t1 reply: Created **WFH-2264** — "[harness-test] t5 f2 r1" as a **Work package** in the **WORK FOR HIRE** project, assigned to you. ⏎  ⏎ Would you like to add a description, 
+  t2 reply: That's your call — I can't pick for you. Here are the projects you have access to: ⏎  ⏎ - **WFH** — WORK FOR HIRE (where the last item went) ⏎ - **CGL1** — CogniRunner Rule Lab 1 ⏎ - **CGL2** — CogniRunner Rule Lab 2 ⏎ - **COGTEST** — CogniRunner Test Harness ⏎ - **BDP** — DEMAND PROCESS ⏎ - **DEMO** — Demo service project ⏎ - **DFD** — Dynamic Form Demo ⏎ - **ES** — EstimatedTimeEpicIssues ⏎ - **FIEL** — FieldsTest ⏎ 
+  t2 question: ["Which project should the new item go in? 4 of 18 are shown — you can type any other project key in the box."]
+  t2 project options: ["Use project WFH — WORK FOR HIRE","Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness"]
+  t2 all options: ["Use project WFH — WORK FOR HIRE","Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness"]
+  VERIFIED WFH-2265 in WFH: "[harness-test] t5 f2 r2"
+--- F2 round 2
+  t1 reply: **✅ Created WFH-2265 — [harness-test] t5 f2 r2** ⏎  ⏎ - **Type:** Work package ⏎ - **Status:** To Do ⏎ - **Assigned to:** You
+  t2 reply: That depends on what it's for. You have access to 18 projects: ⏎  ⏎ - **CGL1** (CogniRunner Rule Lab 1) ⏎ - **CGL2** (CogniRunner Rule Lab 2) ⏎ - **COGTEST** (CogniRunner Test Harness) ⏎ - **BDP** (DEMAND PROCESS) ⏎ - **DEMO** (Demo service project) ⏎ - **DFD** (Dynamic Form Demo) ⏎ - **ES** (EstimatedTimeEpicIssues) ⏎ - **FIEL** (FieldsTest) ⏎ - **JT** (JSM Test) ⏎ - **LZPT** (LZ PPM Harness Test) ⏎ - **LZPP** (LZPT Per
+  t2 question: []
+  t2 project options: []
+  t2 all options: []
+round 3: QUOTA on turn 1
+  VERIFIED WFH-2266 in WFH: "[harness-test] t5 f2 r4"
+round 4: QUOTA on turn 2
+  cleanup WFH-2264: deleted
+  cleanup WFH-2265: deleted
+  cleanup WFH-2266: deleted
+F2 HIT RATE: 1/2
+  ✘  1 [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:48:1 › F2: 'now I want to raise another item, which project should it go in?' offers BUTTONS (2.2m)
+
+
+  1) [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:48:1 › F2: 'now I want to raise another item, which project should it go in?' offers BUTTONS 
+
+    Error: round 2: an explicit project question offered NO buttons. reply: That depends on what it's for. You have access to 18 projects:
+
+    - **CGL1** (CogniRunner Rule Lab 1)
+    - **CGL2** (CogniRunner Rule Lab 2)
+    - **COGTEST** (CogniRunner Test Harness)
+    - **BDP** (DEMAND PROCESS)
+    - **DEMO** (Demo service project)
+    - **DFD** (Dynamic Form Demo)
+    - **ES** (EstimatedTimeEpicIssues)
+    - **FIEL** (FieldsTest)
+    - **JT** (JSM Test)
+    - **LZPT** (LZ PPM Harness Test)
+    - **LZPP** (LZPT Per
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      81 |   const withButtons = rows.filter((r) => r.projectOptions.length > 0);
+      82 |   console.log(`F2 HIT RATE: ${withButtons.length}/${rows.length}`);
+    > 83 |   for (const r of rows) expect(r.projectOptions.length, `round ${r.i}: an explicit project question offered NO buttons. reply: ${r.t2.slice(0, 400)}`).toBeGreaterThan(0);
+         |                                                                                                                                                        ^
+      84 | });
+      85 |
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/chatwise/zz5-f2.probe.spec.ts:83:152
+
+    Error Context: test-results/scenarios-chatwise-zz5-f2.-0ebcb-uld-it-go-in-offers-BUTTONS-chromium/error-context.md
+
+  1 failed
+    [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:48:1 › F2: 'now I want to raise another item, which project should it go in?' offers BUTTONS 

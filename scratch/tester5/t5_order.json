@@ -1,0 +1,30 @@
+[
+  {
+    "i": 1,
+    "projectOptions": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "questions": [
+      "Who feels the pain of supplier onboarding today, and what does it cost them?",
+      "Which project should this supplier onboarding Epic be created in? I'm showing 4 of your 18 projects — if it belongs somewhere else, just type that project key into the box."
+    ],
+    "reply": "## 🧭 Epic Facilitator\n\nSupplier onboarding, understood. Right now I know only the theme: we want an Epic covering how new suppliers get registered, vetted and made ready to transact with us. I don't yet know who does that work today, where it hurts, or what \"good\" looks like — so let's settle the destination and start shaping the substance in parallel.\n\n- Who feels the pain of supplier onboarding today, and what does it cost them?\n\n*Pick the group that hurts most (or tell me it's a different one), and tell me which project this Epic belongs in — then I'll draft the Epic Hypothesis for us to sharpen together.*"
+  },
+  {
+    "i": 2,
+    "projectOptions": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "questions": [
+      "Who feels the pain of supplier onboarding today?",
+      "Which project should this supplier onboarding Epic be created in? I'm showing 4 of your 18 projects below — if the right one isn't there, just type its project key in the box."
+    ],
+    "reply": "## 🧭 Epic Facilitator\n\nSo far I have a thin but promising brief: an Epic covering supplier onboarding — bringing new suppliers into our systems and processes. I don't yet know who owns that journey today, where it hurts, or what \"better\" looks like in numbers, so let's put some substance behind it before I draft the hypothesis. First, though, it needs a home in Jira.\n\n- Who feels the pain of supplier onboarding today?\n\n*And one more thing I'd like to pin down early: what is the single number that would tell us onboarding actually got better — days from first contact to an active supplier, share of applications that stall, or manual touches per supplier?*"
+  }
+]

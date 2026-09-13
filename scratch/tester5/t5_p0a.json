@@ -1,0 +1,99 @@
+{
+  "build": "v6.92.0",
+  "marker": "t5p0-1788531842512",
+  "rounds": [
+    {
+      "i": 1,
+      "conversationId": "conv_t5_p0_1788531842512_1",
+      "reply": "Created **WFH-2262** — \"[harness-test] t5p0-1788531842512 r1\", a **Work package** in the **WORK FOR HIRE** project, assigned to you.",
+      "options": [],
+      "projectOptions": [],
+      "createdThisRound": [
+        "WFH-2262"
+      ]
+    },
+    {
+      "i": 2,
+      "conversationId": "conv_t5_p0_1788531871290_2",
+      "reply": "## WFH-2263 created\n\n- **Project:** WORK FOR HIRE (WFH)\n- **Type:** Work package (the standard issue type in this project)\n- **Summary:** [harness-test] t5p0-1788531842512 r2\n- **Assignee:** you\n\nWould you like me to add a description or acceptance criteria to it?",
+      "options": [],
+      "projectOptions": [],
+      "createdThisRound": [
+        "WFH-2263"
+      ]
+    },
+    {
+      "i": 3,
+      "conversationId": "conv_t5_p0_1788531893460_3",
+      "reply": "The project needs an explicit issue type. In WFH (Work for Hire), the available standard-level types are **Work package** or **Bug**. Which would you like me to use?",
+      "options": [
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2",
+        "Use project COGTEST — CogniRunner Test Harness",
+        "Use project BDP — DEMAND PROCESS"
+      ],
+      "projectOptions": [
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2",
+        "Use project COGTEST — CogniRunner Test Harness",
+        "Use project BDP — DEMAND PROCESS"
+      ],
+      "createdThisRound": []
+    }
+  ],
+  "created": [
+    "WFH-2262",
+    "WFH-2263"
+  ],
+  "jql": {
+    "issues": [
+      {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id": "24370",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/24370",
+        "key": "WFH-2262",
+        "fields": {
+          "summary": "[harness-test] t5p0-1788531842512 r1",
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          }
+        }
+      },
+      {
+        "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id": "24371",
+        "self": "https://wolfaenpak.atlassian.net/rest/api/3/issue/24371",
+        "key": "WFH-2263",
+        "fields": {
+          "summary": "[harness-test] t5p0-1788531842512 r2",
+          "project": {
+            "self": "https://wolfaenpak.atlassian.net/rest/api/3/project/10001",
+            "id": "10001",
+            "key": "WFH",
+            "name": "WORK FOR HIRE",
+            "projectTypeKey": "software",
+            "simplified": false,
+            "avatarUrls": {
+              "48x48": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553",
+              "24x24": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=small",
+              "16x16": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=xsmall",
+              "32x32": "https://wolfaenpak.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10553?size=medium"
+            }
+          }
+        }
+      }
+    ],
+    "isLast": true
+  }
+}

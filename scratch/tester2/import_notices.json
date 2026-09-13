@@ -1,0 +1,17 @@
+[
+  {
+    "text": "reading \"tester-overcap.zip\"…",
+    "cls": "skills-notice is-busy",
+    "at": 1788512901932
+  },
+  {
+    "text": "importing \"tester-overcap.zip\"…",
+    "cls": "skills-notice is-busy",
+    "at": 1788512901933
+  },
+  {
+    "text": "Imported 1 skill from \"tester-overcap.zip\". \"tester-overcap\" is private to you. 5 item(s) were skipped: [object Object]; [object Object]; [object Object]; [object Object]; [object Object]×",
+    "cls": "skills-notice is-ok",
+    "at": 1788512903294
+  }
+]

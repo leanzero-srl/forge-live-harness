@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Load the skill with id tester-brand-probe and tell me, in one short line, what its body text says about the CAPS character limit, and list the reference files it has. If the body is empty or there are no references, say exactly: EMPTY.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant",
+    "text": "CAPS limit: Primary headlines may be set in CAPS when they are 30 characters or shorter; longer than that, use lowercase.Reference files:references/colors.mdreferences/typography-and-casing.mdreferences/voice-and-copy.mdreferences/imagery-and-layout.mdreferences/powerpoint.md",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-haiku-4-5-2025100127.2k tokens2 tool callsskills: tester-brand-probe",
+    "streaming": false
+  }
+]

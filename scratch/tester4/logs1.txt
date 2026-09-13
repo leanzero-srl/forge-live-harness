@@ -1,0 +1,21 @@
+
+INFO    2026-09-04T12:47:02.047Z ea806483-0c2b-4d1d-a0ff-355e96f81525 [Consumer] skills: bound=chatwise-jira-conventions offered=2 directionChars=2276
+ERROR   2026-09-04T12:47:02.346Z ea806483-0c2b-4d1d-a0ff-355e96f81525 [Tools] list projects failed: 400 {"errorMessages":["The field to order by should be one of [name, key, owner, category, issueCount, lastIssueUpdatedTime, archivedDate, deletedDate]. Instead, it was: lastIssueUpdatedDate."],"errors":{}}
+WARN    2026-09-04T12:47:02.347Z ea806483-0c2b-4d1d-a0ff-355e96f81525 [Facilitator] recency-ordered project list refused (400) — falling back to name order
+INFO    2026-09-04T12:47:06.107Z ea806483-0c2b-4d1d-a0ff-355e96f81525 [Consumer] wizard handoff: needs-discovery
+INFO    2026-09-04T12:47:16.556Z ea806483-0c2b-4d1d-a0ff-355e96f81525 [Agent] iteration 1 on claude-sonnet-5: in=17409 out=774 (turn so far in=17409 out=774)
+INFO    2026-09-04T12:47:17.760Z 81ab7912-079e-4dc7-8f87-be08846bfa4a [Service] Deleted conversation conv_t4_wi_1788526019886_1 (2 message rows)
+INFO    2026-09-04T12:47:26.265Z a94cdeef-4eaa-4ac6-89fc-a19860289f83 [Agile] capability from cache: available=true
+INFO    2026-09-04T12:47:26.266Z a94cdeef-4eaa-4ac6-89fc-a19860289f83 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T12:47:26.468Z a94cdeef-4eaa-4ac6-89fc-a19860289f83 [Consumer] skills: bound=chatwise-jira-conventions offered=2 directionChars=2276
+ERROR   2026-09-04T12:47:26.689Z a94cdeef-4eaa-4ac6-89fc-a19860289f83 [Tools] list projects failed: 400 {"errorMessages":["The field to order by should be one of [name, key, owner, category, issueCount, lastIssueUpdatedTime, archivedDate, deletedDate]. Instead, it was: lastIssueUpdatedDate."],"errors":{}}
+WARN    2026-09-04T12:47:26.690Z a94cdeef-4eaa-4ac6-89fc-a19860289f83 [Facilitator] recency-ordered project list refused (400) — falling back to name order
+WARN    2026-09-04T12:47:26.929Z a94cdeef-4eaa-4ac6-89fc-a19860289f83 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T12:47:42.432Z e78925b1-b710-4deb-99c8-29b57e521022 [Service] Deleted conversation conv_t4_ep_1788526044287_0 (2 message rows)
+INFO    2026-09-04T12:47:44.181Z 65f1985b-d5ee-43bd-8998-0b99fa4253bf [Agile] capability from cache: available=true
+INFO    2026-09-04T12:47:44.182Z 65f1985b-d5ee-43bd-8998-0b99fa4253bf [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T12:47:44.354Z 65f1985b-d5ee-43bd-8998-0b99fa4253bf [Consumer] skills: bound=chatwise-jira-conventions offered=2 directionChars=2276
+ERROR   2026-09-04T12:47:44.580Z 65f1985b-d5ee-43bd-8998-0b99fa4253bf [Tools] list projects failed: 400 {"errorMessages":["The field to order by should be one of [name, key, owner, category, issueCount, lastIssueUpdatedTime, archivedDate, deletedDate]. Instead, it was: lastIssueUpdatedDate."],"errors":{}}
+WARN    2026-09-04T12:47:44.581Z 65f1985b-d5ee-43bd-8998-0b99fa4253bf [Facilitator] recency-ordered project list refused (400) — falling back to name order
+WARN    2026-09-04T12:47:44.848Z 65f1985b-d5ee-43bd-8998-0b99fa4253bf [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T12:48:00.553Z 72f95a32-4553-4e9b-aa53-7c68031e2781 [Service] Deleted conversation conv_t4_ep_1788526062453_1 (2 message rows)

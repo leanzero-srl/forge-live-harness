@@ -1,0 +1,20 @@
+{
+  "target": "WFH-2197",
+  "before": "New",
+  "after": "New",
+  "transitions": [
+    "Reject work",
+    "UAT",
+    "Move in ready for estimating"
+  ],
+  "rows": [
+    {
+      "msg": "do I have permission to transition and delete issues in WFH? just tell me, don't change anything",
+      "reply": "Yes — in the **WFH** project you have both permissions:\n\n- **Transition Issues:** ✅ Granted\n- **Delete Issues:** ✅ Granted\n\nNote this is a project-level check, so it's possible a specific issue could still refuse one of these (e.g. due to its workflow state or an issue-level security restriction). If you want a definite answer for a particular issue, give me its key and I'll check that one directly."
+    },
+    {
+      "msg": "why can't I move WFH-2197 to a different status? what are my options?",
+      "reply": "## WFH-2197 — Meeting-Free Deep Work Program\n\nNothing is blocking you — this issue **can** be transitioned right now, and you do hold **Transition Issues** on it (checked at issue level, not just project level). It's also **not archived**, and has no security level set. Current status is **New**.\n\n**Available transitions from New:**\n\n- **Reject work** → **Rejected** (conditional, global)\n- **UAT** → **UAT** (conditional, global)\n- **Move in ready for estimating** → **Ready for estimating** — this one **opens a transition screen**, so Jira will ask for one or more fields before it completes\n\nIf the move you tried isn't in that list, the workflow simply has no path from **New** to that status — you'd need to go via one of the three above, or have the workflow changed.\n\nWhich status were you trying to reach? I can tell you whether there's a route to it."
+    }
+  ]
+}

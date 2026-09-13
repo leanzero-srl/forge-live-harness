@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Create a diconium-branded PowerPoint deck titled \"Tester Refusal Probe\" with exactly four slides: a cover, a cards slide, a stats slide and a timeline slide, about a warehouse automation rollout. Do NOT attach it to any Jira issue. IMPORTANT: if any createPresentation call comes back as an error or a refusal, you MUST reproduce that tool result VERBATIM in a fenced code block at the end of your reply, together with the exact `values` object keys you sent on that attempt. If every call succeeded first time, say exactly: NO REFUSAL.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant",
+    "text": "Perfect! Your Tester Refusal Probe deck is ready — 4 slides, diconium-branded, covering the warehouse automation rollout with cover, cards, stats and timeline slides.The deck is held in memory for 30 minutes. If you'd like to attach it to a Jira issue, just give me the issue key and I'll do that for you.NO REFUSAL",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-haiku-4-5-2025100159.4k tokens4 tool callsskills: chatwise-jira-conventions, diconium-brand",
+    "streaming": false
+  }
+]

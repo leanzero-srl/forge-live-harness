@@ -1,0 +1,6 @@
+
+Running 1 test using 1 worker
+
+  -  1 [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts:89:1 › PO full flow: initiative → wizard → approval → a real Epic in Jira, no errors ever
+
+  1 skipped

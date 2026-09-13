@@ -1,0 +1,19 @@
+{
+  "target": "WFH-2197",
+  "rows": [
+    {
+      "name": "comment",
+      "msg": "add a comment on WFH-2197 saying \"[harness-test] t5 non-create write probe\"",
+      "reply": "Comment added to WFH-2197: \"[harness-test] t5 non-create write probe\"\n\nWould you like to continue with the Epic interview you were working through?",
+      "projectOptions": [],
+      "options": []
+    },
+    {
+      "name": "label",
+      "msg": "add the label harness-test-t5 to WFH-2197",
+      "reply": "## WFH-2197 — Meeting-Free Deep Work Program\n\nLabel added.\n\n- **Labels now:** `ai-generated`, `harness-test-t5`\n\nAnything else you'd like changed on this Epic before you carry on?",
+      "projectOptions": [],
+      "options": []
+    }
+  ]
+}

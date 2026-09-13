@@ -1,0 +1,34 @@
+
+Running 6 tests using 1 worker
+
+  ✓  1 [chromium] › scenarios/chatwise/journey-global-conversations.spec.ts:26:1 › global page journey: welcome → persona → chat → message actions → sidebar → delete (39.2s)
+  ✓  2 [chromium] › scenarios/chatwise/journey-issue-panel.spec.ts:21:1 › issue panel journey: boot, in-panel upload, attachment read, persona lock (25.5s)
+  ✓  3 [chromium] › scenarios/chatwise/journey-personas.spec.ts:104:1 › the global page offers exactly the four factory personas (7.3s)
+  ✓  4 [chromium] › scenarios/chatwise/journey-personas.spec.ts:121:1 › Coffee Break AI: casual chat on ITS model, no Jira machinery (38.2s)
+  ✓  5 [chromium] › scenarios/chatwise/journey-personas.spec.ts:148:1 › JIRA Scrubber: flags the defects a bad ticket actually has (46.5s)
+  ✘  6 [chromium] › scenarios/chatwise/journey-personas.spec.ts:192:1 › Epic Master: decomposes a real epic into a real hierarchy (38.0s)
+
+
+  1) [chromium] › scenarios/chatwise/journey-personas.spec.ts:192:1 › Epic Master: decomposes a real epic into a real hierarchy 
+
+    Error: meta was: claude-opus-553.9k tokens3 tool callsskills: chatwise-jira-conventions
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected substring: "sonnet"
+    Received string:    "claude-opus-553.9k tokens3 tool callsskills: chatwise-jira-conventions"
+
+      246 |     const chips = await lastMeta(frame);
+      247 |     expect(chips, "the tool loop never ran — creations came from nowhere?").toMatch(/tool calls/);
+    > 248 |     expect(chips, `meta was: ${chips}`).toContain("sonnet");
+          |                                         ^
+      249 |   } finally {
+      250 |     for (const k of childKeys) await del(`/rest/api/3/issue/${k}?deleteSubtasks=true`).catch(() => {});
+      251 |     if (epicKey) await del(`/rest/api/3/issue/${epicKey}?deleteSubtasks=true`).catch(() => {});
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/chatwise/journey-personas.spec.ts:248:41
+
+    Error Context: test-results/scenarios-chatwise-journey-45fd5--epic-into-a-real-hierarchy-chromium/error-context.md
+
+  1 failed
+    [chromium] › scenarios/chatwise/journey-personas.spec.ts:192:1 › Epic Master: decomposes a real epic into a real hierarchy 
+  5 passed (3.3m)

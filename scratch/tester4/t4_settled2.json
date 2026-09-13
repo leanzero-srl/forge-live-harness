@@ -1,0 +1,33 @@
+{
+  "conversationId": "conv_t4_settled2_1788528648756",
+  "created": [
+    "WFH-2258"
+  ],
+  "log": [
+    {
+      "msg": "create a work item in my name in the work for hire one, summary \"[harness-test] t4 settled 2\"",
+      "response": "Created **WFH-2258** — *[harness-test] t4 settled 2* in **WORK FOR HIRE**, as a **Work package**, assigned to you.\n\nWant me to set a priority or link it to an epic?",
+      "projectOptions": [
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2",
+        "Use project COGTEST — CogniRunner Test Harness",
+        "Use project BDP — DEMAND PROCESS"
+      ],
+      "questions": [
+        "Which project should this go in? Showing 4 of 18 — type any other project key in the box if it isn't listed."
+      ]
+    },
+    {
+      "msg": "approve",
+      "response": "## WFH-2258 — [harness-test] t4 settled 2\n\nNothing was left pending to approve — the work item already exists in **WORK FOR HIRE**, confirmed just now:\n\n- **Type:** Work package\n- **Status:** New\n- **Priority:** Medium\n- **Assignee:** Mihai Perdum (you)\n- **Reporter:** Mihai Perdum\n- **Labels:** none\n\nWould you like me to add a priority change, labels, or parent it under an epic in WFH?",
+      "projectOptions": [],
+      "questions": []
+    },
+    {
+      "msg": "thanks — what makes a good definition of done?",
+      "response": "A good **Definition of Done** (DoD) is a shared checklist that answers: \"When can we call this complete?\" It removes ambiguity and prevents work from dragging across sprints unfinished.\n\n## Essential Elements\n\n- **Code quality:** Meets style standards, passes linting, has no obvious bugs\n- **Testing:** Unit tests written and passing; acceptance criteria verified\n- **Documentation:** Code is commented; user-facing features have docs or help text\n- **Review:** Peer review completed and approved; no outstanding feedback\n- **Integration:** Changes merge cleanly; no broken builds or failed CI/CD gates\n- **Performance:** Meets acceptable thresholds (load time, memory, etc.) if relevant\n- **Security:** No obvious vulnerabilities; secrets not hardcoded\n\n## Context Matters\n\nDifferent teams need different DoD:\n- **Backend work** adds: database migrations tested, backwards compatibility checked\n- **Frontend work** adds: responsive design verified, accessibility tested (WCAG)\n- **Infrastructure** adds: monitoring/alerts configured, runbooks updated\n- **Data/Analytics** adds: data validated, schema documented\n\n## How to Build One\n\n1. List what your team *always* forgets or argues about\n2. Add what your stakeholders expect to see before \"done\"\n3. Keep it tight — 5–10 items, not 50\n4. Make each item testable (not \"looks good\" — \"passes automated tests\")\n5. Revisit quarterly; retire items that never fail, add ones that keep slipping\n\nAre you building a DoD for a team, or evaluating whether a specific piece of work is ready to close?",
+      "projectOptions": [],
+      "questions": []
+    }
+  ]
+}

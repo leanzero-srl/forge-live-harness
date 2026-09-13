@@ -1,0 +1,20 @@
+[
+  {
+    "i": 1,
+    "reply": "## WFH-2279 created\n\n- **Project:** WORK FOR HIRE (WFH)\n- **Type:** Work package (the standard-level type in this project — there is no \"Task\")\n- **Summary:** [harness-test] t5 contradiction r1\n- **Assignee:** you\n\nWant me to add a description, priority or acceptance criteria to it?",
+    "questions": [],
+    "projectOptions": [],
+    "namesWFH": true,
+    "offersOthers": false,
+    "wroteSomething": 1
+  },
+  {
+    "i": 4,
+    "reply": "Created **WFH-2282** — \"[harness-test] t5 contradiction r4\" as a **Work package** in the **WORK FOR HIRE** project, assigned to you.\n\nWould you like me to set a priority, due date, or add it to a sprint/epic?",
+    "questions": [],
+    "projectOptions": [],
+    "namesWFH": true,
+    "offersOthers": false,
+    "wroteSomething": 2
+  }
+]

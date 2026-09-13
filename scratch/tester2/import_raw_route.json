@@ -1,0 +1,74 @@
+[
+  {
+    "success": true,
+    "id": "tester-overcap",
+    "name": "tester-overcap",
+    "skill": {
+      "id": "tester-overcap",
+      "name": "tester-overcap",
+      "description": "A deliberately oversized probe skill used to prove import truncation warnings actually reach the UI. Use never.",
+      "visibility": "private",
+      "builtin": false,
+      "enabled": true,
+      "templates": [],
+      "referenceCount": 10,
+      "assetCount": 0,
+      "bytes": 24000,
+      "updatedAt": "2026-09-04T09:08:22.907Z",
+      "ownerAccountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086",
+      "canEdit": true
+    },
+    "dropped": [
+      {
+        "what": "body",
+        "reason": "truncated to 24000 characters"
+      },
+      {
+        "what": "reference",
+        "path": "references/huge.md",
+        "reason": "truncated to 32000 characters"
+      },
+      {
+        "what": "reference",
+        "path": "references/Bad Name.md",
+        "reason": "path is not references/<name>.md"
+      },
+      {
+        "what": "reference",
+        "path": "references/extra03.md",
+        "reason": "more than 10 references"
+      },
+      {
+        "what": "reference",
+        "path": "references/extra07.md",
+        "reason": "more than 10 references"
+      }
+    ],
+    "warnings": [
+      {
+        "what": "body",
+        "reason": "truncated to 24000 characters"
+      },
+      {
+        "what": "reference",
+        "path": "references/huge.md",
+        "reason": "truncated to 32000 characters"
+      },
+      {
+        "what": "reference",
+        "path": "references/Bad Name.md",
+        "reason": "path is not references/<name>.md"
+      },
+      {
+        "what": "reference",
+        "path": "references/extra03.md",
+        "reason": "more than 10 references"
+      },
+      {
+        "what": "reference",
+        "path": "references/extra07.md",
+        "reason": "more than 10 references"
+      }
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "m": "getJobStatus",
+  "p": {
+    "jobId": "job_1788513016556_ad0t216p1"
+  },
+  "r": {
+    "success": true,
+    "data": {
+      "status": "completed",
+      "result": {
+        "response": "Perfect! 🎉 Your deck is ready to download:\n\n**tester-download-probe.pptx** (104 KB)\n\nFour slides, diconium-branded:\n1. **Cover** — \"WAREHOUSE AUTOMATION\" with your strategic tagline\n2. **Cards** — Three implementation pillars (Robotic Systems, Software Integration, Workforce Training)\n3. **Stats** — Impact metrics (45% throughput increase, 60% labour efficiency, 3 sites)\n4. **Timeline** — Deployment schedule across Q1–Q4 2025\n\nThe deck is held for 30 minutes — if you want to attach it to a Jira issue later in this conversation, just tell me the issue key and I'll link it without rebuilding. Otherwise, grab it now! 📥",
+        "conversationId": "conv_1788513012366_35fxc0oxu",
+        "usage": {
+          "completion_tokens": 1198,
+          "prompt_tokens": 58408,
+          "total_tokens": 59606
+        },
+        "model": "claude-haiku-4-5-20251001",
+        "iterations": 4,
+        "truncated": false,
+        "answerOptions": null,
+        "contextNote": null,
+        "skillsUsed": [
+          "chatwise-jira-conventions",
+          "diconium-brand"
+        ],
+        "decks": [
+          {
+            "attached": false,
+            "filename": "tester-download-probe.pptx",
+            "handle": "a6229bf244fe4fcfba9e7a4afc1c6207",
+            "issueKey": null,
+            "sizeBytes": 104481,
+            "slides": 4
+          }
+        ],
+        "progressNote": null,
+        "assistantMessageId": "msg_1788513038977_63u5manbt",
+        "status": "Done"
+      },
+      "retryCount": 0
+    }
+  }
+}

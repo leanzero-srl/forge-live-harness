@@ -1,0 +1,40 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts:89:1 › PO full flow: initiative → wizard → approval → a real Epic in Jira, no errors ever (7.6m)
+
+
+  1) [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts:89:1 › PO full flow: initiative → wizard → approval → a real Epic in Jira, no errors ever 
+
+    Error: no Epic was created after 14 turns — last reply: 🧭 Epic Facilitator
+
+    Both captured: the MVP is all three capabilities live together — calendar guard, policy tracker and monthly report — and override reasons must be anonymized in any roll-up above team level.
+
+
+
+
+
+    NFRs & Acceptance Criteria
+
+
+    Revised draft — MVP scope and the privacy rule are now 
+
+    expect(received).toBeTruthy()
+
+    Received: null
+
+      179 |
+      180 |     // ---- The point of the whole persona: a real Epic exists ---------------
+    > 181 |     expect(epicKey, `no Epic was created after ${MAX_TURNS} turns — last reply: ${reply.slice(0, 300)}`).toBeTruthy();
+          |                                                                                                          ^
+      182 |     const epic: any = await get(`/rest/api/3/issue/${epicKey}?fields=issuetype,summary,description,labels`);
+      183 |     expect(epic.fields.issuetype.hierarchyLevel, `${epicKey} is not an Epic`).toBe(1);
+      184 |     expect((epic.fields.summary || "").length, "the Epic has no summary").toBeGreaterThan(8);
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/chatwise/journey-po-full-flow.spec.ts:181:106
+
+    Error Context: test-results/scenarios-chatwise-journey-517e5-Epic-in-Jira-no-errors-ever-chromium/error-context.md
+
+  Slow test file: [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts (7.6m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 failed
+    [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts:89:1 › PO full flow: initiative → wizard → approval → a real Epic in Jira, no errors ever 

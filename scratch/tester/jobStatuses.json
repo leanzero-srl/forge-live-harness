@@ -1,0 +1,104 @@
+[
+  {
+    "m": "getJobStatus",
+    "p": {
+      "jobId": "job_1788508229405_cz57p0o0a"
+    },
+    "r": {
+      "success": true,
+      "data": {
+        "status": "processing",
+        "result": {
+          "conversationId": "conv_1788508223962_beoiyht0v",
+          "truncated": false,
+          "answerOptions": null,
+          "contextNote": null,
+          "skillsUsed": null,
+          "progressNote": null,
+          "assistantMessageId": null,
+          "status": "Processing your request..."
+        },
+        "retryCount": 0
+      }
+    }
+  },
+  {
+    "m": "getJobStatus",
+    "p": {
+      "jobId": "job_1788508229405_cz57p0o0a"
+    },
+    "r": {
+      "success": true,
+      "data": {
+        "status": "processing",
+        "result": {
+          "conversationId": "conv_1788508223962_beoiyht0v",
+          "truncated": false,
+          "answerOptions": null,
+          "contextNote": null,
+          "skillsUsed": null,
+          "progressNote": null,
+          "assistantMessageId": null,
+          "status": "Processing your request..."
+        },
+        "retryCount": 0
+      }
+    }
+  },
+  {
+    "m": "getJobStatus",
+    "p": {
+      "jobId": "job_1788508229405_cz57p0o0a"
+    },
+    "r": {
+      "success": true,
+      "data": {
+        "status": "processing",
+        "result": {
+          "conversationId": "conv_1788508223962_beoiyht0v",
+          "truncated": false,
+          "answerOptions": null,
+          "contextNote": null,
+          "skillsUsed": null,
+          "progressNote": null,
+          "assistantMessageId": null,
+          "status": "Processing your request..."
+        },
+        "retryCount": 0
+      }
+    }
+  },
+  {
+    "m": "getJobStatus",
+    "p": {
+      "jobId": "job_1788508229405_cz57p0o0a"
+    },
+    "r": {
+      "success": true,
+      "data": {
+        "status": "completed",
+        "result": {
+          "response": "✅ Done! I've created the diconium-branded **\"Tester Probe Deck\"** with exactly four slides and attached it to WFH-2212:\n\n- **Slide 1 (Cover):** PLATFORM MIGRATION headline with supporting blurb and the diconium tagline\n- **Slide 2 (Cards):** Migration Pillars — Infrastructure, Data, and Applications, each with descriptive body text\n- **Slide 3 (Stats):** By the Numbers — 12 systems, 850 TB data volume, 45 team members\n- **Slide 4 (Timeline):** Migration phases Q4 2026 through Q2 2027\n\nThe deck follows the diconium brand guidelines (lowercase \"diconium\", orange accents, Campton type, clean geometric layout) and is now attached to your work package. The file is **104 KB** and ready to download.",
+          "conversationId": "conv_1788508223962_beoiyht0v",
+          "usage": {
+            "completion_tokens": 1423,
+            "prompt_tokens": 59273,
+            "total_tokens": 60696
+          },
+          "model": "claude-haiku-4-5-20251001",
+          "iterations": 4,
+          "truncated": false,
+          "answerOptions": null,
+          "contextNote": null,
+          "skillsUsed": [
+            "diconium-brand"
+          ],
+          "progressNote": null,
+          "assistantMessageId": "msg_1788508252199_h2iv5ch1i",
+          "status": "Done"
+        },
+        "retryCount": 0
+      }
+    }
+  }
+]

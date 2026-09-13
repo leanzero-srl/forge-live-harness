@@ -1,0 +1,34 @@
+{
+  "m": "getJobStatus",
+  "p": {
+    "jobId": "job_1788513053521_e2smoj1ri"
+  },
+  "r": {
+    "success": true,
+    "data": {
+      "status": "completed",
+      "result": {
+        "response": "Done ✅ — **tester-download-probe.pptx** (104 KB) is now attached to WFH-2219. Same deck, no rebuild.\n\nAnything else you want to hang off that ticket — a comment pointing people at the deck, maybe?",
+        "conversationId": "conv_1788513012366_35fxc0oxu",
+        "usage": {
+          "completion_tokens": 262,
+          "prompt_tokens": 34474,
+          "total_tokens": 34736
+        },
+        "model": "claude-opus-5",
+        "iterations": 2,
+        "truncated": false,
+        "answerOptions": null,
+        "contextNote": "Your configured model hit its token limit — this reply came from claude-opus-5 instead.",
+        "skillsUsed": [
+          "chatwise-jira-conventions"
+        ],
+        "decks": null,
+        "progressNote": null,
+        "assistantMessageId": "msg_1788513064248_e2iukm2lh",
+        "status": "Done"
+      },
+      "retryCount": 0
+    }
+  }
+}

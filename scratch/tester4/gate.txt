@@ -1,0 +1,796 @@
+
+> chatwise-ai-jira-forge-app@1.0.0 lint
+> eslint src/
+
+
+> chatwise-ai-jira-forge-app@1.0.0 build
+> webpack
+
+asset chat/globalPage/index.bundle.js 280 KiB [compared for emit] [minimized] [big] (name: chat/globalPage/index)
+asset chat/issuePanel/index.bundle.js 259 KiB [compared for emit] [minimized] [big] (name: chat/issuePanel/index)
+orphan modules 401 KiB [orphan] 33 modules
+runtime modules 4.89 KiB 10 modules
+modules by path ./node_modules/ 264 KiB
+  modules by path ./node_modules/@forge/ 95.8 KiB 75 modules
+  modules by path ./node_modules/lodash/*.js 30.9 KiB 52 modules
+  modules by path ./node_modules/tesseract.js/ 23.4 KiB 21 modules
+  modules by path ./node_modules/iframe-resizer/ 72.5 KiB
+    ./node_modules/iframe-resizer/index.js 222 bytes [built] [code generated]
+    + 2 modules
+  ./node_modules/tslib/tslib.es6.mjs 17.2 KiB [built] [code generated]
+  ./node_modules/regenerator-runtime/runtime.js 24.6 KiB [built] [code generated]
+modules by path ./src/chat/ 827 KiB
+  ./src/chat/globalPage/GlobalPageApp.js + 32 modules 437 KiB [built] [code generated]
+  ./src/chat/issuePanel/IssuePanelApp.js + 30 modules 390 KiB [built] [code generated]
+
+WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  chat/globalPage/index.bundle.js (280 KiB)
+  chat/issuePanel/index.bundle.js (259 KiB)
+
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  chat/globalPage/index (280 KiB)
+      chat/globalPage/index.bundle.js
+  chat/issuePanel/index (259 KiB)
+      chat/issuePanel/index.bundle.js
+
+WARNING in webpack performance recommendations: 
+You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+For more info visit https://webpack.js.org/guides/code-splitting/
+
+webpack 5.109.2 compiled with 3 warnings in 1270 ms
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+The linter checks the app code for known errors. Warnings are issues you should fix, but they won't stop the app code from building.
+Press Ctrl+C to cancel.
+
+No issues found.
+
+
+> chatwise-ai-jira-forge-app@1.0.0 test
+> node test/writeGuard.test.mjs && node test/conversationAuth.test.mjs && node test/adminGate.test.mjs && node test/archiveGuard.test.mjs && node test/egress.test.mjs && node test/messageOrder.test.mjs && node test/contextBudget.test.mjs && node test/browserBundle.test.mjs && node test/chatFileStore.test.mjs && node test/toolRegistry.test.mjs && node test/confirmation.test.mjs && node test/consent.test.mjs && node test/consentIsolation.test.mjs && node test/toolFence.test.mjs && node test/samplingParams.test.mjs && node test/honestPartial.test.mjs && node test/quotaFallback.test.mjs && node test/turnUsage.test.mjs && node test/bulkCreateMapping.test.mjs && node test/backlogRouting.test.mjs && node test/backlogDegraded.test.mjs && node test/backlogBlueprint.test.mjs && node test/markdownLists.test.mjs && node test/promptDiscipline.test.mjs && node test/issueSummaryReads.test.mjs && node test/securityLevels.test.mjs && node test/epicCreation.test.mjs && node test/poHandoff.test.mjs && node test/writeFailureContract.test.mjs && node test/promptComposition.test.mjs && node test/skillStore.test.mjs && node test/skillActivation.test.mjs && node test/pptxRender.test.mjs && node test/deckTools.test.mjs && node test/skillTools.test.mjs && node test/resolverContract.test.mjs && node test/sourceIntegrity.test.mjs && node test/deckDelivery.test.mjs
+
+  PASS  default is READ-ONLY (a caller that forgot cannot write)
+  PASS  reads always allowed, even read-only
+  PASS  every write tool is covered
+  PASS  a CONFIRMING dry run is free; the confirming call is not
+  PASS  truthy-but-not-true does NOT grant writes
+  PASS  opt-in allows writes, but budget binds at 3
+  PASS  budget is not consumed by reads
+  PASS  exfil pattern (search->comment x N) is bounded
+  PASS  blocked calls are recorded for the audit trail
+  PASS  a bulk create costs its BATCH SIZE, not one
+  PASS  WRITE_TOOLS is DERIVED, not hand-maintained
+
+  11 passed, 0 failed
+  PASS  issue thread is per-user (Mallory cannot reach Alice's row)
+  PASS  unauthenticated caller is refused
+  PASS  payload cannot forge identity
+  PASS  conv_* owned by Alice is refused to Mallory
+  PASS  namespace escape via ":" is rejected
+  PASS  path/format abuse rejected
+  PASS  empty conv_* id may be claimed (legit new conversation)
+[Metadata] healed listing index: re-added conv_lost
+  PASS  THE OUTAGE: rows present + index entry LOST still authorises the owner
+  PASS  ...and the listing index is healed for the sidebar
+  PASS  the owner row refuses everyone else, index be damned
+  PASS  a LEGACY conversation (array only, no owner row) migrates on first touch
+[Metadata] healed listing index: re-added conv_r1
+  PASS  create writes the owner row, and CONCURRENT creates cannot lock each other out
+  PASS  deleting a conversation frees its id for a fresh claim
+[Metadata] healed listing index: re-added conv_race
+  PASS  THE FIRST-SEND RACE: persona-save then create, interleaved, both succeed
+
+  14 passed, 0 failed
+  PASS  admin with the permission is allowed
+  PASS  non-admin is refused
+  PASS  missing accountId is refused without calling Jira
+  PASS  FAILS CLOSED on a non-2xx even when the body would GRANT
+  PASS  a 4xx is a settled NO, a 429/5xx is 'no answer'
+[RequireAdmin] Admin probe failed: network
+  PASS  FAILS CLOSED when the request throws
+  PASS  FAILS CLOSED on a malformed body
+  PASS  truthy-but-not-true havePermission does NOT grant
+  PASS  identity comes from the caller, never a payload
+  PASS  only POSITIVES are cached — a denial is re-probed
+  PASS  the beta verdict is a fast POSITIVE, never a fast negative
+[RequireAdmin] Refused "someRoute" for non-admin u
+  PASS  refuseIfNotAdmin returns a refusal both reader shapes can render
+  PASS  an admin passes refuseIfNotAdmin with no refusal
+  PASS  ADMIN_MUTATION_ROUTES parsed and is non-trivial
+  PASS  every known tenant-wide mutation is gated
+  PASS  no mutating route in a config module escapes the gate
+  PASS  the deleted duplicate has not come back
+
+  17 passed, 0 failed
+  PASS  an ordinary Office-shaped archive is accepted
+  PASS  a REAL zip bomb is refused on ratio
+  PASS  refusal surfaces through assertSafeArchive with the filename
+  PASS  non-ZIP input passes through untouched
+  PASS  a declared total over the byte cap is refused even at an innocent ratio
+  PASS  ZIP64 is refused rather than mis-parsed
+  PASS  a truncated or lying central directory is refused, not trusted
+  PASS  no end-of-central-directory record is refused
+  PASS  the ratio ceiling is enforced at the documented boundary
+
+  9 passed, 0 failed
+  PASS  the tracked file list is non-empty (the scan can actually see the app)
+  PASS  manifest declares no external.fetch / egress permission
+  PASS  no HTTP client reaches outside @forge/api in tracked source
+  PASS  the OCR engine is never pointed at a CDN
+  PASS  ImageOcr overrides EVERY tesseract path
+  PASS  no prompt instructs the model to upload to an external endpoint
+  PASS  the LM Studio surface that remains is inert
+
+  7 passed, 0 failed
+  PASS  the model is given the NEWEST turns, not the oldest
+  PASS  messages come back in chronological order
+  PASS  the sidebar preview shows the LATEST message, not the first
+  PASS  recency does not come from a prefix query
+  PASS  message count is not stuck at 100
+  PASS  a conversation written before the index is backfilled, in time order
+  PASS  backfill pages past the query limit
+[Metadata] could not clear files for c8: Cannot find module '/private/var/folders/41/shared/files/chatFiles.js' imported from /private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/chatwise-order-rd0vXV/metadata.mjs
+[Service] Deleted conversation c8 (25 message rows)
+  PASS  deleting a conversation removes its message rows, not just the blob
+[Service] Deleted message msg_1788525836848_ie53fqvm7 from conversation c9
+  PASS  deleting one message prunes the ordered index
+  PASS  a CLIENT-SUPPLIED message id is honoured
+  PASS  a DUPLICATE supplied id falls back to minting
+  PASS  a MALFORMED supplied id is ignored, not stored
+
+  12 passed, 0 failed
+  PASS  output is reserved BEFORE input
+  PASS  a persona's context ceiling is honoured when it fits
+  PASS  the 64k floor is unrepresentable, not just validated
+  PASS  max_tokens is clamped to what the MODEL can produce
+  PASS  tool schemas are counted against the budget
+  PASS  estimation counts tool_calls, not just text
+  PASS  a short conversation costs ZERO model calls
+  PASS  an oversized conversation is summarised, not truncated
+  PASS  a stored summary is reused without calling the model again
+  PASS  a summary SURVIVES the transcript window sliding past it
+  PASS  a summary whose head was EDITED is not silently reused
+  PASS  a failed summariser degrades honestly instead of failing the turn
+[Compaction] summariser hit its own output limit — not storing
+  PASS  a summary that was itself cut off is not stored
+  PASS  a single message bigger than the whole budget is clipped and says so
+
+  14 passed, 0 failed
+  PASS  src/chat/globalPage/GlobalPageApp.js reaches no backend-only module
+  PASS  src/chat/issuePanel/IssuePanelApp.js reaches no backend-only module
+  PASS  the shared file table itself imports nothing
+  PASS  the guard actually catches a violation
+
+  4 passed, 0 failed
+  PASS  a large file is stored across as many rows as it needs
+  PASS  each file gets its own small metadata row
+  PASS  CONCURRENT uploads do not lose each other
+  PASS  chars reports what is STORED, not what was extracted
+  PASS  a multi-byte character is never cut in half
+  PASS  replacing a file deletes the old text rows
+  PASS  a file pushed out by the file cap takes its rows with it
+  PASS  removeChatFile and clearChatFiles delete text too
+  PASS  records written before the split still read back
+  PASS  a legacy conversation migrates on the next upload
+  PASS  the prompt budget is shared, and says what it cut
+  PASS  the budget is honoured, and defaults when absent
+  PASS  untrusted file content cannot forge the end of its own fence
+
+  13 passed, 0 failed
+  PASS  every entry is complete and executable
+  PASS  names are unique and resolvable
+  PASS  every required parameter is actually declared
+  PASS  descriptions stay inside the token budget
+  PASS  profiles are coherent, and destructive belongs to NO profile
+  PASS  a bogus profile name falls back safely instead of throwing
+  PASS  NO profile offers an agile tool; only the capability probe does
+  PASS  NO profile offers a backlog tool; only a document does
+  PASS  NO profile offers a destructive tool; only the site policy does
+  PASS  read-only really is read-only
+  PASS  exclude removes a tool from the turn
+  PASS  the standard profile has not blown its token budget
+  PASS  writeGuard covers every mutating tool
+  PASS  a handler that issues a mutating verb is not marked read
+  PASS  the admin bulk switch actually withdraws the bulk tools
+  PASS  the confirms flag matches the handlers that actually confirm
+  PASS  the tools that could only ever fail are gone
+  PASS  the toolset is OpenAI-shaped
+  PASS  every capability gate getToolset accepts is actually THREADED to it
+
+  19 passed, 0 failed
+  PASS  asking changes nothing and hands back a ticket
+[Confirmation] deleteIssue: same-turn redemption refused (no prior disclosure)
+  PASS  THE GUARANTEE: it cannot be redeemed in the turn that created it
+  PASS  a later turn redeems it
+  PASS  redeeming with NO token works — the token is a handle, not a secret
+  PASS  confirm and confirmationToken are excluded from the hash
+[Confirmation] deleteIssue: blast radius changed since approval — refusing
+  PASS  the blast radius cannot be widened after approval
+[Confirmation] deleteIssue: blast radius changed since approval — refusing
+  PASS  deleteSubtasks flipping after approval is caught
+  PASS  property ORDER does not invalidate a confirmation
+  PASS  at most once — a replay is refused
+[Confirmation] deleteIssue: no pending ticket for this conversation
+  PASS  a spent ticket is not re-findable by the no-token path either
+  PASS  another user cannot redeem it
+  PASS  another conversation cannot redeem it
+  PASS  a token for one action cannot authorise another
+[Confirmation] deleteIssue: no pending ticket for this conversation
+[Confirmation] deleteIssue: no pending ticket for this conversation
+[Confirmation] deleteIssue: no pending ticket for this conversation
+  PASS  a made-up token is refused
+[Confirmation] deleteIssue: not approved (unclear by degraded) — message="thanks"
+[Confirmation] deleteIssue: not approved (unclear by degraded) — message="what is next?"
+[Confirmation] deleteIssue: not approved (unclear by degraded) — message="ok show me the backlog then"
+[Confirmation] deleteIssue: not approved (reject by lexicon) — message=""
+[Confirmation] deleteIssue: not approved (reject by lexicon) — message="   "
+  PASS  THE REAL GUARANTEE: a turn boundary is not consent
+[Confirmation] deleteIssue: not approved (reject by lexicon) — message=""
+[Confirmation] deleteIssue: not approved (reject by lexicon) — message=""
+  PASS  a missing user message fails CLOSED
+  PASS  the fail-safe accepts a plain yes without an inference call
+  PASS  a yes carrying other content is HANDED OVER, not decided
+  PASS  a negation anywhere vetoes, even next to a yes
+  PASS  a restatement is NOT decided by the fail-safe — it goes to the model
+[Confirmation] deleteIssue: blast radius changed since approval — refusing
+  PASS  an affirmative alone still needs the ticket to match
+  PASS  a canonical radius survives harmless arg-shape drift
+[Confirmation] deleteIssue: blast radius changed since approval — refusing
+[Confirmation] deleteIssue: blast radius changed since approval — refusing
+[Confirmation] deleteIssue: blast radius changed since approval — refusing
+  PASS  the radius still refuses a REAL widening
+  PASS  key ORDER is not a widening
+
+  24 passed, 0 failed
+  PASS  a plain yes or no costs NO inference call
+  PASS  an empty message is a refusal, and never reaches the model
+  PASS  THE FIX: an approval in any language reaches the model and is honoured
+  PASS  REJECT and UNCLEAR are distinct answers, and neither approves
+  PASS  a junk answer from the model is UNCLEAR, never an approval
+[Consent] ignoring non-structural fields: proposal, question
+  PASS  THE INJECTION DEFENCE: the classifier is shown the message and nothing else
+[Consent] ignoring non-structural fields: proposal
+  PASS  a fake approval inside the ACTION text cannot approve anything
+[Consent] classifier unavailable (HTTP 429) — degrading
+[Consent] classifier threw — degrading: Forge runtime not found.
+  PASS  DEGRADED, NOT REFUSED: an unreachable model does not create an unpassable gate
+  PASS  THE FAST PATH ANSWERS ONLY WHEN IT UNDERSTANDS THE WHOLE MESSAGE
+  PASS  ...and the plain replies still cost NO inference call
+  PASS  ONE HOME for the structural veto — the irreversible path has it too
+  PASS  the veto runs in ONE direction — a refusal is never downgraded
+  PASS  THE TRANSCRIPT'S OWN APPROVAL is not a question
+  PASS  a wrongly-refused user is always told a way through
+  PASS  a document cannot ride in on the message — it is truncated
+
+  15 passed, 0 failed
+  PASS  THE PROPERTY: Jira-authored text never reaches the classifier prompt
+  PASS  the classifier is told the stake in STRUCTURAL terms only
+  PASS  a poisoned target ref cannot ride in either
+[Consent] classifier threw — degrading: Forge runtime not found.
+[Confirmation] deleteIssue: not approved (unclear by degraded) — message="na gut, machen wir das so"
+  PASS  the DEGRADED refusal is the shared sentence, not a hand-rolled copy
+[Confirmation] deleteIssue: not approved (unclear by model) — message="na gut, machen wir das so"
+  PASS  an UNCLEAR refusal names a way through, from the same home
+
+  5 passed, 0 failed
+  PASS  every tool result goes through the envelope
+  PASS  the envelope marks the payload untrusted
+  PASS  the system prompt states the rule the envelope relies on
+  PASS  the destructive strip is recomputed per tool call, not per iteration
+  PASS  the executor fails closed without an allow-list
+
+  5 passed, 0 failed
+  PASS  a SEEDED model never gets sampling params at all
+[ForgeLLM] claude-sonnet-4-6 rejects sampling params — stripping and retrying once
+  PASS  an UNSEEDED model self-heals: strip, retry once, succeed
+  PASS  ...and the lesson is REMEMBERED for the next call
+  PASS  a model that ACCEPTS temperature still receives it
+Forge LLM error: 400 tools[0].function.parameters is invalid
+  PASS  an unrelated 400 is NOT retried as a sampling problem
+
+  5 passed, 0 failed
+  PASS  names every created key, so the user cannot redo the work
+  PASS  a keyless write still reports as done
+  PASS  the loop returns the partial instead of throwing, when writes exist
+  PASS  only SUCCESSFUL write tools are recorded
+
+  4 passed, 0 failed
+[ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+  PASS  a quota-blocked model falls back to a sibling, and says so
+[ForgeLLM] claude-opus-5 token quota exhausted — trying the next tier
+  PASS  the ladder tries strongest-first and skips the pinned model duplicate
+[ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+[ForgeLLM] claude-opus-5 token quota exhausted — trying the next tier
+[ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+Forge LLM quota exhausted on every offered model: Forge LLM token usage limit exceeded. This tenant has reached its limit of 50000 tokens for model anthropic.claude-haiku-4-5-20251001. Please try again later.
+  PASS  ALL models blocked → typed quotaExhausted, never a throw
+  PASS  an unblocked pinned model never ladders
+  PASS  a non-quota error reports immediately without laddering
+
+  5 passed, 0 failed
+(node:72116) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/ChatWise/src/shared/forge-llm/policy.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/ChatWise/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  PASS  three iterations sum into one turn
+  PASS  total is derived when the provider omits it
+  PASS  a usage-less response leaves the running total alone
+  PASS  the accumulator never mutates its input
+  PASS  every runAgent exit reports the accumulated turn, never lastUsage
+
+  5 passed, 0 failed
+[Tools] createIssues in P: 3 created, 0 failed
+  PASS  a full success maps keys to summaries in order
+[Tools] createIssues in P: 2 created, 1 failed
+  PASS  THE REGRESSION: a middle failure must not shift the later keys
+[Tools] createIssues: Jira returned 2 created issue(s) but 3 element(s) were not reported as failures — refusing to guess which key belongs to which issue.
+[Tools] createIssues in P: 0 created, 3 failed
+  PASS  counts that disagree record NOTHING rather than guessing
+[Tools] createIssues in P: 3 created, 1 failed
+  PASS  a hierarchy resolves parentRef through the CORRECTED keys
+
+  4 passed, 0 failed
+  PASS  an explicit request with a document starts a draft
+  PASS  an explicit request with NO document says so instead of drafting
+  PASS  ORDINARY messages never take the turn
+  PASS  the exact asks from the live baseline runs are recognised
+  PASS  "split this epic into stories" stays with the agent, not the backlog flow
+  PASS  while a draft is on the table, the flow owns the turn — but not all turns cost the same
+  PASS  ...but an explicit cancel gets out, and it is not a redraft
+  PASS  A PENDING DRAFT CAN BE CANCELLED IN ANY LANGUAGE — Law 3
+  PASS  ...but a refusal that asks for a CHANGE is a redraft, not a discard
+  PASS  the discard OPTION and the matcher that reads it cannot drift
+  PASS  a run that died mid-creation never redrafts — finish it or discard it
+  PASS  THE NEGATION BUG: "don't continue" is not permission to create a hundred issues
+  PASS  a part-created plan is never quietly redrafted around
+  PASS  looksLikeChangeRequest separates a redraft from a nudge
+  PASS  a FINISHED backlog releases the conversation
+  PASS  an INCOMPLETE creation resumes on yes or continue, and only then
+  PASS  depth comes from the user's words, never from a default they did not choose
+  PASS  a requested epic count is read, and clamped
+  PASS  focus is taken verbatim from the user's own phrasing
+  PASS  looksLikeBacklogRequest needs BOTH a verb and a structure noun
+  PASS  APPROVAL IS NOT 'the message contains a yes'
+  PASS  THE LANGUAGE JUDGEMENT IS THE MODEL'S, and routing honours it
+  PASS  a sentence that says both STOP and KEEP GOING is a stop
+  PASS  the head-noun rule admits real asks and refuses compound nouns
+
+  24 passed, 0 failed
+[Consent] classifier threw — degrading: Forge runtime not found.
+  PASS  an OUTAGE is carried out of the route, not flattened into "unclear"
+  PASS  ...and it changes what the user is told, from the ONE home
+  PASS  an ordinary unclear turn still gets the plain nudge
+  PASS  the preview offers a way OUT, and the app can read its own button
+
+  4 passed, 0 failed
+  PASS  a child sits exactly one level below its real parent
+  PASS  a node deeper than the hierarchy is dropped, and said so
+  PASS  a whole subtree dies with its dropped parent — no orphans at the top
+  PASS  THE BLAST RADIUS: a document cannot ask for more than MAX_NODES issues
+  PASS  cycles are broken, not followed
+  PASS  field lengths are capped, and a duplicate ref cannot shadow another node
+  PASS  labels are Jira-legal, because one bad label fails the whole batch
+  PASS  levels must be a legal top-down chain
+  PASS  COVERAGE IS ARITHMETIC, not the model's opinion of its own work
+  PASS  counts are per level and total
+  PASS  an item with NO covers of its own still says where it came from
+  PASS  the issue description carries the traceability back to the requirement
+
+  12 passed, 0 failed
+  PASS  a flat bullet list is one <ul> (unchanged)
+  PASS  a nested list actually nests
+  PASS  three levels nest three deep and unwind in order
+  PASS  an ordered list under a bullet list is its own <ol>
+  PASS  a numbered list is still an <ol> (unchanged)
+  PASS  prose between two lists closes the first one
+  PASS  THE BACKLOG PREVIEW SHAPE renders as a real tree
+  PASS  a bullet inside a blockquote is untouched by the new rule
+  PASS  no stray <br> is left between the list tags
+  PASS  a NESTED list inside a blockquote nests too
+  PASS  an indented bullet immediately after a table is still a list
+
+  11 passed, 0 failed
+  PASS  a summary is explicitly distinguished from a lookup
+  PASS  a progress/decisions question requires comments AND history first
+  PASS  the instruction that taught the field dump is gone
+  PASS  the prompt forbids asserting a cause no tool result contained
+  PASS  a hint is framed as a hint, not a diagnosis
+[Tools] updateIssue failed: 404 
+[Tools] updateIssue failed: 400 {"errors":{"customfield_1":"Field is required."}}
+  PASS  the prompt's half and the failure object's half still agree
+  PASS  the core prompt requires a re-read before asserting a current property
+  PASS  it is coherent with the eventually-consistent index note, not contradictory
+  PASS  Layer 3 says its own fields are a snapshot, not live state
+  PASS  an explicit instruction is stated to be the authorisation
+  PASS  the three conditions that DO require asking are enumerated
+  PASS  it does NOT over-correct into asking permission for everything
+  PASS  the code-enforced two-turn token gate is still the authority for irreversible tools
+  PASS  prompt-injection rules survive intact
+  PASS  never-claim-work and never-invent-issues survive intact
+  PASS  the core prompt stays under its size ceiling
+  PASS  the clicked-answers scaffolding rule reaches EVERY prompt that can receive the block
+
+  17 passed, 0 failed
+[Tools] Cached Jira baseUrl: https://site.example
+[Tools] Successfully fetched issue ITSM-42
+  PASS  ONE call returns the issue, its comments and its history
+[Tools] Successfully fetched issue ITSM-42
+  PASS  neither block appears unless it was asked for
+[Tools] Successfully fetched issue ITSM-42
+  PASS  a capped comment thread keeps the LATEST and says how many it dropped
+[Tools] Successfully fetched issue ITSM-42
+  PASS  a very long comment is cut, and the cut is declared
+[Tools] read comments on ITSM-42 failed: 403 {"errorMessages":["You do not have permission to view comments"]}
+[Tools] Successfully fetched issue ITSM-42
+  PASS  a comment read that FAILS does not lose the issue
+  PASS  THE REGRESSION: a long history returns its LAST page, not its first
+  PASS  a short history is read ONCE and says nothing about truncation
+  PASS  the standalone listComments is bounded by the same one rule
+[Tools] Successfully fetched issue ITSM-42
+  PASS  archived: the issue reads fine and JQL cannot see it
+[Tools] Successfully fetched issue ITSM-42
+  PASS  not archived: JQL returns it
+[Tools] Successfully fetched issue ITSM-42
+  PASS  a search that FAILS is unknown — never false
+[Tools] Successfully fetched issue ITSM-43
+  PASS  a SECONDS-OLD issue is unknown, not archived — the index lags
+[Tools] Successfully fetched issue ITSM-42
+  PASS  the check costs nothing unless it is asked for
+[Tools] Successfully fetched issue ITSM-42
+[Tools] Successfully fetched issue ITSM-42
+  PASS  the security level is reported when one is set, null when not
+[Tools] Successfully fetched issue ITSM-42
+  PASS  the issue GET names NO fields param — the default is *all*
+
+  15 passed, 0 failed
+  PASS  listFieldValues can list a project's security levels
+  PASS  an EMPTY level list names both of its causes and asserts neither
+  PASS  listing security levels without a project is refused, clearly
+[Tools] list the security levels of ITSM failed: 403 {"errorMessages":["You must have the browse project permission to view this project."]}
+  PASS  a 403 from the endpoint is surfaced as Jira said it
+[Tools] Created Task ITSM-9 in ITSM
+  PASS  a level NAME is resolved and travels in the CREATE payload itself
+[Tools] Created Task ITSM-9 in ITSM
+  PASS  an id is accepted as readily as a name
+  PASS  a level the project does not have is ONE sentence, and nothing is created
+[Tools] Created Task ITSM-9 in ITSM
+  PASS  no levels listable + a NUMERIC id still gets through
+  PASS  no levels listable + a NAME says so, and says how to get through
+[Tools] Created Task ITSM-9 in ITSM
+  PASS  no security level asked for means the field is never sent
+[Tools] Updated ITSM-42: securityLevel
+  PASS  updateIssue sets a level by name, resolving the issue's real project
+[Tools] Updated ITSM-42: securityLevel
+  PASS  a null security level CLEARS it, and asks Jira nothing first
+[Tools] update ITSM-42 failed: 400 {"errorMessages":[],"errors":{"summary":"Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  THE REAL CASE: an archived edit's 400 gets the true cause attached
+[Tools] update ITSM-42 failed: 404 {"errorMessages":["Issue does not exist or you do not have permission to see it."]}
+  PASS  a 404 whose issue is ALSO unreadable is unknown, not archived
+[Tools] update ITSM-42 failed: 400 {"errors":{"duedate":"is not a valid date"}}
+  PASS  an ordinary 400 is NOT probed — Jira already named the cause
+[Tools] Cloned ITSM-42 → ITSM-99
+  PASS  a clone of a restricted issue is restricted TOO
+  PASS  a clone that CANNOT carry the level creates nothing at all
+[Tools] list the security levels of ITSM failed: 403 {"errorMessages":["You must have the browse project permission to view this project."]}
+  PASS  a clone that cannot even LIST levels still refuses, loudly
+[Tools] Cloned ITSM-42 → ITSM-99
+  PASS  an UNrestricted issue clones exactly as before
+[Tools] update ITSM-42 failed: 400 {"errorMessages":[],"errors":{"summary":"Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  updateIssue gets the archived cause attached, not just Jira's sentence
+[Tools] assign ITSM-42 failed: 400 {"errorMessages":[],"errors":{"summary":"Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  assignIssue gets the archived cause attached, not just Jira's sentence
+[Tools] transitionIssue(ITSM-42, 31) failed: 400 {"errorMessages":[],"errors":{"summary":"Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  transitionIssue gets the archived cause attached, not just Jira's sentence
+[Tools] addComment(ITSM-42) failed: 400 {"errorMessages":[],"errors":{"summary":"Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  addComment gets the archived cause attached, not just Jira's sentence
+[Tools] update ITSM-42 failed: 400 {"errorMessages":[],"errors":{"summary":"Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  the ambiguity is spelled out — four causes, one string
+[Tools] update ITSM-42 failed: 400 {"errorMessages":[],"errors":{"summary":"Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  a NOT-archived issue rules that cause OUT and says the rest are open
+  PASS  EVERY issue-scoped write handler routes through the one helper
+  PASS  no handler builds its own failure sentence out of an HTTP status
+
+  27 passed, 0 failed
+[Tools] Created Task ITSM-7 in ITSM
+  PASS  a payload of Tasks CREATES in a project that has no Epic type
+  PASS  an Epic payload in a project with no Epic type still refuses — with the available types
+[Tools] Created Task ITSM-8 in ITSM
+  PASS  a mixed payload creates what it can and labels only the type that failed
+Failed to create Task in ITSM: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+[Tools] create Task in ITSM failed: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+[PO] ITSM names no default assignee; retrying once with the requesting user.
+[Tools] Created Task ITSM-11 in ITSM
+  PASS  a no-default-assignee 400 is retried once WITH the requesting user
+Failed to create Task in ITSM: 403 {"errors":{"assignee":"You do not have permission to assign issues"}}
+[Tools] create Task in ITSM failed: 403 {"errors":{"assignee":"You do not have permission to assign issues"}}
+  PASS  the retry is bounded by the LABEL: a 403 assignee refusal is never retried
+Failed to create Task in ITSM: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+[Tools] create Task in ITSM failed: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+[PO] ITSM names no default assignee; retrying once with the requesting user.
+Failed to create Task in ITSM: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+[Tools] create Task in ITSM failed: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+  PASS  a retry that also fails is ONE honest failure, not a third attempt
+Failed to create Task in ITSM: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+[Tools] create Task in ITSM failed: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+[PO] ITSM names no default assignee; retrying once with the requesting user.
+Failed to create Task in ITSM: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+[Tools] create Task in ITSM failed: 400 {"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+  PASS  needsHandoff answers for every failure createEpicFromPayload can return
+
+7 passed, 0 failed
+  PASS  routing.js is importable by a plain node with no Forge runtime
+  PASS  the handoff reason is a CLOSED enum — free text never crosses into the next prompt
+  PASS  the interview itself is BYTE-FOR-BYTE what it was
+  PASS  the opening turn MAY hand off — the ban was the bug, not the guard
+  PASS  a work-item opening message is handed over, with real buttons
+[Facilitator] handoff offered on a turn where it is not permitted — interviewing instead
+  PASS  the document fork keeps its turn even if the model tries to leave
+  PASS  no project key: the negative is stated and the user's REAL keys are named
+  PASS  an option naming a project the site does not have is REPLACED by the real list
+[Tools] list projects failed: 403 {"errorMessages":["No permission"]}
+[Facilitator] recency-ordered project list refused (403) — falling back to name order
+[Tools] list projects failed: 403 {"errorMessages":["No permission"]}
+  PASS  when listProjects FAILS there are no project options, and the app says why
+[Facilitator] forced handoff (needs-discovery): The Epic wizard has an approved draft ready to create but NO target project, and it cannot look one up. Find the right project with the user and create the Epic there.
+  PASS  needsProject at creation is a HANDOFF carrying real project options
+[Facilitator] forced handoff (needs-discovery): The Epic wizard has an approved draft ready to create but NO target project, and it cannot look one up. Find the right project with the user and create the Epic there.
+  PASS  needsProject offers the list even when the conversation named another issue
+  PASS  only the no-project failure claims the project question
+[Tools] Created Task ITSM-9 in ITSM
+  PASS  a project with no Epic-level type is a HANDOFF that names what it DID attempt
+  PASS  the wizard hears about a missing Epic type on the turn the project resolves
+[Facilitator] forced handoff (needs-discovery): The Epic wizard has an approved draft ready to create but NO target project, and it cannot look one up. Find the right project with the user and create the Epic there.
+[Facilitator] forced handoff (needs-discovery): The Epic wizard has an approved draft ready to create but NO target project, and it cannot look one up. Find the right project with the user and create the Epic there.
+  PASS  two different messages in the same state do not get a byte-identical reply
+[Facilitator] identical reply to a new message — releasing the turn
+  PASS  a model that repeats itself verbatim is released, not looped
+  PASS  every create failure in index.js is classified by routing.js, not in place
+  PASS  handoff is the sixth shape and the other five are untouched
+  PASS  a mid-interview handoff is honoured, and the snapshot survives it
+  PASS  a project question asked in PROSE gets the real, clickable list
+  PASS  needs_project attaches the list ALONGSIDE the model's own questions
+  PASS  a turn that did NOT ask for the project is not given an extra gate
+  PASS  RECOMMENDED has a basis: the project this conversation has worked in comes first
+  PASS  a key the user cannot see never becomes the recommendation
+  PASS  the question says how many are hidden and how to reach them
+  PASS  options are NOT re-rendered once the project is settled
+  PASS  the project list is asked for MOST-RECENTLY-WORKED-IN first, and degrades
+[Tools] list projects failed: 400 bad orderBy
+[Facilitator] recency-ordered project list refused (400) — falling back to name order
+  PASS  a Jira that refuses that ordering still yields a list, never an empty one
+  PASS  no app-authored sentence contains a project-key-shaped token
+
+29 passed, 0 failed
+Failed to link issues ABC-1 and ABC-2: 400 {"errorMessages":[],"errors":{"issuelinks":"Field 'issuelinks' cannot be set. It is not on the appropriate screen, or unknown."}}
+[Tools] link issues ABC-1 and ABC-2 failed: 400 {"errorMessages":[],"errors":{"issuelinks":"Field 'issuelinks' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  linkIssues finds an archived OUTWARD issue, not just the inward one
+Failed to link issues ABC-1 and ABC-2: 400 {"errorMessages":[],"errors":{"issuelinks":"Field 'issuelinks' cannot be set. It is not on the appropriate screen, or unknown."}}
+[Tools] link issues ABC-1 and ABC-2 failed: 400 {"errorMessages":[],"errors":{"issuelinks":"Field 'issuelinks' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  a ruled-out cause NAMES the keys it was checked on
+Failed to link issues ABC-1 and ABC-2: 400 {"errorMessages":[],"errors":{"issuelinks":"Field 'issuelinks' cannot be set. It is not on the appropriate screen, or unknown."}}
+[Tools] link issues ABC-1 and ABC-2 failed: 400 {"errorMessages":[],"errors":{"issuelinks":"Field 'issuelinks' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  both ends are probed in ONE search, not two
+[Tools] update ABC-1 failed: 400 {"errorMessages":[],"errors":{"parent":"Field 'parent' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  updateIssue that re-parents probes the PARENT as well as the child
+  PASS  the agile write tools under test are ALL of them, per the registry
+[Tools] move issues into sprint 7 failed: 403 {"errorMessages":["The user does not have permission to complete this operation."]}
+  PASS  moveIssuesToSprint: a 403 carries the whole reporting contract
+[Tools] move issues to the backlog failed: 403 {"errorMessages":["The user does not have permission to complete this operation."]}
+  PASS  moveIssuesToBacklog: a 403 carries the whole reporting contract
+[Tools] re-rank issues failed: 403 {"errorMessages":["The user does not have permission to complete this operation."]}
+  PASS  rankIssues: a 403 carries the whole reporting contract
+[Tools] create the sprint failed: 403 {"errorMessages":["The user does not have permission to complete this operation."]}
+  PASS  createSprint: a 403 carries the whole reporting contract
+[Tools] move issues to the backlog failed: 403 {"errorMessages":["Forbidden"]}
+  PASS  the app-approval story survives as a labelled possibility, not a fact
+[Tools] move issues into sprint 7 failed: 400 {"errorMessages":["Issue does not exist or you do not have permission to see it."]}
+  PASS  moveIssuesToSprint on an archived issue reports the archived cause
+[Tools] read the backlog of board 3 failed: 400 {"errorMessages":["Backlogs are not supported on this board."]}
+  PASS  an agile capability 400 keeps its recovery, and Jira's own words
+  PASS  the turn memo forgets once its window has passed
+  PASS  the archival probe is not repeated for the same issue moments later
+[Tools] delete ABC-1 failed: 400 {"errorMessages":["Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."]}
+[Tools] delete ABC-2 failed: 400 {"errorMessages":["Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."]}
+[Tools] delete ABC-3 failed: 400 {"errorMessages":["Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."]}
+[Tools] deleteIssue: removed (none)
+  PASS  every DELETE is issued before any archival probe runs
+[Tools] create the clone of ABC-1 failed: 400 {"errorMessages":[],"errors":{"parent":"Field 'parent' cannot be set. It is not on the appropriate screen, or unknown."}}
+  PASS  cloning under an ARCHIVED parent gets the true cause, like createIssue
+[Tools] createIssue failed: 400 {"errorMessages":[],"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off. The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+  PASS  the no-default-assignee 400 is a NAMED cause with a fix
+[Tools] createIssue failed: 400 {"errorMessages":["Unassigned issues are turned off."]}
+[Tools] createIssue failed: 400 {"errors":{"assignee":"The default assignee does not have assignable permission."}}
+[Tools] createIssue failed: 400 Assignee: The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off.
+  PASS  the marker is matched, not the whole sentence
+[Tools] updateIssue failed: 400 {"errors":{"customfield_10011":"Field 'Epic Name' is required."}}
+[Tools] updateIssue failed: 400 {"errors":{"summary":"Field 'summary' cannot be set. It is not on the appropriate screen, or unknown."}}
+[Tools] updateIssue failed: 400 {"errors":{"duedate":"Error parsing date/time string."}}
+[Tools] updateIssue failed: 400 {"errors":{"assignee":"You do not have permission to assign issues."}}
+[Tools] updateIssue failed: 403 {"errorMessages":["The user does not have permission to complete this operation."]}
+[Tools] updateIssue failed: 404 
+[Tools] updateIssue failed: 403 {"errorMessages":["Unassigned issues are turned off."]}
+[Tools] updateIssue failed: 404 
+  PASS  an UNRELATED failure does not wear this label
+
+  19 passed, 0 failed
+  PASS  the skill body lands BEFORE the untrusted file fence
+  PASS  the trusted late note also lands before the fence
+  PASS  NOTHING follows the last untrusted fence
+  PASS  a skill cannot forge the terminator of the fence that follows it
+  PASS  a skill cannot forge a layer separator
+  PASS  the roster is present, and it is a roster and not the bodies
+  PASS  the same skill loaded twice is included once
+  PASS  an over-budget skill is REFUSED and reported, never thrown
+  PASS  the rules that moved out of the personas still reach the model
+  PASS  composeDirection is the ONLY composer: nothing concatenates onto a file fence
+  PASS  both composition sites actually call the composer
+
+  11 passed, 0 failed
+  PASS  a skill round-trips: metadata row, body parts, references
+  PASS  parts are split by BYTES, not characters (German + emoji)
+  PASS  the enabled cap is enforced ON ENABLE, not on save
+  PASS  a traversal path is REFUSED, not sanitised
+  PASS  an invalid id is dropped at the door, never turned into a key
+  PASS  A PRIVATE SKILL IS NOT LOADABLE ON ANOTHER ACCOUNT'S TURN
+  PASS  a SITE skill is loadable by anyone, and only promotion makes one
+  PASS  one user cannot overwrite another user's skill by id
+  PASS  the index heals a BLIND prefix query
+[skills] prefix query failed — falling back to the index: query unavailable
+[skills] prefix query failed — falling back to the index: query unavailable
+  PASS  the index heals a THROWING prefix query
+  PASS  a row the query CAN see but the index has lost is put back
+  PASS  deleting a skill takes every part row with it
+  PASS  shrinking a skill does not strand the tail of the previous write
+  PASS  caps are applied, and what was dropped is NAMED
+  PASS  a folded YAML description is read whole, not as '>-'
+  PASS  a literal block and a single-line description both still work
+[skills] seeded built-ins at v1: chatwise-jira-conventions (new), diconium-brand (new)
+[skills] seeded built-ins at v1: chatwise-jira-conventions (updated), diconium-brand (updated)
+  PASS  seeding is idempotent and NEVER re-enables a disabled built-in
+[skills] seeded built-ins at v1: chatwise-jira-conventions (new), diconium-brand (new)
+  PASS  a built-in cannot be overwritten or deleted by a user
+  PASS  the packaged diconium built-in fits every cap it is measured against
+  PASS  getSkillForAccount exists and answers the tool bridge's contract
+[skills] loaded later-one (+11 chars; prompt cache for this turn is now cold)
+  PASS  a bound skill is in the prompt before iteration 1, and a load adds one
+[skills] loaded twice (+9 chars; prompt cache for this turn is now cold)
+  PASS  loading the same skill twice does not append it twice
+[skills] loaded small (+5 chars; prompt cache for this turn is now cold)
+  PASS  a load the budget cannot fit is REFUSED IN THE TOOL RESULT, not thrown
+  PASS  the hook refuses another account's private skill, in the same words as missing
+[skills] prefix query failed — falling back to the index: query unavailable
+[skills] prefix query failed — falling back to the index: query unavailable
+[skills] seeded built-ins at v1: chatwise-jira-conventions (new), diconium-brand (new)
+[skills] prefix query failed — falling back to the index: query unavailable
+  PASS  a bound BUILT-IN survives a store outage, but not an admin disabling it
+
+  25 passed, 0 failed
+  PASS  the scan can actually see the skills layer
+  PASS  NO token matcher, stopword set, score or threshold exists under src/shared/skills
+  PASS  the roster asks the model to judge, and answers 'none of these' too
+  PASS  an empty roster produces NO text at all
+  PASS  the roster is in the composed prompt, in the TRUSTED region
+  PASS  a roster line stays inside its per-turn token cost
+  PASS  the four factory personas are BOUND to the Jira conventions skill
+  PASS  SHARED_OPERATIONAL_RULES is gone, and its text is the built-in skill
+  PASS  every built-in is inside the caps it will be stored under
+  PASS  no skill body is ever delivered as a tool result
+  PASS  agent.js calls the hook, and assigns it to the system message
+
+  11 passed, 0 failed
+(node:72134) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/ChatWise/src/shared/documents/pptx/index.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/ChatWise/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+        107493 bytes, 6 slides, 2 runs normalised
+  PASS  a deck renders at all
+  PASS  the three bookkeeping parts agree with the slides
+  PASS  every slide part is well-formed XML
+  PASS  the brand type survives the clone
+  PASS  ZERO drop shadows — the guarantee the template carries, not the code
+  PASS  the casing and emoji rules hold over the OUTPUT, not the input
+  PASS  the model's own text was actually rewritten, not just absent
+  PASS  a PARTIAL spec shifts nothing and leaks no template text
+  PASS  an INVENTED SLOT NAME refuses the whole deck, before anything is written
+  PASS  a slide that would come out BLANK is refused too
+  PASS  EVERY layout answers to `title` — the vocabulary is one word, not six
+  PASS  an unknown layout is refused BEFORE anything is written
+  PASS  a deck is bounded
+  PASS  two renders do not contaminate each other
+  PASS  unit: fillSlots addresses by NAME, never by run order
+  PASS  unit: XML metacharacters in a value cannot break the part
+  PASS  unit: normaliseText leaves digits and legal marks alone
+  PASS  the layout vocabulary is generated from the template, not retyped
+  PASS  renderDeck refuses a spec with no slides
+        convert /var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/cw-pptx-C7ClDW/deck.pptx as a Impress document -> /private/var/folders/41/670wc_gs2y93f8rs0330cc780000gn/T/cw-pptx-C7ClDW/deck.pdf using filter : impress_pdf_Export
+        deck.pdf: 182202 bytes, 6 pages
+  PASS  LibreOffice converts it to a PDF with the right page count
+  PASS  a single string for a MULTI-RUN slot is refused, and a newline is honoured
+
+  21 passed, 0 failed
+(node:72148) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/mihaiperdum/Projects/ChatWise/src/shared/documents/pptx/index.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/mihaiperdum/Projects/ChatWise/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+        result is 479 chars for a 100791-byte deck
+  PASS  a deck is built, held, and reported WITHOUT its bytes
+  PASS  NO ISSUE is a success with a named problem and a named fix
+  PASS  the held deck is byte-identical to what was built
+  PASS  A HANDLE IS NOT A CAPABILITY
+  PASS  attaching afterwards does NOT rebuild the deck
+  PASS  an expired or foreign handle is refused with the fix, not with a stack
+  PASS  creating WITH an issueKey attaches in the same call
+[Tools] attach chatwise-skills.pptx to WFH-3 failed: 403 {"errorMessages":["You do not have permission to create attachments for this issue."],"errors":{}}
+  PASS  A FAILED ATTACH KEEPS JIRA'S OWN WORDS
+[Tools] attach chatwise-skills.pptx to NOPE-9 failed: 404 
+  PASS  a 404 and a 403 do not collapse into one message
+  PASS  the site's OWN upload limit is read, not assumed
+  PASS  attachments switched off site-wide is a named problem, not an exception
+  PASS  an unreadable attachment/meta does not block the attempt
+  PASS  a bad spec is refused with the vocabulary, not with an exception
+  PASS  the filename is something a person will recognise
+  PASS  a deck bigger than one KVS row round-trips exactly
+  PASS  the download seam hands over base64 and a mime type, to the right account only
+  PASS  a SECOND attach in the same run REPLACES the first, it does not add one
+  PASS  a THIRD attach replaces the second, never the first again
+  PASS  a LATER TURN does not delete an earlier turn's file
+  PASS  with NO run id nothing is recorded and nothing is deleted
+  PASS  a delete that FAILS is reported, not swallowed
+  PASS  nothing here can ever find an attachment by NAME
+  PASS  unit: the ledger refuses a row that does not match the caller
+  PASS  THE NEXT TURN CAN ATTACH IT WITH NO HANDLE AT ALL
+  PASS  the resume path cannot reach across a conversation or an account
+  PASS  an EXPIRED conversation is refused honestly, and never rebuilt in silence
+  PASS  a handle that IS given is honoured strictly, with a way through
+
+  27 passed, 0 failed
+  PASS  loading a site skill acknowledges and asks for the direction
+  PASS  THE RESULT CARRIES NO SKILL TEXT
+[Skills] loadSkill refused switched-off: store refused
+[Skills] loadSkill refused someones-own: store refused
+[Skills] loadSkill refused no-such-skill: store refused
+  PASS  a disabled skill and a private one and a missing one are INDISTINGUISHABLE
+  PASS  the owner CAN load their own private skill
+  PASS  a malformed id is dropped, not repaired
+  PASS  a reference path must be references/<name>.md and nothing else
+  PASS  a valid reference acknowledges and names both parts of the request
+  PASS  a reference the skill does not have is answered with the ones it does
+[Skills] loadSkill refused diconium-brand: store exports nothing readable
+  PASS  NO STORE means NO SKILL — the bridge fails closed
+[Skills] loadSkill refused mystery: unreadable visibility — refusing
+  PASS  a record with an UNREADABLE visibility is refused, not assumed public
+[Skills] loadSkill refused anything: no enabled flag — refusing
+  PASS  a record with no enabled flag is refused
+[Skills] loadSkill refused mine: private, other owner
+  PASS  the fallback gate still honours ownership when the shape IS readable
+[Skills] the store failed reading diconium-brand: kvs is down
+[Skills] loadSkill refused no-such-skill: store refused
+  PASS  a store OUTAGE is reported as itself, not as "no such skill"
+
+  13 passed, 0 failed
+  PASS  the scan can actually see both sides
+  PASS  every route a surface calls is DEFINED by a resolver
+  PASS  the skill and deck routes specifically are registered on the chat resolver
+  PASS  skill routes are registered on the GATED resolver, never the raw one
+  PASS  the two SHARING routes are admin-gated, and authoring is NOT
+  PASS  every job field the chat UI reads survives job.routes.js's allow-list
+  PASS  a field the consumer writes for the UI is actually written
+
+  7 passed, 0 failed
+  PASS  the scan can actually see the repo
+  PASS  no authored source file contains a NUL or stray control byte
+  PASS  no authored source file is invalid UTF-8
+  PASS  the pptx template is present, non-empty and actually a zip
+
+  4 passed, 0 failed
+  PASS  EVERY agent return that finishes a turn carries decks
+  PASS  the retry dedupe is REACHABLE and does not over-match — it keys on the title
+  PASS  dedupe behaviour: a retry replaces; two real decks survive, even when their filenames collide
+  PASS  the deck result carries the title the dedupe keys on
+  PASS  a drop report NAMES what was dropped, from one formatter
+
+  5 passed, 0 failed

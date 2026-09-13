@@ -1,0 +1,22 @@
+
+Running 1 test using 1 worker
+
+DEPLOYED BUILD IN THE DOM: v6.92.0
+  VERIFIED WFH-2268 in WFH: "[harness-test] t5 f2 r1"
+round 1: QUOTA on turn 2
+round 2: QUOTA on turn 1
+round 3: QUOTA on turn 1
+round 4: QUOTA on turn 1
+  VERIFIED WFH-2269 in WFH: "[harness-test] t5 f2 r5"
+--- F2 round 5
+  t1 reply: Created **WFH-2269** — *"[harness-test] t5 f2 r5"* in the **WORK FOR HIRE** project as a **Work package**, assigned to you. ⏎  ⏎ Would you like to set a priority, a
+  t2 reply: That's your call — I can't pick a project without knowing what the item is about. Here's what you have access to: ⏎  ⏎ ## Projects available to you ⏎  ⏎ **Most likely candidates (given your last item):** ⏎ - **WFH** — WORK FOR HIRE *(where "[harness-test] t5 f2 r5" just went)* ⏎  ⏎ **Test / harness projects:** ⏎ - **COGTEST** — CogniRunner Test Harness ⏎ - **CGL1** — CogniRunner Rule Lab 1 ⏎ - **CGL2** — CogniRunner 
+  t2 question: ["Which project should this new item go into? Here are 4 of your 18 projects — you can also type any other project key straight into the box."]
+  t2 project options: ["Use project WFH — WORK FOR HIRE","Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness"]
+  t2 all options: ["Use project WFH — WORK FOR HIRE","Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness"]
+  cleanup WFH-2268: deleted
+  cleanup WFH-2269: deleted
+F2 HIT RATE: 1/1
+  ✓  1 [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:48:1 › F2: 'now I want to raise another item, which project should it go in?' offers BUTTONS (1.6m)
+
+  1 passed (1.6m)

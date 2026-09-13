@@ -1,0 +1,28 @@
+[
+  {
+    "msg": "I want to create an epic for supplier onboarding in WFH",
+    "reply": "## 🧭 Epic Facilitator\n\nI've reviewed what we have. My understanding is that we are building an Epic to streamline how new suppliers get onboarded into the WFH project — likely covering supplier registration, documentation/compliance checks, and approval before they can be engaged for work.\n\n- Who is primarily affected by the current supplier onboarding process?\n\n*Correct me where I'm wrong, then we'll shape the Epic.*",
+    "projectOptions": [],
+    "allOptions": [
+      "Procurement/vendor management team",
+      "Suppliers themselves (external users)",
+      "Finance/compliance teams approving suppliers"
+    ]
+  },
+  {
+    "msg": "approve",
+    "reply": "## 🧭 Epic Facilitator\n\nGot it — treating that as confirmation of my understanding, with Procurement/vendor management team as the primary affected group for supplier onboarding in WFH. Now let's pin down the concrete problem and how we'd measure success.\n\n- What is the biggest pain point in the current supplier onboarding process today?\n\n*Correct me where I'm wrong, then we'll shape the Epic.*",
+    "projectOptions": [],
+    "allOptions": [
+      "Manual, paper-based steps that don't scale",
+      "Long delays waiting for compliance/document approval",
+      "No visibility into where a supplier is in the process"
+    ]
+  },
+  {
+    "msg": "what's the weather like where you are?",
+    "reply": "I don't have any way to check the weather — no location, and no weather tools in this Jira workspace. Only Jira data is available to me here.\n\nYour Epic interview is still open exactly where you left it — just answer the pain-point question whenever you're ready and we'll carry on.",
+    "projectOptions": [],
+    "allOptions": []
+  }
+]

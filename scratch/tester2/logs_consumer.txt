@@ -1,0 +1,21 @@
+
+INFO    2026-09-04T09:39:46.993Z e7185594-b8f3-431c-8d51-df344e946823 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:39:47.198Z e7185594-b8f3-431c-8d51-df344e946823 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+WARN    2026-09-04T09:39:47.493Z e7185594-b8f3-431c-8d51-df344e946823 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T09:40:29.077Z 57ce5ea4-b6e5-496c-a489-b91855270545 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:40:29.078Z 57ce5ea4-b6e5-496c-a489-b91855270545 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:40:29.267Z 57ce5ea4-b6e5-496c-a489-b91855270545 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:41:23.557Z d742cc08-5f25-45d8-92b7-dae2d94ab0d6 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:41:23.558Z d742cc08-5f25-45d8-92b7-dae2d94ab0d6 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:41:23.834Z d742cc08-5f25-45d8-92b7-dae2d94ab0d6 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:42:25.042Z de7eecda-da2d-4725-ab46-125e53598bd8 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:42:25.043Z de7eecda-da2d-4725-ab46-125e53598bd8 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:42:25.279Z de7eecda-da2d-4725-ab46-125e53598bd8 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+WARN    2026-09-04T09:42:25.459Z de7eecda-da2d-4725-ab46-125e53598bd8 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T09:42:39.003Z de7eecda-da2d-4725-ab46-125e53598bd8 [Tools] Created Epic WFH-2238 in WFH
+INFO    2026-09-04T09:43:13.597Z 88380544-660f-47d6-9b34-f92da0141c7d [Agile] capability from cache: available=true
+INFO    2026-09-04T09:43:13.598Z 88380544-660f-47d6-9b34-f92da0141c7d [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:43:13.781Z 88380544-660f-47d6-9b34-f92da0141c7d [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:43:31.040Z e950437f-b458-4969-91bc-89fc64cadb73 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:43:31.041Z e950437f-b458-4969-91bc-89fc64cadb73 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:43:31.241Z e950437f-b458-4969-91bc-89fc64cadb73 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655

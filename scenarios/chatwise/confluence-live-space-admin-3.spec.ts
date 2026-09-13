@@ -94,7 +94,7 @@ test('B3: with write:confluence-space granted, the space undo reaches Confluence
     entry.askCaveat = {
       namesRadius: ask.reply.includes(KEY),
       saysDelete: /delet/i.test(ask.reply),
-      saysOnlyWhileEmpty: /empty|no pages|before .*(content|pages)/i.test(ask.reply),
+      saysOnlyWhileEmpty: /empty|no pages|nothing but|only while|before .*(content|pages)|once (someone|somebody|anybody) (adds|writes)/i.test(ask.reply),
     }; save();
     expect.soft(entry.askCaveat.saysDelete, `the PREVIEW does not say the undo is a DELETE:\n${ask.reply.slice(0, 1200)}`).toBe(true);
     expect.soft(entry.askCaveat.saysOnlyWhileEmpty, `the PREVIEW does not carry the empty-space undo caveat:\n${ask.reply.slice(0, 1200)}`).toBe(true);

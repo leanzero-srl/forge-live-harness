@@ -1,0 +1,23 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+INFO    2026-09-04T09:37:10.868Z 68a73faa-0826-42bc-af28-84a561d88121 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+WARN    2026-09-04T09:37:19.296Z 68a73faa-0826-42bc-af28-84a561d88121 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T09:37:38.935Z 7845cc67-625e-42c9-b053-3cc4cb613d6f [Agile] capability from cache: available=true
+INFO    2026-09-04T09:37:38.936Z 7845cc67-625e-42c9-b053-3cc4cb613d6f [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:37:39.155Z 7845cc67-625e-42c9-b053-3cc4cb613d6f [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+WARN    2026-09-04T09:37:39.288Z 7845cc67-625e-42c9-b053-3cc4cb613d6f [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T09:38:01.179Z b94eb24d-c0b3-43f8-8b20-f95a1ef0f3d8 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:38:01.180Z b94eb24d-c0b3-43f8-8b20-f95a1ef0f3d8 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:38:01.370Z b94eb24d-c0b3-43f8-8b20-f95a1ef0f3d8 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+WARN    2026-09-04T09:38:01.535Z b94eb24d-c0b3-43f8-8b20-f95a1ef0f3d8 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T09:38:25.231Z 3ef853d3-927d-44f9-86d6-757e43edbdae [Agile] capability from cache: available=true
+INFO    2026-09-04T09:38:25.232Z 3ef853d3-927d-44f9-86d6-757e43edbdae [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:38:25.435Z 3ef853d3-927d-44f9-86d6-757e43edbdae [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:39:01.736Z bcaa98ea-2962-43cf-94ad-fac7db50aa36 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:39:01.737Z bcaa98ea-2962-43cf-94ad-fac7db50aa36 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:39:01.934Z bcaa98ea-2962-43cf-94ad-fac7db50aa36 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:39:46.992Z e7185594-b8f3-431c-8d51-df344e946823 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:39:46.993Z e7185594-b8f3-431c-8d51-df344e946823 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:39:47.198Z e7185594-b8f3-431c-8d51-df344e946823 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+WARN    2026-09-04T09:39:47.493Z e7185594-b8f3-431c-8d51-df344e946823 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier

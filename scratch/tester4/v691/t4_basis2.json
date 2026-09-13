@@ -1,0 +1,35 @@
+{
+  "conversationId": "conv_t4_b2_1788528894075",
+  "created": [
+    "WFH-2259"
+  ],
+  "log": [
+    {
+      "msg": "create a work item in my name in the work for hire one, summary \"[harness-test] t4 basis 2\"",
+      "response": "Created **WFH-2259** — *[harness-test] t4 basis 2*, a **Work package** in **WFH (WORK FOR HIRE)**, assigned to you.\n\nAnything else you'd like to add to it, like a description or priority?",
+      "questions": [
+        "Which project should this go in? Showing 4 of 18 — type any other project key in the box if it isn't listed."
+      ],
+      "projectOptions": [
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2",
+        "Use project COGTEST — CogniRunner Test Harness",
+        "Use project BDP — DEMAND PROCESS"
+      ]
+    },
+    {
+      "msg": "now let's shape an epic for supplier onboarding — but first ask me which project it should be created in",
+      "response": "## 🧭 Epic Facilitator\n\nUnderstood — a new SAFe Epic for supplier onboarding. Before we shape it, I need the target project, and I won't guess: the application will attach the real list of projects you can see so you can just click one (type a key in the box if the one you want isn't shown).\n\n**To refine this, a few questions:**\n\n- Who is the supplier onboarding process most painful for today?\n\n*Pick the project for this Epic, and answer that first question if you can — then I'll draft the Epic Hypothesis and we'll refine it together.*",
+      "questions": [
+        "Who is the supplier onboarding process most painful for today?",
+        "Which project should this go in? WFH is the project this conversation has been working in. Showing 4 of 18 — type any other project key in the box if it isn't listed."
+      ],
+      "projectOptions": [
+        "Use project WFH — WORK FOR HIRE",
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2",
+        "Use project COGTEST — CogniRunner Test Harness"
+      ]
+    }
+  ]
+}

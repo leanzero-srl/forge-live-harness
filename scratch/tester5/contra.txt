@@ -1,0 +1,22 @@
+
+Running 1 test using 1 worker
+
+DEPLOYED BUILD IN THE DOM: v6.94.0
+  VERIFIED WFH-2279 in WFH
+--- round 1: replyNamesWFH=true offersOtherProjects=false
+  reply: ## WFH-2279 created ⏎  ⏎ - **Project:** WORK FOR HIRE (WFH) ⏎ - **Type:** Work package (the standard-level type in this project — there is no "Task") ⏎ - **Summary:** [harness-test] t5 contradiction r1 ⏎ - **Assignee:** you ⏎  ⏎ Want me to add a description, priority or acceptance criteria to it?
+  question: []
+  options: []
+round 2: QUOTA
+round 3: QUOTA
+  VERIFIED WFH-2282 in WFH
+--- round 4: replyNamesWFH=true offersOtherProjects=false
+  reply: Created **WFH-2282** — "[harness-test] t5 contradiction r4" as a **Work package** in the **WORK FOR HIRE** project, assigned to you. ⏎  ⏎ Would you like me to set a priority, due date, or add it to a sprint/epic?
+  question: []
+  options: []
+  cleanup WFH-2279: deleted
+  cleanup WFH-2282: deleted
+CONTRADICTORY TURNS: 0/2
+  ✓  1 [chromium] › scenarios/chatwise/zz5-contradiction.probe.spec.ts:33:1 › CONTRADICTION: buttons for other projects under a reply that already names one (1.1m)
+
+  1 passed (1.1m)

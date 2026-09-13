@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Create a diconium-branded PowerPoint deck titled \"Tester Baseline Probe\" with exactly four slides: a cover, a cards slide, a stats slide and a timeline slide, about a warehouse automation rollout. Do NOT attach it to any Jira issue - I only want to download it.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant complete",
+    "text": "Perfect! ✅ Your deck is ready to download.tester-baseline-probe.pptx (104 KB, 4 slides)The deck is diconium-branded with:Slide 1 (Cover): \"warehouse automation rollout\" with deployment scopeSlide 2 (Cards): Three key deployment areas — receiving & intake, storage & retrieval, packing & sortingSlide 3 (Stats): Three headline metrics — 30% labor efficiency gain, 4-week phase 1 timeline, 12 planned sitesSlide 4 (Timeline): Three-phase roadmap from baseline assessment through pilot and optimization to full scaleThe file is held for 30 minutes. If you want to attach it to a Jira issue later, just let me know the issue key and I'll attach it without rebuilding.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-haiku-4-5-2025100159.5k tokens4 tool callsskills: chatwise-jira-conventions, diconium-brand",
+    "streaming": false
+  }
+]

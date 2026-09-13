@@ -1,0 +1,7 @@
+[
+  {
+    "text": "\"tester-overcap\" was saved, but not all of it: body: truncated to 24000 characters; references/huge.md: truncated to 32000 characters; references/Bad Name.md: path is not references/<name>.md; references/extra03.md: more than 10 references; references/extra07.md: more than 10 references×",
+    "cls": "skills-notice is-error",
+    "at": 1788516262528
+  }
+]

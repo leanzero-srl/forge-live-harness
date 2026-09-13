@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Create a diconium-branded PowerPoint deck titled \"Tester Attach Probe\" with exactly five slides: a cover, a section divider, a cards slide, a stats slide and a timeline slide, about a customer data platform migration. Attach it to WFH-2218.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant",
+    "text": "Perfect! ✨ Your diconium-branded deck is done and attached to WFH-2218.Deck details:Title: Tester Attach ProbeSlides: 5 (exactly as requested)Cover slide with title and blurb about the CDP migrationSection divider for \"Migration Strategy\"Cards slide showing three migration phasesStats slide with key metrics (12 data sources, 2.5M records, 340% ROI)Timeline slide covering Q1–Q3 2025 phasesFile: tester-attach-probe.pptx (106 KB) — now attached to the issue.The deck follows diconium brand guidelines with lowercase typography, clean geometry, and the orange and black accent palette. Ready to go! 🎯",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-haiku-4-5-2025100159.8k tokens4 tool callsskills: chatwise-jira-conventions, diconium-brand",
+    "streaming": false
+  }
+]

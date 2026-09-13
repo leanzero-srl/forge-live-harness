@@ -1,0 +1,44 @@
+{
+  "m": "getJobStatus",
+  "p": {
+    "jobId": "job_1788513187274_8neb9sued"
+  },
+  "r": {
+    "success": true,
+    "data": {
+      "status": "completed",
+      "result": {
+        "response": "Perfect! ✨ Your diconium-branded deck is done and attached to WFH-2218.\n\n**Deck details:**\n- **Title:** Tester Attach Probe\n- **Slides:** 5 (exactly as requested)\n  1. Cover slide with title and blurb about the CDP migration\n  2. Section divider for \"Migration Strategy\"\n  3. Cards slide showing three migration phases\n  4. Stats slide with key metrics (12 data sources, 2.5M records, 340% ROI)\n  5. Timeline slide covering Q1–Q3 2025 phases\n\n**File:** tester-attach-probe.pptx (106 KB) — now attached to the issue.\n\nThe deck follows diconium brand guidelines with lowercase typography, clean geometry, and the orange and black accent palette. Ready to go! 🎯",
+        "conversationId": "conv_1788513183214_l4omgoqew",
+        "usage": {
+          "completion_tokens": 1303,
+          "prompt_tokens": 58493,
+          "total_tokens": 59796
+        },
+        "model": "claude-haiku-4-5-20251001",
+        "iterations": 4,
+        "truncated": false,
+        "answerOptions": null,
+        "contextNote": null,
+        "skillsUsed": [
+          "chatwise-jira-conventions",
+          "diconium-brand"
+        ],
+        "decks": [
+          {
+            "attached": true,
+            "filename": "tester-attach-probe.pptx",
+            "handle": "e0da8c03b1c64b4fb7173a7a89ac0eb6",
+            "issueKey": "WFH-2218",
+            "sizeBytes": 105778,
+            "slides": 5
+          }
+        ],
+        "progressNote": null,
+        "assistantMessageId": "msg_1788513205721_m387hl4dt",
+        "status": "Done"
+      },
+      "retryCount": 0
+    }
+  }
+}

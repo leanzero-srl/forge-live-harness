@@ -1,0 +1,11 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+
+/Users/mihaiperdum/Projects/forge-live-harness/manifest.yml
+0:0     error    To run this command, make sure you're in the top-level directory of your app, and the manifest.yml file is in the same directory.  manifest-file-required
+
+
+Error: Command failed due to validation error.
+
+Rerunning the command with --verbose may give more details.

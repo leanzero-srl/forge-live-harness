@@ -1,0 +1,14 @@
+✔ actual adapter serializes response parsing before following request validation (9.050959ms)
+✔ actual outer Forge timeout is retained rather than undefined-body success (0.84825ms)
+✔ requestfailed is an error, not permission to repeat begin (0.448667ms)
+✔ unrelated owner-discovery before click does not admit a foreign prior job (0.320333ms)
+✔ held step executes backend once and delivers the identical response only after release (1.758666ms)
+✔ unrelated plan cannot be held by fixture control (0.179667ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 330.336167

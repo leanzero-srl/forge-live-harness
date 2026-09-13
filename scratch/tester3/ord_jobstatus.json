@@ -1,0 +1,43 @@
+{
+  "m": "getJobStatus",
+  "p": {
+    "jobId": "job_1788517010045_rt67w32tt"
+  },
+  "r": {
+    "success": true,
+    "data": {
+      "status": "completed",
+      "result": {
+        "response": "Both presentation calls completed successfully.",
+        "conversationId": "conv_1788517006094_qo4u2hm4t",
+        "usage": {
+          "completion_tokens": 249,
+          "prompt_tokens": 26166,
+          "total_tokens": 26415
+        },
+        "model": "claude-haiku-4-5-20251001",
+        "iterations": 2,
+        "truncated": false,
+        "answerOptions": null,
+        "contextNote": null,
+        "skillsUsed": [
+          "chatwise-jira-conventions"
+        ],
+        "decks": [
+          {
+            "attached": false,
+            "filename": "tester-order-probe3.pptx",
+            "handle": "284bb1f078bd4b7ab68d69fd003452f8",
+            "issueKey": null,
+            "sizeBytes": 98945,
+            "slides": 1
+          }
+        ],
+        "progressNote": null,
+        "assistantMessageId": "msg_1788517016917_5mg5qsl3z",
+        "status": "Done"
+      },
+      "retryCount": 0
+    }
+  }
+}

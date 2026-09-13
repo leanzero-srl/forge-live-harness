@@ -1,0 +1,44 @@
+{
+  "m": "getJobStatus",
+  "p": {
+    "jobId": "job_1788516620692_wxaemuuuk"
+  },
+  "r": {
+    "success": true,
+    "data": {
+      "status": "completed",
+      "result": {
+        "response": "Perfect! Your **Tester Refusal Probe** deck is ready — 4 slides, diconium-branded, covering the warehouse automation rollout with cover, cards, stats and timeline slides.\n\nThe deck is held in memory for 30 minutes. If you'd like to attach it to a Jira issue, just give me the issue key and I'll do that for you.\n\nNO REFUSAL",
+        "conversationId": "conv_1788516616301_rhxnv3yle",
+        "usage": {
+          "completion_tokens": 1098,
+          "prompt_tokens": 58280,
+          "total_tokens": 59378
+        },
+        "model": "claude-haiku-4-5-20251001",
+        "iterations": 4,
+        "truncated": false,
+        "answerOptions": null,
+        "contextNote": null,
+        "skillsUsed": [
+          "chatwise-jira-conventions",
+          "diconium-brand"
+        ],
+        "decks": [
+          {
+            "attached": false,
+            "filename": "tester-refusal-probe.pptx",
+            "handle": "bfa099703e184dedb99166672be13330",
+            "issueKey": null,
+            "sizeBytes": 104402,
+            "slides": 4
+          }
+        ],
+        "progressNote": null,
+        "assistantMessageId": "msg_1788516635764_qxpwq2bzr",
+        "status": "Done"
+      },
+      "retryCount": 0
+    }
+  }
+}

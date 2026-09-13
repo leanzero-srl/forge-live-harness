@@ -1,0 +1,53 @@
+[
+  {
+    "i": 1,
+    "reply": "## 🧭 Epic Facilitator\n\nIch verstehe, dass wir ein Epic für das Lieferanten-Onboarding aufsetzen wollen – vermutlich geht es darum, den Prozess zur Aufnahme neuer Lieferanten (Registrierung, Prüfung, Freigabe) zu digitalisieren oder zu beschleunigen.\n\n- Wer sind die wichtigsten Nutzer, die von diesem Onboarding-Prozess betroffen sind?\n\n*Korrigiere mich, wo ich falsch liege – und sag mir, in welchem Projekt das Epic angelegt werden soll.*",
+    "question": "Wer sind die wichtigsten Nutzer, die von diesem Onboarding-Prozess betroffen sind? | In welchem Projekt soll das Epic angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch einen anderen Projekt-Key direkt eingeben.",
+    "questions": [
+      "Wer sind die wichtigsten Nutzer, die von diesem Onboarding-Prozess betroffen sind?",
+      "In welchem Projekt soll das Epic angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch einen anderen Projekt-Key direkt eingeben."
+    ],
+    "projectOptions": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "german": true,
+    "numbers": true
+  },
+  {
+    "i": 2,
+    "reply": "## 🧭 Epic Facilitator\n\nIch verstehe, dass wir ein Epic für das Lieferanten-Onboarding aufbauen wollen — vermutlich um den Prozess der Aufnahme neuer Lieferanten zu digitalisieren und zu beschleunigen. Bevor wir die Details ausarbeiten, brauche ich noch ein paar Eckpunkte.\n\n- Wer sind die wichtigsten Nutzer dieses Onboarding-Prozesses?\n\n*Sag mir, wo ich falsch liege, und für welches Projekt das Epic angelegt werden soll — 4 von 18 Projekten zeige ich dir hier, ein anderer Projekt-Key kann auch eingegeben werden.*",
+    "question": "Wer sind die wichtigsten Nutzer dieses Onboarding-Prozesses? | In welchem Projekt soll das Epic für das Lieferanten-Onboarding angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch jeden anderen Projekt-Key eingeben.",
+    "questions": [
+      "Wer sind die wichtigsten Nutzer dieses Onboarding-Prozesses?",
+      "In welchem Projekt soll das Epic für das Lieferanten-Onboarding angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch jeden anderen Projekt-Key eingeben."
+    ],
+    "projectOptions": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "german": true,
+    "numbers": true
+  },
+  {
+    "i": 3,
+    "reply": "## 🧭 Epic Facilitator\n\nIch habe verstanden, dass wir ein Epic für das Lieferanten-Onboarding anlegen möchten: ein Prozess, der neue Lieferanten aufnimmt, prüft (z. B. Compliance/Stammdaten) und für die Zusammenarbeit freischaltet. Bevor wir das Epic weiter ausarbeiten, lass uns kurz die Zielgruppe und den größten Schmerzpunkt schärfen.\n\n- Wer ist die wichtigste Zielgruppe für dieses Onboarding?\n\n*Korrigiere mich, wo ich falsch liege – und sag mir bitte auch, in welchem Projekt das Epic entstehen soll.*",
+    "question": "Wer ist die wichtigste Zielgruppe für dieses Onboarding? | In welchem Projekt soll das Epic angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch jeden anderen Projekt-Key direkt eintippen.",
+    "questions": [
+      "Wer ist die wichtigste Zielgruppe für dieses Onboarding?",
+      "In welchem Projekt soll das Epic angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch jeden anderen Projekt-Key direkt eintippen."
+    ],
+    "projectOptions": [
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness",
+      "Use project BDP — DEMAND PROCESS"
+    ],
+    "german": true,
+    "numbers": true
+  }
+]

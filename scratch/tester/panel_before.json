@@ -1,0 +1,24 @@
+{
+  "modalVisible": true,
+  "counts": [
+    "all=2",
+    "private=2",
+    "site=0"
+  ],
+  "rows": [
+    {
+      "id": "chatwise-jira-conventions",
+      "text": "Jira house rules Private Built in How this app works Jira: call the tool before talking, resolve names to ids, and the markdown conventions every reply follows. Applies to any Jira request. updated today On Ships with Ch",
+      "actions": [
+        "toggle"
+      ]
+    },
+    {
+      "id": "diconium-brand",
+      "text": "diconium-brand Private Built in diconium brand rules for slides and documents: colours, Campton type, the CAPS and lowercase rules, tone of voice and imagery. Use when creating or restyling any diconium deck or document.",
+      "actions": [
+        "toggle"
+      ]
+    }
+  ]
+}

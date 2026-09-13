@@ -1,0 +1,9 @@
+
+Running 1 test using 1 worker
+
+direct flow: 13 question sheets answered by clicking, epic WFH-2257
+  ✓  1 [chromium] › scenarios/chatwise/zz4-pofull-long.probe.spec.ts:89:1 › PO full flow LONG PROBE: initiative → wizard → approval → a real Epic in Jira, no errors ever (8.4m)
+
+  Slow test file: [chromium] › scenarios/chatwise/zz4-pofull-long.probe.spec.ts (8.4m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 passed (8.4m)

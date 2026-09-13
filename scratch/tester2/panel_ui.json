@@ -1,0 +1,59 @@
+{
+  "filters": [
+    {
+      "cls": "skills-filter",
+      "text": "All2 Mine0 Site-wide2"
+    },
+    {
+      "cls": "skills-filter-btn is-on",
+      "dataFilter": "all",
+      "text": "All2"
+    },
+    {
+      "cls": "skills-filter-btn is-empty",
+      "dataFilter": "private",
+      "text": "Mine0"
+    },
+    {
+      "cls": "skills-filter-btn",
+      "dataFilter": "site",
+      "text": "Site-wide2"
+    }
+  ],
+  "counts": [
+    "all=2",
+    "private=0",
+    "site=2"
+  ],
+  "rows": [
+    {
+      "id": "chatwise-jira-conventions",
+      "badges": [
+        "skill-badge scope-site|Site-wide",
+        "skill-badge scope-builtin|Built in"
+      ],
+      "meta": [
+        "updated today"
+      ],
+      "fullText": "Jira house rules Site-wide Built in How this app works Jira: call the tool before talking, resolve names to ids, and the markdown conventions every reply follows. Applies to any Jira request. updated today On Ships with ChatWise",
+      "actions": [
+        "toggle"
+      ]
+    },
+    {
+      "id": "diconium-brand",
+      "badges": [
+        "skill-badge scope-site|Site-wide",
+        "skill-badge scope-builtin|Built in"
+      ],
+      "meta": [
+        "5 reference files",
+        "updated today"
+      ],
+      "fullText": "diconium-brand Site-wide Built in diconium brand rules for slides and documents: colours, Campton type, the CAPS and lowercase rules, tone of voice and imagery. Use when creating or restyling any diconium deck or document. 5 reference filesupdated today On Shi",
+      "actions": [
+        "toggle"
+      ]
+    }
+  ]
+}

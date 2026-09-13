@@ -1,0 +1,44 @@
+{
+  "m": "getJobStatus",
+  "p": {
+    "jobId": "job_1788516532670_vv9lscayd"
+  },
+  "r": {
+    "success": true,
+    "data": {
+      "status": "completed",
+      "result": {
+        "response": "Perfect! ✅ Your deck is ready to download.\n\n**tester-baseline-probe.pptx** (104 KB, 4 slides)\n\nThe deck is diconium-branded with:\n- **Slide 1 (Cover):** \"warehouse automation rollout\" with deployment scope\n- **Slide 2 (Cards):** Three key deployment areas — receiving & intake, storage & retrieval, packing & sorting\n- **Slide 3 (Stats):** Three headline metrics — 30% labor efficiency gain, 4-week phase 1 timeline, 12 planned sites\n- **Slide 4 (Timeline):** Three-phase roadmap from baseline assessment through pilot and optimization to full scale\n\nThe file is held for 30 minutes. If you want to attach it to a Jira issue later, just let me know the issue key and I'll attach it without rebuilding.",
+        "conversationId": "conv_1788516528587_d0z9l932m",
+        "usage": {
+          "completion_tokens": 1248,
+          "prompt_tokens": 58233,
+          "total_tokens": 59481
+        },
+        "model": "claude-haiku-4-5-20251001",
+        "iterations": 4,
+        "truncated": false,
+        "answerOptions": null,
+        "contextNote": null,
+        "skillsUsed": [
+          "chatwise-jira-conventions",
+          "diconium-brand"
+        ],
+        "decks": [
+          {
+            "attached": false,
+            "filename": "tester-baseline-probe.pptx",
+            "handle": "722426e20b704fc2a5a3b983e624e42a",
+            "issueKey": null,
+            "sizeBytes": 104477,
+            "slides": 4
+          }
+        ],
+        "progressNote": null,
+        "assistantMessageId": "msg_1788516549652_x40mms9o8",
+        "status": "Done"
+      },
+      "retryCount": 0
+    }
+  }
+}

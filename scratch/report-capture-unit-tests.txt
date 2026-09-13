@@ -1,0 +1,27 @@
+✔ actual cleanup retains exact manifest before and verifies two strong absence reads (1.32925ms)
+✔ foreign owner request cannot be adopted for cleanup (0.612667ms)
+✔ failed or ambiguous cancel is never retried and exact state survives (0.198459ms)
+✔ false cleanupDone while keys still present cannot pass (0.159875ms)
+✔ missing manifest entries after cancellation is not proof of removal (0.263583ms)
+✔ cleanup after complete keeps all public report objects (0.173459ms)
+✔ zero-progress cleanup refused rather than infinite retry (0.137625ms)
+✔ real shape full lifecycle requires cleanup and preserves immutable report (1.282792ms)
+✔ progress alone is not completion and bounded timeout stays failure (6.076583ms)
+✔ begin request nonce mismatch refused (0.560208ms)
+✔ foreign plan ignored and different job cannot replace admitted job (0.169542ms)
+✔ overlapping mutations fail even if eventual outcomes look successful (0.161583ms)
+✔ wrong expected checkpoint refused before accepting later result (0.106ms)
+✔ unchanged active checkpoint cannot be graded as progress (0.12ms)
+✔ terminal cleanup cannot erase a completed report (0.146792ms)
+✔ wrong report hash/identity refused (0.127667ms)
+✔ unknown transport outcome preserves original error and last acknowledged job (0.150291ms)
+✔ failed terminal state retained for explicit refusal assertions, not coerced complete (0.100833ms)
+✔ second begin cannot silently replace first job after a lost result (0.260292ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 49.066458

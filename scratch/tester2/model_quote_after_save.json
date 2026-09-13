@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Load the skill with id tester-brand-probe. Then read its reference file references/colors.md. Reply with exactly three lines and nothing else: (1) the tester canary phrase written in the SKILL.md body, (2) the hex code the skill gives for purple, (3) the character limit it states for CAPS headlines.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant complete",
+    "text": "BLUE-OTTER-7741#581F9D30",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-haiku-4-5-2025100128.3k tokens2 tool callsskills: chatwise-jira-conventions, tester-brand-probe +1",
+    "streaming": false
+  }
+]

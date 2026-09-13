@@ -1,0 +1,46 @@
+{
+  "conversationId": "conv_t4_rec_1788526150321",
+  "created": [
+    "COGTEST-2684"
+  ],
+  "log": [
+    {
+      "turn": 1,
+      "msg": "create a work item in project COGTEST in my name, summary \"[harness-test] t4 recency probe\"",
+      "response": "Created **COGTEST-2684** — \"[harness-test] t4 recency probe\" as a **Task**, assigned to you.\n\nWant to pick up where the Epic interview left off?",
+      "options": [],
+      "questions": [],
+      "projectOptions": []
+    },
+    {
+      "turn": 2,
+      "msg": "approve",
+      "response": "## 🧭 Epic Facilitator\n\nQuick flag before I act on that: there's no Epic draft on the table yet, so there's nothing for me to lock in. So far in this conversation we've only created the Task COGTEST-2684 (\"[harness-test] t4 recency probe\") in your name — I don't want to invent an Epic and treat your 'approve' as sign-off on content you've never seen.\n\n**To refine this, a few questions:**\n\n- What initiative should this SAFe Epic cover?\n\n*Tell me who the Epic is for and what problem it solves, and I'll put a first Hypothesis draft in front of you — then 'approve' will actually mean something.*",
+      "options": [
+        "I'll describe the initiative to you now",
+        "Build it around the work item I just created",
+        "Use your best judgment and draft something"
+      ],
+      "questions": [
+        "What initiative should this SAFe Epic cover?"
+      ],
+      "projectOptions": []
+    },
+    {
+      "turn": 3,
+      "msg": "thanks. now I want to raise another item, which project should it go in?",
+      "response": "I can't pick that for you — it needs to be your call. Here's the context I have:\n\n- The item we just created, COGTEST-2684, went into **COGTEST** (*CogniRunner Test Harness*), which is also the project the Epic interview is targeting.\n- You have access to **18** projects in total, including **CGL1** (*CogniRunner Rule Lab 1*), **CGL2** (*CogniRunner Rule Lab 2*), **LZPT** (*LZ PPM Harness Test*), **TRAN** (*Transition Lab*) and **BDP** (*DEMAND PROCESS*).\n\n**Shall I raise the new item in COGTEST alongside the last one, or would you like a different project from that list?** If you tell me the summary and type as well, I'll create it in one go in your name.",
+      "options": [],
+      "questions": [],
+      "projectOptions": []
+    },
+    {
+      "turn": 4,
+      "msg": "remind me what makes a good acceptance criterion",
+      "response": "## Acceptance Criteria — The Standard\n\nA good acceptance criterion is:\n\n- **Testable** — you can run it and get a clear pass/fail result, not an opinion\n- **Independent** — it stands alone; other criteria don't have to pass first for this one to make sense\n- **Specific** — it names the exact condition or outcome, not a vague intent\n- **Written in Given/When/Then** — this format (from Behaviour-Driven Development) forces clarity:\n  - **Given** — the starting state or precondition\n  - **When** — the action the user takes\n  - **Then** — the observable result\n\n### Example\n\n**Bad:** \"The system should be fast\"  \n**Good:** \n- **Given** a query with 10,000 records, **When** the user clicks \"Search\", **Then** results appear in under 2 seconds\n\n**Bad:** \"Users can filter data\"  \n**Good:**\n- **Given** the user is on the dashboard, **When** they select \"High Priority\" from the filter dropdown, **Then** only issues marked High Priority display, and the count updates to match\n\nThe test is: could a QA engineer hand this to an automation tool and get a repeatable result? If yes, you've nailed it.\n\nWant to draft acceptance criteria for a user story, or create that second work item now?",
+      "options": [],
+      "questions": [],
+      "projectOptions": []
+    }
+  ]
+}

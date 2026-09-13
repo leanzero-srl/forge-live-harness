@@ -1,0 +1,27 @@
+{
+  "metaChips": [
+    {
+      "cls": "message-meta-chip",
+      "text": "claude-haiku-4-5-20251001",
+      "title": ""
+    },
+    {
+      "cls": "message-meta-chip",
+      "text": "60.7k tokens",
+      "title": ""
+    },
+    {
+      "cls": "message-meta-chip",
+      "text": "4 tool calls",
+      "title": ""
+    },
+    {
+      "cls": "message-meta-chip skills",
+      "text": "skills: diconium-brand",
+      "title": "Loaded for this turn: diconium-brand"
+    }
+  ],
+  "deckRowPresent": false,
+  "deckCards": [],
+  "html": "<div class=\"message-bubble\">✅ Done! I've created the diconium-branded <strong>\"Tester Probe Deck\"</strong> with exactly four slides and attached it to <a href=\"/browse/WFH-2212\" data-url=\"/browse/WFH-2212\" class=\"issue-link enriched issue-card issue-card-new\" title=\"WFH-2212 · New · TESTER scratch - deck+skills verification 2026-09-04\"><span class=\"issue-card-type issue-card-type-work-package\"><svg viewBox=\"0 0 16 16\" fill=\"currentColor\"><rect x=\"3\" y=\"3\" width=\"10\" height=\"10\" rx=\"1.5\"></rect><path d=\"M5.5 8.3l1.7 1.7L10.7 6.5\" stroke=\"#fff\" stroke-width=\"1.6\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg></span><span class=\"issue-card-key\">WFH-2212</span><span class=\"issue-card-status issue-card-status-new\">New</span><span class=\"issue-card-summary\">TESTER scratch - deck+skills verification 2026-09-04</span></a>:<br><ul><li><strong>Slide 1 (Cover):</strong> PLATFORM MIGRATION headline with supporting blurb and the diconium tagline</li><li><strong>Slide 2 (Cards):</strong> Migration Pillars — Infrastructure, Data, and Applications, each with descriptive body text</li><li><strong>Slide 3 (Stats):</strong> By the Numbers — 12 systems, 850 TB data volume, 45 team members</li><li><strong>Slide 4 (Timeline):</strong> Migration phases Q4 2026 through Q2 2027</li></ul>The deck follows the diconium brand guidelines (lowercase \"diconium\", orange accents, Campton type, clean geometric layout) and is now attached to your work package. The file is <strong>104 KB</strong> and ready to download.</div><div class=\"message-meta\"><span class=\"message-meta-chip\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg><span>claude-haiku-4-5-20251001</span></span><span class=\"message-meta-chip\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12 6 12 12 16 14\"></polyline></svg><span>60.7k tokens</span></span><span class=\"message-meta-chip\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"23 4 23 10 17 10\"></polyline><polyline points=\"1 20 1 14 7 14\"></polyline><path d=\"M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15\"></path></svg><span>4 tool calls</span></span><span class=\"message-meta-chip skills\" title=\"Loaded for this turn: diconium-brand\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l2.4 7.4H22l-6 4.7 2.3 7.5L12 17l-6.3 4.6L8 14.1 2 9.4h7.6L12 2z\"></path></svg><span>skills: diconium-brand</span></span></div>"
+}

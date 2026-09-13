@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Create a two-slide diconium deck titled \"Slot Diagnostic\": a cover and a section divider, about anything. Do NOT attach it to any issue. Then, in your reply, quote VERBATIM every error or refusal message any tool returned to you during this turn, and say how many times you called createPresentation and what slot names you used on each attempt. Be exact.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant",
+    "text": "✅ Done! Your Slot Diagnostic deck is ready — a two-slide diconium-branded presentation with a cover slide and a section divider.What I CalledcreatePresentation: 1 callSlide 1 (cover): slot name titleSlide 2 (section): slot name titleTool ResultsNo errors or refusals were returned. The deck built successfully and is being held for 30 minutes. If you name an issue later, I can attach it for you with a single call to attachPresentation — no rebuild needed.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-haiku-4-5-2025100142.3k tokens3 tool callsskills: chatwise-jira-conventions, diconium-brand",
+    "streaming": false
+  }
+]

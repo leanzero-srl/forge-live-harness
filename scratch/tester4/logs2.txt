@@ -1,0 +1,21 @@
+
+INFO    2026-09-04T13:08:40.052Z f275f366-42e8-45b3-83e7-92732aa3e2d2 [Agile] capability from cache: available=true
+INFO    2026-09-04T13:08:40.053Z f275f366-42e8-45b3-83e7-92732aa3e2d2 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T13:08:40.227Z f275f366-42e8-45b3-83e7-92732aa3e2d2 [Consumer] skills: bound=chatwise-jira-conventions offered=2 directionChars=2276
+WARN    2026-09-04T13:08:40.622Z f275f366-42e8-45b3-83e7-92732aa3e2d2 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T13:08:41.714Z b30afa6a-bc1a-4c7f-a686-e10140103dd1 [Agile] capability from cache: available=true
+INFO    2026-09-04T13:08:41.715Z b30afa6a-bc1a-4c7f-a686-e10140103dd1 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T13:08:41.848Z b30afa6a-bc1a-4c7f-a686-e10140103dd1 [Consumer] skills: bound=none offered=2 directionChars=1281
+INFO    2026-09-04T13:08:44.771Z b30afa6a-bc1a-4c7f-a686-e10140103dd1 [Agent] iteration 1 on claude-haiku-4-5-20251001: in=24089 out=56 (turn so far in=24089 out=56)
+INFO    2026-09-04T13:09:16.755Z 9c217b34-8be2-4daa-b63a-8207952f918b [Agile] capability from cache: available=true
+INFO    2026-09-04T13:09:16.756Z 9c217b34-8be2-4daa-b63a-8207952f918b [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T13:09:16.979Z 9c217b34-8be2-4daa-b63a-8207952f918b [Consumer] skills: bound=none offered=2 directionChars=1281
+INFO    2026-09-04T13:09:21.907Z 9c217b34-8be2-4daa-b63a-8207952f918b [Agent] iteration 1 on claude-haiku-4-5-20251001: in=24160 out=295 (turn so far in=24160 out=295)
+INFO    2026-09-04T13:09:26.431Z 10b2a4e6-8dec-4c47-9cb2-cd0c76f3c24c [Agile] capability from cache: available=true
+INFO    2026-09-04T13:09:26.432Z 10b2a4e6-8dec-4c47-9cb2-cd0c76f3c24c [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T13:09:26.640Z 10b2a4e6-8dec-4c47-9cb2-cd0c76f3c24c [Consumer] skills: bound=chatwise-jira-conventions offered=2 directionChars=2276
+INFO    2026-09-04T13:10:16.188Z e8bdb358-7e3f-4fe4-bfb0-3b8c56208e63 [Service] Deleted conversation conv_1788526902419_hzqhi5k95 (30 message rows)
+INFO    2026-09-04T13:10:23.414Z 22a01b2c-4e64-46d6-bbc4-2c7d502e72d3 [Agile] capability from cache: available=true
+INFO    2026-09-04T13:10:23.415Z 22a01b2c-4e64-46d6-bbc4-2c7d502e72d3 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T13:10:23.537Z 22a01b2c-4e64-46d6-bbc4-2c7d502e72d3 [Consumer] skills: bound=none offered=2 directionChars=1281
+INFO    2026-09-04T13:10:28.359Z 22a01b2c-4e64-46d6-bbc4-2c7d502e72d3 [Agent] iteration 1 on claude-haiku-4-5-20251001: in=24483 out=239 (turn so far in=24483 out=239)

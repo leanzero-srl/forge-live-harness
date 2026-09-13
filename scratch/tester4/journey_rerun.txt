@@ -1,0 +1,41 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts:89:1 › PO full flow: initiative → wizard → approval → a real Epic in Jira, no errors ever (8.5m)
+
+
+  1) [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts:89:1 › PO full flow: initiative → wizard → approval → a real Epic in Jira, no errors ever 
+
+    Error: no Epic was created after 14 turns — last reply: 🧭 Epic Facilitator
+
+    Here's the NFRs & Acceptance Criteria draft with your latest decisions folded in — MVP scope, opt-out, and aggregated-only privacy.
+
+
+
+
+
+    NFRs & Acceptance Criteria
+
+
+    Here's a revised draft — does this land, or shall we keep refining?
+    AC: The system integrates with Google Workspa
+
+    expect(received).toBeTruthy()
+
+    Received: null
+
+      179 |
+      180 |     // ---- The point of the whole persona: a real Epic exists ---------------
+    > 181 |     expect(epicKey, `no Epic was created after ${MAX_TURNS} turns — last reply: ${reply.slice(0, 300)}`).toBeTruthy();
+          |                                                                                                          ^
+      182 |     const epic: any = await get(`/rest/api/3/issue/${epicKey}?fields=issuetype,summary,description,labels`);
+      183 |     expect(epic.fields.issuetype.hierarchyLevel, `${epicKey} is not an Epic`).toBe(1);
+      184 |     expect((epic.fields.summary || "").length, "the Epic has no summary").toBeGreaterThan(8);
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/chatwise/journey-po-full-flow.spec.ts:181:106
+
+    Error Context: test-results/scenarios-chatwise-journey-517e5-Epic-in-Jira-no-errors-ever-chromium/error-context.md
+
+  Slow test file: [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts (8.5m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 failed
+    [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts:89:1 › PO full flow: initiative → wizard → approval → a real Epic in Jira, no errors ever 

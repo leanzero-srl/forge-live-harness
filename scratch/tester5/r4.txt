@@ -1,0 +1,22 @@
+
+Running 1 test using 1 worker
+
+--- DE round 1
+  reply: ## 🧭 Epic Facilitator ⏎  ⏎ Ich verstehe, dass wir ein Epic für das Lieferanten-Onboarding aufsetzen wollen – vermutlich geht es darum, den Prozess zur Aufnahme neuer Lieferanten (Registrierung, Prüfung, Freigabe) zu digitalisieren oder zu beschleunigen. ⏎  ⏎ - Wer sind die wichtigsten Nutzer, die von diese
+  QUESTION VERBATIM: ["Wer sind die wichtigsten Nutzer, die von diesem Onboarding-Prozess betroffen sind?","In welchem Projekt soll das Epic angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch einen anderen Projekt-Key direkt eingeben."]
+  project options: ["Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness","Use project BDP — DEMAND PROCESS"]
+  germanQuestion=true hasNumbers=true
+--- DE round 2
+  reply: ## 🧭 Epic Facilitator ⏎  ⏎ Ich verstehe, dass wir ein Epic für das Lieferanten-Onboarding aufbauen wollen — vermutlich um den Prozess der Aufnahme neuer Lieferanten zu digitalisieren und zu beschleunigen. Bevor wir die Details ausarbeiten, brauche ich noch ein paar Eckpunkte. ⏎  ⏎ - Wer sind die wichtigste
+  QUESTION VERBATIM: ["Wer sind die wichtigsten Nutzer dieses Onboarding-Prozesses?","In welchem Projekt soll das Epic für das Lieferanten-Onboarding angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch jeden anderen Projekt-Key eingeben."]
+  project options: ["Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness","Use project BDP — DEMAND PROCESS"]
+  germanQuestion=true hasNumbers=true
+--- DE round 3
+  reply: ## 🧭 Epic Facilitator ⏎  ⏎ Ich habe verstanden, dass wir ein Epic für das Lieferanten-Onboarding anlegen möchten: ein Prozess, der neue Lieferanten aufnimmt, prüft (z. B. Compliance/Stammdaten) und für die Zusammenarbeit freischaltet. Bevor wir das Epic weiter ausarbeiten, lass uns kurz die Zielgruppe 
+  QUESTION VERBATIM: ["Wer ist die wichtigste Zielgruppe für dieses Onboarding?","In welchem Projekt soll das Epic angelegt werden? Ich zeige dir 4 von 18 Projekten, du kannst aber auch jeden anderen Projekt-Key direkt eintippen."]
+  project options: ["Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness","Use project BDP — DEMAND PROCESS"]
+  germanQuestion=true hasNumbers=true
+GERMAN: 3/3 rounds offered options; 3 asked in German; 3 carried the counts
+  ✓  1 [chromium] › scenarios/chatwise/zz5-regress.probe.spec.ts:154:1 › R4 (German): the project question comes back in German, with the real numbers (1.1m)
+
+  1 passed (1.1m)

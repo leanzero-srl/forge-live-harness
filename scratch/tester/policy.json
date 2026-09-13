@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "policy": {
+    "allowDestructive": false,
+    "allowBulk": true,
+    "allowAgile": true,
+    "allowBacklog": true,
+    "allowDocuments": true
+  }
+}

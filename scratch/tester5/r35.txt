@@ -1,0 +1,21 @@
+
+Running 2 tests using 1 worker
+
+target WFH-2197 status="New" transitions=["Reject work","UAT","Move in ready for estimating"]
+--- "do I have permission to transition and delete issues in WFH? just tell me, don't change anything"
+  reply: Yes — in the **WFH** project you have both permissions: ⏎  ⏎ - **Transition Issues:** ✅ Granted ⏎ - **Delete Issues:** ✅ Granted ⏎  ⏎ Note this is a project-level check, so it's possible a specific issue could still refuse one of these (e.g. due to its workflow state or an issue-level security restriction). If you want a definite answer for a particular issue, give me its key and I'll check that one directly.
+--- "why can't I move WFH-2197 to a different status? what are my options?"
+  reply: ## WFH-2197 — Meeting-Free Deep Work Program ⏎  ⏎ Nothing is blocking you — this issue **can** be transitioned right now, and you do hold **Transition Issues** on it (checked at issue level, not just project level). It's also **not archived**, and has no security level set. Current status is **New**. ⏎  ⏎ **Available transitions from New:** ⏎  ⏎ - **Reject work** → **Rejected** (conditional, global) ⏎ - **UAT** → **UAT** (conditional, global) ⏎ - **Move in ready for estimating** → **Ready for estimating** — this one **opens a transition screen**, so Jira will ask for one or more fields before it completes ⏎  ⏎ If
+WFH-2197 status BEFORE="New" AFTER="New"
+  ✓  1 [chromium] › scenarios/chatwise/zz5-regress.probe.spec.ts:120:1 › R3: transitions/permissions — checkMyPermissions answers without writing; zero transitions gets a DIAGNOSIS (51.9s)
+--- ORD round 1
+  question: ["Who feels the pain of supplier onboarding today, and what does it cost them?","Which project should this supplier onboarding Epic be created in? I'm showing 4 of your 18 projects — if it belongs somewhere else, just type that project key into the box."]
+  project options IN ORDER: ["Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness","Use project BDP — DEMAND PROCESS"]
+--- ORD round 2
+  question: ["Who feels the pain of supplier onboarding today?","Which project should this supplier onboarding Epic be created in? I'm showing 4 of your 18 projects below — if the right one isn't there, just type its project key in the box."]
+  project options IN ORDER: ["Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness","Use project BDP — DEMAND PROCESS"]
+FIRST OFFERED (badged Recommended): Use project CGL1 — CogniRunner Rule Lab 1
+FIRST OFFERED (badged Recommended): Use project CGL1 — CogniRunner Rule Lab 1
+  ✓  2 [chromium] › scenarios/chatwise/zz5-regress.probe.spec.ts:193:1 › R5: ordering — what the app actually offers first when nothing is established (57.0s)
+
+  2 passed (1.8m)

@@ -1,0 +1,38 @@
+{
+  "counts": [
+    "all=3",
+    "private=3",
+    "site=0"
+  ],
+  "badges": [
+    {
+      "id": "chatwise-jira-conventions",
+      "badges": [
+        "skill-badge scope-private|Private",
+        "skill-badge scope-builtin|Built in"
+      ],
+      "meta": [
+        "updated today"
+      ]
+    },
+    {
+      "id": "diconium-brand",
+      "badges": [
+        "skill-badge scope-private|Private",
+        "skill-badge scope-builtin|Built in"
+      ],
+      "meta": [
+        "updated today"
+      ]
+    },
+    {
+      "id": "tester-brand-probe",
+      "badges": [
+        "skill-badge scope-private|Private"
+      ],
+      "meta": [
+        "updated today"
+      ]
+    }
+  ]
+}

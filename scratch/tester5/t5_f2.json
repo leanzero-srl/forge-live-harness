@@ -1,0 +1,22 @@
+[
+  {
+    "i": 1,
+    "t1": "## WFH-2348 created\n\n- **Project:** WFH (WORK FOR HIRE)\n- **Summary:** [harness-test] t5 f2 r1\n- **Type:** Work package (standard issue)\n- **Assignee:** you\n\nWant me to add a description, acceptance criteria, or a priority to it?",
+    "t2": "Your most active projects (by recent updates) are:\n\n- **TF** (TEST-FORMULA)\n- **WFH** (WORK FOR HIRE) — where you just created WFH-2348\n- **JT** (JSM Test)\n- **CGL1** (CogniRunner Rule Lab 1)\n- **TPP** (Test Play Project)\n\nWhich one should the new item go into? Or if it's for a different project, name it.",
+    "questions": [
+      "Which project should this new item go into? Here are 4 of your 18 projects — or just type any other project key in the box."
+    ],
+    "projectOptions": [
+      "Use project WFH — WORK FOR HIRE",
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness"
+    ],
+    "allOptions": [
+      "Use project WFH — WORK FOR HIRE",
+      "Use project CGL1 — CogniRunner Rule Lab 1",
+      "Use project CGL2 — CogniRunner Rule Lab 2",
+      "Use project COGTEST — CogniRunner Test Harness"
+    ]
+  }
+]

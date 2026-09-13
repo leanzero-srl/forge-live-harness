@@ -1,0 +1,16 @@
+{
+  "conversationId": "conv_t4_dup_1788529625939",
+  "created": [
+    "WFH-2261",
+    "CGL1-3"
+  ],
+  "t1": "## Created WFH-2261\n\n- **Project:** WFH (WORK FOR HIRE)\n- **Summary:** [harness-test] t4 dup probe\n- **Type:** Work package (standard level — WFH has no \"Task\"; its standard types are **Work package** and **Bug**)\n- **Assignee:** you\n\nWant me to add a description, acceptance criteria, or a priority to it?",
+  "buttons": [
+    "Use project CGL1 — CogniRunner Rule Lab 1",
+    "Use project CGL2 — CogniRunner Rule Lab 2",
+    "Use project COGTEST — CogniRunner Test Harness",
+    "Use project BDP — DEMAND PROCESS"
+  ],
+  "clicked": "Use project CGL1 — CogniRunner Rule Lab 1",
+  "t2": "## Created CGL1-3\n\n- **Project:** CGL1 (CogniRunner Rule Lab 1)\n- **Summary:** [harness-test] t4 dup probe\n- **Type:** Task\n- **Status:** To Do\n- **Assignee:** you\n- **Priority:** Medium\n\nThe issue is ready to work. Would you like to add acceptance criteria, a description, or link it to an Epic?"
+}

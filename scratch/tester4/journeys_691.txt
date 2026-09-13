@@ -1,0 +1,10 @@
+
+Running 2 tests using 1 worker
+
+  ✓  1 [chromium] › scenarios/chatwise/journey-po-answer-rounds.spec.ts:43:1 › PO wizard: recommended clicks are always understood, round after round (2.2m)
+direct flow: 10 question sheets answered by clicking, epic WFH-2260
+  ✓  2 [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts:89:1 › PO full flow: initiative → wizard → approval → a real Epic in Jira, no errors ever (8.4m)
+
+  Slow test file: [chromium] › scenarios/chatwise/journey-po-full-flow.spec.ts (8.4m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  2 passed (10.5m)

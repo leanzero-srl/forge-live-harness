@@ -1,0 +1,19 @@
+{
+  "deckRow": true,
+  "cards": [
+    {
+      "deckId": "a6229bf244fe4fcfba9e7a4afc1c6207",
+      "name": "tester-download-probe.pptx",
+      "meta": "4 slides · 102 KB",
+      "buttons": [
+        {
+          "cls": "deck-btn solid is-preparing",
+          "text": "Preparing…",
+          "disabled": true,
+          "title": ""
+        }
+      ],
+      "note": ""
+    }
+  ]
+}

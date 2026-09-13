@@ -1,0 +1,46 @@
+[
+  {
+    "round": 1,
+    "conversationId": "conv_t4_ep_1788528840437_0",
+    "interviewed": true,
+    "options": [
+      "Our procurement team doing the manual work",
+      "The suppliers themselves, filling in forms blind",
+      "Compliance and finance chasing documents",
+      "It takes weeks of back-and-forth email",
+      "Data arrives incomplete or wrong",
+      "Nobody can see where a supplier is stuck",
+      "Days from request to supplier active",
+      "Share of suppliers onboarding self-service",
+      "Rework rate on supplier master data"
+    ],
+    "questions": [
+      "Who feels the pain most today — whose experience are we fixing first?",
+      "What is the single biggest failure in onboarding today?",
+      "What one number would prove this worked?"
+    ],
+    "response": "## 🧭 Epic Facilitator\n\nUnderstood — we're shaping an Epic around supplier onboarding. Right now all I have is the topic, so here's my working assumption: today, bringing a new supplier into our systems is a manual, multi-hand process (forms, documents, compliance and banking checks, master-data entry) that takes too long and is hard to track. The Epic would replace that with a guided, largely self-service onboarding flow with clear status visibility. I have no documents yet, so nothing has been read or processed on my side.\n\n**To refine this, a few questions:**\n\n- Who feels the pain most today — whose experience are we fixing first?\n- What is the single biggest failure in onboarding today?\n- What one number would prove this worked?\n\n*Correct me where I'm wrong — especially on who we're serving first and what number we're moving — and I'll draft the Epic Hypothesis from your answers.*"
+  },
+  {
+    "round": 2,
+    "conversationId": "conv_t4_ep_1788528858370_1",
+    "interviewed": true,
+    "options": [
+      "Our internal procurement / supplier ops team",
+      "The suppliers themselves, self-registering",
+      "Finance and compliance approvers",
+      "Onboarding takes weeks of manual chasing",
+      "Data arrives incomplete or wrong",
+      "No audit trail for compliance checks",
+      "Time from supplier request to fully onboarded",
+      "Percentage of suppliers onboarded without rework",
+      "Number of manual touches per new supplier"
+    ],
+    "questions": [
+      "Who feels the pain most today — whose work does this Epic change?",
+      "What's the concrete problem we're solving right now?",
+      "What single number would tell us this worked?"
+    ],
+    "response": "## 🧭 Epic Facilitator\n\nNo documents were shared, so I'm working from your one-liner alone. Here's my starting read: you want to improve how new suppliers are brought into the business — collecting their company, legal, tax, banking and compliance details, getting them verified and approved, and getting them set up in the systems that need them. My assumption is that today this runs on email, spreadsheets and manual chasing, which makes it slow, error-prone and hard to audit. Tell me where that's wrong before we shape anything.\n\n**To refine this, a few questions:**\n\n- Who feels the pain most today — whose work does this Epic change?\n- What's the concrete problem we're solving right now?\n- What single number would tell us this worked?\n\n*Correct me where I'm wrong, and give me your answer on that success metric in particular — it will anchor the whole Epic. From there we'll shape the Hypothesis.*"
+  }
+]

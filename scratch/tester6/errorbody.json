@@ -1,0 +1,47 @@
+{
+  "panel_WFH-999999": {
+    "success": false,
+    "status": 404,
+    "error": "Jira refused this with HTTP 404: Issue does not exist or you do not have permission to see it."
+  },
+  "panel_LZPP-1": {
+    "success": true,
+    "issue": {
+      "key": "LZPP-1",
+      "id": "15413",
+      "summary": "PERF-00001",
+      "description": "No description",
+      "status": "To Do",
+      "priority": "Medium",
+      "assignee": {
+        "displayName": "Mihai Perdum",
+        "emailAddress": "mihai@wolfaenpak.com",
+        "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "reporter": {
+        "displayName": "Mihai Perdum",
+        "emailAddress": "mihai@wolfaenpak.com",
+        "accountId": "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"
+      },
+      "created": "2026-07-13T12:19:32.952+0300",
+      "updated": "2026-07-13T15:44:19.228+0300",
+      "issueType": "Task",
+      "project": "LZPT Performance"
+    }
+  },
+  "caseA": {
+    "key": "WFH-2627",
+    "sent": "Move WFH-2627 into the CGL1 project using targetIssueTypeId 10004 exactly. Call moveIssues with targetProjectKey CGL1 and targetIssueTypeId 10004. Do not look the type up, do not substitute another id, and if it fails just tell me exactly what Jira said — do not retry.",
+    "t1": "This move hasn't happened yet — moving an issue between projects is a one-way action, so I need you to confirm before I go ahead.\n\nJust to confirm: you want **WFH-2627** moved into project **CGL1**, using issue type id **10004** exactly as specified?\n\nReply to confirm and I'll proceed.",
+    "t2": "## Move failed — WFH-2627 was not moved\n\nJira refused the request with **HTTP 400** and this message:\n\n> We couldn't process your request because issue type 10004 isn't present in the CGL1 project or you don't have permission to view it.\n\nAs instructed, I did not retry and did not substitute a different issue type. WFH-2627 remains in its original project, unchanged.\n\nWould you like me to list the issue types that CGL1 actually accepts, so you can pick the right one?",
+    "project": "WFH"
+  },
+  "caseB": {
+    "parent": "WFH-2628",
+    "sub": "WFH-2629",
+    "sent": "Move ONLY the sub-task WFH-2629 into the CGL1 project as a Sub-task (targetIssueTypeId 10016). Do NOT move its parent WFH-2628 and do not pass a targetParentKey. Call moveIssues with exactly issueKeys [WFH-2629], targetProjectKey CGL1, targetIssueTypeId 10016. If it fails, tell me exactly what Jira said and what my options are — do not retry.",
+    "t1": "## Confirmation needed before the move\n\nNothing has changed yet — this is a check on my side, not a refusal from Jira.\n\nHere's what would happen if you go ahead with **WFH-2629** — *[harness-test] errbody sub 1788592937927*:\n\n- Its key would change permanently to a new CGL1 key, and the old key stops working.\n- Its current status (**Collecting**) would be re-mapped onto CGL1's workflow, so it may land in a different status.\n- Any field values that have no equivalent in CGL1 would be dropped.\n- Moving it back later would not undo any of the above.\n\nOne thing worth flagging: this issue's type in WFH shows as **Payment**, and you've asked for it to become a **Sub-task** in CGL1 without naming a parent there. A sub-task normally requires a parent, so Jira may reject the move on that basis — I'll report exactly what it says if it does, and won't retry.\n\nShall I go ahead with the move as specified?",
+    "t2": "Jira rejected the move with this message:\n\n> **Parent issue should also be moved or target Parent issue should be specified**\n\nBecause **WFH-2629** is a sub-task, it needs a parent to land on in the CGL1 project. You have two options:\n\n1. **Move parent and child together** — include both WFH-2628 and WFH-2629 in the same moveIssues call, so the parent arrives in CGL1 first and can hold the child.\n\n2. **Specify an existing parent in CGL1** — pass a `targetParentKey` pointing to an issue already in the CGL1 project that can serve as the sub-task's parent (e.g., a sub-task type issue that already exists there).\n\nWhich would you like to do?",
+    "project": "WFH"
+  }
+}

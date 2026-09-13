@@ -1,0 +1,34 @@
+{
+  "thread": [
+    {
+      "role": "user",
+      "className": "message user",
+      "text": "Erstelle bitte eine PowerPoint-Präsentation im diconium-Design mit zwei Folien (cover und stats) über unsere Cloud-Migration. Nenne kein Jira-Ticket — ich möchte die Datei nur herunterladen.",
+      "hasTable": false,
+      "hasCode": false,
+      "meta": "",
+      "streaming": false
+    },
+    {
+      "role": "assistant",
+      "className": "message assistant",
+      "text": "Perfect! ✅ Deine Präsentation cloud-migration.pptx ist fertig — zwei Folien im diconium-Design mit Cover und Impact-Stats.Ein paar kleine Anmerkungen:Die Cover-Folie nutzt head, blurb und tagline statt title und subtitle — ich habe das automatisch angepasst, aber die Slides sind trotzdem professionell aufgebautDie Stats-Folie hat maximal drei Kennzahlen, deshalb habe ich die vierte weggelassenDie Datei ist 30 Minuten lang verfügbar zum Download. Wenn du sie später an ein Jira-Ticket anhängen möchtest, gib mir einfach die Issue-Key und ich mache das — ohne die Präsentation neu zu bauen.Brauchst du noch Anpassungen an den Inhalten oder Folien hinzufügen?",
+      "hasTable": false,
+      "hasCode": false,
+      "meta": "claude-haiku-4-5-2025100142.6k tokens3 tool callsskills: diconium-brand",
+      "streaming": false
+    }
+  ],
+  "ui": {
+    "chips": [
+      "claude-haiku-4-5-20251001",
+      "42.6k tokens",
+      "3 tool calls",
+      "skills: diconium-brand"
+    ],
+    "deckRow": false,
+    "deckCards": 0,
+    "anyDownloadControl": 0,
+    "fullText": "Perfect! ✅ Deine Präsentation cloud-migration.pptx ist fertig — zwei Folien im diconium-Design mit Cover und Impact-Stats.Ein paar kleine Anmerkungen:Die Cover-Folie nutzt head, blurb und tagline statt title und subtitle — ich habe das automatisch angepasst, aber die Slides sind trotzdem professionell aufgebautDie Stats-Folie hat maximal drei Kennzahlen, deshalb habe ich die vierte weggelassenDie Datei ist 30 Minuten lang verfügbar zum Download. Wenn du sie später an ein Jira-Ticket anhängen möchtest, gib mir einfach die Issue-Key und ich mache das — ohne die Präsentation neu zu bauen.Brauchst du noch Anpassungen an den Inhalten oder Folien hinzufügen?"
+  }
+}

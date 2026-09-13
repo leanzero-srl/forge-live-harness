@@ -1,0 +1,38 @@
+[
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Create a diconium-branded PowerPoint deck titled \"Tester Download Probe\" with exactly four slides: a cover, a cards slide, a stats slide and a timeline slide, about a warehouse automation rollout. Do NOT attach it to any Jira issue — I only want to download it.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant",
+    "text": "Perfect! 🎉 Your deck is ready to download:tester-download-probe.pptx (104 KB)Four slides, diconium-branded:Cover — \"WAREHOUSE AUTOMATION\" with your strategic taglineCards — Three implementation pillars (Robotic Systems, Software Integration, Workforce Training)Stats — Impact metrics (45% throughput increase, 60% labour efficiency, 3 sites)Timeline — Deployment schedule across Q1–Q4 2025The deck is held for 30 minutes — if you want to attach it to a Jira issue later in this conversation, just tell me the issue key and I'll link it without rebuilding. Otherwise, grab it now! 📥",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-haiku-4-5-2025100159.6k tokens4 tool callsskills: chatwise-jira-conventions, diconium-brand",
+    "streaming": false
+  },
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Attach that same deck to WFH-2219. Do not rebuild it — use the deck you already made.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant complete",
+    "text": "Done ✅ — tester-download-probe.pptx (104 KB) is now attached to WFH-2219. Same deck, no rebuild.Anything else you want to hang off that ticket — a comment pointing people at the deck, maybe?",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-opus-534.7k tokens2 tool callsskills: chatwise-jira-conventions",
+    "streaming": false
+  }
+]

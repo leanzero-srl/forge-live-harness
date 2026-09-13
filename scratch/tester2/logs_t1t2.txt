@@ -1,0 +1,38 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+INFO    2026-09-04T09:10:22.981Z 765882f1-7be8-412b-9005-cd46d8988e70 [Agile] capability from cache: available=true
+INFO    2026-09-04T09:10:22.982Z 765882f1-7be8-412b-9005-cd46d8988e70 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:10:23.280Z 765882f1-7be8-412b-9005-cd46d8988e70 [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+INFO    2026-09-04T09:10:25.308Z 765882f1-7be8-412b-9005-cd46d8988e70 [Agent] iteration 1 on claude-haiku-4-5-20251001: in=12736 out=59 (turn so far in=12736 out=59)
+INFO    2026-09-04T09:10:25.309Z 765882f1-7be8-412b-9005-cd46d8988e70 [Tools] loadSkill { skillId: 'diconium-brand' } (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T09:10:25.459Z 765882f1-7be8-412b-9005-cd46d8988e70 [skills] loaded diconium-brand (+6,001 chars; prompt cache for this turn is now cold)
+INFO    2026-09-04T09:10:30.018Z 765882f1-7be8-412b-9005-cd46d8988e70 [Agent] iteration 2 on claude-haiku-4-5-20251001: in=14410 out=518 (turn so far in=27146 out=577)
+INFO    2026-09-04T09:10:30.019Z 765882f1-7be8-412b-9005-cd46d8988e70 [Tools] createPresentation {
+  title: 'Tester Download Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T09:10:34.782Z 765882f1-7be8-412b-9005-cd46d8988e70 [Agent] iteration 3 on claude-haiku-4-5-20251001: in=15320 out=436 (turn so far in=42466 out=1013)
+INFO    2026-09-04T09:10:34.783Z 765882f1-7be8-412b-9005-cd46d8988e70 [Tools] createPresentation {
+  title: 'Tester Download Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T09:10:38.888Z 765882f1-7be8-412b-9005-cd46d8988e70 [Agent] iteration 4 on claude-haiku-4-5-20251001: in=15942 out=185 (turn so far in=58408 out=1198)
+INFO    2026-09-04T09:10:55.337Z 2e9e604c-374f-4d29-957c-800423d2361b [Agile] capability from cache: available=true
+INFO    2026-09-04T09:10:55.338Z 2e9e604c-374f-4d29-957c-800423d2361b [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T09:10:55.678Z 2e9e604c-374f-4d29-957c-800423d2361b [Consumer] skills: bound=chatwise-jira-conventions offered=4 directionChars=2655
+WARN    2026-09-04T09:10:55.909Z 2e9e604c-374f-4d29-957c-800423d2361b [ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+INFO    2026-09-04T09:11:00.074Z 2e9e604c-374f-4d29-957c-800423d2361b [Agent] iteration 1 on claude-opus-5: in=17144 out=179 (turn so far in=17144 out=179)
+INFO    2026-09-04T09:11:00.075Z 2e9e604c-374f-4d29-957c-800423d2361b [Tools] attachPresentation { issueKey: 'WFH-2219' } (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+WARN    2026-09-04T09:11:01.465Z 2e9e604c-374f-4d29-957c-800423d2361b [ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+INFO    2026-09-04T09:11:04.185Z 2e9e604c-374f-4d29-957c-800423d2361b [Agent] iteration 2 on claude-opus-5: in=17330 out=83 (turn so far in=34474 out=262)

@@ -1,0 +1,52 @@
+
+Running 1 test using 1 worker
+
+DEPLOYED BUILD IN THE DOM: v6.92.0
+  VERIFIED WFH-2270 in WFH: "[harness-test] t5 f2 r1"
+--- F2 round 1
+  t1 reply: Created **WFH-2270** — "[harness-test] t5 f2 r1" as a **Work package** in the WORK FOR HIRE project, assigned to you.
+  t2 reply: That depends on what the item is — I don't have enough to pick for you. A couple of quick pointers: ⏎  ⏎ - **Same context as the last one?** If this is another harness-test item in the same stream of work, WFH (WORK FOR HIRE) is the obvious home — that's where WFH-2270 went. ⏎ - **Test-harness / probe work?** COGTEST (CogniRunner Test Harness), LZPT (LZ PPM Harness Test) or SCRQ (Screen Enforcement Refu
+  t2 question: ["Which project should this new item go in? I'm showing 4 of 18 projects — you can also type any other project key into the box."]
+  t2 project options: ["Use project WFH — WORK FOR HIRE","Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness"]
+  t2 all options: ["Use project WFH — WORK FOR HIRE","Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness"]
+  VERIFIED WFH-2271 in WFH: "[harness-test] t5 f2 r2"
+--- F2 round 2
+  t1 reply: Done. Created **WFH-2271** — a Work package assigned to you with summary **[harness-test] t5 f2 r2** in the WORK FOR HIRE project.
+  t2 reply: That depends on what it is. The wizard earlier was building toward an Epic in one of your projects, but I don't have context on what it covers or which project makes sense for it. ⏎  ⏎ What is the new item about, and do you know which project it belongs in? Or if it's related to the harness-test work you just created, should it go in **WORK FOR HIRE** as well?
+  t2 question: []
+  t2 project options: []
+  t2 all options: []
+round 3: QUOTA on turn 1
+  VERIFIED WFH-2272 in WFH: "[harness-test] t5 f2 r4"
+round 4: QUOTA on turn 2
+  cleanup WFH-2270: deleted
+  cleanup WFH-2271: deleted
+  cleanup WFH-2272: deleted
+F2 HIT RATE: 1/2
+  ✘  1 [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:48:1 › F2: 'now I want to raise another item, which project should it go in?' offers BUTTONS (2.0m)
+
+
+  1) [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:48:1 › F2: 'now I want to raise another item, which project should it go in?' offers BUTTONS 
+
+    Error: round 2: an explicit project question offered NO buttons. reply: That depends on what it is. The wizard earlier was building toward an Epic in one of your projects, but I don't have context on what it covers or which project makes sense for it.
+
+    What is the new item about, and do you know which project it belongs in? Or if it's related to the harness-test work you just created, should it go in **WORK FOR HIRE** as well?
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      81 |   const withButtons = rows.filter((r) => r.projectOptions.length > 0);
+      82 |   console.log(`F2 HIT RATE: ${withButtons.length}/${rows.length}`);
+    > 83 |   for (const r of rows) expect(r.projectOptions.length, `round ${r.i}: an explicit project question offered NO buttons. reply: ${r.t2.slice(0, 400)}`).toBeGreaterThan(0);
+         |                                                                                                                                                        ^
+      84 | });
+      85 |
+      86 | // CHEAPER VARIANT of the same predicate: a project is already in play (named by
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/chatwise/zz5-f2.probe.spec.ts:83:152
+
+    Error Context: test-results/scenarios-chatwise-zz5-f2.-0ebcb-uld-it-go-in-offers-BUTTONS-chromium/error-context.md
+
+  1 failed
+    [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:48:1 › F2: 'now I want to raise another item, which project should it go in?' offers BUTTONS 

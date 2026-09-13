@@ -1,0 +1,26 @@
+[
+  {
+    "i": 1,
+    "reply": "WFH-2197 lives in the **WFH** (WORK FOR HIRE) project, so your new item should go there too.",
+    "questions": [],
+    "projectOptions": []
+  },
+  {
+    "i": 2,
+    "reply": "## Where your next item should go\n\nWFH-2197 — **Meeting-Free Deep Work Program** — sits in **WORK FOR HIRE** (`WFH`), as an **Epic** at hierarchy level **1**, reported and assigned to **Mihai Perdum**.\n\n**Recommendation:** raise the new item in **WFH** as well, provided it's the same kind of internal programme work. That's also the project the Epic interview you're in the middle of is targeting, so keeping both in `WFH` keeps the programme, its work packages and any reporting in one backlog.\n\n**The other projects visible to you** are mostly harnesses, labs and field/form test projects (`COGTEST`, `CGL1`, `CGL2`, `FIEL`, `TES`, `TEF`, `TF`, `DFD`, `LZPT`, `LZPP`, `TRAN`, `SCRQ`, `ES`, `TPP`), plus:\n\n- **BDP** — DEMAND PROCESS (software) — the plausible alternative if the new item is an intake/demand request rather than delivery work\n- **DEMO** and **JT** — service desk projects, for support tickets rather than product work\n\n**In WFH the available issue types are:** Epic, Work package, Payment, Bug — so if the new item is a slice of delivery under WFH-2197, a **Work package** parented to the epic is the natural shape rather than a second epic.\n\nIs the new item another standalone epic, or a piece of work that belongs under WFH-2197?",
+    "questions": [],
+    "projectOptions": []
+  },
+  {
+    "i": 3,
+    "reply": "Based on WFH-2197, you should raise your next item in the **WFH** project (WORK FOR HIRE).\n\nIs there context about what this new item is? That helps me recommend whether it should be an Epic, a Work package, Payment, Bug, or something else in that project.",
+    "questions": [],
+    "projectOptions": []
+  },
+  {
+    "i": 4,
+    "reply": "Based on WFH-2197, your new item should go in the **WFH** (Work for Hire) project — that's where your meeting-free deep work program epic lives.\n\nWould you like to raise a work package, epic, bug, or payment item? Or do you need help structuring what you want to create?",
+    "questions": [],
+    "projectOptions": []
+  }
+]

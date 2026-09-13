@@ -1,0 +1,42 @@
+[
+  {
+    "round": 1,
+    "conversationId": "conv_t4_ep_1788526044287_0",
+    "interviewed": true,
+    "options": [
+      "Internal procurement / supplier managers doing the setup",
+      "The suppliers themselves, filling in forms and chasing us",
+      "Compliance and finance teams doing the checks and master data",
+      "It takes far too long end to end (weeks of back-and-forth)",
+      "Data arrives incomplete or wrong, so everything gets reworked",
+      "Nobody can see where a supplier is stuck in the process",
+      "Average onboarding lead time (days from request to approved)",
+      "Share of suppliers onboarded without manual rework",
+      "Number of suppliers onboarded per month per team member"
+    ],
+    "questions": [
+      "Who feels the pain of supplier onboarding most today, and whose work should this Epic change first?",
+      "What is the single biggest problem with onboarding a supplier today?",
+      "If this Epic works, what one number would prove it?"
+    ],
+    "response": "## 🧭 Epic Facilitator\n\nHere's my starting understanding: you want an Epic covering supplier onboarding — the end-to-end process of bringing a new supplier from first contact to being fully approved and transactable in our systems. Today that likely spans manual data collection, compliance/legal checks and master-data setup across several teams and tools, which makes it slow and hard to track. The Epic would aim to standardise and digitise that journey so suppliers can be onboarded faster and with less manual effort. I don't yet know who runs the process, where it hurts most, or what 'better' looks like in numbers.\n\n**To refine this, a few questions:**\n\n- Who feels the pain of supplier onboarding most today, and whose work should this Epic change first?\n- What is the single biggest problem with onboarding a supplier today?\n- If this Epic works, what one number would prove it?\n\n*Correct me where I'm wrong and answer what you can — then I'll draft the Epic Hypothesis from your answers.*"
+  },
+  {
+    "round": 2,
+    "conversationId": "conv_t4_ep_1788526062453_1",
+    "interviewed": true,
+    "options": [
+      "Our procurement team, drowning in manual checks",
+      "Category buyers chasing suppliers for documents",
+      "Suppliers self-register but the data comes back wrong",
+      "Cut onboarding lead time from weeks to days",
+      "Eliminate manual data entry and rework",
+      "Raise the share of suppliers fully compliant"
+    ],
+    "questions": [
+      "Who actually runs supplier onboarding today, and where does it break down?",
+      "What single metric would tell us this Epic worked?"
+    ],
+    "response": "## 🧭 Epic Facilitator\n\nHere's what I have so far: you want an Epic covering supplier onboarding — the process of bringing a new supplier from first contact to being an approved, transactable vendor. I don't yet know who performs that work today, which steps hurt most (data collection, compliance/KYC checks, approvals, system setup), or what 'better' looks like in numbers. I also don't yet know whether this is a brand-new capability or a fix for an existing, largely manual process.\n\n**To refine this, a few questions:**\n\n- Who actually runs supplier onboarding today, and where does it break down?\n- What single metric would tell us this Epic worked?\n\n*Answer those two and I'll draft the Epic Hypothesis straight away — correct me anywhere my understanding is off.*"
+  }
+]

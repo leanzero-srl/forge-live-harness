@@ -1,0 +1,38 @@
+{
+  "importNotice": {
+    "text": "Imported 1 skill from \"tester-overcap.zip\". \"tester-overcap\" is private to you. Not everything was kept: body: truncated to 24000 characters; references/huge.md: truncated to 32000 characters; references/Bad Name.md: path is not references/<name>.md; references/extra03.md: more than 10 references; references/extra07.md: more than 10 references×",
+    "cls": "skills-notice is-ok",
+    "at": 1788516254146
+  },
+  "saveNotice": {
+    "text": "\"tester-overcap\" was saved, but not all of it: body: truncated to 24000 characters; references/huge.md: truncated to 32000 characters; references/Bad Name.md: path is not references/<name>.md; references/extra03.md: more than 10 references; references/extra07.md: more than 10 references×",
+    "cls": "skills-notice is-error",
+    "at": 1788516262528
+  },
+  "droppedArr": [
+    {
+      "what": "body",
+      "reason": "truncated to 24000 characters"
+    },
+    {
+      "what": "reference",
+      "path": "references/huge.md",
+      "reason": "truncated to 32000 characters"
+    },
+    {
+      "what": "reference",
+      "path": "references/Bad Name.md",
+      "reason": "path is not references/<name>.md"
+    },
+    {
+      "what": "reference",
+      "path": "references/extra03.md",
+      "reason": "more than 10 references"
+    },
+    {
+      "what": "reference",
+      "path": "references/extra07.md",
+      "reason": "more than 10 references"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › scenarios/chatwise/journey-po-answer-rounds.spec.ts:43:1 › PO wizard: recommended clicks are always understood, round after round (2.1m)
+
+  1 passed (2.1m)

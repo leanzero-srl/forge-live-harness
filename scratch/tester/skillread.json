@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "className": "message user",
+    "text": "Load the skill with id tester-brand-probe, then read its reference file references/colors.md. Reply with exactly two lines: the hex code the skill gives for purple, and the exact character limit it states for CAPS headlines. Nothing else.",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "",
+    "streaming": false
+  },
+  {
+    "role": "assistant",
+    "className": "message assistant",
+    "text": "#581F9D30 characters",
+    "hasTable": false,
+    "hasCode": false,
+    "meta": "claude-haiku-4-5-2025100128.2k tokens2 tool callsskills: tester-brand-probe, tester-brand-probe#references/colors.md",
+    "streaming": false
+  }
+]

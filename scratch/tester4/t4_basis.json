@@ -1,0 +1,61 @@
+{
+  "conversationId": "conv_t4_basis_1788526301911",
+  "created": [
+    "COGTEST-2685",
+    "WFH-2254"
+  ],
+  "log": [
+    {
+      "turn": 1,
+      "msg": "create a work item in my name, you choose the space, the summary should be \"[harness-test] t4 basis probe\"",
+      "response": "Created COGTEST-2685 in **CogniRunner Test Harness**:\n\n- **Type:** Task\n- **Summary:** [harness-test] t4 basis probe\n- **Assignee:** you\n\nWant me to set a priority, add it to a sprint, or link it to related work?",
+      "options": [
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2",
+        "Use project COGTEST — CogniRunner Test Harness",
+        "Use project BDP — DEMAND PROCESS"
+      ],
+      "questions": [
+        "Which project should this go in? Showing 4 of 18 — type any other project key in the box if it isn't listed."
+      ],
+      "projectOptions": [
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2",
+        "Use project COGTEST — CogniRunner Test Harness",
+        "Use project BDP — DEMAND PROCESS"
+      ]
+    },
+    {
+      "turn": 2,
+      "msg": "put it in the work for hire one please",
+      "response": "## Created in WORK FOR HIRE\n\nWFH-2254 — **[harness-test] t4 basis probe**\n\n- **Project:** WORK FOR HIRE (WFH)\n- **Type:** Work package (WFH has no \"Task\" type)\n- **Assignee:** you\n- **Status:** as created (project default)\n\nOne thing to note: Jira can't move an issue between projects via the tools I have, so COGTEST-2685 still exists in **CogniRunner Test Harness** as a duplicate. Shall I close it out or leave it in place?",
+      "options": [],
+      "questions": [],
+      "projectOptions": []
+    },
+    {
+      "turn": 3,
+      "msg": "great. now let's shape an epic for supplier onboarding — but first ask me which project it should be created in",
+      "response": "## 🧭 Epic Facilitator\n\nLet's build an Epic for supplier onboarding. First, which project should it live in?\n\n**To refine this, a few questions:**\n\n- Which project should this Epic be created in?\n\n*Once you pick the project, we'll dive into the problem space and start shaping the Epic.*",
+      "options": [
+        "WORK FOR HIRE (WFH)",
+        "DEMAND PROCESS (BDP)",
+        "CogniRunner Rule Lab 1 (CGL1)",
+        "Use project WFH — WORK FOR HIRE",
+        "Use project COGTEST — CogniRunner Test Harness",
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2"
+      ],
+      "questions": [
+        "Which project should this Epic be created in?",
+        "Which project should this go in? WFH is the project this conversation has been working in. Showing 4 of 18 — type any other project key in the box if it isn't listed."
+      ],
+      "projectOptions": [
+        "Use project WFH — WORK FOR HIRE",
+        "Use project COGTEST — CogniRunner Test Harness",
+        "Use project CGL1 — CogniRunner Rule Lab 1",
+        "Use project CGL2 — CogniRunner Rule Lab 2"
+      ]
+    }
+  ]
+}

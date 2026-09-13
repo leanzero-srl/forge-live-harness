@@ -1,0 +1,82 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+WARN    2026-09-04T07:20:35.306Z 79203d0d-fb49-4f36-8117-8ca6975cdcae Conversation conv_1788506432529_xctt76l5h not found, returning empty conversation
+INFO    2026-09-04T07:20:38.298Z 36ab2e55-5b65-47c5-a82b-0b730466516b [Service] Deleted conversation conv_1788506432529_xctt76l5h (0 message rows)
+INFO    2026-09-04T07:20:59.358Z eb72dc72-e48f-49f6-8b80-a018b8cf5e5f [Agile] capability probe: HTTP 200 -> available=true
+INFO    2026-09-04T07:20:59.394Z eb72dc72-e48f-49f6-8b80-a018b8cf5e5f [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:21:02.215Z eb72dc72-e48f-49f6-8b80-a018b8cf5e5f [Agent] iteration 1 on claude-haiku-4-5-20251001: in=11532 out=108 (turn so far in=11532 out=108)
+INFO    2026-09-04T07:21:56.122Z 428cb30b-7e8d-468e-ba5a-cd666b065df2 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:21:56.123Z 428cb30b-7e8d-468e-ba5a-cd666b065df2 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:21:58.397Z 428cb30b-7e8d-468e-ba5a-cd666b065df2 [Agent] iteration 1 on claude-haiku-4-5-20251001: in=11646 out=64 (turn so far in=11646 out=64)
+INFO    2026-09-04T07:22:28.262Z 5413f735-b454-4f3d-a35c-80578860a0e1 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:22:28.263Z 5413f735-b454-4f3d-a35c-80578860a0e1 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:22:30.605Z 5413f735-b454-4f3d-a35c-80578860a0e1 [Agent] iteration 1 on claude-haiku-4-5-20251001: in=11725 out=79 (turn so far in=11725 out=79)
+INFO    2026-09-04T07:22:30.606Z 5413f735-b454-4f3d-a35c-80578860a0e1 [Tools] searchIssues { jql: 'assignee = currentUser()', maxResults: 25 } (user: 712020:4d03241c-e7a7-4bf0-95f1-c77ad65cfd43)
+INFO    2026-09-04T07:22:31.099Z 5413f735-b454-4f3d-a35c-80578860a0e1 [Tools] JQL search found 25 issues (isLast: false)
+INFO    2026-09-04T07:22:35.595Z 5413f735-b454-4f3d-a35c-80578860a0e1 [Agent] iteration 2 on claude-haiku-4-5-20251001: in=14562 out=299 (turn so far in=26287 out=378)
+WARN    2026-09-04T07:22:46.879Z a4afec0f-5819-4c1f-a8b9-4251754ecd61 [ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+WARN    2026-09-04T07:25:13.262Z 6fb49e6d-96ec-4ffb-9843-e999248a4752 Conversation conv_1788506703511_nak6v0s1r not found, returning empty conversation
+WARN    2026-09-04T07:25:21.637Z 253b1657-5b78-4a1b-8cfe-379bc6b407be Conversation conv_1788506703511_nak6v0s1r not found, returning empty conversation
+INFO    2026-09-04T07:25:36.620Z c82ebd38-01ca-4201-8e47-d50b63ec09bf [Agile] capability from cache: available=true
+INFO    2026-09-04T07:25:36.621Z c82ebd38-01ca-4201-8e47-d50b63ec09bf [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:28:14.300Z 35ed7295-a6d7-4121-ae88-0f598395be27 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:28:14.301Z 35ed7295-a6d7-4121-ae88-0f598395be27 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:29:31.742Z b9683f6e-320f-4f43-975b-75ceb4a33b57 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:29:31.743Z b9683f6e-320f-4f43-975b-75ceb4a33b57 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:30:22.884Z 3594f968-731b-4050-83ba-50b486dbb792 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:30:22.885Z 3594f968-731b-4050-83ba-50b486dbb792 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:31:23.133Z 7bd1a62c-993a-44d6-af00-3a8a3fc422e0 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:31:23.134Z 7bd1a62c-993a-44d6-af00-3a8a3fc422e0 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:32:19.177Z f224ec20-f285-4094-afe9-2fc9c0d671ff [Agile] capability from cache: available=true
+INFO    2026-09-04T07:32:19.178Z f224ec20-f285-4094-afe9-2fc9c0d671ff [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:33:24.642Z b53c9cb2-5895-4d55-bebd-495a1c0c3775 [Metadata] healed listing index: re-added conv_1788507204127_jrxgtyn71
+WARN    2026-09-04T07:33:25.404Z f4172892-3053-4136-9aa0-ddd1f6623d87 Conversation conv_1788507204127_jrxgtyn71 not found, returning empty conversation
+INFO    2026-09-04T07:35:31.599Z af7fa674-ac08-45d9-9861-515f19249484 [Metadata] healed listing index: re-added conv_1788507261056_k36obyh0d
+INFO    2026-09-04T07:35:33.826Z ca9dca97-6ac4-4a31-9483-2957591edb4d [Agile] capability from cache: available=true
+INFO    2026-09-04T07:35:33.827Z ca9dca97-6ac4-4a31-9483-2957591edb4d [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:36:41.534Z f17fa7ac-cab6-4abb-bb6b-636b1705bcf2 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:36:41.535Z f17fa7ac-cab6-4abb-bb6b-636b1705bcf2 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:37:24.390Z 1aad898a-6ffd-4c26-84ed-9b6b452110ae [Agile] capability from cache: available=true
+INFO    2026-09-04T07:37:24.391Z 1aad898a-6ffd-4c26-84ed-9b6b452110ae [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:37:59.271Z 95786176-4924-4d7a-8627-caeb97de2f85 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:37:59.272Z 95786176-4924-4d7a-8627-caeb97de2f85 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:38:44.930Z b81cebb9-1dca-4ed3-a8af-ad453dd7a031 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:38:44.931Z b81cebb9-1dca-4ed3-a8af-ad453dd7a031 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:40:13.769Z a8cf4ce9-84c0-41f6-8ad2-9c25c64f72b9 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:40:13.770Z a8cf4ce9-84c0-41f6-8ad2-9c25c64f72b9 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:41:57.540Z 7722c6ef-7394-455c-88bc-b7401c9fabcf [Agile] capability from cache: available=true
+INFO    2026-09-04T07:41:57.541Z 7722c6ef-7394-455c-88bc-b7401c9fabcf [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:42:32.843Z d5a7e048-ca78-4fef-b120-423693380280 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:42:32.844Z d5a7e048-ca78-4fef-b120-423693380280 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true
+INFO    2026-09-04T07:43:35.782Z 05f57994-e5e5-4d53-a855-028e206d370a [Agile] capability from cache: available=true
+INFO    2026-09-04T07:43:35.783Z 05f57994-e5e5-4d53-a855-028e206d370a [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T07:43:36.718Z 05f57994-e5e5-4d53-a855-028e206d370a [skills] seeded built-ins at v1: chatwise-jira-conventions (new), diconium-brand (new)
+INFO    2026-09-04T07:43:36.784Z 05f57994-e5e5-4d53-a855-028e206d370a [Consumer] skills: bound=none offered=2 directionChars=1281
+ERROR   2026-09-04T07:43:43.443Z 05f57994-e5e5-4d53-a855-028e206d370a Failed to create Epic in ADC2C: 400 {"errorMessages":["Assignee: The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."],"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+ERROR   2026-09-04T07:43:43.444Z 05f57994-e5e5-4d53-a855-028e206d370a [Tools] create Epic in ADC2C failed: 400 {"errorMessages":["Assignee: The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."],"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+INFO    2026-09-04T07:44:02.367Z 9726d259-90d4-48b7-af00-5f0319ed3d85 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:44:02.368Z 9726d259-90d4-48b7-af00-5f0319ed3d85 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T07:44:02.493Z 9726d259-90d4-48b7-af00-5f0319ed3d85 [Consumer] skills: bound=none offered=2 directionChars=1281
+ERROR   2026-09-04T07:44:10.329Z 9726d259-90d4-48b7-af00-5f0319ed3d85 Failed to create Epic in ADC2C: 400 {"errorMessages":["Assignee: The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."],"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+ERROR   2026-09-04T07:44:10.330Z 9726d259-90d4-48b7-af00-5f0319ed3d85 [Tools] create Epic in ADC2C failed: 400 {"errorMessages":["Assignee: The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."],"errors":{"assignee":"The default assignee does NOT have ASSIGNABLE permission OR Unassigned issues are turned off."}}
+INFO    2026-09-04T07:44:37.581Z d3fa931c-5e11-496e-96d4-cde56b43ac08 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:44:37.582Z d3fa931c-5e11-496e-96d4-cde56b43ac08 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T07:44:37.705Z d3fa931c-5e11-496e-96d4-cde56b43ac08 [Consumer] skills: bound=none offered=2 directionChars=1281
+WARN    2026-09-04T07:44:37.841Z d3fa931c-5e11-496e-96d4-cde56b43ac08 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier
+INFO    2026-09-04T07:45:15.508Z 64833d0a-4015-4566-a9f4-fb912f5578c7 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:45:15.509Z 64833d0a-4015-4566-a9f4-fb912f5578c7 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T07:45:15.635Z 64833d0a-4015-4566-a9f4-fb912f5578c7 [Consumer] skills: bound=none offered=2 directionChars=1281
+INFO    2026-09-04T07:47:17.961Z 81887ca6-2fe5-452e-ae5d-a20f2d2fdfaf [Agile] capability from cache: available=true
+INFO    2026-09-04T07:47:17.962Z 81887ca6-2fe5-452e-ae5d-a20f2d2fdfaf [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T07:47:18.113Z 81887ca6-2fe5-452e-ae5d-a20f2d2fdfaf [Consumer] skills: bound=none offered=2 directionChars=1281
+INFO    2026-09-04T07:47:41.860Z 26e6f7a1-b758-41eb-97a6-46689573160a [Agile] capability from cache: available=true
+INFO    2026-09-04T07:47:41.861Z 26e6f7a1-b758-41eb-97a6-46689573160a [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T07:47:41.975Z 26e6f7a1-b758-41eb-97a6-46689573160a [Consumer] skills: bound=none offered=2 directionChars=1281
+INFO    2026-09-04T07:48:09.509Z 6944c697-fff2-4cd9-9c7f-e0b8f137d354 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:48:09.510Z 6944c697-fff2-4cd9-9c7f-e0b8f137d354 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T07:48:09.622Z 6944c697-fff2-4cd9-9c7f-e0b8f137d354 [Consumer] skills: bound=none offered=2 directionChars=1281
+INFO    2026-09-04T07:48:32.349Z db6e983f-346b-4472-af5e-962f1f0ad032 [Agile] capability from cache: available=true
+INFO    2026-09-04T07:48:32.350Z db6e983f-346b-4472-af5e-962f1f0ad032 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T07:48:32.483Z db6e983f-346b-4472-af5e-962f1f0ad032 [Consumer] skills: bound=none offered=2 directionChars=1281
+WARN    2026-09-04T07:48:32.650Z db6e983f-346b-4472-af5e-962f1f0ad032 [ForgeLLM] claude-sonnet-5 token quota exhausted — trying the next tier

@@ -1,0 +1,11 @@
+{
+  "text": "I don't have a project to work with yet — I picked \"Test Play Project\" (TPP) as a candidate since it supports issue creation, but per house rules I should confirm the target rather than guess, since you haven't named one.\n\nHere are the projects you can see:\n\nCGL1 – CogniRunner Rule Lab 1\nCGL2 – CogniRunner Rule Lab 2\nCOGTEST – CogniRunner Test Harness\nBDP – DEMAND PROCESS\nDEMO – Demo service project\nDFD – Dynamic Form Demo\nES – EstimatedTimeEpicIssues\nFIEL – FieldsTest\nJT – JSM Test\nLZPT – LZ PPM Harness Test\nLZPP – LZPT Performance\nSCRQ – Screen Enforcement Refutation Probe\nTES – Test Fields\nTPP – Test Play Project\nTF – TEST-FORMULA\nTEF – TestForm\nTRAN – Transition Lab\nWFH – WORK FOR HIRE\nWhich one would you like the item created in? If you're happy with TPP (Test Play Project), I'll create a Task there summary \"auto created - test\" assigned to you.\n\nWhich project should this go in? Showing 4 of 18 — type any other project key in the box if it isn't listed.\n\nUse project CGL1 — CogniRunner Rule Lab 1\nRECOMMENDED\nUse project CGL2 — CogniRunner Rule Lab 2\nUse project COGTEST — CogniRunner Test Harness\nUse project BDP — DEMAND PROCESS\nclaude-sonnet-5\n62.7k tokens\n4 tool calls",
+  "question": "Which project should this go in? Showing 4 of 18 — type any other project key in the box if it isn't listed.",
+  "labels": [
+    "Use project CGL1 — CogniRunner Rule Lab 1",
+    "Use project CGL2 — CogniRunner Rule Lab 2",
+    "Use project COGTEST — CogniRunner Test Harness",
+    "Use project BDP — DEMAND PROCESS"
+  ],
+  "recommended": "Use project CGL1 — CogniRunner Rule Lab 1\nRECOMMENDED"
+}

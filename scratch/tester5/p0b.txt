@@ -1,0 +1,21 @@
+
+Running 1 test using 1 worker
+
+target issue: WFH-2197 "Meeting-Free Deep Work Program" status=New
+--- comment RAW REPLY: Comment added to WFH-2197: "[harness-test] t5 non-create write probe" ⏎  ⏎ Would you like to continue with the Epic interview you were working through?
+  project options: [] | questions: []
+--- comment
+  reply: Comment added to WFH-2197: "[harness-test] t5 non-create write probe" ⏎  ⏎ Would you like to continue with the Epic interview you were working through?
+  project options: []
+  all options: []
+--- label RAW REPLY: ## WFH-2197 — Meeting-Free Deep Work Program ⏎  ⏎ Label added. ⏎  ⏎ - **Labels now:** `ai-generated`, `harness-test-t5` ⏎  ⏎ Anything else you'd like changed on this Epic before you carry on?
+  project options: [] | questions: []
+--- label
+  reply: ## WFH-2197 — Meeting-Free Deep Work Program ⏎  ⏎ Label added. ⏎  ⏎ - **Labels now:** `ai-generated`, `harness-test-t5` ⏎  ⏎ Anything else you'd like changed on this Epic before you carry on?
+  project options: []
+  all options: []
+restored labels on WFH-2197 to ["ai-generated"]
+deleted comment 15879
+  ✓  1 [chromium] › scenarios/chatwise/zz5-p0.probe.spec.ts:90:1 › P0-B: a NON-CREATE write (comment/transition) also drops the stale project options (50.0s)
+
+  1 passed (51.1s)

@@ -1,0 +1,19 @@
+
+Running 1 test using 1 worker
+
+DEPLOYED BUILD IN THE DOM: v6.94.0
+  VERIFIED WFH-2348 in WFH: "[harness-test] t5 f2 r1"
+--- F2 round 1
+  t1 reply: ## WFH-2348 created ⏎  ⏎ - **Project:** WFH (WORK FOR HIRE) ⏎ - **Summary:** [harness-test] t5 f2 r1 ⏎ - **Type:** Work package (standard issue) ⏎ - **Assignee:** you ⏎  ⏎ Wa
+  t2 reply: Your most active projects (by recent updates) are: ⏎  ⏎ - **TF** (TEST-FORMULA) ⏎ - **WFH** (WORK FOR HIRE) — where you just created WFH-2348 ⏎ - **JT** (JSM Test) ⏎ - **CGL1** (CogniRunner Rule Lab 1) ⏎ - **TPP** (Test Play Project) ⏎  ⏎ Which one should the new item go into? Or if it's for a different project, name it.
+  t2 question: ["Which project should this new item go into? Here are 4 of your 18 projects — or just type any other project key in the box."]
+  t2 project options: ["Use project WFH — WORK FOR HIRE","Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness"]
+  t2 all options: ["Use project WFH — WORK FOR HIRE","Use project CGL1 — CogniRunner Rule Lab 1","Use project CGL2 — CogniRunner Rule Lab 2","Use project COGTEST — CogniRunner Test Harness"]
+round 2: QUOTA on turn 2
+round 3: QUOTA on turn 1
+round 4: QUOTA on turn 1
+  cleanup WFH-2348: deleted
+F2 HIT RATE: 1/1
+  ✓  1 [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:48:1 › F2: 'now I want to raise another item, which project should it go in?' offers BUTTONS (1.2m)
+
+  1 passed (1.3m)

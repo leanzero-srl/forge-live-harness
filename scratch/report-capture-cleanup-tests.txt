@@ -1,0 +1,15 @@
+✔ actual cleanup retains exact manifest before and verifies two strong absence reads (1.327417ms)
+✔ foreign owner request cannot be adopted for cleanup (0.565833ms)
+✔ failed or ambiguous cancel is never retried and exact state survives (0.189916ms)
+✔ false cleanupDone while keys still present cannot pass (0.141667ms)
+✔ missing manifest entries after cancellation is not proof of removal (0.24775ms)
+✔ cleanup after complete keeps all public report objects (0.167959ms)
+✔ zero-progress cleanup refused rather than infinite retry (0.139167ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 41.073042

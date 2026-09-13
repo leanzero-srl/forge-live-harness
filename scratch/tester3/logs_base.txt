@@ -1,0 +1,49 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+INFO    2026-09-04T10:05:44.490Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 4 on claude-haiku-4-5-20251001: in=16106 out=99 (turn so far in=58434 out=1208)
+INFO    2026-09-04T10:05:44.491Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Tools] readSkillReference { skillId: 'diconium-brand', path: 'references/powerpoint.md' } (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:05:44.710Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [skills] loaded diconium-brand#references/powerpoint.md (+3,821 chars; prompt cache for this turn is now cold)
+WARN    2026-09-04T10:05:44.741Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+INFO    2026-09-04T10:05:58.640Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 5 on claude-opus-5: in=22867 out=1044 (turn so far in=81301 out=2252)
+INFO    2026-09-04T10:05:58.641Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Tools] createPresentation {
+  title: 'Tester Slot Probe',
+  skillId: 'diconium-brand',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'section', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+WARN    2026-09-04T10:05:59.468Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [ForgeLLM] claude-haiku-4-5-20251001 token quota exhausted — trying the next tier
+INFO    2026-09-04T10:06:10.615Z 16e1806e-524e-494f-95e5-ba2c9e1d6e84 [Agent] iteration 6 on claude-opus-5: in=23872 out=625 (turn so far in=105173 out=2877)
+INFO    2026-09-04T10:08:52.331Z 939f07e6-c896-4f98-9bf6-a494405da358 [Metadata] healed listing index: re-added conv_1788516528587_d0z9l932m
+INFO    2026-09-04T10:08:54.096Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Agile] capability from cache: available=true
+INFO    2026-09-04T10:08:54.097Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T10:08:54.274Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Consumer] skills: bound=chatwise-jira-conventions offered=3 directionChars=2423
+INFO    2026-09-04T10:08:56.165Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Agent] iteration 1 on claude-haiku-4-5-20251001: in=12686 out=59 (turn so far in=12686 out=59)
+INFO    2026-09-04T10:08:56.166Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Tools] loadSkill { skillId: 'diconium-brand' } (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:08:56.268Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [skills] loaded diconium-brand (+6,001 chars; prompt cache for this turn is now cold)
+INFO    2026-09-04T10:09:01.497Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Agent] iteration 2 on claude-haiku-4-5-20251001: in=14360 out=572 (turn so far in=27046 out=631)
+INFO    2026-09-04T10:09:01.498Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Tools] createPresentation {
+  title: 'Tester Baseline Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:09:06.095Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Agent] iteration 3 on claude-haiku-4-5-20251001: in=15304 out=410 (turn so far in=42350 out=1041)
+INFO    2026-09-04T10:09:06.096Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Tools] createPresentation {
+  title: 'Tester Baseline Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:09:09.593Z af1f948a-d881-49d9-9fd5-cb748faa3cb7 [Agent] iteration 4 on claude-haiku-4-5-20251001: in=15883 out=207 (turn so far in=58233 out=1248)

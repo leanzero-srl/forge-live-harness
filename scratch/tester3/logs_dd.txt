@@ -1,0 +1,60 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 13.5.0.
+
+INFO    2026-09-04T10:10:24.279Z f690dc0e-1816-49ef-881e-fe9e951f9b0e [skills] loaded diconium-brand (+6,001 chars; prompt cache for this turn is now cold)
+INFO    2026-09-04T10:10:28.508Z f690dc0e-1816-49ef-881e-fe9e951f9b0e [Agent] iteration 2 on claude-haiku-4-5-20251001: in=14439 out=527 (turn so far in=27192 out=602)
+INFO    2026-09-04T10:10:28.509Z f690dc0e-1816-49ef-881e-fe9e951f9b0e [Tools] createPresentation {
+  title: 'Tester Refusal Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:10:32.826Z f690dc0e-1816-49ef-881e-fe9e951f9b0e [Agent] iteration 3 on claude-haiku-4-5-20251001: in=15260 out=403 (turn so far in=42452 out=1005)
+INFO    2026-09-04T10:10:32.827Z f690dc0e-1816-49ef-881e-fe9e951f9b0e [Tools] createPresentation {
+  title: 'Tester Refusal Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] },
+    { layout: 'timeline', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:10:35.699Z f690dc0e-1816-49ef-881e-fe9e951f9b0e [Agent] iteration 4 on claude-haiku-4-5-20251001: in=15828 out=93 (turn so far in=58280 out=1098)
+INFO    2026-09-04T10:12:32.302Z 3334bc8d-4d65-4c11-a26d-0e1e0e8b049b [Metadata] healed listing index: re-added conv_1788516748503_v8dbus2mf
+INFO    2026-09-04T10:12:34.362Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Agile] capability from cache: available=true
+INFO    2026-09-04T10:12:34.363Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Consumer] toolset: profile=standard destructive=false agile=true bulk=true backlogPolicy=true documents=true
+INFO    2026-09-04T10:12:34.547Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Consumer] skills: bound=chatwise-jira-conventions offered=3 directionChars=2423
+INFO    2026-09-04T10:12:36.575Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Agent] iteration 1 on claude-haiku-4-5-20251001: in=12772 out=76 (turn so far in=12772 out=76)
+INFO    2026-09-04T10:12:36.576Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Tools] loadSkill { skillId: 'diconium-brand' } (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:12:36.689Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [skills] loaded diconium-brand (+6,001 chars; prompt cache for this turn is now cold)
+INFO    2026-09-04T10:12:41.421Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Agent] iteration 2 on claude-haiku-4-5-20251001: in=14459 out=541 (turn so far in=27231 out=617)
+INFO    2026-09-04T10:12:41.422Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Tools] createPresentation {
+  title: 'Tester Dedupe Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:12:41.423Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Tools] createPresentation {
+  title: 'Tester Dedupe Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+INFO    2026-09-04T10:12:46.872Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Agent] iteration 3 on claude-haiku-4-5-20251001: in=15855 out=614 (turn so far in=43086 out=1231)
+INFO    2026-09-04T10:12:46.873Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Tools] createPresentation {
+  title: 'Tester Dedupe Probe',
+  slides: [
+    { layout: 'cover', values: [Object] },
+    { layout: 'cards', values: [Object] },
+    { layout: 'stats', values: [Object] }
+  ]
+} (user: 712020:937bc860-eec2-4294-a65d-8e0fe7c45086)
+WARN    2026-09-04T10:12:47.087Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [writeGuard] refused createPresentation — {"allowWrites":true,"writesRemaining":0,"blockedCalls":["createPresentation"]}
+INFO    2026-09-04T10:12:49.584Z 17b18e49-5c14-4961-89cb-5197b61bbc2b [Agent] iteration 4 on claude-haiku-4-5-20251001: in=16746 out=133 (turn so far in=59832 out=1364)

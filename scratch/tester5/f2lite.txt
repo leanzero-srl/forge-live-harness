@@ -1,0 +1,46 @@
+
+Running 1 test using 1 worker
+
+--- F2-lite round 1
+  reply: WFH-2197 lives in the **WFH** (WORK FOR HIRE) project, so your new item should go there too.
+  question: []
+  project options: []
+--- F2-lite round 2
+  reply: ## Where your next item should go ⏎  ⏎ WFH-2197 — **Meeting-Free Deep Work Program** — sits in **WORK FOR HIRE** (`WFH`), as an **Epic** at hierarchy level **1**, reported and assigned to **Mihai Perdum**. ⏎  ⏎ **Recommendation:** raise the new item in **WFH** as well, provided it's the same kind of interna
+  question: []
+  project options: []
+--- F2-lite round 3
+  reply: Based on WFH-2197, you should raise your next item in the **WFH** project (WORK FOR HIRE). ⏎  ⏎ Is there context about what this new item is? That helps me recommend whether it should be an Epic, a Work package, Payment, Bug, or something else in that project.
+  question: []
+  project options: []
+--- F2-lite round 4
+  reply: Based on WFH-2197, your new item should go in the **WFH** (Work for Hire) project — that's where your meeting-free deep work program epic lives. ⏎  ⏎ Would you like to raise a work package, epic, bug, or payment item? Or do you need help structuring what you want to create?
+  question: []
+  project options: []
+lite round 5: QUOTA
+lite round 6: QUOTA
+F2-LITE HIT RATE: 0/4
+  ✘  1 [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:90:1 › F2-lite: a project already in play + an explicit ask must still offer BUTTONS (1.5m)
+
+
+  1) [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:90:1 › F2-lite: a project already in play + an explicit ask must still offer BUTTONS 
+
+    Error: lite round 1: explicit ask, NO buttons. reply: WFH-2197 lives in the **WFH** (WORK FOR HIRE) project, so your new item should go there too.
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      111 |   const hits = rows.filter((r) => r.projectOptions.length > 0);
+      112 |   console.log(`F2-LITE HIT RATE: ${hits.length}/${rows.length}`);
+    > 113 |   for (const r of rows) expect(r.projectOptions.length, `lite round ${r.i}: explicit ask, NO buttons. reply: ${r.reply.slice(0, 300)}`).toBeGreaterThan(0);
+          |                                                                                                                                         ^
+      114 | });
+      115 |
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/chatwise/zz5-f2.probe.spec.ts:113:137
+
+    Error Context: test-results/scenarios-chatwise-zz5-f2.-b41b7-sk-must-still-offer-BUTTONS-chromium/error-context.md
+
+  1 failed
+    [chromium] › scenarios/chatwise/zz5-f2.probe.spec.ts:90:1 › F2-lite: a project already in play + an explicit ask must still offer BUTTONS 
