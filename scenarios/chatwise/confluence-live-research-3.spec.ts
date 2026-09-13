@@ -17,7 +17,7 @@ import {
 // eslint-disable-next-line
 import { get } from '../../data/jira.mjs';
 
-const FOLDER = '/tmp/cw-confluence-live-3';
+const FOLDER = '/tmp/cw-confluence-live-4';
 const JOURNAL = `${FOLDER}/part-c3.json`;
 const SPACE_ID = '851971';
 const PROMPT = 'Research in Confluence space WFH: what is the WFH space about and what are its main pages? ' +

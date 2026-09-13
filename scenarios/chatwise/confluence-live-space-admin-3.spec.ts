@@ -19,7 +19,7 @@ import { adminTurns, undoIdIn } from './jira-admin-write-support';
 // eslint-disable-next-line
 import { get, request } from '../../data/jira.mjs';
 
-const FOLDER = '/tmp/cw-confluence-live-3';
+const FOLDER = '/tmp/cw-confluence-live-4';
 const JOURNAL = `${FOLDER}/part-b3.json`;
 const GAP_MS = Number(process.env.CHATWISE_TURN_GAP_MS || 180_000);
 
