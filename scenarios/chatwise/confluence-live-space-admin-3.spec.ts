@@ -19,7 +19,7 @@ import { adminTurns, undoIdIn } from './jira-admin-write-support';
 // eslint-disable-next-line
 import { get, request } from '../../data/jira.mjs';
 
-const FOLDER = '/tmp/cw-confluence-live-4';
+const FOLDER = '/tmp/cw-confluence-live-5';
 const JOURNAL = `${FOLDER}/part-b3.json`;
 const GAP_MS = Number(process.env.CHATWISE_TURN_GAP_MS || 180_000);
 
@@ -73,8 +73,9 @@ test('B3: with write:confluence-space granted, the space undo reaches Confluence
       entry.turns.push({
         label, message, at: new Date().toISOString(),
         reply: t.reply, toolset: t.toolset, undoId: t.undoId,
-        confluence: t.win.filter((l: any) => /Confluence|\[Tools\]|\[Ledger\]|\[Confirmation\]|\[Revert\]/i.test(l.text))
+        confluence: t.win.filter((l: any) => /Confluence|\[Tools\]|\[Ledger\]|\[AdminLedger\]|\[Confirmation\]|\[Revert\]|\[Agent\] iteration|NEEDS_AUTHENTICATION|atlassian-token-service|\[ERROR\]/i.test(l.text))
           .map((l: any) => `${new Date(l.at).toISOString()} ${l.text}`),
+        allLines: t.win.map((l: any) => `${new Date(l.at).toISOString()} ${l.text}`),
       });
       save();
     };
