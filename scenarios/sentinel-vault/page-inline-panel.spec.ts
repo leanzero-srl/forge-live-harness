@@ -36,9 +36,15 @@ test("inline-panel loads past spinner, shows the sealed fixture, and agrees with
       if (!src.includes(DEV)) continue;
       const cf = iframes.nth(i).contentFrame();
       if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) { panel = cf; continue; }
-      // the doc-ribbon banner (NOT the panel) is the iframe carrying the "Manage Attachments" action
-      const t = (await cf.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").trim();
-      if (/Manage Attachments/i.test(t) && /on this page/i.test(t)) bannerText = t.slice(0, 90);
+      // (the doc-ribbon is state-driven now — it renders NOTHING when nothing is urgent, and the
+      // old "Manage Attachments" action is retired — so the byline CHIP is the second surface here)
+    }
+    // The dev byline chip: Sentinel Vault's is the byline item carrying img[data-testid="byline-forge-app-image"]
+    // whose data: SVG holds the LOCK glyph (<rect) when the page has live seals (byline.js).
+    const chipImg = page.locator('button[data-testid="byline-forge-app-button"]', { has: page.locator('img[data-testid="byline-forge-app-image"]'), hasText: "(Development)" }).first().locator('img[data-testid="byline-forge-app-image"]');
+    if ((await chipImg.count().catch(() => 0)) > 0) {
+      const src = (await chipImg.getAttribute("src").catch(() => "")) || "";
+      bannerText = decodeURIComponent(src.replace(/^data:image\/svg\+xml;utf8,/, "")).includes("<rect") ? "chip:lock" : "chip:no-lock";
     }
     if (panel && bannerText) break;
     await page.waitForTimeout(1500);
@@ -58,9 +64,8 @@ test("inline-panel loads past spinner, shows the sealed fixture, and agrees with
   expect(sealedSection, "panel has a 'Sealed' section").toBeGreaterThanOrEqual(1);
   expect(/sv-aql-sealed-fixture/i.test(panelBody), "panel shows the sealed fixture file").toBeTruthy();
 
-  // 4) CONSISTENCY: the banner agrees the fixture is sealed (not "none sealed")
-  console.log("### dev banner:", JSON.stringify(bannerText));
-  expect(bannerText, "dev banner present").toBeTruthy();
-  expect(/\bsealed on this page/i.test(bannerText) && !/none sealed/i.test(bannerText),
-    `banner + panel agree the fixture is sealed (banner: "${bannerText}")`).toBeTruthy();
+  // 4) CONSISTENCY: the dev byline chip agrees the page has a live seal (its icon is the lock).
+  console.log("### dev byline chip:", JSON.stringify(bannerText));
+  expect(bannerText, "dev byline chip present").toBeTruthy();
+  expect(bannerText, "chip icon is the LOCK → chip + panel agree the fixture is sealed").toBe("chip:lock");
 });

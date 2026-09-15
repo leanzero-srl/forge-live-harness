@@ -9,29 +9,20 @@ import { test, expect } from "../../fixtures/forge";
 import { mkdirSync } from "node:fs";
 const PAGE = "https://wolfaenpak.atlassian.net/wiki/pages/viewpage.action?pageId=265912321";
 const DEV_ENV = "17516615"; // Sentinel Vault development env id (config/targets.ts SENTINEL_ENV)
+import { findDevChip } from "./_door";
 const OUT = "/tmp/sv-pageseal";
 test.describe.configure({ retries: 1 });
-test("dev doc-ribbon reports the sealed attachment (env-scoped, ignores the prod install)", async ({ page }) => {
+test("the dev byline chip reports the sealed attachment (env-scoped, ignores the prod install)", async ({ page }) => {
+  // Since 7.0 the ribbon closes when nothing is urgent for the viewer (owner-held seal, nothing
+  // waiting); the ALWAYS-present state indicator is the byline chip, whose icon carries a lock
+  // whenever the page holds a live seal. That is what this spec now asserts.
   mkdirSync(OUT, { recursive: true });
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });
-  await page.waitForTimeout(9000);
+  const chip = await findDevChip(page);
   await page.screenshot({ path: `${OUT}/settled.png` });
-  const ifr = page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]');
-  const n = await ifr.count().catch(() => 0);
-  let devBanner = "";
-  for (let i = 0; i < n; i++) {
-    const src = (await ifr.nth(i).getAttribute("src").catch(() => "")) || "";
-    if (!src.includes(DEV_ENV)) continue;
-    const cf = ifr.nth(i).contentFrame();
-    // The DEV inline-PANEL macro is also a dev iframe and its copy contains both "sealed" ("1 sealed")
-    // and "on this page" ("What Sentinel Vault does on this page") — it would clobber the banner match.
-    // Skip the panel; the doc-ribbon BANNER is the one with the "Manage Attachments" action.
-    if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) continue;
-    const txt = (await cf.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").trim();
-    if (/Manage Attachments/i.test(txt) && /on this page/i.test(txt) && /attachment/i.test(txt)) devBanner = txt.slice(0, 100);
-  }
-  console.log("### dev banner:", JSON.stringify(devBanner));
-  expect(devBanner, "the dev doc-ribbon banner is present on the page").toBeTruthy();
-  expect(/\bsealed on this page/i.test(devBanner) && !/none sealed/i.test(devBanner),
-    `dev banner must reflect the dev seal (got: "${devBanner}")`).toBeTruthy();
+  const icon = chip.locator('img[data-testid="byline-forge-app-image"]');
+  await expect(icon, "the dev chip renders its icon from the sentinel-byline property").toBeVisible({ timeout: 30000 });
+  const src = (await icon.getAttribute("src")) || "";
+  console.log("### dev chip:", JSON.stringify(await chip.innerText()), "icon lock:", /lock/i.test(src) || /M8 11V7|rect/i.test(decodeURIComponent(src)));
+  expect(/lock|M8 11V7|rect/i.test(decodeURIComponent(src)), "the chip icon is the LOCK variant (a live seal on this page)").toBeTruthy();
 });

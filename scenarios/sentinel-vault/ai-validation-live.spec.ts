@@ -56,7 +56,7 @@ test("B11: live AI validation (real Haiku) — enqueue → queue → findings, w
     // AUTHZ NEGATIVE: a non-steward actor is denied (proves the gate is real, not vacuous).
     const denied = await inv("enqueuePageValidation", { page: page.id, space: SPACE, actor: "sv-aql-not-a-steward" });
     expect(denied.result?.success, "a non-steward cannot enqueue an AI review").toBeFalsy();
-    expect(denied.result?.reason, "the denial names the steward requirement").toMatch(/steward/i);
+    expect(denied.result?.reason, "the denial names the space-admin requirement").toMatch(/space admin/i);
 
     // Enable AI at the SPACE level (a space config with ai.enabled defined shadows the global one).
     await setKvs(SKEY, {

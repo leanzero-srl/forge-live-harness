@@ -1,5 +1,6 @@
 // Overlay "Sealed by" owner name — proves identify-operator RESOLVED, not merely rendered.
-// The doc-ribbon's "Manage Attachments" overlay renders an OperatorTag per sealed card
+// The attachments overlay (door: the byline chip → page-details modal → Attachments tab, see
+// _door.ts; the ribbon's "Manage Attachments" action is retired) renders an OperatorTag per sealed card
 // (overlay/index.jsx:340-345) which invokes identify-operator(lockedByAccountId) as the user
 // (overlay/index.jsx:147). On ANY failure the component substitutes `User <last-4-of-accountId>`
 // (index.jsx:151) — so a card that "shows a name" proves nothing; only the REAL display name does.
@@ -15,6 +16,7 @@
 import { test, expect } from "../../fixtures/forge";
 import { mkdirSync } from "node:fs";
 import path from "node:path";
+import { openOverlayViaChip, findDevOverlay } from "./_door";
 
 const PAGE = "https://wolfaenpak.atlassian.net/wiki/pages/viewpage.action?pageId=265912321";
 const DEV = "17516615";
@@ -26,59 +28,15 @@ const IFRAMES = 'iframe[data-testid="hosted-resources-iframe"], iframe[title*="I
 const squash = (s: string) => s.replace(/\s+/g, " ").trim();
 test.describe.configure({ timeout: 150_000, retries: 1 });
 
-/** The dev doc-ribbon banner iframe: carries "Manage Attachments" and is NOT the inline-panel. */
-async function findDevBannerIndex(page: any, timeoutMs = 45_000): Promise<number> {
-  const iframes = page.locator(IFRAMES);
-  const deadline = Date.now() + timeoutMs;
-  while (Date.now() < deadline) {
-    const n = await iframes.count();
-    for (let i = 0; i < n; i++) {
-      const src = (await iframes.nth(i).getAttribute("src").catch(() => "")) || "";
-      if (!src.includes(DEV)) continue;
-      const cf = iframes.nth(i).contentFrame();
-      if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) continue;
-      const t = (await cf.locator("body").innerText().catch(() => "")) || "";
-      if (/Manage Attachments/i.test(t)) return i;
-    }
-    await page.waitForTimeout(1500);
-  }
-  return -1;
-}
-
-/**
- * The dev overlay MODAL: largest DEV iframe holding artifact cards. The inline-panel macro behind
- * the modal ALSO renders .artifact-card, so it is excluded outright by its .sv-panel-container root
- * (the modal has none) — otherwise a poll that runs before the modal paints would pick the panel.
- */
-async function findDevOverlay(page: any) {
-  const all = page.locator("iframe");
-  const m = await all.count();
-  let overlay: any = null, best = 0;
-  for (let i = 0; i < m; i++) {
-    const src = (await all.nth(i).getAttribute("src").catch(() => "")) || "";
-    if (!src.includes(DEV)) continue;
-    const cf = all.nth(i).contentFrame();
-    if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) continue; // the panel, not the modal
-    if ((await cf.locator(".artifact-card").count().catch(() => 0)) <= 0) continue;
-    const box = await all.nth(i).boundingBox().catch(() => null);
-    const area = box ? box.width * box.height : 0;
-    if (area > best) { best = area; overlay = cf; }
-  }
-  return overlay;
-}
-
-test("Manage Attachments overlay: the fixture's 'Sealed by' resolves to the real owner name (identify-operator)", async ({ page }, testInfo) => {
+test("attachments overlay (via the byline chip): the fixture's 'Sealed by' resolves to the real owner name (identify-operator)", async ({ page }, testInfo) => {
   const OUT = path.join(testInfo.outputDir, "shots");
   mkdirSync(OUT, { recursive: true });
 
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });
-  const bannerIdx = await findDevBannerIndex(page);
-  expect(bannerIdx, "dev doc-ribbon banner found").toBeGreaterThanOrEqual(0);
-  await page.locator(IFRAMES).nth(bannerIdx).contentFrame().locator(".ribbon-action", { hasText: "Manage" }).click();
-
+  await page.waitForTimeout(6000);
+  let ov: any = await openOverlayViaChip(page);
   // Re-resolve the overlay per poll (modal iframe mounts, then re-paints with the card list).
-  let ov: any = null;
-  await expect.poll(async () => { ov = await findDevOverlay(page); return ov ? 1 : 0; }, { timeout: 30_000, message: "dev overlay modal with artifact cards" }).toBe(1);
+  await expect.poll(async () => { ov = await findDevOverlay(page); return ov && (await ov.locator(".artifact-card").count()) > 0 ? 1 : 0; }, { timeout: 30_000, message: "dev overlay modal with artifact cards" }).toBe(1);
   await page.screenshot({ path: `${OUT}/1-overlay-open.png` });
 
   const card = () => ov.locator(".artifact-card", { hasText: FIXTURE_NAME });

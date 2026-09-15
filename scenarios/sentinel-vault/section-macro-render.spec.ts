@@ -15,13 +15,17 @@ import { getTestState } from "../../testhook/client";
 // @ts-ignore
 import { spaceIdByKey, createPage, deletePage } from "../../data/confluence.mjs";
 // @ts-ignore
-import { heading, paragraph } from "../../data/adf.mjs";
+import { heading, paragraph, buildBodiedExtensionNode } from "../../data/adf.mjs";
 
 const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
+const SENTINEL_APP = "ari:cloud:ecosystem::app/c30bf71e-4287-4872-954d-db49cc68f0ff";
+const SENTINEL_ENV = process.env.SENTINEL_ENV_ID || "17516615-12ef-4790-8ce2-29151b7ee9ac";
 const DEV = process.env.SENTINEL_ENV_ID?.slice(0, 8) || "17516615";
 const ACTOR = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"; // Mihai — the harness browser identity
 const inv = (fn: string, params: Record<string, string>) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
+const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
+const setKvs = (key: string, value: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(value) });
 const doc = (...n: any[]) => ({ version: 1, type: "doc", content: n });
 
 let PAGE = "";
@@ -74,6 +78,16 @@ test("view: light not black, dark host-aligned, body inset, box centred", async 
   await page.locator("#content, [data-testid='page-content'], .ak-renderer-document").first().waitFor({ timeout: 60_000 });
   const { frame, el } = await findAppFrame(page);
   await page.waitForTimeout(1500);
+
+  // P1-6: the badge claims what `section-seal-status` answered — this section IS sealed (by the
+  // hook, as Mihai), so the badge must name the owner, never a generic "Sealed by Sentinel Vault".
+  const badge = frame.locator('[data-testid="sec-view-badge"]');
+  await expect(badge).toHaveAttribute("data-state", "sealed", { timeout: 20_000 });
+  const badgeText = (await badge.innerText()).replace(/\s+/g, " ").trim();
+  console.log(`### badge (sealed): "${badgeText}"`);
+  expect(badgeText, "badge names the seal owner").toMatch(/^Sealed by .+/);
+  expect(badgeText, "badge is not the old unconditional copy").not.toMatch(/Sealed by Sentinel Vault/);
+  expect(await frame.locator(".sec-frame").getAttribute("data-state"), "frame carries the sealed state").toBe("sealed");
 
   // (a) light: the frame background is a real colour, not black, not transparent
   const lightBg = await frame.locator(".sec-frame").evaluate((e) => getComputedStyle(e).backgroundColor);
@@ -138,6 +152,55 @@ test("view: light not black, dark host-aligned, body inset, box centred", async 
   console.log("### SECTION-UI console:\n" + logs.join("\n"));
 });
 
+// P1-6 view badge, state 2: the seal record's expiresAt in the past → "Expired seal" (the
+// resolver reports isExpired; the section's own record is rewritten through the hook and put back).
+test("view badge: an expired seal says 'Expired seal'", async ({ page }) => {
+  if (!SECTION) throw new Error("no section");
+  const key = `section-protection-${SECTION}`;
+  const original = await getKvs(key);
+  expect(original?.lockedBy, "the seeded seal record is readable through the hook").toBeTruthy();
+  try {
+    await setKvs(key, { ...original, expiresAt: new Date(Date.now() - 86_400_000).toISOString() });
+    await page.goto(`${BASE_URL}/wiki/spaces/${SPACE}/pages/${PAGE}`, { waitUntil: "domcontentloaded" });
+    const { frame } = await findAppFrame(page);
+    const badge = frame.locator('[data-testid="sec-view-badge"]');
+    await expect(badge).toHaveAttribute("data-state", "expired", { timeout: 20_000 });
+    const text = (await badge.innerText()).replace(/\s+/g, " ").trim();
+    console.log(`### badge (expired): "${text}"`);
+    expect(text).toBe("Expired seal");
+    const fallback = frame.locator(".sec-body-fallback");
+    if (await fallback.isVisible().catch(() => false)) expect(await fallback.innerText()).toMatch(/has expired/);
+    const border = await frame.locator(".sec-frame").evaluate((e) => getComputedStyle(e).borderTopColor);
+    console.log(`### expired frame border=${border}`);
+    expect(border, "expired frame border is the solid amber").toBe("rgb(180, 83, 9)");
+    await page.screenshot({ path: "test-results/section-macro-render-expired.png" });
+  } finally {
+    await setKvs(key, original);
+  }
+});
+
+// P1-6 view badge, state 3: a macro node whose sectionId has NO seal record → "Not sealed yet".
+test("view badge: an unsealed section says 'Not sealed yet — seal it from the Sentinel Vault panel'", async ({ page }) => {
+  const spaceId = await spaceIdByKey(SPACE);
+  const sectionId = `harness-unsealed-${Date.now().toString(36)}`;
+  const wrapper = buildBodiedExtensionNode(SENTINEL_APP, SENTINEL_ENV, "sentinel-vault-sealed-section", { params: { sectionId }, content: [paragraph("UNSEALED SECTION BODY")] as any });
+  const created = await createPage({ spaceId, title: `HARNESS sv-macro-unsealed ${Date.now()}`, adf: doc(paragraph("above"), wrapper, paragraph("below")) });
+  try {
+    await page.goto(`${BASE_URL}/wiki/spaces/${SPACE}/pages/${created.id}`, { waitUntil: "domcontentloaded" });
+    const { frame } = await findAppFrame(page);
+    const badge = frame.locator('[data-testid="sec-view-badge"]');
+    await expect(badge).toHaveAttribute("data-state", "unsealed", { timeout: 20_000 });
+    const text = (await badge.innerText()).replace(/\s+/g, " ").trim();
+    console.log(`### badge (unsealed): "${text}"`);
+    expect(text).toBe("Not sealed yet — seal it from the Sentinel Vault panel");
+    const fallback = frame.locator(".sec-body-fallback");
+    if (await fallback.isVisible().catch(() => false)) expect(await fallback.innerText()).toMatch(/not sealed yet/i);
+    await page.screenshot({ path: "test-results/section-macro-render-unsealed.png" });
+  } finally {
+    await deletePage(String(created.id)).catch(() => {});
+  }
+});
+
 // In the editor a BODIED Custom UI macro is rendered NATIVELY by ProseMirror (title chrome +
 // editable body): the app iframe is never mounted in edit mode (confirmed 2026-09-14 from the
 // editor a11y snapshot). The one app surface the editor shows is the node's Edit dialog (the
@@ -185,9 +248,22 @@ test("editor: the owner sees 'You can edit this section'; a stubbed non-owner se
   const editing = await cfg.locator('[data-editing]').first().getAttribute("data-editing");
   console.log(`### (e) owner: data-editing=${editing}; ${logs.join(" | ")}`);
   expect(editing, "the surface knows it is in the editor").toBe("true");
-  if (await cfg.locator("button.sec-btn").count()) await expect(cfg.locator("button.sec-btn"), "existing node: the button is Done, not Insert").toHaveText("Done");
+  // P1-6: with a body present the Edit dialog is the CONFIG surface (Done + Cancel), not the view frame.
+  await expect(cfg.locator('[data-testid="sec-submit"]'), "existing node: the button is Done, not Insert").toHaveText("Done", { timeout: 15_000 });
+  const cancel = cfg.locator('[data-testid="sec-cancel"]');
+  await expect(cancel, "the dialog has a Cancel button").toBeVisible();
   await page.screenshot({ path: "test-results/section-macro-render-editor-owner.png" });
-  await page.keyboard.press("Escape");
+  await cancel.click();
+  // view.close() → the editor drops the dialog: no editing surface left in any frame
+  let openFrames = -1;
+  for (let i = 0; i < 15; i++) {
+    openFrames = 0;
+    for (const fr of page.frames()) openFrames += await fr.locator('.sec-config[data-editing="true"], .sec-frame[data-editing="true"]').count().catch(() => 0);
+    if (openFrames === 0) break;
+    await page.waitForTimeout(1000);
+  }
+  console.log(`### (e) editing surfaces left after Cancel: ${openFrames}`);
+  expect(openFrames, "Cancel closed the config dialog").toBe(0);
   await page.waitForTimeout(800);
 
   // Non-owner branch through the surface's stub seam (only one real browser identity exists here).

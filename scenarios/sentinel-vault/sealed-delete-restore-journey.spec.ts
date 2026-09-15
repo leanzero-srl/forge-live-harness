@@ -1,4 +1,5 @@
-// Sentinel Vault DEEP — the restore-from-trash UI card journey through the REAL Manage
+// Sentinel Vault DEEP — the restore-from-trash UI card journey through the REAL attachments
+// overlay (door: byline chip → page-details modal → Attachments tab, see _door.ts) — formerly the Manage
 // Attachments overlay:
 //   seed a seal owned by MIHAI (the signed-in harness user — lesson: the trashed:attachment
 //   event can arrive SECONDS late, and a seal owned by anyone else makes Fix 2 correctly
@@ -19,6 +20,7 @@ import { test, expect } from "../../fixtures/forge";
 import { spaceIdByKey, createPage, deletePage, uploadBinaryAttachment, TINY_PNG, trashAttachment, pollAttachmentStatus } from "../../data/confluence.mjs";
 import { getTestState } from "../../testhook/client";
 import { mkdirSync } from "node:fs";
+import { openOverlayViaChip } from "./_door";
 
 const SPACE = process.env.SENTINEL_TEST_SPACE || "WFH";
 const DEV = "17516615";
@@ -54,51 +56,16 @@ test("🔎 trashed sealed file: overlay Trash card → Restore → current; gate
     console.log(`### ${label}: trash stuck (owner-trash) ✓`);
   };
 
-  // Open the page, click the DEV doc-ribbon's Manage button, return the overlay MODAL frame.
-  // NOTE (page-seal-unseal lesson): pick the LARGEST matching iframe — the inline-panel macro
-  // also renders artifact cards behind the modal. Filter on .artifact-card PRESENCE (not
-  // .action-btn): a policy-hidden Restore leaves the trashed card with no action buttons.
+  // Open the page, enter through the byline chip, return the overlay MODAL frame. `withCards:false`
+  // because a policy-hidden Restore can leave the trashed card with no action buttons, and the
+  // frame is found by its `.modal-container` root, not by a button.
   const openOverlay = async (step: string) => {
     await page.goto(`https://wolfaenpak.atlassian.net/wiki/pages/viewpage.action?pageId=${pg.id}`, { waitUntil: "domcontentloaded" });
-    await page.waitForTimeout(9000);
-    const ifr = page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"], iframe[src*="atlassian-dev.net"]');
-    let bannerIdx = -1;
-    const bannerDeadline = Date.now() + 60_000;
-    while (bannerIdx < 0 && Date.now() < bannerDeadline) {
-      const n = await ifr.count();
-      for (let i = 0; i < n; i++) {
-        const src = (await ifr.nth(i).getAttribute("src").catch(() => "")) || "";
-        if (!src.includes(DEV)) continue;
-        const t = (await ifr.nth(i).contentFrame().locator("body").innerText().catch(() => "")) || "";
-        if (/Manage Attachments/i.test(t)) { bannerIdx = i; break; }
-      }
-      if (bannerIdx < 0) await page.waitForTimeout(3000);
-    }
-    if (bannerIdx < 0) await page.screenshot({ path: `${OUT}/${step}-no-banner.png`, fullPage: true });
-    expect(bannerIdx, `${step}: dev doc-ribbon banner found`).toBeGreaterThanOrEqual(0);
-    await ifr.nth(bannerIdx).contentFrame().locator(".ribbon-action", { hasText: "Manage" }).click();
-    await page.waitForTimeout(5000);
-
+    await page.waitForTimeout(6000);
     let overlay: any = null;
-    const overlayDeadline = Date.now() + 45_000;
-    while (!overlay && Date.now() < overlayDeadline) {
-      const all = page.locator("iframe");
-      const m = await all.count();
-      let bestArea = 0;
-      for (let i = 0; i < m; i++) {
-        const src = (await all.nth(i).getAttribute("src").catch(() => "")) || "";
-        if (!src.includes(DEV)) continue;
-        const cf = all.nth(i).contentFrame();
-        const hasCard = await cf.locator(".artifact-card").count().catch(() => 0);
-        if (hasCard <= 0) continue;
-        const box = await all.nth(i).boundingBox().catch(() => null);
-        const area = box ? box.width * box.height : 0;
-        if (area > bestArea) { bestArea = area; overlay = cf; }
-      }
-      if (!overlay) await page.waitForTimeout(3000);
-    }
-    if (!overlay) await page.screenshot({ path: `${OUT}/${step}-no-overlay.png`, fullPage: true });
-    expect(overlay, `${step}: dev overlay modal with an artifact card`).toBeTruthy();
+    try { overlay = await openOverlayViaChip(page, { withCards: false }); }
+    catch (e) { await page.screenshot({ path: `${OUT}/${step}-no-overlay.png`, fullPage: true }); throw e; }
+    await expect.poll(async () => (await overlay.locator(".artifact-card").count().catch(() => 0)) > 0, { timeout: 45_000, message: `${step}: overlay shows an artifact card` }).toBe(true);
     return overlay;
   };
 
@@ -151,7 +118,7 @@ test("🔎 trashed sealed file: overlay Trash card → Restore → current; gate
     await expect(card.locator(".status-lozenge.trashed"), "card shows the Trash state").toBeVisible({ timeout: 15_000 });
     await page.screenshot({ path: `${OUT}/1-trash-card.png`, fullPage: true });
 
-    const restoreBtn = card.locator(".action-btn.restore");
+    const restoreBtn = card.locator('[data-primary="restore"]');
     await expect(restoreBtn, "Restore action visible while allowSealRestore=true").toBeVisible({ timeout: 15_000 });
     await page.screenshot({ path: `${OUT}/2-restore-visible.png`, fullPage: true });
 
@@ -180,7 +147,7 @@ test("🔎 trashed sealed file: overlay Trash card → Restore → current; gate
     const card2 = overlay2.locator(`.artifact-card:has-text("${filename}")`);
     await expect(card2, "trashed card still renders with the gate off").toBeVisible({ timeout: 30_000 });
     await expect(card2.locator(".status-lozenge.trashed"), "card still shows the Trash state").toBeVisible({ timeout: 15_000 });
-    await expect(card2.locator(".action-btn.restore"), "Restore action HIDDEN while allowSealRestore=false").toHaveCount(0);
+    await expect(card2.locator('[data-primary="restore"]'), "Restore action HIDDEN while allowSealRestore=false").toHaveCount(0);
     await page.screenshot({ path: `${OUT}/4-restore-hidden.png`, fullPage: true });
     console.log("### gate off → Trash card renders without a Restore action ✓");
   } finally {

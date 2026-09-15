@@ -21,8 +21,8 @@ test("load-bulletin-toggles follows enableFlashMessages; the global is put back 
   const base = orig && typeof orig === "object" ? orig : {};
   const expectSiblings = (flags: any) => {
     expect(flags.ENABLE_PAGE_BANNERS, "doc-ribbon flag answers from the untouched field").toBe(base.enableDocRibbons !== false);
-    expect(flags.ENABLE_CONFLUENCE_BULLETINS).toBe(base.enableConfluenceDispatches !== false);
-    expect(flags.ENABLE_NATIVE_NOTIFICATIONS).toBe(base.enableEmailDispatches !== false);
+    expect(flags.ENABLE_CONFLUENCE_BULLETINS, "comment channels are opt-in (=== true) since 2026-09-15").toBe(base.enableConfluenceDispatches === true);
+    expect(flags.ENABLE_NATIVE_NOTIFICATIONS, "comment channels are opt-in (=== true) since 2026-09-15").toBe(base.enableEmailDispatches === true);
     expect(flags.ENABLE_HALFWAY_REMINDER_NOTICE).toBe(base.enableSealExpiryReminderEmail !== false);
     expect(flags.ENABLE_EXPIRY_NOTICE).toBe(base.enableAutoUnsealDispatchEmail !== false);
     expect(flags.ENABLE_PERIODIC_REMINDER_BANNER).toBe(base.enablePeriodicReminderEmail !== false);

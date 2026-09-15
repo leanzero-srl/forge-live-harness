@@ -52,8 +52,10 @@ test("owner approves a seeded edit request → grant created, request cleared (i
     await page.screenshot({ path: `${OUT}/1-request-visible.png` });
     console.log("### request visible in inbox ✓");
 
-    // Approve
-    await inbox.locator(".action-btn.lock", { hasText: "Approve" }).click();
+    // Approve — the owner's pending request makes Approve/Decline the row's PRIMARY action
+    // (mockup decision 5); the inbox names the requester and points at it.
+    const card = panel.locator(".artifact-card", { hasText: "sv-aql-sealed-fixture" });
+    await card.locator('[data-primary="approve"]').click();
     // the request row disappears (myRequests filtered on success)
     await expect(panel.locator(".card-editreq-inbox", { hasText: "Edit requests" })).toHaveCount(0, { timeout: 15000 });
     await page.screenshot({ path: `${OUT}/2-approved.png` });

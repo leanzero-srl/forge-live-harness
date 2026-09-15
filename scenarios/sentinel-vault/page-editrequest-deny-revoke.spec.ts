@@ -1,6 +1,6 @@
 // DEEP page-context journeys completing the edit-request trio (it33 did APPROVE). Both use the
 // testhook seed pattern (no 2nd real user) and self-clean, so the fixture is left as found.
-//  1) DENY: seed a pending request → owner clicks Deny in the inline-panel inbox → assert it clears
+//  1) DENY: seed a pending request → owner clicks Decline on the fixture row → assert it clears
 //     from the UI AND the record persists with status "denied" (denyEditRequest keeps it for the
 //     48h cooldown, unlike approve which deletes it).
 //  2) REVOKE: seed an active edit-grant → owner clicks Revoke in "Editors with access" → assert it
@@ -48,7 +48,8 @@ test("owner DENIES a seeded edit request → cleared from UI, record marked deni
     const inbox = panel.locator(".card-editreq-inbox", { hasText: "Edit requests" });
     await expect(inbox).toBeVisible({ timeout: 15000 });
     await expect(inbox).toContainText("AQL Deny Requester");
-    await inbox.locator(".action-btn.unlock", { hasText: "Deny" }).click();
+    // Decline (was "Deny") sits beside Approve in the row's primary slot (mockup decision 5).
+    await panel.locator(".artifact-card", { hasText: "sv-aql-sealed-fixture" }).locator('[data-action="decline"]').click();
     await expect(panel.locator(".card-editreq-inbox", { hasText: "Edit requests" })).toHaveCount(0, { timeout: 15000 });
     await page.screenshot({ path: `${OUT}/deny.png` });
     const rec = await getKvs(REQ_KEY);

@@ -23,7 +23,7 @@ async function openAccessControl(page: any) {
   // placeholder reads "Type to search for users..." (the results are directory users, not stewards yet).
   const addCard = app.locator(".steward-card-add");
   await expect(addCard, "Add Steward card present on Access Control").toBeVisible({ timeout: 15000 });
-  await expect(app.locator(".steward-card-add", { hasText: /Add Steward/i }), "card copy renamed to 'Add Steward'").toBeVisible();
+  await expect(app.locator(".steward-card-add", { hasText: /Add space admin/i }), "card copy renamed to 'Add space admin'").toBeVisible();
   await addCard.click();
   const input = app.locator('input[placeholder="Type to search for users..."]');
   await expect(input, "user search input (renamed placeholder) appears after Add Steward").toBeVisible({ timeout: 15000 });

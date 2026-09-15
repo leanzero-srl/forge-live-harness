@@ -106,7 +106,7 @@ test.describe("F1/F4 — approve on a lapsed seal, and the Extend that unblocks 
     // ── F4: Extend. This is what the owner asked for and what makes the refusal answerable. ──
     const strangerExtend = await inv("extendSeal", { att: ATT, actor: STRANGER });
     expect(strangerExtend.result?.success, "a stranger cannot extend someone else's seal").toBe(false);
-    expect(strangerExtend.result?.reason).toMatch(/owner or a space steward/i);
+    expect(strangerExtend.result?.reason).toMatch(/owner or a space admin/i);
     expect((await getKvs(SEAL))?.expiresAt, "a refused extend does not move the expiry")
       .toBe(lapsedExpiry);
 

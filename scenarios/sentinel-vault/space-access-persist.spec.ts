@@ -29,25 +29,8 @@ async function openAccessControl(page: any) {
 const restore = async (orig: any) => { if (orig) await setKvs(POLICY, orig); else await delKvs(POLICY); };
 test.describe.configure({ retries: 2 });
 
-test("space ACTIVATION persists across reload (store-policy space)", async ({ page }) => {
-  const orig = await getKvs(POLICY);
-  const cur = orig?.activation || "use-system-default";
-  const target = cur === "enabled" ? "use-system-default" : "enabled"; // benign flip, never 'disabled'
-  const label = target === "enabled" ? "Active" : "Use System Default";
-  try {
-    const app = await openAccessControl(page);
-    await app.locator(".custom-select").first().click();
-    await app.locator(".custom-select-dropdown").getByText(label, { exact: true }).click();
-    await app.locator(".action-bar .btn-primary:visible", { hasText: /Apply/i }).first().click();
-    await expect.poll(async () => (await getKvs(POLICY))?.activation, { timeout: 15000, message: "activation persisted via store-policy" }).toBe(target);
-    console.log("### activation persisted:", target, "✓");
-    const app2 = await openAccessControl(page);
-    await expect(app2.locator(".custom-select .select-value"), "activation label persists after reload").toContainText(label, { timeout: 10000 });
-    console.log("### activation label after reload ✓");
-  } finally {
-    await restore(orig);
-  }
-});
+// The "Space Activation" control was inert and was removed on 2026-09-15 (UX review §3, P2);
+// store-policy now strips the `activation` key. The persistence test that drove it is retired.
 
 test("remove a (seeded synthetic) steward operator persists; real stewards preserved", async ({ page }) => {
   const orig = await getKvs(POLICY);

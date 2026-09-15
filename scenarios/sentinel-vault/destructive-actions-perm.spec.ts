@@ -46,7 +46,7 @@ test("destructive-action permission matrix: delete-artifact + purge-seal-record 
     await patch({ allowSealPurge: true });
     await seedForeignSeal();
     r = await thInvoke("purgeSealRecord", { att: FAKE_ATT, actor: SYNTH_B });
-    expect(r?.success).toBe(false); expect(String(r?.reason)).toMatch(/owner or a steward/i);
+    expect(r?.success).toBe(false); expect(String(r?.reason)).toMatch(/owner or a space admin/i);
     console.log("### purge foreign-seal by non-owner → denied ✓");
     await delKvs(K_SEAL);
 
@@ -57,7 +57,7 @@ test("destructive-action permission matrix: delete-artifact + purge-seal-record 
     await patch({ allowSealPurge: true });
     r = await thInvoke("purgeSealRecord", { att: FAKE_ATT, actor: SYNTH_B });
     expect(r?.success, "C2: no seal record + non-steward → denied (permanent-purge-by-anyone closed)").toBe(false);
-    expect(String(r?.reason)).toMatch(/owner or a steward/i);
+    expect(String(r?.reason)).toMatch(/owner or a space admin/i);
     console.log("### purge NO-seal by non-steward → DENIED (C2 fix) ✓");
 
     // 6) purge: seal present in WFH + STEWARD (Gabriela, listed in admin-settings-space-WFH) → allowed

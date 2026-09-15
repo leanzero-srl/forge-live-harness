@@ -1,7 +1,8 @@
-// DEEP page-context OPERATOR journey: open the doc-ribbon's "Manage Attachments" overlay (a Forge
-// Modal) on the fixture page and drive the real seal lifecycle END-TO-END — Relinquish the sealed
-// attachment (unseal-artifact), assert the card flips to a "Seal" action, then re-Seal it
-// (seal-artifact) and assert it flips back to "Relinquish". Reversible → leaves the fixture in its
+// DEEP page-context OPERATOR journey: open the attachments overlay (a Forge Modal; the door is the
+// byline chip → page-details modal → Attachments tab, see _door.ts — the ribbon's "Manage
+// Attachments" action is retired) on the fixture page and drive the real seal lifecycle END-TO-END —
+// Release the sealed attachment (unseal-artifact), assert the card flips to a "Seal" primary, then
+// re-Seal it (seal-artifact) and assert it flips back to "Release". Reversible → leaves the fixture in its
 // original sealed state. Proves the core operator loop through real resolvers (not the mock).
 // Dev-scoped throughout (env 17516615) so the prod install can't confound.
 // @covers resolver:enumerate-doc-artifacts
@@ -10,69 +11,52 @@ const PAGE = "https://wolfaenpak.atlassian.net/wiki/pages/viewpage.action?pageId
 const DEV = "17516615";
 const OUT = "/tmp/sv-seal-journey";
 import { mkdirSync } from "node:fs";
-test.describe.configure({ retries: 1 });
+import { openOverlayViaChip } from "./_door";
+test.describe.configure({ retries: 1, timeout: 240_000 });
 
-test("Manage Attachments overlay: relinquish → re-seal round-trip (core operator journey)", async ({ page }) => {
+test("attachments overlay (via the byline chip): release → re-seal round-trip (core operator journey)", async ({ page }) => {
   mkdirSync(OUT, { recursive: true });
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });
-  await page.waitForTimeout(9000);
+  await page.waitForTimeout(6000);
 
-  // 1) open the DEV banner's Manage Attachments overlay
-  const ifr = page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"], iframe[src*="atlassian-dev.net"]');
-  const n = await ifr.count(); let bannerIdx = -1;
-  for (let i = 0; i < n; i++) { const src = (await ifr.nth(i).getAttribute("src").catch(() => "")) || ""; if (!src.includes(DEV)) continue; const t = (await ifr.nth(i).contentFrame().locator("body").innerText().catch(() => "")) || ""; if (/Manage Attachments/i.test(t)) { bannerIdx = i; break; } }
-  expect(bannerIdx, "dev doc-ribbon banner found").toBeGreaterThanOrEqual(0);
-  await ifr.nth(bannerIdx).contentFrame().locator(".ribbon-action", { hasText: "Manage" }).click();
-  await page.waitForTimeout(5000);
+  // 1) the door: byline chip → details modal → Attachments → the overlay MODAL frame
+  const overlay = await openOverlayViaChip(page);
   await page.screenshot({ path: `${OUT}/1-overlay-open.png` });
-
-  // 2) locate the DEV overlay MODAL iframe. NOTE: the inline-panel macro (embedded in the page
-  // body, BEHIND the modal) also renders artifact cards — so pick the LARGEST matching iframe:
-  // the Manage Attachments modal (~1320x781) dwarfs the panel (~760x445). Grabbing the panel
-  // instead makes the click land behind the modal → pointer-interception timeout.
-  const all = page.locator("iframe");
-  const m = await all.count(); let overlay: any = null; let bestArea = 0;
-  for (let i = 0; i < m; i++) {
-    const src = (await all.nth(i).getAttribute("src").catch(() => "")) || "";
-    if (!src.includes(DEV)) continue;
-    const cf = all.nth(i).contentFrame();
-    const hasCard = await cf.locator(".artifact-card .action-btn").count().catch(() => 0);
-    if (hasCard <= 0) continue;
-    const box = await all.nth(i).boundingBox().catch(() => null);
-    const area = box ? box.width * box.height : 0;
-    if (area > bestArea) { bestArea = area; overlay = cf; }
-  }
   expect(overlay, "dev overlay modal with an artifact card").toBeTruthy();
 
-  const seal = overlay.locator(".action-btn.lock");        // shown when UNSEALED
-  const relinquish = overlay.locator(".action-btn.unlock"); // shown when SEALED-BY-ME
+  // One primary per row (mockup decision 5): Seal when unsealed, Release when sealed by me.
+  // Scoped to the FIXTURE card: the page also carries an available attachment whose Seal
+  // primary would otherwise satisfy `seal.first()` and get sealed by mistake.
+  const fixture = overlay.locator(".artifact-card", { hasText: "sv-aql-sealed-fixture" });
+  const seal = fixture.locator('[data-primary="seal"]');
+  const relinquish = fixture.locator('[data-primary="release"]');
 
   const startedSealed = (await relinquish.count()) > 0 && await relinquish.first().isVisible().catch(() => false);
   const startedUnsealed = (await seal.count()) > 0 && await seal.first().isVisible().catch(() => false);
-  console.log("### start:", startedSealed ? "SEALED (Relinquish shown)" : startedUnsealed ? "UNSEALED (Seal shown)" : "NEITHER (sealed by other?)");
-  expect(startedSealed || startedUnsealed, "the attachment has an actionable seal/relinquish button (owned by test user)").toBeTruthy();
+  console.log("### start:", startedSealed ? "SEALED (Release shown)" : startedUnsealed ? "UNSEALED (Seal shown)" : "NEITHER (sealed by other?)");
+  expect(startedSealed || startedUnsealed, "the attachment has an actionable seal/release button (owned by test user)").toBeTruthy();
 
   if (startedSealed) {
     // Relinquish → expect Seal
     await relinquish.first().click();
     await expect(seal.first()).toBeVisible({ timeout: 15000 });
     await page.screenshot({ path: `${OUT}/2-relinquished.png` });
-    console.log("### relinquish → card now shows Seal ✓");
+    console.log("### release → card now shows Seal ✓");
     // re-Seal → expect Relinquish (restores original state)
     await seal.first().click();
     await expect(relinquish.first()).toBeVisible({ timeout: 15000 });
     await page.screenshot({ path: `${OUT}/3-resealed.png` });
-    console.log("### re-seal → card now shows Relinquish ✓ (state restored)");
+    console.log("### re-seal → card now shows Release ✓ (state restored)");
   } else {
     // Seal → expect Relinquish
     await seal.first().click();
     await expect(relinquish.first()).toBeVisible({ timeout: 15000 });
     await page.screenshot({ path: `${OUT}/2-sealed.png` });
-    console.log("### seal → card now shows Relinquish ✓");
+    console.log("### seal → card now shows Release ✓");
     // Relinquish → expect Seal (restores original state)
     await relinquish.first().click();
     await expect(seal.first()).toBeVisible({ timeout: 15000 });
     await page.screenshot({ path: `${OUT}/3-relinquished.png` });
-    console.log("### relinquish → card now shows Seal ✓ (state restored)");
+    console.log("### release → card now shows Seal ✓ (state restored)");
   }
 });

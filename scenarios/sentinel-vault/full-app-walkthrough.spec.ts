@@ -4,6 +4,7 @@
 // tab. Every surface must reach GENUINE terminal content (past its spinner) — NOT just "not blank"
 // (it26 lesson: a length check passes a stuck "Loading..."). Screenshots each for evidence.
 // Dev-scoped (env 17516615). Read-only.
+import { findDevChip, openDetailsModal, findDevOverlay } from "./_door";
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { enterForgeSurface } from "../../forge/frame";
@@ -50,7 +51,7 @@ test("FULL-APP walkthrough: page banner+panel+overlay, realm-console all tabs, s
   // re-scan every ~1.5s until BOTH the RESOLVED dev banner and the dev panel are found, or deadline.
   await page.goto(PAGE, { waitUntil: "domcontentloaded" });
   const ifr = page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"], iframe[src*="atlassian-dev.net"]');
-  let panel: any = null, bannerTxt = "", bannerIdx = -1;
+  let panel: any = null;
   const aT0 = Date.now();
   while (Date.now() - aT0 < 35000) {
     const n = await ifr.count();
@@ -58,43 +59,41 @@ test("FULL-APP walkthrough: page banner+panel+overlay, realm-console all tabs, s
       const src = (await ifr.nth(i).getAttribute("src").catch(() => "")) || "";
       if (!src.includes(DEV)) continue;
       const cf = ifr.nth(i).contentFrame();
-      if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) { panel = cf; continue; }
-      const t = (await cf.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").trim();
-      // RESOLVED banner (not the spinner): names the attachment count + this page + the action
-      if (/Manage Attachments/i.test(t) && /on this page/i.test(t) && /attachment/i.test(t) && !LOADING.test(t)) {
-        bannerTxt = t.slice(0, 90); bannerIdx = i;
+      if ((await cf.locator(".sv-panel-container").count().catch(() => 0)) > 0) {
+        const txt = (await cf.locator("body").innerText().catch(() => "")).replace(/\s+/g, " ").slice(0, 120);
+        console.log(`### panel candidate #${i}: sections=${await cf.locator(".sv-card-section").count().catch(() => -1)} text="${txt}"`);
+        // several dev frames can carry .sv-panel-container (a stale macro re-mount, the page-details
+        // modal's embedded panel); keep the one that actually rendered content.
+        if ((await cf.locator(".sv-card-section, .sv-panel-empty, .sv-panel-loading").count().catch(() => 0)) > 0) { panel = cf; break; }
       }
     }
-    if (bannerTxt && panel) break;
+    if (panel) break;
     await page.waitForTimeout(1500);
   }
   await page.screenshot({ path: `${OUT}/A0-page.png` });
-  expect(bannerTxt, "A: doc-ribbon banner present (dev, resolved)").toBeTruthy();
   expect(panel, "A: inline-panel macro present").toBeTruthy();
   await expect(panel.locator(".sv-panel-loading"), "A: inline-panel finished loading").toHaveCount(0, { timeout: 15000 });
-  expect(await panel.locator(".sv-card-section, .sv-panel-empty").count(), "A: panel reached a terminal state").toBeGreaterThanOrEqual(1);
-  console.log("### A page-context: banner + panel ✓ —", JSON.stringify(bannerTxt));
+  await expect(panel.locator(".sv-card-section, .sv-panel-empty").first(), "A: panel reached a terminal state").toBeVisible({ timeout: 30000 });
+  // Since 7.0 the ribbon closes when nothing is urgent; the byline chip is the always-present door.
+  const chip = await findDevChip(page);
+  console.log("### A page-context: chip + panel ✓ —", JSON.stringify(await chip.innerText()));
 
-  // open the Manage-Attachments overlay and wait for it to list files (past "checking macro visibility").
-  await ifr.nth(bannerIdx).contentFrame().locator(".ribbon-action", { hasText: "Manage" }).click();
+  // open the attachments overlay through the chip → details modal → Attachments tab.
+  const details = await openDetailsModal(page);
+  await details.locator('[data-testid="pd-tab-attachments"]').click();
+  await details.locator('[data-testid="pd-open-overlay"]').click();
   let ov: any = null;
   const oT0 = Date.now();
   while (Date.now() - oT0 < 25000) {
-    const all = page.locator("iframe"); const m = await all.count(); let best = 0; ov = null;
-    for (let i = 0; i < m; i++) {
-      const s = (await all.nth(i).getAttribute("src").catch(() => "")) || "";
-      if (!s.includes(DEV)) continue;
-      const cf = all.nth(i).contentFrame();
-      if ((await cf.locator(".artifact-card .action-btn").count().catch(() => 0)) <= 0) continue;
-      const b = await all.nth(i).boundingBox().catch(() => null); const a = b ? b.width * b.height : 0;
-      if (a > best) { best = a; ov = cf; }
-    }
-    if (ov) break;
+    ov = await findDevOverlay(page);
+    if (ov && (await ov.locator(".artifact-card .action-btn, .artifact-card [data-primary]").count().catch(() => 0)) > 0) break;
+    ov = null;
     await page.waitForTimeout(1000);
   }
-  expect(ov, "A: Manage-Attachments overlay opened with cards").toBeTruthy();
+  expect(ov, "A: attachments overlay opened with cards").toBeTruthy();
   await page.screenshot({ path: `${OUT}/A1-overlay.png` });
   await ov.locator(".modal-close").click().catch(() => {});
+  await page.keyboard.press("Escape").catch(() => {});
   console.log("### A page-context: overlay ✓");
 
   // ── Phase B — REALM-CONSOLE (every tab) ───────────────────────────────────
