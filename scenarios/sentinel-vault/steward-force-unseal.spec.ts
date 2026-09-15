@@ -55,9 +55,17 @@ test("steward force-unseals another user's seal via the realm-console → full c
     // find the seeded card (steward view lists all seals from the realm index)
     const card = app.locator(".artifact-card", { hasText: "AQL-FORCE-UNSEAL" });
     await expect(card, "seeded seal appears in the steward Sealed Files list").toBeVisible({ timeout: 15000 });
-    const forceBtn = card.locator(".action-btn.unlock", { hasText: "Force Unseal" });
-    await expect(forceBtn, "Force Unseal button present (steward + override-on gating)").toBeVisible();
+    const forceBtn = card.locator(".action-btn.unlock", { hasText: "Force release" });
+    await expect(forceBtn, "Force release button present (steward + override-on gating)").toBeVisible();
     await forceBtn.click();
+    // Break-glass (3.5): a typed reason is required and recorded; the Release button stays
+    // disabled until at least 3 characters are typed.
+    const reason = card.locator(".card-reason-input");
+    await expect(reason, "reason bar opens").toBeVisible();
+    const release = card.locator(".card-reason-bar .action-btn.unlock", { hasText: "Release" });
+    await expect(release, "Release is disabled without a reason").toBeDisabled();
+    await reason.fill("Harness: owner left the project, file needed for the audit");
+    await release.click();
     // The resolver deletes the seal FIRST, then (still in the same call) the index key, watcher
     // records and edit-grants (sweepEditAccess) + owner email. Poll EACH so we wait for the full
     // cleanup to land rather than racing the still-running resolver.
@@ -90,8 +98,8 @@ test("steward force-unseal DENIED when allowAdminOverride is OFF → Force Unsea
     const card = app.locator(".artifact-card", { hasText: "AQL-FORCE-UNSEAL" });
     await expect(card, "seeded seal still listed for the steward").toBeVisible({ timeout: 15000 });
     // override OFF ⇒ the steward CANNOT force-unseal ⇒ no Force Unseal button on the card
-    await expect(card.locator(".action-btn.unlock", { hasText: "Force Unseal" }),
-      "Force Unseal is hidden when allowAdminOverride is off").toHaveCount(0);
+    await expect(card.locator(".action-btn.unlock", { hasText: "Force release" }),
+      "Force release is hidden when allowAdminOverride is off").toHaveCount(0);
     // and the seal is NOT deleted (still present)
     expect(await getKvs(K_SEAL), "seal untouched (denied)").toBeTruthy();
     console.log("### override OFF → Force Unseal button hidden + seal untouched (denied) ✓");
