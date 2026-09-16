@@ -1,0 +1,14 @@
+import { chromium } from "@playwright/test";
+const OUT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/wp";
+import { mkdirSync } from "node:fs"; mkdirSync(OUT, { recursive: true });
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage({ viewport: { width: 1200, height: 800 } });
+const shot = async (n) => { await page.screenshot({ path: `${OUT}/${n}.png` }); const t = await page.locator('body').innerText(); console.log(`== ${n}\n` + t.replace(/\s+/g, ' ').slice(0, 400)); };
+await page.goto("http://localhost:4173/?harness=write-progress&step=400"); await page.waitForTimeout(2500); await shot("1-writing");
+await page.waitForTimeout(4500); await shot("2-lease-wait");
+await page.waitForTimeout(12000); await shot("3-verifying");
+await page.waitForTimeout(7000); await shot("4-reindex");
+await page.waitForTimeout(20000); await shot("5-complete");
+await page.goto("http://localhost:4173/?harness=write-progress&scene=earlier&step=200"); await page.waitForTimeout(2500); await shot("6-earlier");
+await page.goto("http://localhost:4173/?harness=write-progress&scene=stopped&step=200"); await page.waitForTimeout(16000); await shot("7-stopped");
+await browser.close();
