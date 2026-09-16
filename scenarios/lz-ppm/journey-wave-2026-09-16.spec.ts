@@ -620,3 +620,163 @@ test("WAVE8 Explain facts strip vs Dashboard: FINISH and COMPLETE must agree", a
   await page.screenshot({ path: `${SHOT}/70-dashboard.png` });
   expect(dash.tiles.length).toBeGreaterThan(0);
 });
+
+// ---------------- 2b: STRUCTURE v3 — the Other-work share and the chain spans ----
+// The v3 claim (commit d4a5dc2d) is that a chain is a spine AND its branches, and
+// that a chain's span is its LEAVES' — so the diamond branch and the 1→5 fan-out
+// stop falling into "Other work", and Epic LZPT-186's wider dates stop inflating a
+// section header. This harvests the BUILT view's own headers and spans.
+test("WAVE9 structure v3: segment names, the Other-work share, and every span", async ({ page }) => {
+  const { frame, realFrame } = await openGantt(page);
+  await frame.locator('[data-testid="gantt-group-select"]').first().click({ timeout: 15_000 });
+  await page.waitForTimeout(700);
+  await frame.getByText(/AI structure/i).first().click({ timeout: 15_000 });
+  await page.waitForTimeout(5000);
+
+  const buildBtn = frame.locator('[data-testid="ai-structure-build"]');
+  const rebuildBtn = frame.locator('[data-testid="ai-structure-rebuild"]');
+  if (await buildBtn.count()) { rec("WAVE9_TRIGGER=Build"); await buildBtn.first().click(); }
+  else if (await rebuildBtn.count()) { rec("WAVE9_TRIGGER=Rebuild"); await rebuildBtn.first().click(); }
+  else rec("WAVE9_TRIGGER=already built");
+  await expect.poll(async () => realFrame!.evaluate(() => document.querySelector('[data-testid="ai-structure-status"]')?.getAttribute("data-state") || "none"),
+    { timeout: 420_000, intervals: [3000] }).not.toBe("building");
+  await page.waitForTimeout(4000);
+
+  if (await frame.locator('[data-testid="gantt-depth-issues"]').count()) {
+    await frame.locator('[data-testid="gantt-depth-issues"]').first().click();
+    await page.waitForTimeout(2500);
+  }
+  const harvest = await realFrame!.evaluate(() => {
+    const segs: any[] = [];
+    let cur: any = null;
+    for (const el of Array.from(document.querySelectorAll('[data-testid="gantt-group-header"],[data-testid="gantt-row"]'))) {
+      if (el.getAttribute("data-testid") === "gantt-group-header") {
+        cur = {
+          label: (el.querySelector('[data-testid="gantt-group-header-label"]')?.textContent || "").trim(),
+          span: (el.querySelector('[data-testid="gantt-group-span"]')?.textContent || "").trim(),
+          segment: el.querySelector('[data-testid="gantt-segment-menu-button"]')?.getAttribute("data-segment") || null,
+          keys: [] as string[],
+        };
+        segs.push(cur);
+      } else if (cur) cur.keys.push(el.getAttribute("data-row-key"));
+    }
+    const st = document.querySelector('[data-testid="ai-structure-status"]');
+    const trig = document.querySelector('[data-testid="ai-strategy-trigger"]');
+    return {
+      segs, state: st?.getAttribute("data-state"), statusText: (st?.textContent || "").trim(),
+      strategy: trig?.getAttribute("data-strategy") || null,
+      note: (document.querySelector('[data-testid="gantt-strategy-note"]')?.textContent || "").trim() || null,
+    };
+  });
+  rec("WAVE9_STATUS=" + JSON.stringify({ state: harvest.state, strategy: harvest.strategy, note: harvest.note, text: harvest.statusText }));
+  const total = harvest.segs.reduce((n: number, s: any) => n + s.keys.length, 0);
+  for (const s of harvest.segs) rec(`  SEG ${JSON.stringify(s.label)} span=${JSON.stringify(s.span)} n=${s.keys.length} det=${s.segment}`);
+  const other = harvest.segs.find((s: any) => /other work/i.test(s.label));
+  rec(`WAVE9_TOTAL_ROWS=${total} SEGMENTS=${harvest.segs.length} OTHER_N=${other ? other.keys.length : 0} OTHER_SHARE=${other ? (100 * other.keys.length / total).toFixed(1) : "0"}%`);
+  if (other) rec("WAVE9_OTHER_KEYS=" + JSON.stringify(other.keys));
+  const cross = harvest.segs.find((s: any) => /cross/i.test(s.label)) || harvest.segs[0];
+  rec(`WAVE9_FIRST_SEGMENT_SPAN label=${JSON.stringify(cross.label)} span=${JSON.stringify(cross.span)} keys=${JSON.stringify(cross.keys)}`);
+  await page.screenshot({ path: `${SHOT}/80-structure-v3.png` });
+
+  // strategy picker: what is offered, what is refused, and with which measured reason
+  await frame.locator('[data-testid="ai-strategy-trigger"]').first().click({ timeout: 15_000 });
+  await page.waitForTimeout(700);
+  const opts = await realFrame!.evaluate(() => Array.from(document.querySelectorAll('[data-testid="ai-strategy-option"]')).map((o) => ({
+    value: o.getAttribute("data-value"), disabled: o.getAttribute("data-disabled"), reason: o.getAttribute("data-reason"),
+    ariaDisabled: o.getAttribute("aria-disabled"), tag: o.tagName, label: (o.textContent || "").replace(/\s+/g, " ").trim(),
+  })));
+  rec("WAVE9_STRATEGY_OPTIONS=" + JSON.stringify(opts, null, 1));
+  await page.screenshot({ path: `${SHOT}/81-strategy-picker.png` });
+
+  // click a DISABLED option and prove nothing happened (no rebuild, no change)
+  const dis = opts.find((o: any) => o.disabled === "true");
+  if (dis) {
+    const before = await realFrame!.evaluate(() => document.querySelector('[data-testid="ai-strategy-trigger"]')?.getAttribute("data-strategy"));
+    await realFrame!.evaluate((v) => {
+      const el = Array.from(document.querySelectorAll('[data-testid="ai-strategy-option"]')).find((o) => o.getAttribute("data-value") === v) as HTMLElement;
+      el?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    }, String(dis.value));
+    await page.waitForTimeout(3500);
+    const after = await realFrame!.evaluate(() => ({
+      strategy: document.querySelector('[data-testid="ai-strategy-trigger"]')?.getAttribute("data-strategy"),
+      state: document.querySelector('[data-testid="ai-structure-status"]')?.getAttribute("data-state"),
+      pickerOpen: !!document.querySelector('[data-testid="ai-strategy-list"]'),
+    }));
+    rec(`WAVE9_DISABLED_CLICK value=${dis.value} reason=${JSON.stringify(dis.reason)} strategy ${before} -> ${after.strategy} state=${after.state} pickerStillOpen=${after.pickerOpen}`);
+    expect(after.strategy, "clicking a refused strategy changes nothing").toBe(before);
+  } else rec("WAVE9_DISABLED_CLICK=no disabled option rendered");
+
+  // pick an ALLOWED non-default strategy: Scheduling tiers
+  const tiers = opts.find((o: any) => o.value === "tiers");
+  if (tiers && tiers.disabled !== "true") {
+    await realFrame!.evaluate(() => {
+      const el = Array.from(document.querySelectorAll('[data-testid="ai-strategy-option"]')).find((o) => o.getAttribute("data-value") === "tiers") as HTMLElement;
+      el?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+    await expect.poll(async () => realFrame!.evaluate(() => document.querySelector('[data-testid="ai-structure-status"]')?.getAttribute("data-state") || "none"),
+      { timeout: 420_000, intervals: [3000] }).not.toBe("building");
+    await page.waitForTimeout(4000);
+    const t = await realFrame!.evaluate(() => ({
+      strategy: document.querySelector('[data-testid="ai-strategy-trigger"]')?.getAttribute("data-strategy"),
+      note: (document.querySelector('[data-testid="gantt-strategy-note"]')?.textContent || "").trim() || null,
+      state: document.querySelector('[data-testid="ai-structure-status"]')?.getAttribute("data-state"),
+      headers: Array.from(document.querySelectorAll('[data-testid="gantt-group-header-label"]')).map((h) => (h.textContent || "").trim()),
+    }));
+    rec("WAVE9_TIERS=" + JSON.stringify(t));
+    await page.screenshot({ path: `${SHOT}/82-tiers.png` });
+  } else rec("WAVE9_TIERS=tiers not offered or refused: " + JSON.stringify(tiers));
+
+  await frame.locator('[data-testid="gantt-group-select"]').first().click().catch(() => {});
+  await page.waitForTimeout(600);
+  await frame.getByText(/No grouping/i).first().click().catch(() => {});
+  await page.waitForTimeout(1200);
+});
+
+// ---- 5b: the writability modal's RE-CHECK is the normal path, not a new verdict ----
+// edfaeeb8: "a FAILED recheck is unknown, never a measured negative". So a recheck
+// that succeeds must reproduce the same measured counts; a recheck that fails must
+// say it could not decide, and must NOT turn 45 partial into 45 blocked.
+test("WAVE10 writability Re-check with Jira: same measured verdict, no false negative", async ({ page }) => {
+  const { frame, realFrame } = await openGantt(page);
+  await frame.locator('[data-testid="writability-chip"]').first().dispatchEvent("click");
+  await page.waitForTimeout(2500);
+  const read = async () => realFrame!.evaluate(() => {
+    const m = document.querySelector('[data-testid="writability-modal"]') as HTMLElement | null;
+    if (!m) return null;
+    const t = m.innerText;
+    const blocked = t.match(/Blocked\s*\n?\s*(\d+)/)?.[1] ?? null;
+    const partial = t.match(/Partial\s*\n?\s*(\d+)/)?.[1] ?? null;
+    return {
+      blocked, partial, rows: m.querySelectorAll('[data-testid="writability-row"]').length,
+      headline: t.split("\n").slice(0, 2).join(" | "),
+      unknown: /could not|couldn.t|unknown|failed/i.test(t),
+      // The busy signal is the BUTTON LABEL, not a testid — there is no
+      // data-testid for the in-flight state (trap, 2026-09-16).
+      busy: /Re-checking/i.test((m.querySelector('[data-testid="writability-recheck"]') as HTMLElement | null)?.textContent || ""),
+      btn: (m.querySelector('[data-testid="writability-recheck"]') as HTMLElement | null)?.textContent?.trim() || null,
+    };
+  });
+  const before = await read();
+  rec("WAVE10_BEFORE=" + JSON.stringify(before));
+  await page.screenshot({ path: `${SHOT}/85-writability-before.png` });
+  await frame.locator('[data-testid="writability-recheck"]').first().dispatchEvent("click");
+  await page.waitForTimeout(400);
+  const wentBusy = await expect.poll(async () => (await read())?.busy, { timeout: 30_000, intervals: [200] }).toBe(true).then(() => true).catch(() => false);
+  rec("WAVE10_WENT_BUSY=" + wentBusy);
+  await expect.poll(async () => {
+    const r = await read();
+    return r?.busy ? "busy" : "idle";
+  }, { timeout: 180_000, intervals: [2000] }).toBe("idle");
+  await page.waitForTimeout(2500);
+  const after = await read();
+  rec("WAVE10_AFTER=" + JSON.stringify(after));
+  await page.screenshot({ path: `${SHOT}/86-writability-after-recheck.png` });
+  await realFrame!.evaluate(() => {
+    const b = Array.from(document.querySelectorAll('[data-testid="writability-modal"] button')).find((x) => (x.textContent || "").trim() === "Done") as HTMLButtonElement;
+    b?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+  expect(after, "the modal is still open after a recheck").not.toBeNull();
+  expect(after!.blocked, "a recheck must not invent blocked issues").toBe(before!.blocked);
+  expect(after!.partial, "the measured partial count is reproduced").toBe(before!.partial);
+  expect(after!.rows).toBe(before!.rows);
+});
