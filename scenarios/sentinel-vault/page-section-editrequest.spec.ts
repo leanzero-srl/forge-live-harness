@@ -35,7 +35,14 @@ const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete",
 test.describe.configure({ timeout: 120_000, retries: 1 });
 
 test.describe("#6 section edit-access request/approve/deny loop", () => {
+  // 2026-09-17: every real account that can open this page is ALSO a space admin of WFH (since the
+  // 2026-09-15 asApp admin check, check-user-role answers "steward" for Gabriela and LeanZero SRL),
+  // and a space admin may approve by design. The "a non-owner cannot approve" refusal is therefore
+  // asserted with the admin override OFF — the same real person, the same seal, no authority.
+  let originalGlobal: any = null;
   test.beforeAll(async () => {
+    originalGlobal = (await getKvs("admin-settings-global")) || null;
+    await setKvs("admin-settings-global", { ...(originalGlobal || {}), allowAdminOverride: false });
     await setKvs(SEAL_KEY, {
       sectionId: SECTION, lockedBy: OWNER, sectionTitle: "AQL Test Section",
       pageId: PAGE, spaceKey: SPACE,
@@ -43,6 +50,7 @@ test.describe("#6 section edit-access request/approve/deny loop", () => {
     });
   });
   test.afterAll(async () => {
+    if (originalGlobal) await setKvs("admin-settings-global", originalGlobal); else await delKvs("admin-settings-global");
     await delKvs(SEAL_KEY);
     for (const a of [OWNER, REQ, REQ2]) { await delKvs(reqKey(a)); await delKvs(grantKey(a)); }
   });
