@@ -169,7 +169,7 @@ test("view badge: an expired seal says 'Expired seal'", async ({ page }) => {
     console.log(`### badge (expired): "${text}"`);
     expect(text).toBe("Expired seal");
     const fallback = frame.locator(".sec-body-fallback");
-    if (await fallback.isVisible().catch(() => false)) expect(await fallback.innerText()).toMatch(/has expired/);
+    if (await fallback.isVisible().catch(() => false)) expect(await fallback.innerText()).toMatch(new RegExp(`Loading the section|${/has expired/.source}`)); // while the body frame is still loading the fallback says so (2026-09-17)
     const border = await frame.locator(".sec-frame").evaluate((e) => getComputedStyle(e).borderTopColor);
     console.log(`### expired frame border=${border}`);
     expect(border, "expired frame border is the solid amber").toBe("rgb(180, 83, 9)");
@@ -194,7 +194,7 @@ test("view badge: an unsealed section says 'Not sealed yet — seal it from the 
     console.log(`### badge (unsealed): "${text}"`);
     expect(text).toBe("Not sealed yet — seal it from the Sentinel Vault panel");
     const fallback = frame.locator(".sec-body-fallback");
-    if (await fallback.isVisible().catch(() => false)) expect(await fallback.innerText()).toMatch(/not sealed yet/i);
+    if (await fallback.isVisible().catch(() => false)) expect(await fallback.innerText()).toMatch(/Loading the section|not sealed yet/i); // loading text while the body frame boots (2026-09-17)
     await page.screenshot({ path: "test-results/section-macro-render-unsealed.png" });
   } finally {
     await deletePage(String(created.id)).catch(() => {});
