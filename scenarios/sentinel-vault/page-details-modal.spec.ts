@@ -43,7 +43,10 @@ const decodeIcon = (icon: string) => decodeURIComponent(icon.replace(/^data:imag
 // whose text is the property title plus the environment suffix (" (Development)" on dev), holding
 // img[data-testid="byline-forge-app-image"] with the property's icon src verbatim.
 async function findChip(page: any, title: string) {
-  const el = page.locator('button[data-testid="byline-forge-app-button"]', { hasText: title }).first();
+  // The STAGING control install (2026-09-15) renders its own chip with the same title, and it
+  // comes FIRST in the byline row — `.first()` on the title alone clicked "… (Staging)" and the
+  // dev modal never opened. The dev chip is the one whose text also says "(Development)".
+  const el = page.locator('button[data-testid="byline-forge-app-button"]', { hasText: title }).filter({ hasText: "(Development)" }).first();
   await el.waitFor({ state: "visible", timeout: 45000 });
   return el;
 }
@@ -51,7 +54,9 @@ async function findChip(page: any, title: string) {
 async function openModal(page: any, chip: any) {
   await chip.click();
   // The modal hosts our Custom UI iframe (dev env id in its src).
-  const ifr = page.locator(`iframe[data-testid="hosted-resources-iframe"][src*="${DEV_ENV}"], iframe[title*="Iframe"][src*="${DEV_ENV}"]`);
+  // Same locator as _door.ts: any iframe of the dev env. The narrower data-testid/title pair this
+  // spec used stopped matching Confluence's modal iframe (2026-09-17) while _door.ts kept working.
+  const ifr = page.locator(`iframe[src*="${DEV_ENV}"]`);
   let app: any = null;
   await expect.poll(async () => {
     const n = await ifr.count();
@@ -189,10 +194,12 @@ async function openSealAction(page: any) {
   const apps = page.locator('[data-testid="third-party-button"], [role="menuitem"]:has-text("Apps")').first();
   await apps.waitFor({ state: "visible", timeout: 20000 });
   await apps.click();
-  const item = page.locator('[role="menuitem"], [role="menu"] button, [role="menu"] a').filter({ hasText: /Seal attachments/ }).first();
+  const item = page.locator('[role="menuitem"], [role="menu"] button, [role="menu"] a').filter({ hasText: /Seal attachments/ }).filter({ hasText: "(Development)" }).first(); // the staging install lists the same item first
   await item.waitFor({ state: "visible", timeout: 20000 });
   await item.click();
-  const ifr = page.locator(`iframe[data-testid="hosted-resources-iframe"][src*="${DEV_ENV}"], iframe[title*="Iframe"][src*="${DEV_ENV}"]`);
+  // Same locator as _door.ts: any iframe of the dev env. The narrower data-testid/title pair this
+  // spec used stopped matching Confluence's modal iframe (2026-09-17) while _door.ts kept working.
+  const ifr = page.locator(`iframe[src*="${DEV_ENV}"]`);
   let app: any = null;
   await expect.poll(async () => {
     const n = await ifr.count();
