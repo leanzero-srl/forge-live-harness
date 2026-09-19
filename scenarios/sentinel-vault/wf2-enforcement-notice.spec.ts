@@ -80,7 +80,7 @@ test("WF-2 browser: the editor's ribbon says the edit was moved back / reverted,
     await expect(pill).toContainText("Restored", { timeout: 20_000 });
     const s1 = norm(await r!.frame.locator('[data-testid="ribbon-status"]').innerText());
     console.log("### revert sentence:", s1);
-    expect(s1).toMatch(/Your edit to this Approved page was reverted to the approved version \(v1\)/);
+    expect(s1).toMatch(/Your edit was reverted to approved v1\./);
     await expect(r!.frame.locator('[data-testid="ribbon-my-version"]'), "See my version link").toHaveText("See my version (v2)");
     await shotRibbon(page, r!.el, `${OUT}/01-ribbon-reverted.png`, 20);
     // 2. Demote: nothing lost, the page went back to Draft.
@@ -89,7 +89,7 @@ test("WF-2 browser: the editor's ribbon says the edit was moved back / reverted,
     await expect(r!.frame.locator('[data-testid="ribbon-pill"]')).toContainText("Moved back", { timeout: 20_000 });
     const s2 = norm(await r!.frame.locator('[data-testid="ribbon-status"]').innerText());
     console.log("### demote sentence:", s2);
-    expect(s2).toMatch(/Your edit to this Approved page moved it back to Draft for a new review/);
+    expect(s2).toMatch(/Your edit moved this page back to Draft\./);
     expect(s2).toMatch(/Nothing was lost/);
     await shotRibbon(page, r!.el, `${OUT}/02-ribbon-demoted.png`, 20);
   } finally {
