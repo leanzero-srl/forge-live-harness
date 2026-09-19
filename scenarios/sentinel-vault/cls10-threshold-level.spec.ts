@@ -9,7 +9,7 @@ import { test, expect } from "../../fixtures/forge";
 import { mkdirSync } from "node:fs";
 import { setupWorkflowPage, inv, getKvs, setKvs, delKvs, norm, MIHAI } from "./_wf";
 import { getTarget } from "../../config/targets";
-import { enterForgeSurface, ensureInViewport } from "../../forge/frame";
+import { enterForgeSurface } from "../../forge/frame";
 
 const OUT = process.env.OUT_DIR || "evidence/cls10-threshold-level";
 const GLOBAL = "admin-settings-global";
@@ -80,10 +80,12 @@ test("CLS-10 browser: the site console asks 'Show the banner from' with a level 
     await page.waitForTimeout(300);
     await page.screenshot({ path: `${OUT}/02b-console-picked-internal-dark.png` });
     await con.locator("html").evaluate((h: any) => h.setAttribute("data-color-mode", "light"));
-    // the host scroller is a DIV the iframe cannot scroll — wheel the Save into view first
-    const save = con.getByRole("button", { name: /Save/i }).first();
-    await ensureInViewport(page, save);
-    await save.click();
+    // The global-settings host clips the iframe: ensureInViewport wheels for a minute and never
+    // reaches the button (and the shared profile gets evicted meanwhile) — scroll inside the frame
+    // and click through the clip instead.
+    const save = con.getByRole("button", { name: /Apply Configuration/i });
+    await save.evaluate((el: any) => { el.scrollIntoView({ block: "center" }); el.click(); }); // a forced pointer click lands outside the clipped frame
+    await expect(con.locator(".alert-success, [class*='success']").first(), "the console confirms the save").toBeVisible({ timeout: 30_000 });
     await expect.poll(async () => (await getKvs(GLOBAL))?.ribbonThresholdLevel, { timeout: 30_000 }).toBe("internal");
   } finally {
     if (before == null) await delKvs(GLOBAL).catch(() => {}); else await setKvs(GLOBAL, before);
