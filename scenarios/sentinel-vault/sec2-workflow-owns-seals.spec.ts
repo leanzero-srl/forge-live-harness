@@ -72,8 +72,10 @@ test("SEC-2 server: Approved takes custody of the seals, refuses personal action
     expect(ext?.success).toBe(false); expect(ext?.reason).toBe(HELD);
     const grant = await call("grant-section-edit", { sectionId, editorAccountId: MIHAI }, GABI);
     expect(grant?.success).toBe(false); expect(grant?.reason).toBe(HELD);
+    // SEC-2 (e): a request on a held seal is not refused — it is a PROPOSAL to the page's approvers.
     const req = await call("request-section-edit", { sectionId, reason: "please" }, MIHAI);
-    expect(req?.success).toBe(false); expect(req?.reason).toBe(HELD);
+    expect(req?.success, "a request on a held seal opens as a proposal").toBe(true);
+    expect((await getKvs(`section-edit-request-${sectionId}-${MIHAI}`))?.proposal).toBe(true);
     expect(await getKvs(`section-protection-${sectionId}`), "nothing changed on the record").toMatchObject({ workflowHeld: rec1.workflowHeld });
 
     // ── the approver (Mihai, not the seal's owner) edits INSIDE the section: kept, re-baselined ─
@@ -154,7 +156,8 @@ test("SEC-2 server (attachments): an attachment seal is held on Approved, its re
     expect(rel?.success).toBe(false); expect(rel?.reason).toBe(HELD);
     expect(ext?.success).toBe(false); expect(ext?.reason).toBe(HELD);
     expect(grant?.success).toBe(false); expect(grant?.reason).toBe(HELD);
-    expect(req?.success).toBe(false); expect(req?.reason).toBe(HELD);
+    expect(req?.success, "SEC-2 (e): a request on a held file opens as a proposal to the approvers").toBe(true);
+    expect((await getKvs(`edit-request-${att}-${MIHAI}`))?.proposal).toBe(true);
     expect(await getKvs(`protection-${att}`), "nothing changed on the record").toMatchObject({ workflowHeld: rec1.workflowHeld, expiresAt: null });
 
     const t = await call("request-transition", { pageId: P, toStateId: "draft" }, MIHAI);
@@ -197,9 +200,10 @@ test("SEC-2 browser: the ribbon and the details modal say the approval holds the
     const app = await openDetailsModal(page);
     const row = app.locator('[data-testid="pd-seal-row"][data-kind="section"]', { hasText: "Risks" });
     await expect(row).toBeVisible({ timeout: 20_000 });
-    await expect(row.locator('[data-testid="pd-primary"]')).toHaveAttribute("data-action", "held");
-    await expect(row.locator('[data-testid="pd-primary"]')).toHaveText("Locked by the approval of this page");
-    expect(norm(await row.innerText())).toMatch(/expiry paused/);
+    // SEC-2 (e): the held row's primary is the workflow's door — Propose a change (to the approvers).
+    await expect(row.locator('[data-testid="pd-primary"]')).toHaveAttribute("data-action", "propose");
+    await expect(row.locator('[data-testid="pd-primary"]')).toHaveText("Propose a change");
+    expect(norm(await row.innerText()), "the sentence still says the approval holds it").toMatch(/Locked by the approval of this page · expiry paused/);
     await row.locator('[data-testid="pd-kebab"]').click();
     await expect(app.locator('[data-testid="pd-menu-release"], [data-testid="pd-menu-extend"], [data-testid="pd-menu-give-access"]'), "no personal actions under ⋯").toHaveCount(0);
     await expect(app.locator('[data-testid="pd-menu-force-release"]'), "the space admin keeps the break-glass").toBeVisible();

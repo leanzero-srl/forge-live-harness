@@ -111,12 +111,12 @@ test("SEC-7 + SEC-2: a non-owner non-steward is refused extend / release / grant
     const r1 = await call("unseal-section", { sectionId: s2.sectionId }, PLAIN);
     const r2 = await call("extend-section", { sectionId: s2.sectionId, additionalSeconds: 3600 }, PLAIN);
     const r3 = await call("grant-section-edit", { sectionId: s2.sectionId, editorAccountId: GABI }, PLAIN);
-    const r4 = await call("request-section-edit", { sectionId: s.sectionId, reason: "again" }, PLAIN); // Gabriela's held seal
+    const r4 = await call("request-section-edit", { sectionId: s.sectionId, reason: "again" }, PLAIN); // Gabriela's held seal — PLAIN already asked on it above (pending), so "already pending"; a fresh ask would open as a PROPOSAL (SEC-2 (e))
     console.log("### held refusals for the non-steward owner:", JSON.stringify({ r1, r2, r3, r4 }));
     expect(r1?.success).toBe(false); expect(r1?.reason).toBe(HELD);
     expect(r2?.success).toBe(false); expect(r2?.reason).toBe(HELD);
     expect(r3?.success).toBe(false); expect(r3?.reason).toBe(HELD);
-    expect(r4?.success).toBe(false); expect(String(r4?.reason)).toMatch(new RegExp(`^(${HELD}|Request already pending)$`));
+    expect(r4?.success).toBe(false); expect(String(r4?.reason)).toBe("Request already pending");
     expect(await getKvs(`section-protection-${s2.sectionId}`), "the held record is untouched").toMatchObject({ workflowHeld: held.workflowHeld, expiresAt: null });
     // hand back, then the non-steward owner can release his own again
     const t = await call("request-transition", { pageId: P, toStateId: "draft" }, MIHAI);
