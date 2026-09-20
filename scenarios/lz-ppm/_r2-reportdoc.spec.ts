@@ -1,4 +1,8 @@
 // ROUND-2: render the captured storyline report in the UI (Planning → Sponsor reports).
+// PRECONDITION: a report must already be captured on the seeded plan — run
+// _lc6740-uicapture.spec.ts (which captures one through the real template chooser)
+// after _r2-storyline and before this. Order: _r2-seed → _r2-storyline →
+// _lc6740-uicapture → _r2-reportdoc → _r2-cleanup.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";

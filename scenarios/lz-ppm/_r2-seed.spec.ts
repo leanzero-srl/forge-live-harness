@@ -1,7 +1,19 @@
 // ROUND-2 verification bed: three chains + five unscoped gates in WFH.
 //   P = 16 homogeneous "Payments gateway — step NN"      (starts in the PAST -> late)
-//   M = 8  deliberately MIXED subjects
-//   W = 6  homogeneous "Warehouse relabelling — step NN"
+//   M = 8  deliberately MIXED subjects                   (BELOW the floor on purpose)
+//   W = 13 homogeneous "Warehouse relabelling — step NN"
+//
+// THE CHAIN SIZES ARE THE POINT, and they are read off the app, not guessed.
+// `BEAT_FLOOR = 12` (src/services/ai/storyline-beats.mjs) is the size at which a
+// chain becomes a STORYLINE: `buildStorylines` skips every chain segment whose
+// memberKeys are fewer (plan-segments.mjs), and `smallerRunsOf` folds those into
+// the "shorter runs" count instead. So this bed is deliberately cut 16 / 8 / 13:
+// TWO storylines (P and W) and ONE smaller run (M) — which is what makes the
+// MULTI-storyline page (ordering, hero choice, per-block verdicts) testable at all.
+// W was 6 and the page could only ever hold one block; the single-storyline case is
+// already covered by journey-storyline-chain16.spec.ts, so growing W here costs no
+// coverage. If BEAT_FLOOR ever moves, the sizes below and the expectations in
+// _r2-storyline.spec.ts move with it — both cite the constant by name.
 // Plan finish lands BEFORE the latest gate, three gates are already past.
 // Writes only [harness-test]-tagged WFH issues. Deleted by _r2-cleanup.
 import { test, expect } from "../../fixtures/forge";
@@ -28,7 +40,7 @@ const M = [
   "Reception kiosk touchscreen calibration",
   "Lift telemetry feed drops overnight",
 ];
-const W = Array.from({ length: 6 }, (_, i) => `Warehouse relabelling — step ${String(i + 1).padStart(2, "0")}`);
+const W = Array.from({ length: 13 }, (_, i) => `Warehouse relabelling — step ${String(i + 1).padStart(2, "0")}`);
 
 function dates(monday: string, i: number) {
   const s = new Date(Date.parse(monday + "T00:00:00Z") + i * 7 * 86400000);
@@ -72,4 +84,18 @@ test("R2-SEED three chains + fixture plan + five unscoped gates", async () => {
   fs.writeFileSync(STATE, JSON.stringify({ tag, p, m, w, all, planId: cf.planId, jql, planName }, null, 2));
   console.log("SEEDED", cf.planId, planName, "issues", all.length);
   expect(cf.planId).toBeTruthy();
+
+  // THE BED IS PROVEN BEFORE ANY BROWSER OPENS. `aiStorylines&dry=1` is the
+  // deterministic cut — zero model calls, zero KVS writes, ~1 s — so a bed that
+  // cannot produce two storylines fails HERE and not seven minutes into a UI run.
+  const probe: any = await getTestState("lz-ppm", { what: "aiStorylines", planId: cf.planId, dry: "1" });
+  console.log("DRY PROBE:", JSON.stringify({
+    beatFloor: probe.beatFloor, chains: probe.chains, storylineCount: probe.storylineCount,
+    beatCount: probe.beatCount, smallerRuns: probe.smallerRuns, strategy: probe.strategy,
+  }));
+  fs.writeFileSync(`${SHOT}/bed-dryprobe.json`, JSON.stringify(probe, null, 1));
+  expect(probe.beatFloor, "BEAT_FLOOR moved — re-cut the chain sizes above").toBe(12);
+  expect([...probe.chains.sizes].sort((a: number, b: number) => b - a)).toEqual([p.length, w.length, m.length].sort((a, b) => b - a));
+  expect(probe.storylineCount, "P and W are over the floor, M is under it").toBe(2);
+  expect(probe.smallerRuns.issues, "the M chain is the only smaller run").toBe(m.length);
 });

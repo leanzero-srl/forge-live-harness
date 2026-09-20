@@ -1,5 +1,9 @@
 // ROUND-2 item 3: the Storyline page on the seeded three-chain plan, BUILT from
 // the Storyline tab (one real model call).
+//
+// The bed (_r2-seed.spec.ts) is cut 16 / 8 / 13 against the app's BEAT_FLOOR = 12,
+// so the correct answer here is EXACTLY TWO storyline blocks plus one shorter run.
+// Run _r2-seed first; it fails fast on the dry probe if that is no longer true.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";
@@ -103,7 +107,28 @@ test("S1 build the storyline from the tab and read every line", async ({ page })
     await page.screenshot({ path: `${OUT}/S1-beat-${i}.png` });
   }
   fs.writeFileSync(`${OUT}/S1-beatcards.txt`, cards.join("\n\n---\n\n"));
-  expect(blocks.length).toBeGreaterThanOrEqual(2);
+
+  // THE PARTITION, computed here from the issues the seed actually created in Jira
+  // and compared with the page's own reconcile line. Four numbers that must sum to
+  // the plan's leaves: storylines + shorter runs + undated + linked-to-nothing.
+  const recon = (await txt(frame.locator('[data-testid="storyline-reconcile"]'))).replace(/\s+/g, " ");
+  console.log("RECONCILE:", recon);
+  const nums = (recon.match(/\d+/g) || []).map(Number);
+  const expected = [bed.p.length + bed.w.length, bed.m.length, 0, 0, bed.all.length];
+  console.log("RECONCILE NUMBERS:", JSON.stringify(nums), "EXPECTED:", JSON.stringify(expected));
+  expect(nums, "storylines / shorter runs / undated / unlinked / total").toEqual(expected);
+
+  // EXACTLY TWO BLOCKS, not "at least two". BEAT_FLOOR is 12
+  // (src/services/ai/storyline-beats.mjs) and the seed builds chains of
+  // 16 / 8 / 13, so P and W are storylines and M is a shorter run — a third block
+  // would mean a chain split, a fourth a strategy change, and one block would mean
+  // the floor or the segmentation moved. The one-storyline page is covered by
+  // journey-storyline-chain16.spec.ts; this spec exists for the MULTI case.
+  expect(blocks.length).toBe(2);
+  // The hero is the block the page ordered first, and every block carries a rung.
+  const rungs = await frame.locator('[data-testid="storyline-verdict"]').evaluateAll((els: any[]) => els.map((e) => e.getAttribute("data-rung")));
+  console.log("BLOCK RUNGS:", JSON.stringify(rungs));
+  expect(rungs.filter((r: any) => r)).toHaveLength(2);
 });
 
 test("S2 explain strip labels on the seeded plan", async ({ page }) => {
