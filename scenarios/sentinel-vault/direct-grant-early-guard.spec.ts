@@ -70,7 +70,10 @@ test("A+B: a declined request is not a dead end — shorter cooldown that says w
     console.log(`### declined → retryAt in ${waitMin.toFixed(1)} min; reason: ${again.reason}`);
     expect(waitMin, "the wait is ~1 hour, NOT 48").toBeGreaterThan(55);
     expect(waitMin, "the wait is ~1 hour, NOT 48").toBeLessThan(61);
-    expect(String(again.reason), "the refusal names the time and the other way out").toMatch(/ask again after .*UTC.*give you access directly/i);
+    // SEC-8 (2026-09-20): the server refusal never formats a clock (the lambda is UTC) — it carries
+    // `retryAt` and the surfaces compose the time in the viewer's zone; the other way out stays named.
+    expect(String(again.reason), "the refusal says declined and names the other way out").toMatch(/declined.*give you access directly/i);
+    expect(again.retryAt, "…and carries retryAt for the surfaces to format").toBeTruthy();
     const chk = await call("check-section-edit", GABI, { sectionId: SEC });
     expect([chk.status, !!chk.retryAt], "the status read carries retryAt for the row hint").toEqual(["denied", true]);
     const summary = await hookFn("pageDetailsSummary", { pageId: PAGE, actor: GABI });

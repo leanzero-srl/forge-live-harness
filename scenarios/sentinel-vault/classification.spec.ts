@@ -137,7 +137,8 @@ test("1. the Classification tab renders: App badge, 4 seeded levels with swatche
   expect((await badge.textContent())?.trim(), "provider badge (textContent; CSS uppercases it)").toBe("App");
 
   // site admin on the App scheme → the levels EDITOR (rows with a colour swatch, name, rank, description)
-  const expected = [["Public", "#059669", "1"], ["Internal", "#0891B2", "2"], ["Confidential", "#D97706", "3"], ["Restricted", "#DC2626", "4"]];
+  // The app's DEFAULT_LEVELS (classification/logic.js): the contrast palette (white ink >= 4.5:1) — the older #059669/#0891B2/#D97706/#DC2626 set was replaced.
+  const expected = [["Public", "#15803D", "1"], ["Internal", "#1D4ED8", "2"], ["Confidential", "#B45309", "3"], ["Restricted", "#B91C1C", "4"]];
   const rows = app.locator(".cls-level-row");
   await expect(rows).toHaveCount(4);
   const toRgb = (hex: string) => { const n = parseInt(hex.slice(1), 16); return `rgb(${n >> 16}, ${(n >> 8) & 255}, ${n & 255})`; };

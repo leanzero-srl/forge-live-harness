@@ -15,6 +15,7 @@ const SETTINGS_KEY = `workflow-settings-${SPACE}`;
 const STEWARD_KEY = `admin-settings-space-${SPACE}`;
 const MIHAI = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
 const GABI = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55"; // can read WFH; not a steward
+const PLAIN = "712020:6c8dccca-a6b1-4c6f-903c-329094a1bac1"; // the one real non-admin account (plain-editor bed, 2026-09-20)
 const inv = (fn: string, params: Record<string, string> = {}) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(val) });
@@ -64,7 +65,8 @@ test("audience confirms per version; counts for readers, names for stewards; a n
     expect(gabi?.confirmed, "Gabriela confirmed").toBe(true);
     expect(gabi?.name, "…by name").toMatch(/Gabriela/);
     expect(rep.readers.find((r: any) => r.accountId === MIHAI)?.confirmed, "Mihai has not").toBe(false);
-    const denied = (await inv("getReadReport", { pageId: p.id, actor: GABI })).result;
+    // Gabriela is a SITE admin (steward everywhere since the 2026-09-15 asApp fallback); the non-steward is PLAIN (plain-editor bed).
+    const denied = (await inv("getReadReport", { pageId: p.id, actor: PLAIN })).result;
     expect(denied?.readers?.length ?? 0, "a non-steward gets no names").toBe(0);
     console.log("### read confirmations ✓ (refused before Approved; Gabriela 1 of 2; steward report by name; non-steward refused)");
 

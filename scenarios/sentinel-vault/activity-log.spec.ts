@@ -22,6 +22,7 @@ const ATT = process.env.SV_ATTACHMENT_ID || "att265945089";
 const FIXTURE_PAGE = process.env.SV_PAGE_ID || "265912321";
 const SPACE = process.env.SENTINEL_SPACE_KEY || "WFH";
 const MIHAI = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086"; // owns the fixture seal; site admin
+const PLAIN = "712020:6c8dccca-a6b1-4c6f-903c-329094a1bac1"; // the one real non-admin account (plain-editor bed, 2026-09-20)
 const GABI = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55";  // real; no access to SVSEC1P; NOT a listed steward
 // The one account on admin-settings-space-WFH.adminUsers (a second "Gabriela Perdum" identity).
 // In a webtrigger isOperatorSteward can only answer from that explicit list, so this is the
@@ -155,7 +156,9 @@ test.describe("A1 activity record", () => {
       expect(gabi?.entries?.length || 0, "Gabriela cannot read the private page → no entries").toBe(0);
       expect(String(gabi?.reason || ""), "…and the refusal is explicit (reason)").toMatch(/not authorized/i);
 
-      const nonSteward = await spaceFeed(MIHAI);
+      // Mihai is a SITE admin (the asApp fallback answers steward for him since 2026-09-15); the
+      // non-steward has to be the one real non-admin account.
+      const nonSteward = await spaceFeed(PLAIN);
       expect((nonSteward?.entries || []).length, "a caller not on the space's steward list gets nothing from the space feed").toBe(0);
       expect(String(nonSteward?.reason || ""), "…and the refusal is explicit (reason)").toMatch(/not authorized/i);
       const steward = await spaceFeed(STEWARD, { since: new Date(Date.now() - 60_000).toISOString() });

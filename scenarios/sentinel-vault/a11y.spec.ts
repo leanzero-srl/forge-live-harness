@@ -38,7 +38,7 @@ test("overlay a11y + microcopy: sort keyboard-operable, close named, owner statu
   expect(await ov.locator(".modal-close").getAttribute("aria-label")).toBe("Close Sentinel Vault overlay");
   // it37: owner-seal status label converged
   const mine = ov.locator(".status-lozenge.locked-by-me").first();
-  expect((await mine.innerText()).trim().toLowerCase()).toContain("my seal");
+  expect((await mine.innerText()).trim().toLowerCase()).toContain("sealed by you"); // SEC-3 (2026-09-20): "My Seal" → "Sealed by you"
   // §7.2: the chip is a named status, not colour + 10px uppercase
   expect(await mine.getAttribute("role")).toBe("status");
   expect(await mine.getAttribute("aria-label")).toMatch(/sealed by you/i);

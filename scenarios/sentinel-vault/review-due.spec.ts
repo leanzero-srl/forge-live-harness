@@ -16,6 +16,7 @@ const SPACE = process.env.SENTINEL_SPACE_KEY || "WFH";
 const STEWARD_KEY = `admin-settings-space-${SPACE}`;
 const MIHAI = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
 const GABI = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55"; // can read/edit WFH; not on the steward list
+const PLAIN = "712020:6c8dccca-a6b1-4c6f-903c-329094a1bac1"; // the one real non-admin account (plain-editor bed, 2026-09-20)
 const inv = (fn: string, params: Record<string, string> = {}) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(val) });
@@ -65,7 +66,8 @@ test.describe("A5 review clocks", () => {
 
       const past = await inv("setReviewDue", { pageId: p.id, reviewDueAt: new Date(Date.now() - DAY).toISOString(), actor: MIHAI });
       expect(past.result?.success, "a past date is refused").toBe(false);
-      const stranger = await inv("setReviewDue", { pageId: p.id, reviewDueAt: new Date(Date.now() + 20 * DAY).toISOString(), actor: GABI });
+      // Gabriela is a SITE admin (a steward everywhere); the non-steward is PLAIN (plain-editor bed, 2026-09-20).
+      const stranger = await inv("setReviewDue", { pageId: p.id, reviewDueAt: new Date(Date.now() + 20 * DAY).toISOString(), actor: PLAIN });
       expect(stranger.result?.success, "a non-steward is refused").toBe(false);
       expect(Math.abs(new Date((await getKvs(`workflow-state-${p.id}`)).reviewDueAt).getTime() - new Date(inTen).getTime()), "…and the date did not move").toBeLessThan(2000);
 

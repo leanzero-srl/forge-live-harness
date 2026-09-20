@@ -21,6 +21,7 @@ const DEF_KEY = `workflow-def-space-${SPACE}`;
 const STEWARD_KEY = `admin-settings-space-${SPACE}`;
 const MIHAI = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
 const GABI = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55";
+const PLAIN = "712020:6c8dccca-a6b1-4c6f-903c-329094a1bac1"; // the one real non-admin account (plain-editor bed, 2026-09-20)
 const inv = (fn: string, params: Record<string, string> = {}) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(val) });
@@ -58,8 +59,9 @@ test("custom default, refused definitions, protected states, label-scoped workfl
     await setKvs(SETTINGS_KEY, { ...(priorSettings || { workflowId: "default" }), enabled: true, autoAssignNew: false, labelWorkflows: [] });
 
     // A non-steward cannot see or store definitions.
-    expect((await inv("listSpaceWorkflows", { spaceKey: SPACE, actor: GABI })).result?.error, "non-steward refused").toBeTruthy();
-    expect((await inv("storeSpaceWorkflow", { spaceKey: SPACE, actor: GABI, def: JSON.stringify(QA_DEF) })).result?.success, "non-steward cannot store").toBe(false);
+    // Gabriela is a SITE admin (a steward everywhere); the non-steward is PLAIN (plain-editor bed, 2026-09-20).
+    expect((await inv("listSpaceWorkflows", { spaceKey: SPACE, actor: PLAIN })).result?.error, "non-steward refused").toBeTruthy();
+    expect((await inv("storeSpaceWorkflow", { spaceKey: SPACE, actor: PLAIN, def: JSON.stringify(QA_DEF) })).result?.success, "non-steward cannot store").toBe(false);
 
     // Unsound definitions are refused with a reason.
     const twoFirst = await store({ def: { ...QA_DEF, states: QA_DEF.states.map((s) => ({ ...s, initial: true })) } });

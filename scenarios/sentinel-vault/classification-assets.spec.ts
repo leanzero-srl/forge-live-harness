@@ -19,6 +19,10 @@ test.describe.configure({ timeout: 300_000, retries: 1 });
 test("link the levels to an Assets object type: schemas → type → mapping → preview → import → re-import → unlink", async ({ page }) => {
   const levelsBefore = await getKvs("classification-levels");
   const linkBefore = await getKvs("classification-assets-link");
+  // CLS-1 (2026-09-20): classification is OFF by default and the tab's controls are dimmed and
+  // inert while it is — switch the site on for this run and put the record back after.
+  const globalBefore = await getKvs("admin-settings-global");
+  await setKvs("admin-settings-global", { ...(globalBefore || {}), classificationEnabled: true });
   try {
     await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
     const s = await enterForgeSurface(page, { surface: "custom", readySelector: ".admin-title", timeout: 45000 });
@@ -80,6 +84,7 @@ test("link the levels to an Assets object type: schemas → type → mapping →
     await expect.poll(async () => await getKvs("classification-assets-link"), { timeout: 20000, message: "unlinked" }).toBeFalsy();
     expect((await getKvs("classification-levels")), "unlink keeps the levels").toBeTruthy();
   } finally {
+    if (globalBefore) await setKvs("admin-settings-global", globalBefore); else await delKvs("admin-settings-global").catch(() => {});
     if (levelsBefore) await setKvs("classification-levels", levelsBefore); else await delKvs("classification-levels").catch(() => {});
     if (linkBefore) await setKvs("classification-assets-link", linkBefore); else await delKvs("classification-assets-link").catch(() => {});
   }
