@@ -12,6 +12,15 @@ export const SPACE = "WFH";
 export const DEV = "17516615";
 export const MIHAI = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
 export const GABI = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55";
+// The plain-editor bed (2026-09-20). Mihai, Gabriela and LeanZero SRL are all SITE admins on
+// wolfaenpak (`administer/application`), so no space can make them non-stewards: the steward
+// gate's site-admin arm answers first. The second "Mihai Perdum" account (mihai@leanzero.net)
+// is the one real licensed account with no admin operation at all — a member of
+// confluence-users-wolfaenpak only. Space SVPLAIN (id 344162767, created by the harness user)
+// gives that group read/create/update and keeps `administer` for confluence-admins-wolfaenpak,
+// site-admins and Mihai — so PLAIN is a plain editor there and nowhere a steward.
+export const PLAIN = "712020:6c8dccca-a6b1-4c6f-903c-329094a1bac1";
+export const PLAIN_SPACE = "SVPLAIN";
 
 export const inv = (fn: string, params: Record<string, string> = {}) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
 export const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
@@ -25,24 +34,25 @@ export const norm = (s: string) => s.replace(/\s+/g, " ").trim();
 export type WfBed = { pageId: string; restore: () => Promise<void> };
 
 /** WFH: workflow on, Mihai sole approver (mode any), enforce = demote; a page assigned to "default". */
-export async function setupWorkflowPage(titlePrefix: string, opts: { enforceMode?: string; approvers?: { id: string; name: string }[]; body?: any[] } = {}): Promise<WfBed> {
-  const before = { settings: await getKvs(`workflow-settings-${SPACE}`), def: await getKvs(`workflow-def-space-${SPACE}`) };
+export async function setupWorkflowPage(titlePrefix: string, opts: { enforceMode?: string; approvers?: { id: string; name: string }[]; body?: any[]; space?: string } = {}): Promise<WfBed> {
+  const S = opts.space || SPACE;
+  const before = { settings: await getKvs(`workflow-settings-${S}`), def: await getKvs(`workflow-def-space-${S}`) };
   const approvers = opts.approvers || [{ id: MIHAI, name: "Mihai Perdum" }];
   await inv("setSpaceWorkflowSettings", {
-    spaceKey: SPACE, enabled: "1", autoAssignNew: "0", workflowId: "default", enforceMode: opts.enforceMode || "demote",
+    spaceKey: S, enabled: "1", autoAssignNew: "0", workflowId: "default", enforceMode: opts.enforceMode || "demote",
     approval: JSON.stringify({ approvers: approvers.map((a) => ({ type: "user", ...a })), mode: "any", min: 1 }),
   });
-  const spaceId = await spaceIdByKey(SPACE);
+  const spaceId = await spaceIdByKey(S);
   const page = await createPage({ spaceId, title: `HARNESS ${titlePrefix} ${Date.now()}`, adf: doc(...(opts.body || [heading("Policy", 2), paragraph("This is the policy text every employee must read.")])) });
   const pageId = String(page.id);
-  const asg = await inv("assignWorkflow", { pageId, spaceKey: SPACE, workflowId: "default", actor: MIHAI, actorName: "Mihai Perdum" });
+  const asg = await inv("assignWorkflow", { pageId, spaceKey: S, workflowId: "default", actor: MIHAI, actorName: "Mihai Perdum" });
   if (!asg.result?.success) throw new Error(`assignWorkflow failed: ${JSON.stringify(asg.result)}`);
   const restore = async () => {
-    if (before.settings == null) await delKvs(`workflow-settings-${SPACE}`).catch(() => {}); else await setKvs(`workflow-settings-${SPACE}`, before.settings);
-    if (before.def == null) await delKvs(`workflow-def-space-${SPACE}`).catch(() => {}); else await setKvs(`workflow-def-space-${SPACE}`, before.def);
-    for (const k of [`workflow-state-${pageId}`, `workflow-pending-${pageId}`, `workflow-autoassigned-${pageId}`, `workflow-label-${pageId}`, `workflow-review-notified-${pageId}`, `workflow-integrity-notified-${pageId}`, `workflow-completing-${pageId}`, `workflow-inbox-${MIHAI}-${pageId}`, `workflow-inbox-${GABI}-${pageId}`, `page-guard-${pageId}`]) await delKvs(k).catch(() => {});
-    for (const st of ["draft", "in_review", "approved", "expired"]) await delKvs(`workflow-idx-${SPACE}-${st}-${pageId}`).catch(() => {});
-    for (const prefix of [`workflow-log-${pageId}-`, `workflow-approval-${pageId}-`, `read-ack-${pageId}-`]) { for (const k of await queryKvs(prefix).catch(() => [] as string[])) await delKvs(k).catch(() => {}); }
+    if (before.settings == null) await delKvs(`workflow-settings-${S}`).catch(() => {}); else await setKvs(`workflow-settings-${S}`, before.settings);
+    if (before.def == null) await delKvs(`workflow-def-space-${S}`).catch(() => {}); else await setKvs(`workflow-def-space-${S}`, before.def);
+    for (const k of [`workflow-state-${pageId}`, `workflow-pending-${pageId}`, `workflow-autoassigned-${pageId}`, `workflow-label-${pageId}`, `workflow-review-notified-${pageId}`, `workflow-integrity-notified-${pageId}`, `workflow-completing-${pageId}`, `workflow-inbox-${MIHAI}-${pageId}`, `workflow-inbox-${GABI}-${pageId}`, `workflow-inbox-${PLAIN}-${pageId}`, `page-guard-${pageId}`]) await delKvs(k).catch(() => {});
+    for (const st of ["draft", "in_review", "approved", "expired"]) await delKvs(`workflow-idx-${S}-${st}-${pageId}`).catch(() => {});
+    for (const prefix of [`workflow-log-${pageId}-`, `workflow-approval-${pageId}-`, `read-ack-${pageId}-`, `wfreq-mine-`]) { for (const k of await queryKvs(prefix).catch(() => [] as string[])) if (prefix !== "wfreq-mine-" || k.endsWith(`-${pageId}`)) await delKvs(k).catch(() => {}); }
     await deletePage(pageId).catch(() => {});
   };
   return { pageId, restore };
