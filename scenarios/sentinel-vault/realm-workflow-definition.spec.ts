@@ -56,7 +56,12 @@ test("steward adds a state and a transition in the definition editor; the chips 
     await newRow.locator('[data-testid="wf-def-state-name"]').fill("Legal check");
     await expect(newRow, "the id follows the name").toHaveAttribute("data-state-id", "legal_check");
     const draftRow = form.locator('[data-testid="wf-def-state"][data-state-id="draft"]');
+    // WF-11 (2): the approval / protection sections now sit between the table and "Add a state", so
+    // the Draft row is above the host's clip after the scroll — a force-click outside the clip does
+    // not land (skill trap b). Bring each row back into view before checking its edge.
+    await ensureInViewport(page, draftRow);
     await draftRow.locator('[data-testid="wf-def-edge-draft-legal_check"]').check({ force: true });
+    await ensureInViewport(page, newRow);
     await newRow.locator('[data-testid="wf-def-edge-legal_check-draft"]').check({ force: true });
     await page.screenshot({ path: `${OUT}/1-editor.png`, fullPage: true });
 
@@ -74,6 +79,9 @@ test("steward adds a state and a transition in the definition editor; the chips 
     const legal = list?.default?.states?.find((x: any) => x.id === "legal_check");
     expect(legal?.name, "the resolver lists the new state").toBe("Legal check");
     expect(list.default.transitions.some((t: any) => t.from === "draft" && t.to === "legal_check"), "…with its edge").toBe(true);
+    // WF-11: the states are their own view; the chips live on the settings view — go back first.
+    const back = app.locator('[data-testid="wf-defs-back"]');
+    if (await back.count()) { await ensureInViewport(page, back); await back.click(); }
     let chips: string[] = [];
     for (let i = 0; i < 10; i++) {
       chips = await app.locator(".wf-state-preview .wf-state-chip").allInnerTexts().catch(() => []);

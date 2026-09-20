@@ -99,7 +99,9 @@ test("critique walk: space admin → author → approver → reader → demoted 
       note("A3-definitions-copy", { text: defText.slice(0, 3000) });
       await defToggle.click();
     }
-    // Require approval → add Mihai through the picker (as a naive admin would)
+    // Require approval → add Mihai through the picker (as a naive admin would). WF-11 (2): the
+    // approval settings live on the states view now, behind "Edit the states, approvers and protection…".
+    if (await defToggle.count()) { await defToggle.click(); await page.waitForTimeout(800); }
     await app.locator('input[aria-label="Require approval to reach Approved"]').check();
     await page.waitForTimeout(500);
     const picker = app.locator('input[aria-label="Search people to add as approvers"]').first();
@@ -112,7 +114,7 @@ test("critique walk: space admin → author → approver → reader → demoted 
     note("A4-picker", { pickedViaUi });
     await page.screenshot({ path: `${OUT}/A5-approval-configured.png`, fullPage: true });
     // Save
-    await app.locator("button", { hasText: "Save workflow settings" }).click();
+    await app.locator('[data-testid="wf-def-default"] [data-testid="wf-def-save"]').click(); // WF-11: one Save for states + settings
     await page.waitForTimeout(3000);
     const saveMsg = strip(await app.locator('[role="status"]').last().innerHTML().catch(() => ""));
     note("A6-save", { saveMsg });

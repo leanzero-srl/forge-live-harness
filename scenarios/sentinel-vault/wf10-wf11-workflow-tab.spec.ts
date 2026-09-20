@@ -70,6 +70,7 @@ test("WF-11 browser: one rule sentence, one Save, the states on their own view; 
     const tabText = norm(await app.locator(".tab-content").innerText());
     expect(tabText, "no 'rights-holders'").not.toMatch(/rights-holders/);
     expect(tabText, "no 'Expired' as a state word in the settings copy").not.toMatch(/moved to Expired/);
+    await expect(app.locator('[data-testid="wf-section-approval"]'), "WF-11 (2): no approval section on the settings view any more").toHaveCount(0);
     // ── ONE Save on this view ────────────────────────────────────────────────────────────────
     const saves = app.getByRole("button", { name: /^Save/ });
     expect(await saves.count(), "exactly one Save button on the settings view").toBe(1);
@@ -81,7 +82,7 @@ test("WF-11 browser: one rule sentence, one Save, the states on their own view; 
     // ── Edit the states… → the states view ───────────────────────────────────────────────────
     const edit = app.locator('[data-testid="wf-defs-toggle"]');
     await ensureInViewport(page, edit);
-    await expect(edit).toHaveText(/Edit the states…/);
+    await expect(edit).toHaveText(/Edit the states, approvers and protection…/); // WF-11 (2): the settings moved with the states
     await edit.click();
     const form = app.locator('[data-testid="wf-def-default"]');
     await expect(form, "the default workflow's editor is the view now").toBeVisible({ timeout: 15_000 });
@@ -99,6 +100,9 @@ test("WF-11 browser: one rule sentence, one Save, the states on their own view; 
     expect(formText, "the built-in lapsed state reads Needs re-review").toMatch(/Needs re-review|Expired/); // a WFH copy saved earlier keeps its own name
     await expect(app.locator('[data-testid="wf-defs-back"]')).toBeVisible();
     await expect(app.locator('[data-testid="wf-defs"]')).toContainText(/Each workflow saves with its own Save workflow button/);
+    await expect(form.locator('[data-testid="wf-section-approval"]'), "WF-11 (2): the approval settings sit with the states").toBeVisible();
+    await expect(form.locator('[data-testid="wf-section-protection"]'), "…and the protection settings").toBeVisible();
+    expect(await app.getByRole("button", { name: /^Save/ }).count(), "still ONE Save on the states view (the default workflow's)").toBe(1);
     await expect(app.locator('[data-testid="wf-defs"]')).not.toContainText(/the bar at the bottom saves the settings above/);
     await page.screenshot({ path: `${OUT}/02-states-view.png` });
     await app.locator("html").evaluate((h: any) => h.setAttribute("data-color-mode", "dark"));
