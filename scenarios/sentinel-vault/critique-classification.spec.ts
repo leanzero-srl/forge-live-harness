@@ -87,6 +87,8 @@ let originalSpaceDefault: any = null;
 test.beforeAll(async () => {
   spaceId = String(await spaceIdByKey(SPACE));
   originalGlobal = (await getKvs(GLOBAL)) || null;
+  // CLS-1 (2026-09-20): classification is OFF by default and the tab's controls are inert while it is — on for this walk, restored in afterAll.
+  await setKvs(GLOBAL, { ...(originalGlobal || {}), classificationEnabled: true });
   originalSpaceDefault = (await getKvs(`classification-space-${spaceId}`)) || null;
   note(`global settings: ribbonMode=${originalGlobal?.ribbonMode ?? "(unset→exceptions)"} ribbonThresholdRank=${originalGlobal?.ribbonThresholdRank ?? "(unset→4)"} enableDocRibbons=${originalGlobal?.enableDocRibbons ?? "(unset)"}; WFH space default=${JSON.stringify(originalSpaceDefault)}; levels KVS=${JSON.stringify(await getKvs("classification-levels"))}`);
 });

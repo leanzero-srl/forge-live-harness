@@ -97,7 +97,9 @@ test("critique walk: space admin → author → approver → reader → demoted 
       await page.screenshot({ path: `${OUT}/A3-definitions-open.png`, fullPage: true });
       const defText = strip(await app.locator('[data-testid="wf-defs"]').innerHTML().catch(() => ""));
       note("A3-definitions-copy", { text: defText.slice(0, 3000) });
-      await defToggle.click();
+      // WF-11: the states are their own view now — "Back to workflow settings" closes it, not a second toggle click.
+      const back = app.locator('[data-testid="wf-defs-back"]');
+      if (await back.count()) await back.click(); else await defToggle.click();
     }
     // Require approval → add Mihai through the picker (as a naive admin would). WF-11 (2): the
     // approval settings live on the states view now, behind "Edit the states, approvers and protection…".
