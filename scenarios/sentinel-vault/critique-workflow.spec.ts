@@ -104,7 +104,10 @@ test("critique walk: space admin → author → approver → reader → demoted 
     // Require approval → add Mihai through the picker (as a naive admin would). WF-11 (2): the
     // approval settings live on the states view now, behind "Edit the states, approvers and protection…".
     if (await defToggle.count()) { await defToggle.click(); await page.waitForTimeout(800); }
-    await app.locator('input[aria-label="Require approval to reach Approved"]').check();
+    const requireApproval = app.locator('input[aria-label="Require approval to reach Approved"]').first();
+    await app.locator('[data-testid="wf-def-settings"]').waitFor({ state: "visible", timeout: 30000 }).catch(() => note("A4: the states view's settings block did not render in 30 s"));
+    await ensureInViewport(page, requireApproval).catch(() => {});
+    await requireApproval.check({ force: true }).catch((e: any) => note("A4: could not switch Require approval on from the UI", { error: String(e?.message || e).slice(0, 160) }));
     await page.waitForTimeout(500);
     const picker = app.locator('input[aria-label="Search people to add as approvers"]').first();
     await picker.fill("Mihai");

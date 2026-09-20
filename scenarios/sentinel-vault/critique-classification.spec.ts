@@ -145,7 +145,7 @@ test("A. page editor: fresh page → byline chip → modal → classify → ribb
   await ribbonState(page, "A09 Internal (exceptions, rank 2 < 4)");
   await chipInfo(page, "A09");
 
-  await setKvs(GLOBAL, { ...(originalGlobal || {}), ribbonMode: "always" });
+  await setKvs(GLOBAL, { ...(originalGlobal || {}), classificationEnabled: true, ribbonMode: "always" });
   await page.goto(url, { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(9000);
   await shot(page, "A10-page-internal-always");
