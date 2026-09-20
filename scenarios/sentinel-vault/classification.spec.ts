@@ -101,6 +101,7 @@ async function shot(page: Page, name: string) { await page.screenshot({ path: `$
 let spaceId = "";
 let originalLevels: any = null;
 let originalSpaceDefault: any = null;
+let originalGlobal: any = null;
 let throwawayPageId: string | null = null;
 const consoleErrors: string[] = [];
 const dialogs: string[] = [];
@@ -110,9 +111,13 @@ test.beforeAll(async () => {
   expect(spaceId, `space id of ${SPACE_KEY}`).toMatch(/^\d+$/);
   originalLevels = await getKvs(LEVELS_KEY);
   originalSpaceDefault = await getKvs(spaceKvs(spaceId));
+  // CLS-1 (2026-09-20): classification is OFF by default and the tab's controls are inert while it is.
+  originalGlobal = await getKvs("admin-settings-global");
+  await setKvs("admin-settings-global", { ...(originalGlobal || {}), classificationEnabled: true });
   console.log(`### ${SPACE_KEY} id=${spaceId}; original levels KVS=${JSON.stringify(originalLevels)}; original space default=${JSON.stringify(originalSpaceDefault)}`);
 });
 test.afterAll(async () => {
+  if (originalGlobal) await setKvs("admin-settings-global", originalGlobal); else await delKvs("admin-settings-global").catch(() => {});
   if (originalLevels) await setKvs(LEVELS_KEY, originalLevels); else await delKvs(LEVELS_KEY);
   if (originalSpaceDefault) await setKvs(spaceKvs(spaceId), originalSpaceDefault); else await delKvs(spaceKvs(spaceId));
   if (throwawayPageId) { await delKvs(pageKvs(throwawayPageId)); await deletePage(throwawayPageId).catch(() => {}); }
@@ -137,7 +142,7 @@ test("1. the Classification tab renders: App badge, 4 seeded levels with swatche
   expect((await badge.textContent())?.trim(), "provider badge (textContent; CSS uppercases it)").toBe("App");
 
   // site admin on the App scheme → the levels EDITOR (rows with a colour swatch, name, rank, description)
-  // The app's DEFAULT_LEVELS (classification/logic.js): the contrast palette (white ink >= 4.5:1) — the older #059669/#0891B2/#D97706/#DC2626 set was replaced.
+  // The app's DEFAULT_LEVELS (classification/logic.js): the contrast palette (white ink >= 4.5:1) — the older #15803D/#1D4ED8/#B45309/#B91C1C set was replaced.
   const expected = [["Public", "#15803D", "1"], ["Internal", "#1D4ED8", "2"], ["Confidential", "#B45309", "3"], ["Restricted", "#B91C1C", "4"]];
   const rows = app.locator(".cls-level-row");
   await expect(rows).toHaveCount(4);
@@ -208,7 +213,7 @@ test("2. WFH default via the row picker → KVS → reload shows it; bulk bar se
   await ensureInViewport(page, chip);
   await expect(chip, "after reload the row shows Confidential").toHaveText("Confidential");
   const chipBg = await chip.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(chipBg, "chip is a solid fill of the level colour").toBe("rgb(217, 119, 6)");
+  expect(chipBg, "chip is a solid fill of the level colour").toBe("rgb(180, 83, 9)");
   // the row picker's own value shows the same chip
   await expect(app.locator(`[data-testid="cls-space-picker-${SPACE_KEY}"] .cls-chip`)).toHaveText("Confidential");
 
@@ -353,8 +358,18 @@ test("5. level management: add Secret (visible in pickers) → remove; duplicate
   await expect(picker.locator(".cls-picker-opt", { has: app.locator('.cls-chip:text-is("Secret")') })).toBeVisible();
   await shot(page, "09-picker-with-secret");
   await app.locator(".cls-section-title").first().click();
-  // and after a reload
+  // and after a reload. enterForgeSurface picks the hosted iframe by index and has landed on the
+  // wrong one after a navigation (skill trap 2026-09-20) — find the frame by its content.
   app = await openTab(page);
+  await expect.poll(async () => {
+    const ifr = page.locator("iframe");
+    const n = await ifr.count();
+    for (let i = 0; i < n; i++) {
+      const f = ifr.nth(i).contentFrame();
+      if ((await f.locator('[data-testid="cls-level-row-secret"]').count().catch(() => 0)) > 0) { app = f; return true; }
+    }
+    return false;
+  }, { timeout: 60000, message: "the levels editor lists Secret after the reload" }).toBe(true);
   await expect(app.locator('[data-testid="cls-level-row-secret"]')).toBeVisible();
 
   // remove Secret
@@ -381,7 +396,8 @@ test("5. level management: add Secret (visible in pickers) → remove; duplicate
 // 4b. The negatives a site-admin browser session cannot manufacture: driven through the dev hook's
 // classification.* actor seams with REAL accounts. Gabriela cannot edit the private SVSEC1P page
 // (SV-SEC-1 fixture) and is not a site admin; a synthetic id is unresolvable and must fail closed.
-const GABRIELA = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55";
+const GABRIELA = "712020:2b9d007d-db0d-47c9-b4ae-953f55501f55"; // SITE admin — the "no access to SVSEC1P" negative only
+const PLAIN = "712020:6c8dccca-a6b1-4c6f-903c-329094a1bac1"; // the one real non-admin account (plain-editor bed, 2026-09-20)
 const MIHAI = "712020:937bc860-eec2-4294-a65d-8e0fe7c45086";
 const clsAs = (fn: string, actor: string, payload: Record<string, unknown>) =>
   getTestState("sentinel-vault", { what: "invoke", fn: `classification.${fn}`, actor, payload: JSON.stringify(payload) });
@@ -397,11 +413,11 @@ test("4b. authorization negatives as REAL other identities via the hook seams", 
     expect(await getKvs(`classification-page-${pid}`), "nothing written by the refused call").toEqual(before ?? null);
     const r2 = await clsAs("get-page", GABRIELA, { pageId: pid });
     expect(r2.result?.ok, "Gabriela cannot read the level of a page she cannot read").not.toBe(true);
-    const r3 = await clsAs("manage-levels", GABRIELA, { levels: [{ id: "x", name: "X", color: "#000000", rank: 1 }] });
+    const r3 = await clsAs("manage-levels", PLAIN, { levels: [{ id: "x", name: "X", color: "#000000", rank: 1 }] });
     expect(r3.result?.ok, "a non-site-admin cannot manage levels").not.toBe(true);
-    const r4 = await clsAs("list-spaces", GABRIELA, {});
+    const r4 = await clsAs("list-spaces", PLAIN, {});
     expect((r4.result?.ok === true && (r4.result?.spaces || []).length > 0), "a user with no stewardship lists no spaces").toBe(false);
-    const r5 = await clsAs("set-space-default", GABRIELA, { spaceId: String(privateSpaceId), levelId: "internal" });
+    const r5 = await clsAs("set-space-default", PLAIN, { spaceId: String(privateSpaceId), levelId: "internal" });
     expect(r5.result?.ok, "a non-steward cannot set a space default").not.toBe(true);
     const r6 = await clsAs("set-page", "sv-synthetic-nobody", { pageId: pid, levelId: "restricted" });
     expect(r6.result?.ok, "an unresolvable account fails closed").not.toBe(true);
