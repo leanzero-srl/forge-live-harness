@@ -85,7 +85,8 @@ test("byline chip renders from the property, opens the modal, lists the fixture 
   const before = await readByline(PAGE_ID);
   expect(before, "sentinel-byline property exists").toBeTruthy();
   console.log("### byline before:", JSON.stringify(before));
-  expect(before!.title, "title is a level with its source, or Unclassified").toMatch(/^(Unclassified|.+ · (space default|set on this page))$/);
+  // CLS-1 + SEC-3 (2026-09-20): with classification OFF (the default) the chip carries the seal count alone — "Sealed (1)".
+  expect(before!.title, "title is a level with its source, Unclassified, or the seal count with classification off").toMatch(/^(Unclassified|Sealed \(\d+\)|(.+ · )?(space default|set on this page)|.+ · Sealed \(\d+\))$/);
   expect(before!.title, "no override yet → not 'set on this page'").not.toMatch(/set on this page/);
   expect(before!.icon.startsWith("data:image/svg+xml"), "icon is the data: SVG").toBe(true);
   expect(decodeIcon(before!.icon), "one live seal on the page → the LOCK glyph").toContain("<rect");
@@ -162,7 +163,8 @@ test("a page with no seals gets the dot icon (no lock) and no seal rows", async 
     expect(rr.result?.wrote, `refreshByline wrote (got ${JSON.stringify(rr.result)})`).toBe(true);
     const b = await readByline(p.id);
     console.log("### throwaway byline:", JSON.stringify(b));
-    expect(b!.title).toMatch(/^(Unclassified|.+ · space default)$/);
+    // CLS-1 (2026-09-20): with classification OFF a page with no seals shows the manifest's static title.
+    expect(b!.title).toMatch(/^(Unclassified|Sentinel Vault|.+ · space default)$/);
     expect(decodeIcon(b!.icon), "no seals → the DOT, not the lock").not.toContain("<rect");
     expect(decodeIcon(b!.icon)).toContain('r="3"');
     await page.goto(pageUrl(p.id), { waitUntil: "domcontentloaded" });

@@ -25,12 +25,23 @@ async function openWorkflow(page: any) {
   await page.waitForTimeout(800);
   return app;
 }
-async function ensureEnabledReviewVisible(app: any, page: any) {
-  const review = app.locator(REVIEW);
-  if (!(await review.isVisible().catch(() => false))) {
+// WF-11 (2) (2026-09-20): the protection settings — the re-review clock among them — live on the STATES
+// view now, behind "Edit the states, approvers and protection…", and save with the default workflow's
+// own Save (save-workflow-bundle). The settings view keeps the enable switch.
+async function openStatesView(app: any, page: any) {
+  const edit = app.locator('[data-testid="wf-defs-toggle"]');
+  if (!(await edit.isVisible().catch(() => false))) {
     await app.locator(".settings-row", { hasText: "Enable document workflow" }).locator(".form-checkbox").click();
     await page.waitForTimeout(700);
   }
+  await ensureInViewport(page, edit);
+  await edit.click();
+  await expect(app.locator('[data-testid="wf-def-settings"]')).toBeVisible({ timeout: 20000 });
+}
+async function ensureEnabledReviewVisible(app: any, page: any) {
+  await openStatesView(app, page);
+  const review = app.locator(REVIEW);
+  await ensureInViewport(page, review);
   await expect(review).toBeVisible({ timeout: 8000 });
   return review;
 }
@@ -47,18 +58,17 @@ test("workflow review-period change persists across a reload (set-space-workflow
     await review.fill(next);
     // The Workflow tab carries the dashboard above the settings, so Save sits well below the
     // fold; the host scroller is a DIV the iframe cannot scroll — wheel it into view first.
-    const save = app.getByRole("button", { name: /Save workflow settings/i });
+    const save = app.locator('[data-testid="wf-def-default"] [data-testid="wf-def-save"]');
     await ensureInViewport(page, save);
     await save.click();
-    await expect(app.locator(".alert-success")).toBeVisible({ timeout: 15000 });
+    await expect(app.locator('[data-testid="wf-def-message"].alert-success')).toBeVisible({ timeout: 20000 });
     console.log("### saved reviewAfterDays =", next);
   }, { expectation: { assertion: "the workflow review-period saves with a success confirmation", narrative: "Sets review period and Saves; asserts success alert." } });
 
   await recorder.step("reload → the review period persisted", async () => {
     await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
     const app = await openWorkflow(page);
-    const review = app.locator(REVIEW);
-    await expect(review).toBeVisible({ timeout: 8000 });
+    const review = await ensureEnabledReviewVisible(app, page);
     const persisted = (await review.inputValue()).trim();
     console.log("### persisted reviewAfterDays =", persisted);
     expect(persisted, `review period should persist as ${next}`).toBe(next);
