@@ -8,7 +8,7 @@ import { enterForgeSurface } from "../../forge/frame";
 import * as fs from "fs";
 
 const T = getTarget("lz-ppm-dashboard");
-const OUT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/live-6720";
+const OUT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/live-6730";
 const LZPT = "LZPT Scenarios";
 const PF = "[harness-test] r2 ladder";
 const bed = JSON.parse(fs.readFileSync(`${OUT}/bed.json`, "utf8"));

@@ -13,7 +13,7 @@ import { waitForTerminal } from "../_support/wait";
 import * as fs from "fs";
 
 const PROJECT = process.env.LZ_PPM_TEST_PROJECT || "WFH";
-const SHOT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/live-6720";
+const SHOT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/live-6730";
 const STATE = `${SHOT}/bed.json`;
 test.describe.configure({ retries: 0, timeout: 2_400_000, mode: "serial" });
 

@@ -7,7 +7,7 @@ import { enterForgeSurface } from "../../forge/frame";
 import * as fs from "fs";
 
 const T = getTarget("lz-ppm-dashboard");
-const OUT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/live-6720";
+const OUT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/live-6730";
 const bed = JSON.parse(fs.readFileSync(`${OUT}/bed.json`, "utf8"));
 test.describe.configure({ retries: 0, timeout: 2_400_000, mode: "serial" });
 const txt = async (l: any) => (await l.innerText().catch(() => "(none)")) || "(none)";

@@ -7,7 +7,7 @@ import { enterForgeSurface } from "../../forge/frame";
 import * as fs from "fs";
 
 const T = getTarget("lz-ppm-dashboard");
-const OUT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/live-6720";
+const OUT = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/live-6730";
 const PLAN = "LZPT Scenarios";
 const PLAN_ID = "plan-msq9dg8l-gz6mz1";
 const PF_NAME = "[harness-test] r2 ladder";
