@@ -110,7 +110,9 @@ test("critique walk: space admin → author → approver → reader → demoted 
     await requireApproval.check({ force: true }).catch((e: any) => note("A4: could not switch Require approval on from the UI", { error: String(e?.message || e).slice(0, 160) }));
     await page.waitForTimeout(500);
     const picker = app.locator('input[aria-label="Search people to add as approvers"]').first();
-    await picker.fill("Mihai");
+    const pickerUp = await picker.waitFor({ state: "visible", timeout: 15000 }).then(() => true).catch(() => false);
+    if (!pickerUp) note("A4: the approver picker did not render (the walk falls back to the hook seed below)", {});
+    if (pickerUp) await picker.fill("Mihai");
     await page.waitForTimeout(2500);
     await page.screenshot({ path: `${OUT}/A4-approver-picker.png`, fullPage: true });
     const opt = app.locator(".wf-userpicker-opt", { hasText: "Mihai" }).first();
