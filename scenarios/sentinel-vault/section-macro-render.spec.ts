@@ -180,7 +180,7 @@ test("view badge: an expired seal says 'Expired seal'", async ({ page }) => {
 });
 
 // P1-6 view badge, state 3: a macro node whose sectionId has NO seal record → "Not sealed yet".
-test("view badge: an unsealed section says 'Not sealed yet — seal it from Sentinel Vault under the page title (Seal a section…) or from the panel'", async ({ page }) => {
+test("view badge: an unsealed section says 'Not sealed yet — publish the page to seal it, or seal it from Sentinel Vault under the page title (Seal a section…)'", async ({ page }) => {
   const spaceId = await spaceIdByKey(SPACE);
   const sectionId = `harness-unsealed-${Date.now().toString(36)}`;
   const wrapper = buildBodiedExtensionNode(SENTINEL_APP, SENTINEL_ENV, "sentinel-vault-sealed-section", { params: { sectionId }, content: [paragraph("UNSEALED SECTION BODY")] as any });
@@ -192,7 +192,7 @@ test("view badge: an unsealed section says 'Not sealed yet — seal it from Sent
     await expect(badge).toHaveAttribute("data-state", "unsealed", { timeout: 20_000 });
     const text = (await badge.innerText()).replace(/\s+/g, " ").trim();
     console.log(`### badge (unsealed): "${text}"`);
-    expect(text).toBe("Not sealed yet — seal it from Sentinel Vault under the page title (Seal a section…) or from the panel"); // SEC-4: two doors
+    expect(text).toBe("Not sealed yet — publish the page to seal it, or seal it from Sentinel Vault under the page title (Seal a section…)"); // SEC-4 (a): publish seals; (b) the byline door
     const fallback = frame.locator(".sec-body-fallback");
     if (await fallback.isVisible().catch(() => false)) expect(await fallback.innerText()).toMatch(/Loading the section|not sealed yet/i); // loading text while the body frame boots (2026-09-17)
     await page.screenshot({ path: "test-results/section-macro-render-unsealed.png" });
