@@ -4,7 +4,7 @@
 // workflow settings to what they were (null → deleted) and deletes the page. Not a regression test.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
-import { enterForgeSurface } from "../../forge/frame";
+import { enterForgeSurface, ensureInViewport } from "../../forge/frame";
 import { getTestState } from "../../testhook/client";
 // @ts-ignore
 import { spaceIdByKey, createPage, deletePage, getComments, readPage } from "../../data/confluence.mjs";
@@ -105,7 +105,7 @@ test("critique walk: space admin → author → approver → reader → demoted 
     // approval settings live on the states view now, behind "Edit the states, approvers and protection…".
     if (await defToggle.count()) { await defToggle.click(); await page.waitForTimeout(800); }
     const requireApproval = app.locator('input[aria-label="Require approval to reach Approved"]').first();
-    await app.locator('[data-testid="wf-def-settings"]').waitFor({ state: "visible", timeout: 30000 }).catch(() => note("A4: the states view's settings block did not render in 30 s"));
+    await app.locator('[data-testid="wf-def-settings"]').waitFor({ state: "visible", timeout: 30000 }).catch(() => note("A4: the states view's settings block did not render in 30 s", {}));
     await ensureInViewport(page, requireApproval).catch(() => {});
     await requireApproval.check({ force: true }).catch((e: any) => note("A4: could not switch Require approval on from the UI", { error: String(e?.message || e).slice(0, 160) }));
     await page.waitForTimeout(500);

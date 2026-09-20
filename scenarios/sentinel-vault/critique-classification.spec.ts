@@ -167,7 +167,7 @@ test("A. page editor: fresh page → byline chip → modal → classify → ribb
     await page.waitForTimeout(9000);
     await ribbonState(page, "A12b after dismiss + reload (does dismissal stick?)");
   }
-  if (originalGlobal) await setKvs(GLOBAL, originalGlobal); else await delKvs(GLOBAL).catch(() => {});
+  await setKvs(GLOBAL, { ...(originalGlobal || {}), classificationEnabled: true }); // the walk keeps classification on; afterAll restores exactly
   if (originalSpaceDefault) await setKvs(`classification-space-${spaceId}`, originalSpaceDefault);
 });
 
