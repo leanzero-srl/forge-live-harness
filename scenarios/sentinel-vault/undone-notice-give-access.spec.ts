@@ -148,7 +148,7 @@ test("view: my tampered sealed section is put back while I look at the page, and
         }, { timeout: 60_000, message: "the ribbon shows the Restored row with See my version" }).toBe(true);
         const bar = (await ribbon!.locator('[data-testid="ribbon-bar"]').innerText()).replace(/\s+/g, " ");
         console.log(`### ribbon: ${bar}`);
-        expect(bar).toMatch(/Restored/);
+        expect(bar).toMatch(/Restored|Undone/); // SEC-3 (2026-09-20): the alert word is "Undone"
         expect(bar).toMatch(new RegExp(`See my version \\(v${tamperV}\\)`));
         await page.evaluate(() => window.scrollTo(0, 0));
         await page.screenshot({ path: `${OUT}/7-ribbon-restored.png` });

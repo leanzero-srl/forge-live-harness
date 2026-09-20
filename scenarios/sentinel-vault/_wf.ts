@@ -87,3 +87,13 @@ export async function shotRibbon(page: any, el: any, path: string, extra = 0) {
   if (!box) { await page.screenshot({ path }); return; }
   await page.screenshot({ path, clip: { x: Math.max(0, box.x - 4), y: Math.max(0, box.y - 4), width: Math.min(box.width + 8, 1440), height: box.height + 8 + extra } });
 }
+
+/** Put `recent-notifications` back. The hook takes the value on the query string, and a feed that grew
+ *  past ~8 KB during a run answers 414 — so a big original is restored trimmed to its newest 30 events. */
+export async function restoreFeed(original: any) {
+  if (!original) { await delKvs("recent-notifications").catch(() => {}); return; }
+  const events = Array.isArray(original.events) ? original.events : [];
+  let value = original;
+  if (JSON.stringify(original).length > 6000) value = { ...original, events: events.slice(-30) };
+  await setKvs("recent-notifications", value).catch(() => {});
+}

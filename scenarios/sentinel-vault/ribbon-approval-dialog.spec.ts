@@ -151,7 +151,7 @@ test("#7: approval dialog — opens from the awaiting chip, Escape returns focus
     let uiApproved = false;
     for (let t = 0; t < 14 && !uiApproved; t++) {
       const label = ((await ribbon.locator("button.wf-chip .wf-chip-label").first().innerText().catch(() => "")) as string).trim();
-      if (label === "Approved") { uiApproved = true; break; }
+      if (/^Approved( v\d+)?$/.test(label)) { uiApproved = true; break; } // WF-6 (2026-09-20): the chip reads "Approved vN"
       await page.waitForTimeout(1500);
     }
     expect(uiApproved, "the ribbon chip re-renders as the Approved state chip").toBeTruthy();

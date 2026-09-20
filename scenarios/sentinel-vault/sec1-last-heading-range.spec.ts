@@ -131,7 +131,7 @@ test("SEC-1: sealing the last heading stops before the Sentinel Vault panel and 
     expect(pickText, "the picker row says what the seal will cover").toMatch(/Seals heading \+ 1 block · ends before a sealed section/);
     const sealedFrame = await waitFrame(page, ".sec-frame:not(.sec-loading)", 90_000);
     expect(sealedFrame, "the sealed-section macro renders").toBeTruthy();
-    await expect.poll(async () => norm(await sealedFrame!.locator('[data-testid="sec-view-badge"]').innerText().catch(() => "")), { timeout: 60_000 }).toContain("Sealed by Mihai Perdum");
+    await expect.poll(async () => norm(await sealedFrame!.locator('[data-testid="sec-view-badge"]').innerText().catch(() => "")), { timeout: 60_000 }).toMatch(/Sealed by (you|Mihai Perdum)/); // SEC-3 (2026-09-20): the owner reads "Sealed by you"
     await expect.poll(async () => norm(await sealedFrame!.locator(".sec-frame").innerText().catch(() => "")), { timeout: 60_000 }).not.toMatch(/could not be displayed|Loading the section/);
     // The section sits above the panel: scroll the OUTER page to the top (an inner-iframe scroll
     // never moves the host document) before the shot.

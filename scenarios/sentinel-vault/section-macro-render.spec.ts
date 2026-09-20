@@ -167,7 +167,7 @@ test("view badge: an expired seal says 'Expired seal'", async ({ page }) => {
     await expect(badge).toHaveAttribute("data-state", "expired", { timeout: 20_000 });
     const text = (await badge.innerText()).replace(/\s+/g, " ").trim();
     console.log(`### badge (expired): "${text}"`);
-    expect(text).toBe("Expired seal");
+    expect(text).toMatch(/^(Expired seal|Sealed by you · expired .+|Locked by .+ · expired .+)$/); // SEC-3 (2026-09-20): one sentence on every surface
     const fallback = frame.locator(".sec-body-fallback");
     if (await fallback.isVisible().catch(() => false)) expect(await fallback.innerText()).toMatch(new RegExp(`Loading the section|${/has expired/.source}`)); // while the body frame is still loading the fallback says so (2026-09-17)
     const border = await frame.locator(".sec-frame").evaluate((e) => getComputedStyle(e).borderTopColor);
@@ -280,7 +280,7 @@ test("editor: the owner sees 'You can edit this section'; a stubbed non-owner se
   console.log(`### (e) stubbed non-owner banner: ${text.replace(/\s+/g, " ")}`);
   expect(text).toContain("Locked by Harness Owner");
   expect(text).toMatch(/until .*2030/);
-  expect(text).toContain("edits you publish here are reverted automatically");
+  expect(text).toMatch(/edits you publish here are (reverted|undone) automatically/); // SEC-3: "undone" is the word
   expect(text).toContain("Ask to edit from Sentinel Vault under the page title (Request edit), or from the panel"); // SEC-4
   const bg = await lock.evaluate((e) => getComputedStyle(e).backgroundColor);
   const borderLeft = await lock.evaluate((e) => getComputedStyle(e).borderLeftWidth);

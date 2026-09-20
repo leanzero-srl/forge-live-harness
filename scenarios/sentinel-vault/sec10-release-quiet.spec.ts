@@ -58,7 +58,8 @@ test("SEC-10 browser: Release on your own seal is the quiet style on the panel a
     expect(cls).not.toMatch(/\bunlock\b/);
     expect(bg, "not the danger red").not.toMatch(DANGER_RED);
     // Force release on Gabriela's seal (Mihai is a space admin) stays the danger style under ⋯
-    const rowTheirs = pf.locator('[data-testid="sv-section-row"]', { hasText: "Risks" });
+    // Two rows mention "Risks" (the other row's range/meta text names it) — match the TITLE cell.
+    const rowTheirs = pf.locator('[data-testid="sv-section-row"]', { has: pf.locator(".sv-section-row-title", { hasText: /^Risks$/ }) });
     await rowTheirs.locator('[data-testid="sv-section-kebab"]').click();
     const force = pf.locator('[role="menuitem"]', { hasText: "Force release" });
     await expect(force, "the space admin's Force release is offered").toBeVisible();

@@ -87,12 +87,15 @@ test("first-run: no setupCompletedAt → three steps → 1 week / Standard → F
     await expect(app.locator('[data-testid="sv-setup-profile-standard"]')).toHaveAttribute("aria-checked", "true");
     await app.locator('[data-testid="sv-setup-next"]').click();
 
-    // step 3 — provider detected (native | app), never stuck on "detecting"
+    // step 3 — CLS-1 (2026-09-20): the question is the classification SWITCH (off by default); the
+    // provider is detected (native | app), never stuck on "detecting", once it is switched on.
     await expect(app.locator('[data-testid="sv-setup-panel-3"]')).toBeVisible();
+    await app.locator('[data-testid="sv-setup-classification-on"]').click();
     await expect.poll(async () => await app.locator('[data-testid="sv-setup-provider"]').getAttribute("data-provider"), { timeout: 20000 })
       .toMatch(/^(native|app)$/);
     const provider = await app.locator('[data-testid="sv-setup-provider"]').getAttribute("data-provider");
     console.log("### classification provider detected:", provider);
+    await app.locator('[data-testid="sv-setup-classification-off"]').click(); // leave the site as it was (off)
     await app.locator('[data-testid="sv-setup-finish"]').click();
 
     // Finish → the settings view, and the KVS carries the mapped keys + the stamp

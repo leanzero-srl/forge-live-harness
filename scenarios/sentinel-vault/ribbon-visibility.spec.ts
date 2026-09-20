@@ -78,7 +78,8 @@ test.beforeAll(async () => {
   // Pin the steward setting the whole file assumes (mode "exceptions", threshold 4 = Restricted);
   // restored EXACTLY in afterAll. (j) flips the mode inside its own try/finally.
   originalGlobal = await getKvs(GLOBAL);
-  await setKvs(GLOBAL, { ...(originalGlobal || {}), ribbonMode: "exceptions", ribbonThresholdRank: 4 });
+  // CLS-1 (2026-09-20): classification is OFF by default — the ribbon then draws the brand block and set-page is refused; on for this spec.
+  await setKvs(GLOBAL, { ...(originalGlobal || {}), classificationEnabled: true, ribbonMode: "exceptions", ribbonThresholdRank: 4 });
   const spaceId = await spaceIdByKey(SPACE);
   const ts = Date.now();
   // (a) ONE sealed attachment, NO macro

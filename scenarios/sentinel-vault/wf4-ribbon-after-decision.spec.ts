@@ -39,7 +39,7 @@ for (const decision of ["approved", "denied"] as const) {
       const text = norm(await notice.innerText());
       console.log(`### notice (${decision}):`, text, "| ribbon:", norm(await r!.frame.locator('[data-testid="ribbon-bar"]').innerText()));
       expect(text).toMatch(decision === "approved" ? /^Approved — the page is now Approved/ : /^Denied — Gabriela Perdum has been told/);
-      await expect(r!.frame.locator(".wf-chip-label").first(), "the state chip agrees").toHaveText(decision === "approved" ? "Approved" : "In Review");
+      await expect(r!.frame.locator(".wf-chip-label").first(), "the state chip agrees").toHaveText(decision === "approved" ? /^Approved( v\d+)?$/ : "In Review"); // WF-6: "Approved vN"
       await shotRibbon(page, r!.el, `${OUT}/01-after-${decision}.png`, 20);
       expect(norm(await r!.frame.locator('[data-testid="ribbon-bar"]').innerText())).not.toMatch(/waiting for your decision/i);
     } finally {

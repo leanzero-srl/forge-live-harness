@@ -10,7 +10,7 @@
 // "Sealed (N)". Server half through the hook; browser half reads every surface. FAILS before, PASSES after.
 import { test, expect } from "../../fixtures/forge";
 import { mkdirSync } from "node:fs";
-import { setupWorkflowPage, loadPage, shotRibbon, inv, getKvs, setKvs, delKvs, norm, SPACE, MIHAI, GABI } from "./_wf";
+import { setupWorkflowPage, loadPage, shotRibbon, inv, getKvs, setKvs, delKvs, norm, SPACE, MIHAI, GABI, restoreFeed } from "./_wf";
 import { openDetailsModal, findDevPanel, findDevChip } from "./_door";
 import { getTarget } from "../../config/targets";
 // @ts-ignore
@@ -190,7 +190,7 @@ test("SEC-3 browser: the modal row, the panel row, the macro badge and the ribbo
     r = await loadPage(page, P);
     await expect(r!.frame.locator('[data-testid="ribbon-pill"]')).toHaveText(/Undone/, { timeout: 20_000 });
     await shotRibbon(page, r!.el, `${OUT}/05-ribbon-undone.png`);
-    if (originalNotifs) await setKvs("recent-notifications", originalNotifs); else await delKvs("recent-notifications").catch(() => {});
+    await restoreFeed(originalNotifs);
 
     // ── Approved once per bar ────────────────────────────────────────────────────────────────
     await approve(P);
@@ -205,7 +205,7 @@ test("SEC-3 browser: the modal row, the panel row, the macro badge and the ribbo
     await page.waitForTimeout(300);
     await shotRibbon(page, r!.el, `${OUT}/06b-ribbon-approved-once-dark.png`);
   } finally {
-    if (originalNotifs) await setKvs("recent-notifications", originalNotifs).catch(() => {}); else await delKvs("recent-notifications").catch(() => {});
+    await restoreFeed(originalNotifs);
     await call("request-transition", { pageId: P, toStateId: "draft" }, MIHAI).catch(() => {});
     if (ids?.risks) await call("unseal-section", { sectionId: ids.risks }, GABI).catch(() => {});
     if (ids?.decisions) await call("unseal-section", { sectionId: ids.decisions }, MIHAI).catch(() => {});

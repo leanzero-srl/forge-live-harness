@@ -77,7 +77,7 @@ test("WF-2 browser: the editor's ribbon says the edit was moved back / reverted,
     let r = await loadPage(page, P);
     expect(r, "ribbon renders").toBeTruthy();
     const pill = r!.frame.locator('[data-testid="ribbon-pill"]');
-    await expect(pill).toContainText("Restored", { timeout: 20_000 });
+    await expect(pill).toContainText(/Restored|Undone/, { timeout: 20_000 }); // SEC-3: the editor's pill reads "Undone"
     const s1 = norm(await r!.frame.locator('[data-testid="ribbon-status"]').innerText());
     console.log("### revert sentence:", s1);
     expect(s1).toMatch(/Your edit was reverted to approved v1\./);

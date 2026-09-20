@@ -158,8 +158,18 @@ test("SEC-8 browser: the requester sees Declined · ask again W on the ribbon an
     // ── My work: "Your edit requests" lists Mihai's declined request with the word and the clock ─
     const T = getTarget("sentinel-my-work");
     await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
-    const s = await enterForgeSurface(page, { surface: "custom", readySelector: '[data-testid="mw-page"]', timeout: 60_000 });
-    const mw = (s as any).frame;
+    await enterForgeSurface(page, { surface: "custom", readySelector: '[data-testid="mw-page"]', timeout: 60_000 }).catch(() => {});
+    // My work renders in one of several hosted-resources iframes; find the frame by its content (skill trap 2026-09-20).
+    let mw: any = null;
+    await expect.poll(async () => {
+      const ifr = page.locator("iframe");
+      const n = await ifr.count();
+      for (let i = 0; i < n; i++) {
+        const f = ifr.nth(i).contentFrame();
+        if ((await f.locator('[data-testid="mw-my-request-row"]').count().catch(() => 0)) > 0) { mw = f; return true; }
+      }
+      return false;
+    }, { timeout: 90_000, message: "My work rendered with my requests" }).toBe(true);
     const card = mw.locator('[data-testid="mw-my-requests"]');
     await expect(card).toBeVisible({ timeout: 30_000 });
     const row = card.locator('[data-testid="mw-my-request-row"]', { hasText: "Risks" });
