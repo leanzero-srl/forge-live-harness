@@ -8,13 +8,24 @@ const ctx = await chromium.launchPersistentContext(PROFILE, { headless: true, vi
 const page = ctx.pages()[0] || await ctx.newPage();
 await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
 await page.waitForTimeout(4000);
-await page.reload({ waitUntil: 'domcontentloaded' });
-await page.waitForTimeout(4000);
 
 const frame = page.frameLocator('iframe[data-testid="hosted-resources-iframe"]');
-const text = await frame.locator('body').innerText();
-console.log('=== TABS TEXT (first 500) ===');
-console.log(text.slice(0, 500));
+await frame.getByText('API Access', { exact: true }).first().click();
+await page.waitForTimeout(2000);
 
-await page.screenshot({ path: `${SS}/mint-05-reloaded.png` });
+await frame.getByPlaceholder('Name (e.g. CI reporter)').fill('demo-build-admin');
+
+const roleSelect = frame.locator('button').filter({ hasText: 'Viewer' }).first();
+await roleSelect.click();
+await page.waitForTimeout(500);
+await frame.getByText('Admin — also delete plans, snapshots and reports', { exact: true }).click();
+await page.waitForTimeout(500);
+
+await frame.getByRole('button', { name: 'Create token' }).click();
+await page.waitForTimeout(2000);
+await page.screenshot({ path: `${SS}/mint-08-created.png`, fullPage: true });
+
+const text = await frame.locator('body').innerText();
+console.log(text);
+
 await ctx.close();

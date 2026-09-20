@@ -15,7 +15,7 @@ import { openDetailsModal } from "./_door";
 // @ts-ignore
 import { heading, paragraph } from "../../data/adf.mjs";
 // @ts-ignore
-import { readPage, writeAdf } from "../../data/confluence.mjs";
+import { readPage, writeAdf, uploadAttachment } from "../../data/confluence.mjs";
 
 const OUT = process.env.OUT_DIR || "evidence/sec2-workflow-owns-seals";
 test.describe.configure({ timeout: 900_000 });
@@ -111,6 +111,64 @@ test("SEC-2 server: Approved takes custody of the seals, refuses personal action
     sectionId = null;
   } finally {
     if (sectionId) await call("unseal-section", { sectionId }, GABI).catch(() => {});
+    await bed.restore();
+  }
+});
+
+test("SEC-2 server (attachments): an attachment seal is held on Approved, its release / extend / grant refused, and handed back with its remaining time", async () => {
+  const bed = await setupWorkflowPage("sec2-attachment", { body: BODY });
+  const P = bed.pageId;
+  let att: string | null = null;
+  try {
+    const up = await uploadAttachment(P, `sec2-held-${Date.now()}.txt`, "held while approved");
+    att = up.attachmentId;
+    const s = await call("seal-artifact", { attachmentId: att, lockDuration: 2 * 86400 }, GABI);
+    expect(s?.success, `Gabriela seals the file (${JSON.stringify(s).slice(0, 160)})`).toBe(true);
+    const rec0 = await getKvs(`protection-${att}`);
+    expect(rec0?.lockedBy).toBe(GABI);
+    expect(rec0?.expiresAt, "a live expiry before the approval").toBeTruthy();
+    const remainingBefore = new Date(rec0.expiresAt).getTime() - Date.now();
+    const freeze = await call("workflow-seals-to-freeze", { pageId: P }, MIHAI);
+    expect((freeze?.attachments || []).some((a: any) => String(a.id) === String(att)), "the approval dialog lists the file it will freeze").toBe(true);
+    // The first seal on a page embeds the inline panel (an app page write that lands a few seconds
+    // later); an approval requested before it lands is refused as stale. Wait for the version to settle.
+    let last = (await readPage(P)).version;
+    for (let i = 0; i < 12; i++) { await new Promise((r) => setTimeout(r, 5000)); const v = (await readPage(P)).version; if (v === last && i >= 1) break; last = v; }
+
+    await approve(P);
+    const rec1 = await getKvs(`protection-${att}`);
+    console.log("### held attachment:", JSON.stringify({ expiresAt: rec1.expiresAt, workflowHeld: rec1.workflowHeld }));
+    expect(rec1.workflowHeld, "the file seal is the workflow's").toBeTruthy();
+    expect(rec1.expiresAt, "expiry paused").toBeNull();
+    expect(Math.abs(rec1.workflowHeld.remainingMs - remainingBefore)).toBeLessThan(60_000);
+    if (rec1.spaceId) expect((await getKvs(`space-protection-${rec1.spaceId}-${att}`))?.workflowHeld, "the space index row follows").toBeTruthy();
+    const sum = await call("page-details-summary", { pageId: P }, GABI);
+    const row = (sum?.seals || []).find((r: any) => r.kind === "attachment" && String(r.id) === String(att));
+    expect(row?.workflowHeld, "the modal row says so").toBe(true);
+
+    const rel = await call("unseal-artifact", { attachmentId: att }, GABI);
+    const ext = await call("extend-seal", { attachmentId: att, additionalSeconds: 3600 }, GABI);
+    const grant = await call("grant-edit-access", { attachmentId: att, editorAccountId: MIHAI }, GABI);
+    const req = await call("request-edit-access", { attachmentId: att, reason: "please" }, MIHAI);
+    console.log("### attachment refusals:", JSON.stringify({ rel, ext, grant, req }));
+    expect(rel?.success).toBe(false); expect(rel?.reason).toBe(HELD);
+    expect(ext?.success).toBe(false); expect(ext?.reason).toBe(HELD);
+    expect(grant?.success).toBe(false); expect(grant?.reason).toBe(HELD);
+    expect(req?.success).toBe(false); expect(req?.reason).toBe(HELD);
+    expect(await getKvs(`protection-${att}`), "nothing changed on the record").toMatchObject({ workflowHeld: rec1.workflowHeld, expiresAt: null });
+
+    const t = await call("request-transition", { pageId: P, toStateId: "draft" }, MIHAI);
+    expect(t?.success, `back to Draft (${JSON.stringify(t).slice(0, 120)})`).toBe(true);
+    const rec2 = await getKvs(`protection-${att}`);
+    console.log("### handed back:", JSON.stringify({ expiresAt: rec2.expiresAt, workflowHeld: rec2.workflowHeld }));
+    expect(rec2.workflowHeld).toBeFalsy();
+    expect(Math.abs(new Date(rec2.expiresAt).getTime() - Date.now() - remainingBefore), "the remaining time is restored").toBeLessThan(120_000);
+    const rel2 = await call("unseal-artifact", { attachmentId: att }, GABI);
+    expect(rel2?.success, "the owner can release again").toBe(true);
+    att = null;
+  } finally {
+    await call("request-transition", { pageId: P, toStateId: "draft" }, MIHAI).catch(() => {});
+    if (att) await call("unseal-artifact", { attachmentId: att }, GABI).catch(() => {});
     await bed.restore();
   }
 });
