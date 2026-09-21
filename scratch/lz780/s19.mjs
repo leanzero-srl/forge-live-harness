@@ -1,0 +1,32 @@
+// Item 4c: force a genuine CHANGE on the same page (retitle) -> v2 + version message
+import { open, appFrame, shot, openPlan, APP, P2_NAME } from "./drive.mjs";
+import { pick, observe, toasts, SPACE } from "./pub.mjs";
+const { ctx, page } = await open();
+const bodies = [];
+page.on('response', async (res) => { if (!/invoke|gateway/.test(res.url())) return;
+  try { const t = await res.text(); if (/pageId/.test(t)) bodies.push(t.slice(0,800)); } catch {} });
+await page.goto(APP, { waitUntil: "domcontentloaded" });
+const f = await appFrame(page);
+await openPlan(page, f, P2_NAME);
+await f.locator('button:has-text("Planning")').first().click(); await page.waitForTimeout(4000);
+await f.locator('button:has-text("Sponsor reports")').first().click(); await page.waitForTimeout(4000);
+await pick(page, f, "LZ780 storyline");
+await observe(f);
+await f.locator('[data-testid="publish-to-confluence"]').click();
+const dlg = f.locator('[data-testid="publish-confluence-dialog"]');
+await dlg.waitFor({ timeout: 30000 }); await page.waitForTimeout(2500);
+const title = dlg.locator('input[type="text"], input:not([type])').last();
+const old = await title.inputValue();
+console.log("default title:", JSON.stringify(old));
+await title.fill(old + " (edited title)");
+await page.waitForTimeout(400);
+await shot(page, "4c-dialog");
+bodies.length = 0;
+await dlg.locator('button').filter({ hasText: /^(Publish|Update the page)/ }).last().dispatchEvent('click');
+for (let i=0;i<90;i++){ await page.waitForTimeout(1000); if (!(await dlg.count())) break; }
+await page.waitForTimeout(2500);
+console.log("TOASTS:", JSON.stringify(await toasts(f)));
+console.log("CHIP:", JSON.stringify(await f.locator('[data-testid="confluence-published-chip"]').innerText().catch(()=>"(none)")));
+for (const b of bodies) console.log("INVOKE:", b.replace(/\s+/g,' ').slice(0,500));
+await shot(page, "4c-after");
+await ctx.close();

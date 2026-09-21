@@ -1,0 +1,10 @@
+import { rest } from "./rest.mjs";
+import fs from "fs";
+const bed = JSON.parse(fs.readFileSync(new URL("./bed.json", import.meta.url)));
+const all = [...bed.all, bed.epic2, ...bed.S];
+const p1 = await rest("resource=plans", { method:"POST", body:{ name:"LZ780 Rollout programme (tester)", jql: bed.jql, protectionEnabled:false, wait:30 }});
+console.log("P1", p1.status, p1.plan?.id || JSON.stringify(p1).slice(0,300));
+const p2 = await rest("resource=plans", { method:"POST", body:{ name:"LZ780 Both programmes (tester)", jql:`key in (${all.join(",")})`, protectionEnabled:false, wait:30 }});
+console.log("P2", p2.status, p2.plan?.id || JSON.stringify(p2).slice(0,300));
+bed.p1 = p1.plan?.id; bed.p2 = p2.plan?.id; bed.allKeys = all;
+fs.writeFileSync(new URL("./bed.json", import.meta.url), JSON.stringify(bed,null,2));

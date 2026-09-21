@@ -1,0 +1,50 @@
+LZ780 archive
+Download complete HTML report
+Publish to Confluence
+Delete report
+
+21 Sep 2026, 04:11 UTC · revision 13 · 23 issues
+
+Planned finish: 2026-11-09. 1 of 21 tasks has no usable dates and is not in this finish. Planned dates and simulated finishes are distinct.
+
+P50 2026-11-12 · P80 2026-11-13 · P90 2026-11-16
+
+300 simulations · seed 42 · medium uncertainty · duration-triangular-fs-v1. P90 means at least 90% of simulated finishes on or before that date, conditional on these assumptions; this is not historical calibration.
+
+Capacity was not included at capture. No availability is assumed.
+
+No baseline was active at capture. 0 changed · 0 added · 0 removed.
+
+Standalone HTML with a print layout. Open the downloaded file and choose Print → Save as PDF. Every row is included; pages continue as needed.
+
+Preview section
+Timeline (23)
+
+Page 1 of 1 · 23 rows in this section
+
+ISSUE / TARGET	DETAILS	SCHEDULE
+WFH-3706	[harness-test] LZ780 Rollout programme	2026-08-24 → 2026-10-23 · 45 workdays
+WFH-3707	[harness-test] LZ780 A Foundation	2026-09-21 → 2026-09-25 · 5 workdays
+WFH-3708	[harness-test] LZ780 B Build	2026-09-28 → 2026-10-02 · 5 workdays
+WFH-3709	[harness-test] LZ780 C Cutover	2026-10-05 → 2026-10-09 · 5 workdays
+WFH-3710	[harness-test] LZ780 D Signoff (done)	2026-09-28 → 2026-10-02 · 5 workdays
+WFH-3711	[harness-test] LZ780 Q Legacy prep (done)	2026-08-24 → 2026-08-28 · 5 workdays
+WFH-3712	[harness-test] LZ780 P Past follow-up	2026-08-31 → 2026-09-04 · 5 workdays
+WFH-3713	[harness-test] LZ780 U Vendor contract renewal	— → — · — workdays
+WFH-3714	[harness-test] LZ780 R Comms pack	2026-10-19 → 2026-10-23 · 5 workdays
+WFH-3715	[harness-test] LZ780 Migration wave	2026-08-10 → 2026-11-09 · 66 workdays
+WFH-3716	[harness-test] LZ780 S1 Extract legacy data	2026-08-10 → 2026-08-14 · 5 workdays
+WFH-3717	[harness-test] LZ780 S2 Map reference data	2026-08-17 → 2026-08-21 · 5 workdays
+WFH-3718	[harness-test] LZ780 S3 Stand up target schema	2026-08-24 → 2026-08-28 · 5 workdays
+WFH-3719	[harness-test] LZ780 S4 Dry-run load 1	2026-08-31 → 2026-09-04 · 5 workdays
+WFH-3720	[harness-test] LZ780 S5 Reconcile load 1	2026-09-07 → 2026-09-11 · 5 workdays
+WFH-3721	[harness-test] LZ780 S6 Dry-run load 2	2026-09-14 → 2026-09-18 · 5 workdays
+WFH-3722	[harness-test] LZ780 S7 Reconcile load 2	2026-09-21 → 2026-09-28 · 6 workdays
+WFH-3723	[harness-test] LZ780 S8 Interface rewire	2026-09-29 → 2026-10-05 · 5 workdays
+WFH-3724	[harness-test] LZ780 S9 Interface regression	2026-10-06 → 2026-10-12 · 5 workdays
+WFH-3725	[harness-test] LZ780 S10 Parallel run	2026-10-13 → 2026-10-19 · 5 workdays
+WFH-3726	[harness-test] LZ780 S11 Parallel sign-off	2026-10-20 → 2026-10-26 · 5 workdays
+WFH-3727	[harness-test] LZ780 S12 Freeze and final load	2026-10-27 → 2026-11-02 · 5 workdays
+WFH-3728	[harness-test] LZ780 S13 Switchover	2026-11-03 → 2026-11-09 · 5 workdays
+Previous report page
+Next report page

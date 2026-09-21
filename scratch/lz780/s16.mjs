@@ -1,0 +1,15 @@
+import { open, appFrame, shot, openPlan, APP, P2_NAME } from "./drive.mjs";
+import { pick, receipt, download, publish } from "./pub.mjs";
+const { ctx, page } = await open();
+await page.goto(APP, { waitUntil: "domcontentloaded" });
+const f = await appFrame(page);
+await openPlan(page, f, P2_NAME);
+await f.locator('button:has-text("Planning")').first().click(); await page.waitForTimeout(4000);
+await f.locator('button:has-text("Sponsor reports")').first().click(); await page.waitForTimeout(4000);
+await pick(page, f, "LZ780 storyline");
+console.log("SELECTED:", (await f.locator('.lz-history-detail').innerText().catch(()=>"?")).slice(0,200));
+await receipt(page, f, "storyline");
+await download(page, f, "storyline-download");
+await publish(page, f, "storyline-1", shot);
+await publish(page, f, "storyline-2", shot);
+await ctx.close();

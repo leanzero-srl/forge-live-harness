@@ -1,0 +1,15 @@
+import { open, appFrame, shot, openPlan, APP, P2_NAME } from "./drive.mjs";
+const { ctx, page } = await open();
+await page.goto(APP, { waitUntil: "domcontentloaded" });
+const f = await appFrame(page);
+await openPlan(page, f, P2_NAME);
+await f.locator('button:has-text("Planning")').first().click(); await page.waitForTimeout(5000);
+await shot(page, "pub-00-planning");
+console.log("PLANNING TEXT:", (await f.locator('body').innerText()).slice(0, 1200));
+const sr = f.locator('button:has-text("Sponsor reports")');
+console.log("sponsor tab count", await sr.count());
+await sr.first().click(); await page.waitForTimeout(5000);
+await shot(page, "pub-01-reports");
+console.log("REPORTS TEXT:", (await f.locator('body').innerText()).slice(0, 2500));
+console.log("TESTIDS:", JSON.stringify(await f.evaluate(() => [...new Set([...document.querySelectorAll('[data-testid]')].map(e=>e.getAttribute('data-testid')))])));
+await ctx.close();

@@ -1,0 +1,60 @@
+LZ780 storyline T
+Download storyline report
+Publish to Confluence
+Delete report
+
+21 Sep 2026, 04:44 UTC · revision 15
+
+Planned finish: 2026-11-12. 1 of 21 tasks has no usable dates and is not in this finish.
+
+This is a storyline report. It is one document, already composed — there are no pages to step through.
+
+A standalone HTML file with a print layout. Open it and choose Print → Save as PDF.
+
+VERDICT
+Late
+
+Late — this plan finishes 2026-11-12.
+
+1 of 1 storyline has no room left.
+
+1 ticket (5%) has no dates and no links; nothing there can move the finish yet.
+
+Measured against Go-live on 2026-11-30: 12 working days of room.
+
+THE FINISH AND WHAT DRIVES IT
+
+2026-11-12
+
+The finish is set by "S1-S13 Load and switchover" — 7 of its 13 tickets still drive the date (6 are done), with 0 days of room.
+
+THE STORYLINES
+S1-S13 Load and switchover
+Slipping — 7 of 13 tickets still have no room (6 are done); WFH-3722 is holding it up.
+13 tickets · 2026-08-10 → 2026-11-12
+THE BEATS THAT MATTER
+Dry-run and reconcile
+Slipping — 1 of 4 tickets still has no room (3 are done); WFH-3722 is holding it up.
+S1-S13 Load and switchover · 4 tickets · 2026-08-31 → 2026-09-28
+Interface and parallel
+Slipping — 3 of 3 tickets have no room; no single ticket is tighter than the rest.
+S1-S13 Load and switchover · 3 tickets · 2026-09-29 → 2026-10-22
+Oct–Nov 2026 · 3 issues · drives the finish
+Slipping — 3 of 3 tickets have no room; no single ticket is tighter than the rest.
+S1-S13 Load and switchover · 3 tickets · 2026-10-23 → 2026-11-12
+DECISIONS NEEDED
+
+Decisions are read from ticket comments. Comments were not read for this report: the comment layer has never been run on this plan.
+
+DELIVERED SINCE THE LAST REPORT
+
+Nothing has been recorded as delivered since 2026-09-21.
+
+RISKS
+"S1-S13 Load and switchover" has no room left; WFH-3722 is holding it up.
+WFH-3712 is 2 weeks past its date and not done.
+PROVENANCE
+
+Comments were not read for this report: the comment layer has never been run on this plan.
+
+Captured 21 Sep 2026, 04:44 UTC over 23 issues, 1 storyline and 4 beats.
