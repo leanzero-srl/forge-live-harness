@@ -14,8 +14,14 @@ export const SITE_HOST = new URL(BASE_URL).host;
 export const WIKI_BASE = `${BASE_URL}/wiki`;
 
 export const AUTH_DIR = path.join(REPO_ROOT, ".auth");
-/** Persistent Chrome profile — preserves device identity so Atlassian doesn't see a "new device". */
-export const USER_DATA_DIR = path.join(AUTH_DIR, "profile");
+/**
+ * Persistent Chrome profile — preserves device identity so Atlassian doesn't see a "new device".
+ *
+ * `LZ_HARNESS_PROFILE` names a SIBLING profile directory under .auth/ so two testers can
+ * run concurrently without contending on one profile's reservation lock (each profile dir
+ * gets its own lock). Default is unchanged: `.auth/profile`.
+ */
+export const USER_DATA_DIR = path.join(AUTH_DIR, process.env.LZ_HARNESS_PROFILE ?? "profile");
 /** Exported storageState (portability / inspection). Primary reuse is the profile above. */
 export const STORAGE_STATE = path.join(AUTH_DIR, "storage-state.json");
 
