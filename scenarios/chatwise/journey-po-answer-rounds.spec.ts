@@ -21,8 +21,7 @@ import {
   QUOTA_BUBBLE,
   deliverMessage,
   GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage, readAppState,
-  settleBootSelection, waitForChatApp,
-} from "./chatwise-support";
+  settleBootSelection, waitForChatApp, pickPersonaIfGated } from "./chatwise-support";
 
 const T = getTarget("chatwise-global");
 const ROUNDS = 4;
@@ -48,7 +47,7 @@ test("PO wizard: recommended clicks are always understood, round after round", a
   const frame = await openGlobalPage(page, T);
   await waitForChatApp(page, frame, GLOBAL_APP);
   await settleBootSelection(page, frame);
-  await frame.locator("#newChatButton").click();
+  await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
 
   try {

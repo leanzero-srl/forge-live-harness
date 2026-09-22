@@ -4,7 +4,7 @@ import { getTarget } from '../../config/targets';
 import { BASE_URL } from '../../config/env';
 import { BASE as JIRA_BASE, request } from '../../data/jira.mjs';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, settleBootSelection, awaitSwapSettled, readAppState, sendMessage, callResolver } from './chatwise-support';
+import { GLOBAL_APP, openGlobalPage, waitForChatApp, settleBootSelection, awaitSwapSettled, readAppState, sendMessage, callResolver, pickPersonaIfGated } from './chatwise-support';
 
 const FOLDER = '/tmp/cw-progressive-tools-173';
 const PROJECT = 'DL9491863';
@@ -50,7 +50,7 @@ test('natural administrator read loads a schema and reports the assigned permiss
     entry.oracleBefore = await readScheme(); save();
     expect(existsSync(`${FOLDER}/STOP.txt`)).toBe(false);
     await settleBootSelection(page, frame);
-    await frame.locator('#newChatButton').click(); await awaitSwapSettled(frame);
+    await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame); await awaitSwapSettled(frame);
     await frame.locator('#dropdownSelected').click();
     await frame.locator('#dropdownOptions .dropdown-option[data-persona-id="jira-admin"]').click();
     await expect(frame.locator('#dropdownSelected .selected-text')).toHaveText('Jira Administrator');

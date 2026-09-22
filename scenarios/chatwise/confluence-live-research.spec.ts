@@ -12,8 +12,7 @@ import { BASE_URL } from '../../config/env';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 import {
   GLOBAL_APP, openGlobalPage, waitForChatApp, settleBootSelection, awaitSwapSettled,
-  readAppState, deliverMessage, callResolver, logWindow, describeLogs,
-} from './chatwise-support';
+  readAppState, deliverMessage, callResolver, logWindow, describeLogs, pickPersonaIfGated } from './chatwise-support';
 // eslint-disable-next-line
 import { get } from '../../data/jira.mjs';
 
@@ -53,7 +52,7 @@ test('C: a researched brief on WFH cites page titles that really exist', async (
   const frame = await openGlobalPage(page, getTarget('chatwise-global'));
   await waitForChatApp(page, frame, GLOBAL_APP);
   await settleBootSelection(page, frame);
-  await frame.locator('#newChatButton').click();
+  await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
   entry.persona = await frame.locator('#dropdownSelected .selected-text').innerText();
   entry.conversationId = await readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()');

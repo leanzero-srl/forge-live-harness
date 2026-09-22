@@ -10,8 +10,7 @@ import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
   GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage, readAppState,
-  settleBootSelection, waitForChatApp,
-} from "./chatwise-support";
+  settleBootSelection, waitForChatApp, pickPersonaIfGated } from "./chatwise-support";
 
 const T = getTarget("chatwise-global");
 
@@ -23,7 +22,7 @@ test("uploads journey: paperclip, chips, rejection line, image OCR, remove", asy
   const frame = await openGlobalPage(page, T);
   await waitForChatApp(page, frame, GLOBAL_APP);
   await settleBootSelection(page, frame);
-  await frame.locator("#newChatButton").click();
+  await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
   await frame.locator("#welcomeMessage .welcome-prompt").first().waitFor({ timeout: 15_000 });
 

@@ -1,6 +1,6 @@
 import { test, expect } from '../../fixtures/forge';
 import { getTarget } from '../../config/targets';
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, awaitSwapSettled } from './chatwise-support';
+import { GLOBAL_APP, openGlobalPage, waitForChatApp, awaitSwapSettled, pickPersonaIfGated } from './chatwise-support';
 test('New chat clears the previous turn persona lock without inference', async ({ page }) => {
   const T = getTarget('chatwise-global');
   const frame = await openGlobalPage(page,T);
@@ -12,7 +12,7 @@ test('New chat clears the previous turn persona lock without inference', async (
     app.services.persona.setPersonaLocked(true);
     app.components.personaSelector.setPersonaLocked(true);
   });
-  await frame.locator('#newChatButton').click();
+  await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
   const state = await frame.locator('body').evaluate(() => {
     const app = (window as any).chatWiseGlobal;

@@ -10,8 +10,7 @@ import { BASE as JIRA_BASE, get } from '../../data/jira.mjs';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 import {
   GLOBAL_APP, openGlobalPage, waitForChatApp, settleBootSelection, awaitSwapSettled,
-  readAppState, readThread, deliverMessage, callResolver,
-} from './chatwise-support';
+  readAppState, readThread, deliverMessage, callResolver, pickPersonaIfGated } from './chatwise-support';
 
 const FOLDER = '/tmp/cw-confluence-probe0';
 const SPACE_KEY = 'WFH';
@@ -96,7 +95,7 @@ test('the deployed Jira app reaches Confluence as the user and reads the WFH hom
     expect(entry.oracle.homepageTitle).toBe('WORK FOR HIRE Home');
 
     await settleBootSelection(page, frame);
-    await frame.locator('#newChatButton').click();
+    await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame);
     await awaitSwapSettled(frame);
     entry.persona = await frame.locator('#dropdownSelected .selected-text').innerText();
     entry.conversationId = await readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()');

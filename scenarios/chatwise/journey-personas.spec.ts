@@ -20,8 +20,7 @@ import {
   deleteFixtures,
   deliverMessage,
   GLOBAL_APP, PANEL_APP, awaitSwapSettled, callResolver, openGlobalPage, openPanel,
-  readAppState, settleBootSelection, waitForChatApp,
-} from "./chatwise-support";
+  readAppState, settleBootSelection, waitForChatApp, pickPersonaIfGated } from "./chatwise-support";
 // eslint-disable-next-line
 import { get, post } from "../../data/jira.mjs";
 
@@ -107,7 +106,7 @@ test("the global page offers exactly the six factory personas", async ({ page })
   const frame = await openGlobalPage(page, G);
   await waitForChatApp(page, frame, GLOBAL_APP);
   await settleBootSelection(page, frame);
-  await frame.locator("#newChatButton").click();
+  await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
 
   await frame.locator("#dropdownSelected").click();
@@ -165,7 +164,7 @@ test("Coffee Break AI: casual chat on ITS model, no Jira machinery", async ({ pa
   const frame = await openGlobalPage(page, G);
   await waitForChatApp(page, frame, GLOBAL_APP);
   await settleBootSelection(page, frame);
-  await frame.locator("#newChatButton").click();
+  await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
   let conversationId: string | null = null;
   try {
@@ -260,7 +259,7 @@ test("Epic Master: decomposes a real epic into a real hierarchy", async ({ page 
     frame = await openGlobalPage(page, G);
     await waitForChatApp(page, frame, GLOBAL_APP);
     await settleBootSelection(page, frame);
-    await frame.locator("#newChatButton").click();
+    await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
     await awaitSwapSettled(frame);
     await pickPersona(frame, /Epic Master/);
 

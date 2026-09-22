@@ -16,8 +16,7 @@ import { getTarget } from "../../config/targets";
 import {
   GLOBAL_APP, SCRIPTED, awaitSwapSettled, callResolver, forceTestModeOff, openGlobalPage,
   readAppState, readThread, sendMessage, setTestMode, settleBootSelection,
-  waitForChatApp, waitForThread,
-} from "./chatwise-support";
+  waitForChatApp, waitForThread, pickPersonaIfGated } from "./chatwise-support";
 
 const T = getTarget("chatwise-global");
 
@@ -34,7 +33,7 @@ test("global page journey: welcome → persona → chat → message actions → 
   const madeConversations: string[] = [];
   try {
     // ---- A fresh chat, so the welcome screen and persona picker are live ----
-    await frame.locator("#newChatButton").click();
+    await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
     await awaitSwapSettled(frame);
     await frame.locator("#welcomeMessage .welcome-prompt").first().waitFor({ timeout: 15_000 });
     const convA = (await readAppState<string | null>(
@@ -126,7 +125,7 @@ test("global page journey: welcome → persona → chat → message actions → 
       .toBe(before - 1);
 
     // ---- Second conversation ----------------------------------------------
-    await frame.locator("#newChatButton").click();
+    await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
     await awaitSwapSettled(frame);
     await frame.locator("#welcomeMessage .welcome-prompt").first().waitFor({ timeout: 15_000 });
     const convB = (await readAppState<string | null>(

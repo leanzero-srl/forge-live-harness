@@ -2,7 +2,7 @@
 import { test, expect } from '../../fixtures/forge';
 import { getTarget } from '../../config/targets';
 import { BASE_URL } from '../../config/env';
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver, awaitSwapSettled, readAppState } from './chatwise-support';
+import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver, awaitSwapSettled, readAppState, pickPersonaIfGated } from './chatwise-support';
 import { zipEntries, slideFileCount, readEntryText } from '../../data/zip.mjs';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -47,7 +47,7 @@ test('large source becomes a substantial downloadable presentation', async ({ pa
     return;
   }
   if (!prior) {
-    await frame.locator('#newChatButton').click();
+    await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame);
     await awaitSwapSettled(frame);
     await frame.locator('#dropdownSelected').click();
     await frame.locator('.dropdown-option[data-persona-id="product-owner"]').click();

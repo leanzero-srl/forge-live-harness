@@ -22,8 +22,7 @@ import {
   deleteFixtures,
   deliverMessage,
   ERROR_BUBBLE, GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage,
-  readAppState, readThread, settleBootSelection, waitForChatApp,
-} from "./chatwise-support";
+  readAppState, readThread, settleBootSelection, waitForChatApp, pickPersonaIfGated } from "./chatwise-support";
 
 const T = getTarget("chatwise-global");
 const PROJECT = process.env.CHATWISE_TEST_PROJECT || "WFH";
@@ -111,7 +110,7 @@ test("PO full flow: initiative → wizard → approval → a real Epic in Jira, 
   const frame = await openGlobalPage(page, T);
   await waitForChatApp(page, frame, GLOBAL_APP);
   await settleBootSelection(page, frame);
-  await frame.locator("#newChatButton").click();
+  await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
 
   try {

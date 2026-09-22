@@ -11,8 +11,7 @@ import { get } from '../../data/jira.mjs';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 import {
   GLOBAL_APP, openGlobalPage, waitForChatApp, settleBootSelection, awaitSwapSettled,
-  readAppState, readThread, deliverMessage, callResolver,
-} from './chatwise-support';
+  readAppState, readThread, deliverMessage, callResolver, pickPersonaIfGated } from './chatwise-support';
 
 const FOLDER = '/tmp/cw-confluence-probe0';
 const HOME_ID = '852172';
@@ -56,7 +55,7 @@ test('a narrow Confluence read reaches the user as the exact page title', async 
     save();
     expect(entry.oracle.title).toBe('WORK FOR HIRE Home');
     await settleBootSelection(page, frame);
-    await frame.locator('#newChatButton').click();
+    await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame);
     await awaitSwapSettled(frame);
     entry.persona = await frame.locator('#dropdownSelected .selected-text').innerText();
     entry.conversationId = await readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()');

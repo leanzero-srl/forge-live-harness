@@ -2,7 +2,7 @@
 import { test, expect } from '../../fixtures/forge';
 import { getTarget } from '../../config/targets';
 import { BASE_URL } from '../../config/env';
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver, awaitSwapSettled } from './chatwise-support';
+import { GLOBAL_APP, openGlobalPage, waitForChatApp, callResolver, awaitSwapSettled, pickPersonaIfGated } from './chatwise-support';
 import { zipEntries, slideFileCount, readEntryText } from '../../data/zip.mjs';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { get } from '../../data/jira.mjs';
@@ -40,7 +40,7 @@ test('two-turn reliability acceptance: admin discovery and Product Owner deck', 
     { persona: 'product-owner', prompt: 'Create a downloadable PowerPoint now, not an Epic or wizard. Apply the diconium brand skill if available and use the presentation guide. No Jira attachment or Jira writes. Exactly four varied slides: cover titled Delivery confidence; metrics showing 24 delivered, 6 remaining, 80% complete; a comparison of current manual reporting versus automated reporting; and next steps with three milestones. This is illustrative data, not measured Jira data. Give me the file.' },
   ]) {
     if (resumePresentation && scenario.persona !== 'product-owner') continue;
-    await frame.locator('#newChatButton').click();
+    await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame);
     await awaitSwapSettled(frame);
     await frame.locator('#dropdownSelected').click();
     await frame.locator(`.dropdown-option[data-persona-id="${scenario.persona}"]`).click();

@@ -42,8 +42,7 @@ import {
   BASE_URL, GLOBAL_APP, PANEL_APP, armAutoStop, armComposerWatch, assertLoggedIn,
   callResolver, composerState, describeThread, errorBubbles, openGlobalPage, openPanel,
   readAppState, readAutoStop, readComposerWatch, readThread, sendMessage,
-  setRecorderTarget, settleBootSelection, waitForChatApp, waitForThread, watchNoise,
-} from "./chatwise-support";
+  setRecorderTarget, settleBootSelection, waitForChatApp, waitForThread, watchNoise, pickPersonaIfGated } from "./chatwise-support";
 
 const T_GLOBAL = getTarget("chatwise-global");
 const T_PANEL = getTarget("chatwise-issue-panel");
@@ -255,7 +254,7 @@ test("ChatWise GLOBAL page — Stop cancels cleanly (no error bubble, no late re
       // and would replace this conversation mid-scenario. Wait it out so this
       // spec measures cancellation and nothing else.
       await settleBootSelection(page, frame);
-      await frame.locator("#newChatButton").click();
+      await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
       await waitForThread(page, frame, (t) => t.length === 0, {
         timeout: 20_000, interval: 500, label: "an empty thread after New chat",
       });

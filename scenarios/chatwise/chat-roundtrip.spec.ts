@@ -39,8 +39,7 @@ import {
   BASE_URL, GLOBAL_APP, SCRIPTED, armComposerWatch, assertLoggedIn, callResolver,
   composerState, describeThread, errorBubbles, forceTestModeOff, openGlobalPage,
   readAppState, readComposerWatch, readThread, sendMessage, setRecorderTarget,
-  setTestMode, settleBootSelection, waitForChatApp, waitForThread, watchNoise,
-} from "./chatwise-support";
+  setTestMode, settleBootSelection, waitForChatApp, waitForThread, watchNoise, pickPersonaIfGated } from "./chatwise-support";
 
 const T = getTarget("chatwise-global");
 
@@ -110,7 +109,7 @@ test("ChatWise global page — a chat turn round-trips and renders as an ASSISTA
       // isolates that defect). This scenario is about the chat turn, so it does
       // not compete with it.
       await settleBootSelection(page, frame);
-      await frame.locator("#newChatButton").click();
+      await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
       await page.waitForTimeout(1_500);
       const thread = await waitForThread(page, frame, (t) => t.length === 0, {
         timeout: 20_000, interval: 500, label: "an empty thread after New chat",

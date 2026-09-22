@@ -22,8 +22,7 @@ import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import {
   GLOBAL_APP, awaitSwapSettled, callResolver, openGlobalPage,
-  readAppState, settleBootSelection, waitForChatApp,
-} from "./chatwise-support";
+  readAppState, settleBootSelection, waitForChatApp, pickPersonaIfGated } from "./chatwise-support";
 
 const T = getTarget("chatwise-global");
 const WIZARD = /🧭 Epic Facilitator|📋 Epic Preview/;
@@ -49,7 +48,7 @@ async function probe(page: any, first: string, second: string) {
   const frame = await openGlobalPage(page, T);
   await waitForChatApp(page, frame, GLOBAL_APP);
   await settleBootSelection(page, frame);
-  await frame.locator("#newChatButton").click();
+  await frame.locator("#newChatButton").click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
   await frame.locator('#promptCategories .welcome-prompt-category[data-category="write"]').click();
   await frame.locator("#welcomePrompts .welcome-prompt").filter({ hasText: /epic/i }).first().click();

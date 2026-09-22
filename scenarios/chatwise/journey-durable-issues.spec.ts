@@ -4,7 +4,7 @@ import { getTarget } from '../../config/targets';
 import { BASE_URL } from '../../config/env';
 import { request } from '../../data/jira.mjs';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
-import { GLOBAL_APP, openGlobalPage, waitForChatApp, settleBootSelection, awaitSwapSettled, readAppState, sendMessage, callResolver } from './chatwise-support';
+import { GLOBAL_APP, openGlobalPage, waitForChatApp, settleBootSelection, awaitSwapSettled, readAppState, sendMessage, callResolver, pickPersonaIfGated } from './chatwise-support';
 
 test.describe.configure({ retries: 0 });
 test('one delegated project request and one 100-issue request finish without repeated approval', async ({ page }) => {
@@ -69,7 +69,7 @@ test('one delegated project request and one 100-issue request finish without rep
   writeFileSync(journal, JSON.stringify(entry, null, 2), { flag: 'wx' });
   expect(existsSync(`${folder}/STOP.txt`), 'Remove an intentional stop only after inspecting its existing run').toBe(false);
   await settleBootSelection(page, frame);
-  await frame.locator('#newChatButton').click();
+  await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame);
   await awaitSwapSettled(frame);
   await frame.locator('#dropdownSelected').click();
   await frame.locator('#dropdownOptions .dropdown-option[data-persona-id="jira-admin"]').click();

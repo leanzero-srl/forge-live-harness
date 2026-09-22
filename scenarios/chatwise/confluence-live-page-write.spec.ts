@@ -14,8 +14,7 @@ import { BASE_URL } from '../../config/env';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 import {
   GLOBAL_APP, openGlobalPage, waitForChatApp, settleBootSelection, awaitSwapSettled,
-  readAppState, readThread, deliverMessage, callResolver, logWindow, describeLogs, scoreToolOutcome,
-} from './chatwise-support';
+  readAppState, readThread, deliverMessage, callResolver, logWindow, describeLogs, scoreToolOutcome, pickPersonaIfGated } from './chatwise-support';
 // eslint-disable-next-line
 import { get, request } from '../../data/jira.mjs';
 // eslint-disable-next-line
@@ -70,7 +69,7 @@ test('A: one sentence creates a Confluence page, comments on it and labels it', 
       // afterwards proves nothing about THIS dispatch.
       const before: any = await get(`/wiki/api/v2/pages?space-id=${SPACE_ID}&title=${encodeURIComponent(TITLE)}&limit=5`);
       expect(before.results?.length || 0, 'a page with this title already exists').toBe(0);
-      await frame.locator('#newChatButton').click();
+      await frame.locator('#newChatButton').click(); await pickPersonaIfGated(frame);
       await awaitSwapSettled(frame);
       entry.persona = await frame.locator('#dropdownSelected .selected-text').innerText();
       entry.conversationId = await readAppState(frame, GLOBAL_APP, 'app.getActiveConversationId()');

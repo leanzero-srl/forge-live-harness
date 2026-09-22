@@ -1135,3 +1135,29 @@ export const SCRIPTED = {
   /** `_shortenModel("test-mode/scripted-fixtures-v1")` → the meta chip label. */
   modelChip: "scripted-fixtures-v1",
 };
+
+/**
+ * THE PERSONA PICKER GATES A NEW CONVERSATION (ChatWise v6.191.0, 22 Sep 2026).
+ * A fresh chat shows the picker in the welcome area and disables the composer
+ * until a persona card is clicked. Journeys that click #newChatButton call
+ * this next; it is a no-op when the composer is already open (an existing
+ * conversation, or a surface without the picker).
+ */
+export async function pickPersonaIfGated(frame: FrameLocator, personaId?: string): Promise<void> {
+  const input = frame.locator("#chatInput");
+  const gated = await input.evaluate((el) => (el as HTMLTextAreaElement).disabled).catch(() => false);
+  if (!gated) return;
+  const card = personaId
+    ? frame.locator(`.persona-card[data-persona-id="${personaId}"]`)
+    : frame.locator(".persona-card").first();
+  await card.click();
+  await input.evaluate((el) => new Promise<void>((resolve, reject) => {
+    const t0 = Date.now();
+    const tick = () => {
+      if (!(el as HTMLTextAreaElement).disabled) return resolve();
+      if (Date.now() - t0 > 10000) return reject(new Error("composer stayed gated after picking a persona"));
+      setTimeout(tick, 50);
+    };
+    tick();
+  }));
+}
