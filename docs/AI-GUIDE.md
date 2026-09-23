@@ -200,6 +200,28 @@ test("…", async () => {
 
 ---
 
+### 6. Kantega User Management & License Optimizer for Confluence (THIRD-PARTY, vendor Kantega SSO)
+**Why it is here:** under test for the E.ON rolling-licence assignment (`~/.claude/skills/eon`). It is
+not our code — a failed run becomes a **vendor defect report**, never a fix. Same rules as License
+Leash (rule 2): it mutates real group memberships, so **report/dry-run mode first, real round-trips
+only on the `zerobarat1` smurf with `finally` cleanup**, never on the site's real users.
+- **Install:** `node scripts/install-marketplace-app.mjs --product confluence --app "Kantega User Management"`
+  — goes through the IN-PRODUCT marketplace (`/wiki/marketplace/discover`), because
+  marketplace.atlassian.com needs its own login and cannot be driven headless. The trial dialog has a
+  required "Review and agree" checkbox; provisioning shows "setting up your app" for a minute or two.
+- **It is a Forge app → invisible to UPM.** Verify by the sidebar *Apps → Your apps* entry (screenshot
+  and read it). `KANTEGA_APP_ID` / `KANTEGA_ENV_ID` / `KANTEGA_ROUTE` in `.env` come from the
+  sidebar link's `/wiki/apps/{uuid}/{env}/{route}` — the install script writes them.
+- **Target:** `kantega-global` (config/targets.ts). **Specs:** `scenarios/kantega/`.
+- **Oracle (rule 8):** the app's own dashboard numbers are a CLAIM. Assert against `GET
+  /rest/api/3/group/member`, the org directory `product_access`, and `/rest/api/3/applicationrole`.
+  Because the E.ON directory was walked, the set a threshold *should* select is computable in advance
+  — assert the set, name the symmetric difference, never just count.
+- **Restore is the test.** Removal is the demo half; reactivation is where this class has failed
+  (Resolution's Cloud app does not re-add to SCIM groups). Restore latency is a RESULT, polled
+  across the measured 29–149 min sync bracket, not a pass/fail.
+- **No test hook, no webtrigger:** everything is UI-driven plus REST oracle reads.
+
 ## Forge platform gotchas / facts (hard-won this campaign)
 
 1. **Webtrigger response headers MUST be array-valued** — `{'Content-Type': ['text/html']}`. A string

@@ -47,6 +47,19 @@ const LICENSELEASH_APP = process.env.LICENSELEASH_APP_ID || "ari:cloud:ecosystem
 const LICENSELEASH_ENV = process.env.LICENSELEASH_ENV_ID || "8910540b-8f3e-43e5-8e5b-7ee7bd9cdce4"; // development
 
 // --- ChatWise — Jira AI chat (globalPage + issuePanel Custom UI, adminPage UI Kit 2) on wolfaenpak ---
+// Kantega User Management & License Optimizer for Confluence — a THIRD-PARTY Forge app (vendor
+// Kantega SSO), under test for the E.ON rolling-licence assignment. No forge CLI access, no
+// _testState hook: the UUID/env come from the live sidebar link (scratch/kantega_nav.mjs), so they
+// are supplied via .env once discovered rather than baked.
+const KANTEGA_APP = process.env.KANTEGA_APP_ID || "";
+const KANTEGA_ENV = process.env.KANTEGA_ENV_ID || "";
+const KANTEGA_ROUTE = process.env.KANTEGA_ROUTE || "";
+const TECHTIME_APP = process.env.TECHTIME_APP_ID || "";   // TechTime "User Management for Confluence" — third-party, E.ON candidate
+const TECHTIME_ENV = process.env.TECHTIME_ENV_ID || "";
+const TECHTIME_ROUTE = process.env.TECHTIME_ROUTE || "";
+const RESOLUTION_APP = process.env.RESOLUTION_APP_ID || ""; // resolution "UM&LO for Jira & Confluence" — JIRA app, E.ON candidate
+const RESOLUTION_ENV = process.env.RESOLUTION_ENV_ID || "";
+const RESOLUTION_ROUTE = process.env.RESOLUTION_ROUTE || "";
 const CHATWISE_APP = process.env.CHATWISE_APP_ID || "ari:cloud:ecosystem::app/97022e0a-df09-4df1-818c-c4593b956122";
 const CHATWISE_ENV = process.env.CHATWISE_ENV_ID || "8613e672-d4ba-4afb-9bbe-d4b5a368a264"; // development
 
@@ -245,6 +258,32 @@ export const TARGETS: Record<string, Target> = {
     // https://developer.atlassian.com/platform/forge/manifest-reference/modules/jira-admin-page/
     deepLink: (env) => `/jira/settings/apps/configure/${ariToUuid(CHATWISE_APP)}/${env}`,
     repo: path.join(PROJECTS, "ChatWise"),
+  },
+  "kantega-global": {
+    id: "kantega-global",
+    product: "confluence",
+    app: "Kantega User Management & License Optimizer (third-party)",
+    appId: KANTEGA_APP,
+    envId: KANTEGA_ENV,
+    module: KANTEGA_ROUTE || "global",
+    moduleType: "confluence:globalPage",
+    surface: "custom",
+    repo: "",
+    deepLink: (env) => (KANTEGA_APP ? deeplink.confluenceGlobalPage(KANTEGA_APP, env, KANTEGA_ROUTE) : null),
+  },
+  "techtime-global": {
+    id: "techtime-global", product: "confluence",
+    app: "TechTime User Management for Confluence (third-party)",
+    appId: TECHTIME_APP, envId: TECHTIME_ENV, module: TECHTIME_ROUTE || "global",
+    moduleType: "confluence:globalPage", surface: "custom", repo: "",
+    deepLink: (env) => (TECHTIME_APP ? deeplink.confluenceGlobalPage(TECHTIME_APP, env, TECHTIME_ROUTE) : null),
+  },
+  "resolution-global": {
+    id: "resolution-global", product: "jira",
+    app: "resolution User Management & License Optimizer (third-party, Jira)",
+    appId: RESOLUTION_APP, envId: RESOLUTION_ENV, module: RESOLUTION_ROUTE || "global",
+    moduleType: "jira:globalPage", surface: "custom", repo: "",
+    deepLink: (env) => (RESOLUTION_APP ? deeplink.jiraGlobalPage(RESOLUTION_APP, env) : null),
   },
 };
 
