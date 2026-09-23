@@ -1,0 +1,37 @@
+{
+  "planId": "plan-mu8sx2be-f68ssa",
+  "dry": false,
+  "ms": 1984,
+  "available": true,
+  "unavailable": "none",
+  "candidates": [
+    "LZPT-186 r0 past its own due date",
+    "LZPT-191 r0 past its own due date",
+    "LZPT-193 r0 past its own due date",
+    "LZPT-194 r0 past its own due date",
+    "LZPT-195 r0 past its own due date",
+    "LZPT-196 r0 past its own due date",
+    "LZPT-197 r0 past its own due date",
+    "LZPT-198 r0 past its own due date",
+    "LZPT-199 r0 past its own due date",
+    "LZPT-200 r0 past its own due date",
+    "LZPT-201 r0 past its own due date",
+    "LZPT-202 r0 past its own due date"
+  ],
+  "jiraReads": 12,
+  "calls": 0,
+  "wrote": false,
+  "skippedFresh": 0,
+  "dropped": {
+    "bot": 0,
+    "empty": 12,
+    "restricted": 0,
+    "app": 19
+  },
+  "partial": 0,
+  "promptBytes": null,
+  "bytes": null,
+  "usage": null,
+  "failed": null,
+  "notes": null
+}

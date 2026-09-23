@@ -1,0 +1,231 @@
+
+Running 2 tests using 1 worker
+
+HARNESS_BROWSER_RECEIPT {"mode":"persistent-chrome","browserVersion":"153.0.8010.48"}
+=== LZPT-215 === state=ready mode=pm
+ITEMS: [
+ {
+  "id": "room",
+  "chip": "74 DAYS ROOM",
+  "text": "74 DAYS ROOM  It has 74 working days of room before the plan's committed dates start to move."
+ },
+ {
+  "id": "what-if",
+  "chip": "2 MOVE",
+  "text": "2 MOVE  If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-07-07 instead of 2026-06-30."
+ },
+ {
+  "id": "risk",
+  "chip": "RISK 30",
+  "text": "RISK 30  Its schedule risk is 30 of 100 — its finish date has already passed."
+ },
+ {
+  "id": "writability",
+  "chip": "PARTLY BLOCKED",
+  "text": "PARTLY BLOCKED  Apply cannot write its Duration and Buffer on LZPT; the dates still reach Jira."
+ }
+]
+ROOM MATCH: ["It has 74 working days of room before the plan's committed dates start to move.","If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-07-07 instead of 2026-06-30."]
+FULL:
+LZPT Scenarios
+PM
+Engineer
+74 DAYS ROOM
+
+It has 74 working days of room before the plan's committed dates start to move.
+
+2 MOVE
+
+If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-07-07 instead of 2026-06-30.
+
+RISK 30
+
+Its schedule risk is 30 of 100 — its finish date has already passed.
+
+PARTLY BLOCKED
+
+Apply cannot write its Duration and Buffer on LZPT; the dates still reach Jira.
+=== LZPT-209 === state=ready mode=pm
+ITEMS: [
+ {
+  "id": "room",
+  "chip": "NO ROOM",
+  "text": "NO ROOM  It has no room left — a day late here is a day late for everything behind it."
+ },
+ {
+  "id": "what-if",
+  "chip": "2 MOVE",
+  "text": "2 MOVE  If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-10-19 instead of 2026-10-12; the plan's own finish moves from 2026-10-12 to 2026-10-19."
+ },
+ {
+  "id": "writability",
+  "chip": "PARTLY BLOCKED",
+  "text": "PARTLY BLOCKED  Apply cannot write its Duration and Buffer on LZPT; the dates still reach Jira."
+ }
+]
+ROOM MATCH: ["NO ROOM","It has no room left — a day late here is a day late for everything behind it.","If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-10-19 instead of 2026-10-12; the plan's own finish moves from 2026-10-12 to 2026-10-19."]
+FULL:
+LZPT Scenarios
+CRITICAL PATH
+PM
+Engineer
+NO ROOM
+
+It has no room left — a day late here is a day late for everything behind it.
+
+2 MOVE
+
+If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-10-19 instead of 2026-10-12; the plan's own finish moves from 2026-10-12 to 2026-10-19.
+
+PARTLY BLOCKED
+
+Apply cannot write its Duration and Buffer on LZPT; the dates still reach Jira.
+  ✓  1 [chromium] › scenarios/lz-ppm/_scratch-6700-glance-explain.spec.ts:32:1 › G-1 the glance prints the exact room (20.7s)
+SECTION COUNT: 0
+CHIP ROWS: []
+WIRE SAMPLES: 0
+CACHED FLAGS SEEN: []
+REACT WARNINGS: []
+STAGED_AFTER_CLEANUP=false
+  ✘  2 [chromium] › scenarios/lz-ppm/_scratch-6700-glance-explain.spec.ts:70:1 › G-2 Explain: answer 2's chip row is deduped and the call is fresh (16.3s)
+HARNESS_BROWSER_RECEIPT {"mode":"persistent-chrome","browserVersion":"153.0.8010.48"}
+=== LZPT-215 === state=ready mode=pm
+ITEMS: [
+ {
+  "id": "room",
+  "chip": "74 DAYS ROOM",
+  "text": "74 DAYS ROOM  It has 74 working days of room before the plan's committed dates start to move."
+ },
+ {
+  "id": "what-if",
+  "chip": "2 MOVE",
+  "text": "2 MOVE  If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-07-07 instead of 2026-06-30."
+ },
+ {
+  "id": "risk",
+  "chip": "RISK 30",
+  "text": "RISK 30  Its schedule risk is 30 of 100 — its finish date has already passed."
+ },
+ {
+  "id": "writability",
+  "chip": "PARTLY BLOCKED",
+  "text": "PARTLY BLOCKED  Apply cannot write its Duration and Buffer on LZPT; the dates still reach Jira."
+ }
+]
+ROOM MATCH: ["It has 74 working days of room before the plan's committed dates start to move.","If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-07-07 instead of 2026-06-30."]
+FULL:
+LZPT Scenarios
+PM
+Engineer
+74 DAYS ROOM
+
+It has 74 working days of room before the plan's committed dates start to move.
+
+2 MOVE
+
+If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-07-07 instead of 2026-06-30.
+
+RISK 30
+
+Its schedule risk is 30 of 100 — its finish date has already passed.
+
+PARTLY BLOCKED
+
+Apply cannot write its Duration and Buffer on LZPT; the dates still reach Jira.
+=== LZPT-209 === state=ready mode=pm
+ITEMS: [
+ {
+  "id": "room",
+  "chip": "NO ROOM",
+  "text": "NO ROOM  It has no room left — a day late here is a day late for everything behind it."
+ },
+ {
+  "id": "what-if",
+  "chip": "2 MOVE",
+  "text": "2 MOVE  If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-10-19 instead of 2026-10-12; the plan's own finish moves from 2026-10-12 to 2026-10-19."
+ },
+ {
+  "id": "writability",
+  "chip": "PARTLY BLOCKED",
+  "text": "PARTLY BLOCKED  Apply cannot write its Duration and Buffer on LZPT; the dates still reach Jira."
+ }
+]
+ROOM MATCH: ["NO ROOM","It has no room left — a day late here is a day late for everything behind it.","If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-10-19 instead of 2026-10-12; the plan's own finish moves from 2026-10-12 to 2026-10-19."]
+FULL:
+LZPT Scenarios
+CRITICAL PATH
+PM
+Engineer
+NO ROOM
+
+It has no room left — a day late here is a day late for everything behind it.
+
+2 MOVE
+
+If it slips 5 working days, 2 issues move (2 still open) and the last of them finishes 2026-10-19 instead of 2026-10-12; the plan's own finish moves from 2026-10-12 to 2026-10-19.
+
+PARTLY BLOCKED
+
+Apply cannot write its Duration and Buffer on LZPT; the dates still reach Jira.
+  ✓  3 [chromium] › scenarios/lz-ppm/_scratch-6700-glance-explain.spec.ts:32:1 › G-1 the glance prints the exact room (retry #1) (19.1s)
+SECTION COUNT: 3
+--- SECTION 0
+WHAT DECIDES THE END DATE | The chain ending in LZPT-209 decides the end date.
+--- SECTION 1
+WHAT WOULD MOVE IT | 11 of 47 tasks have no dates and 4 of the 36 on the timeline are close to critical, so LZPT-205, LZPT-209, LZPT-208 are the only ones that could move the finish. The finish is set by LZPT-209's own due date. | LZPT-205 | LZPT-209 | LZPT-208 | Show on Gantt
+--- SECTION 2
+WHAT TO DO NEXT | Date the 11 undated leaf tasks and link them into the dependency network to complete the picture of what can move the finish. | Probe LZPT-205 and LZPT-209 on the finish-driving chain for any schedule risk or dependency changes that could shift the end date. | LZPT-205 | LZPT-209
+CHIP ROWS: [
+ {
+  "title": "WHAT DECIDES THE END DATE",
+  "rows": []
+ },
+ {
+  "title": "WHAT WOULD MOVE IT",
+  "rows": [
+   [
+    "LZPT-205",
+    "LZPT-209",
+    "LZPT-208"
+   ]
+  ]
+ },
+ {
+  "title": "WHAT TO DO NEXT",
+  "rows": [
+   [
+    "LZPT-205",
+    "LZPT-209"
+   ]
+  ]
+ }
+]
+  WHAT WOULD MOVE IT: [LZPT-205 · LZPT-209 · LZPT-208]  DUPES=[]
+  WHAT TO DO NEXT: [LZPT-205 · LZPT-209]  DUPES=[]
+WIRE SAMPLES: 0
+CACHED FLAGS SEEN: []
+REACT WARNINGS: []
+STAGED_AFTER_CLEANUP=false
+  ✓  4 [chromium] › scenarios/lz-ppm/_scratch-6700-glance-explain.spec.ts:70:1 › G-2 Explain: answer 2's chip row is deduped and the call is fresh (retry #1) (16.2s)
+
+
+  1) [chromium] › scenarios/lz-ppm/_scratch-6700-glance-explain.spec.ts:70:1 › G-2 Explain: answer 2's chip row is deduped and the call is fresh 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      145 |   await page.waitForTimeout(1500);
+      146 |   console.log("STAGED_AFTER_CLEANUP=" + /Apply \d+ change|Save \(\d+\)/i.test(await body(frame)));
+    > 147 |   expect(chipRows.length).toBeGreaterThan(0);
+          |                           ^
+      148 | });
+      149 |
+        at /Users/mihaiperdum/Projects/forge-live-harness/scenarios/lz-ppm/_scratch-6700-glance-explain.spec.ts:147:27
+
+    Error Context: test-results/scenarios-lz-ppm-_scratch--5269e-duped-and-the-call-is-fresh-chromium/error-context.md
+
+  1 flaky
+    [chromium] › scenarios/lz-ppm/_scratch-6700-glance-explain.spec.ts:70:1 › G-2 Explain: answer 2's chip row is deduped and the call is fresh 
+  1 passed (1.6m)

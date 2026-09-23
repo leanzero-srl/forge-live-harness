@@ -28,6 +28,7 @@ const PROP = "sentinel-byline";
 const inv = (fn: string, params: Record<string, string> = {}) => getTestState("sentinel-vault", { what: "invoke", fn, ...params });
 const getKvs = async (key: string) => (await getTestState("sentinel-vault", { what: "kvs", key })).value;
 const delKvs = (key: string) => getTestState("sentinel-vault", { what: "delete", key });
+const setKvs = (key: string, val: any) => getTestState("sentinel-vault", { what: "set", key, value: JSON.stringify(val) });
 const doc = (...n: any[]) => ({ version: 1, type: "doc", content: n });
 const pageUrl = (id: string) => `${BASE}/wiki/pages/viewpage.action?pageId=${id}`;
 
@@ -76,8 +77,12 @@ test("byline chip renders from the property, opens the modal, lists the fixture 
   const seal = await getKvs(`protection-${ATT}`);
   expect(seal?.lockedBy, `fixture seal protection-${ATT} owned by Mihai (run cd test-harness && npm run ensure-fixture)`).toBe(MIHAI);
   expect(String(seal?.contentId), "fixture seal sits on the fixture page").toBe(PAGE_ID);
-  // Start from no page override so the source is known.
+  // Start from no page override so the source is known. CLS-1 (2026-09-20): classification is OFF by
+  // default; this test's second half is the override picker, so the site is switched on for it.
   await delKvs(`classification-page-${PAGE_ID}`).catch(() => {});
+  const globalBefore = await getKvs("admin-settings-global");
+  await setKvs("admin-settings-global", { ...(globalBefore || {}), classificationEnabled: true });
+  try {
 
   // 1. The property the chip renders from — written by the same function every writer calls.
   const rr = await inv("refreshByline", { pageId: PAGE_ID, force: "1" });
@@ -112,7 +117,9 @@ test("byline chip renders from the property, opens the modal, lists the fixture 
   await expect(row.locator('[data-testid="pd-primary"]'), "…with the primary action Release").toHaveText("Release");
   expect(await row.getAttribute("data-primary")).toBe("release");
   expect(await row.innerText(), "the row says who holds it").toContain("Sealed by you");
-  await expect(app.locator('[data-testid="pd-level-pill"]'), "classification pill renders").toBeVisible();
+  // CLS-1 (2026-09-20): classification is OFF by default — no level pill on the modal; the pill is CLS-1's own spec's business.
+  if ((await getKvs("admin-settings-global"))?.classificationEnabled === true) await expect(app.locator('[data-testid="pd-level-pill"]'), "classification pill renders").toBeVisible();
+  else await expect(app.locator('[data-testid="pd-level-pill"]'), "no level pill while classification is off").toHaveCount(0);
   await expect(app.locator('[data-testid="pd-recent"] [data-testid="sv-activity-feed"]'), "recent activity feed renders").toBeVisible();
   await page.screenshot({ path: `${OUT}/2-modal-overview.png` });
 
@@ -152,6 +159,9 @@ test("byline chip renders from the property, opens the modal, lists the fixture 
   console.log("### byline restored:", JSON.stringify(restored));
   expect(restored!.title).not.toMatch(/set on this page/);
   expect(await getKvs(`classification-page-${PAGE_ID}`), "no page override left behind").toBeFalsy();
+  } finally {
+    if (globalBefore) await setKvs("admin-settings-global", globalBefore); else await delKvs("admin-settings-global").catch(() => {});
+  }
 });
 
 test("a page with no seals gets the dot icon (no lock) and no seal rows", async ({ page }) => {

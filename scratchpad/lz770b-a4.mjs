@@ -1,0 +1,11 @@
+import { hook, bed } from "./lz770b-lib.mjs";
+import { setFields } from "../data/jira-build.mjs";
+const b = bed(); const P=b.planId, K=b.c1;
+const row = async (tag) => { const p=await hook({what:"plan",planId:P}); const i=(p.issues||[]).find(x=>x.key===K);
+  console.log(tag, JSON.stringify({sum:i.summary?.slice(-24),start:i.startDate,due:i.dueDate,dur:i.duration,orig:{d:i._original?.dueDate,dur:i._original?.duration}, metaVer:p.meta?.version, savedEdits:p.meta?.savedEdits?.at, editDrops:p.meta?.editDrops, hash:p.meta?.contentHash})); return i; };
+console.log("EDIT", JSON.stringify(await hook({what:"applyEdit",planId:P,key:K,field:"dueDate",value:"2026-10-16"})));
+await row("BEFORE_INCR");
+await setFields(K, { summary: "[harness-test] LZ770B C1 vendor contract RENAMED" });
+await new Promise(r=>setTimeout(r,4000));
+console.log("INCR", JSON.stringify(await hook({what:"incrementalUpdate",key:K})));
+await row("AFTER_INCR");
