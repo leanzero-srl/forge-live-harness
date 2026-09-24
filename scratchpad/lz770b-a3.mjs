@@ -1,0 +1,13 @@
+import { hook, bed } from "./lz770b-lib.mjs";
+const b = bed(); const P=b.planId, K=b.c1;
+const snap = async (tag) => { const p=await hook({what:"plan",planId:P}); const i=(p.issues||[]).find(x=>x.key===K);
+  const o = {due:i.dueDate,dur:i.duration,orig:i._original?.dueDate, ver:p.meta?.version, hash:p.meta?.contentHash, lastIndexedAt:p.meta?.lastIndexedAt, savedEdits:p.meta?.savedEdits?.at, editDrops:p.meta?.editDrops?.at, finish:p.meta?.summary?.finish, at:p.meta?.summary?.at};
+  console.log(tag, JSON.stringify(o)); return o; };
+console.log("EDIT", JSON.stringify(await hook({what:"applyEdit",planId:P,key:K,field:"dueDate",value:"2026-10-22"})));
+await snap("BEFORE_REFRESH");
+const r = await hook({what:"refreshPlan",planId:P});
+console.log("REFRESH_RESULT", JSON.stringify({ok:r.ok,reason:r.reason,editDrops:r.editDrops, keys:Object.keys(r)}));
+await snap("AFTER_FORCED_REFRESH");
+const r2 = await hook({what:"scheduledConsume",planId:P});
+console.log("SCHEDCONSUME", JSON.stringify({before:r2.lastIndexedBefore, after:r2.lastIndexedAfter, ver:r2.meta?.version, hash:r2.meta?.contentHash}));
+await snap("AFTER_SCHEDULED");

@@ -1,0 +1,79 @@
+{
+  "planId": "plan-mu8sz12f-rjvcsn",
+  "dry": true,
+  "ms": 2169,
+  "available": true,
+  "unavailable": null,
+  "candidates": [
+    "LZPT-186 r0 past its own due date",
+    "LZPT-191 r0 past its own due date",
+    "LZPT-193 r0 past its own due date",
+    "LZPT-194 r0 past its own due date",
+    "LZPT-195 r0 past its own due date",
+    "LZPT-196 r0 past its own due date",
+    "LZPT-197 r0 past its own due date",
+    "LZPT-198 r0 past its own due date",
+    "LZPT-199 r0 past its own due date",
+    "LZPT-200 r0 past its own due date",
+    "LZPT-201 r0 past its own due date",
+    "LZPT-202 r0 past its own due date"
+  ],
+  "jiraReads": 12,
+  "calls": 0,
+  "wrote": false,
+  "skippedFresh": 0,
+  "dropped": {
+    "bot": 0,
+    "empty": 9,
+    "restricted": 0,
+    "app": 18
+  },
+  "partial": 0,
+  "promptBytes": 771,
+  "bytes": null,
+  "usage": null,
+  "failed": null,
+  "notes": null,
+  "payload": {
+    "tickets": [
+      {
+        "key": "LZPT-191",
+        "status": "new",
+        "comments": [
+          {
+            "id": "17733",
+            "on": "2026-09-19",
+            "text": "Chasing again today. If we do not have the sandbox by Friday this slips another two weeks."
+          },
+          {
+            "id": "17732",
+            "on": "2026-09-19",
+            "text": "Still blocked on the vendor: their API sandbox has been down since Monday and support has not given us a restore date."
+          }
+        ]
+      },
+      {
+        "key": "LZPT-196",
+        "status": "new",
+        "comments": [
+          {
+            "id": "17734",
+            "on": "2026-09-19",
+            "text": "We finished the migration script over the weekend and it ran clean on the copy. Waiting on a change window to run it for real."
+          }
+        ]
+      },
+      {
+        "key": "LZPT-201",
+        "status": "new",
+        "comments": [
+          {
+            "id": "17735",
+            "on": "2026-09-19",
+            "text": "Scope changed - finance now want the quarterly breakdown as well, so this is bigger than the original estimate."
+          }
+        ]
+      }
+    ]
+  }
+}
