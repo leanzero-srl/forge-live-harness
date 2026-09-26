@@ -3,6 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 // @ts-ignore - plain ESM JS helper, resolved at runtime by tsx/esbuild
 import { loadEnv } from "../data/env.mjs";
+// @ts-ignore - plain ESM JS helper
+import { harnessHome } from "./home.mjs";
 
 loadEnv();
 
@@ -13,7 +15,12 @@ export const SITE_HOST = new URL(BASE_URL).host;
 /** Confluence lives under /wiki on the same host. */
 export const WIKI_BASE = `${BASE_URL}/wiki`;
 
-export const AUTH_DIR = path.join(REPO_ROOT, ".auth");
+/**
+ * The saved login lives in the MAIN checkout's .auth/ (gitignored). A git worktree resolves to it
+ * through config/home.mjs, so a parallel session never needs its own `npm run auth`.
+ */
+export const HARNESS_HOME: string = harnessHome();
+export const AUTH_DIR = path.join(HARNESS_HOME, ".auth");
 /**
  * Persistent Chrome profile — preserves device identity so Atlassian doesn't see a "new device".
  *
@@ -22,8 +29,16 @@ export const AUTH_DIR = path.join(REPO_ROOT, ".auth");
  * .auth/ so two testers can run concurrently without contending on one profile's reservation lock.
  * Default is unchanged: `.auth/profile`.
  */
-export const USER_DATA_DIR =
-  process.env.HARNESS_PROFILE ?? path.join(AUTH_DIR, process.env.LZ_HARNESS_PROFILE ?? "profile");
+/**
+ * `HARNESS_RUN_AUTH_DIR` (set by scripts/run-app.mjs, 2026-09-26) wins over all of the above: the run
+ * owns `<dir>/base` (a clone of the saved profile, proven alive by the preflight) and every Playwright
+ * worker process gets its OWN clone `<dir>/worker-<TEST_WORKER_INDEX>`, made by the fixture
+ * (forge/auth-clone.mjs). No two runs, and no two workers, ever open the same profile directory.
+ */
+export const RUN_AUTH_DIR: string | undefined = process.env.HARNESS_RUN_AUTH_DIR || undefined;
+export const USER_DATA_DIR = RUN_AUTH_DIR
+  ? path.join(RUN_AUTH_DIR, `worker-${process.env.TEST_WORKER_INDEX ?? "0"}`)
+  : process.env.HARNESS_PROFILE ?? path.join(AUTH_DIR, process.env.LZ_HARNESS_PROFILE ?? "profile");
 
 /**
  * Customer-tenant gate. wolfaenpak is THE testbed (AI-GUIDE rule 1). Pointing the harness at any other

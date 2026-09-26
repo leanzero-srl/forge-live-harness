@@ -95,6 +95,23 @@ export async function launchHarnessContext(opts: LaunchOpts = {}): Promise<Brows
     args: ["--no-first-run", "--no-default-browser-check"],
   };
   if (opts.recordVideoDir) common.recordVideo = { dir: opts.recordVideoDir, size: VIEWPORT };
+  // RUN-OWNED CLONE (scripts/run-app.mjs sets HARNESS_RUN_AUTH_DIR): the profile dir belongs to this
+  // worker process alone, created fresh by the fixture, so the cross-process reservation for SHARED
+  // profiles does not apply — and must not: a crashed worker would leave an "unclean" record that
+  // refuses its restart forever. The interactive auth flow never takes this path.
+  if (process.env.HARNESS_RUN_AUTH_DIR && !opts.authFlow) {
+    let ctx: BrowserContext;
+    try { ctx = await chromium.launchPersistentContext(USER_DATA_DIR, { channel: "chrome", ...common }); }
+    catch (chromeError) {
+      if (!(chromeError instanceof Error) || !chromeError.message.includes("Chromium distribution 'chrome' is not found")) throw chromeError;
+      ctx = await chromium.launchPersistentContext(USER_DATA_DIR, common);
+    }
+    await installHostFlagSuppressor(ctx);
+    const receipt = Object.freeze({ mode: "persistent-chrome" as const, browserVersion: ctx.browser()?.version() ?? null });
+    launchReceipts.set(ctx, receipt);
+    console.log("HARNESS_BROWSER_RECEIPT " + JSON.stringify({ ...receipt, profile: "run-clone" }));
+    return ctx;
+  }
   // One canonical cross-process reservation covers worker, video and auth callers.
   // Unknown launch/owner failures retain an unclean record; no marker deletion or kill.
   const context = await launchReservedProfile(USER_DATA_DIR, async (profile, channel) => {
