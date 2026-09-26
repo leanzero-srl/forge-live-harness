@@ -30,7 +30,9 @@ for (const decision of ["approved", "denied"] as const) {
       await expect(pill, "control: the pill says Waiting for you before the decision").toContainText("Waiting for you", { timeout: 20_000 });
       await r!.frame.locator("button.wf-chip-awaiting").click();
       await r!.frame.locator(".wf-appr-reason-input").fill(decision === "approved" ? "Looks good to me" : "Needs a summary section at the top");
-      await r!.frame.locator(decision === "approved" ? ".wf-appr-approve" : ".wf-appr-deny").click();
+      const btn = r!.frame.locator(decision === "approved" ? ".wf-appr-approve" : ".wf-appr-deny");
+      await expect(btn, "the decision button is live").toBeEnabled({ timeout: 10_000 });
+      await btn.click();
       await expect.poll(async () => decision === "approved" ? (await getKvs(`workflow-state-${P}`))?.stateId : !(await getKvs(`workflow-pending-${P}`)), { timeout: 30_000 }).toBe(decision === "approved" ? "approved" : true);
       // The pill must follow the decision without a reload.
       await expect(pill, "the Waiting-for-you pill is gone after the decision").toHaveCount(0, { timeout: 20_000 });
