@@ -5,6 +5,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { harnessHome } from "../config/home.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const HARNESS_ROOT = join(HERE, ".."); // data/.. == repo root
@@ -32,7 +33,8 @@ function parseEnv(text) {
 let loaded = null;
 export function loadEnv() {
   if (loaded) return loaded;
-  const envPath = join(HARNESS_ROOT, ".env");
+  // A worktree has no .env of its own — fall back to the main checkout's (config/home.mjs).
+  const envPath = [join(HARNESS_ROOT, ".env"), join(harnessHome(), ".env")].find((p) => existsSync(p)) ?? join(HARNESS_ROOT, ".env");
   if (existsSync(envPath)) {
     const parsed = parseEnv(readFileSync(envPath, "utf8"));
     for (const [k, v] of Object.entries(parsed)) {
