@@ -1,0 +1,14 @@
+Warning: Your version of Forge CLI is out of date. We recommend you update to the latest version to get the latest features and bug fixes.
+Run npm install -g @forge/cli@latest to update from version 13.4.0 to 14.0.0.
+
+INFO    2026-09-19T21:04:39.964Z 67836249-02fc-4261-bc20-4084aefe5422 [PPM] Scheduled refresh triggered ppm-hourly-refresh
+INFO    2026-09-19T21:04:40.671Z 67836249-02fc-4261-bc20-4084aefe5422 [PPM] Scheduled refresh fanned out 9 plan event(s) in 1 batch(es)
+INFO    2026-09-19T21:04:42.728Z f2c5184f-df36-46f0-8d98-4f84ed6848ba [PPM] scheduled consumer: skipped sim-e84e4730-e7f4-421b-8582-dc17a564697b (simulation)
+INFO    2026-09-19T21:04:43.015Z 0c5f8c66-145d-43de-aa05-078a17621649 [PPM] scheduled consumer: skipped plan-mtu2jkjl-vmkfwq (unchanged)
+INFO    2026-09-19T21:04:43.031Z 5e89af6a-ef47-4225-b621-f875c584a955 [PPM] scheduled consumer: skipped plan-mta3aw3t-6dyijd (unchanged)
+INFO    2026-09-19T21:04:43.245Z 996f9816-580c-4a18-8432-9c1b1521e2dd [PPM] scheduled consumer: skipped plan-test-mtq75tk1-49uuzd (unchanged)
+INFO    2026-09-19T21:04:43.609Z a50f9853-f63c-43c0-bd38-dd4bb6cacc89 [PPM] scheduled consumer: skipped plan-test-mtq7hwv8-sk47wf (unchanged)
+INFO    2026-09-19T21:04:43.664Z 1af229cd-b2e2-4544-8727-16a507a9f12e [PPM] scheduled consumer: skipped plan-test-mtq7hsun-koj1jf (unchanged)
+INFO    2026-09-19T21:04:45.514Z 35091db5-1b75-4649-93d3-40ee8f9adce4 [PPM] scheduled consumer: refreshed plan-msq9dg8l-gz6mz1 (57 issues, 1 shards)
+INFO    2026-09-19T21:05:18.498Z feaefc39-5b62-414f-9879-461771ad960b [PPM] scheduled consumer: skipped plan-test-mtsue3x3-7ukgh8 (unchanged)
+INFO    2026-09-19T21:05:18.566Z 4a08b214-2f45-4e16-b8f5-90c132845070 [PPM] scheduled consumer: skipped plan-mtbrlh8n-7ghw8u (unchanged)

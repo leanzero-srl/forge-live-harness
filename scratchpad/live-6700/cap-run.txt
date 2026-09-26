@@ -1,0 +1,43 @@
+
+Running 4 tests using 1 worker
+
+HARNESS_BROWSER_RECEIPT {"mode":"persistent-chrome","browserVersion":"153.0.8010.48"}
+BACKEND gate: {"state":"insufficient","weeksOfHistory":5,"weeksNeeded":6,"itemsCompleted":6,"itemsNeeded":10,"message":"5 weeks of history; forecasts need 6"}
+BACKEND people: [{"name":"Mihai Perdum","source":"derived","total":55,"done":6,"wip":4}]
+BACKEND leadTime p50/p85: 0 0 | cycleTime p50/p85: null null | throughput perWeek p50/p85: 0 0 | wipAge p50/p85: 37 37
+GATE data-state = insufficient
+GATE TEXT = "NOT ENOUGH HISTORY TO FORECAST YET 5 weeks of history; forecasts need 6 Forecasting from pace needs 6 weeks of history and 10 completed items. This plan has 5 weeks and 6 completed items. Everything measured below is still exact — only the forecast is withheld."
+PEOPLE ROWS = 1
+  PERSON: "Mihai Perdum FROM THE ISSUES 55 issues · 6 done · 4 in progress LEAD TIME 0 days CYCLE TIME Nothing measured yet AGE OF WORK IN PROGRESS 37 days" | data-source = derived | id = 712020:937bc860-eec2-4294-a65d-8e0fe7c45086
+MEASURE VALUES: ["0 days","Nothing measured yet","0 a week","4","37 days"]
+PERCENTILE NOTE: "Half of the work landed within the first number; 85% within the second. Percentiles, not averages — an average over a skewed sample is a commitment nobody can keep."
+CYCLE-UNKNOWN NOTE: "6 completed issues finished before this app watched them start, so their cycle time is unknown. Loading history from Jira recovers it."
+NO-PEOPLE BLOCK: 0
+BACKFILL COST LINE: "This reads Jira's change history for at most 55 issues — at most 2 Jira requests, because one request covers a thousand issues. It runs once, when you ask; nothing scheduled ever does this."
+FULL CAPACITY TEXT:
+Capacity What this plan's work has actually done — who has been on it, how long things take, and what that pace implies. Nothing on this tab changes a date. ? NOT ENOUGH HISTORY TO FORECAST YET 5 weeks of history; forecasts need 6 Forecasting from pace needs 6 weeks of history and 10 completed items. This plan has 5 weeks and 6 completed items. Everything measured below is still exact — only the forecast is withheld. LEAD TIME ? 0 days CYCLE TIME ? Nothing measured yet THROUGHPUT ? 0 a week IN PROGRESS ? 4 AGE OF WORK IN PROGRESS ? 37 days Half of the work landed within the first number; 85% within the second. Percentiles, not averages — an average over a skewed sample is a commitment nobody can keep. 6 completed issues finished before this app watched them start, so their cycle time is unknown. Loading history from Jira recovers it. PEOPLE ON THIS PLAN Add a person Mihai Perdum FROM THE ISSUES 55 issues · 6 done · 4 in progress LEAD TIME 0 days CYCLE TIME Nothing measured yet AGE OF WORK IN PROGRESS 37 days WHAT IF THE TEAM CHANGED There is no measured pace to scale, so a what-if here would be a number with nothing behind it. This scales the measured weekly pace by the change in people, and re-runs the same throughput model. It assumes a new person works at the pace the team has already shown, which is an arithmetic assumption and not a prediction. It cannot move a date on the Gantt, and it does not try to: adding a person changes no dependency, so the schedule engine would correctly return exactly the same dates. LOAD HISTORY FROM JIRA Load history from Jira This reads Jira's change history for at most 55 issues — at most 2 Jira requests, because one request covers a thousand issues. It runs once, when you ask; nothing scheduled ever does this. It recovers when each issue first entered In Progress, which is what makes cycle time measurable for work that finished before this app was watching. It reads only; nothing is written to Jira.
+  ✓  1 [chromium] › scenarios/lz-ppm/_scratch-6700-capacity.spec.ts:39:1 › C-A the gate, the people row, the percentiles (16.5s)
+meta.capacity BEFORE = null
+ROSTER DIALOG: "Who is on this plan Names and how much of each person this plan has. Stored on the plan; never written to Jira, and never used to move a date. Nobody typed yet. Add a person Cancel Save roster"
+ROWS AT OPEN: 0 | empty-line: 1
+meta.capacity AFTER SAVE = {"roster":[{"accountId":null,"daysPerWeek":5,"from":null,"id":"name:[harness-test] tester one","name":"[harness-test] Tester One","to":null}],"updatedAt":"2026-09-19T20:01:38.749Z"}
+PEOPLE AFTER SAVE = 2
+  PERSON: "Mihai Perdum FROM THE ISSUES 55 issues · 6 done · 4 in progress LEAD TIME 0 days CYCLE TIME Nothing measured yet AGE OF WORK IN PROGRESS 37 days" | source = derived
+  PERSON: "[harness-test] Tester One TYPED 5 days a week No issues on this plan yet." | source = typed
+ROWS BEFORE REMOVE: 1
+ROWS AFTER REMOVE CLICK: 0
+meta.capacity AFTER REMOVE = {"roster":[],"updatedAt":"2026-09-19T20:01:45.084Z"}
+  ✓  2 [chromium] › scenarios/lz-ppm/_scratch-6700-capacity.spec.ts:69:1 › C-B the roster dialog: add a typed person, save, read meta, remove (28.7s)
+HOOK DRY RUN: {"planId":"plan-msq9dg8l-gz6mz1","dryRun":true,"scanned":55,"candidates":51,"jiraCalls":2,"pages":1,"stamped":0,"unresolved":51,"dry":true,"ms":441}
+SECTION COST LINE (the static ceiling): "This reads Jira's change history for at most 55 issues — at most 2 Jira requests, because one request covers a thousand issues. It runs once, when you ask; nothing scheduled ever does this."
+CONFIRM DIALOG: "? Load history from Jira This reads Jira's change history for at most 51 issues — at most 2 Jira requests, because one request covers a thousand issues. It runs once, when you ask; nothing scheduled ever does this. It recovers when each issue first entered In Progress, which is what makes cycle time measurable for work that finished before this app was watching. It reads only; nothing is written to Jira. Cancel Load history"
+PARSED candidates = 51 | calls = 2 | hook said candidates = 51 calls = 2
+RESULT LINE AFTER CANCEL: 0
+HOOK DRY RUN AFTER CANCEL: {"planId":"plan-msq9dg8l-gz6mz1","dryRun":true,"scanned":55,"candidates":51,"jiraCalls":2,"pages":1,"stamped":0,"unresolved":51,"dry":true,"ms":437}
+  ✓  3 [chromium] › scenarios/lz-ppm/_scratch-6700-capacity.spec.ts:119:1 › C-C the backfill confirm shows the dry run's MEASURED request count; cancel (21.0s)
+STAGED_AFTER_CLEANUP=false
+meta.capacity FINAL = {"roster":[],"updatedAt":"2026-09-19T20:01:45.084Z"}
+issueCount = 55 | protectionEnabled = false
+  ✓  4 [chromium] › scenarios/lz-ppm/_scratch-6700-capacity.spec.ts:147:1 › C-Z no staged changes, no draft, bed intact (15.6s)
+
+  4 passed (1.4m)
