@@ -8,13 +8,18 @@
     "auth": "playwright test --project=setup --headed",
     "discover": "node scripts/discover-env.mjs",
     "test": "playwright test --project=chromium",
-    "test:headless": "cross-env HEADLESS=1 playwright test --project=chromium",
+    "test:headless": "playwright test --project=chromium",
     "target": "playwright test --project=chromium -g",
     "assess": "tsx assess/run.ts",
     "report": "node scripts/report.mjs",
     "show-report": "playwright show-report",
     "trace": "playwright show-trace",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:rest": "playwright test --project=rest",
+    "app": "node scripts/run-app.mjs",
+    "apps:parallel": "node scripts/run-apps-parallel.mjs",
+    "auth:check": "node scripts/auth-check.mjs",
+    "test:isolation": "node --test tests/run-isolation/auth-clone.test.mjs && tsx --test tests/run-isolation/door-availability.test.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",

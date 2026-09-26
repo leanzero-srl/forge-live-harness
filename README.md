@@ -25,8 +25,9 @@ npm install
 npx playwright install chromium
 cp .env.example .env        # fill JIRA_API_TOKEN (base URL + email are prefilled)
 
-npm run auth                # ONE-TIME: headed browser; log in + pass MFA once → .auth/profile
-npm test                    # drive all three apps live (headed — you watch the footage)
+npm run auth                # ONE-TIME (owner): headed browser; log in + pass MFA once → .auth/profile
+npm run app -- lz-ppm       # one app, headless, its own auth clone + evidence folder (see below)
+npm test                    # the legacy all-specs run on the shared profile
 npm run assess              # emit ASSESS-REQUEST.md for any failed run (+ --api for autonomous)
 npm run report              # collate video/trace/keyframes; npm run show-report to view
 ```
@@ -35,14 +36,38 @@ See `RUNBOOK.md` for the target table + env overrides.
 
 ## How auth works (and why)
 
-A REST API token **cannot** mint a browser session. So you log in once interactively; the harness
-keeps a **persistent Chrome profile** (`.auth/profile`) and reuses it. Runs default to **headed**
-on your machine — this is best for footage *and* avoids Atlassian flagging a headless context as a
-"new device" (which fires email-2FA). The session (`cloud.session.token`) idles out after ~30 days;
-every run does a fast-fail check and tells you to `npm run auth` again if it expired.
+A REST API token **cannot** mint a browser session, and a headless login meets Atlassian's 2FA and
+cannot pass it. So the owner logs in ONCE, headed (`npm run auth`), into a persistent Chrome profile
+(`.auth/profile`, gitignored, main checkout only). Every run after that is **headless** and **never
+logs in**: `npm run app` clones the saved profile into a directory that belongs to that run alone
+(`.auth/runs/<app>-<runId>/`, an APFS copy-on-write clone, ~0.3 s), proves the session is alive
+(`/rest/api/3/myself` with the clone's cookies), and deletes the clone afterwards. A dead session
+fails fast with "AUTH EXPIRED: the owner must run `npm run auth`" instead of 30 specs timing out.
+`npm run auth:check` answers "is the saved login alive?" the same way. The session idles out after
+~30 days.
 
-Headless/CI is opt-in (`HEADLESS=1`) and may require TOTP 2FA automation (`ATLASSIAN_TOTP_SECRET`)
-or a 2SV-optional test account.
+## Headless, per-app, parallel (the normal way to run it)
+
+```bash
+npm run app -- lz-ppm                         # smoke set + REST/hook probes, headless, dev
+npm run app -- cognirunner --env prod         # production install; probes skip where prod has no door
+npm run app -- lz-ppm --grep "Gantt"          # whole scenario dir filtered (dev only)
+npm run app -- lz-ppm --spec scenarios/lz-ppm/rest-api.spec.ts
+npm run app -- sentinel-vault --rest-only     # browserless probes only
+npm run app -- chatwise --headed              # watch it
+npm run apps:parallel -- lz-ppm cognirunner sentinel-vault   # several apps at once
+npm run test:isolation                        # offline proof of the isolation contract
+```
+
+Each run writes `evidence/<app>/<runId>/` (browser evidence bundles, `rest/*.json` per probe,
+Playwright output, html reports, `summary.json`); a parallel batch adds
+`evidence/_parallel/<batchId>/summary.json`. Nothing is shared between concurrent runs but the site.
+Apps, envs, installs, doors and worker counts live in `config/apps.mjs`; the browserless probes in
+`rest/probes/<app>.ts`. A git **worktree** finds `.env` and `.auth/` in the main checkout
+(`config/home.mjs`), so parallel sessions work from worktrees without their own login.
+
+`npm test` / `npx playwright test` still work the old way (the shared `.auth/profile` under its
+cross-process reservation, one run at a time).
 
 ## Layout
 
@@ -52,6 +77,9 @@ or a 2SV-optional test account.
 - `assess/` — Claude-Code request emitter + autonomous Anthropic adapter.
 - `scenarios/` — the live-UI tests (lz-ppm dashboard, CogniRunner global page, Sentinel Vault space page).
 - `data/` — Jira/Confluence REST client for live test-data setup/teardown (reused from CogniRunner).
-- `config/targets.ts` — registry of apps-under-test (your three real apps + baked env IDs).
+- `config/targets.ts` — registry of UI modules (deep-links, readySelector, contentReady).
+- `config/apps.mjs` — registry of APPS for the runner: smoke set, env ids, installs, doors per env, workers.
+- `rest/` — browserless REST/hook probe layer (`rest/probes/<app>.ts`, Playwright project `rest`).
+- `scripts/run-app.mjs`, `scripts/run-apps-parallel.mjs`, `scripts/auth-check.mjs` — the runners.
 
 See `AGENTS.md` for the assess loop contract.

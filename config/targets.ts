@@ -16,8 +16,15 @@ export interface Target {
   surface: "custom" | "uikit";
   /** Build the deep-link path; null = not deep-linkable (use forge/host.ts). */
   deepLink: (envId: string) => string | null;
-  /** Selector that proves the app booted, evaluated INSIDE the surface (optional). */
+  /** Selector that proves the app booted, evaluated INSIDE the surface (optional). It also PICKS the
+   *  app's iframe when the page hosts several Forge frames (Confluence space pages carry Sentinel's
+   *  classification banner, issue pages carry every app's panel) — without it the first frame with
+   *  any text wins, which may be a neighbour. */
   readySelector?: string;
+  /** Selector (any Playwright engine, e.g. `role=heading[name=/…/]`) that the render smoke must see
+   *  inside the surface before it passes: the app's REAL UI, not a spinner, a "Loading…" line or a
+   *  neighbour's banner. Only checkForgeRenders reads it; frame selection is unaffected. */
+  contentReady?: string;
   /** App-under-test repo, so the assessor can confirm file/line fix hints. */
   repo: string;
 }
@@ -74,6 +81,8 @@ export const TARGETS: Record<string, Target> = {
     moduleType: "jira:globalPage",
     surface: "custom",
     deepLink: (env) => deeplink.jiraGlobalPage(LZ_PPM_APP, env),
+    // The app shell's home button: present on every tab, so a remembered tab in the profile cannot fail it.
+    contentReady: 'role=button[name="LeanZero Management home"]',
     repo: path.join(PROJECTS, "lz-ppm-forge"),
   },
 
@@ -117,6 +126,7 @@ export const TARGETS: Record<string, Target> = {
     moduleType: "jira:globalPage",
     surface: "custom",
     deepLink: (env) => deeplink.jiraGlobalPage(COGNI_APP, env),
+    contentReady: "role=heading[name=/CogniRunner Admin/]", // dev v1.25 and prod v3 both carry it
     repo: path.join(PROJECTS, "CogniRunner"),
   },
 
@@ -130,6 +140,11 @@ export const TARGETS: Record<string, Target> = {
     moduleType: "confluence:spacePage",
     surface: "custom",
     deepLink: (env) => deeplink.confluenceSpacePage(SENTINEL_SPACE, SENTINEL_APP, env, SENTINEL_ROUTE),
+    // 2026-09-26: without this the smoke entered Sentinel's own classification BANNER frame (first
+    // frame with text) and passed while the realm console was still a spinner. The deep specs have
+    // always used this selector (realm-console-deep, settings-consoles, deploy-state-guard).
+    readySelector: ".space-admin-title",
+    contentReady: ".space-admin-title",
     repo: path.join(PROJECTS, "Sentinel Vault"),
   },
 
@@ -144,6 +159,7 @@ export const TARGETS: Record<string, Target> = {
     surface: "custom",
     deepLink: (env) => deeplink.jiraGlobalPage(ALTOMATA_APP, env),
     readySelector: ".hub-wrap",
+    contentReady: 'role=heading[name="Altomata"]',
     repo: path.join(PROJECTS, "Altomata"),
   },
 
@@ -184,6 +200,8 @@ export const TARGETS: Record<string, Target> = {
     moduleType: "confluence:globalSettings",
     surface: "custom",
     deepLink: (env) => deeplink.confluenceGlobalSettings(SENTINEL_APP, env, "steward-console"),
+    readySelector: ".admin-title", // same selector settings-consoles.spec.ts uses
+    contentReady: ".admin-title",
     repo: path.join(PROJECTS, "Sentinel Vault"),
   },
 
@@ -213,6 +231,7 @@ export const TARGETS: Record<string, Target> = {
     // Static chat shell in src/chat/globalPage/index.html — present before the
     // bundle boots, so it identifies THIS app's iframe without waiting on init.
     readySelector: "#appShell",
+    contentReady: "role=button[name=/New chat/]",
     repo: path.join(PROJECTS, "ChatWise"),
   },
 

@@ -25,6 +25,9 @@ import type { BrowserContext } from "@playwright/test";
 import path from "node:path";
 import {createCloseJournal,closePhase} from "../forge/close-diagnostics.mjs";
 import { launchHarnessContext } from "../forge/browser";
+import { USER_DATA_DIR, RUN_AUTH_DIR } from "../config/env";
+// @ts-ignore - plain ESM JS helper
+import { ensureWorkerClone } from "../forge/auth-clone.mjs";
 import { Recorder, RecorderStepError } from "../capture/recorder";
 import { writeEvidenceBundle } from "../capture/evidence";
 
@@ -50,6 +53,9 @@ export const test = base.extend<Fixtures, WorkerFixtures>({
         await use(null as unknown as BrowserContext);
         return;
       }
+      // Runner-driven run (scripts/run-app.mjs): this worker clones the run's validated base profile
+      // into a directory only it uses. No-op for a plain `npx playwright test`.
+      if (RUN_AUTH_DIR) ensureWorkerClone(RUN_AUTH_DIR, USER_DATA_DIR);
       const diagnostic = closeFile ? createCloseJournal(closeFile) : null;
       const context = await launchHarnessContext(diagnostic ? {observeClose: diagnostic.observe} : {});
       await context.tracing
@@ -79,6 +85,7 @@ export const test = base.extend<Fixtures, WorkerFixtures>({
     if (WANT_VIDEO) {
       // Legacy per-test context, only when explicitly asked for.
       const videoDir = path.join(testInfo.outputDir, "video");
+      if (RUN_AUTH_DIR) ensureWorkerClone(RUN_AUTH_DIR, USER_DATA_DIR);
       const context = await launchHarnessContext({ recordVideoDir: videoDir });
       await context.tracing
         .start({ screenshots: true, snapshots: true, sources: true })

@@ -21,6 +21,7 @@
     "fixtures/**/*.ts",
     "assess/**/*.ts",
     "scenarios/**/*.ts",
+    "rest/**/*.ts",
     "playwright.config.ts"
   ]
 }

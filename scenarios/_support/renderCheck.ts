@@ -61,10 +61,18 @@ export async function checkForgeRenders(page: Page, recorder: Recorder, T: Targe
     async () => {
       const root = surface.kind === "custom" ? surface.frame.locator("body") : page.locator("body");
       await expect(root).toContainText(/\S/, { timeout: 20_000 });
+      // Non-blank alone passes on a spinner caption or a neighbour frame's banner (measured
+      // 2026-09-26 on Sentinel's realm console). When the target names its real UI, require it.
+      if (T.contentReady) {
+        const scope = surface.kind === "custom" ? surface.frame : page;
+        await expect(scope.locator(T.contentReady).first(), `${T.id}: the app's own UI (${T.contentReady}) never appeared`).toBeVisible({ timeout: 30_000 });
+      }
     },
     {
       expectation: {
-        assertion: "the surface's body contains non-whitespace text",
+        assertion: T.contentReady
+          ? `the surface's body contains text AND the app's own UI marker ${T.contentReady} is visible`
+          : "the surface's body contains non-whitespace text",
         narrative: `The ${T.app} surface renders real content (headings/data/UI), not an empty/blank panel.`,
       },
     },
