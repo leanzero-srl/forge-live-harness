@@ -1,0 +1,97 @@
+
+Running 3 tests using 1 worker
+
+POSTED: [{"key":"LZPT-191","id":"17732"},{"key":"LZPT-191","id":"17733"},{"key":"LZPT-196","id":"17734"},{"key":"LZPT-201","id":"17735"}]
+ENABLE aiView -> 200
+  ✓  1 [chromium] › scenarios/lz-ppm/_scratch-6700-notes-human.spec.ts:47:1 › NH-A post three human comments and create an owned plan with aiView on (20.1s)
+DRY dropped: {"bot":0,"empty":9,"restricted":0,"app":18} | promptBytes: 771 | jiraReads: 12
+DRY payload:
+{
+ "tickets": [
+  {
+   "key": "LZPT-191",
+   "status": "new",
+   "comments": [
+    {
+     "id": "17733",
+     "on": "2026-09-19",
+     "text": "Chasing again today. If we do not have the sandbox by Friday this slips another two weeks."
+    },
+    {
+     "id": "17732",
+     "on": "2026-09-19",
+     "text": "Still blocked on the vendor: their API sandbox has been down since Monday and support has not given us a restore date."
+    }
+   ]
+  },
+  {
+   "key": "LZPT-196",
+   "status": "new",
+   "comments": [
+    {
+     "id": "17734",
+     "on": "2026-09-19",
+     "text": "We finished the migration script over the weekend and it ran clean on the copy. Waiting on a change window to run it for real."
+    }
+   ]
+  },
+  {
+   "key": "LZPT-201",
+   "status": "new",
+   "comments": [
+    {
+     "id": "17735",
+     "on": "2026-09-19",
+     "text": "Scope changed - finance now want the quarterly breakdown as well, so this is bigger than the original estimate."
+    }
+   ]
+  }
+ ]
+}
+CALLS: 1 | wrote: true | bytes: 785 | usage: {"input_tokens":1183,"output_tokens":250} | failed: null | partial: 0
+DROPPED: {"bot":0,"empty":9,"restricted":0,"app":18}
+NOTES:
+{
+ "LZPT-191": {
+  "blockedBy": "vendor API sandbox down since Monday with no restore date from support",
+  "slownessReason": "if sandbox not available by Friday, work slips another two weeks",
+  "signal": "blocked",
+  "confidence": "high",
+  "ids": [
+   "17732",
+   "17733"
+  ],
+  "asOf": "2026-09-19"
+ },
+ "LZPT-196": {
+  "delivered": [
+   "migration script finished and ran clean on copy"
+  ],
+  "slownessReason": "waiting on a change window to run the script in production",
+  "signal": "slow",
+  "confidence": "high",
+  "ids": [
+   "17734"
+  ],
+  "asOf": "2026-09-19"
+ },
+ "LZPT-201": {
+  "decisionNeeded": "scope expanded to include quarterly breakdown in addition to original estimate",
+  "signal": "decision",
+  "confidence": "high",
+  "ids": [
+   "17735"
+  ],
+  "asOf": "2026-09-19"
+ }
+}
+  ✓  2 [chromium] › scenarios/lz-ppm/_scratch-6700-notes-human.spec.ts:72:1 › NH-B dry=1 then ONE real build; print the notes for judgement (7.1s)
+COMMENTS DELETED: 4/4
+LZPT-191: 0 comment(s) left, 0 of mine
+LZPT-196: 7 comment(s) left, 0 of mine
+LZPT-201: 0 comment(s) left, 0 of mine
+PLAN DELETE -> 200
+STILL_EXISTS: false
+  ✓  3 [chromium] › scenarios/lz-ppm/_scratch-6700-notes-human.spec.ts:87:1 › NH-Z delete every comment written and the plan (6.0s)
+
+  3 passed (33.7s)

@@ -1,0 +1,71 @@
+
+Running 5 tests using 1 worker
+
+HARNESS_BROWSER_RECEIPT {"mode":"persistent-chrome","browserVersion":"153.0.8010.48"}
+REST summary.verdict = slipping | pct = 13 | finish = 2026-10-12 | roomWd = null | portfolio = null | projects = ["LZPT"]
+STORED groupMode BEFORE = portfolio
+MODE BAR: By portfolio By project All
+  mode portfolio: exists=1 label="By portfolio" pressed=true
+  mode project: exists=1 label="By project" pressed=false
+  mode all: exists=1 label="All" pressed=false
+CARD FIELDS: {
+ "name": "LZPT Scenarios",
+ "verdictChip": "Slipping",
+ "punchline": "25 tasks already past due.",
+ "finish": "FINISHES 2026-10-12",
+ "roomPresent": 0,
+ "portfolioChip": null,
+ "portfolioAdd": "Not part of any portfolio — add it",
+ "projectChips": [
+  "LZPT"
+ ],
+ "note": "55 issues · 1 source · 0 drafts"
+}
+NOTE fontFamily: "JetBrains Mono Variable", "JetBrains Mono", "SF Mono", "Fira Code", monospace | fontSize: 10px
+STORED after clicking All = all
+AFTER RELOAD group-mode-all aria-pressed = true
+  ✓  1 [chromium] › scenarios/lz-ppm/_scratch-6700-plans-portfolio.spec.ts:51:1 › P-A the Plans page cards v2 and the remembered grouping (20.4s)
+HERO data-verdict = slipping | data-room = 
+HERO VERDICT WORD = "Slipping"
+HERO PUNCHLINE = "13% done with 86% of the time gone — 25 tasks already past due."
+HERO FULL = "Slipping PLAN HEALTH ? 13% done with 86% of the time gone — 25 tasks already past due. 16 on track · 0 at risk · 25 overdue · no plan target set"
+CARD CHIP WAS = "Slipping"
+HERO svg count = 0 | ring-ish markup hits = 0
+CRITERIA node count = 1
+TOOLTIP TEXTS: ["How this is decided — first match wins, worst first:\nOverdue: the plan finishes after the date it is measured against.\n▸ Slipping: 20% or more of the open tasks are already past due, or the calendar is 20 points or more ahead of the work done.\nTight: 10 working days of room or less before the target, or 50% or more of the tasks have no slack at all.\nOn track: it lands before the target and none of the above is true."]
+CRITERIA title attr: null
+CRITERIA innerHTML: <span tabindex="0" style="display: inline-flex; align-items: center;" aria-describedby=":r3:"><span style="display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: rgba(37, 99, 235, 0.2); color: var(--lz-primary, #2563eb); font-size: 9px; font-weight: 700; cursor: help; margin-left: 4px; flex-shrink: 0; border: 1px solid rgba(37, 99, 235, 0.3);">?</span></span>
+KPI TILES: [{"label":"Issues","value":"55"},{"label":"Complete","value":"13"},{"label":"On track","value":"16"},{"label":"At risk","value":"0"},{"label":"Overdue","value":"25"},{"label":"Buffers","value":"0"}]
+  ✓  2 [chromium] › scenarios/lz-ppm/_scratch-6700-plans-portfolio.spec.ts:108:1 › P-B the Dashboard plan-health hero (15.0s)
+PORTFOLIOS BEFORE: {"portfolios":[]}
+DIALOG: New portfolio NAME KIND Portfolio A set of plans chosen together — the "what are we spending on" level. WHAT IS IT FOR? optional Cancel Create portfolio
+PORTFOLIOS AFTER CREATE: {"portfolios":[{"id":"pf-d605825d-261","name":"Test portfolio","kind":"portfolio","description":"[harness-test] 6700","createdBy":"712020:937bc860-eec2-4294-a65d-8e0fe7c45086","createdByName":"","createdAt":"2026-09-19T19:55:05.023Z"}]}
+CARD PART-OF CHIP: PART OF Test portfolio
+REST plan.portfolio = {"id":"pf-d605825d-261","name":"Test portfolio","kind":"portfolio"}
+PORTFOLIO PAGE name = Test portfolio | kind = PORTFOLIO
+ROLLUP verdict = Slipping LZPT Scenarios — 25 tasks already past due. | finish = 2026-10-12 — waiting on LZPT Scenarios
+  count-red: 1 In trouble
+  count-amber: 0 Threatened
+  count-green: 0 Has room
+  count-grey: 0 Not measured
+DIRECTION ROWS: [ '2026-10-12\nLZPT Scenarios\n25 tasks already past due.' ]
+PLANS AS CARDS: 1
+PORTFOLIO PAGE TEXT:
+LeanZero Management Plans Capacity PORTFOLIO CONTROL · REV V4.58.620 ← All plans Test portfolio PORTFOLIO [harness-test] 6700 1 plan Rename Delete VERDICT Slipping LZPT Scenarios — 25 tasks already past due. LANDS 2026-10-12 — waiting on LZPT Scenarios 1 In trouble 0 Threatened 0 Has room 0 Not measured What lands, and when 2026-10-12 LZPT Scenarios 25 tasks already past due. The plans LZPT Scenarios Slipping 25 tasks already past due. FINISHES 2026-10-12 LZPT 55 issues · 1 source · 0 drafts Open ▸
+  ✓  3 [chromium] › scenarios/lz-ppm/_scratch-6700-plans-portfolio.spec.ts:149:1 › P-C create the portfolio, assign LZPT, open the portfolio page (23.3s)
+AI USAGE BEFORE: {"byFeature":{"assess":1,"explain":9,"group":19},"inputTokens":82871,"outputTokens":14409,"reviews":29}
+PROPOSE DIALOG:
+Propose portfolios Grouped from the projects these plans share, the words in their names and when they finish. Nothing is filed until you confirm. ✓ Program Multiple UAT and testing plans across shared projects (LZPT, LZPP, TPP, WFH) coordinating for October 2026 release decisions and capacity validation. LZPT Scenarios test LZPP Perf Demo test [harness-test] Private report source mtq75lja [harness-test] UAT 20260906 October release decisions [harness-test] UAT 20260906 October capacity mirror [harness-test] UAT2 concurrent report and draft 2026-09-08 [harness-test] Private report model mtq75lja Creates 1 portfolio and files 9 plans. Cancel Confirm
+CLUSTERS: 1
+  CLUSTER: ✓ Program Multiple UAT and testing plans across shared projects (LZPT, LZPP, TPP, WFH) coordinating for October 2026 release decisions and capacity validation. LZPT Scenarios test LZPP Perf Demo test [harness-test] Private report source mtq75lja [harness-test] UAT 20260906 October release decisions [harness-test] UAT 20260906 October capacity mirror [harness-test] UAT2 concurrent report and draft 2026-09-08 [harness-test] Private report model mtq75lja
+ai-off block: 0 | empty block: 0
+PORTFOLIOS AFTER PROPOSE+CANCEL: {"portfolios":[{"id":"pf-d605825d-261","name":"Test portfolio","kind":"portfolio","description":"[harness-test] 6700","createdBy":"712020:937bc860-eec2-4294-a65d-8e0fe7c45086","createdByName":"","createdAt":"2026-09-19T19:55:05.023Z"}]}
+AI USAGE AFTER: {"byFeature":{"assess":1,"explain":9,"group":19,"portfolio":1},"inputTokens":84184,"outputTokens":14513,"reviews":30}
+  ✓  4 [chromium] › scenarios/lz-ppm/_scratch-6700-plans-portfolio.spec.ts:200:1 › P-D Propose portfolios: a real model call, confirm NOTHING, no writes (14.5s)
+PORTFOLIOS AFTER DELETE: {"portfolios":[]}
+CARD AFTER DELETE — add-offer: Not part of any portfolio — add it | chip: 0
+REST plan.portfolio AFTER = null
+FINAL PORTFOLIOS: {"portfolios":[]}
+  ✓  5 [chromium] › scenarios/lz-ppm/_scratch-6700-plans-portfolio.spec.ts:231:1 › P-Z delete the portfolio; LZPT is stray again (22.8s)
+
+  5 passed (1.6m)

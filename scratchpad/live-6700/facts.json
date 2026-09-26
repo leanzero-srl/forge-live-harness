@@ -1,0 +1,8 @@
+{"facts":{
+ "plan":{"name":"LZPT Scenarios","total":55},
+ "critical":{"count":2,"chains":[{"id":"c1","keys":["LZPT-205","LZPT-209"],"drivesFinish":true}]},
+ "buffers":{"total":0,"exhausted":0,"worst":[]},
+ "milestones":{"total":0,"missed":0,"atRiskCount":0,"atRisk":[]},
+ "movers":{"source":"_original","total":0,"truncated":false,"rows":[]},
+ "finishSensitivity":{"available":false,"reason":"tester probe 6700","partial":true,"rows":[]},
+ "truncated":false,"partial":true}}
