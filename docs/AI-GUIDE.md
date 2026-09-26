@@ -48,6 +48,17 @@ findings/coverage-*.md COVERAGE MATRIX per app (FULL/DEEP/SMOKE/NONE-GAP) + rema
 
 ---
 
+## Running it: headless, per app, in parallel (2026-09-26)
+
+`npm run app -- <app> [--env dev|staging|prod] [--grep p] [--rest-only] [--headed]` and
+`npm run apps:parallel -- <app> <app> …` — see RUNBOOK.md. Each run: its own clone of the saved login
+(never the shared `.auth/profile`), its own `evidence/<app>/<runId>/`, a REST/hook lane
+(`rest/probes/<app>.ts`) that skips doors the env does not have, then the headless browser lane.
+New browserless check → add a probe to `rest/probes/<app>.ts` (read-only or self-restoring via
+`ctx.cleanup`). New app → a row in `config/apps.mjs` + `rest/probes/index.ts`. New render target →
+give it `readySelector` when its page hosts other Forge frames and `contentReady` (the app's real UI)
+so the smoke cannot pass on a spinner or a neighbour's banner.
+
 ## GOLDEN RULES
 
 ### Safety (non-negotiable)
