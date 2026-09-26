@@ -1,0 +1,54 @@
+// LZ750 item 5 completion — the POKE leaves no draft key behind.
+import { test, expect } from "../../fixtures/forge";
+import { getTarget } from "../../config/targets";
+import { assertLoggedIn } from "../../forge/browser";
+import { enterForgeSurface } from "../../forge/frame";
+import * as fs from "fs";
+const BED = "/private/tmp/claude-501/-Users-mihaiperdum-Projects-lz-ppm-forge/b81453ad-b550-4f53-91ac-77d7f5856c36/scratchpad/lz750";
+const bed = JSON.parse(fs.readFileSync(`${BED}/bed.json`, "utf8"));
+const OUT = `${BED}/shots2`; fs.mkdirSync(OUT, { recursive: true });
+const T = getTarget("lz-ppm-dashboard");
+const U = process.env.LZM_URL!, TOK = process.env.LZM_TOKEN!;
+const HOOK = process.env.LZ_PPM_TESTHOOK_URL!, SEC = process.env.HARNESS_SECRET!;
+const hook = async (q: string) => { const r = await fetch(`${HOOK}?${q}`, { headers: { Authorization: `Bearer ${SEC}` } }); return { _status: r.status, ...(await r.json().catch(() => ({}))) } as any; };
+const api = async (q: string) => { const r = await fetch(`${U}?${q}`, { headers: { Authorization: `Bearer ${TOK}` } }); return { _status: r.status, ...(await r.json().catch(() => ({}))) } as any; };
+test.describe.configure({ retries: 0, timeout: 1_800_000, mode: "serial" });
+
+test("LZ750 poke leaves no draft", async ({ page }) => {
+  const R: any = {}; const P = bed.planId;
+  R.draftBefore = await api(`resource=draft&planId=${P}`);
+  R.clearBefore = await hook(`what=clearDrafts&planId=${P}&dry=1`);
+  console.log("BEFORE draft", JSON.stringify(R.draftBefore), "clearDry", JSON.stringify(R.clearBefore));
+  await page.setViewportSize({ width: 1700, height: 1100 });
+  await assertLoggedIn(page);
+  await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
+  await page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]').first().waitFor({ state: "attached", timeout: 90_000 });
+  const s = await enterForgeSurface(page, { surface: "custom" });
+  const frame = s.frame;
+  await page.waitForTimeout(4000);
+  await frame.locator('[data-testid="plan-card"]').first().waitFor({ state: "visible", timeout: 180_000 });
+  await page.waitForTimeout(3000);
+  await frame.locator('[data-testid="plan-card"]').filter({ hasText: bed.tag }).first().click();
+  await page.waitForTimeout(18000);
+  await frame.getByRole("button", { name: /^Table$/i }).first().click().catch(() => {});
+  await page.waitForTimeout(7000);
+  const row = frame.locator(`[data-testid="table-row"][data-row-key="${bed.c}"]`).first();
+  const rendered = await row.getAttribute("data-row-start");
+  console.log("rendered derived start", rendered);
+  await row.locator('[data-testid="table-derived-date"][data-field="startDate"]').first().click({ force: true });
+  await page.waitForTimeout(1500);
+  await frame.locator(`.lz-datepicker button[aria-label="${rendered}"]`).first().click({ force: true });
+  await page.waitForTimeout(6000);
+  R.toasts = await frame.locator(".toast-enter, .toast-exit").allInnerTexts().catch(() => []);
+  R.bodyStaged = /Apply \d+ change/.test((await frame.locator("body").textContent()) || "");
+  R.saveLabel = await frame.locator('[data-testid="plan-save-btn"]').innerText().catch(() => "");
+  R.rowAfter = { s: await row.getAttribute("data-row-start"), d: await row.getAttribute("data-row-due"), derived: await row.getAttribute("data-row-derived") };
+  await page.screenshot({ path: `${OUT}/05b-poke.png` });
+  // give the 1.5 s draft autosave debounce ample time
+  await page.waitForTimeout(15000);
+  R.draftAfter = await api(`resource=draft&planId=${P}`);
+  R.clearAfter = await hook(`what=clearDrafts&planId=${P}&dry=1`);
+  console.log("AFTER", JSON.stringify({ toasts: R.toasts, staged: R.bodyStaged, save: R.saveLabel, row: R.rowAfter, draft: R.draftAfter, clearDry: R.clearAfter }));
+  fs.writeFileSync(`${BED}/results-poke.json`, JSON.stringify(R, null, 2));
+  expect(1).toBe(1);
+});

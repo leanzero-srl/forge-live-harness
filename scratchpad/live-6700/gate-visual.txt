@@ -1,0 +1,214 @@
+
+> leanzero-management-forge@2.1.0 test:visual
+> npm run build:frontend && node test/visual/run.mjs
+
+
+> leanzero-management-forge@2.1.0 build:frontend
+> cd static/ppm-ui && npm run build
+
+
+> ppm-ui@1.0.0 prebuild
+> node scripts/bump-version.js
+
+[PPM] Version bumped to 4.58.621 (build 20260920)
+
+> ppm-ui@1.0.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Compiled successfully.
+
+File sizes after gzip:
+
+  63.27 kB         build/static/js/459.901a4713.chunk.js
+  63.09 kB         build/static/js/974.c4118d99.chunk.js
+  48.08 kB (+2 B)  build/static/js/main.90a28b58.js
+  44.47 kB         build/static/js/183.280bbe43.chunk.js
+  39.03 kB         build/static/js/682.0bbea472.chunk.js
+  37.99 kB         build/static/js/722.2035c3d5.chunk.js
+  28.08 kB         build/static/js/870.965408c4.chunk.js
+  17.27 kB         build/static/js/593.96290fdb.chunk.js
+  15.64 kB         build/static/js/616.df992cdf.chunk.js
+  12.85 kB         build/static/js/21.f5218d36.chunk.js
+  12.35 kB         build/static/js/294.084f3714.chunk.js
+  12.23 kB         build/static/js/729.ae7b5be9.chunk.js
+  11.51 kB         build/static/js/125.72a03157.chunk.js
+  11.48 kB         build/static/js/228.d4ce9e15.chunk.js
+  11.33 kB         build/static/js/760.6873a6b1.chunk.js
+  10.87 kB         build/static/js/756.07d9dd0f.chunk.js
+  10.75 kB         build/static/js/783.a1d2b207.chunk.js
+  10.32 kB         build/static/js/216.ae896abb.chunk.js
+  8.98 kB          build/static/js/90.80b0c098.chunk.js
+  8.67 kB          build/static/js/347.a0b0404c.chunk.js
+  8.16 kB          build/static/js/477.18ef409b.chunk.js
+  7.82 kB          build/static/js/203.c1b1f0ff.chunk.js
+  7.43 kB          build/static/css/main.ae278724.css
+  7.37 kB          build/static/js/674.5cec81e1.chunk.js
+  7.01 kB          build/static/js/752.364435ff.chunk.js
+  6.9 kB           build/static/js/537.6d055b8d.chunk.js
+  6.45 kB          build/static/js/194.c0c19e1d.chunk.js
+  6.18 kB          build/static/css/459.475fc71d.chunk.css
+  5.79 kB          build/static/js/858.c7520838.chunk.js
+  5.6 kB           build/static/js/406.db23a3e8.chunk.js
+  5.4 kB           build/static/js/105.6398d99e.chunk.js
+  5.25 kB          build/static/js/940.d7ef3ab6.chunk.js
+  4.99 kB          build/static/js/774.47ed578d.chunk.js
+  4.93 kB          build/static/js/712.55acfdd0.chunk.js
+  4.76 kB          build/static/js/5.a93ec655.chunk.js
+  4.44 kB          build/static/js/267.7ee1a3a5.chunk.js
+  4.19 kB          build/static/js/569.6ba402e0.chunk.js
+  3.8 kB           build/static/js/691.9dffe03a.chunk.js
+  3.76 kB          build/static/js/853.5b6211be.chunk.js
+  3.24 kB          build/static/js/302.1ceed600.chunk.js
+  2.9 kB           build/static/js/840.835f167f.chunk.js
+  2.42 kB          build/static/css/105.d8084db8.chunk.css
+  2.12 kB          build/static/css/228.2ecc756f.chunk.css
+  2 kB             build/static/css/302.a9ae7024.chunk.css
+  1.34 kB          build/static/css/125.6636f068.chunk.css
+  963 B            build/static/js/131.cf5bf068.chunk.js
+
+The project was built assuming it is hosted at ./.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
+
+  Gantt render-regression suite
+  ────────────────────────────────────────────────
+  ✓ renders without JS errors
+  ✓ all essential assets (js/css) load
+  ✓ renderDiag is available
+  ✓ dependency-arrow SVG exists
+  ✓ ≥3 dependency arrows drawn  — got 3
+  ✓ milestone layer present
+  ✓ ≥2 milestone diamonds  — got 2
+  ✓ today line present
+  ✓ bars rendered  — got 11
+  ✓ parent rollup guide lines drawn  — got 2
+  ✓ dep-arrow zIndex is a positive number (not behind the background)  — zIndex=2
+  ✓ dep-arrow zIndex is below the sticky sidebar  — arrows=2 sidebar=5
+  ✓ dependency arrows: has on-screen geometry  — 15×45
+  ✓ dependency arrows: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ milestone markers: has on-screen geometry  — 15330×440
+  ✓ milestone markers: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ task bars: has on-screen geometry  — 336×14
+  ✓ task bars: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ parent rollup guides are styled-visible  — {"stroke":"rgba(148, 163, 184, 0.35)","opacity":1,"visibility":"visible","inDepSvg":true}
+  ✓ critical-path highlight marks bars  — got 4
+  ✓ critical bar gets the violet outline  — {"color":"rgb(124, 58, 237)","width":"2px","style":"solid"}
+  ✓ critical outline clears when toggled off  — off=rgb(15, 23, 42)
+  ✓ a buffer renders amber on an unedited plan  — {"fill":"amber","outlineColor":"rgb(15, 23, 42)","outlineStyle":"none"}
+  ✓ a done task renders green on an unedited plan  — {"fill":"green","outlineColor":"rgb(15, 23, 42)","outlineStyle":"none"}
+  ✓ an ordinary task renders blue  — {"fill":"blue","outlineColor":"rgb(15, 23, 42)","outlineStyle":"none"}
+  ✓ an unedited bar carries no draft outline  — {"fill":"amber","outlineColor":"rgb(15, 23, 42)","outlineStyle":"none"}
+  ✓ a duration-only edit shows the amber draft outline  — {"fill":"amber","outlineColor":"rgb(217, 119, 6)","outlineStyle":"solid"}
+  ✓ the draft outline does not overwrite the buffer fill  — {"fill":"amber","outlineColor":"rgb(217, 119, 6)","outlineStyle":"solid"}
+  ✓ dragging a bar preserves its working-day span
+  ✓ dragging a bar never lands a due date on a non-working day
+  ✓ editing a date cascades to successors  — cascaded: ["B","BUF","EPIC-1"]
+  ✓ a DECLARED milestone renders as a diamond  — {"milestone":true,"hasDiamond":true}
+  ✓ no other bar is treated as a milestone
+  ✓ the resize gesture actually registered (preview widened)  — preview=140 bar=42
+  ✓ cancelled resize restores the bar width (no 0px collapse)  — 42px → 42px
+  ✓ no residual inline transform on the bar after a drag  — transform=""
+  ✓ no bar collapses below its 6px floor
+  ✓ ordinary task labels are centered inside their unchanged date bars  — [{"key":"A","text":"A","fullKey":"A","centered":true,"contained":true,"align":"center"},{"key":"B","text":"B","fullKey":"B","centered":true,"contained":true,"align":"center"},{"key":"BUF","text":"BUF","fullKey":"BUF","centered":true,"contained":true,"align":"center"},{"key":"C","text":"C","fullKey":"C","centered":true,"contained":true,"align":"center"},{"key":"LOCK-1","text":"LOCK-1","fullKey":"LOCK-1","centered":true,"contained":true,"align":"center"},{"key":"LOCK-2","text":"LOCK-2","fullKey":"LOCK-2","centered":true,"contained":true,"align":"center"},{"key":"LOCK-3","text":"LOCK-3","fullKey":"LOCK-3","centered":true,"contained":true,"align":"center"},{"key":"PART-1","text":"PART-1","fullKey":"PART-1","centered":true,"contained":true,"align":"center"},{"key":"NOTYPE-1","text":"NOTYPE-1","fullKey":"NOTYPE-1","centered":true,"contained":true,"align":"center"}]
+  ✓ wizard renders without JS errors
+  ✓ wizard mounts standalone (no Forge bridge)
+  ✓ wizard shows the first (Name) step
+  ✓ wizard stepper includes the Milestones step
+  ✓ wizard primary button: has on-screen geometry  — 145×40
+  ✓ wizard primary button: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ import wizard renders without JS errors
+  ✓ import wizard lists the mock Jira plans  — rows=4
+  ✓ import Continue is disabled until a plan is picked
+  ✓ import preview lists the resolved sources with counts  — {"sources":3,"hasTarget":true,"hasPlanSpecific":true,"hasWarn":true,"hasCount":true}
+  ✓ import preview shows the plan-specific date-field mapping  — {"sources":3,"hasTarget":true,"hasPlanSpecific":true,"hasWarn":true,"hasCount":true}
+  ✓ import preview surfaces warnings (dead board)
+  ✓ import preview warning note: has on-screen geometry  — 654×39
+  ✓ import preview warning note: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ import wizard explains a Free site (premium-required)  — {"code":"premium-required","text":"Jira Plans isn't available on this site\nJira Plans needs Jira Premium. This site is on the Free plan, so there are no Jira p
+  ✓ dashboard renders without JS errors
+  ✓ dashboard mounts standalone (no Forge bridge)
+  ✓ dashboard computes KPI tiles from issues  — {"present":true,"health":true,"buffers":true,"bufferHealth":true,"svgCharts":5}
+  ✓ dashboard renders ≥3 SVG charts  — got 5
+  ✓ dashboard buffer-health fever chart present
+  ✓ dashboard chart: has on-screen geometry  — 12×12
+  ✓ dashboard chart: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ schedule confidence renders without JS errors
+  ✓ schedule confidence simulated the mock plan  — {"present":true,"p50":"2026-06-25","p80":"2026-06-25","p90":"2026-06-25","runs":300,"leaves":3,"barSum":300,"bars":1,"milestones":2,"drivers":3,"text":"Schedule confidence\n?\ntask uncertainty\nMedium
+  ✓ schedule confidence percentiles are ordered  — 2026-06-25 2026-06-25 2026-06-25
+  ✓ schedule confidence histogram counts sum to the runs  — sum=300 runs=300
+  ✓ schedule confidence lists milestones + drivers  — ms=2 drivers=3
+  ✓ schedule confidence names the percentile marker in the histogram
+  ✓ schedule confidence histogram bar: has on-screen geometry  — 64×84
+  ✓ schedule confidence histogram bar: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ suggestions banner renders without JS errors
+  ✓ suggestions banner mounts
+  ✓ banner shows the verified, honest win  — Reorder 3 issues to tidy dependencies
+This straightens 2 backward arrows · brings 1 long arrow into view. Families stay 
+  ✓ banner has Apply + Dismiss actions
+  ✓ suggestions banner: has on-screen geometry  — 1352×61
+  ✓ suggestions banner: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ AI review modal renders without JS errors
+  ✓ AI review modal mounts (portal)
+  ✓ AI review shows severity findings  — ✦
+AI Plan Review
+
+Semantic checks a rule engine can't make — advisory, not a gate.
+
+HIGH
+Semantic Pr
+  ✓ AI review modal: has on-screen geometry  — 640×584
+  ✓ AI review modal: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ Explain modal renders without JS errors
+  ✓ Explain modal mounts (portal)
+  ✓ Explain shows the three questions  — ✦
+Explain this plan
+
+Mobile Launch — what decides the end date, what would move it, what to do next.
+
+!
+At risk
+CACHED ·
+  ✓ Explain shows the deterministic facts strip  — SPAN
+214d
+COMPLETE
+62%
+FINISH-DRIVING SPAN
+96d
+THINNEST SLACK
+2d · MOB-31
+MILESTONES AT RISK
+3
+The numbers are computed from your plan; the wording is AI.
+Close
+  ✓ Explain modal: has on-screen geometry  — 700×669
+  ✓ Explain modal: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ Explain facts strip: has on-screen geometry  — 662×68
+  ✓ Explain facts strip: actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ AI off renders a calm note and KEEPS the facts strip  — calm · ✦
+Explain this plan
+
+Mobile Launch — what decides the end date, what would move it, what t
+  ✓ Explain facts strip (AI off): has on-screen geometry  — 662×68
+  ✓ Explain facts strip (AI off): actually paints pixels (toggle-diff)  — region changes when hidden ✓
+  ✓ Explain strip keeps the plan finish when sensitivity is incomplete  — FINISH
+2026-11-27
+PLAN SPAN
+214d
+COMPLETE
+62%
+FINISH-DRIVING SPAN
+96d
+THINNEST SLACK
+2d · MOB-31
+MILESTONES AT RISK
+3
+  ────────────────────────────────────────────────
+  91/91 passed
+
