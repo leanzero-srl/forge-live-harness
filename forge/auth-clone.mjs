@@ -155,3 +155,28 @@ export function ensureWorkerClone(runAuthDir, workerDir) {
   if (fs.existsSync(workerDir)) return { reused: true, ...recoverOwnedClone(workerDir) };
   return cloneProfile(path.join(runAuthDir, "base"), workerDir, { worker: path.basename(workerDir) });
 }
+
+/**
+ * Remove run clone dirs left behind by a runner that was SIGKILLed (its `finally` never ran).
+ * Only dirs directly under <authDir>/runs whose `base` stamp names a DEAD pid on THIS host and that
+ * are older than `minAgeMs`; each goes through the stamp-checked removeOwnedRun. Returns what it removed.
+ */
+export function sweepStaleRuns(authDir, minAgeMs = 60 * 60 * 1000) {
+  const root = runsRoot(authDir);
+  let entries = [];
+  try { entries = fs.readdirSync(root, { withFileTypes: true }); } catch { return []; }
+  const removed = [];
+  for (const e of entries) {
+    if (!e.isDirectory()) continue;
+    const dir = path.join(root, e.name);
+    let stamp;
+    try { stamp = JSON.parse(fs.readFileSync(path.join(dir, "base", STAMP), "utf8")); } catch { continue; }
+    if (stamp.host !== os.hostname() || !stamp.pid) continue;
+    if (Date.now() - Date.parse(stamp.createdAt) < minAgeMs) continue;
+    let alive = false;
+    try { process.kill(stamp.pid, 0); alive = true; } catch (err) { alive = err && err.code === "EPERM"; }
+    if (alive) continue;
+    try { if (removeOwnedRun(authDir, dir)) removed.push(e.name); } catch { /* not ours to delete */ }
+  }
+  return removed;
+}

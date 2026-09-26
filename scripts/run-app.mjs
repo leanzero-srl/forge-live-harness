@@ -30,11 +30,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveApp, resolveEnv, doorsIn } from "../config/apps.mjs";
 import { harnessHome, CODE_ROOT } from "../config/home.mjs";
-import { cloneProfile, checkSession, removeOwnedRun, runsRoot } from "../forge/auth-clone.mjs";
+import { cloneProfile, checkSession, removeOwnedRun, runsRoot, sweepStaleRuns } from "../forge/auth-clone.mjs";
 import { loadEnv } from "../data/env.mjs";
 
 loadEnv();
-const HERE = path.dirname(fileURLToPath(import.meta.url));
 
 function usage(msg) {
   if (msg) console.error(`run-app: ${msg}`);
@@ -204,7 +203,9 @@ async function main() {
     const rows = readReport(json);
     const appLevel = rows.filter((r) => r.status !== "skipped" && !r.annotations.some((a) => a.type === "door" && a.description === "site"));
     summary.lanes.rest = { status: code === 0 ? "passed" : "failed", exit: code, counts: count(rows), appLevelChecks: appLevel.length, tests: rows };
-    if (!appLevel.length) summary.lanes.rest.note = doors.length ? "every door probe skipped (not configured in .env?)" : `no REST/hook door in ${env}${app.badge && env === "production" ? " (Runs on Atlassian: by design)" : ""} — browser lane is the check`;
+    const skipped = [...new Set(rows.filter((r) => r.status === "skipped").map((r) => r.annotations.find((a) => a.type === "skip")?.description).filter(Boolean))];
+    if (skipped.length) summary.lanes.rest.skipped = skipped;
+    if (!appLevel.length) summary.lanes.rest.note = doors.length ? `every door probe skipped: ${skipped.join("; ")}` : `no REST/hook door in ${env}${app.badge && env === "production" ? " (Runs on Atlassian: by design)" : ""} — browser lane is the check`;
     if (code !== 0) bump(1);
     writeSummary();
   }
@@ -236,6 +237,9 @@ async function main() {
         }
         releaseBed = lock;
       }
+      // A SIGKILLed earlier run never reached its cleanup: sweep its stamped clones (dead pid, >1h old).
+      const swept = sweepStaleRuns(authDir);
+      if (swept.length) console.log(`  swept ${swept.length} stale run clone(s): ${swept.join(", ")}`);
       // Per-run auth copy: clone the saved login, prove it alive, then every worker clones this base.
       const source = process.env.HARNESS_AUTH_SOURCE ? path.resolve(process.env.HARNESS_AUTH_SOURCE) : path.join(authDir, "profile");
       authRunDir = path.join(runsRoot(authDir), `${app.id}-${runId}`);
