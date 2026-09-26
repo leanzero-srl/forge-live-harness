@@ -10,7 +10,7 @@
 // paired with the SAME call as a steward through the SAME seam, so a refusal is the account's
 // standing and not the seam's lack of a user session. FAILS if any refusal sentence drifts.
 import { test, expect } from "../../fixtures/forge";
-import { setupWorkflowPage, inv, getKvs, MIHAI, GABI, PLAIN, PLAIN_SPACE } from "./_wf";
+import { setupWorkflowPage, inv, getKvs, MIHAI, GABI, PLAIN, PLAIN_SPACE, restoreFeed } from "./_wf";
 // @ts-ignore
 import { heading, paragraph } from "../../data/adf.mjs";
 // @ts-ignore
@@ -198,7 +198,7 @@ test("WF-2 REVERT: a real non-privileged editor's publish on an Approved page is
     console.log("### comments:", JSON.stringify(bodies));
     expect(bodies.some((b: string) => /reverted/i.test(b) && /approved/i.test(b)), "the editor's comment is on the page").toBe(true);
   } finally {
-    if (originalNotifs) await inv("set", { key: "recent-notifications", value: JSON.stringify(originalNotifs) }).catch(() => {});
+    await restoreFeed(originalNotifs);
     await call("request-transition", { pageId: P, toStateId: "draft" }, MIHAI).catch(() => {});
     await bed.restore();
   }

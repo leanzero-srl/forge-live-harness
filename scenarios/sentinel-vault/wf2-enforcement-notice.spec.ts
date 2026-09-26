@@ -11,7 +11,7 @@
 // site admin and therefore privileged — it cannot author a non-privileged edit itself).
 import { test, expect } from "../../fixtures/forge";
 import { mkdirSync } from "node:fs";
-import { setupWorkflowPage, loadPage, shotRibbon, inv, getKvs, setKvs, delKvs, strip, norm, SPACE, MIHAI, GABI } from "./_wf";
+import { setupWorkflowPage, loadPage, shotRibbon, inv, getKvs, setKvs, delKvs, strip, norm, SPACE, MIHAI, GABI, restoreFeed } from "./_wf";
 // @ts-ignore
 import { getComments } from "../../data/confluence.mjs";
 
@@ -59,7 +59,7 @@ test("WF-2 server: a demoted editor gets a dispatch and a comment even with the 
     expect.soft(notice).toMatch(/Nothing was lost|still on the page/i);
   } finally {
     if (originalGlobal) await setKvs("admin-settings-global", originalGlobal); else await delKvs("admin-settings-global").catch(() => {});
-    if (originalNotifs) await setKvs("recent-notifications", originalNotifs); else await delKvs("recent-notifications").catch(() => {});
+    await restoreFeed(originalNotifs); // the feed can outgrow the hook's query string (414) during a run
     await bed.restore();
   }
 });
@@ -93,7 +93,7 @@ test("WF-2 browser: the editor's ribbon says the edit was moved back / reverted,
     expect(s2).toMatch(/Nothing was lost/);
     await shotRibbon(page, r!.el, `${OUT}/02-ribbon-demoted.png`, 20);
   } finally {
-    if (originalNotifs) await setKvs("recent-notifications", originalNotifs); else await delKvs("recent-notifications").catch(() => {});
+    await restoreFeed(originalNotifs); // the feed can outgrow the hook's query string (414) during a run
     await bed.restore();
   }
 });
