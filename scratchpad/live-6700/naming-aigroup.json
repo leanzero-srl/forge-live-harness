@@ -1,0 +1,115 @@
+{
+  "planId": "plan-test-mu8suj2o-eybllk",
+  "dry": false,
+  "leafCount": 22,
+  "calls": 2,
+  "strategy": {
+    "chosen": "chains+topics",
+    "considered": [
+      "chains+topics",
+      "topics",
+      "chains",
+      "tiers"
+    ],
+    "byModel": true,
+    "why": "",
+    "verdicts": {
+      "chains": {
+        "ok": true,
+        "reason": null
+      },
+      "topics": {
+        "ok": true,
+        "reason": null
+      },
+      "phases": {
+        "ok": false,
+        "reason": "no-seam",
+        "detail": "the widest gap between start dates is 7 day(s) in a 49-day span; at least 14 are needed"
+      },
+      "owner": {
+        "ok": false,
+        "reason": "too-few-owners",
+        "detail": "1 distinct assignee(s); at least 3 are needed"
+      },
+      "type": {
+        "ok": false,
+        "reason": "too-few-types",
+        "detail": "1 issue type(s); at least 3 are needed"
+      },
+      "tiers": {
+        "ok": true,
+        "reason": null
+      },
+      "hierarchy": {
+        "ok": false,
+        "reason": "no-hierarchy",
+        "detail": "0 in-plan parent(s) with 2+ children; at least 3 are needed"
+      }
+    }
+  },
+  "requested": null,
+  "refused": null,
+  "partial": true,
+  "partialReason": "model-under-named",
+  "unnamedSegments": 1,
+  "unnamedIssues": 8,
+  "failed": null,
+  "promptBytes": {
+    "structure": 1938,
+    "names": 1325
+  },
+  "prompts": [],
+  "tooLarge": false,
+  "storylinesDegraded": null,
+  "kvsWrites": 1,
+  "oneWrite": true,
+  "coverage": {
+    "assigned": 22,
+    "total": 22
+  },
+  "repaired": [
+    {
+      "type": "unnameableSegmentName",
+      "detId": "ch:441f78df",
+      "name": "Operational setup tasks",
+      "support": 0,
+      "of": 8
+    }
+  ],
+  "byKind": {
+    "chain": 3
+  },
+  "segmentCount": 3,
+  "segments": [
+    {
+      "id": "s1",
+      "kind": "chain",
+      "name": "Payment gateway rollout",
+      "n": 8,
+      "named": true,
+      "term": null,
+      "chainId": "ch:d667c289"
+    },
+    {
+      "id": "s2",
+      "kind": "chain",
+      "name": "WFH-3214 → WFH-3221 · 8",
+      "n": 8,
+      "named": false,
+      "term": null,
+      "chainId": "ch:441f78df"
+    },
+    {
+      "id": "s3",
+      "kind": "chain",
+      "name": "Tax residency filing",
+      "n": 6,
+      "named": true,
+      "term": null,
+      "chainId": "ch:178373d0"
+    }
+  ],
+  "valueBytes": 3620,
+  "storedBytes": 3620
+}
