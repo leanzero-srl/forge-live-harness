@@ -88,7 +88,8 @@ async function consent() {
       else resolve(q.get("code"));
     });
     srv.listen(port, "127.0.0.1");
-    setTimeout(() => { srv.close(); reject(new Error("no callback within 5 minutes")); }, 300_000).unref();
+    const waitMs = Number(opt("--wait-min") || 30) * 60_000;
+    setTimeout(() => { srv.close(); reject(new Error(`no callback within ${waitMs / 60000} minutes`)); }, waitMs).unref();
   });
 
   console.log(`scopes requested: ${scopes.join(" ")}`);
