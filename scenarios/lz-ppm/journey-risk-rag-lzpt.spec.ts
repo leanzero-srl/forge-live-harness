@@ -1,95 +1,65 @@
-// PERSISTENT feature journey — Dashboard SCHEDULE-RISK RAG distribution on LZPT (read-only).
-// computeRiskScores gives each leaf a score = slip*4 + depth*3 + (overdue?30:atRisk?15:0) +
-// depletion*25, banded red>=60 / amber>=30 / green<30. On LZPT slip=0 (no baseline) and
-// depletion=0 (no buffers), so score = depth*3 + overdue-bump. Therefore, WITHOUT replicating
-// the exact depth, the RAG counts are date-derivable:
-//   • every OVERDUE open leaf scores depth*3 + 30 ∈ [30, ~45] → AMBER (never red: max depth ~5
-//     → max ~45 < 60), so amber == the overdue-open-leaf count (30);
-//   • done leaves and the single unscheduled open leaf score ~0 → GREEN (7 = 6 done + 1);
-//   • red == 0.
-// So the distribution is {red:0, amber:30, green:7} summing to the 37 leaves. Also checks each
-// listed top-risk item's band matches its score (band thresholds). Non-mutating; never Applies.
+// PERSISTENT feature journey — Dashboard SCHEDULE-RISK distribution on LZPT (read-only).
+// REWRITTEN 2026-09-26 for B-4 / B-63 (deployed dev 7.19.0): an open ticket already past its date is
+// RED ("High") and leads the list. computeRiskScores now gives an overdue open leaf RISK_RED (60) +
+// min(20, days late) + depth*3 (+ slip*4), so it can never fall below the red line; the old journey
+// asserted the pre-fix bug (red 0, amber == overdue). Every expectation below comes from Jira via
+// lzptOracle, never from the app:
+//   • red   == open leaves past their due date (the Dashboard's Overdue population);
+//   • amber == 0, and the oracle PROVES it can be: no non-overdue leaf reaches 30 (depth*3 + 15);
+//   • green == every other leaf, and the three partition the plan's leaves;
+//   • the top-risk list is all red, every entry is a ticket past its date, ordered by score.
+// Non-mutating; never Applies.
 import { test, expect } from "../../fixtures/forge";
 import { getTarget } from "../../config/targets";
 import { assertLoggedIn } from "../../forge/browser";
 import { enterForgeSurface } from "../../forge/frame";
+import { lzptOracle, openLzptDashboard } from "./lzpt-risk-oracle";
 
 const T = getTarget("lz-ppm-dashboard");
-const PLAN = "LZPT Scenarios";
-test.describe.configure({ retries: 0, timeout: 220_000 });
-async function bodyText(frame: any) { return (await frame.locator("body").textContent().catch(() => "")) || ""; }
+test.describe.configure({ retries: 0, timeout: 240_000 });
 
-test("LZPT Dashboard: schedule-risk RAG == {red:0, amber:overdue(30), green:7} (computed)", async ({ page }) => {
+test("LZPT Dashboard: schedule risk — every open ticket past its date is red and leads the list", async ({ page }) => {
   await page.setViewportSize({ width: 1600, height: 1000 });
   await assertLoggedIn(page);
   await page.goto(T.deepLink(T.envId)!, { waitUntil: "domcontentloaded" });
-  await page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]').first().waitFor({ state: "attached", timeout: 30_000 });
+  await page.locator('iframe[data-testid="hosted-resources-iframe"], iframe[title*="Iframe"]').first().waitFor({ state: "attached", timeout: 60_000 });
   const s = await enterForgeSurface(page, { surface: "custom" });
   const frame = s.kind === "custom" ? s.frame : null;
   if (!frame) throw new Error("no frame");
   const realFrame = await (await frame.locator(":root").elementHandle())!.ownerFrame();
 
-  // Independent, date-based expectation over leaves: overdue → amber, done/unscheduled → green.
-  const exp = await page.evaluate(async () => {
-    const res = await fetch("/rest/api/3/search/jql", { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json", "X-Atlassian-Token": "no-check" }, credentials: "include", body: JSON.stringify({ jql: "project = LZPT", maxResults: 100, fields: ["status", "duedate", "parent"] }) });
-    const d = await res.json();
-    const issues = d.issues || [];
-    const parentSet = new Set(issues.map((i: any) => i.fields.parent?.key).filter(Boolean));
-    const now = new Date();
-    const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-    let leaves = 0, overdue = 0, done = 0, openNonOverdue = 0;
-    for (const i of issues) {
-      if (parentSet.has(i.key)) continue;
-      leaves += 1;
-      const isDone = i.fields.status?.statusCategory?.key === "done";
-      if (isDone) { done += 1; continue; }
-      const due = i.fields.duedate;
-      let isOverdue = false;
-      if (due) { const p = due.split("-").map(Number); isOverdue = Date.UTC(p[0], p[1] - 1, p[2]) < today; }
-      if (isOverdue) overdue += 1; else openNonOverdue += 1;
-    }
-    return { leaves, overdue, done, openNonOverdue };
-  });
-  console.log("EXP:", JSON.stringify(exp));
-  expect(exp.leaves, "37 leaves").toBe(37);
-  expect(exp.overdue, "30 overdue").toBe(30);
-  // amber = overdue leaves; green = done + open-non-overdue (atRisk=0 on LZPT, all dates past); red = 0.
-  const expAmber = exp.overdue;                    // 30
-  const expGreen = exp.done + exp.openNonOverdue;  // 6 + 1 = 7
-  expect(expAmber + expGreen, "amber+green == leaf count (red=0)").toBe(exp.leaves);
+  const exp = await lzptOracle(page);
+  console.log("ORACLE:", JSON.stringify(exp));
+  expect(exp.overdue, "the bed has open tickets past their date (else this journey proves nothing)").toBeGreaterThan(0);
+  expect(exp.ampleAmber, "no non-overdue leaf can reach amber on LZPT (depth*3 + 15 < 30)").toBe(0);
 
-  await page.waitForTimeout(1500);
-  await frame.getByText(PLAN, { exact: false }).first().click().catch(() => {});
-  await page.waitForTimeout(2500);
-  if (!/Gantt|Table|Dashboard/i.test(await bodyText(frame))) await frame.getByRole("button", { name: /Open plan/i }).first().click().catch(() => {});
-  await page.waitForTimeout(2500);
-  await frame.getByRole("button", { name: /^Dashboard/i }).first().click().catch(() => {});
-  await page.waitForTimeout(3000);
-
-  await realFrame!.waitForFunction(() => !!document.querySelector('[data-testid="risk-rag"]'), undefined, { timeout: 15_000 }).catch(() => {});
+  await openLzptDashboard(page, frame);
+  await realFrame!.waitForFunction(() => !!document.querySelector('[data-testid="risk-rag"]'), undefined, { timeout: 30_000 }).catch(() => {});
   const rag = await realFrame!.evaluate(() => {
     const el = document.querySelector('[data-testid="risk-rag"]');
     if (!el) return null;
     const n = (a: string) => Number(el.getAttribute(a));
-    return { red: n("data-red"), amber: n("data-amber"), green: n("data-green") };
+    return { red: n("data-red"), amber: n("data-amber"), green: n("data-green"), text: (el.textContent || "").replace(/\s+/g, " ") };
   });
   console.log("RAG:", JSON.stringify(rag));
-  expect(rag, "schedule-risk RAG rendered").not.toBeNull();
+  expect(rag, "schedule-risk card rendered").not.toBeNull();
+  expect(rag!.red, "red (High) == open tickets past their date").toBe(exp.overdue);
+  expect(rag!.amber, "amber (Medium) == 0").toBe(0);
+  expect(rag!.green, "green (Low) == every other leaf").toBe(exp.leaves - exp.overdue);
+  expect(rag!.red + rag!.amber + rag!.green, "the bands partition the plan's leaves").toBe(exp.leaves);
+  expect(rag!.text, "the legend names the High count").toContain(`High ${exp.overdue}`);
 
-  // ACCURACY: the RAG distribution == the date-derived expectation.
-  expect(rag!.red, "red == 0 (no leaf scores >=60: max depth*3+30 ~45)").toBe(0);
-  expect(rag!.amber, "amber == overdue open leaves (each scores 30..45)").toBe(expAmber);
-  expect(rag!.green, "green == done + unscheduled leaves").toBe(expGreen);
-  expect(rag!.red + rag!.amber + rag!.green, "RAG partitions the 37 leaves").toBe(exp.leaves);
-
-  // Each listed top-risk item's band matches its score by the same thresholds.
   const items: Array<{ key: string; score: number; band: string }> = await realFrame!.evaluate(() =>
     Array.from(document.querySelectorAll('[data-testid="risk-item"]')).map((el) => ({ key: el.getAttribute("data-key")!, score: Number(el.getAttribute("data-score")), band: el.getAttribute("data-band")! }))
   );
-  console.log("TOP items:", items.length, JSON.stringify(items.slice(0, 6)));
-  expect(items.length, "top-risk list is populated").toBeGreaterThan(0);
-  for (const it of items) {
-    const expBand = it.score >= 60 ? "red" : it.score >= 30 ? "amber" : "green";
-    expect(it.band, `${it.key} band matches its score ${it.score}`).toBe(expBand);
+  console.log("TOP:", JSON.stringify(items));
+  expect(items.length, "top-risk list shows min(6, overdue) tickets").toBe(Math.min(6, exp.overdue));
+  const overdue = new Set(exp.overdueKeys);
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    expect(it.band, `${it.key} is red`).toBe("red");
+    expect(it.score, `${it.key} scores at or above the red line`).toBeGreaterThanOrEqual(60);
+    expect(overdue.has(it.key), `${it.key} is a ticket past its date`).toBe(true);
+    if (i > 0) expect(it.score, `list is ordered by score (${items[i - 1].key} ≥ ${it.key})`).toBeLessThanOrEqual(items[i - 1].score);
   }
 });
